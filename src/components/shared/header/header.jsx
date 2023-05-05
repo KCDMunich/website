@@ -62,7 +62,7 @@ const Header = ({ isMobileMenuOpen, onBurgerClick, additionalClassName, homepage
         </nav>
         <Button
           className="-mr-2 md:hidden"
-          to="https://tickets.kcdzurich.ch/"
+          to="https://www.eventbrite.de/e/kubernetes-community-days-munich-2023-tickets-526260839337"
           theme="primary"
           size="sm"
           target="_blank"

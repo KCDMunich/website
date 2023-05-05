@@ -2,48 +2,69 @@ import clsx from 'clsx';
 import React from 'react';
 
 import Link from 'components/shared/link';
-import ArchCloud from 'icons/archcloud.svg';
-import Isovalent from 'icons/isovalent.svg';
-import Rokt from 'icons/rokt.svg';
-import WhiteRabbit from 'icons/white-rabbit.svg';
+import liquid from 'icons/liquid.png';
+import redhat from 'icons/redhat.png';
+import unikube from 'icons/unikube.svg';
+import whiteduck from 'icons/whiteduck.png';
 
-import AndreasGehrigPhoto from './images/andreas-gehrig-photo.jpg';
-import MilenaThalmannPhoto from './images/milena-thalmann-photo.jpg';
-import PhilippMeierPhoto from './images/philipp-meier-photo.jpg';
-import ThomasPhiliponaPhoto from './images/thomas-philipona-photo.jpg';
+import AnelaPhoto from './images/anela_a.jpeg';
+import DominikPhoto from './images/dominik_b.jpeg';
+import HannesPhoto from './images/hannes-h.jpeg';
+import MarkusPhoto from './images/markus_s.jpeg';
+import MaxKörbächerPhoto from './images/max_k.jpg';
+import NicoPhoto from './images/nico-m.jpeg';
+import TomPhoto from './images/tom_u.jpeg';
 
 const ITEMS = [
   {
-    name: 'Andreas Gehrig',
-    position: 'Co-founder Arch.cloud',
-    photo: AndreasGehrigPhoto,
-    url: 'https://www.linkedin.com/in/andreasgehrig/',
+    name: 'Max Körbächer',
+    position: 'Co-founder - Liquid Reply | CNCF Ambassador',
+    photo: MaxKörbächerPhoto,
+    url: 'https://www.linkedin.com/in/maxkoerbaecher/',
   },
   {
-    name: 'Milena Thalmann',
-    position: 'Founder White Rabbit Communications',
-    photo: MilenaThalmannPhoto,
-    url: 'https://www.linkedin.com/in/milena-thalmann/',
+    name: 'Nico Meisenzal',
+    position: 'Senior Cloud & DevOps Consultant - white duck',
+    photo: NicoPhoto,
+    url: 'https://www.linkedin.com/in/nicomeisenzahl/',
   },
   {
-    name: 'Philipp Meier',
-    position: 'Ecosystem Builder - Isovalent',
-    photo: PhilippMeierPhoto,
-    url: 'https://www.linkedin.com/in/phmeier/',
+    name: 'Hannes Hanusch',
+    position: 'Co-Founder - UNIKUBE',
+    photo: HannesPhoto,
+    url: 'https://www.linkedin.com/in/hannes-hanusch/',
   },
   {
-    name: 'Thomas Philipona',
-    position: 'Founder ROKT GmbH',
-    photo: ThomasPhiliponaPhoto,
-    url: 'https://www.linkedin.com/in/thomas-philipona-thun/',
+    name: 'Markus Sümmchen',
+    position: 'CEO - white duck',
+    photo: MarkusPhoto,
+    url: 'https://www.linkedin.com/in/msuemmchen/',
+  },
+  {
+    name: 'Tom Uhlig',
+    position: 'Consultant - Liquid Reply',
+    photo: TomPhoto,
+    url: 'https://www.linkedin.com/in/msuemmchen/',
+  },
+  {
+    name: 'Anela Avdibegovic',
+    position: 'Marketing Manager - white duck',
+    photo: AnelaPhoto,
+    url: 'https://www.linkedin.com/in/anela-avdibegovic/',
+  },
+  {
+    name: 'Dominik Bittl',
+    position: 'Senior Solution Architect - Red Hat',
+    photo: DominikPhoto,
+    url: 'https://www.linkedin.com/in/dominik-bittl/',
   },
 ];
 
 const LOGOS = [
-  { icon: ArchCloud, url: 'https://arch.cloud/', iconClassName: 'w-[260px] h-auto' },
-  { icon: WhiteRabbit, url: 'https://www.whiterabbitcom.ch', iconClassName: 'w-[200px]' },
-  { icon: Isovalent, url: 'https://isovalent.com/', iconClassName: '' },
-  { icon: Rokt, url: 'https://rokt.cloud/', iconClassName: 'w-28 h-[72px]' },
+  { icon: liquid, url: 'http://liquidreply.com/', iconClassName: 'w-[260px] h-auto' },
+  { icon: whiteduck, url: 'https://whiteduck.de/', iconClassName: 'w-[200px]' },
+  { icon: unikube, url: 'https://unikube.io/', iconClassName: '' },
+  { icon: redhat, url: 'https://www.redhat.com/en', iconClassName: 'w-28 h-[72px]' },
 ];
 
 const Members = () => (

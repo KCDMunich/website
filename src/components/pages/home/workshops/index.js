@@ -1,3 +1,3 @@
-import Workshops from './workshops';
+// import Workshops from './workshops';
 
-export default Workshops;
+// export default Workshops;

@@ -1,5 +1,5 @@
 export default {
-  workshops: {
+  /* workshops: {
     title: 'Workshops — Kubernetes Community Days',
     description:
       'We have an exciting lineup of hands-on workshop where you can put your skills to the test and learn from experts. We have something for everyone. Take advantage of this',
@@ -23,10 +23,10 @@ export default {
     title: 'Workshops Kubernetes Basics — Kubernetes Community Days',
     description:
       'This one-day training in German or English provides a practical and easy-to-understand introduction to Kubernetes.',
-  },
+  }, */
   team: {
     title: 'Team — Kubernetes Community Days',
-    description: 'Experience the power of community at the Kubernetes Community Days in Zurich!',
+    description: 'Experience the power of community at the Kubernetes Community Days in Munich!',
   },
   static: ({ title }) => ({
     title: `${title} — Kubernetes Community Days`,

@@ -8,7 +8,7 @@ import Schedule from 'components/pages/home/schedule';
 import Speakers from 'components/pages/home/speakers';
 import Sponsors from 'components/pages/home/sponsors';
 import Venue from 'components/pages/home/venue';
-import Workshops from 'components/pages/home/workshops';
+// import Workshops from 'components/pages/home/workshops';
 import Layout from 'components/shared/layout';
 import SEO from 'components/shared/seo';
 
@@ -19,7 +19,6 @@ const HomePage = () => (
     <Speakers />
     <Schedule />
     <Proposal />
-    <Workshops />
     <Sponsors />
     <Partners />
   </Layout>

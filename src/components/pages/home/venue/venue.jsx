@@ -16,7 +16,7 @@ const Venue = () => (
           cloud native communities, supported by the Cloud Native Computing Foundation (CNCF).
         </p>
         <p className="mt-7">
-          This is the first KCD in <span className="font-bold">Switzerland</span>, and we’re excited
+          This is our second edition in <span className="font-bold">Munich</span>, and we’re excited
           to bring the community together. We want to provide a platform for professionals and
           experts from all levels and backgrounds to learn, network, and share their knowledge on
           all things cloud native.
@@ -39,28 +39,28 @@ const Venue = () => (
             />
             <div className="pt-5 pb-8 pl-10 pr-16 leading-normal md:row-start-1 md:px-6 sm:row-start-2">
               <Link
-                to="https://goo.gl/maps/ooQufQWKzaRM286Z7"
+                to="https://goo.gl/maps/yQ2Xr6Mnoyivh3qq5"
                 className="text-2xl font-semibold sm:text-xl"
                 theme="primary"
               >
-                Google HQ <br />
-                at Zurich Europaallee
+                smartvillage Bogenhausen <br />
+                at Munich Arabellapark
               </Link>
               <p className="mt-5 text-lg text-[#262F59] opacity-60 sm:text-lg">
-                Google EURF <br /> Europaallee 36 <br /> 8004 Zürich
+                smartvillage Bogenhausen <br /> Rosenkavalierpl. 13 <br /> 81925 Munich
               </p>
             </div>
           </div>
 
           <div className="w-[520px] self-center text-lg leading-normal text-primary-1 xl:max-w-[470px] lg:ml-8 lg:max-w-[530px] md:ml-0 md:mt-5 md:w-full md:max-w-none sm:text-lg">
             <p>
-              The Kubernetes Community Days in Zurich will be held at the Google HQ at Zurich
-              Europaallee, a modern and convenient location next to the train station. Attendees can
-              expect to enjoy a variety of vegetarian and vegan food options throughout the day.
+              The Kubernetes Community Days in Munich will be held at the smartvillage Bogenhausen
+              at Munich Arabellapark. Attendees can expect to enjoy a variety of vegetarian and
+              vegan food options throughout the day.
             </p>
             <p className="mt-5">
-              Don’t miss out on the opportunity to connect with fellow attendees and continue the
-              conversation at the networking Apéro.
+              Don’t miss out on the opportunity of fun, to connect with fellow attendees and
+              continue the conversation at the networking Bowling event.
             </p>
             <p className="mt-5 font-bold">We can't wait to see you there!</p>
           </div>

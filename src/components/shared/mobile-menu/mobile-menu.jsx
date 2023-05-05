@@ -61,7 +61,7 @@ const MobileMenu = ({ isOpen, onButtonClick }) => {
         </div>
         <Button
           className="mt-7 text-white"
-          to="https://tickets.kcdzurich.ch/"
+          to="https://www.eventbrite.de/e/kubernetes-community-days-munich-2023-tickets-526260839337"
           theme="blue"
           size="lg"
         >

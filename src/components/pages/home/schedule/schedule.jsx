@@ -8,7 +8,7 @@ import illustration from './images/section-illustration.svg';
 const TITLE = 'Schedule';
 
 const DESCRIPTION =
-  "Get ready for an action-packed day. With two tracks and more than 15 sessions to choose from, you'll have plenty of opportunities to learn from experts in the field. The whole event will be held in English.";
+  "Get ready for an action-packed days. With two tracks and more than 38 sessions to choose from, you'll have plenty of opportunities to learn from experts in the field. The whole event will be held in English.";
 
 const Schedule = () => (
   <section className="safe-paddings relative bg-white pb-40 lg:pb-32 md:py-24 sm:py-16">
@@ -23,7 +23,7 @@ const Schedule = () => (
         <p className="mt-5 max-w-[488px] text-lg leading-normal lg:max-w-[650px]">{DESCRIPTION}</p>
         <Button
           className="mt-7 text-white"
-          to="https://tickets.kcdzurich.ch/"
+          to="https://www.eventbrite.de/e/kubernetes-community-days-munich-2023-tickets-526260839337"
           theme="blue"
           size="lg"
           target="_blank"

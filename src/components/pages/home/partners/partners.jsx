@@ -1,22 +1,18 @@
 import React from 'react';
 
 import Link from 'components/shared/link';
-import ArchCloud from 'icons/archcloud.svg';
 import Cloudnative from 'icons/cloudnative.svg';
-import InsideIt from 'icons/insideIt.svg';
-import Rokt from 'icons/rokt.svg';
-import Techface from 'icons/techface.svg';
-import WhiteRabbit from 'icons/white-rabbit.svg';
+import Kubecareers from 'icons/kubecareers.svg';
+import Kubeevents from 'icons/kubeevents.svg';
+import Syseleven from 'icons/syseleven.png';
 
 const TITLE = 'Community & Media Partners';
 
 const ITEMS = [
   { icon: Cloudnative, url: 'https://www.cncf.io/' },
-  { icon: Techface, url: 'http://techface.ch' },
-  { icon: InsideIt, url: 'https://www.inside-it.ch' },
-  { icon: ArchCloud, url: 'https://arch.cloud/' },
-  { icon: Rokt, url: 'https://rokt.cloud/' },
-  { icon: WhiteRabbit, url: 'https://www.whiterabbitcom.ch' },
+  { icon: Syseleven, url: 'https://www.syseleven.de/' },
+  { icon: Kubeevents, url: 'https://kube.events/' },
+  { icon: Kubecareers, url: 'https://kube.careers/' },
 ];
 
 const Partners = () => (

@@ -1,11 +1,9 @@
 import React from 'react';
 
-import Button from 'components/shared/button';
 import LINKS from 'constants/links';
 
 const TITLE = 'Call for Proposal';
-const DESCRIPTION =
-  "If you are an expert or newcomer in the cloud native computing world and would like to share your knowledge and experience with the community, we encourage you to submit a proposal. Our committee is looking for diverse topics and speakers, so don't hesitate to submit your ideas. We can't wait to see what the community offers, and we look forward to receiving your submissions.";
+const DESCRIPTION = 'Our CfP is closed!';
 
 const Proposal = () => (
   <section className="safe-paddings relative bg-[#EDC3C7] bg-opacity-10 py-20">
@@ -16,15 +14,6 @@ const Proposal = () => (
           {TITLE}
         </h2>
         <p className="mt-8 text-2xl leading-normal sm:text-lg">{DESCRIPTION}</p>
-        <Button
-          className="mt-10"
-          to="https://kcd.smapply.io/prog/kcd_zurich_2023/"
-          theme="primary"
-          size="lg"
-          target="_blank"
-        >
-          Call for Proposal
-        </Button>
       </div>
     </div>
   </section>

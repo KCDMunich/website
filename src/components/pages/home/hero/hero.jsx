@@ -4,10 +4,10 @@ import Button from 'components/shared/button';
 
 import illustration from './images/hero-illustration.png';
 
-const TITLE = 'Kubernetes Community Days Zürich';
+const TITLE = 'Kubernetes Community Days Munich';
 
 const DESCRIPTION =
-  'Experience the power of community at the Kubernetes Community Days in Zurich! When a diverse group of experts comes together to learn, network, and share knowledge on all things cloud native.';
+  'The Kubernetes & Cloud Native community will gather at the smartvillage Bogenhausen in Munich, Germany. Join us for a two-day technical event loaded with exciting talks and networking opportunities. KCD Munich is aimed at developers, platform people, and other IT professionals with an interest in cloud native technologies. This community event is supported by the CNCF.';
 
 const Hero = () => (
   <section className="safe-paddings overflow-hidden bg-[#EDC3C7] bg-opacity-10 pt-28 pb-40 lg:pb-32 md:pt-24 md:pb-[500px] sm:pb-[520px] [@media(max-width:600px)]:pb-[430px] [@media(max-width:460px)]:pb-[420px]">
@@ -15,7 +15,7 @@ const Hero = () => (
       <div className="absolute top-0 -left-[40%] h-[566px] w-[566px] translate-x-1/2 bg-white blur-[100px] md:-left-[30%] md:h-[350px] md:w-[350px]" />
       <div className="relative md:flex md:flex-col md:items-center md:text-center">
         <span className="rounded-3xl bg-yellow px-4 py-2 text-sm font-bold leading-none text-black">
-          JUNE 14th - 15th, 2023
+          JULY 17th - 18th, 2023
         </span>
         <h1 className="mt-3 max-w-[570px] text-8xl font-bold leading-denser text-primary-1 lg:max-w-[500px] sm:text-7xl">
           {TITLE}
@@ -25,7 +25,7 @@ const Hero = () => (
         </p>
         <Button
           className="mt-7 text-white shadow-[0_15px_40px_#999999] hover:shadow-[0px_15px_30px_#adadad]"
-          to="https://tickets.kcdzurich.ch/"
+          to="https://www.eventbrite.de/e/kubernetes-community-days-munich-2023-tickets-526260839337"
           theme="blue"
           size="lg"
           target="_blank"

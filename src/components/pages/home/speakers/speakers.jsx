@@ -2,7 +2,7 @@ import React from 'react';
 
 import LINKS from 'constants/links';
 
-import AnnieTalvastoPhoto from './images/annie-talvasto-photo.jpg';
+/* import AnnieTalvastoPhoto from './images/annie-talvasto-photo.jpg';
 import CherylHungPhoto from './images/cheryl-hung-photo.jpg';
 import JuliusVolzPhoto from './images/julius-volz-photo.jpg';
 import KatieGamanjiPhoto from './images/katie-gamanji-photo.jpg';
@@ -11,12 +11,12 @@ import LizRicePhoto from './images/liz-rice-photo.jpg';
 import MaxKorbacherPhoto from './images/max-korbacher-photo.jpg';
 import PriyaWadhwaPhoto from './images/priya-wadhwa-photo.jpg';
 import RicardoRochaPhoto from './images/ricardo-rocha-photo.jpg';
-import ThomasGrafPhoto from './images/thomas-graf-photo.jpg';
+import ThomasGrafPhoto from './images/thomas-graf-photo.jpg'; */
 
 const TITLE = 'Speakers';
 
 const ITEMS = [
-  {
+  /* {
     name: 'Thomas Graf',
     position: 'CTO & CO-Founder of Isovalent',
     photo: ThomasGrafPhoto,
@@ -65,7 +65,7 @@ const ITEMS = [
     name: 'Lisa Falco ',
     position: 'Consultant in Medical & Responsible AI at Zühlke Group',
     photo: LisaFalcoPhoto,
-  },
+  }, */
 ];
 
 const Speakers = () => (
@@ -102,7 +102,7 @@ const Speakers = () => (
       </ul>
 
       <p className="mt-14 text-center text-[22px] font-semibold leading-normal text-primary-1">
-        More to come...
+        Coming soon...
       </p>
     </div>
   </section>

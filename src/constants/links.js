@@ -22,11 +22,11 @@ export default {
     id: getAnchor('Speakers'),
     homeTo: null,
   },
-  workshops: {
+  /* workshops: {
     to: '/workshops',
     id: getAnchor('Workshops'),
     homeTo: '/workshops',
-  },
+  }, */
   proposal: {
     to: `/#${getAnchor('Call for Proposal')}`,
     id: getAnchor('Call for Proposal'),
@@ -36,7 +36,7 @@ export default {
     to: '/team',
   },
   tickets: {
-    to: 'https://tickets.kcdzurich.ch/',
+    to: 'https://www.eventbrite.de/e/kubernetes-community-days-munich-2023-tickets-526260839337',
     target: '_blank',
   },
   mission: {
@@ -54,19 +54,19 @@ export default {
 
   // Social-links
   linkedin: {
-    to: 'https://www.linkedin.com/company/kubernetes-community-days-zurich/',
+    to: 'https://www.linkedin.com/company/kubernetes-community-days-munich',
     target: '_blank',
   },
   twitter: {
-    to: 'https://twitter.com/KcdZurich?s=20&t=2K7fxHFqThcgycuBzO_rSw',
+    to: 'https://twitter.com/KCDMunich',
     target: '_blank',
   },
   googlemaps: {
-    to: 'https://goo.gl/maps/ooQufQWKzaRM286Z7',
+    to: 'https://goo.gl/maps/yQ2Xr6Mnoyivh3qq5',
     target: '_blank',
   },
   youtube: {
-    to: 'https://www.youtube.com/@KCDZH',
+    to: 'https://www.youtube.com/@cncf',
     target: '_blank',
   },
 };
