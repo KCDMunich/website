@@ -59,10 +59,10 @@ const Venue = () => (
               vegan food options throughout the day.
             </p>
             <p className="mt-5">
-              Don’t miss out on the opportunity of fun, to connect with fellow attendees and
+              Do not miss out on the opportunity of fun, to connect with fellow attendees and
               continue the conversation at the networking Bowling event.
             </p>
-            <p className="mt-5 font-bold">We can't wait to see you there!</p>
+            <p className="mt-5 font-bold">We can not wait to see you there!</p>
           </div>
         </div>
       </div>

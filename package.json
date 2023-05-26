@@ -19,8 +19,7 @@
     "lint:js": "eslint --ext .js,.jsx --ignore-path .gitignore .",
     "lint:js:fix": "eslint --fix --ext .js,.jsx --ignore-path .gitignore .",
     "lint:md": "markdownlint --ignore-path .gitignore .",
-    "lint:md:fix": "markdownlint --fix --ignore-path .gitignore .",
-    "prepare": "husky install"
+    "lint:md:fix": "markdownlint --fix --ignore-path .gitignore ."
   },
   "dependencies": {
     "@mdx-js/react": "^2.2.1",
@@ -62,7 +61,6 @@
     "gatsby-plugin-svgr-svgo": "^2.0.0",
     "gatsby-source-filesystem": "^5.5.0",
     "gatsby-transformer-sharp": "^5.2.0",
-    "husky": "^8.0.2",
     "lint-staged": "^13.1.0",
     "markdownlint-cli": "^0.32.2",
     "postcss": "^8.4.19",

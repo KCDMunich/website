@@ -48,7 +48,7 @@ const Sponsors = () => (
       </h2>
       <p className="mx-auto mt-5 max-w-[800px] text-lg leading-normal text-primary-1">
         We would like to extend a special thank you to our sponsors for their support and commitment
-        to the community. We couldn't do it without them! If you’re interested in becoming a
+        to the community. We coul not do it without them! If you are interested in becoming a
         sponsor, please contact{' '}
         <Link
           className="font-semibold"
