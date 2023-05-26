@@ -96,14 +96,15 @@ module.exports = {
     //     },
     //   },
     // },
+    // {
+    //  resolve: 'gatsby-plugin-canonical-urls',
+    //  options: {
+    //    siteUrl: process.env.GATSBY_DEFAULT_SITE_URL,
+    //  },
+    // },
     'gatsby-alias-imports',
     'gatsby-plugin-postcss',
     'gatsby-plugin-sitemap',
-    {
-      resolve: 'gatsby-plugin-canonical-urls',
-      options: {
-        siteUrl: process.env.GATSBY_DEFAULT_SITE_URL,
-      },
-    },
+    
   ],
 };
