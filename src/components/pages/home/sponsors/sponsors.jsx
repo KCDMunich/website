@@ -3,12 +3,19 @@ import React from 'react';
 
 import Link from 'components/shared/link';
 import LINKS from 'constants/links';
+import ApeFactory from 'icons/apefactory.webp';
 import Camptocamp from 'icons/camptocamp.svg';
-import Dynatrace from 'icons/dynatrace.svg';
-import Elasticbrains from 'icons/elasticbrains.svg';
+import Elasticbrains from 'icons/elasticbrain.webp';
+import Exoscale from 'icons/exoscale.webp';
+import Grafana from 'icons/grafanalabs.webp';
 import Isovalent from 'icons/isovalent.svg';
+import Lumigo from 'icons/lumigo.webp';
+import MetalStack from 'icons/metalstackcloud.webp';
 import Mkdev from 'icons/mkdev.png';
-import Qaware from 'icons/qaware.svg';
+import Qaware from 'icons/qaware.webp';
+import Redhat from 'icons/redhat.png';
+import Stormforge from 'icons/stormforge.webp';
+
 
 const TITLE = 'Sponsors';
 
@@ -16,9 +23,10 @@ const ITEMS = [
   {
     title: 'Gold',
     logos: [
-      { icon: Dynatrace, url: 'https://www.dynatrace.com/' },
+      { icon: ApeFactory, url: 'https://www.apefactory.com/de' },
       { icon: Qaware, url: 'https://www.qaware.de/en/' },
       { icon: Elasticbrains, url: 'https://www.elasticbrains.de/de/' },
+      { icon: MetalStack, url: 'https://metalstack.cloud/de' },
     ],
     cardClassname: 'min-w-[488px] max-w-[330px] min-h-[152px] sm:min-w-[350px] sm:min-h-[130px]',
     iconClassname: 'max-w-[390px] sm:max-w-[350px]',
@@ -27,14 +35,21 @@ const ITEMS = [
     title: 'Silver',
     logos: [
       { icon: Isovalent, url: 'https://isovalent.com/' },
+      { icon: Grafana, url: 'https://grafana.com/' },
       { icon: Camptocamp, url: 'https://www.camptocamp.com/en' },
+      { icon: Exoscale, url: 'https://www.exoscale.com/' },
+      { icon: Stormforge, url: 'https://www.stormforge.io/?utm_medium=tradeshow&utm_source=conference-website&utm_campaign=2023-07_kcd-munich' },
+      { icon: Lumigo, url: 'https://lumigo.io/' },
     ],
     cardClassname: 'min-w-[384px] min-h-[122px] sm:min-w-[320px] sm:min-h-[115px]',
     iconClassname: 'max-w-[330px] sm:min-w-[290px]',
   },
   {
     title: 'Bronze',
-    logos: [{ icon: Mkdev, url: 'https://mkdev.me/' }],
+    logos: [
+      { icon: Mkdev, url: 'https://mkdev.me/' },
+      { icon: Redhat, url: 'https://www.redhat.com/de/our-code-is-open?sc_cid=7013a000002w5fEAAQ&gclsrc=aw.ds' }
+    ],
     cardClassname: 'min-w-[280px] min-h-[104px] sm:min-w-[250px] sm:min-h-[94px]',
     iconClassname: 'max-w-[330px] sm:min-w-[290px]',
   },

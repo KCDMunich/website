@@ -3,7 +3,7 @@ import React from 'react';
 import Button from 'components/shared/button';
 import LINKS from 'constants/links';
 
-import illustration from './images/section-illustration.svg';
+import illustration from './images/schedule.png';
 
 const TITLE = 'Schedule';
 

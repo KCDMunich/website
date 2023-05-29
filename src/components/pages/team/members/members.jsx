@@ -2,9 +2,9 @@ import clsx from 'clsx';
 import React from 'react';
 
 import Link from 'components/shared/link';
+import unikube from 'icons/Blueshoe.webp';
 import liquid from 'icons/liquid.png';
 import redhat from 'icons/redhat.png';
-import unikube from 'icons/unikube.svg';
 import whiteduck from 'icons/whiteduck.png';
 
 import AnelaPhoto from './images/anela_a.jpeg';

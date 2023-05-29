@@ -18,7 +18,6 @@ const HomePage = ({ location }) => (
     <Venue />
     <Speakers location={location} />
     <Schedule />
-    <Proposal />
     <Sponsors />
     <Partners />
   </Layout>

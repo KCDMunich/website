@@ -1,11 +1,7 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 
-function createMarkup() {
-    return {__html: `
-    <script type="text/javascript" src="https://sessionize.com/api/v2/cos5nif6/view/GridSmart"></script>
-  `}; // end of a multi-line string
-  }
+const data = '<script type="text/javascript" src="https://sessionize.com/api/v2/cos5nif6/view/GridSmart"></script>';
 
 const Schedule = () => (
     <section className="safe-paddings relative bg-white pb-40 lg:pb-32 md:py-24 sm:py-16">
@@ -19,7 +15,7 @@ const Schedule = () => (
   );
 
 function DangerComponent() {
-    return <div dangerouslySetInnerHTML={createMarkup()} />;
+  return <div key={new Date().getTime()} dangerouslySetInnerHTML={{__html: data}} />;
   }
 
 export default Schedule;

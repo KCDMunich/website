@@ -5,4 +5,4 @@ slug: data-privacy
 
 [Impressum](https://whiteduck.de/impressum/)
 
-[Datenschutzerklärung] https://whiteduck.de/datenschutz/ 
+[Datenschutzerklärung](https://whiteduck.de/datenschutz/)

@@ -2,6 +2,7 @@ import React from 'react';
 
 import Link from 'components/shared/link';
 import Cloudnative from 'icons/cloudnative.svg';
+import GermanTech from 'icons/germantech.webp';
 import Kubecareers from 'icons/kubecareers.svg';
 import Kubeevents from 'icons/kubeevents.svg';
 import Syseleven from 'icons/syseleven.png';
@@ -10,6 +11,7 @@ const TITLE = 'Community & Media Partners';
 
 const ITEMS = [
   { icon: Cloudnative, url: 'https://www.cncf.io/' },
+  { icon: GermanTech, url: 'https://germantechjobs.de/' },
   { icon: Syseleven, url: 'https://www.syseleven.de/' },
   { icon: Kubeevents, url: 'https://kube.events/' },
   { icon: Kubecareers, url: 'https://kube.careers/' },
