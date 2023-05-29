@@ -1,4 +1,9 @@
 export default {
+  schedule: {
+    title: 'Kubernetes Community Days Munich - Event Schedule for July 17th and 18th, 2023',
+    description:
+      'Explore the detailed agenda for Kubernetes Community Days in Munich on July 17th and 18th, 2023. Listen to expert talks, and connect with Kubernetes and Cloud Native professionals. Plan your day now!',
+  },
   /* workshops: {
     title: 'Workshops — Kubernetes Community Days',
     description:

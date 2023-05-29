@@ -40,10 +40,11 @@ module.exports = {
       blue: { 1: '#3333FF', 2: '#2929FF' },
       primary: {
         1: '#262F59',
+        2: 'rgba(38, 47, 89, 0.1)',
+        3: 'rgba(38, 47, 89, 0.3)',
+        4: 'rgba(38, 47, 89, 0.03)',
+        5: 'rgba(38, 47, 89, 0.8)',
       },
-      // secondary: {
-      //   1: '',
-      // },
       gray: {
         1: '#0D0D0D',
         2: '#1A1A1A',
@@ -58,6 +59,9 @@ module.exports = {
         11: '#D1D1E0',
         12: '#F5F5F5',
       },
+      lightYellow: 'rgba(255, 234, 125, 0.3)',
+      lightGreen: 'rgba(125, 255, 208, 0.2)',
+      lightOrange: 'rgba(255, 180, 125, 0.2)',
     }),
     backgroundImage: {
       'header-gradient': 'linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%)',
@@ -69,11 +73,19 @@ module.exports = {
       lg: { max: '1279px' },
       md: { max: '1023px' },
       sm: { max: '767px' },
-      xs: { max: '359px' },
+      xs: { max: '479px' },
     },
     extend: {
       lineHeight: {
         denser: '1.125',
+      },
+      letterSpacing: {
+        tight: '-0.02em',
+        tighter: '-0.04em',
+      },
+      boxShadow: {
+        lg: '0px 14px 20px rgba(38, 47, 89, 0.1)',
+        xl: '0px 15px 40px #999999',
       },
     },
   },

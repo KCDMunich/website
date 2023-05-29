@@ -12,11 +12,11 @@ import Venue from 'components/pages/home/venue';
 import Layout from 'components/shared/layout';
 import SEO from 'components/shared/seo';
 
-const HomePage = () => (
+const HomePage = ({ location }) => (
   <Layout homepage>
     <Hero />
     <Venue />
-    <Speakers />
+    <Speakers location={location} />
     <Schedule />
     <Proposal />
     <Sponsors />
