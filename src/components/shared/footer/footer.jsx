@@ -4,8 +4,8 @@ import slugify from 'slugify';
 import LINKS from 'constants/links.js';
 import MENUS from 'constants/menus';
 import GoogleMaps from 'icons/google-maps-icon.inline.svg';
-import LinkedIn from 'icons/linkedin-logo.inline.svg';
 import Logo from 'icons/logo.inline.svg';
+import LinkedIn from 'icons/linkedin-logo.inline.svg';
 import Twitter from 'icons/twitter-logo.inline.svg';
 import Youtube from 'icons/youtube.inline.svg';
 

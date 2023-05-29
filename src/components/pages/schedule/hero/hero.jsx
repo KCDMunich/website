@@ -2,7 +2,7 @@ import React from 'react';
 
 import Button from 'components/shared/button';
 
-const TITLE = 'Schedule for <time class="text-blue-1 xs:block">17th & 18th of May, 2023</time>';
+const TITLE = 'Schedule for <time class="text-blue-1 xs:block">17th & 18th of July, 2023</time>';
 const DESCRIPTION =
   "Get ready for action-packed days. With two tracks and more than 45 sessions to choose from, you'll have plenty of opportunities to learn from experts in the field. The whole event will be held in English.";
 

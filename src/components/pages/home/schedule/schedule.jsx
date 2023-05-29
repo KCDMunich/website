@@ -8,7 +8,7 @@ import illustration from './images/schedule.png';
 const TITLE = 'Schedule';
 
 const DESCRIPTION =
-  "Get ready for an action-packed days. With two tracks and more than 45 sessions to choose from, you'll have plenty of opportunities to learn from experts in the field. The whole event will be held in English.";
+  "Get ready for action-packed days. With two tracks and more than 45 sessions to choose from, you'll have plenty of opportunities to learn from experts in the field. The whole event will be held in English.";
 
 const Schedule = () => (
   <section className="safe-paddings relative bg-white pb-40 lg:pb-32 md:py-24 sm:py-16">
