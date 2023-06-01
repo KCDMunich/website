@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 
-const data = '<script type="text/javascript" src="https://sessionize.com/api/v2/cos5nif6/view/Speakers"></script>';
+const scriptUrl = 'https://sessionize.com/api/v2/cos5nif6/view/Speakers';
 
 const Speakers = () => (
     <section className="safe-paddings relative bg-white pb-40 lg:pb-32 md:py-24 sm:py-16">
@@ -14,8 +14,17 @@ const Speakers = () => (
     </section>
   );
 
-function DangerComponent() {
-    return <div key={new Date().getTime()} dangerouslySetInnerHTML={{__html: data}} />;
-  }
+  const DangerComponent = () => {
+    return (
+        <iframe
+            title="External Script"
+            srcDoc={`<script src="${scriptUrl}"></script>`}
+            border="0"
+            width="400%"
+            height="1000%"
+        />
+
+    );
+};
 
 export default Speakers;

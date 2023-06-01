@@ -4,11 +4,7 @@ import LINKS from 'constants/links';
 
 const TITLE = 'Speakers';
 
-function createMarkup() {
-  return {__html: `
-<script type="text/javascript" src="https://sessionize.com/api/v2/cos5nif6/view/SpeakerWall"></script>
-`}; // end of a multi-line string
-}
+const scriptUrl = 'https://sessionize.com/api/v2/cos5nif6/view/SpeakerWall';
 
 const Speakers = () => (
   <section className="safe-paddings relative bg-white pb-40 lg:pb-32 md:py-24 sm:py-16">
@@ -27,8 +23,17 @@ const Speakers = () => (
   </section>
 );
 
-function DangerComponent() {
-  return <div dangerouslySetInnerHTML={createMarkup()} />;
-}
+const DangerComponent = () => {
+  return (
+      <iframe
+          title="External Script"
+          srcDoc={`<script src="${scriptUrl}"></script>`}
+          border="0"
+          width="300%"
+          height="600px"
+      />
+
+  );
+};
 
 export default Speakers;
