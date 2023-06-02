@@ -7,23 +7,10 @@ import CardIllusrtation from './images/card-illustration.jpg';
 const TITLE = 'Venue information';
 
 const Venue = () => (
-  <section className="safe-paddings bg-white py-40 md:py-24 sm:py-16">
+  <section className="safe-paddings bg-white md:py-24 sm:py-16">
     <div className="container-md">
-      <div className="text-2xl text-primary-1 sm:text-lg">
-        <p>
-          <span className="font-bold">Kubernetes Community Days</span> (KCDs) are global,
-          community-organized events that gather adopters and technologists from open source and
-          cloud native communities, supported by the Cloud Native Computing Foundation (CNCF).
-        </p>
-        <p className="mt-7">
-          This is our second edition in <span className="font-bold">Munich</span>, and we’re excited
-          to bring the community together. We want to provide a platform for professionals and
-          experts from all levels and backgrounds to learn, network, and share their knowledge on
-          all things cloud native.
-        </p>
-      </div>
 
-      <div className="lg:mt-38 mt-40 xl:mt-32 md:mt-24">
+      <div className="lg:mt-38 xl:mt-32 md:mt-24">
         <h2 className="mt-3 text-center text-6xl font-bold leading-tight text-primary-1">
           {TITLE}
         </h2>
