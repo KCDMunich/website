@@ -14,7 +14,7 @@ const Details = () => (
         </h2>
 
       <div className="lg:mt-38 xl:mt-32 md:mt-24">
-      <div className="mt-14 justify-between text-2xl text-primary-1 sm:text-lg">
+      <div className="mx-auto mt-5 max-w-[800px] text-lg leading-normal text-primary-1">
         <p className="mt-7">
           Below you will find a hotel with which we have agreed discount rates for accommodation.
         </p>
