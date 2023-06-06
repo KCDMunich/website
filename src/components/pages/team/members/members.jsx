@@ -12,7 +12,7 @@ import DominikPhoto from './images/dominik_b.jpeg';
 import HannesPhoto from './images/hannes-h.jpeg';
 import MarkusPhoto from './images/markus_s.jpeg';
 import MaxKörbächerPhoto from './images/max_k.jpg';
-import NicoPhoto from './images/nico-m.jpeg';
+import NicoPhoto from './images/nico-m.jpg';
 import TomPhoto from './images/tom_u.jpeg';
 
 const ITEMS = [
@@ -24,7 +24,7 @@ const ITEMS = [
   },
   {
     name: 'Nico Meisenzal',
-    position: 'Senior Cloud & DevOps Consultant - white duck',
+    position: 'Head of DevOps Consulting & Operations - white duck',
     photo: NicoPhoto,
     url: 'https://www.linkedin.com/in/nicomeisenzahl/',
   },
