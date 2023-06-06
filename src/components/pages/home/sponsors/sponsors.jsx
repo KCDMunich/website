@@ -12,7 +12,7 @@ import Isovalent from 'icons/isovalent.svg';
 import Lumigo from 'icons/lumigo.webp';
 import MetalStack from 'icons/metalstackcloud.webp';
 import Mkdev from 'icons/mkdev.png';
-import Qaware from 'icons/qaware.webp';
+import Qaware from 'icons/qaware.svg';
 import Redhat from 'icons/redhat.png';
 import Stormforge from 'icons/stormforge.webp';
 
