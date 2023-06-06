@@ -18,7 +18,7 @@ export default {
     homeTo: null,
   },
   speakers: {
-    to: `/#${getAnchor('Speakers')}`,
+    to: `/speakers`,
     id: getAnchor('Speakers'),
     homeTo:  '/speakers',
   },
