@@ -21,7 +21,7 @@ const Speakers = () => (
             srcDoc={`<script src="${scriptUrl}"></script>`}
             border="0"
             width="400%"
-            height="1000%"
+            height="600px"
         />
 
     );
