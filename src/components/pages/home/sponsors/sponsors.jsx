@@ -15,6 +15,7 @@ import Mkdev from 'icons/mkdev.png';
 import Qaware from 'icons/qaware.svg';
 import Redhat from 'icons/redhat.png';
 import Stormforge from 'icons/stormforge.webp';
+import Google from 'icons/google-cloud.svg';
 
 
 const TITLE = 'Sponsors';
@@ -27,6 +28,7 @@ const ITEMS = [
       { icon: Qaware, url: 'https://www.qaware.de/en/' },
       { icon: Elasticbrains, url: 'https://www.elasticbrains.de/de/' },
       { icon: MetalStack, url: 'https://metalstack.cloud/de' },
+      { icon: Google, url: 'https://www.google.com/' },
     ],
     cardClassname: 'min-w-[488px] max-w-[330px] min-h-[152px] sm:min-w-[350px] sm:min-h-[130px]',
     iconClassname: 'max-w-[390px] sm:max-w-[350px]',
