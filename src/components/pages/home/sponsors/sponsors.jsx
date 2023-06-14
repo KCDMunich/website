@@ -16,6 +16,7 @@ import Qaware from 'icons/qaware.svg';
 import Redhat from 'icons/redhat.png';
 import Stormforge from 'icons/stormforge.webp';
 import Google from 'icons/google-cloud.svg';
+import Okteto from 'icons/okteto.png';
 
 
 const TITLE = 'Sponsors';
@@ -42,6 +43,7 @@ const ITEMS = [
       { icon: Exoscale, url: 'https://www.exoscale.com/' },
       { icon: Stormforge, url: 'https://www.stormforge.io/?utm_medium=tradeshow&utm_source=conference-website&utm_campaign=2023-07_kcd-munich' },
       { icon: Lumigo, url: 'https://lumigo.io/' },
+      { icon: Okteto, url: 'https://www.okteto.com' },
     ],
     cardClassname: 'min-w-[384px] min-h-[122px] sm:min-w-[320px] sm:min-h-[115px]',
     iconClassname: 'max-w-[330px] sm:min-w-[290px]',
