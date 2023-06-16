@@ -18,6 +18,10 @@ import Stormforge from 'icons/stormforge.webp';
 import Google from 'icons/google-cloud.svg';
 import Okteto from 'icons/okteto.png';
 
+import unikube from 'icons/Blueshoe.webp';
+import liquid from 'icons/liquid.png';
+import whiteduck from 'icons/whiteduck.png';
+
 
 const TITLE = 'Sponsors';
 
@@ -53,6 +57,16 @@ const ITEMS = [
     logos: [
       { icon: Mkdev, url: 'https://mkdev.me/' },
       { icon: Redhat, url: 'https://www.redhat.com/de/our-code-is-open?sc_cid=7013a000002w5fEAAQ&gclsrc=aw.ds' }
+    ],
+    cardClassname: 'min-w-[280px] min-h-[104px] sm:min-w-[250px] sm:min-h-[94px]',
+    iconClassname: 'max-w-[330px] sm:min-w-[290px]',
+  },
+  {
+    title: 'Organizers',
+    logos: [
+      { icon: liquid, url: 'http://liquidreply.com/' },
+      { icon: whiteduck, url: 'https://whiteduck.de/'},
+      { icon: unikube, url: 'https://unikube.io/' },
     ],
     cardClassname: 'min-w-[280px] min-h-[104px] sm:min-w-[250px] sm:min-h-[94px]',
     iconClassname: 'max-w-[330px] sm:min-w-[290px]',
