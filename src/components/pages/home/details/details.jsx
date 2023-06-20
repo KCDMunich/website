@@ -22,7 +22,7 @@ const Details = () => (
           <span className="font-bold">Best Western Hotel Arabellapark Munich</span>
         </p>
         <p className="mt-7">
-          We have negotiated the following discount rates: 103€ /night/double room for single use/ breakfast not included. Room Book closes on 15.07.2023. The generall available dates are 16, 17, 18 July.
+          We have negotiated the following discount rates: 103€ /night/double room for single use/ breakfast not included. Room Book closes on 26.06.2023. The generall available dates are 16, 17, 18 July.
         </p>
         <p className="mt-7">
           Address: Arabellastraße 15, 81925 Munich
