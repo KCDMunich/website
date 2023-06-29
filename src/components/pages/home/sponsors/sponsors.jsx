@@ -48,6 +48,7 @@ const ITEMS = [
       { icon: Stormforge, url: 'https://www.stormforge.io/?utm_medium=tradeshow&utm_source=conference-website&utm_campaign=2023-07_kcd-munich' },
       { icon: Lumigo, url: 'https://lumigo.io/' },
       { icon: Okteto, url: 'https://www.okteto.com' },
+      { icon: Mkdev, url: 'https://mkdev.me/' },
     ],
     cardClassname: 'min-w-[384px] min-h-[122px] sm:min-w-[320px] sm:min-h-[115px]',
     iconClassname: 'max-w-[330px] sm:min-w-[290px]',
@@ -55,7 +56,6 @@ const ITEMS = [
   {
     title: 'Bronze',
     logos: [
-      { icon: Mkdev, url: 'https://mkdev.me/' },
       { icon: Redhat, url: 'https://www.redhat.com/de/our-code-is-open?sc_cid=7013a000002w5fEAAQ&gclsrc=aw.ds' }
     ],
     cardClassname: 'min-w-[280px] min-h-[104px] sm:min-w-[250px] sm:min-h-[94px]',
