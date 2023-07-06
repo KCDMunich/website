@@ -17,6 +17,7 @@ import Redhat from 'icons/redhat.png';
 import Stormforge from 'icons/stormforge.webp';
 import Google from 'icons/google-cloud.svg';
 import Okteto from 'icons/okteto.png';
+import Appscode from 'icons/appscode.png';
 
 import unikube from 'icons/Blueshoe.webp';
 import liquid from 'icons/liquid.png';
@@ -49,6 +50,7 @@ const ITEMS = [
       { icon: Lumigo, url: 'https://lumigo.io/' },
       { icon: Okteto, url: 'https://www.okteto.com' },
       { icon: Mkdev, url: 'https://mkdev.me/' },
+      { icon: Appscode, url: 'https://appscode.com/' }
     ],
     cardClassname: 'min-w-[384px] min-h-[122px] sm:min-w-[320px] sm:min-h-[115px]',
     iconClassname: 'max-w-[330px] sm:min-w-[290px]',
