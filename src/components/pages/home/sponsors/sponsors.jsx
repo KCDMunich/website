@@ -50,7 +50,7 @@ const ITEMS = [
       { icon: Lumigo, url: 'https://lumigo.io/' },
       { icon: Okteto, url: 'https://www.okteto.com' },
       { icon: Mkdev, url: 'https://mkdev.me/' },
-      { icon: Appscode, url: 'https://appscode.com/' }
+      { icon: Appscode, url: 'https://appscode.com/' },
     ],
     cardClassname: 'min-w-[384px] min-h-[122px] sm:min-w-[320px] sm:min-h-[115px]',
     iconClassname: 'max-w-[330px] sm:min-w-[290px]',
