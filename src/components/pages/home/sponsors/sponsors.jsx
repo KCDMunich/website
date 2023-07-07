@@ -17,7 +17,7 @@ import Redhat from 'icons/redhat.png';
 import Stormforge from 'icons/stormforge.webp';
 import Google from 'icons/google-cloud.svg';
 import Okteto from 'icons/okteto.png';
-import Appscode from 'icons/appscode.png';
+import Appscode from 'icons/appsCode.png';
 
 import unikube from 'icons/Blueshoe.webp';
 import liquid from 'icons/liquid.png';
