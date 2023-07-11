@@ -68,7 +68,7 @@ const ITEMS = [
     logos: [
       { icon: liquid, url: 'http://liquidreply.com/' },
       { icon: whiteduck, url: 'https://whiteduck.de/'},
-      { icon: unikube, url: 'https://unikube.io/' },
+      { icon: unikube, url: 'https://www.blueshoe.io/' },
     ],
     cardClassname: 'min-w-[280px] min-h-[104px] sm:min-w-[250px] sm:min-h-[94px]',
     iconClassname: 'max-w-[330px] sm:min-w-[290px]',

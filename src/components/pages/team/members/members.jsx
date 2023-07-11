@@ -63,7 +63,7 @@ const ITEMS = [
 const LOGOS = [
   { icon: liquid, url: 'http://liquidreply.com/', iconClassName: 'w-[260px] h-auto' },
   { icon: whiteduck, url: 'https://whiteduck.de/', iconClassName: 'w-[200px]' },
-  { icon: unikube, url: 'https://unikube.io/', iconClassName: '' },
+  { icon: unikube, url: 'https://www.blueshoe.io/', iconClassName: '' },
   { icon: redhat, url: 'https://www.redhat.com/en', iconClassName: 'w-28 h-[72px]' },
 ];
 
