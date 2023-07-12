@@ -6,6 +6,7 @@ import GermanTech from 'icons/germantech.webp';
 import Kubecareers from 'icons/kubecareers.svg';
 import Kubeevents from 'icons/kubeevents.svg';
 import Syseleven from 'icons/syseleven.png';
+import Audi from 'icons/Audi_Rings_bl-RGB.png';
 
 const TITLE = 'Community & Media Partners';
 
@@ -15,6 +16,7 @@ const ITEMS = [
   { icon: Syseleven, url: 'https://www.syseleven.de/' },
   { icon: Kubeevents, url: 'https://kube.events/' },
   { icon: Kubecareers, url: 'https://kube.careers/' },
+  { icon: Audi, url: 'https://www.audi.com/' },
 ];
 
 const Partners = () => (
