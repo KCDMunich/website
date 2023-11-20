@@ -33,6 +33,7 @@
     "jsdom": "^22.1.0",
     "lodash": "^4.17.21",
     "lodash.get": "^4.4.2",
+    "lottie-react": "^2.4.0",
     "path": "^0.12.7",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
