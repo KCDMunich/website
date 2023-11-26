@@ -4,7 +4,9 @@ import LINKS from 'constants/links';
 
 const TITLE = 'Speakers';
 
-const scriptUrl = 'https://sessionize.com/api/v2/t71l7ld5/view/SpeakerWall';
+const scriptUrl = 'https://sessionize.com/api/v2/t71l7ld5/view/Speakers';
+
+import { SocialIcon } from 'react-social-icons';
 
 const Speakers = () => (
   <section className="safe-paddings relative bg-white pb-40 lg:pb-32 sm:py-16">
@@ -55,6 +57,19 @@ const SpeakerComponent = () => {
           >
             <span>{speaker.fullName}</span>
             <span>{speaker.tagLine}</span>
+            <div className="mt-2">
+              {speaker.links.map((link, index) => (
+                <a
+                  key={index}
+                  href={link.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-600 hover:underline"
+                >
+                  <SocialIcon url={link.url} bgColor="transparent" fgColor="#262f59" />
+                </a>
+              ))}
+            </div>
           </div>
         </div>
       ))}
