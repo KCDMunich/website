@@ -43,7 +43,7 @@ const SpeakerComponent = () => {
       }}
     >
       {speakerData.map((speaker) => (
-        <div key={speaker.id} className=" w-1/4 p-4">
+        <div key={speaker.id} className=" w-1/6 p-4">
           <img src={speaker.profilePicture} alt={speaker.fullName} className="rounded-md" />
           <div
             style={{
