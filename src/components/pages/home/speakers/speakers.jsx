@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import LINKS from 'constants/links';
 
 const TITLE = 'Speakers';
 
-const scriptUrl = 'https://sessionize.com/api/v2/cos5nif6/view/SpeakerWall';
+const scriptUrl = 'https://sessionize.com/api/v2/t71l7ld5/view/SpeakerWall';
 
 const Speakers = () => (
   <section className="safe-paddings relative bg-white pb-40 lg:pb-32 sm:py-16">
@@ -17,21 +17,48 @@ const Speakers = () => (
           {TITLE}
         </h2>
         <br />
-        <DangerComponent />
+        <SpeakerComponent />
       </div>
     </div>
   </section>
 );
 
-const DangerComponent = () => {
+const SpeakerComponent = () => {
+  const [speakerData, setSpeakerData] = useState([]);
+
+  useEffect(() => {
+    fetch(scriptUrl)
+      .then((response) => response.json())
+      .then((data) => setSpeakerData(data))
+      .catch((error) => console.error('Error:', error));
+  }, []);
+
   return (
-    <iframe
-      title="External Script"
-      srcDoc={`<script src="${scriptUrl}"></script>`}
-      border="0"
-      width="300%"
-      height="600px"
-    />
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        justifyContent: 'space-around',
+      }}
+    >
+      {speakerData.map((speaker) => (
+        <div key={speaker.id} className=" w-1/4 p-4">
+          <img src={speaker.profilePicture} alt={speaker.fullName} className="rounded-md" />
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              paddingTop: '10px',
+            }}
+          >
+            <span>{speaker.fullName}</span>
+            <span>{speaker.tagLine}</span>
+          </div>
+        </div>
+      ))}
+    </div>
   );
 };
 
