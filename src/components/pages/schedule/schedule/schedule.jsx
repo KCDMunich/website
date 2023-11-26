@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-const scriptUrl = 'https://sessionize.com/api/v2/cos5nif6/view/GridSmart';
-const sessionListUrl = 'https://sessionize.com/api/v2/t71l7ld5/view/Sessions';
+const scriptUrl = 'https://sessionize.com/api/v2/t71l7ld5/view/GridSmart';
 
 const Schedule = () => {
   return (
@@ -28,12 +27,24 @@ const SessionListComponent = () => {
 
   return (
     <div className="grid grid-cols-1 gap-4 lg:grid-cols-3 md:grid-cols-2">
-      {sessionData[0]?.sessions.map((session) => (
-        <div key={session.id} className="bg-gray-100 rounded-lg p-4 shadow-md">
-          <h2 className="text-lg font-semibold">{session.title}</h2>
-          <p className="text-gray-500">{session.description}</p>
-          <p className="mt-2">Speaker: {session.speakers[0]?.name}</p>
-          <p>Status: {session.status}</p>
+      {sessionData.map((dateData) => (
+        <div key={dateData.date}>
+          <h2 className="mt-4 text-2xl font-semibold">{dateData.date}</h2>
+          {dateData.rooms.map((room) => (
+            <div key={room.id}>
+              <h3 className="mt-2 text-xl font-semibold">{room.name}</h3>
+              {room.sessions.map((session) => (
+                <div key={session.id} className="bg-gray-100 mt-2 rounded-lg p-4 shadow-md">
+                  <h4 className="text-lg font-semibold">{session.title}</h4>
+                  <p className="text-gray-500">{session.description}</p>
+                  <p className="mt-2">Speaker: {session.speakers[0]?.name}</p>
+                  <p>Starts At: {session.startsAt}</p>
+                  <p>Ends At: {session.endsAt}</p>
+                  <p>Status: {session.status}</p>
+                </div>
+              ))}
+            </div>
+          ))}
         </div>
       ))}
     </div>
