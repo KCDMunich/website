@@ -23,11 +23,11 @@ const HomePage = ({ location }) => (
 );
 
 /*
- <Speakers location={location} />
- <Schedule />
-    <Venue />
-    <Details />
-        <Partners />
+<Speakers location={location} />
+<Schedule />
+<Venue />
+<Details />
+<Partners />
 */
 
 export default HomePage;

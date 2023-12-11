@@ -38,13 +38,7 @@ const Hero = () => {
           <p className="mt-5 max-w-[500px] text-lg leading-normal text-primary-1 lg:max-w-[500px]">
             {DESCRIPTION}
           </p>
-          <Button
-            className="mt-7 w-fit text-white"
-            to="https://www.eventbrite.de/e/kubernetes-community-days-munich-2023-tickets-526260839337"
-            theme="blue"
-            size="lg"
-            target="_blank"
-          >
+          <Button className="mt-7 w-fit text-white" to="" theme="blue" size="lg" target="_blank">
             Get your ticket
           </Button>
         </div>

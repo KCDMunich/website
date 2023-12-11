@@ -89,16 +89,7 @@ const Sponsors = () => (
         {TITLE}
       </h2>
       <p className="mx-auto mt-5 max-w-[800px] text-lg leading-normal text-primary-1">
-        We would like to extend a special thank you to our sponsors for their support and commitment
-        to the community. We could not do it without them! If you are interested in becoming a
-        sponsor, please contact{' '}
-        <Link
-          className="font-semibold"
-          theme="blue-underlined"
-          to="mailto:organizers-munich@kubernetescommunitydays.org"
-        >
-          organizers-munich@kubernetescommunitydays.org
-        </Link>
+        If you are interested in becoming a sponsor, please contact us
       </p>
       <div style={{ marginTop: '2vh', marginBottom: '10vh' }}>
         <Button
@@ -119,6 +110,21 @@ const Sponsors = () => (
 );
 
 /*
+
+ <p className="mx-auto mt-5 max-w-[800px] text-lg leading-normal text-primary-1">
+        We would like to extend a special thank you to our sponsors for their support and commitment
+        to the community. We could not do it without them! If you are interested in becoming a
+        sponsor, please contact{' '}
+        <Link
+          className="font-semibold"
+          theme="blue-underlined"
+          to="mailto:organizers-munich@kubernetescommunitydays.org"
+        >
+          organizers-munich@kubernetescommunitydays.org
+        </Link>
+      </p>
+
+
 <div>
 <ul className="mt-16 flex flex-col">
           {ITEMS.map(({ title, logos, cardClassname, iconClassname }, index) => (

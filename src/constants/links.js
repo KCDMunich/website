@@ -8,9 +8,9 @@ export default {
     to: '/',
   },
   schedule: {
-    to: '/schedule',
+    to: '/',
     id: getAnchor('Schedule'),
-    homeTo: '/schedule',
+    homeTo: '/',
   },
   sponsors: {
     to: `/#${getAnchor('Sponsors')}`,
@@ -18,9 +18,9 @@ export default {
     homeTo: null,
   },
   speakers: {
-    to: `/speakers`,
+    to: `/`,
     id: getAnchor('Speakers'),
-    homeTo:  '/speakers',
+    homeTo: '/',
   },
   /* workshops: {
     to: '/workshops',
@@ -70,3 +70,21 @@ export default {
     target: '_blank',
   },
 };
+
+/*
+ schedule: {
+    to: '/schedule',
+    id: getAnchor('Schedule'),
+    homeTo: '/schedule',
+  },
+  sponsors: {
+    to: `/#${getAnchor('Sponsors')}`,
+    id: getAnchor('Sponsors'),
+    homeTo: null,
+  },
+  speakers: {
+    to: `/speakers`,
+    id: getAnchor('Speakers'),
+    homeTo:  '/speakers',
+  },
+  */
