@@ -4,7 +4,7 @@ import LINKS from 'constants/links';
 
 const TITLE = 'Speakers';
 
-const scriptUrl = 'https://sessionize.com/api/v2/t71l7ld5/view/Speakers';
+const scriptUrl = 'https://sessionize.com/api/v2/0vfanw5s/view/Speakers';
 
 import { SocialIcon } from 'react-social-icons';
 
@@ -19,7 +19,9 @@ const Speakers = () => (
           {TITLE}
         </h2>
         <br />
-        <SpeakerComponent />
+        <div style={{ height: ' 55vh', overflow: 'auto' }}>
+          <SpeakerComponent />
+        </div>
       </div>
     </div>
   </section>
@@ -45,7 +47,16 @@ const SpeakerComponent = () => {
       }}
     >
       {speakerData.map((speaker) => (
-        <div key={speaker.id} className=" w-1/6 p-4">
+        <div
+          key={speaker.id}
+          className=" w-1/6 p-4"
+          style={{
+            backgroundColor: '#f5f5f5',
+            borderRadius: '0 0 10px 10px',
+            marginRight: '1px',
+            marginBottom: '10px',
+          }}
+        >
           <img src={speaker.profilePicture} alt={speaker.fullName} className="rounded-md" />
           <div
             style={{
@@ -56,7 +67,6 @@ const SpeakerComponent = () => {
             }}
           >
             <span>{speaker.fullName}</span>
-            <span>{speaker.tagLine}</span>
             <div className="mt-2">
               {speaker.links.map((link, index) => (
                 <a
