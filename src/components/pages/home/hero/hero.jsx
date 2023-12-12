@@ -39,7 +39,7 @@ const Hero = () => {
             {DESCRIPTION}
           </p>
           <Button className="mt-7 w-fit text-white" to="" theme="blue" size="lg" target="_blank">
-            Get your ticket
+            Tickets will be available soon
           </Button>
         </div>
         <img
