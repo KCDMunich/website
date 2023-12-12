@@ -83,7 +83,7 @@ const Members = () => (
             className="flex w-[240px] flex-col lg:w-52 md:w-48 sm:w-auto sm:max-w-[200px]"
             key={index}
           >
-            <div className="h-64 w-full overflow-hidden">
+            <div className="h-64 w-full overflow-hidden rounded-2xl">
               <img className="h-full w-full object-cover" src={photo} loading="lazy" alt={name} />
             </div>
 
