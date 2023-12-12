@@ -18,14 +18,17 @@ const HomePage = ({ location }) => (
   <Layout homepage>
     <Hero />
     <Info />
-    <Speakers location={location} />
-    <Schedule />
-    <Venue />
-    <Details />
     <Sponsors />
-    <Partners />
   </Layout>
 );
+
+/*
+<Speakers location={location} />
+<Schedule />
+<Venue />
+<Details />
+<Partners />
+*/
 
 export default HomePage;
 

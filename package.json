@@ -22,6 +22,9 @@
     "lint:md:fix": "markdownlint --fix --ignore-path .gitignore ."
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.4.2",
+    "@fortawesome/free-brands-svg-icons": "^6.4.2",
+    "@fortawesome/react-fontawesome": "^0.2.0",
     "@mdx-js/react": "^2.2.1",
     "clsx": "^1.2.1",
     "dompurify": "^3.0.3",
@@ -33,11 +36,13 @@
     "jsdom": "^22.1.0",
     "lodash": "^4.17.21",
     "lodash.get": "^4.4.2",
+    "lottie-react": "^2.4.0",
     "path": "^0.12.7",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-helmet": "^6.1.0",
+    "react-social-icons": "^6.7.0",
     "remark-gfm": "^3.0.1",
     "slugify": "^1.6.5",
     "tailwindcss": "^3.2.4"

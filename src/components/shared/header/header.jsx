@@ -34,11 +34,11 @@ const Header = ({ isMobileMenuOpen, onBurgerClick, additionalClassName, homepage
     <header
       className={clsx(
         'safe-paddings transition-200 z-10 transition-colors',
-        isMobileMenuOpen ? 'bg-white bg-opacity-100' : 'bg-[#EDC3C7] bg-opacity-10',
+        isMobileMenuOpen ? 'bg-white bg-opacity-100' : 'bg-[#ffffff] bg-opacity-10',
         additionalClassName
       )}
     >
-      <div className="container flex items-center justify-between pt-5 pb-2">
+      <div className="container flex items-center justify-between pb-2 pt-5">
         <Link className="z-50 ml-2" to="/">
           <Logo className="h-12 w-44" />
         </Link>
@@ -61,15 +61,16 @@ const Header = ({ isMobileMenuOpen, onBurgerClick, additionalClassName, homepage
           </ul>
         </nav>
         <Button
-          className="-mr-2 md:hidden"
-          to="https://www.eventbrite.de/e/kubernetes-community-days-munich-2023-tickets-526260839337"
+          className="group relative -mr-2 inline-flex items-center justify-center overflow-hidden border-none p-0.5 font-bold md:hidden"
+          to="/"
           theme="primary"
-          size="sm"
           target="_blank"
         >
-          Get your ticket
+          <span class="absolute h-full w-full bg-gradient-to-br from-[#3333ff] via-[#3333ff] to-[#3333ff] group-hover:from-[#ff00c6] group-hover:via-[#ff5478] group-hover:to-[#ff8a05]"></span>
+          <span class="bg-gray-900 duration-400 relative rounded-md px-6 py-3 transition-all ease-out group-hover:bg-opacity-0">
+            <span class="relative text-white">Tickets will be available soon</span>
+          </span>
         </Button>
-
         <Burger
           className={clsx('z-50 hidden md:block', isMobileMenuOpen && 'text-black dark:text-white')}
           isToggled={isMobileMenuOpen}
