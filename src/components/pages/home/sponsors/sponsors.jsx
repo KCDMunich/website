@@ -90,10 +90,9 @@ const Sponsors = () => (
       </h2>
       <p className="mx-auto mt-5 max-w-[800px] text-lg leading-normal text-primary-1">
         Join us in making KCD Munich a memorable and impactful event for all attendees. To explore
-        sponsorship opportunities and discuss how we can tailor them to your organization's goals,
-        please don't hesitate to get in touch with us today. Your support will help us create an
-        unforgettable experience for the community while enhancing your brand's visibility and
-        recognition. Contact us at{' '}
+        sponsorship opportunities, please don't hesitate to get in touch with us today. Your support
+        will help us create an unforgettable experience for the community while enhancing your
+        brand's visibility and recognition. Contact us at{' '}
         <Link
           className="font-semibold"
           theme="blue-underlined"
