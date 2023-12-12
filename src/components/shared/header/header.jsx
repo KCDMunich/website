@@ -64,7 +64,6 @@ const Header = ({ isMobileMenuOpen, onBurgerClick, additionalClassName, homepage
           className="group relative -mr-2 inline-flex items-center justify-center overflow-hidden border-none p-0.5 font-bold md:hidden"
           to="/"
           theme="primary"
-          size="sm"
           target="_blank"
         >
           <span class="absolute h-full w-full bg-gradient-to-br from-[#3333ff] via-[#3333ff] to-[#3333ff] group-hover:from-[#ff00c6] group-hover:via-[#ff5478] group-hover:to-[#ff8a05]"></span>

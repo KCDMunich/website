@@ -38,9 +38,18 @@ const Hero = () => {
           <p className="mt-5 max-w-[500px] text-lg leading-normal text-primary-1 lg:max-w-[500px]">
             {DESCRIPTION}
           </p>
-          <Button className="mt-7 w-fit text-white" to="" theme="blue" size="lg" target="_blank">
-            Tickets will be available soon
-          </Button>
+          <div style={{ marginTop: '3vh' }}>
+            <Button
+              className=" border-nonemd:hidden group relative inline-flex w-fit items-center justify-center overflow-hidden"
+              to="/"
+              target="_blank"
+            >
+              <span class="absolute h-full w-full bg-gradient-to-br from-[#3333ff] via-[#3333ff] to-[#3333ff] group-hover:from-[#ff00c6] group-hover:via-[#ff5478] group-hover:to-[#ff8a05]"></span>
+              <span class="bg-gray-900 duration-400 relative rounded-md px-6 py-3 transition-all ease-out group-hover:bg-opacity-0">
+                <span class="relative font-bold text-white">Tickets will be available soon</span>
+              </span>
+            </Button>
+          </div>
         </div>
         <img
           className="h-[40rem] scale-125 object-contain md:h-96"
