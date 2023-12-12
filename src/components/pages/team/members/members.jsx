@@ -4,7 +4,6 @@ import React from 'react';
 import Link from 'components/shared/link';
 import QAware from 'icons/QAware_h.png';
 import liquid from 'icons/liquid.png';
-import redhat from 'icons/redhat.png';
 import whiteduck from 'icons/whiteduck.png';
 
 import AnelaPhoto from './images/anela_a.jpeg';
