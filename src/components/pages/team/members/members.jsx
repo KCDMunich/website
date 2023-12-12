@@ -14,7 +14,7 @@ import MarkusPhoto from './images/markus_s.jpeg';
 import MaxKörbächerPhoto from './images/max_k.jpg';
 import NicoPhoto from './images/nico-m.jpg';
 import TomPhoto from './images/tom_u.jpeg';
-import Suad from './images/swo.jpg';
+import Suad from './images/swo_kcd.jpg';
 
 const ITEMS = [
   {
