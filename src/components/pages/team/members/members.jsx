@@ -71,7 +71,6 @@ const LOGOS = [
   { icon: liquid, url: 'http://liquidreply.com/', iconClassName: 'w-[250px] h-auto' },
   { icon: whiteduck, url: 'https://whiteduck.de/', iconClassName: 'w-[250px] h-auto' },
   { icon: QAware, url: 'https://www.qaware.de/', iconClassName: 'w-[250px] h-auto' },
-  { icon: redhat, url: 'https://www.redhat.com/en', iconClassName: 'w-[250px] h-auto' },
 ];
 
 const Members = () => (

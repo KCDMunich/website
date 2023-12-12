@@ -27,7 +27,7 @@ const Hero = () => {
 
   return (
     <section className="safe-paddings overflow-hidden bg-opacity-10 pt-28 md:pt-24">
-      <div className="container flex flex-row gap-4 md:flex-col md:items-center md:text-center">
+      <div className="container flex flex-row md:flex-col md:items-center md:text-center">
         <div className="flex flex-col md:items-center md:text-center">
           <span className="w-fit rounded-3xl bg-yellow px-4 py-2 text-sm font-bold leading-none text-black">
             JULY 1th - 2th, 2024

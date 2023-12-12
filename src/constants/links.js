@@ -36,7 +36,7 @@ export default {
     to: '/team',
   },
   tickets: {
-    to: 'https://www.eventbrite.de/e/kubernetes-community-days-munich-2023-tickets-526260839337',
+    to: '',
     target: '_blank',
   },
   mission: {
