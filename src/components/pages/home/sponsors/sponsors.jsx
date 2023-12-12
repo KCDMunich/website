@@ -1,7 +1,5 @@
 import React from 'react';
-
 import Button from 'components/shared/button';
-
 import Link from 'components/shared/link';
 import LINKS from 'constants/links';
 import ApeFactory from 'icons/apefactory.webp';
@@ -19,7 +17,6 @@ import Stormforge from 'icons/stormforge.webp';
 import Google from 'icons/google-cloud.svg';
 import Okteto from 'icons/okteto.png';
 import Appscode from 'icons/appsCode.png';
-
 import unikube from 'icons/Blueshoe.webp';
 import liquid from 'icons/liquid.png';
 import whiteduck from 'icons/whiteduck.png';
@@ -98,79 +95,26 @@ const Sponsors = () => (
         <Link
           className="font-semibold"
           theme="blue-underlined"
-          to="mailto:organizers-munich@kubernetescommunitydays.org "
+          to="mailto:organizers-munich@kubernetescommunitydays.org"
         >
           organizers-munich@kubernetescommunitydays.org
         </Link>
       </p>
       <div style={{ marginTop: '4vh', marginBottom: '10vh' }}>
         <Button
-          className="group relative -mr-2 inline-flex items-center justify-center overflow-hidden border-none p-0.5 font-bold md:hidden"
-          to="https://docs.google.com/document/d/1BRu2x4Xaqf4uN2Ty8GVWJpoMVXkIDzMDinGjbp7XCFg/edit?usp=drive_link"
+          className="group relative -mr-2 inline-flex items-center justify-center overflow-hidden border-none p-0.5 font-bold"
+          to="https://docs.google.com/presentation/d/1G7CbTjV023TC7kt7json3j0CDDN0FqVpm7Hz-pZh4cs/edit?usp=sharingk"
           theme="primary"
           target="_blank"
         >
-          <span class="absolute h-full w-full bg-gradient-to-br from-[#3333ff] via-[#3333ff] to-[#3333ff] group-hover:from-[#ff00c6] group-hover:via-[#ff5478] group-hover:to-[#ff8a05]"></span>
-          <span class="bg-gray-900 duration-400 relative rounded-md px-6 py-3 transition-all ease-out group-hover:bg-opacity-0">
-            <span class="relative text-white">Sponsorship application form</span>
+          <span className="absolute h-full w-full bg-gradient-to-br from-[#3333ff] via-[#3333ff] to-[#3333ff] group-hover:from-[#ff00c6] group-hover:via-[#ff5478] group-hover:to-[#ff8a05]"></span>
+          <span className="bg-gray-900 duration-400 relative rounded-md px-6 py-3 transition-all ease-out group-hover:bg-opacity-0">
+            <span className="relative text-white">Information Slide</span>
           </span>
         </Button>
       </div>
     </div>
   </section>
 );
-
-/*
-
- <p className="mx-auto mt-5 max-w-[800px] text-lg leading-normal text-primary-1">
-        We would like to extend a special thank you to our sponsors for their support and commitment
-        to the community. We could not do it without them! If you are interested in becoming a
-        sponsor, please contact{' '}
-        <Link
-          className="font-semibold"
-          theme="blue-underlined"
-          to="mailto:organizers-munich@kubernetescommunitydays.org"
-        >
-          organizers-munich@kubernetescommunitydays.org
-        </Link>
-      </p>
-
-
-<div>
-<ul className="mt-16 flex flex-col">
-          {ITEMS.map(({ title, logos, cardClassname, iconClassname }, index) => (
-            <li className="" key={index}>
-              <p className="text-center text-2xl font-bold uppercase leading-normal text-primary-1">
-                {title}
-              </p>
-
-              <ul className="mb-[70px] mt-10 flex flex-wrap justify-center gap-x-8 xl:gap-y-6">
-                {logos.map(({ icon, url }, index) => (
-                  <li
-                    className={clsx('flex items-center justify-center', cardClassname)}
-                    key={index}
-                  >
-                    <Link
-                      className="flex h-full w-fit items-center justify-center"
-                      to={url}
-                      target="_blank"
-                    >
-                      <img
-                        className={clsx('h-auto w-auto', iconClassname)}
-                        src={icon}
-                        width="auto"
-                        height="auto"
-                        loading="lazy"
-                        alt="sponsor-logo"
-                      />
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </li>
-          ))}
-        </ul>
-        </div>
-        */
 
 export default Sponsors;
