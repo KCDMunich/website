@@ -23,7 +23,7 @@ const Hero = () => (
         to="/"
         target="_blank"
       >
-        Get your ticket
+        Tickets will be available soon
       </Button>
     </div>
   </section>

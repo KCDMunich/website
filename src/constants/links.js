@@ -22,11 +22,11 @@ export default {
     id: getAnchor('Speakers'),
     homeTo: '/',
   },
-  /* workshops: {
+  workshops: {
     to: '/workshops',
     id: getAnchor('Workshops'),
     homeTo: '/workshops',
-  }, */
+  },
   proposal: {
     to: `/#${getAnchor('Call for Proposal')}`,
     id: getAnchor('Call for Proposal'),

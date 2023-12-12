@@ -89,19 +89,30 @@ const Sponsors = () => (
         {TITLE}
       </h2>
       <p className="mx-auto mt-5 max-w-[800px] text-lg leading-normal text-primary-1">
-        If you are interested in becoming a sponsor, please contact us
+        Join us in making KCD Munich a memorable and impactful event for all attendees. To explore
+        sponsorship opportunities and discuss how we can tailor them to your organization's goals,
+        please don't hesitate to get in touch with us today. Your support will help us create an
+        unforgettable experience for the community while enhancing your brand's visibility and
+        recognition. Contact us at{' '}
+        <Link
+          className="font-semibold"
+          theme="blue-underlined"
+          to="mailto:organizers-munich@kubernetescommunitydays.org "
+        >
+          organizers-munich@kubernetescommunitydays.org
+        </Link>
       </p>
       <div style={{ marginTop: '2vh', marginBottom: '10vh' }}>
         <Button
           className="group relative -mr-2 inline-flex items-center justify-center overflow-hidden border-none p-0.5 font-bold md:hidden"
-          to="mailto:organizers-munich@kubernetescommunitydays.org"
+          to="https://docs.google.com/document/d/1BRu2x4Xaqf4uN2Ty8GVWJpoMVXkIDzMDinGjbp7XCFg/edit?usp=drive_link"
           theme="primary"
           size="sm"
           target="_blank"
         >
           <span class="absolute h-full w-full bg-gradient-to-br from-[#3333ff] via-[#3333ff] to-[#3333ff] group-hover:from-[#ff00c6] group-hover:via-[#ff5478] group-hover:to-[#ff8a05]"></span>
           <span class="bg-gray-900 duration-400 relative rounded-md px-6 py-3 transition-all ease-out group-hover:bg-opacity-0">
-            <span class="relative text-white">becoming a sponsor</span>
+            <span class="relative text-white">Sponsorship Application Form</span>
           </span>
         </Button>
       </div>
