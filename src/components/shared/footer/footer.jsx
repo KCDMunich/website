@@ -62,13 +62,16 @@ const Footer = () => {
           </ul>
         </nav>
         <div className="mt-4">
-          <Link
-            className="ml-2 font-semibold transition-colors duration-200"
-            theme="primary"
-            to="mailto:organizers-munich@kubernetescommunitydays.org "
-          >
-            organizers-munich@kubernetescommunitydays.org
-          </Link>
+          <div className="flex h-full items-center justify-center">
+            <Link
+              className="ml-2 font-semibold transition-colors duration-200"
+              theme="primary"
+              to="mailto:organizers-munich@kubernetescommunitydays.org"
+            >
+              Contact us
+            </Link>
+          </div>
+
           <ul className="mt-4 flex min-w-fit gap-x-2.5">
             {items.map(({ icon, iconClassName, url }, index) => {
               const Icon = icon;

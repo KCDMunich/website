@@ -49,7 +49,7 @@ const SpeakerComponent = () => {
       {speakerData.map((speaker) => (
         <div
           key={speaker.id}
-          className=" w-1/6 p-4"
+          className="p-4"
           style={{
             backgroundColor: '#f5f5f5',
             borderRadius: '0 0 10px 10px',
@@ -57,7 +57,12 @@ const SpeakerComponent = () => {
             marginBottom: '10px',
           }}
         >
-          <img src={speaker.profilePicture} alt={speaker.fullName} className="rounded-md" />
+          <img
+            src={speaker.profilePicture}
+            alt={speaker.fullName}
+            className="rounded-md"
+            style={{ height: '15vh' }}
+          />
           <div
             style={{
               display: 'flex',
