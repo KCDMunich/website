@@ -18,7 +18,7 @@ const Info = () => (
             cloud native communities, supported by the Cloud Native Computing Foundation (CNCF).
           </p>
           <p className="mt-7">
-            This is our second edition in <span className="font-bold">Munich</span>, and we’re
+            This is our third edition in <span className="font-bold">Munich</span>, and we’re
             excited to bring the community together. We want to provide a platform for professionals
             and experts from all levels and backgrounds to learn, network, and share their knowledge
             on all things cloud native.
