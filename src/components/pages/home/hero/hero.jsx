@@ -53,6 +53,7 @@ const Hero = () => {
         </div>
         <img
           className="h-[40rem] scale-125 object-contain md:h-96"
+          style={{ marginLeft: '-5vw' }}
           src={illustration}
           loading="eager"
           alt="Illustration"

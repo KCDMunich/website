@@ -4,7 +4,6 @@ import React from 'react';
 import Link from 'components/shared/link';
 import QAware from 'icons/QAware_h.png';
 import liquid from 'icons/liquid.png';
-import redhat from 'icons/redhat.png';
 import whiteduck from 'icons/whiteduck.png';
 
 import AnelaPhoto from './images/anela_a.jpeg';
@@ -14,7 +13,7 @@ import MarkusPhoto from './images/markus_s.jpeg';
 import MaxKörbächerPhoto from './images/max_k.jpg';
 import NicoPhoto from './images/nico-m.jpg';
 import TomPhoto from './images/tom_u.jpeg';
-import Suad from './images/swo.jpg';
+import Suad from './images/swo_kcd.jpg';
 
 const ITEMS = [
   {
