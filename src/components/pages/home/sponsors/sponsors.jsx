@@ -85,7 +85,7 @@ const Sponsors = () => (
         {TITLE}
       </h2>
       <p
-        className="mx-auto mt-5 max-w-[800px] text-lg leading-normal text-primary-1"
+        className="mt-8 text-2xl leading-normal sm:text-lg"
         style={{ marginTop: '4vh' }}
       >
         Join us in making KCD Munich a memorable and impactful event for all attendees. To explore
