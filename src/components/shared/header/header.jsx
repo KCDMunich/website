@@ -62,17 +62,17 @@ const Header = ({ isMobileMenuOpen, onBurgerClick, additionalClassName, homepage
         </nav>
         <Button
           className="group relative -mr-2 inline-flex items-center justify-center overflow-hidden border-none p-0.5 font-bold md:hidden"
-          to="/"
+          to="https://kcdmunich-2.ticketbutler.io/en/e/kcd-munich-2024/"
           theme="primary"
           target="_blank"
         >
           <span class="absolute h-full w-full bg-gradient-to-br from-[#3333ff] via-[#3333ff] to-[#3333ff] group-hover:from-[#ff00c6] group-hover:via-[#ff5478] group-hover:to-[#ff8a05]"></span>
           <span class="bg-gray-900 duration-400 relative rounded-md px-6 py-3 transition-all ease-out group-hover:bg-opacity-0">
-            <span class="relative text-white">Tickets will be available soon</span>
+            <span class="relative text-white">Get your tickets now</span>
           </span>
         </Button>
         <Burger
-          className={clsx('z-50 hidden md:block', isMobileMenuOpen && 'text-black dark:text-white')}
+          className={clsx('z-50 hidden md:block', isMobileMenuOpen && 'text-black dark:text-black')}
           isToggled={isMobileMenuOpen}
           onClick={onBurgerClick}
         />

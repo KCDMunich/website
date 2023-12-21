@@ -59,9 +59,18 @@ const MobileMenu = ({ isOpen, onButtonClick }) => {
             ))}
           </ul>
         </div>
-        <Button className="mt-7 text-white" to="/" theme="blue" size="lg">
-          Tickets will be available soon
-        </Button>
+        <div className="flex items-center justify-center">
+          <Button
+            className="border-nonemd:hidden group relative inline-flex w-fit items-center justify-center overflow-hidden"
+            to="https://kcdmunich-2.ticketbutler.io/en/e/kcd-munich-2024/"
+            target="_blank"
+          >
+            <span class="absolute h-full w-full bg-gradient-to-br from-[#3333ff] via-[#3333ff] to-[#3333ff] group-hover:from-[#ff00c6] group-hover:via-[#ff5478] group-hover:to-[#ff8a05]"></span>
+            <span class="bg-gray-900 duration-400 relative rounded-md px-6 py-3 transition-all ease-out group-hover:bg-opacity-0">
+              <span class="relative font-bold text-white">Tickets will be available soon</span>
+            </span>
+          </Button>
+        </div>
       </m.nav>
     </LazyMotion>
   );
