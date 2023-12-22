@@ -23,7 +23,7 @@ const Hero = () => (
         to="https://kcdmunich-2.ticketbutler.io/en/e/kcd-munich-2024/"
         target="_blank"
       >
-        Tickets will be available soon
+        Get your tickets now
       </Button>
     </div>
   </section>
