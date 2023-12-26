@@ -15,7 +15,7 @@ const Proposal = () => (
         <h2 className="text-6xl font-bold leading-tight" id={LINKS.proposal.id}>
           {TITLE}
         </h2>
-        <p className="mt-8 text-2xl leading-normal sm:text-lg">{DESCRIPTION}</p>
+        <p className="text-lg leading-normal text-primary-1" style={{ marginTop: '4vh' }}>{DESCRIPTION}</p>
       </div>
       <div style={{ marginTop: '4vh', marginBottom: '10vh' }}>
         <Button
