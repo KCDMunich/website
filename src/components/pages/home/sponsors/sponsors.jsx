@@ -80,12 +80,12 @@ const ITEMS = [
 
 const Sponsors = () => (
   <section className="safe-paddings relative bg-white sm:pb-16">
-    <div className="container text-center">
+    <div className="container-md text-center text-primary-1">
       <h2 className="text-6xl font-bold leading-denser text-primary-1" id={LINKS.sponsors.id}>
         {TITLE}
       </h2>
       <p
-        className="mt-8 text-2xl leading-normal sm:text-lg"
+        className="text-lg leading-normal text-primary-1"
         style={{ marginTop: '4vh' }}
       >
         Join us in making KCD Munich a memorable and impactful event for all attendees. To explore

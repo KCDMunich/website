@@ -9,9 +9,8 @@ const Info = () => (
     <div className="container-md">
       <div className="lg:mt-38 mt-40 xl:mt-32 md:mt-24">
         <div
-          className="mt-14 justify-between text-2xl text-primary-1 sm:text-lg"
-          style={{ paddingBottom: '7rem' }}
-        >
+          className="text-lg leading-normal text-primary-1"
+          style={{ paddingBottom: '7rem' }}>
           <p>
             <span className="font-bold">Kubernetes Community Days</span> (KCDs) are global,
             community-organized events that gather adopters and technologists from open source and
@@ -23,9 +22,16 @@ const Info = () => (
             and experts from all levels and backgrounds to learn, network, and share their knowledge
             on all things cloud native.
           </p>
-          <p className="mt-7">
-            <span className="font-bold">What to expect?</span>
-          </p>
+        </div>
+          <div className="container text-center">
+          <h2 
+            className="text-6xl font-bold leading-denser text-primary-1">
+            What to expect?
+          </h2>
+        </div>
+        <div
+          className="text-lg leading-normal text-primary-1"
+          style={{ paddingBottom: '7rem' }}>  
           <p className="mt-7">
             <span className="font-bold">Technically competent talks</span>, relevant to the larger
             community and coming from end-user.
