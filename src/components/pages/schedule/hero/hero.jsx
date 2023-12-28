@@ -2,7 +2,7 @@ import React from 'react';
 
 import Button from 'components/shared/button';
 
-const TITLE = 'Schedule for <time class="text-blue-1 xs:block">17th & 18th of July, 2023</time>';
+const TITLE = 'Schedule for <time className="text-blue-1 xs:block">17th & 18th of July, 2023</time>';
 const DESCRIPTION =
   "Get ready for action-packed days. With two tracks and more than 45 sessions to choose from, you'll have plenty of opportunities to learn from experts in the field. The whole event will be held in English.";
 
@@ -21,9 +21,9 @@ const Hero = () => (
         to="https://kcdmunich-2.ticketbutler.io/en/e/kcd-munich-2024/"
         target="_blank"
       >
-        <span class="absolute h-full w-full bg-gradient-to-br from-[#3333ff] via-[#3333ff] to-[#3333ff] group-hover:from-[#ff00c6] group-hover:via-[#ff5478] group-hover:to-[#ff8a05]"></span>
-        <span class="bg-gray-900 duration-400 relative rounded-md px-6 py-3 transition-all ease-out group-hover:bg-opacity-0">
-          <span class="relative font-bold text-white">Get your tickets now</span>
+        <span className="absolute h-full w-full bg-gradient-to-br from-[#3333ff] via-[#3333ff] to-[#3333ff] group-hover:from-[#ff00c6] group-hover:via-[#ff5478] group-hover:to-[#ff8a05]"></span>
+        <span className="bg-gray-900 duration-400 relative rounded-md px-6 py-3 transition-all ease-out group-hover:bg-opacity-0">
+          <span className="relative font-bold text-white">Get your tickets now</span>
         </span>
       </Button>
     </div>
