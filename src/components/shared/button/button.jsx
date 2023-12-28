@@ -38,7 +38,7 @@ Button.propTypes = {
   className: PropTypes.string,
   to: PropTypes.string,
   size: PropTypes.oneOf(Object.keys(styles.size)),
-  theme: PropTypes.oneOf(Object.keys(styles.theme)).isRequired,
+  //theme: PropTypes.oneOf(Object.keys(styles.theme)).isRequired,
   children: PropTypes.node.isRequired,
 };
 
