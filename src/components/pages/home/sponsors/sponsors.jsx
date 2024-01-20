@@ -73,7 +73,7 @@ const ITEMS = [
       //{ icon: unikube, url: 'https://www.blueshoe.io/' },
     ],
     cardClassname: 'min-w-[280px] min-h-[104px] sm:min-w-[250px] sm:min-h-[94px]',
-    iconClassname: 'max-w-[300px] sm:min-w-[290px]',
+    iconClassname: 'max-w-[300px] sm:min-w-[104px]',
   },
   {
     title: 'Community & Media Partners',
