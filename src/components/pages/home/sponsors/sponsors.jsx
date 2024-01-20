@@ -1,25 +1,30 @@
 import React from 'react';
+import clsx from 'clsx';
 import Button from 'components/shared/button';
 import Link from 'components/shared/link';
 import LINKS from 'constants/links';
+
 import ApeFactory from 'icons/apefactory.webp';
 import Camptocamp from 'icons/camptocamp.svg';
-import Elasticbrains from 'icons/elasticbrain.webp';
-import Exoscale from 'icons/exoscale.webp';
-import Grafana from 'icons/grafanalabs.webp';
-import Isovalent from 'icons/isovalent.svg';
-import Lumigo from 'icons/lumigo.webp';
-import MetalStack from 'icons/metalstackcloud.webp';
-import Mkdev from 'icons/mkdev.png';
+//import Elasticbrains from 'icons/elasticbrain.webp';
+//import Exoscale from 'icons/exoscale.webp';
+//import Grafana from 'icons/grafanalabs.webp';
+//import Isovalent from 'icons/isovalent.svg';
+//import Lumigo from 'icons/lumigo.webp';
+//import MetalStack from 'icons/metalstackcloud.webp';
+//import Mkdev from 'icons/mkdev.png';
 import Qaware from 'icons/qaware.svg';
-import Redhat from 'icons/redhat.png';
-import Stormforge from 'icons/stormforge.webp';
-import Google from 'icons/google-cloud.svg';
-import Okteto from 'icons/okteto.png';
-import Appscode from 'icons/appsCode.png';
-import unikube from 'icons/Blueshoe.webp';
+//import Redhat from 'icons/redhat.png';
+//import Stormforge from 'icons/stormforge.webp';
+//import Google from 'icons/google-cloud.svg';
+//import Okteto from 'icons/okteto.png';
+//import Appscode from 'icons/appsCode.png';
+//import unikube from 'icons/Blueshoe.webp';
 import liquid from 'icons/liquid.png';
 import whiteduck from 'icons/whiteduck.png';
+import Cloudnative from 'icons/cloudnative.svg';
+import Kubecareers from 'icons/kubecareers_1.svg';
+import Kubeevents from 'icons/kubeevents_2.svg';
 
 const TITLE = 'Sponsors';
 
@@ -28,10 +33,9 @@ const ITEMS = [
     title: 'Gold',
     logos: [
       { icon: ApeFactory, url: 'https://www.apefactory.com/de' },
-      { icon: Qaware, url: 'https://www.qaware.de/en/' },
-      { icon: Elasticbrains, url: 'https://www.elasticbrains.de/de/' },
-      { icon: MetalStack, url: 'https://metalstack.cloud/de' },
-      { icon: Google, url: 'https://www.google.com/' },
+      //{ icon: Elasticbrains, url: 'https://www.elasticbrains.de/de/' },
+      //{ icon: MetalStack, url: 'https://metalstack.cloud/de' },
+      //{ icon: Google, url: 'https://www.google.com/' },
     ],
     cardClassname: 'min-w-[488px] max-w-[330px] min-h-[152px] sm:min-w-[350px] sm:min-h-[130px]',
     iconClassname: 'max-w-[390px] sm:max-w-[350px]',
@@ -39,42 +43,47 @@ const ITEMS = [
   {
     title: 'Silver',
     logos: [
-      { icon: Isovalent, url: 'https://isovalent.com/' },
-      { icon: Grafana, url: 'https://grafana.com/' },
+      //{ icon: Isovalent, url: 'https://isovalent.com/' },
+      //{ icon: Grafana, url: 'https://grafana.com/' },
       { icon: Camptocamp, url: 'https://www.camptocamp.com/en' },
-      { icon: Exoscale, url: 'https://www.exoscale.com/' },
-      {
-        icon: Stormforge,
-        url: 'https://www.stormforge.io/?utm_medium=tradeshow&utm_source=conference-website&utm_campaign=2023-07_kcd-munich',
-      },
-      { icon: Lumigo, url: 'https://lumigo.io/' },
-      { icon: Okteto, url: 'https://www.okteto.com' },
-      { icon: Mkdev, url: 'https://mkdev.me/' },
-      { icon: Appscode, url: 'https://appscode.com/' },
+      //{ icon: Exoscale, url: 'https://www.exoscale.com/' },
+      //{ icon: Stormforge, url: 'https://www.stormforge.io/?utm_medium=tradeshow&utm_source=conference-website&utm_campaign=2023-07_kcd-munich',},
+      //{ icon: Lumigo, url: 'https://lumigo.io/' },
+      //{ icon: Okteto, url: 'https://www.okteto.com' },
+      //{ icon: Mkdev, url: 'https://mkdev.me/' },
+      //{ icon: Appscode, url: 'https://appscode.com/' },
     ],
     cardClassname: 'min-w-[384px] min-h-[122px] sm:min-w-[320px] sm:min-h-[115px]',
     iconClassname: 'max-w-[330px] sm:min-w-[290px]',
   },
-  {
-    title: 'Bronze',
-    logos: [
-      {
-        icon: Redhat,
-        url: 'https://www.redhat.com/de/our-code-is-open?sc_cid=7013a000002w5fEAAQ&gclsrc=aw.ds',
-      },
-    ],
-    cardClassname: 'min-w-[280px] min-h-[104px] sm:min-w-[250px] sm:min-h-[94px]',
-    iconClassname: 'max-w-[330px] sm:min-w-[290px]',
-  },
+  //  {
+  //    title: 'Bronze',
+  //    logos: [
+  //      //{ icon: Redhat, url: 'https://www.redhat.com/de/our-code-is-open?sc_cid=7013a000002w5fEAAQ&gclsrc=aw.ds',},
+  //    ],
+  //    cardClassname: 'min-w-[280px] min-h-[104px] sm:min-w-[250px] sm:min-h-[94px]',
+  //    iconClassname: 'max-w-[330px] sm:min-w-[290px]',
+  //  },
   {
     title: 'Organizers',
     logos: [
       { icon: liquid, url: 'http://liquidreply.com/' },
       { icon: whiteduck, url: 'https://whiteduck.de/' },
-      { icon: unikube, url: 'https://www.blueshoe.io/' },
+      { icon: Qaware, url: 'https://www.qaware.de/en/' },
+      //{ icon: unikube, url: 'https://www.blueshoe.io/' },
     ],
     cardClassname: 'min-w-[280px] min-h-[104px] sm:min-w-[250px] sm:min-h-[94px]',
-    iconClassname: 'max-w-[330px] sm:min-w-[290px]',
+    iconClassname: 'max-w-[300px] sm:min-w-[104px]',
+  },
+  {
+    title: 'Community & Media Partners',
+    logos: [
+      { icon: Cloudnative, url: 'https://www.cncf.io/' },
+      { icon: Kubeevents, url: 'https://kube.events/' },
+      { icon: Kubecareers, url: 'https://kube.careers/' },
+    ],
+    cardClassname: 'min-w-[280px] min-h-[104px] sm:min-w-[250px] sm:min-h-[94px]',
+    iconClassname: 'max-w-[220px] sm:min-w-[290px]',
   },
 ];
 
@@ -84,10 +93,7 @@ const Sponsors = () => (
       <h2 className="text-6xl font-bold leading-denser text-primary-1" id={LINKS.sponsors.id}>
         {TITLE}
       </h2>
-      <p
-        className="text-lg leading-normal text-primary-1"
-        style={{ marginTop: '4vh' }}
-      >
+      <p className="text-lg leading-normal text-primary-1" style={{ marginTop: '4vh' }}>
         Join us in making KCD Munich a memorable and impactful event for all attendees. To explore
         sponsorship opportunities, please don't hesitate to get in touch with us today. Your support
         will help us create an unforgettable experience for the community while enhancing your
@@ -113,6 +119,34 @@ const Sponsors = () => (
           </span>
         </Button>
       </div>
+      <ul className="mt-16 flex flex-col">
+        {ITEMS.map(({ title, logos, cardClassname, iconClassname }, index) => (
+          <li className="" key={index}>
+            <p className="text-center text-4xl font-bold leading-normal text-primary-1">{title}</p>
+
+            <ul className="mb-[70px] mt-10 flex flex-wrap justify-center gap-x-8 xl:gap-y-6">
+              {logos.map(({ icon, url }, index) => (
+                <li className={clsx('flex items-center justify-center', cardClassname)} key={index}>
+                  <Link
+                    className="flex h-full w-fit items-center justify-center"
+                    to={url}
+                    target="_blank"
+                  >
+                    <img
+                      className={clsx('h-auto w-auto', iconClassname)}
+                      src={icon}
+                      width="auto"
+                      height="auto"
+                      loading="lazy"
+                      alt="sponsor-logo"
+                    />
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </li>
+        ))}
+      </ul>
     </div>
   </section>
 );
