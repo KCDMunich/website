@@ -23,8 +23,8 @@ import Qaware from 'icons/qaware.svg';
 import liquid from 'icons/liquid.png';
 import whiteduck from 'icons/whiteduck.png';
 import Cloudnative from 'icons/cloudnative.svg';
-import Kubecareers from 'icons/kubecareers.svg';
-import Kubeevents from 'icons/kubeevents.svg';
+import Kubecareers from 'icons/kubecareers_1.svg';
+import Kubeevents from 'icons/kubeevents_2.svg';
 
 const TITLE = 'Sponsors';
 
@@ -56,14 +56,14 @@ const ITEMS = [
     cardClassname: 'min-w-[384px] min-h-[122px] sm:min-w-[320px] sm:min-h-[115px]',
     iconClassname: 'max-w-[330px] sm:min-w-[290px]',
   },
-//  {
-//    title: 'Bronze',
-//    logos: [
-//      //{ icon: Redhat, url: 'https://www.redhat.com/de/our-code-is-open?sc_cid=7013a000002w5fEAAQ&gclsrc=aw.ds',},
-//    ],
-//    cardClassname: 'min-w-[280px] min-h-[104px] sm:min-w-[250px] sm:min-h-[94px]',
-//    iconClassname: 'max-w-[330px] sm:min-w-[290px]',
-//  },
+  //  {
+  //    title: 'Bronze',
+  //    logos: [
+  //      //{ icon: Redhat, url: 'https://www.redhat.com/de/our-code-is-open?sc_cid=7013a000002w5fEAAQ&gclsrc=aw.ds',},
+  //    ],
+  //    cardClassname: 'min-w-[280px] min-h-[104px] sm:min-w-[250px] sm:min-h-[94px]',
+  //    iconClassname: 'max-w-[330px] sm:min-w-[290px]',
+  //  },
   {
     title: 'Organizers',
     logos: [
@@ -73,7 +73,7 @@ const ITEMS = [
       //{ icon: unikube, url: 'https://www.blueshoe.io/' },
     ],
     cardClassname: 'min-w-[280px] min-h-[104px] sm:min-w-[250px] sm:min-h-[94px]',
-    iconClassname: 'max-w-[330px] sm:min-w-[290px]',
+    iconClassname: 'max-w-[300px] sm:min-w-[290px]',
   },
   {
     title: 'Community & Media Partners',
@@ -83,7 +83,7 @@ const ITEMS = [
       { icon: Kubecareers, url: 'https://kube.careers/' },
     ],
     cardClassname: 'min-w-[280px] min-h-[104px] sm:min-w-[250px] sm:min-h-[94px]',
-    iconClassname: 'max-w-[330px] sm:min-w-[290px]',
+    iconClassname: 'max-w-[220px] sm:min-w-[290px]',
   },
 ];
 
@@ -93,10 +93,7 @@ const Sponsors = () => (
       <h2 className="text-6xl font-bold leading-denser text-primary-1" id={LINKS.sponsors.id}>
         {TITLE}
       </h2>
-      <p
-        className="text-lg leading-normal text-primary-1"
-        style={{ marginTop: '4vh' }}
-      >
+      <p className="text-lg leading-normal text-primary-1" style={{ marginTop: '4vh' }}>
         Join us in making KCD Munich a memorable and impactful event for all attendees. To explore
         sponsorship opportunities, please don't hesitate to get in touch with us today. Your support
         will help us create an unforgettable experience for the community while enhancing your
@@ -125,11 +122,9 @@ const Sponsors = () => (
       <ul className="mt-16 flex flex-col">
         {ITEMS.map(({ title, logos, cardClassname, iconClassname }, index) => (
           <li className="" key={index}>
-            <p className="text-center text-4xl font-bold leading-normal text-primary-1">
-              {title}
-            </p>
+            <p className="text-center text-4xl font-bold leading-normal text-primary-1">{title}</p>
 
-            <ul className="mt-10 mb-[70px] flex flex-wrap justify-center gap-x-8 xl:gap-y-6">
+            <ul className="mb-[70px] mt-10 flex flex-wrap justify-center gap-x-8 xl:gap-y-6">
               {logos.map(({ icon, url }, index) => (
                 <li className={clsx('flex items-center justify-center', cardClassname)} key={index}>
                   <Link
