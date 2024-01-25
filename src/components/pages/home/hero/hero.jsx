@@ -1,7 +1,7 @@
 import React from 'react';
 import Button from 'components/shared/button';
 import illustration from './images/hero-illustration.png';
-const TITLE = 'Kubernetes Community Days Munich';
+const TITLE = 'KCD Munich';
 
 const DESCRIPTION =
   'The Kubernetes & Cloud Native community will gather at the smartvillage Bogenhausen in Munich, Germany. Join us for a two-day technical event loaded with exciting talks and networking opportunities. KCD Munich is aimed at developers, platform people, and other IT professionals with an interest in cloud native technologies. This community event is supported by the CNCF.';

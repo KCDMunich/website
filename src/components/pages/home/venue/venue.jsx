@@ -41,7 +41,7 @@ const Venue = () => (
 
           <div className="w-[520px] self-center text-lg leading-normal text-primary-1 xl:max-w-[470px] lg:ml-8 lg:max-w-[530px] md:ml-0 md:mt-5 md:w-full md:max-w-none sm:text-lg">
             <p>
-              The Kubernetes Community Days in Munich will be held at the smartvillage Bogenhausen
+              The KCD Munich will be held at the smartvillage Bogenhausen
               at Munich Arabellapark. Attendees can expect to enjoy a variety of vegetarian and
               vegan food options throughout the day.
             </p>
