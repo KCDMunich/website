@@ -40,7 +40,7 @@ const Header = ({ isMobileMenuOpen, onBurgerClick, additionalClassName, homepage
     >
       <div className="container flex items-center justify-between pb-2 pt-5">
         <Link className="z-50 ml-2" to="/">
-          <Logo className="h-12 w-44" />
+          <Logo className="h-12" />
         </Link>
 
         <nav>
