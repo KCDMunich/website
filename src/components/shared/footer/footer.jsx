@@ -41,7 +41,7 @@ const Footer = () => {
     <footer className="safe-paddings border-t border-t-gray-10 bg-white">
       <div className="container flex items-center justify-between pb-5 pt-5 sm:flex-col sm:justify-around">
         <Link className="ml-2" to="/">
-          <Logo className="h-12 w-44" />
+          <Logo className="h-12" />
         </Link>
 
         <nav className="mt-4 flex">
