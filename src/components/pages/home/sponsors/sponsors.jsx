@@ -25,6 +25,7 @@ import whiteduck from 'icons/whiteduck.png';
 import Cloudnative from 'icons/cloudnative.svg';
 import Kubecareers from 'icons/kubecareers_1.svg';
 import Kubeevents from 'icons/kubeevents_2.svg';
+import StackState from 'icons/stackstate.png';
 
 const TITLE = 'Sponsors';
 
@@ -52,6 +53,7 @@ const ITEMS = [
       //{ icon: Okteto, url: 'https://www.okteto.com' },
       //{ icon: Mkdev, url: 'https://mkdev.me/' },
       //{ icon: Appscode, url: 'https://appscode.com/' },
+      { icon: StackState, url: 'https://stackstate.com/' },
     ],
     cardClassname: 'min-w-[384px] min-h-[122px] sm:min-w-[320px] sm:min-h-[115px]',
     iconClassname: 'max-w-[330px] sm:min-w-[290px]',
