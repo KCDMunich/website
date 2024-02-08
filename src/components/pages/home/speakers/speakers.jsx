@@ -63,7 +63,7 @@ const SpeakerComponent = () => {
         <ReactCardFlip key={speaker.id} isFlipped={speaker.isFlipped} flipDirection="horizontal">
           <div
             onClick={() => handleClick(speaker.id)}
-            className="p-4 front"
+            className="p-4 "
             style={{
               marginRight: '1px',
               marginBottom: '40px',
@@ -78,7 +78,7 @@ const SpeakerComponent = () => {
             <img
               src={speaker.profilePicture}
               alt={speaker.fullName}
-              className="rounded-md"
+              className="rounded-md front"
               style={{
                 width: '100%',
                 objectFit: 'cover',
@@ -125,10 +125,8 @@ const SpeakerComponent = () => {
                 rel="noopener noreferrer"
               >
                 <SocialIcon url={link.url} bgColor="transparent" fgColor="#262f59" style={{ height: '50px', width: '50px', margin: '10px' }} />
-                <span>{link.TITLE}</span>
               </a>
             ))}
-            <span className='font-bold text-sm' style={{ textAlign: 'center', width: '100%' }}>{speaker.questionAnswers.answer}</span>
           </div>
         </ReactCardFlip>
       ))}
