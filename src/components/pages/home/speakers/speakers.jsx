@@ -78,7 +78,7 @@ const SpeakerComponent = () => {
             <img
               src={speaker.profilePicture}
               alt={speaker.fullName}
-              className="rounded-md front"
+              className="rounded-md front cursor-pointer"
               style={{
                 width: '100%',
                 objectFit: 'cover',
@@ -109,14 +109,15 @@ const SpeakerComponent = () => {
           </div>
           <div onClick={() => handleClick(speaker.id)} className="back" 
           style={{ textAlign: 'center',marginRight: '1px',
-              border: 'solid #262f59',
+              
               marginBottom: '40px',
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'center',
               maxWidth: '190px',
               minWidth: '190px',
-              height: '200px',  }}>
+              height: '200px', 
+              cursor: 'pointer' }}>
             {speaker.links.map((link, index) => (
               <a
                 key={index}
