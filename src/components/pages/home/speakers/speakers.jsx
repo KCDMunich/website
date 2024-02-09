@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import LINKS from 'constants/links';
 import { SocialIcon } from 'react-social-icons';
-import ReactCardFlip from "react-card-flip";
+import ReactCardFlip from 'react-card-flip';
 
 const TITLE = 'Speakers';
 const scriptUrl = 'https://sessionize.com/api/v2/6dqtqpt2/view/Speakers';
@@ -11,13 +11,13 @@ const Speakers = () => (
     <div className="container lg:mt-38 mt-40 flex justify-between xl:mt-32 lg:flex-col md:mt-24">
       <div className="text-primary-1 lg:flex lg:flex-col lg:items-center lg:justify-center lg:text-center">
         <h2
-          className="text-6xl font-bold leading-tight lg:max-w-[800px]"
+          className="text-center text-6xl font-bold leading-tight lg:max-w-[800px]"
           id={LINKS.schedule.id}
         >
           {TITLE}
         </h2>
         <br />
-        <div className='scrollbar-hide' style={{ height: '55vh', overflow: 'auto' }}>
+        <div className="overflow-auto scrollbar-hide" style={{ height: '55vh' }}>
           <SpeakerComponent />
         </div>
       </div>
@@ -32,9 +32,10 @@ const SpeakerComponent = () => {
     fetch(scriptUrl)
       .then((response) => response.json())
       .then((data) => {
-        const speakersWithFlipState = data.map(speaker => ({
+        const speakersWithFlipState = data.map((speaker) => ({
           ...speaker,
-          isFlipped: false
+          isFlipped: false,
+          canFlip: speaker.links.length > 0 || findCompany(speaker) != null,
         }));
         setSpeakerData(speakersWithFlipState);
       })
@@ -42,93 +43,107 @@ const SpeakerComponent = () => {
   }, []);
 
   const handleClick = (id) => {
-    setSpeakerData(speakerData.map(speaker => {
-      if (speaker.id === id) {
-        return { ...speaker, isFlipped: !speaker.isFlipped };
-      }
-      return speaker;
-    }));
+    setSpeakerData(
+      speakerData.map((speaker) => {
+        if (speaker.id === id && speaker.canFlip) {
+          return { ...speaker, isFlipped: !speaker.isFlipped };
+        }
+        return speaker;
+      })
+    );
+  };
+
+  const findCompany = (speaker) => {
+    const company = speaker.questionAnswers.find((q) => q.question === 'Company');
+    return company.answer;
   };
 
   return (
-    <div
-      style={{
-        display: 'flex',
-        flexDirection: 'row',
-        flexWrap: 'wrap',
-        justifyContent: 'space-around',
-      }}
-    >
+    <div className="flex flex-row flex-wrap justify-around">
       {speakerData.map((speaker) => (
-        <ReactCardFlip key={speaker.id} isFlipped={speaker.isFlipped} flipDirection="horizontal">
-          <div
-            onClick={() => handleClick(speaker.id)}
-            className="p-4 "
-            style={{
-              marginRight: '1px',
-              marginBottom: '40px',
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              maxWidth: '190px',
-              minWidth: '190px',
-              height: '200px', 
-            }}
+        <div
+          onClick={() => handleClick(speaker.id)}
+          className="flex flex-col items-center justify-between p-4"
+          style={{
+            marginBottom: '40px',
+            maxWidth: '190px',
+            minWidth: '190px',
+            height: '220px',
+          }}
+        >
+          <ReactCardFlip
+            key={speaker.id}
+            isFlipped={speaker.isFlipped}
+            flipDirection="horizontal"
+            flipSpeedBackToFront="0.3"
+            flipSpeedFrontToBack="0.3"
           >
             <img
               src={speaker.profilePicture}
               alt={speaker.fullName}
-              className="rounded-md front"
+              className="front w-full cursor-pointer rounded-md object-cover"
               style={{
-                width: '100%',
-                objectFit: 'cover',
-                height: '150px',
+                height: '160px',
               }}
             />
             <div
+              onClick={() => handleClick(speaker.id)}
+              className="back flex cursor-pointer flex-col justify-between rounded-md"
               style={{
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                paddingTop: '5px', 
+                height: '160px',
+                borderBottom: 'solid 3px #5f6ab5',
+                width: '153px',
+                backgroundColor: '#262f5908',
               }}
             >
-              <span className='font-bold text-sm' style={{ textAlign: 'center', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', width: '100%' }}>{speaker.fullName}</span>
-            </div>
-            <div
-              style={{
-                marginTop: 'auto',
-                width: '100%',
-                padding: '0 4px',
-              }}
-            >
-              <div style={{ height: '3em', overflow: 'hidden', textOverflow: 'ellipsis', display: '-webkit-box', WebkitLineClamp: '3', WebkitBoxOrient: 'vertical', textAlign: 'center', fontStyle: 'italic', fontSize: 'small', paddingTop: '0px' }}> 
-                {speaker.tagLine}
+              <div>
+                {speaker.links.length > 0 ? (
+                  speaker.links.slice(0, 5).map((link, index) => (
+                    <a key={index} href={link.url} target="_blank" rel="noopener noreferrer">
+                      <SocialIcon url={link.url} bgColor="transparent" fgColor="#262f59" />
+                    </a>
+                  ))
+                ) : (
+                  <div></div>
+                )}
+              </div>
+              <div style={{ padding: '10px', marginTop: 'auto' }}>
+                <span className="flex justify-center text-sm font-bold">
+                  {findCompany(speaker)}
+                </span>
               </div>
             </div>
+          </ReactCardFlip>
+          <div
+            className="flex flex-col items-center"
+            style={{
+              paddingTop: '5px',
+            }}
+          >
+            <span className="w-full items-center truncate text-sm font-bold">
+              {speaker.fullName}
+            </span>
           </div>
-          <div onClick={() => handleClick(speaker.id)} className="back" 
-          style={{ textAlign: 'center',marginRight: '1px',
-              border: 'solid #262f59',
-              marginBottom: '40px',
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              maxWidth: '190px',
-              minWidth: '190px',
-              height: '200px',  }}>
-            {speaker.links.map((link, index) => (
-              <a
-                key={index}
-                href={link.url}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <SocialIcon url={link.url} bgColor="transparent" fgColor="#262f59" style={{ height: '50px', width: '50px', margin: '10px' }} />
-              </a>
-            ))}
+          <div
+            className="mt-auto w-full"
+            style={{
+              padding: '0 4px',
+            }}
+          >
+            <div
+              className="overflow-hidden text-ellipsis text-center italic"
+              style={{
+                height: '3em',
+                display: '-webkit-box',
+                WebkitLineClamp: '3',
+                WebkitBoxOrient: 'vertical',
+                fontSize: 'small',
+              }}
+            >
+              {speaker.tagLine}
+            </div>
           </div>
-        </ReactCardFlip>
+        </div>
       ))}
     </div>
   );
