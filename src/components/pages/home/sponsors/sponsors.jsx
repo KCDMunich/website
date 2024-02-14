@@ -11,7 +11,7 @@ import Camptocamp from 'icons/camptocamp.svg';
 //import Grafana from 'icons/grafanalabs.webp';
 //import Isovalent from 'icons/isovalent.svg';
 //import Lumigo from 'icons/lumigo.webp';
-//import MetalStack from 'icons/metalstackcloud.webp';
+import MetalStack from 'icons/metalstackcloud.webp';
 //import Mkdev from 'icons/mkdev.png';
 import Qaware from 'icons/qaware.svg';
 //import Redhat from 'icons/redhat.png';
@@ -35,7 +35,7 @@ const ITEMS = [
     logos: [
       { icon: ApeFactory, url: 'https://www.apefactory.com/de' },
       //{ icon: Elasticbrains, url: 'https://www.elasticbrains.de/de/' },
-      //{ icon: MetalStack, url: 'https://metalstack.cloud/de' },
+      { icon: MetalStack, url: 'https://metalstack.cloud/de' },
       //{ icon: Google, url: 'https://www.google.com/' },
     ],
     cardClassname: 'min-w-[488px] max-w-[330px] min-h-[152px] sm:min-w-[350px] sm:min-h-[130px]',
@@ -91,11 +91,11 @@ const ITEMS = [
 
 const Sponsors = () => (
   <section className="safe-paddings relative bg-white sm:pb-16">
-    <div className="container-md text-center text-primary-1">
-      <h2 className="text-6xl font-bold leading-denser text-primary-1" id={LINKS.sponsors.id}>
+    <div className="container-md text-primary-1 text-center">
+      <h2 className="leading-denser text-primary-1 text-6xl font-bold" id={LINKS.sponsors.id}>
         {TITLE}
       </h2>
-      <p className="text-lg leading-normal text-primary-1" style={{ marginTop: '4vh' }}>
+      <p className="text-primary-1 text-lg leading-normal" style={{ marginTop: '4vh' }}>
         Join us in making KCD Munich a memorable and impactful event for all attendees. To explore
         sponsorship opportunities, please don't hesitate to get in touch with us today. Your support
         will help us create an unforgettable experience for the community while enhancing your
@@ -116,7 +116,7 @@ const Sponsors = () => (
           target="_blank"
         >
           <span className="absolute h-full w-full bg-gradient-to-br from-[#3333ff] via-[#3333ff] to-[#3333ff] group-hover:from-[#ff00c6] group-hover:via-[#ff5478] group-hover:to-[#ff8a05]"></span>
-          <span className="bg-gray-900 duration-400 relative rounded-md px-6 py-3 transition-all ease-out group-hover:bg-opacity-0">
+          <span className="duration-400 relative rounded-md bg-gray-900 px-6 py-3 transition-all ease-out group-hover:bg-opacity-0">
             <span className="relative text-white">Information Slide</span>
           </span>
         </Button>
@@ -124,7 +124,7 @@ const Sponsors = () => (
       <ul className="mt-16 flex flex-col">
         {ITEMS.map(({ title, logos, cardClassname, iconClassname }, index) => (
           <li className="" key={index}>
-            <p className="text-center text-4xl font-bold leading-normal text-primary-1">{title}</p>
+            <p className="text-primary-1 text-center text-4xl font-bold leading-normal">{title}</p>
 
             <ul className="mb-[70px] mt-10 flex flex-wrap justify-center gap-x-8 xl:gap-y-6">
               {logos.map(({ icon, url }, index) => (
