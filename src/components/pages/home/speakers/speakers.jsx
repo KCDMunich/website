@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import LINKS from 'constants/links';
 import { SocialIcon } from 'react-social-icons';
 import ReactCardFlip from 'react-card-flip';
+import { random } from 'lodash';
 
 const TITLE = 'Speakers';
 const scriptUrl = 'https://sessionize.com/api/v2/6dqtqpt2/view/Speakers';
@@ -37,7 +38,8 @@ const SpeakerComponent = () => {
           isFlipped: false,
           canFlip: speaker.links.length > 0 || findCompany(speaker) != null,
         }));
-        setSpeakerData(speakersWithFlipState);
+        const shuffledSpeaker = getRandomSpeaker(speakersWithFlipState);
+        setSpeakerData(shuffledSpeaker);
       })
       .catch((error) => console.error('Error:', error));
   }, []);
@@ -53,6 +55,19 @@ const SpeakerComponent = () => {
     );
   };
 
+  const getRandomSpeaker = (array) => {
+    let currentIndex = array.length,
+      randomIndex;
+
+    while (currentIndex > 0) {
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex--;
+
+      [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
+    }
+    return array;
+  };
+
   const findCompany = (speaker) => {
     const company = speaker.questionAnswers.find((q) => q.question === 'Company');
     return company.answer;
@@ -62,7 +77,6 @@ const SpeakerComponent = () => {
     <div className="flex flex-row flex-wrap justify-around">
       {speakerData.map((speaker) => (
         <div
-          onClick={() => handleClick(speaker.id)}
           className="flex flex-col items-center justify-between p-4"
           style={{
             marginBottom: '40px',
@@ -79,6 +93,7 @@ const SpeakerComponent = () => {
             flipSpeedFrontToBack="0.3"
           >
             <img
+              onMouseEnter={() => handleClick(speaker.id)}
               src={speaker.profilePicture}
               alt={speaker.fullName}
               className="front w-full cursor-pointer rounded-md object-cover"
@@ -88,6 +103,7 @@ const SpeakerComponent = () => {
             />
             <div
               onClick={() => handleClick(speaker.id)}
+              onMouseLeave={() => handleClick(speaker.id)}
               className="back flex cursor-pointer flex-col justify-between rounded-md"
               style={{
                 height: '160px',
