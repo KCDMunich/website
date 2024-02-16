@@ -80,11 +80,10 @@ const SpeakerComponent = () => {
   return (
     <div className="flex h-full w-full items-center justify-center">
       {speakerData.length === 0 ? (
-        <div
-          className="flex items-center justify-center"
-          style={{ height: '40px', width: '100%', paddingTop: '54px' }}
-        >
-          <span className="justify-center text-center text-xl font-semibold">Coming soon...</span>
+        <div className="flex items-center justify-center" style={{ height: '90px', width: '100%' }}>
+          <p className="text-lg leading-normal text-primary-1" style={{ marginTop: '7vh' }}>
+            Coming soon...
+          </p>
         </div>
       ) : (
         <div

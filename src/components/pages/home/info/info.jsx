@@ -45,13 +45,12 @@ const Info = () => (
           }}
         >
           <iframe
-            width="560"
-            height="315"
-            src="https://www.youtube.com/embed/fIzXybMaEZ0?si=xVWFRbFoOkwCRvZU&amp;controls=0"
-            title="YouTube video player"
+            width="820"
+            height="461"
+            src="https://www.youtube.com/embed/fIzXybMaEZ0?si=Ln1spZvT_qSgYh09?controls=1"
             frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowfullscreen
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope"
+            allowfullscreen="true"
           ></iframe>
         </div>
         <div className="container text-center">
