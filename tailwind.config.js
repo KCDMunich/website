@@ -68,7 +68,7 @@ module.exports = {
       ...defaultTheme.backgroundImage,
     },
     screens: {
-      '2xl': { max: '1919px' },
+      '2xl': { max: '5000px' },
       xl: { max: '1535px' },
       lg: { max: '1279px' },
       md: { max: '1023px' },

@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import Speakers from '../speakers';
 
 const Info = () => (
   <section className="safe-paddings pysm:py-16-40 bg-white">
@@ -34,6 +35,24 @@ const Info = () => (
             network, join talks and workshops. Great food suiting every taste and, of course,{' '}
             <span className="font-bold">bowling</span>!
           </p>
+        </div>
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            paddingBottom: '7rem',
+          }}
+        >
+          <iframe
+            width="560"
+            height="315"
+            src="https://www.youtube.com/embed/fIzXybMaEZ0?si=xVWFRbFoOkwCRvZU&amp;controls=0"
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen
+          ></iframe>
         </div>
         <div className="container text-center">
           <h2 className="text-6xl font-bold leading-denser text-primary-1">Tickets</h2>

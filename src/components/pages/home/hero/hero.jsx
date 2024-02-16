@@ -52,8 +52,8 @@ const Hero = () => {
           </div>
         </div>
         <img
-          className="ml-[-5vw] h-[40rem] scale-125 object-contain md:mt-12 md:h-96"
-          style={{ marginLeft: '-5vw' }}
+          className="ml-[-5vw] h-[40rem] scale-125 object-contain 2xl:-mt-20 md:mt-1 md:h-96"
+          style={{ marginLeft: '-1rem' }}
           src={illustration}
           loading="eager"
           alt="Illustration"
