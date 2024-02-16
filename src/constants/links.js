@@ -17,11 +17,6 @@ export default {
     id: getAnchor('Sponsors'),
     homeTo: null,
   },
-  speakers: {
-    to: `/speakers`,
-    id: getAnchor('Speakers'),
-    homeTo: '/speakers',
-  },
   workshops: {
     to: '/workshops',
     id: getAnchor('Workshops'),

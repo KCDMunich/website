@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import LINKS from 'constants/links';
 import { SocialIcon } from 'react-social-icons';
 import ReactCardFlip from 'react-card-flip';
-import { random } from 'lodash';
+import { isMobile } from 'react-device-detect';
 
 const TITLE = 'Speakers';
 const scriptUrl = 'https://sessionize.com/api/v2/6dqtqpt2/view/Speakers';
@@ -38,7 +38,7 @@ const SpeakerComponent = () => {
           isFlipped: false,
           canFlip: speaker.links.length > 0 || findCompany(speaker) != null,
         }));
-        const shuffledSpeaker = getRandomSpeaker(speakersWithFlipState);
+        const shuffledSpeaker = shuffleSpeaker(speakersWithFlipState);
         setSpeakerData(shuffledSpeaker);
       })
       .catch((error) => console.error('Error:', error));
@@ -55,7 +55,7 @@ const SpeakerComponent = () => {
     );
   };
 
-  const getRandomSpeaker = (array) => {
+  const shuffleSpeaker = (array) => {
     let currentIndex = array.length,
       randomIndex;
 
@@ -93,7 +93,8 @@ const SpeakerComponent = () => {
             flipSpeedFrontToBack="0.3"
           >
             <img
-              onMouseEnter={() => handleClick(speaker.id)}
+              onClick={() => isMobile && handleClick(speaker.id)}
+              onMouseEnter={() => !isMobile && handleClick(speaker.id)}
               src={speaker.profilePicture}
               alt={speaker.fullName}
               className="front w-full cursor-pointer rounded-md object-cover"
@@ -102,8 +103,8 @@ const SpeakerComponent = () => {
               }}
             />
             <div
-              onClick={() => handleClick(speaker.id)}
-              onMouseLeave={() => handleClick(speaker.id)}
+              onClick={() => isMobile && handleClick(speaker.id)}
+              onMouseLeave={() => !isMobile && handleClick(speaker.id)}
               className="back flex cursor-pointer flex-col justify-between rounded-md"
               style={{
                 height: '160px',
@@ -124,7 +125,7 @@ const SpeakerComponent = () => {
                 )}
               </div>
               <div style={{ padding: '10px', marginTop: 'auto' }}>
-                <span className="flex justify-center text-sm font-bold">
+                <span className="flex justify-center text-center text-sm font-bold">
                   {findCompany(speaker)}
                 </span>
               </div>
