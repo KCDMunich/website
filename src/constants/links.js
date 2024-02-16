@@ -8,19 +8,14 @@ export default {
     to: '/',
   },
   schedule: {
-    to: '/',
+    to: '/schedule',
     id: getAnchor('Schedule'),
-    homeTo: '/',
+    homeTo: '/schedule',
   },
   sponsors: {
     to: `/#${getAnchor('Sponsors')}`,
     id: getAnchor('Sponsors'),
     homeTo: null,
-  },
-  speakers: {
-    to: `/`,
-    id: getAnchor('Speakers'),
-    homeTo: '/',
   },
   workshops: {
     to: '/workshops',
