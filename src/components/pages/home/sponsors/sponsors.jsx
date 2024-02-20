@@ -26,7 +26,7 @@ import Cloudnative from 'icons/cloudnative.svg';
 import Kubecareers from 'icons/kubecareers_1.svg';
 import Kubeevents from 'icons/kubeevents_2.svg';
 import StackState from 'icons/stackstate.png';
-import germantech from 'icons/germantech.webp';
+import germantech from 'icons/germantech.svg';
 
 const TITLE = 'Sponsors';
 
