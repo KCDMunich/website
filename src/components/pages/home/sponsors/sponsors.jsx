@@ -27,6 +27,7 @@ import Kubecareers from 'icons/kubecareers_1.svg';
 import Kubeevents from 'icons/kubeevents_2.svg';
 import StackState from 'icons/stackstate.png';
 import germantech from 'icons/germantech.svg';
+import Syseleven from 'icons/syseleven.png';
 
 const TITLE = 'Sponsors';
 
@@ -85,6 +86,7 @@ const ITEMS = [
       { icon: Kubeevents, url: 'https://kube.events/' },
       { icon: Kubecareers, url: 'https://kube.careers/' },
       { icon: germantech, url: 'https://germantechjobs.de/' },
+      { icon: Syseleven, url: 'https://www.syseleven.de/' },
     ],
     cardClassname: 'min-w-[280px] min-h-[104px] sm:min-w-[250px] sm:min-h-[94px]',
     iconClassname: 'max-w-[220px] sm:min-w-[290px]',
