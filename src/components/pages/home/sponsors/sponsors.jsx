@@ -28,6 +28,7 @@ import Kubeevents from 'icons/kubeevents_2.svg';
 import StackState from 'icons/stackstate.png';
 import germantech from 'icons/germantech.svg';
 import Syseleven from 'icons/syseleven.png';
+import pulumi from 'icons/pulumi_logo.svg';
 
 const TITLE = 'Sponsors';
 
@@ -56,6 +57,7 @@ const ITEMS = [
       //{ icon: Mkdev, url: 'https://mkdev.me/' },
       //{ icon: Appscode, url: 'https://appscode.com/' },
       { icon: StackState, url: 'https://stackstate.com/' },
+      { icon: pulumi, url: 'https://www.pulumi.com/' },
     ],
     cardClassname: 'min-w-[384px] min-h-[122px] sm:min-w-[320px] sm:min-h-[115px]',
     iconClassname: 'max-w-[330px] sm:min-w-[290px]',
