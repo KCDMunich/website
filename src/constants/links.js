@@ -64,6 +64,11 @@ export default {
     to: 'https://www.youtube.com/@cncf',
     target: '_blank',
   },
+  speakers: {
+    to: `/speakers`,
+    id: getAnchor('Speakers'),
+    homeTo:  '/speakers',
+  },
 };
 
 /*

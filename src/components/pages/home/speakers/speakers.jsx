@@ -3,6 +3,7 @@ import LINKS from 'constants/links';
 import { SocialIcon } from 'react-social-icons';
 import ReactCardFlip from 'react-card-flip';
 import { isMobile } from 'react-device-detect';
+import speakersJSON from './speaker2.json'; //speaker aus json 2
 
 const TITLE = 'Speakers';
 const scriptUrl = 'https://sessionize.com/api/v2/6dqtqpt2/view/Speakers';
@@ -29,23 +30,37 @@ const Speakers = () => (
 const SpeakerComponent = () => {
   const [speakerData, setSpeakerData] = useState([]);
 
+  // useEffect(() => {
+  //   fetch(scriptUrl)
+  //     .then((response) => response.json())
+  //     .then((data) => {
+  //       if (data && data.length > 0) {
+  //         const speakersWithFlipState = data.map((speaker) => ({
+  //           ...speaker,
+  //           isFlipped: false,
+  //           canFlip: speaker.links.length > 0 || findCompany(speaker) != null,
+  //         }));
+  //         const shuffledSpeaker = shuffleSpeaker(speakersWithFlipState);
+  //         setSpeakerData(shuffledSpeaker);
+  //       } else {
+  //         setSpeakerData([]);
+  //       }
+  //     })
+  //     .catch((error) => console.error('Error:', error));
+  // }, []);
+
   useEffect(() => {
-    fetch(scriptUrl)
-      .then((response) => response.json())
-      .then((data) => {
-        if (data && data.length > 0) {
-          const speakersWithFlipState = data.map((speaker) => ({
-            ...speaker,
-            isFlipped: false,
-            canFlip: speaker.links.length > 0 || findCompany(speaker) != null,
-          }));
-          const shuffledSpeaker = shuffleSpeaker(speakersWithFlipState);
-          setSpeakerData(shuffledSpeaker);
-        } else {
-          setSpeakerData([]);
-        }
-      })
-      .catch((error) => console.error('Error:', error));
+    if (speakersJSON && speakersJSON.length > 0) {
+      const speakersWithFlipState = speakersJSON.map((speaker) => ({
+        ...speaker,
+        isFlipped: false,
+        canFlip: speaker.links.length > 0 || findCompany(speaker) != null,
+      }));
+      const shuffledSpeaker = shuffleSpeaker(speakersWithFlipState);
+      setSpeakerData(shuffledSpeaker);
+    } else {
+      setSpeakerData([]);
+    }
   }, []);
 
   const handleClick = (id) => {

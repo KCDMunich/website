@@ -1,0 +1,3567 @@
+[
+    {
+      "id": "f2e1dff5-e8b9-4b4b-a8e4-4f5c6c61158f",
+      "firstName": "Abdel",
+      "lastName": "Sghiouar",
+      "fullName": "Abdel Sghiouar",
+      "bio": "Abdel Sghiouar is a senior Cloud Developer Advocate @Google Cloud. A co-host of the Kubernetes Podcast by Google and a CNCF Ambassador. His focused areas are GKE/Kubernetes, Service Mesh and Serverless. Abdel started his career in datacenters and infrastructure in Morocco where he is originally. Before moving to Google's largest EU datacenter in Belgium. Then in Sweden he joined Google Cloud Professional Services and spent 5 years working with Google Cloud customers on architecting and designing large scale distributed systems before turning to advocacy and community work.",
+      "tagLine": "Cloud Developer Advocate",
+      "profilePicture": "https://sessionize.com/image/138d-400o400o1-f5-e8b9-4b4b-a8e4-4f5c6c61158f.fc62390d-0d7e-4a29-b526-9806b570af55.jpg",
+      "sessions": [
+        {
+          "id": 599796,
+          "name": "Reflections on a decade of Kubernetes. How it has been and what the future is holding for us"
+        },
+        {
+          "id": 599794,
+          "name": "What’s new in the Kubernetes Gateway API"
+        }
+      ],
+      "isTopSpeaker": false,
+      "links": [
+        {
+          "title": "Twitter",
+          "url": "https://www.twitter.com/boredabdel",
+          "linkType": "Twitter"
+        },
+        {
+          "title": "LinkedIn",
+          "url": "https://www.linkedin.com/in/sabdelfettah/",
+          "linkType": "LinkedIn"
+        },
+        {
+          "title": "Blog",
+          "url": "https://boredabdel.medium.com/",
+          "linkType": "Blog"
+        }
+      ],
+      "questionAnswers": [
+        {
+          "id": 64148,
+          "question": "Company",
+          "questionType": "Short_Text",
+          "answer": "Google Cloud",
+          "sort": 17,
+          "answerExtra": null
+        }
+      ],
+      "categories": []
+    },
+    {
+      "id": "3c82d55a-f43f-4afa-ace5-9817006d2294",
+      "firstName": "AJ",
+      "lastName": "Jester",
+      "fullName": "AJ Jester",
+      "bio": " AJ is a Specialist in the field of DevOps/SRE with over 20 years of empirical operational experience. He not only architects and designs, but also implements and maintains the infrastructure thereafter, the whole nine yards, soup to nuts. He ventures out to learn unfamiliar things, digging in to finding the root cause and coming up with tangible solutions.",
+      "tagLine": "Developer Evangelist",
+      "profilePicture": "https://sessionize.com/image/6d55-400o400o1-DFtt9arpZ4t1Fn3hs4sopv.jpg",
+      "sessions": [
+        {
+          "id": 619972,
+          "name": "On-Prem is the new Black"
+        }
+      ],
+      "isTopSpeaker": false,
+      "links": [
+        {
+          "title": "LinkedIn",
+          "url": "https://www.linkedin.com/in/aj-jester/",
+          "linkType": "LinkedIn"
+        },
+        {
+          "title": "Blog",
+          "url": "https://www.linkedin.com/in/aj-jester/",
+          "linkType": "Blog"
+        }
+      ],
+      "questionAnswers": [
+        {
+          "id": 64148,
+          "question": "Company",
+          "questionType": "Short_Text",
+          "answer": null,
+          "sort": 17,
+          "answerExtra": null
+        }
+      ],
+      "categories": []
+    },
+    {
+      "id": "58fe6314-2536-4603-9c3d-f8448af7042a",
+      "firstName": "Aleksei",
+      "lastName": "Igrychev",
+      "fullName": "Aleksei Igrychev",
+      "bio": "Experienced software engineer and team lead with a diverse background in programming, automation, product development, and project management.\r\n\r\nCurrently heavily involved in Kubernetes CI/CD and dedicated to codifying the company's experience and best practices in this area. \r\n\r\nOpen Source software contributor and maintainer of https://werf.io (a CNCF CLI tool for CI/CD) and https://trdl.dev (solution for secure delivery of non-containerized software).",
+      "tagLine": "Palark, R&D Team Lead",
+      "profilePicture": "https://sessionize.com/image/3754-400o400o1-NYnkv1AsRNXzWBujGqXP6K.jpeg",
+      "sessions": [
+        {
+          "id": 634860,
+          "name": "Bringing Helm-compatible deployment to the next level with Nelm"
+        }
+      ],
+      "isTopSpeaker": false,
+      "links": [
+        {
+          "title": "LinkedIn",
+          "url": "https://www.linkedin.com/in/alexey-igrychev",
+          "linkType": "LinkedIn"
+        }
+      ],
+      "questionAnswers": [
+        {
+          "id": 64148,
+          "question": "Company",
+          "questionType": "Short_Text",
+          "answer": "Palark",
+          "sort": 17,
+          "answerExtra": null
+        }
+      ],
+      "categories": []
+    },
+    {
+      "id": "dedbce11-34e0-466e-a5cb-ea585688d106",
+      "firstName": "Alex",
+      "lastName": "Soto",
+      "fullName": "Alex Soto",
+      "bio": "Alex Soto is a Director of Developer Experience at Red Hat. He is passionate about the Java world, software automation and he believes in the open-source software model. Alex is the co-author of Testing Java Microservice, Quarkus cookbook, Kubernetes Secrets Management, and GitOps cookbook books and contributor to several open-source projects. A Java Champion since 2017, he is also an international speaker and teacher at Salle URL University. You can follow him on Twitter (@alexsotob) to stay tuned to what’s going on in Kubernetes and Java world.",
+      "tagLine": "Director of Developer Experience at Red Hat",
+      "profilePicture": "https://sessionize.com/image/6a73-400o400o1-11-34e0-466e-a5cb-ea585688d106.4f3f7614-bc5e-4ccd-935a-1c3659eec5e8.jpg",
+      "sessions": [
+        {
+          "id": 596218,
+          "name": "Chaos is taking over my Kubernetes cluster"
+        },
+        {
+          "id": 596219,
+          "name": "Securing Secrets in the GitOps era"
+        }
+      ],
+      "isTopSpeaker": false,
+      "links": [
+        {
+          "title": "Twitter",
+          "url": "https://twitter.com/alexsotob",
+          "linkType": "Twitter"
+        },
+        {
+          "title": "LinkedIn",
+          "url": "https://www.linkedin.com/in/asotobu/",
+          "linkType": "LinkedIn"
+        }
+      ],
+      "questionAnswers": [
+        {
+          "id": 64148,
+          "question": "Company",
+          "questionType": "Short_Text",
+          "answer": null,
+          "sort": 17,
+          "answerExtra": null
+        }
+      ],
+      "categories": []
+    },
+    {
+      "id": "34716d45-d109-4aa6-bf5e-d7f5d210b660",
+      "firstName": "Andrii",
+      "lastName": "Soldatenko",
+      "fullName": "Andrii Soldatenko",
+      "bio": "Go developer (gopher) under the hood. Big fan of full-text search and graph databases. Blogger at asoldatenko.com and t.me/golang_for_two channel. Top 3% of Freelance Talent in Golang toptal.com/go, contributor to StackOverflow https://stackoverflow.com/users/2565213/andrii-soldatenko\r\n\r\nContributed in different python/go open source projects:\r\n- apache airflow\r\n- OpenAPI v3 specification, contribute to Golang\r\n- pyhelm, aiohttp-swagger, mezzanine\r\n- chalice, requests, aiohttp tutorial\r\n- sendgrid-python and sendgrid-django\r\n\r\nSpeaker at UA Golang Meetup 2019, PyCaribbean, PyCon Italia 2017, EuroPython 2016, PyCon Ukraine 2014, PyCon Belarus 2015-2018 PyCon Russia 2015, 2016.",
+      "tagLine": "Golang Developer",
+      "profilePicture": "https://sessionize.com/image/e59e-400o400o1-7bhPs7dBufBdqSrUYZNTxD.jpg",
+      "sessions": [
+        {
+          "id": 594404,
+          "name": "The Art of Debugging Inside K8s Environment"
+        }
+      ],
+      "isTopSpeaker": false,
+      "links": [
+        {
+          "title": "Twitter",
+          "url": "https://twitter.com/a_soldatenko",
+          "linkType": "Twitter"
+        },
+        {
+          "title": "LinkedIn",
+          "url": "https://www.linkedin.com/in/andriisoldatenko/",
+          "linkType": "LinkedIn"
+        },
+        {
+          "title": "Facebook",
+          "url": "https://facebook.com/andrii.soldatenko",
+          "linkType": "Facebook"
+        },
+        {
+          "title": "Instagram",
+          "url": "https://www.instagram.com/andrii.soldatenko/",
+          "linkType": "Instagram"
+        },
+        {
+          "title": "Blog",
+          "url": "https://asoldatenko.org/",
+          "linkType": "Blog"
+        }
+      ],
+      "questionAnswers": [
+        {
+          "id": 64148,
+          "question": "Company",
+          "questionType": "Short_Text",
+          "answer": "Dynatrace",
+          "sort": 17,
+          "answerExtra": null
+        }
+      ],
+      "categories": []
+    },
+    {
+      "id": "321c0ab1-2f3d-4ba0-9477-e10986a5590c",
+      "firstName": "Angel",
+      "lastName": "Ramirez",
+      "fullName": "Angel Ramirez",
+      "bio": "Angel Ramirez is a dynamic entrepreneur and tech leader, distinguished as the Founder & CEO of Cuemby. With over 15 years in software development, architecture, and Cloud Native technology, Angel has become a guiding force in bridging equality gaps in Latin America. His career highlights include conducting over 40 due diligence assessments for venture capital investments and rapidly deploying cloud infrastructure for a government's Bitcoin project in just 45 days. Angel's passion for community building shines through his founding of LATAM's largest cloud native community and hosting the region's foremost in-person Kubernetes event in 2023. As a CNCF ambassador and Kubernetes exam curator for the Linux Foundation, he continues to foster global tech communities, solidifying his role as a visionary in the tech world.",
+      "tagLine": "CEO @ Cuemby | FHCN Co-Founder, Guest Speaker, CNCF Ambassador",
+      "profilePicture": "https://sessionize.com/image/6a4e-400o400o1-wcJJjpvZBRLPocuxPqCi5K.jpg",
+      "sessions": [
+        {
+          "id": 602434,
+          "name": "Kubernetes Kickstart Boosting Agility with CNCF and DevOps"
+        },
+        {
+          "id": 602433,
+          "name": "Revolutionizing Engineering Platforms and DevOps with Kubernetes and CNCF Projects"
+        }
+      ],
+      "isTopSpeaker": false,
+      "links": [
+        {
+          "title": "Twitter",
+          "url": "https://twitter.com/ar4mirez",
+          "linkType": "Twitter"
+        },
+        {
+          "title": "LinkedIn",
+          "url": "https://www.linkedin.com/in/ar4mirez/",
+          "linkType": "LinkedIn"
+        },
+        {
+          "title": "Facebook",
+          "url": "https://www.facebook.com/ar4mirez",
+          "linkType": "Facebook"
+        },
+        {
+          "title": "Instagram",
+          "url": "https://www.instagram.com/ar4mirez_",
+          "linkType": "Instagram"
+        },
+        {
+          "title": "Blog",
+          "url": "https://www.cuemby.com/blog-en",
+          "linkType": "Blog"
+        }
+      ],
+      "questionAnswers": [
+        {
+          "id": 64148,
+          "question": "Company",
+          "questionType": "Short_Text",
+          "answer": "Cuemby",
+          "sort": 17,
+          "answerExtra": null
+        }
+      ],
+      "categories": []
+    },
+    {
+      "id": "a2665c2b-13c9-4337-9c78-db85bca70e60",
+      "firstName": "Ant(on)",
+      "lastName": "Weiss",
+      "fullName": "Ant(on) Weiss",
+      "bio": "15 years in tech, marketing and leadership roles. All about software delivery optimization. 5 years in technical and executive training.  Expert in DevOps, Lean, Systems Thinking, Continuous Delivery, Cloud Native and Decentralized Systems. Coder, speaker, writer. Fixated on improving the ways humans collaborate by telling mind-provoking stories.  ",
+      "tagLine": "Software Delivery Futurist",
+      "profilePicture": "https://sessionize.com/image/f4cd-400o400o1-RH6X9beKyqCS4cCLsyDSwN.jpg",
+      "sessions": [
+        {
+          "id": 597134,
+          "name": "Deploy Like A Ninja - Progressive Delivery Patterns with Istio Service Mesh"
+        },
+        {
+          "id": 597136,
+          "name": "Does size matter? The Joys and Pains of K8S (Auto)Scaling"
+        }
+      ],
+      "isTopSpeaker": false,
+      "links": [
+        {
+          "title": "Twitter",
+          "url": "https://twitter.com/antweiss",
+          "linkType": "Twitter"
+        },
+        {
+          "title": "LinkedIn",
+          "url": "https://www.linkedin.com/in/antonweiss/",
+          "linkType": "LinkedIn"
+        },
+        {
+          "title": "Facebook",
+          "url": "https://www.facebook.com/anton.weiss",
+          "linkType": "Facebook"
+        },
+        {
+          "title": "Blog",
+          "url": "https://antweiss.com",
+          "linkType": "Blog"
+        }
+      ],
+      "questionAnswers": [
+        {
+          "id": 64148,
+          "question": "Company",
+          "questionType": "Short_Text",
+          "answer": "PerfectScale ",
+          "sort": 17,
+          "answerExtra": null
+        }
+      ],
+      "categories": []
+    },
+    {
+      "id": "20565ea8-ddd0-49ba-b4ba-fd44be46eb41",
+      "firstName": "Anton",
+      "lastName": "Kuliashov",
+      "fullName": "Anton Kuliashov",
+      "bio": "Soon after starting my career as a network engineer, I found a keen interest in Linux. It first brought me to becoming a Linux support engineer and evolved into a passion towards containers, CI/CD, and cultivating the best practices. Following this enthusiasm, I became a DevOps team lead in 2021. Since then, my primary focus has been to turn cloud native technologies into business values and facilitate delivering them by the engineering team. Today, I’m most excited about CI/CD and Kubernetes.\r\n",
+      "tagLine": "Palark, DevOps TeamLead",
+      "profilePicture": "https://sessionize.com/image/a269-400o400o1-QsXc7Yyuy1j8VbhtbnMk4T.jpg",
+      "sessions": [
+        {
+          "id": 631534,
+          "name": "How self-managed Kubernetes helped an esports site to survive 60x traffic peaks from Dota 2 fans"
+        }
+      ],
+      "isTopSpeaker": false,
+      "links": [
+        {
+          "title": "LinkedIn",
+          "url": "https://www.linkedin.com/in/coolyashow/",
+          "linkType": "LinkedIn"
+        }
+      ],
+      "questionAnswers": [
+        {
+          "id": 64148,
+          "question": "Company",
+          "questionType": "Short_Text",
+          "answer": "Palark GmbH",
+          "sort": 17,
+          "answerExtra": null
+        }
+      ],
+      "categories": []
+    },
+    {
+      "id": "ddce26e4-d6b2-4bf5-ba4d-23e203666dc4",
+      "firstName": "Ayesha",
+      "lastName": "Kaleem",
+      "fullName": "Ayesha Kaleem",
+      "bio": "Passionate Software Engineer\r\n\r\nhttps://ayesha54.github.io",
+      "tagLine": "Software Engineer with a DevOps mindset",
+      "profilePicture": "https://sessionize.com/image/d5b5-400o400o1-ng2pCrKSL8kmgdAaUeGvHc.jpg",
+      "sessions": [
+        {
+          "id": 612990,
+          "name": "Container Security with Falco: A Quick Start Guide"
+        }
+      ],
+      "isTopSpeaker": false,
+      "links": [
+        {
+          "title": "Twitter",
+          "url": "https://twitter.com/Ayesha546",
+          "linkType": "Twitter"
+        },
+        {
+          "title": "LinkedIn",
+          "url": "https://www.linkedin.com/in/ayesha-kaleem-015187b0/",
+          "linkType": "LinkedIn"
+        },
+        {
+          "title": "Blog",
+          "url": "https://ayesha54.github.io",
+          "linkType": "Blog"
+        }
+      ],
+      "questionAnswers": [
+        {
+          "id": 64148,
+          "question": "Company",
+          "questionType": "Short_Text",
+          "answer": null,
+          "sort": 17,
+          "answerExtra": null
+        }
+      ],
+      "categories": []
+    },
+    {
+      "id": "b5894b1b-ee0e-4726-a7b9-f0c7f664d354",
+      "firstName": "Burim",
+      "lastName": "Shala",
+      "fullName": "Burim Shala",
+      "bio": "Burim was part of Event Streaming as Service team at Zalando where he supported the rest of the company of 300 teams to have the best time with the central event streaming service. Developer experience, performance, incident management where some topics he enjoyed a lot.\r\n\r\nAfter Zalando, he joined Wolt to bootstrap the Streaming Platform and the team around it.\r\n\r\nCurrently he works as a Staff Engineer at Celonis on the data pipeline team.",
+      "tagLine": "Kafka friend",
+      "profilePicture": "https://sessionize.com/image/8d28-400o400o1-fvbnQAjFhpNYzAm3mRynJR.jpg",
+      "sessions": [
+        {
+          "id": 634552,
+          "name": "Internal developer platforms via K8S"
+        }
+      ],
+      "isTopSpeaker": false,
+      "links": [
+        {
+          "title": "Twitter",
+          "url": "https://twitter.com/no-twitter-account",
+          "linkType": "Twitter"
+        },
+        {
+          "title": "LinkedIn",
+          "url": "https://www.linkedin.com/in/burim-%F0%9F%A6%95-shala-85855629/",
+          "linkType": "LinkedIn"
+        },
+        {
+          "title": "Blog",
+          "url": "https://no-blog.com",
+          "linkType": "Blog"
+        }
+      ],
+      "questionAnswers": [
+        {
+          "id": 64148,
+          "question": "Company",
+          "questionType": "Short_Text",
+          "answer": null,
+          "sort": 17,
+          "answerExtra": null
+        }
+      ],
+      "categories": []
+    },
+    {
+      "id": "81a52ccf-95b9-49fe-aefc-5522cdcc382a",
+      "firstName": "Cansu",
+      "lastName": "Kavili Örnek",
+      "fullName": "Cansu Kavili Örnek",
+      "bio": "As a senior architect at Red Hat Open Innovation Labs and a passionate techie who believes in the innovative power of Open Source, I work in close collaboration with companies to form, enable, and accelerate product teams by helping them to adopt DevOps culture and practices.",
+      "tagLine": "Senior Architect @ Red Hat",
+      "profilePicture": "https://sessionize.com/image/39c7-400o400o1-BYcRvnMM4bSpv5qQWYtFPV.png",
+      "sessions": [
+        {
+          "id": 594570,
+          "name": "GITOPSIFY ALL THE THINGS! 🚀 - Get hands on with Argo CD, Tekton and all the other cool stuff"
+        },
+        {
+          "id": 594810,
+          "name": "Platform as a Product: Stories from the Field"
+        }
+      ],
+      "isTopSpeaker": false,
+      "links": [
+        {
+          "title": "Twitter",
+          "url": "https://twitter.com/ckavili",
+          "linkType": "Twitter"
+        },
+        {
+          "title": "LinkedIn",
+          "url": "https://www.linkedin.com/in/cansukavili/",
+          "linkType": "LinkedIn"
+        },
+        {
+          "title": "Blog",
+          "url": "https://www.twitter.com/ckavili",
+          "linkType": "Blog"
+        }
+      ],
+      "questionAnswers": [
+        {
+          "id": 64148,
+          "question": "Company",
+          "questionType": "Short_Text",
+          "answer": "Red Hat",
+          "sort": 17,
+          "answerExtra": null
+        }
+      ],
+      "categories": []
+    },
+    {
+      "id": "6f756387-313f-49cc-ac40-3e3b0d35fa8c",
+      "firstName": "Charles-Edouard",
+      "lastName": "Brétéché",
+      "fullName": "Charles-Edouard Brétéché",
+      "bio": "Charles-Edouard Brétéché is a Staff Engineer at Nirmata, a maintainer for Kyverno, and has created and contributed to various open source projects. including a Terraform provider for kOps.\r\n\r\nHe has been building and delivering software for more than 20 years, as a software engineer, SRE, platform engineer, devops engineer and software architect.",
+      "tagLine": "Nirmata, Staff engineer - Kyverno team",
+      "profilePicture": "https://sessionize.com/image/f9da-400o400o1-9iaNQ5zLmDTg1QVyqPy23K.jpg",
+      "sessions": [
+        {
+          "id": 615894,
+          "name": "Introducing the BACK stack!"
+        }
+      ],
+      "isTopSpeaker": false,
+      "links": [
+        {
+          "title": "LinkedIn",
+          "url": "https://www.linkedin.com/in/eddycharly/",
+          "linkType": "LinkedIn"
+        }
+      ],
+      "questionAnswers": [
+        {
+          "id": 64148,
+          "question": "Company",
+          "questionType": "Short_Text",
+          "answer": "Nirmata",
+          "sort": 17,
+          "answerExtra": null
+        }
+      ],
+      "categories": []
+    },
+    {
+      "id": "441cca24-07ac-4e64-89d1-a42917288271",
+      "firstName": "Chris",
+      "lastName": "Engelbert",
+      "fullName": "Chris Engelbert",
+      "bio": "Christoph Engelbert is a developer by heart, with strong bonds to the open source world. As a seasoned speaker on international conferences, he loves to share his experience and ideas, especially in the areas of scalable system architectures and back-end technologies, as well as all things programming languages.",
+      "tagLine": "Developer Relations Person",
+      "profilePicture": "https://sessionize.com/image/f61c-400o400o1-nMqQCbbLbAZi893YJj3dgE.jpg",
+      "sessions": [
+        {
+          "id": 634711,
+          "name": "Postgres Cloud Storage Reimagined: Dust of for Infinite Bandwidth"
+        }
+      ],
+      "isTopSpeaker": false,
+      "links": [
+        {
+          "title": "Twitter",
+          "url": "https://twitter.com/noctarius2k",
+          "linkType": "Twitter"
+        },
+        {
+          "title": "LinkedIn",
+          "url": "https://www.linkedin.com/in/noctarius/",
+          "linkType": "LinkedIn"
+        }
+      ],
+      "questionAnswers": [
+        {
+          "id": 64148,
+          "question": "Company",
+          "questionType": "Short_Text",
+          "answer": "simplyblock GmbH",
+          "sort": 17,
+          "answerExtra": null
+        }
+      ],
+      "categories": []
+    },
+    {
+      "id": "76e0ec20-7195-49e5-95b4-b78621c9e70d",
+      "firstName": "Christoph",
+      "lastName": "Deppisch",
+      "fullName": "Christoph Deppisch",
+      "bio": "Christoph is a Principal Software Engineer at Red Hat working on Middleware application services with Apache Camel and Camel K. He has worked in enterprise integration projects for over a decade and has gained special interest in test automation for messaging solutions. Christoph is the founder of the Open Source test framework Citrus and YAKS and believes in automated integration testing with passion.",
+      "tagLine": "Principal Software Engineer, Red Hat GmbH",
+      "profilePicture": "https://sessionize.com/image/6073-400o400o1-JMWi5atYTK1kGLMeEhh6UD.png",
+      "sessions": [
+        {
+          "id": 599155,
+          "name": "Connecting the world to event-driven applications with Kamelets"
+        },
+        {
+          "id": 599153,
+          "name": "Seamless Integration Testing for Distributed Applications in the Cloud"
+        }
+      ],
+      "isTopSpeaker": false,
+      "links": [
+        {
+          "title": "Twitter",
+          "url": "https://twitter.com/freaky_styley",
+          "linkType": "Twitter"
+        },
+        {
+          "title": "Blog",
+          "url": "https://christophd.github.io/",
+          "linkType": "Blog"
+        }
+      ],
+      "questionAnswers": [
+        {
+          "id": 64148,
+          "question": "Company",
+          "questionType": "Short_Text",
+          "answer": "Red Hat",
+          "sort": 17,
+          "answerExtra": null
+        }
+      ],
+      "categories": []
+    },
+    {
+      "id": "db27afe5-a477-487f-82f6-2d3545ff114f",
+      "firstName": "Dan",
+      "lastName": "Erez",
+      "fullName": "Dan Erez",
+      "bio": "A software architect and developer for the last 20 years, in startups and governments as well. In the last few years investigating the serverless world and apply it whenever possible.",
+      "tagLine": "Software Architect",
+      "profilePicture": "https://sessionize.com/image/a2c2-400o400o1-R3PKhFtwoVeAAeirw4eBNZ.jpg",
+      "sessions": [
+        {
+          "id": 596249,
+          "name": "Developing locally with Kubernetes - a Guide and Best Practices"
+        },
+        {
+          "id": 596250,
+          "name": "You are your own cloud"
+        }
+      ],
+      "isTopSpeaker": false,
+      "links": [
+        {
+          "title": "LinkedIn",
+          "url": "https://www.linkedin.com/in/dan-erez-8971891/",
+          "linkType": "LinkedIn"
+        },
+        {
+          "title": "Blog",
+          "url": "https://www.linkedin.com/in/dan-erez-8971891/",
+          "linkType": "Blog"
+        }
+      ],
+      "questionAnswers": [
+        {
+          "id": 64148,
+          "question": "Company",
+          "questionType": "Short_Text",
+          "answer": "ZIM",
+          "sort": 17,
+          "answerExtra": null
+        }
+      ],
+      "categories": []
+    },
+    {
+      "id": "99f9985d-130b-432b-8e1e-e48a7c2bb604",
+      "firstName": "Dhiraj",
+      "lastName": "Sehgal",
+      "fullName": "Dhiraj Sehgal",
+      "bio": "Dhiraj is Mgr, Dev Advocacy team at Tigera. He has worked on various open source projects since the start of OpenStack, Ceph, Docker, SDN and IOvisor.",
+      "tagLine": "Technical Engineer",
+      "profilePicture": "https://sessionize.com/image/bf99-400o400o1-UMNgH6JHR8bbmjkd8oNv3y.jpg",
+      "sessions": [
+        {
+          "id": 594053,
+          "name": "Networking Bootcamp: Kubernetes networking and security for single and multi-cluster environment"
+        }
+      ],
+      "isTopSpeaker": false,
+      "links": [
+        {
+          "title": "LinkedIn",
+          "url": "https://www.linkedin.com/in/dhirajsehgal",
+          "linkType": "LinkedIn"
+        }
+      ],
+      "questionAnswers": [
+        {
+          "id": 64148,
+          "question": "Company",
+          "questionType": "Short_Text",
+          "answer": null,
+          "sort": 17,
+          "answerExtra": null
+        }
+      ],
+      "categories": []
+    },
+    {
+      "id": "b01b8e04-d65d-49c0-90d3-1fd253a0f91c",
+      "firstName": "Dominik",
+      "lastName": "Kress",
+      "fullName": "Dominik Kress",
+      "bio": "Dominik is a Product Manager at Giant Swarm, responsible for a Kubernetes Platform with Cluster API.\r\n\r\nHe has been in the IT industry for over 6 years, starting his journey as a Full Stack Software Engineer falling in love with DevOps and Product Organisations to later become a Product Manager for Cloud Technology.\r\n\r\nDominik is very passionate about Cloud Transformation, Product Management and helping people. He loves contributing to the community with talks, articles, or his publications.",
+      "tagLine": "Product Manager @ Giant Swarm",
+      "profilePicture": "https://sessionize.com/image/eeea-400o400o1-D1vL4KsnQ1voVudWQHqrzj.jpg",
+      "sessions": [
+        {
+          "id": 603554,
+          "name": "Platform Success: Keeping Your Leadership Thrilled, Not Just Satisfied!"
+        }
+      ],
+      "isTopSpeaker": false,
+      "links": [
+        {
+          "title": "Twitter",
+          "url": "https://twitter.com/DomeRotfuks",
+          "linkType": "Twitter"
+        },
+        {
+          "title": "LinkedIn",
+          "url": "https://www.linkedin.com/in/dominik-kress-33a540174/",
+          "linkType": "LinkedIn"
+        }
+      ],
+      "questionAnswers": [
+        {
+          "id": 64148,
+          "question": "Company",
+          "questionType": "Short_Text",
+          "answer": "giantswarm.io",
+          "sort": 17,
+          "answerExtra": null
+        }
+      ],
+      "categories": []
+    },
+    {
+      "id": "2f6f2dd5-6859-4168-8838-a1a2d5c8f02a",
+      "firstName": "Dominik",
+      "lastName": "Schlosser",
+      "fullName": "Dominik Schlosser",
+      "bio": "B.Sc. Computer Science\r\nIn the industry since 2010 in multiple roles: Software engineer, Technical architect, Team lead, DevOps engineer\r\nWorked for medical technology companies as well as big public authorities. \r\nCurrently freelancing with a focus on cloud and identity/access management.",
+      "tagLine": "Freelance software engineer with focus on cloud and identity/access management",
+      "profilePicture": "https://sessionize.com/image/ffc2-400o400o1-hVdkaYHzaRHTJgiCnQpLMN.jpg",
+      "sessions": [
+        {
+          "id": 620543,
+          "name": "Cloud Native IAM with Keycloak"
+        }
+      ],
+      "isTopSpeaker": false,
+      "links": [],
+      "questionAnswers": [
+        {
+          "id": 64148,
+          "question": "Company",
+          "questionType": "Short_Text",
+          "answer": null,
+          "sort": 17,
+          "answerExtra": null
+        }
+      ],
+      "categories": []
+    },
+    {
+      "id": "6115d730-5a36-477a-b58d-712aa42b3dbc",
+      "firstName": "Eduardo",
+      "lastName": "Arango Gutierrez",
+      "fullName": "Eduardo Arango Gutierrez",
+      "bio": "Eduardo is a Senior Systems Software Engineer at NVIDIA, working on the Cloud Native Technologies team. Eduardo has focused on enabling users to build and deploy containers on distributed environments. ",
+      "tagLine": "Senior Systems Software Engineer @NVIDIA",
+      "profilePicture": "https://sessionize.com/image/f81d-400o400o1-hDsaay94CJHDuPavtBUhcc.jpg",
+      "sessions": [
+        {
+          "id": 594441,
+          "name": "NFD: Simplifying Cluster Administration through Automated Node Labels, Taints, and Annotations"
+        }
+      ],
+      "isTopSpeaker": false,
+      "links": [
+        {
+          "title": "LinkedIn",
+          "url": "https://linkedin.com/in/eduardo-arango",
+          "linkType": "LinkedIn"
+        }
+      ],
+      "questionAnswers": [
+        {
+          "id": 64148,
+          "question": "Company",
+          "questionType": "Short_Text",
+          "answer": "NVIDIA",
+          "sort": 17,
+          "answerExtra": null
+        }
+      ],
+      "categories": []
+    },
+    {
+      "id": "5f1926f5-1588-4398-8589-512b0cac6278",
+      "firstName": "Emrah",
+      "lastName": "Sifoğlu",
+      "fullName": "Emrah Sifoğlu",
+      "bio": "Since last 5 years I am working as a Backend Developer. Recent years I had an opportunities to work with cloud engineers closely on projects that encouraged me seek more knowledge in this area. Currently I am holding CKA and CKAD certifications. ",
+      "tagLine": "DevOps",
+      "profilePicture": "https://sessionize.com/image/a772-400o400o1-frKd5A2dgEU3fycNijrHZu.png",
+      "sessions": [
+        {
+          "id": 625824,
+          "name": "How to (not) secure Kubernetes"
+        }
+      ],
+      "isTopSpeaker": false,
+      "links": [
+        {
+          "title": "Twitter",
+          "url": "https://twitter.com/emrahsifoglu",
+          "linkType": "Twitter"
+        },
+        {
+          "title": "LinkedIn",
+          "url": "https://www.linkedin.com/in/emrahsifoglu/",
+          "linkType": "LinkedIn"
+        },
+        {
+          "title": "Blog",
+          "url": "https://github.com/emrahsifoglu",
+          "linkType": "Blog"
+        }
+      ],
+      "questionAnswers": [
+        {
+          "id": 64148,
+          "question": "Company",
+          "questionType": "Short_Text",
+          "answer": "Accion Labs",
+          "sort": 17,
+          "answerExtra": null
+        }
+      ],
+      "categories": []
+    },
+    {
+      "id": "693b0707-903e-4d37-817f-9547a7fc6e0b",
+      "firstName": "Engin",
+      "lastName": "Diri",
+      "fullName": "Engin Diri",
+      "bio": "Engin is a Senior Solutions Architect at Pulumi and has been in the IT industry for over 15 years.\r\n\r\nHe started as a Java backend developer and later migrated to the fronted development.\r\n\r\nThis is where he found his passion for CI/CD, Cloud technologies and in particular Kubernetes.\r\n\r\nEngin is a very curious person and loves learning and testing new technologies.",
+      "tagLine": "Pulumi",
+      "profilePicture": "https://sessionize.com/image/e790-400o400o1-aur7g88Yh7dbxrcmHJXGmF.jpg",
+      "sessions": [
+        {
+          "id": 603554,
+          "name": "Platform Success: Keeping Your Leadership Thrilled, Not Just Satisfied!"
+        }
+      ],
+      "isTopSpeaker": false,
+      "links": [
+        {
+          "title": "Twitter",
+          "url": "https://twitter.com/_ediri",
+          "linkType": "Twitter"
+        },
+        {
+          "title": "LinkedIn",
+          "url": "https://www.linkedin.com/in/engin-diri/",
+          "linkType": "LinkedIn"
+        },
+        {
+          "title": "Blog",
+          "url": "https://blog.ediri.io",
+          "linkType": "Blog"
+        }
+      ],
+      "questionAnswers": [
+        {
+          "id": 64148,
+          "question": "Company",
+          "questionType": "Short_Text",
+          "answer": "Pulumi",
+          "sort": 17,
+          "answerExtra": null
+        }
+      ],
+      "categories": []
+    },
+    {
+      "id": "79eb93fc-5973-4611-922e-57ffc1ce4fff",
+      "firstName": "Eran",
+      "lastName": "Elbaz",
+      "fullName": "Eran Elbaz",
+      "bio": "Elbaz (Eran) is a full-stack engineer at env0. He is an active Open Source contributor for OpenTofu. He used to work as a Big Data Infrastructure Engineer for the IDF (if we can say it), and he is very enthusiastic about DevOps, Infrastructure, automation and everything in between. Elbaz lives in Tel Aviv, and loves Coffee, stock trading, photography, and beer.",
+      "tagLine": "Fullstack Engineer ",
+      "profilePicture": "https://sessionize.com/image/99fb-400o400o1-93qGKDPtnPRLKDAhYabJ1g.jpeg",
+      "sessions": [
+        {
+          "id": 601422,
+          "name": "An OpenTofu Feature Story: From the Internals to Production Code Under Fire"
+        }
+      ],
+      "isTopSpeaker": false,
+      "links": [
+        {
+          "title": "LinkedIn",
+          "url": "https://www.linkedin.com/in/eranelbaz/",
+          "linkType": "LinkedIn"
+        },
+        {
+          "title": "Blog",
+          "url": "https://env0.com/blog",
+          "linkType": "Blog"
+        }
+      ],
+      "questionAnswers": [
+        {
+          "id": 64148,
+          "question": "Company",
+          "questionType": "Short_Text",
+          "answer": "env0",
+          "sort": 17,
+          "answerExtra": null
+        }
+      ],
+      "categories": []
+    },
+    {
+      "id": "554c1293-169c-4e22-aa61-d7778b404ef8",
+      "firstName": "Eric D.",
+      "lastName": "Schabell",
+      "fullName": "Eric D. Schabell",
+      "bio": "Eric is Chronosphere's Director Evangelism. He's renowned in the development community as a speaker, lecturer, author and baseball expert. His current role allows him to help the world understand the challenges they are facing with cloud native observability. He brings a unique perspective to the stage with a professional life dedicated to sharing his deep expertise of open source technologies, organizations, and is a CNCF Ambassador. Follow on https://www.schabell.org.",
+      "tagLine": "Director Evangelism, Chronoshpere",
+      "profilePicture": "https://sessionize.com/image/d276-400o400o1-XdvTqm7iVDUEswWGdzfZrK.JPG",
+      "sessions": [
+        {
+          "id": 611203,
+          "name": "Choose Your Own Adventure - Cloud Native Observability Pitfalls"
+        },
+        {
+          "id": 611211,
+          "name": "Getting Started Workshop - Open Dashboards and Visualizations with Perses"
+        }
+      ],
+      "isTopSpeaker": false,
+      "links": [
+        {
+          "title": "Twitter",
+          "url": "https://twitter.com/ericschabell",
+          "linkType": "Twitter"
+        },
+        {
+          "title": "LinkedIn",
+          "url": "https://www.linkedin.com/in/ericschabell/",
+          "linkType": "LinkedIn"
+        },
+        {
+          "title": "Blog",
+          "url": "https://www.schabell.org",
+          "linkType": "Blog"
+        }
+      ],
+      "questionAnswers": [
+        {
+          "id": 64148,
+          "question": "Company",
+          "questionType": "Short_Text",
+          "answer": "Chronosphere",
+          "sort": 17,
+          "answerExtra": null
+        }
+      ],
+      "categories": []
+    },
+    {
+      "id": "33c8611f-3d25-48ed-a4c9-8dda48168355",
+      "firstName": "Eugene",
+      "lastName": "Romero",
+      "fullName": "Eugene Romero",
+      "bio": "Hey there! I am a tech enthusiast, retro gamer, and general nerd. When I am not busy breaking stuff for fun, I can be found breaking stuff professionally at Capgemini. You also might find me restoring and modifying old video game systems, most notably Game Boys.\r\n\r\nI believe in simple explanations and demos over slide-heavy presentations. Join my talks if you want to have a good time, get some free stickers, and maybe learn something new!\r\n\r\nI put down whatever catches my attention on my blog, https://damn.engineer, and my Twitter account, @theEugeneRomero.\r\n",
+      "tagLine": "Senior breaker-of-things, aka \"that damn engineer\"",
+      "profilePicture": "https://sessionize.com/image/a8a7-400o400o1-NUkSia3NvaFyWqH5KySR5U.jpeg",
+      "sessions": [
+        {
+          "id": 622802,
+          "name": "Automate every layer: Using Terraform to deploy, configure and maintain Azure Kubernetes clusters"
+        },
+        {
+          "id": 622799,
+          "name": "Securing your app's communications with Kubernetes, Azure Key Vault, and TLS certificates"
+        }
+      ],
+      "isTopSpeaker": false,
+      "links": [
+        {
+          "title": "Twitter",
+          "url": "https://twitter.com/theEugeneRomero",
+          "linkType": "Twitter"
+        },
+        {
+          "title": "LinkedIn",
+          "url": "https://www.linkedin.com/in/eugeneromero/",
+          "linkType": "LinkedIn"
+        },
+        {
+          "title": "Blog",
+          "url": "https://damn.engineer",
+          "linkType": "Blog"
+        }
+      ],
+      "questionAnswers": [
+        {
+          "id": 64148,
+          "question": "Company",
+          "questionType": "Short_Text",
+          "answer": "Capgemini",
+          "sort": 17,
+          "answerExtra": null
+        }
+      ],
+      "categories": []
+    },
+    {
+      "id": "b3b304e5-0b68-425b-9d0b-7cfa5ec42cc0",
+      "firstName": "Fagani",
+      "lastName": "Hajizada",
+      "fullName": "Fagani Hajizada",
+      "bio": "Fagani is an Engineering Manager at DataRobot and leads the Kubernetes platform engineering team. He is a software craftsman and believes in professional software development by practicing it and helping others learn the craft.\r\n\r\nFagani is also a public speaker and a mentor. He co-organizes Women TechMakers Nuremberg, showcasing his commitment to building a more diverse and inclusive tech community.\r\n\r\nIn addition to his local initiatives, Fagani is a co-founder of the \"Cloud and Serverless Community Azerbaijan,\" a tech community in Azerbaijan that actively promotes collaboration, innovation, and knowledge-sharing in cloud computing and serverless technologies.",
+      "tagLine": "Engineering Lead",
+      "profilePicture": "https://sessionize.com/image/686b-400o400o1-Ei5EkxXKDdrJrSthYK7AzG.jpg",
+      "sessions": [
+        {
+          "id": 623395,
+          "name": "Building a self-service kubernetes platform based on the Promise Theory"
+        }
+      ],
+      "isTopSpeaker": false,
+      "links": [
+        {
+          "title": "Twitter",
+          "url": "https://twitter.com/faganihajizada",
+          "linkType": "Twitter"
+        },
+        {
+          "title": "LinkedIn",
+          "url": "https://www.linkedin.com/in/faganihajizada/",
+          "linkType": "LinkedIn"
+        },
+        {
+          "title": "Blog",
+          "url": "https://faganihajizada.medium.com/",
+          "linkType": "Blog"
+        }
+      ],
+      "questionAnswers": [
+        {
+          "id": 64148,
+          "question": "Company",
+          "questionType": "Short_Text",
+          "answer": "DataRobot",
+          "sort": 17,
+          "answerExtra": null
+        }
+      ],
+      "categories": []
+    },
+    {
+      "id": "4c74d389-f1e3-43d6-80c4-106030c4e113",
+      "firstName": "Florian",
+      "lastName": "Mair",
+      "fullName": "Florian Mair",
+      "bio": "Florian Mair is a technologist that helps customers in Germany succeed and innovate by solving business challenges using AWS Cloud services. Besides working as a Solutions Architect, Florian is a passionate mountaineer, and has climbed some of the highest mountains across Europe.",
+      "tagLine": "Senior Solutions Architect",
+      "profilePicture": "https://sessionize.com/image/b0bf-400o400o1-T1GVkePreCTGhpbrYRgymo.png",
+      "sessions": [
+        {
+          "id": 605194,
+          "name": "Real-time data Processing at scale: Apache Flink on Kubernetes"
+        }
+      ],
+      "isTopSpeaker": false,
+      "links": [
+        {
+          "title": "LinkedIn",
+          "url": "https://www.linkedin.com/in/flomair/",
+          "linkType": "LinkedIn"
+        }
+      ],
+      "questionAnswers": [
+        {
+          "id": 64148,
+          "question": "Company",
+          "questionType": "Short_Text",
+          "answer": null,
+          "sort": 17,
+          "answerExtra": null
+        }
+      ],
+      "categories": []
+    },
+    {
+      "id": "6f66a92c-6e85-4549-9588-186800bf6fcb",
+      "firstName": "Francesca",
+      "lastName": "Carta",
+      "fullName": "Francesca Carta",
+      "bio": "Francesca Carta is Delivery Manager at Mia-Platform and is responsible for simplifying product use and adoption. With a background in philosophy, she brings a unique perspective to technology. For the past six years she has been responsible for managing the development of an Internal Developer Platform for developers in Cloud Native. Francesca is dedicated to making technology accessible to everyone. Through critical thinking and a drive for innovation, she aims to make a positive impact.",
+      "tagLine": "Delivery Manager @Mia-Platform",
+      "profilePicture": "https://sessionize.com/image/e0fa-400o400o1-nYDJQBEHRzBAetr4ehmdCt.jpeg",
+      "sessions": [
+        {
+          "id": 594729,
+          "name": "The Top 1.000 Critical Capabilities of an IDP"
+        }
+      ],
+      "isTopSpeaker": false,
+      "links": [
+        {
+          "title": "LinkedIn",
+          "url": "https://www.linkedin.com/in/francesca-carta-a403594b/",
+          "linkType": "LinkedIn"
+        }
+      ],
+      "questionAnswers": [
+        {
+          "id": 64148,
+          "question": "Company",
+          "questionType": "Short_Text",
+          "answer": null,
+          "sort": 17,
+          "answerExtra": null
+        }
+      ],
+      "categories": []
+    },
+    {
+      "id": "321251df-f164-4f96-90e8-739d290ad5c7",
+      "firstName": "Francis",
+      "lastName": "Laniel",
+      "fullName": "Francis Laniel",
+      "bio": "Francis has an interest in open source software, particularly the Linux kernel.\r\nHe currently works at Microsoft where he focuses mainly on inspektor-gadget.",
+      "tagLine": "Software Engineer at Microsoft",
+      "profilePicture": "https://sessionize.com/image/e6b8-400o400o1-Lo9VRjKdPyidYEAXbdR685.svg",
+      "sessions": [
+        {
+          "id": 616718,
+          "name": "Adding sysadmin profile to kubectl debug"
+        }
+      ],
+      "isTopSpeaker": false,
+      "links": [],
+      "questionAnswers": [
+        {
+          "id": 64148,
+          "question": "Company",
+          "questionType": "Short_Text",
+          "answer": null,
+          "sort": 17,
+          "answerExtra": null
+        }
+      ],
+      "categories": []
+    },
+    {
+      "id": "b4047d7c-94cf-4f5e-bbdb-7619ab241f06",
+      "firstName": "George",
+      "lastName": "Hantzaras",
+      "fullName": "George Hantzaras",
+      "bio": "George is a distributed systems expert and a hands-on engineering leader with focus on delivering Enterprise cloud services at scale. He is a Director of Engineering at MongoDB, focusing on implementing cloud native technologies at enterprise scale. Most recently, he has been a speaker at global events like OpenSource Summit, Hashiconf, LeadDev, DeveloperWeek, and more, focusing on agile leadership, scaling engineering teams, and entrepreneurship. Full bio: https://docs.google.com/document/d/11d5iiHCbbkb7Jftkb3PPtWMeVvxoUWAWyqvdyKD7sOo",
+      "tagLine": "Director, Kubernetes Engineering @MongoDB",
+      "profilePicture": "https://sessionize.com/image/cb7c-400o400o1-SBWmBT2oxcLS6624NHwsgu.jpeg",
+      "sessions": [
+        {
+          "id": 607912,
+          "name": "A deep dive in our journey of building a control plane for multi-cluster workloads"
+        },
+        {
+          "id": 607910,
+          "name": "Building Internal Developer Platforms with Kubernetes Operators"
+        }
+      ],
+      "isTopSpeaker": false,
+      "links": [
+        {
+          "title": "Twitter",
+          "url": "https://twitter.com/iamhantzo",
+          "linkType": "Twitter"
+        },
+        {
+          "title": "LinkedIn",
+          "url": "https://www.linkedin.com/in/george-hantzaras/",
+          "linkType": "LinkedIn"
+        },
+        {
+          "title": "Blog",
+          "url": "https://docs.google.com/document/d/11d5iiHCbbkb7Jftkb3PPtWMeVvxoUWAWyqvdyKD7sOo",
+          "linkType": "Blog"
+        }
+      ],
+      "questionAnswers": [
+        {
+          "id": 64148,
+          "question": "Company",
+          "questionType": "Short_Text",
+          "answer": null,
+          "sort": 17,
+          "answerExtra": null
+        }
+      ],
+      "categories": []
+    },
+    {
+      "id": "3c02a7bf-40b4-41b4-8b43-2de3be4b093c",
+      "firstName": "Graziano",
+      "lastName": "Casto",
+      "fullName": "Graziano Casto",
+      "bio": "Technical Product Expert @ Mia-Platform by day, aspiring stargazer by night.\r\nWandering through the landscape of cloud-native technologies with the same hunger for knowledge as if it were the first day.\r\nFrom coding to product management, I'm all about agile vibes, software craftsmanship, and the magic of cloud technologies.\r\nBeyond the screen, I'm an amateur photographer and a travel lover.",
+      "tagLine": "Technical Product Expert @ Mia-Platform",
+      "profilePicture": "https://sessionize.com/image/45c2-400o400o1-HY5MsXtrH7tHLBKDSUVQFY.png",
+      "sessions": [
+        {
+          "id": 610386,
+          "name": "Build bridges, not walls: address common challenges in platform adoption"
+        }
+      ],
+      "isTopSpeaker": false,
+      "links": [
+        {
+          "title": "Twitter",
+          "url": "https://twitter.com/cst_grzn",
+          "linkType": "Twitter"
+        },
+        {
+          "title": "LinkedIn",
+          "url": "https://www.linkedin.com/in/castograziano/",
+          "linkType": "LinkedIn"
+        },
+        {
+          "title": "Blog",
+          "url": "https://casto-graziano.me/",
+          "linkType": "Blog"
+        }
+      ],
+      "questionAnswers": [
+        {
+          "id": 64148,
+          "question": "Company",
+          "questionType": "Short_Text",
+          "answer": null,
+          "sort": 17,
+          "answerExtra": null
+        }
+      ],
+      "categories": []
+    },
+    {
+      "id": "08043611-efe4-454d-9747-309f2bf895fc",
+      "firstName": "Gregor",
+      "lastName": "Bauer",
+      "fullName": "Gregor Bauer",
+      "bio": "Started career in international teams developing and delivering custom device management and IoT solutions for leading telecom providers worldwide. During this time leading technical teams in the delivery of customer solutions and in PreSales, which included as well the creation of architectures and cost estimates. As a solution engineer at Couchbase, he now focuses on challenging solution consulting, such as application modernization and development as well as multi-cloud strategies and especially edge computing with a focus on sustainable high user experience.",
+      "tagLine": "Manager Solutions Engineering CEUR",
+      "profilePicture": "https://sessionize.com/image/6bcd-400o400o1-K5wKwo2uHY5PYimjDu7UqE.png",
+      "sessions": [
+        {
+          "id": 598496,
+          "name": "Orchestrating Resilient Data: Harnessing the Strength of K8s with Couchbase Autonomous Operator"
+        }
+      ],
+      "isTopSpeaker": false,
+      "links": [],
+      "questionAnswers": [
+        {
+          "id": 64148,
+          "question": "Company",
+          "questionType": "Short_Text",
+          "answer": "Couchbase",
+          "sort": 17,
+          "answerExtra": null
+        }
+      ],
+      "categories": []
+    },
+    {
+      "id": "c10a0d78-4fe1-469c-a5f6-40484c23fdf9",
+      "firstName": "Gregory",
+      "lastName": "Lind",
+      "fullName": "Gregory Lind",
+      "bio": "20+ year career in Software, Open Source and Startups.  Founder and CTO of four successful startups founded in 3 different countries.  Worked with NGO’s and National and Local Government agencies building open source grant and program management systems.\r\n",
+      "tagLine": "Buildly CEO and CTO and Founding Partner in Global Non Profit Open.Build",
+      "profilePicture": "https://sessionize.com/image/8262-400o400o1-V49UKcgHHpc8iAnchxDpu5.png",
+      "sessions": [
+        {
+          "id": 598720,
+          "name": "Radical Transparency for Software Teams"
+        }
+      ],
+      "isTopSpeaker": false,
+      "links": [
+        {
+          "title": "Twitter",
+          "url": "https://www.twitter.com/glind",
+          "linkType": "Twitter"
+        },
+        {
+          "title": "LinkedIn",
+          "url": "https://www.linkedin.com/in/greglind",
+          "linkType": "LinkedIn"
+        },
+        {
+          "title": "Blog",
+          "url": "https://www.radicaltherapy.dev",
+          "linkType": "Blog"
+        }
+      ],
+      "questionAnswers": [
+        {
+          "id": 64148,
+          "question": "Company",
+          "questionType": "Short_Text",
+          "answer": "Buildly, Inc.",
+          "sort": 17,
+          "answerExtra": null
+        }
+      ],
+      "categories": []
+    },
+    {
+      "id": "8e4b95e5-6b18-4e20-ac3b-c48fc6637ed0",
+      "firstName": "Harsh",
+      "lastName": "Singh",
+      "fullName": "Harsh Singh",
+      "bio": "Managing Indian stocks and CNCF adoptions for INDMoney",
+      "tagLine": "Principal Engineer, Indian Stocks, INDMoney",
+      "profilePicture": "https://sessionize.com/image/91e6-400o400o1-HQjoDmp3mpc5tAZuYreCJT.jpg",
+      "sessions": [
+        {
+          "id": 609288,
+          "name": "Extending Kubernetes With Custom Controllers"
+        },
+        {
+          "id": 627214,
+          "name": "Monitoring as a Code: Using Kubernetes to declaratively manage your alerts"
+        }
+      ],
+      "isTopSpeaker": false,
+      "links": [
+        {
+          "title": "LinkedIn",
+          "url": "https://linkedin.com/hprateek43",
+          "linkType": "LinkedIn"
+        }
+      ],
+      "questionAnswers": [
+        {
+          "id": 64148,
+          "question": "Company",
+          "questionType": "Short_Text",
+          "answer": "IndMoney",
+          "sort": 17,
+          "answerExtra": null
+        }
+      ],
+      "categories": []
+    },
+    {
+      "id": "9d8a7f7c-68fd-4855-bcf9-881c24af40ee",
+      "firstName": "Henrik",
+      "lastName": "Rexed",
+      "fullName": "Henrik Rexed",
+      "bio": "Henrik is a Cloud Native Advocate at Dynatrace, the leading Observability platform. Prior to Dynatrace, Henrik has  worked as a Partner Solution Evangelist at Neotys, delivering webinars, building protypes to enhance the capability of NeoLoad.  He has been working in the performance world more than 15 years, delivering projects in all contexts including extremely large Cloud testing on the most demanding business areas such as trading applications, Video on Demand, sports websites, etc. Henrik Rexed Is Also one of the Organizer of the Conference named Performance Advisory Council.",
+      "tagLine": "Dynatrace Cloud Native Advocate",
+      "profilePicture": "https://sessionize.com/image/d52f-400o400o1-VMvPWJKUKe5SfEiC18gYyv.jpg",
+      "sessions": [
+        {
+          "id": 616846,
+          "name": "Telemetry Showdown: Fluent Bit vs. OpenTelemetry Collector - A Comprehensive Benchmark Analysis"
+        }
+      ],
+      "isTopSpeaker": false,
+      "links": [
+        {
+          "title": "Twitter",
+          "url": "https://twitter.com/hrexed",
+          "linkType": "Twitter"
+        },
+        {
+          "title": "LinkedIn",
+          "url": "https://www.linkedin.com/in/hrexed/",
+          "linkType": "LinkedIn"
+        },
+        {
+          "title": "Blog",
+          "url": "https://isitobservable.io/",
+          "linkType": "Blog"
+        }
+      ],
+      "questionAnswers": [
+        {
+          "id": 64148,
+          "question": "Company",
+          "questionType": "Short_Text",
+          "answer": "Dynatrace",
+          "sort": 17,
+          "answerExtra": null
+        }
+      ],
+      "categories": []
+    },
+    {
+      "id": "c77f15a5-430d-47fe-9151-6cc3abd6fc28",
+      "firstName": "Joan Miquel",
+      "lastName": "Luque Oliver",
+      "fullName": "Joan Miquel Luque Oliver",
+      "bio": "Platform Engineer deeply into Cloud adoption, Kubernetes, GitOps, and DevOps practices. At Dynatrace, my daily gig revolves around pushing forward these important aspects of modern tech.",
+      "tagLine": "Platform Engineer at Dynatrace",
+      "profilePicture": "https://sessionize.com/image/d524-400o400o1-HxPtEDvcGgLfmv7vo1QSb5.jpg",
+      "sessions": [
+        {
+          "id": 617301,
+          "name": "Chaos Engineering: Break Stuff Before It Breaks You"
+        },
+        {
+          "id": 617315,
+          "name": "Crossplane Provider Development: A Survival Guide for Non-Developers"
+        }
+      ],
+      "isTopSpeaker": false,
+      "links": [
+        {
+          "title": "LinkedIn",
+          "url": "https://www.linkedin.com/in/joanluque/",
+          "linkType": "LinkedIn"
+        }
+      ],
+      "questionAnswers": [
+        {
+          "id": 64148,
+          "question": "Company",
+          "questionType": "Short_Text",
+          "answer": "Dynatrace",
+          "sort": 17,
+          "answerExtra": null
+        }
+      ],
+      "categories": []
+    },
+    {
+      "id": "a0a63cf1-8348-413c-800a-93fc9b00c953",
+      "firstName": "Jose Javier",
+      "lastName": "Alonso Moya",
+      "fullName": "Jose Javier Alonso Moya",
+      "bio": "Jose Alonso is a seasoned SRE at Amadeus where he also plays the role of DevOps Ambassador, representing a community of 600+ members. With expertise in software development, data analysis, and DevOps practices in various organizations, including Amadeus, CERN, and the European Central Bank. \r\n\r\nOver the years he has been involved in several software engineering projects, ranging from developing children's educational apps to predicting anomalies of CERN services or operating highly critical applications processing more than 10k mission-critical transactions per second for the travel industry",
+      "tagLine": "DevOps Ambassador at Amadeus IT Group",
+      "profilePicture": "https://sessionize.com/image/57dc-400o400o1-BpeXkbiGLjEZJP83CGDpdG.jpg",
+      "sessions": [
+        {
+          "id": 614243,
+          "name": "Everything as Code: A Dozen As-Code Concepts beyond Infrastructure or Configuration as Code"
+        },
+        {
+          "id": 597004,
+          "name": "Monitoring as Code: Managing thousands of dashboards and alerts in a cloud native world"
+        }
+      ],
+      "isTopSpeaker": false,
+      "links": [
+        {
+          "title": "Twitter",
+          "url": "https://twitter.com/JJAlonso91",
+          "linkType": "Twitter"
+        },
+        {
+          "title": "LinkedIn",
+          "url": "https://www.linkedin.com/in/jjavieralonso/",
+          "linkType": "LinkedIn"
+        }
+      ],
+      "questionAnswers": [
+        {
+          "id": 64148,
+          "question": "Company",
+          "questionType": "Short_Text",
+          "answer": null,
+          "sort": 17,
+          "answerExtra": null
+        }
+      ],
+      "categories": []
+    },
+    {
+      "id": "8df1b928-1934-435d-9357-fe2b30ede86d",
+      "firstName": "Juarez",
+      "lastName": "Junior",
+      "fullName": "Juarez Junior",
+      "bio": "Juarez Barbosa Junior is a Sr. Principal Java Developer Evangelist - Director of Developer Evangelism at Oracle. Previously, he was an Azure Developer Relations Lead at Microsoft and a Thought Leader and Technical Evangelist at IBM. He has over 20 years of professional experience, having held senior leadership roles in DevRel, software engineering, and startup-related initiatives. His knowledge comprises Java, Python, Cloud Computing (Oracle OCI, Azure, GCP, IBM Cloud, and AWS), \r\nDevOps, IaC, CI/CD, and Cloud Native.  https://linktr.ee/juarezjunior",
+      "tagLine": "Software Engineering, Solutions Architecture, Developer Relations",
+      "profilePicture": "https://sessionize.com/image/da35-400o400o1-7iXG3irB2qcqf5PDtHr272.jpg",
+      "sessions": [
+        {
+          "id": 632416,
+          "name": "Fast and Easy Ways to Implement MLOps with Kubeflow Pipelines"
+        },
+        {
+          "id": 632421,
+          "name": "Introduction to Database Operators for Kubernetes"
+        }
+      ],
+      "isTopSpeaker": false,
+      "links": [
+        {
+          "title": "Twitter",
+          "url": "https://twitter.com/juarezjunior",
+          "linkType": "Twitter"
+        },
+        {
+          "title": "LinkedIn",
+          "url": "https://www.linkedin.com/in/jujunior/",
+          "linkType": "LinkedIn"
+        },
+        {
+          "title": "Blog",
+          "url": "https://juarezjunior.medium.com/",
+          "linkType": "Blog"
+        }
+      ],
+      "questionAnswers": [
+        {
+          "id": 64148,
+          "question": "Company",
+          "questionType": "Short_Text",
+          "answer": "Oracle",
+          "sort": 17,
+          "answerExtra": null
+        }
+      ],
+      "categories": []
+    },
+    {
+      "id": "0979c01c-b27b-4c4a-be3b-b1d0a927bd6a",
+      "firstName": "Katharina",
+      "lastName": "Sick",
+      "fullName": "Katharina Sick",
+      "bio": "I'm all about making things user-friendly, especially when it comes to Cloud Native and Kubernetes.\r\n\r\nI've done a fair share of mobile app and backend work, but lately, I'm really into Cloud Native computing and enjoy it a lot.\r\n\r\nOutside of work, you'll find me hanging out in tech and sports communities, cruising on inline skates, exploring new places, or challenging myself with quizzes and games.",
+      "tagLine": "Software Engineer at Dynatrace",
+      "profilePicture": "https://sessionize.com/image/7aa6-400o400o1-YBTp7dF7xfej9ijKQcRWB8.jpg",
+      "sessions": [
+        {
+          "id": 619807,
+          "name": "Closing the Loop: Applying Least Privilege and Ensuring We Did It Well"
+        },
+        {
+          "id": 619810,
+          "name": "Pathways, Not Pitfalls: Building Platforms With Developers in Mind"
+        }
+      ],
+      "isTopSpeaker": false,
+      "links": [
+        {
+          "title": "LinkedIn",
+          "url": "https://www.linkedin.com/in/katharinasick",
+          "linkType": "LinkedIn"
+        }
+      ],
+      "questionAnswers": [
+        {
+          "id": 64148,
+          "question": "Company",
+          "questionType": "Short_Text",
+          "answer": "Dynatrace",
+          "sort": 17,
+          "answerExtra": null
+        }
+      ],
+      "categories": []
+    },
+    {
+      "id": "cb216f2d-e7ab-4cdb-9ee8-cf2e7c1604cb",
+      "firstName": "Keren",
+      "lastName": "Kenzi",
+      "fullName": "Keren Kenzi",
+      "bio": "Keren is a senior software developer with over a decade of experience in the industry. She holds an M.Sc. in Computer Science and is passionate about React and learning new technologies. Keren volunteers as a program manager at Baot, a community that supports women in R&D in their professional growth. She instructs and inspires people to write blogs in her tech blogging workshops. Keren has experience as a dev community leader and a co-organizer of meetups and events. And in her not-so-spare time, she studies psychology. Her hobbies include drawing, photography, and singing.",
+      "tagLine": "Senior Software Engineer",
+      "profilePicture": "https://sessionize.com/image/c4ec-400o400o1-SiLf8UH1WhYoJEaaFbJ1Xu.jpg",
+      "sessions": [
+        {
+          "id": 609706,
+          "name": "Channeling your inner tech blogger"
+        },
+        {
+          "id": 615634,
+          "name": "Continuous Improvements of The Code Review Process"
+        }
+      ],
+      "isTopSpeaker": false,
+      "links": [
+        {
+          "title": "Twitter",
+          "url": "https://twitter.com/KerenKenzi",
+          "linkType": "Twitter"
+        },
+        {
+          "title": "LinkedIn",
+          "url": "https://www.linkedin.com/in/keren-kenzi/",
+          "linkType": "LinkedIn"
+        },
+        {
+          "title": "Blog",
+          "url": "https://medium.com/@KerenKenzi",
+          "linkType": "Blog"
+        }
+      ],
+      "questionAnswers": [
+        {
+          "id": 64148,
+          "question": "Company",
+          "questionType": "Short_Text",
+          "answer": null,
+          "sort": 17,
+          "answerExtra": null
+        }
+      ],
+      "categories": []
+    },
+    {
+      "id": "08aa10d6-848f-4458-80a8-f499295bd560",
+      "firstName": "Kevin",
+      "lastName": "Davin",
+      "fullName": "Kevin Davin",
+      "bio": "Google Developer Expert on Google Cloud & Kotlin, Gitlab Hero, I am above all passionate about tech, languages, infrastructure, and automation. \r\nKotlin, Java, TypeScript are my day-to-day languages. I deploy all of those on the Google Kubernetes Engine with the GitLab's Continuous Integration 🚀. \r\n\r\nAddict of agility and DevOps, some of my missions were to help teams to follow those philosophies. \r\nFrom code quality analysis to unit or end-to-end tests setup all the way to continuous deployment and operation, I try to follow a project from birth to production. \r\n\r\nI'm currently Software Engineer at Gradle and I'm working on Gradle Enterprise, the product which can improve the developer productivity by reducing its build and test time.",
+      "tagLine": "Gradle, Senior Software Engineer",
+      "profilePicture": "https://sessionize.com/image/e957-400o400o1-3LuRtvgwaV7rse5pyqm9iW.jpeg",
+      "sessions": [
+        {
+          "id": 597906,
+          "name": "Let's Kustomize our manifests with style 🤩!"
+        }
+      ],
+      "isTopSpeaker": false,
+      "links": [
+        {
+          "title": "Twitter",
+          "url": "https://twitter.com/davinkevin",
+          "linkType": "Twitter"
+        },
+        {
+          "title": "LinkedIn",
+          "url": "https://www.linkedin.com/in/davinkevin/",
+          "linkType": "LinkedIn"
+        },
+        {
+          "title": "Blog",
+          "url": "https://dev.to/davinkevin/",
+          "linkType": "Blog"
+        }
+      ],
+      "questionAnswers": [
+        {
+          "id": 64148,
+          "question": "Company",
+          "questionType": "Short_Text",
+          "answer": "Gradle",
+          "sort": 17,
+          "answerExtra": null
+        }
+      ],
+      "categories": []
+    },
+    {
+      "id": "2e93df84-ae45-46fc-b57a-158ab472f34b",
+      "firstName": "Krish",
+      "lastName": "Jain",
+      "fullName": "Krish Jain",
+      "bio": "Krish Jain is an undergraduate at the University of Rochester majoring in Computer Science. He has shown interest in systems, infrastructure, container runtimes, and virtualization. His academic work is complemented by practical experience, including an internship with the Flatcar team. Krish contributed to Flatcar Linux, developing a systemd build tool and transitioning from Torcx to a Docker sysext image.",
+      "tagLine": "ex-intern with Flatcar Linux project",
+      "profilePicture": "https://sessionize.com/image/2f27-400o400o1-PhcHYFq4egwWktPEAVgwTk.png",
+      "sessions": [
+        {
+          "id": 625590,
+          "name": "Shipping Container Runtimes as systemd-sysext images"
+        },
+        {
+          "id": 625593,
+          "name": "Shipping Container Runtimes as systemd-sysext images"
+        }
+      ],
+      "isTopSpeaker": false,
+      "links": [
+        {
+          "title": "LinkedIn",
+          "url": "https://www.linkedin.com/in/krishjain02/",
+          "linkType": "LinkedIn"
+        },
+        {
+          "title": "Blog",
+          "url": "https://www.flatcar.org/blog/2023/07/summer-2023-my-internship-experience/",
+          "linkType": "Blog"
+        }
+      ],
+      "questionAnswers": [
+        {
+          "id": 64148,
+          "question": "Company",
+          "questionType": "Short_Text",
+          "answer": "ex-Flatcar team. Now incoming @Chainguard",
+          "sort": 17,
+          "answerExtra": null
+        }
+      ],
+      "categories": []
+    },
+    {
+      "id": "97c43b1b-2ca7-48de-b328-ff93409d99b4",
+      "firstName": "Krisztian",
+      "lastName": "Fekete",
+      "fullName": "Krisztian Fekete",
+      "bio": "Krisztian is enthusiastic about observability and cloud infrastructures. He's now working at Solo.io as an engineer. Previously, he was working at LastPass as senior DevOps/SRE engineer. Krisztian is building a self hosted blog on top of Istio in his spare time. The main topics of the blog are aligned with his interests while he is also using the platform to share operational anecdotes on running one of the most \"over-engineered\" blog out there.",
+      "tagLine": "engineer @ solo.io",
+      "profilePicture": "https://sessionize.com/image/3658-400o400o1-BtuJCUAixu91e3queLtJGw.jpg",
+      "sessions": [
+        {
+          "id": 620003,
+          "name": "Developing portable eBPF applications"
+        }
+      ],
+      "isTopSpeaker": false,
+      "links": [
+        {
+          "title": "Twitter",
+          "url": "https://twitter.com/kfekete",
+          "linkType": "Twitter"
+        },
+        {
+          "title": "Blog",
+          "url": "https://krisztianfekete.org/",
+          "linkType": "Blog"
+        }
+      ],
+      "questionAnswers": [
+        {
+          "id": 64148,
+          "question": "Company",
+          "questionType": "Short_Text",
+          "answer": "solo.io",
+          "sort": 17,
+          "answerExtra": null
+        }
+      ],
+      "categories": []
+    },
+    {
+      "id": "279edc42-3440-4013-88bb-f3228053c56e",
+      "firstName": "Lauri",
+      "lastName": "Apple",
+      "fullName": "Lauri Apple",
+      "bio": "Long-time open source contributor with +10 years of experience developing initiatives and strategies for more effective development. ",
+      "tagLine": "Product manager, Kubernetes contributor, open source advisor",
+      "profilePicture": "https://sessionize.com/image/6839-400o400o1-BzVoymY1zr7PwN5ArEgW7t.jpg",
+      "sessions": [
+        {
+          "id": 596991,
+          "name": "Please Make It Make Sense: Product Management Methods to Make Your Project's Purpose Clear"
+        }
+      ],
+      "isTopSpeaker": false,
+      "links": [
+        {
+          "title": "LinkedIn",
+          "url": "https://www.linkedin.com/in/helloitislauri/",
+          "linkType": "LinkedIn"
+        }
+      ],
+      "questionAnswers": [
+        {
+          "id": 64148,
+          "question": "Company",
+          "questionType": "Short_Text",
+          "answer": null,
+          "sort": 17,
+          "answerExtra": null
+        }
+      ],
+      "categories": []
+    },
+    {
+      "id": "964af3ac-fd5e-46f6-b582-6c0d2da30db4",
+      "firstName": "Lewis",
+      "lastName": "Denham-Parry",
+      "fullName": "Lewis Denham-Parry",
+      "bio": "Lewis Denham-Parry orchestrates containers by day and hacks them at night.\r\n\r\nHe has consulted in many roles, from developing software on bare metal to building the infrastructure somewhere in the cloud.\r\n\r\nAt Chainguard, he is a Security Engineer helping customers secure their supply chain, from empowering developers to build their containers to offering observability to CISOs.\r\n\r\nCommunity is key to Lewis and he has presented talks and workshops at numerous international conferences from KubeCon, SANS, BSides, to local meetups in Wales.\r\n\r\nWhen not pretending to be an adult, he spends his time with family, playing sports, reading books, and eating copious amounts of food.\r\n\r\nLewis can be found on the internet thanks to his surname.",
+      "tagLine": " Solutions Architect @ Chainguard",
+      "profilePicture": "https://sessionize.com/image/4c52-400o400o1-VbLhYzoEG7geXDFowitJws.jpeg",
+      "sessions": [
+        {
+          "id": 627388,
+          "name": "Security Showdown: The Overconfident Operator vs the Nefarious Ne’er-Do-Well"
+        }
+      ],
+      "isTopSpeaker": false,
+      "links": [
+        {
+          "title": "Twitter",
+          "url": "https://twitter.com/denhamparry",
+          "linkType": "Twitter"
+        },
+        {
+          "title": "LinkedIn",
+          "url": "https://www.linkedin.com/in/denhamparry/",
+          "linkType": "LinkedIn"
+        },
+        {
+          "title": "Blog",
+          "url": "https://denhamparry.co.uk",
+          "linkType": "Blog"
+        }
+      ],
+      "questionAnswers": [
+        {
+          "id": 64148,
+          "question": "Company",
+          "questionType": "Short_Text",
+          "answer": "Chainguard",
+          "sort": 17,
+          "answerExtra": null
+        }
+      ],
+      "categories": []
+    },
+    {
+      "id": "615aa5ad-a025-4800-91eb-a8997a2fa446",
+      "firstName": "Lin",
+      "lastName": "Sun",
+      "fullName": "Lin Sun",
+      "bio": "Lin is the Head of Open Source at Solo.io, and a CNCF TOC member and ambassador. She has worked on the Istio service mesh since the beginning of the project in 2017 and serves on the Istio Steering Committee and Technical Oversight Committee. Previously, she was a Senior Technical Staff Member and Master Inventor at IBM for 15+ years. She is the author of the book \"Istio Ambient Explained\" and has more than 200 patents to her name.",
+      "tagLine": "Director of Open-Source, Solo.io",
+      "profilePicture": "https://sessionize.com/image/59cc-400o400o1-3HxsreVTXxqZ6Wck6k6PCf.jpg",
+      "sessions": [
+        {
+          "id": 628156,
+          "name": "Embracing the Future: The Effortless Mutual TLS and Traffic Control Without Sidecars"
+        },
+        {
+          "id": 628158,
+          "name": "Progressive Application Delivery with Istio Ambient Mesh and Argo Rollout"
+        }
+      ],
+      "isTopSpeaker": false,
+      "links": [
+        {
+          "title": "Twitter",
+          "url": "https://twitter.com/linsun_unc",
+          "linkType": "Twitter"
+        },
+        {
+          "title": "LinkedIn",
+          "url": "https://www.linkedin.com/in/lin-sun-a9b7a81/",
+          "linkType": "LinkedIn"
+        }
+      ],
+      "questionAnswers": [
+        {
+          "id": 64148,
+          "question": "Company",
+          "questionType": "Short_Text",
+          "answer": null,
+          "sort": 17,
+          "answerExtra": null
+        }
+      ],
+      "categories": []
+    },
+    {
+      "id": "2015920a-b394-4d84-92d2-ac1a21f0bffb",
+      "firstName": "Linda",
+      "lastName": "Ikechukwu",
+      "fullName": "Linda Ikechukwu",
+      "bio": "Linda Ikechukwu is currently a developer advocate at Smallstep Labs, where her mission is to demystify asymmetric cryptography enabled authentication for developers and DevOps engineers.\r\n\r\nHer years as a software engineer (cloud + frontend) built the foundation for her current passion: creating educational materials that help developers learn new technologies. When she’s not creating tech content, you can find her on the tennis court or learning to play the guitar.\r\n",
+      "tagLine": "Developer Advocate at Smallstep Labs",
+      "profilePicture": "https://sessionize.com/image/2d80-400o400o1-7rQtzEh2mvozmoG96y4xpr.JPG",
+      "sessions": [
+        {
+          "id": 617040,
+          "name": "Open-source releases: Everything we've learnt in 4 years"
+        }
+      ],
+      "isTopSpeaker": false,
+      "links": [
+        {
+          "title": "Twitter",
+          "url": "https://www.twitter.com/@_MsLinda",
+          "linkType": "Twitter"
+        },
+        {
+          "title": "LinkedIn",
+          "url": "https://www.linkedin.com/in/linda-ikechukwu/",
+          "linkType": "LinkedIn"
+        }
+      ],
+      "questionAnswers": [
+        {
+          "id": 64148,
+          "question": "Company",
+          "questionType": "Short_Text",
+          "answer": null,
+          "sort": 17,
+          "answerExtra": null
+        }
+      ],
+      "categories": []
+    },
+    {
+      "id": "f8cdd8b2-4126-4e8d-8663-ea5287c0f57e",
+      "firstName": "Magnus",
+      "lastName": "Kulke",
+      "fullName": "Magnus Kulke",
+      "bio": "Magnus has been involved in Linux, Open Source and Cloud Computing for many years. He worked in the sustainability, mobility and tech industry in various engineering-related roles. Currently he's living in Berlin and working as a Software Engineer in the Azure Core Linux team at Microsoft.",
+      "tagLine": "Software Engineer at Microsoft",
+      "profilePicture": "https://sessionize.com/image/6a93-400o400o1-Ji93LttayWL7RTky7TXW9Q.jpg",
+      "sessions": [
+        {
+          "id": 595224,
+          "name": "Confidential Containers from (almost) first principles"
+        }
+      ],
+      "isTopSpeaker": false,
+      "links": [
+        {
+          "title": "LinkedIn",
+          "url": "https://www.linkedin.com/in/magnuskulke/",
+          "linkType": "LinkedIn"
+        }
+      ],
+      "questionAnswers": [
+        {
+          "id": 64148,
+          "question": "Company",
+          "questionType": "Short_Text",
+          "answer": "Microsoft",
+          "sort": 17,
+          "answerExtra": null
+        }
+      ],
+      "categories": []
+    },
+    {
+      "id": "6cdcc3d6-9f3e-4588-ab24-511e2a5db424",
+      "firstName": "Manu",
+      "lastName": "Cañete",
+      "fullName": "Manu Cañete",
+      "bio": "SRE / Platform engineer at Docplanner focused on new technologies and technical excellence. I'm currently working with many CNCF projects like Backstage, ArgoCD, Helm, Kubernetes, OpenTelemetry, Keda, and more.",
+      "tagLine": "SRE / Platform at Docplanner Tech",
+      "profilePicture": "https://sessionize.com/image/2172-400o400o1-UhnuFM3ifcb7BSkgvyAE2e.jpg",
+      "sessions": [
+        {
+          "id": 616190,
+          "name": "Creating an IDP - From Zero to Production in 5 Minutes with Backstage + ArgoCD"
+        }
+      ],
+      "isTopSpeaker": false,
+      "links": [
+        {
+          "title": "Twitter",
+          "url": "https://twitter.com/mknet_",
+          "linkType": "Twitter"
+        },
+        {
+          "title": "LinkedIn",
+          "url": "https://www.linkedin.com/in/mcaneteubeda/",
+          "linkType": "LinkedIn"
+        },
+        {
+          "title": "Blog",
+          "url": "https://manuelcanete.com/",
+          "linkType": "Blog"
+        }
+      ],
+      "questionAnswers": [
+        {
+          "id": 64148,
+          "question": "Company",
+          "questionType": "Short_Text",
+          "answer": "Docplanner",
+          "sort": 17,
+          "answerExtra": null
+        }
+      ],
+      "categories": []
+    },
+    {
+      "id": "b5794658-882d-4428-b728-46683e31e3ef",
+      "firstName": "Marco",
+      "lastName": "Klaassen",
+      "fullName": "Marco Klaassen",
+      "bio": "My name is Marco.\r\n\r\nMy passion is the development of complex software architectures, to enable companies and their developers to build scalable and high-performance software.\r\n\r\nNew technologies and open source making it possible to solve complex problems in the simplest way - they inspire me.\r\n\r\nIn my free time I like to go flying. My vacations are usually spent in the mountains to go skiing or hiking.",
+      "tagLine": "Solution Architect at Red Hat",
+      "profilePicture": "https://sessionize.com/image/ab2a-400o400o1-suxybsxyCsdD4j6rn3KLe8.jpg",
+      "sessions": [
+        {
+          "id": 603430,
+          "name": "Full Stack Cloud Native Application: A Feedback Form"
+        }
+      ],
+      "isTopSpeaker": false,
+      "links": [
+        {
+          "title": "Twitter",
+          "url": "https://twitter.com/marcoxklaassen",
+          "linkType": "Twitter"
+        },
+        {
+          "title": "LinkedIn",
+          "url": "https://www.linkedin.com/in/marco-klaassen/",
+          "linkType": "LinkedIn"
+        }
+      ],
+      "questionAnswers": [
+        {
+          "id": 64148,
+          "question": "Company",
+          "questionType": "Short_Text",
+          "answer": null,
+          "sort": 17,
+          "answerExtra": null
+        }
+      ],
+      "categories": []
+    },
+    {
+      "id": "ba478118-337c-4fd1-9403-70f44846fdf5",
+      "firstName": "Marcos",
+      "lastName": "Lobo",
+      "fullName": "Marcos Lobo",
+      "bio": "Marcos is a Senior Software Engineer and Tech Lead with an open-source and cloud-native mindset. After working as Software Engineer and DevOps at CERN, delivering some of the components of OpenStack at CERN's private cloud, Marcos moved to Nexthink where he's leading agile development teams to bring Nexthink products to modern cloud, stream, and microservice-based platform to delight our customers at work.",
+      "tagLine": "Tech Lead",
+      "profilePicture": "https://sessionize.com/image/ae6d-400o400o1-nnWvEirxazATh4NuJzuyov.jpeg",
+      "sessions": [
+        {
+          "id": 594592,
+          "name": "Decoupling microservices at scale via Kubernetes Custom Resources"
+        }
+      ],
+      "isTopSpeaker": false,
+      "links": [
+        {
+          "title": "Twitter",
+          "url": "https://twitter.com/arrayexception",
+          "linkType": "Twitter"
+        },
+        {
+          "title": "LinkedIn",
+          "url": "https://www.linkedin.com/in/marcosflobo/",
+          "linkType": "LinkedIn"
+        },
+        {
+          "title": "Blog",
+          "url": "https://optimistengineer.substack.com/",
+          "linkType": "Blog"
+        }
+      ],
+      "questionAnswers": [
+        {
+          "id": 64148,
+          "question": "Company",
+          "questionType": "Short_Text",
+          "answer": "Nexthink ",
+          "sort": 17,
+          "answerExtra": null
+        }
+      ],
+      "categories": []
+    },
+    {
+      "id": "60ea1dd4-de82-4570-a4d2-e248421c297c",
+      "firstName": "Mario",
+      "lastName": "Fahlandt",
+      "fullName": "Mario Fahlandt",
+      "bio": "Mario is from a small village in Germany and working for Kubermatic. He studied creative media at an English university and moved his field of knowledge to Cloud Native Infrastructure. He is working as a Customer Delivery Architect with the focus on planning and building concepts and architecture for Infrastructure in the Cloud native world. He started the Google Developer Group for Cloud in Munich back in 2016 and became a Cloud Google Developer Expert in 2019. His passion is always to move the cloud native community one step forward.",
+      "tagLine": "Service Delivery Architect",
+      "profilePicture": "https://sessionize.com/image/e783-400o400o1-V37RbhXhQwnGDroR5FTavy.jpg",
+      "sessions": [
+        {
+          "id": 608927,
+          "name": "Cloud Native Security: A New Paradigm for a New World"
+        }
+      ],
+      "isTopSpeaker": false,
+      "links": [
+        {
+          "title": "Twitter",
+          "url": "https://twitter.com/mfahlandt",
+          "linkType": "Twitter"
+        },
+        {
+          "title": "LinkedIn",
+          "url": "https://www.linkedin.com/in/mario-fahlandt-80085386/",
+          "linkType": "LinkedIn"
+        }
+      ],
+      "questionAnswers": [
+        {
+          "id": 64148,
+          "question": "Company",
+          "questionType": "Short_Text",
+          "answer": "Kubermatic",
+          "sort": 17,
+          "answerExtra": null
+        }
+      ],
+      "categories": []
+    },
+    {
+      "id": "8a87bad6-1f6f-47d7-b11a-be0a0d86050e",
+      "firstName": "Maryna ",
+      "lastName": "Mishchenko",
+      "fullName": "Maryna Mishchenko",
+      "bio": "I started my career at Open Build, a nonprofit that helps underrepresented communities learn programming and initiate their software journey. I give invaluable insights on cultivating innovation, collaboration, and enduring success within development teams. \r\nMy journey stands as a testament to merging technical prowess with a passion for community improvement.\r\n",
+      "tagLine": "Buildly - Product Manager",
+      "profilePicture": "https://sessionize.com/image/335b-400o400o1-2eadc17f-dbac-4d44-9886-6cb553e32ede.jpg",
+      "sessions": [
+        {
+          "id": 598720,
+          "name": "Radical Transparency for Software Teams"
+        }
+      ],
+      "isTopSpeaker": false,
+      "links": [
+        {
+          "title": "LinkedIn",
+          "url": "https://www.linkedin.com/in/maryna-mishchenko-058108200/",
+          "linkType": "LinkedIn"
+        }
+      ],
+      "questionAnswers": [
+        {
+          "id": 64148,
+          "question": "Company",
+          "questionType": "Short_Text",
+          "answer": "Buildly",
+          "sort": 17,
+          "answerExtra": null
+        }
+      ],
+      "categories": []
+    },
+    {
+      "id": "f44f5308-1287-4e6c-8f48-6ed26ea9f9d3",
+      "firstName": "Mauricio",
+      "lastName": "\"Salaboy\" Salatino",
+      "fullName": "Mauricio \"Salaboy\" Salatino",
+      "bio": "Mauricio works as an Open Source Software Engineer at @Diagrid, contributing to and driving initiatives for the Dapr OSS project. Mauricio also serves as a Steering Committee member for the Knative Project and Co-Leading the Knative Functions initiative. He published a book titled Platform Engineering on Kubernetes for Manning Publishing and previously worked at VMware and Red Hat, building tools to help developers be more productive.",
+      "tagLine": "OSS Software Engineer @Diagrid for the @Daprdev Project",
+      "profilePicture": "https://sessionize.com/image/c172-400o400o1-soSuEGbiGrBYwjkHfWuivg.png",
+      "sessions": [
+        {
+          "id": 633036,
+          "name": "Unlocking New Platform Experiences With Open Interfaces"
+        }
+      ],
+      "isTopSpeaker": false,
+      "links": [
+        {
+          "title": "Twitter",
+          "url": "http://twitter.com/salaboy",
+          "linkType": "Twitter"
+        },
+        {
+          "title": "LinkedIn",
+          "url": "https://www.linkedin.com/in/salaboy/",
+          "linkType": "LinkedIn"
+        },
+        {
+          "title": "Blog",
+          "url": "https://www.salaboy.com",
+          "linkType": "Blog"
+        }
+      ],
+      "questionAnswers": [
+        {
+          "id": 64148,
+          "question": "Company",
+          "questionType": "Short_Text",
+          "answer": "Diagrid",
+          "sort": 17,
+          "answerExtra": null
+        }
+      ],
+      "categories": []
+    },
+    {
+      "id": "da7316dd-3c51-4ca3-bdb5-c8a67cfa2ac9",
+      "firstName": "Michael",
+      "lastName": "Mueller",
+      "fullName": "Michael Mueller",
+      "bio": "With a career spanning over two decades from being at the technological forefront to holding senior management positions, Michael Mueller is a widely recognised figure within the cloud and sustainable IT industry. As an expert in cloud technologies, transformation and sustainable software, he’s not only worked for leading companies he also got elected as Co-Chair at the Green Software Foundation’s Policy Working Group. Michael shares his knowledge as lecturer at the Lucerne University of Applied Sciences and Arts and various industry conferences.",
+      "tagLine": "re:cinq",
+      "profilePicture": "https://sessionize.com/image/8dde-400o400o1-WPH4R1UHrptRTudusWPD82.jpeg",
+      "sessions": [
+        {
+          "id": 597003,
+          "name": "Practical Approaches to Greening Your Cloud Native Practices"
+        }
+      ],
+      "isTopSpeaker": false,
+      "links": [
+        {
+          "title": "Twitter",
+          "url": "https://twitter.com/michmueller_",
+          "linkType": "Twitter"
+        },
+        {
+          "title": "LinkedIn",
+          "url": "https://www.linkedin.com/in/michael-mueller-cn/",
+          "linkType": "LinkedIn"
+        },
+        {
+          "title": "Blog",
+          "url": "https://blog.re-cinq.com/",
+          "linkType": "Blog"
+        }
+      ],
+      "questionAnswers": [
+        {
+          "id": 64148,
+          "question": "Company",
+          "questionType": "Short_Text",
+          "answer": "re-cinq.com",
+          "sort": 17,
+          "answerExtra": null
+        }
+      ],
+      "categories": []
+    },
+    {
+      "id": "f801068f-4064-4676-a2b6-8b753cb42448",
+      "firstName": "Mohamed",
+      "lastName": "Belgaied Hassine",
+      "fullName": "Mohamed Belgaied Hassine",
+      "bio": "Born in Tunisia, graduated and first professional experiences in France, Mohamed lives now in Germany since 2013, where he has been doing Consulting for Software vendors, first in the Big Data space, and then in the Cloud native space since 2019.",
+      "tagLine": "Lead Architect at SUSE",
+      "profilePicture": "https://sessionize.com/image/bf2e-400o400o1-4qTC1aLtEe5gRMABfekmL9.png",
+      "sessions": [
+        {
+          "id": 617349,
+          "name": "From Kubernetes Administrator to developing controllers"
+        }
+      ],
+      "isTopSpeaker": false,
+      "links": [
+        {
+          "title": "Twitter",
+          "url": "https://twitter.com/belgaied2",
+          "linkType": "Twitter"
+        },
+        {
+          "title": "LinkedIn",
+          "url": "https://www.linkedin.com/in/mohamed-belgaied/",
+          "linkType": "LinkedIn"
+        },
+        {
+          "title": "Blog",
+          "url": "https://belgai.de/blog",
+          "linkType": "Blog"
+        }
+      ],
+      "questionAnswers": [
+        {
+          "id": 64148,
+          "question": "Company",
+          "questionType": "Short_Text",
+          "answer": "SUSE",
+          "sort": 17,
+          "answerExtra": null
+        }
+      ],
+      "categories": []
+    },
+    {
+      "id": "df2764ce-246c-406d-8cba-c3515e254253",
+      "firstName": "Mohammed",
+      "lastName": "Aboullaite",
+      "fullName": "Mohammed Aboullaite",
+      "bio": "Mohammed is a community catalyst, a true open source believer and one of Google developer expert.",
+      "tagLine": "Backend engineer, Spotify",
+      "profilePicture": "https://sessionize.com/image/b16c-400o400o1-4MW4zKSngdne4jupZmQtGf.jpg",
+      "sessions": [
+        {
+          "id": 618357,
+          "name": "Continuous Profiling, the missing piece in your observability puzzle!"
+        },
+        {
+          "id": 618356,
+          "name": "Into the hive of eBPF!"
+        }
+      ],
+      "isTopSpeaker": false,
+      "links": [
+        {
+          "title": "Twitter",
+          "url": "https://twitter.com/laytoun",
+          "linkType": "Twitter"
+        },
+        {
+          "title": "LinkedIn",
+          "url": "https://www.linkedin.com/in/aboullaite/",
+          "linkType": "LinkedIn"
+        },
+        {
+          "title": "Blog",
+          "url": "https://aboullaite.me",
+          "linkType": "Blog"
+        }
+      ],
+      "questionAnswers": [
+        {
+          "id": 64148,
+          "question": "Company",
+          "questionType": "Short_Text",
+          "answer": null,
+          "sort": 17,
+          "answerExtra": null
+        }
+      ],
+      "categories": []
+    },
+    {
+      "id": "4b879233-171a-4b63-b464-aa1981f6c687",
+      "firstName": "Neel",
+      "lastName": "Shah",
+      "fullName": "Neel Shah",
+      "bio": "Mentored more than 10 hackathons and open source programs and mentored more than 2000 peers to contribute to open source programs\r\nCo-organiser of HUG Ahmedabad,Gandhinagar , CNCF Gandhinagar ,GDG Cloud Gandhinagar \r\n",
+      "tagLine": "Devops Community Guy",
+      "profilePicture": "https://sessionize.com/image/5d65-400o400o1-JigbjstfVkxQn2cMvSU4tH.png",
+      "sessions": [
+        {
+          "id": 595404,
+          "name": "Empowering Multi-Cluster Deployments: Absolute Guide to Kubernetes Gateway API"
+        },
+        {
+          "id": 595416,
+          "name": "Green DevOps: Building Sustainable Software"
+        }
+      ],
+      "isTopSpeaker": false,
+      "links": [
+        {
+          "title": "Twitter",
+          "url": "https://twitter.com/shahneel2409",
+          "linkType": "Twitter"
+        },
+        {
+          "title": "LinkedIn",
+          "url": "https://www.linkedin.com/in/neel-shah-07460218a/",
+          "linkType": "LinkedIn"
+        },
+        {
+          "title": "Instagram",
+          "url": "https://www.instagram.com/neel._.24",
+          "linkType": "Instagram"
+        },
+        {
+          "title": "Blog",
+          "url": "https://medium.com/@shahneel2409",
+          "linkType": "Blog"
+        }
+      ],
+      "questionAnswers": [
+        {
+          "id": 64148,
+          "question": "Company",
+          "questionType": "Short_Text",
+          "answer": null,
+          "sort": 17,
+          "answerExtra": null
+        }
+      ],
+      "categories": []
+    },
+    {
+      "id": "9c904945-768e-4597-b942-6be90cf4d731",
+      "firstName": "Nicolas",
+      "lastName": "Fränkel",
+      "fullName": "Nicolas Fränkel",
+      "bio": "Developer Advocate with 15+ years experience consulting for many different customers, in a wide range of contexts (such as telecoms, banking, insurances, large retail and public sector). Usually working on Java/Java EE and Spring technologies, but with focused interests like Rich Internet Applications, Testing, CI/CD and DevOps. Also double as a trainer and triples as a book author.",
+      "tagLine": "Developer Advocate for Apache APISIX",
+      "profilePicture": "https://sessionize.com/image/200e-400o400o1-MVSybLoJJYvYT7ku79HWNt.jpg",
+      "sessions": [
+        {
+          "id": 596454,
+          "name": "Back to basics, getting traffic into your Kubernetes cluster"
+        }
+      ],
+      "isTopSpeaker": false,
+      "links": [
+        {
+          "title": "Twitter",
+          "url": "https://twitter.com/nicolas_frankel",
+          "linkType": "Twitter"
+        },
+        {
+          "title": "LinkedIn",
+          "url": "https://www.linkedin.com/in/nicolasfrankel/",
+          "linkType": "LinkedIn"
+        },
+        {
+          "title": "Blog",
+          "url": "https://blog.frankel.ch/",
+          "linkType": "Blog"
+        }
+      ],
+      "questionAnswers": [
+        {
+          "id": 64148,
+          "question": "Company",
+          "questionType": "Short_Text",
+          "answer": null,
+          "sort": 17,
+          "answerExtra": null
+        }
+      ],
+      "categories": []
+    },
+    {
+      "id": "61daa873-f7ae-4780-8f3d-b9c09376d18a",
+      "firstName": "Nicolò",
+      "lastName": "Cambiaso Erizzo",
+      "fullName": "Nicolò Cambiaso Erizzo",
+      "bio": "Communications expert, event organizer, community gatherer. OSS contributor, sailing the K8s ocean since 2019. Marketing Director @Mia-Platform.\r\nStrong believer that better software engineering brings to better development for the planet.",
+      "tagLine": "Platform engineering aficionado. Promoting better development through cloud native.",
+      "profilePicture": "https://sessionize.com/image/66c8-400o400o1-MVNgATAyCTTdUUq3NN5Yoq.jpeg",
+      "sessions": [
+        {
+          "id": 594729,
+          "name": "The Top 1.000 Critical Capabilities of an IDP"
+        }
+      ],
+      "isTopSpeaker": false,
+      "links": [
+        {
+          "title": "Twitter",
+          "url": "https://twitter.com/nico_cambiaso",
+          "linkType": "Twitter"
+        },
+        {
+          "title": "LinkedIn",
+          "url": "https://www.linkedin.com/in/nicol%C3%B2-cambiaso-319511bb",
+          "linkType": "LinkedIn"
+        },
+        {
+          "title": "Blog",
+          "url": "https://twitter.com/nico_cambiaso",
+          "linkType": "Blog"
+        }
+      ],
+      "questionAnswers": [
+        {
+          "id": 64148,
+          "question": "Company",
+          "questionType": "Short_Text",
+          "answer": "Mia-Platform",
+          "sort": 17,
+          "answerExtra": null
+        }
+      ],
+      "categories": []
+    },
+    {
+      "id": "f7153696-71f0-4088-861f-74886f7e3df0",
+      "firstName": "Oleg",
+      "lastName": "Nenashev",
+      "fullName": "Oleg Nenashev",
+      "bio": "Oleg is a developer tools hacker, community builder and DevRel consultant. He's passionate open source software, open ecosystems and open hardware advocate. Oleg is a core maintainer Jenkins project where he writes code, mentors contributors and organizes community events. He is a CNCF and CDF ambassador, Testcontainers Champion and a former Jenkins Board member and CDF TOC Chair. Oleg has a PhD degree in electronics design and volunteers in the Free and Open Source Silicon Foundation, and in a number of Ukrainian support and Russian anti-war organizations.",
+      "tagLine": "Community Builder, CNCF/CDF Ambassador, Jenkins core maintainer",
+      "profilePicture": "https://sessionize.com/image/138b-400o400o1-WdYguY2g9NtMFyvHGfrDes.jpg",
+      "sessions": [
+        {
+          "id": 594980,
+          "name": "API Mock8s. Mocking your APIs in Kubernetes"
+        },
+        {
+          "id": 625095,
+          "name": "Cloud Friendly(?) Jenkins. How we failed to make Jenkins cloud native and what we learned?"
+        }
+      ],
+      "isTopSpeaker": false,
+      "links": [
+        {
+          "title": "Twitter",
+          "url": "https://twitter.com/oleg_nenashev",
+          "linkType": "Twitter"
+        },
+        {
+          "title": "LinkedIn",
+          "url": "https://www.linkedin.com/in/onenashev/",
+          "linkType": "LinkedIn"
+        },
+        {
+          "title": "Facebook",
+          "url": "https://www.facebook.com/oleg.nenashev.1/",
+          "linkType": "Facebook"
+        },
+        {
+          "title": "Instagram",
+          "url": "https://instagram.com/asciidwarf",
+          "linkType": "Instagram"
+        }
+      ],
+      "questionAnswers": [
+        {
+          "id": 64148,
+          "question": "Company",
+          "questionType": "Short_Text",
+          "answer": null,
+          "sort": 17,
+          "answerExtra": null
+        }
+      ],
+      "categories": []
+    },
+    {
+      "id": "c25e6f1e-5f1f-4094-8453-bb3a73faefe2",
+      "firstName": "Paco",
+      "lastName": "Bernabe",
+      "fullName": "Paco Bernabe",
+      "bio": "I am a Computer Engineer who has studied mainly in Spain, and I have also studied in the United States and Austria through university exchange programs.\r\n\r\nI started my professional career in Spain as a Linux system administrator. After moving to Amsterdam in The Netherlands, I have continued my professional career working on infrastructure and operations issues with Linux clusters in different projects. I also worked with Openstack to virtualize the clusters of the company where I was working at the time. Later the company adopted Kubernetes, and I was able to take my first steps in containers.\r\n\r\nSince 2018 I have worked on different projects with Azure and Kubernetes, both as an employee of a consulting firm, and as a freelancer.\r\n\r\nFinally, since the end of the Covid pandemic, I've been attending meetups and conferences (in person and virtual) more often to meet more people with my same interests.",
+      "tagLine": "Cloud Engineer",
+      "profilePicture": "https://sessionize.com/image/37bb-400o400o1-QgG8xZR8GThm2oWnWn2x6W.jpeg",
+      "sessions": [
+        {
+          "id": 603963,
+          "name": "CKAD + CKA + CKS: The Kubernetes Certification Trilogy"
+        }
+      ],
+      "isTopSpeaker": false,
+      "links": [
+        {
+          "title": "LinkedIn",
+          "url": "https://www.linkedin.com/in/pacobernab%C3%A9/",
+          "linkType": "LinkedIn"
+        }
+      ],
+      "questionAnswers": [
+        {
+          "id": 64148,
+          "question": "Company",
+          "questionType": "Short_Text",
+          "answer": null,
+          "sort": 17,
+          "answerExtra": null
+        }
+      ],
+      "categories": []
+    },
+    {
+      "id": "ecc0a2d7-5252-459d-9a56-fd7348ee55c5",
+      "firstName": "Patrycja",
+      "lastName": "Wegrzynowicz",
+      "fullName": "Patrycja Wegrzynowicz",
+      "bio": "Patrycja is a lead engineer at Form3, working on reliability and performance of UK payments. She is also the founder of Yon Labs, a startup focusing on automated tools for detection and refactoring of security vulnerabilities, performance anti-patterns, or cloud issues and providing consultancy in Java, C++, Go, and cloud technologies.\r\n \r\nShe is a regular speaker at software conferences, including KubeCon, CodeOne, JavaOne, Devoxx, JFokus, and others. She was awarded an Oracle Groundbreaker Ambassador title in 2020 and 2021, Oracle ACE Associate and Pro in 2022 and 2023. She was also named as one of Top 10 Women in Tech in Poland in 2016.\r\n\r\nHer interests focus on automated software engineering, mainly static and dynamic analysis techniques to support software verification, optimization, and deployment.",
+      "tagLine": "Form3",
+      "profilePicture": "https://sessionize.com/image/615e-400o400o1-fuihnMdxSPPB4kMTNW6VdD.jpg",
+      "sessions": [
+        {
+          "id": 597558,
+          "name": "The Hacker’s Guide to Insecure Workload Configuration in Kubernetes"
+        }
+      ],
+      "isTopSpeaker": false,
+      "links": [
+        {
+          "title": "Twitter",
+          "url": "https://twitter.com/yonlabs",
+          "linkType": "Twitter"
+        },
+        {
+          "title": "LinkedIn",
+          "url": "https://www.linkedin.com/in/patrycjaw/",
+          "linkType": "LinkedIn"
+        }
+      ],
+      "questionAnswers": [
+        {
+          "id": 64148,
+          "question": "Company",
+          "questionType": "Short_Text",
+          "answer": "Form3",
+          "sort": 17,
+          "answerExtra": null
+        }
+      ],
+      "categories": []
+    },
+    {
+      "id": "8f398417-82f0-467a-b234-08e82f7f9acd",
+      "firstName": "Pini",
+      "lastName": "Reznik",
+      "fullName": "Pini Reznik",
+      "bio": "Pini Reznik is a seasoned technology leader with extensive experience in the software industry. He is the CEO and Co-Founder of re:cinq, a pioneering Green Software Services business that empowers organisations to reduce their carbon footprint through innovative software solutions.",
+      "tagLine": "CEO at re-cinq.com",
+      "profilePicture": "https://sessionize.com/image/5914-400o400o1-wfprQwAsCGXkXft1scTkiV.png",
+      "sessions": [
+        {
+          "id": 618531,
+          "name": "Go Green: Reducing Emissions, Costs, and Greenwashing"
+        }
+      ],
+      "isTopSpeaker": false,
+      "links": [
+        {
+          "title": "Twitter",
+          "url": "https://twitter.com/pini42",
+          "linkType": "Twitter"
+        },
+        {
+          "title": "LinkedIn",
+          "url": "https://www.linkedin.com/in/pinireznik/",
+          "linkType": "LinkedIn"
+        },
+        {
+          "title": "Blog",
+          "url": "https://blog.re-cinq.com/",
+          "linkType": "Blog"
+        }
+      ],
+      "questionAnswers": [
+        {
+          "id": 64148,
+          "question": "Company",
+          "questionType": "Short_Text",
+          "answer": "re:cinq",
+          "sort": 17,
+          "answerExtra": null
+        }
+      ],
+      "categories": []
+    },
+    {
+      "id": "83450c3f-0268-4c22-b275-41ccb5ee08d6",
+      "firstName": "Piotr",
+      "lastName": "Trębacz",
+      "fullName": "Piotr Trębacz",
+      "bio": "Piotr is a seasoned Cloud Native Devops and Platform Automation mentor with profound insights on original product development ranging across multiple diverse markets. Contributions he made are still alive in sectors of industry 4.0, banking, logistics, fuel, gambling and even air defense systems.\r\n\r\nPiotr is aiming to make a positive impact on any business and person they engage with by using his passion for simplifying complex systems, sharing knowledge and leaving things in better shape than he approached it. What truly sets him apart is an extensive Personal Knowledge Garden, a Hawaiian shirts collection and a wide range of hobbies (running TTRPG, probability driven optimization for board games, playing harmonica, rapid-prototyping and manufacturing, vector and traditional graphics, motorcycle joyrides),\r\n\r\nHis career has encompassed various roles: from a robotics constructor, graphics designer, analyst and events organizer. He is also well-versed in community efforts and developer's relations. His commitment to enhancing collaboration and fostering a strong community created a testament that makes many peers he worked with still consider him a go-to for technical dilemmas, help with overthrowing the status quo and improving developer experiences.",
+      "tagLine": "Cloud Native Devops | Agile & Strategic Rebel | Good Practices Hoarder | Tabletop Tactician",
+      "profilePicture": "https://sessionize.com/image/d8e0-400o400o1-MNFUtx7WysP6sy2z7467Lt.jpg",
+      "sessions": [
+        {
+          "id": 600327,
+          "name": "Terraform, day 1001"
+        },
+        {
+          "id": 600329,
+          "name": "The Devops Walks Into a Bar..."
+        }
+      ],
+      "isTopSpeaker": false,
+      "links": [
+        {
+          "title": "LinkedIn",
+          "url": "https://www.linkedin.com/in/pgtrebacz/",
+          "linkType": "LinkedIn"
+        }
+      ],
+      "questionAnswers": [
+        {
+          "id": 64148,
+          "question": "Company",
+          "questionType": "Short_Text",
+          "answer": null,
+          "sort": 17,
+          "answerExtra": null
+        }
+      ],
+      "categories": []
+    },
+    {
+      "id": "81d4b2c2-eb81-40f9-97cc-ef7ddf5b7c83",
+      "firstName": "Rabieh",
+      "lastName": "Fashwall",
+      "fullName": "Rabieh Fashwall",
+      "bio": "With over 13 years of experience in the computer software industry, I am a seasoned Software Engineer adept at crafting Cloud Native applications and Web applications, primarily utilising Golang, .Net, and React (TypeScript). Throughout my professional journey, I have honed my skills in diverse programming languages such as C#, Golang, and JavaScript. My expertise extends to leveraging various tools and technologies, and I have gained exposure to multiple cloud solutions, including AWS, GCP, and DO.\r\n\r\nI thrive on challenges and actively seek projects that push me beyond my comfort zone, allowing me to expand my knowledge and skill set. The continuous pursuit of learning new languages and development techniques is not only a personal passion but also a commitment to contributing to the success of the organisations I work with.\r\n\r\nIn 2021, I transitioned into the role of a DevOps Engineer to deepen my understanding of the Kubernetes Administration ecosystem. This experience has provided me with valuable insights into the intricacies of managing Kubernetes, reinforcing my expertise in orchestrating containerised applications. Currently, I am working as a Senior Golang Engineer, combining my extensive software engineering background with newfound insights from the DevOps domain to deliver robust and scalable solutions.",
+      "tagLine": "Senior Golang Engineer",
+      "profilePicture": "https://sessionize.com/image/a48b-400o400o1-9DcAGRqY1SuR8CVwrEueGi.jpg",
+      "sessions": [
+        {
+          "id": 610952,
+          "name": "Kubernetes Operators: A Comprehensive Guide from Development to Deployment"
+        },
+        {
+          "id": 610933,
+          "name": "Securing Kubernetes: Practical Workflows and Tools for Enhanced Cluster Protection"
+        }
+      ],
+      "isTopSpeaker": false,
+      "links": [
+        {
+          "title": "Twitter",
+          "url": "https://twitter.com/rabieh_fashwall",
+          "linkType": "Twitter"
+        },
+        {
+          "title": "LinkedIn",
+          "url": "https://www.linkedin.com/in/rabieh-fashwall/",
+          "linkType": "LinkedIn"
+        },
+        {
+          "title": "Blog",
+          "url": "https://medium.com/@rfashwal",
+          "linkType": "Blog"
+        }
+      ],
+      "questionAnswers": [
+        {
+          "id": 64148,
+          "question": "Company",
+          "questionType": "Short_Text",
+          "answer": null,
+          "sort": 17,
+          "answerExtra": null
+        }
+      ],
+      "categories": []
+    },
+    {
+      "id": "c5eb3443-cd8f-411e-aa0d-5d726f4e27d8",
+      "firstName": "Ram Mohan Rao",
+      "lastName": "Chukka",
+      "fullName": "Ram Mohan Rao Chukka",
+      "bio": "Ram is a Senior Software Engineer at JFrog R&D . Previously worked for startup companies like  CallidusCloud (SAP Company), Konylabs. Loves Automation, Linux, openSource",
+      "tagLine": "Ram | Developer | JFrog",
+      "profilePicture": "https://sessionize.com/image/3e20-400o400o1-XFv54i3S4QMKxYQKZSnRjR.png",
+      "sessions": [
+        {
+          "id": 593055,
+          "name": "Unlocking Developer productivity (DIY) - Best practices to release faster  !"
+        },
+        {
+          "id": 593053,
+          "name": "Who broke the build? — Using Kuttl to improve E2E testing and release faster"
+        }
+      ],
+      "isTopSpeaker": false,
+      "links": [
+        {
+          "title": "Twitter",
+          "url": "https://twitter.com/ichukka",
+          "linkType": "Twitter"
+        },
+        {
+          "title": "LinkedIn",
+          "url": "https://www.linkedin.com/in/ichukka/",
+          "linkType": "LinkedIn"
+        }
+      ],
+      "questionAnswers": [
+        {
+          "id": 64148,
+          "question": "Company",
+          "questionType": "Short_Text",
+          "answer": "JFrog",
+          "sort": 17,
+          "answerExtra": null
+        }
+      ],
+      "categories": []
+    },
+    {
+      "id": "ed5c009a-ffd7-4065-8e1e-801c15145d93",
+      "firstName": "Raúl",
+      "lastName": "Garcia Sanchez",
+      "fullName": "Raúl Garcia Sanchez",
+      "bio": "Hi, I'm Raúl! I've been exploring the world of cloud-native tech for over 5 years since my first dive into KubeCon Copenhagen back in 2018. I love tackling new challenges and finding creative solutions in the world of cloud native technologies. Right now, I'm leading a team at DE-CIX, working on a platform to make the transition to cloud-native smoother for other teams.",
+      "tagLine": "Lead Application Platform at DE-CIX",
+      "profilePicture": "https://sessionize.com/image/57f2-400o400o1-BjC426TGh4F7o6WrbXzSbw.jpg",
+      "sessions": [
+        {
+          "id": 596989,
+          "name": "Kubernetes Policy-as-Code with Kyverno"
+        }
+      ],
+      "isTopSpeaker": false,
+      "links": [
+        {
+          "title": "Twitter",
+          "url": "https://twitter.com/rgs_89",
+          "linkType": "Twitter"
+        },
+        {
+          "title": "LinkedIn",
+          "url": "https://www.linkedin.com/in/ragasa/",
+          "linkType": "LinkedIn"
+        }
+      ],
+      "questionAnswers": [
+        {
+          "id": 64148,
+          "question": "Company",
+          "questionType": "Short_Text",
+          "answer": "DE-CIX",
+          "sort": 17,
+          "answerExtra": null
+        }
+      ],
+      "categories": []
+    },
+    {
+      "id": "58250874-666e-4c62-bf4c-94479759f714",
+      "firstName": "Reza",
+      "lastName": "Ramezanpour",
+      "fullName": "Reza Ramezanpour",
+      "bio": "Reza Ramezanpour is a Developer Advocate at Tigera where he eagerly tries to demystify the less-known capabilities of open source. Throughout his professional career years in IT he has been a developer, system administrator, and reverse engineer.",
+      "tagLine": "eBPF - Path forward",
+      "profilePicture": "https://sessionize.com/image/7680-400o400o1-7JEHy66PBvVrLzL41ccbw2.jpg",
+      "sessions": [
+        {
+          "id": 594049,
+          "name": "How many engineers does it take to… run 1,000 Kubernetes clusters?"
+        }
+      ],
+      "isTopSpeaker": false,
+      "links": [],
+      "questionAnswers": [
+        {
+          "id": 64148,
+          "question": "Company",
+          "questionType": "Short_Text",
+          "answer": null,
+          "sort": 17,
+          "answerExtra": null
+        }
+      ],
+      "categories": []
+    },
+    {
+      "id": "fa03252b-abf7-490a-b243-40d994706c95",
+      "firstName": "Robert",
+      "lastName": "Bohne",
+      "fullName": "Robert Bohne",
+      "bio": "Robert works as a Principal Specialist Solution Architect at Red Hat and a Subject Matter Expert for OpenShift Container Platform. With over 10 years of middleware operating experience from automation to monitoring and more than 5 years of container know-how, Robert primarily supports large German customers with their OpenShift adoption; starting with the introduction, 24x7 operations up to the migration and modernization of complex applications.\r\n",
+      "tagLine": "Helps customer and partner with their Container Journey",
+      "profilePicture": "https://sessionize.com/image/12a1-400o400o1-YDMi29rZ7mDbatLnNM2YUD.jpg",
+      "sessions": [
+        {
+          "id": 624613,
+          "name": "What is an operator? How to use, build and ship it!"
+        }
+      ],
+      "isTopSpeaker": false,
+      "links": [
+        {
+          "title": "Twitter",
+          "url": "https://twitter.com/robertbohne",
+          "linkType": "Twitter"
+        },
+        {
+          "title": "LinkedIn",
+          "url": "https://www.linkedin.com/in/robertbohne/",
+          "linkType": "LinkedIn"
+        }
+      ],
+      "questionAnswers": [
+        {
+          "id": 64148,
+          "question": "Company",
+          "questionType": "Short_Text",
+          "answer": null,
+          "sort": 17,
+          "answerExtra": null
+        }
+      ],
+      "categories": []
+    },
+    {
+      "id": "00c45c44-d4c4-40ff-942f-753cc4c92a96",
+      "firstName": "Roberto",
+      "lastName": "Carratalá",
+      "fullName": "Roberto Carratalá",
+      "bio": "Roberto is a Cloud Services Black Belt specializing in Container Orchestration Platforms (OpenShift & Kubernetes), Cloud, DevSecOps, and CICD.",
+      "tagLine": "Red Hat - Cloud Services Black Belt",
+      "profilePicture": "https://sessionize.com/image/9436-400o400o1-KkF8XXdnCUGMjcehUTL2vW.png",
+      "sessions": [
+        {
+          "id": 617982,
+          "name": "Building and deploying Open Source Generative AI Models in Kubernetes"
+        },
+        {
+          "id": 617980,
+          "name": "GitOps Patterns for managing and scaling cloud native applications"
+        }
+      ],
+      "isTopSpeaker": false,
+      "links": [
+        {
+          "title": "Twitter",
+          "url": "https://twitter.com/rcarrata_",
+          "linkType": "Twitter"
+        },
+        {
+          "title": "LinkedIn",
+          "url": "https://www.linkedin.com/in/rcarrata/",
+          "linkType": "LinkedIn"
+        },
+        {
+          "title": "Blog",
+          "url": "https://rcarrata.com",
+          "linkType": "Blog"
+        }
+      ],
+      "questionAnswers": [
+        {
+          "id": 64148,
+          "question": "Company",
+          "questionType": "Short_Text",
+          "answer": "Red Hat",
+          "sort": 17,
+          "answerExtra": null
+        }
+      ],
+      "categories": []
+    },
+    {
+      "id": "aad6d6fe-6694-44e9-b748-169df7ab6757",
+      "firstName": "Rohit",
+      "lastName": "Ghumare",
+      "fullName": "Rohit Ghumare",
+      "bio": "As a Google Developer Expert specializing in Google Cloud, I am a passionate DevOps Advocate and a dedicated Community Evangelist. I lead and nurture multiple communities across diverse platforms, fostering DevOps and Developer Relations awareness. My commitment to the open-source ecosystem is demonstrated through delivering presentations, crafting documentation and blogs, and contributing code. Presently, my focus is on innovating within the service mesh technology stack.",
+      "tagLine": "CNCF Ambassador ",
+      "profilePicture": "https://sessionize.com/image/e8c0-400o400o1-KaUuVP4a11WoHKu3oScpUG.png",
+      "sessions": [
+        {
+          "id": 592443,
+          "name": "Enhanced Platform Engineering: A Guide to Infrastructure Modernization"
+        },
+        {
+          "id": 592437,
+          "name": "The Kubernetes Kaleidoscope: My Colorful Path to CNCF Ambassadorship"
+        }
+      ],
+      "isTopSpeaker": false,
+      "links": [
+        {
+          "title": "Twitter",
+          "url": "https://www.twitter.com/ghumare64",
+          "linkType": "Twitter"
+        },
+        {
+          "title": "LinkedIn",
+          "url": "https://linkedin.com/in/rohit-ghumare",
+          "linkType": "LinkedIn"
+        },
+        {
+          "title": "Instagram",
+          "url": "http://instagram.com/devopsguys",
+          "linkType": "Instagram"
+        },
+        {
+          "title": "Blog",
+          "url": "http://devopsguys.in",
+          "linkType": "Blog"
+        }
+      ],
+      "questionAnswers": [
+        {
+          "id": 64148,
+          "question": "Company",
+          "questionType": "Short_Text",
+          "answer": "DevRel As Service",
+          "sort": 17,
+          "answerExtra": null
+        }
+      ],
+      "categories": []
+    },
+    {
+      "id": "0e99e00c-2d65-4a5a-b8a9-54f72d0647e5",
+      "firstName": "Ryan Niño ",
+      "lastName": "Dizon",
+      "fullName": "Ryan Niño Dizon",
+      "bio": "With nearly two decades of experience in software development and leadership I possess a strong skill set in coding, software architecture, design principles and Cloud technologies particularly using Azure. I am passionate about leading software development teams and providing technical guidance to deliver exceptional software products.",
+      "tagLine": "I am always passionate to transform complex challenges into elegant software solutions.",
+      "profilePicture": "https://sessionize.com/image/bd6e-400o400o1-HcTRKMixWBneSSPWaGJhdL.jpg",
+      "sessions": [
+        {
+          "id": 624971,
+          "name": "Building a Serverless REST API With Azure Functions"
+        },
+        {
+          "id": 624965,
+          "name": "Building Cloud-Native App with .NET Aspire"
+        }
+      ],
+      "isTopSpeaker": false,
+      "links": [
+        {
+          "title": "LinkedIn",
+          "url": "https://www.linkedin.com/in/ryanninodizon/",
+          "linkType": "LinkedIn"
+        },
+        {
+          "title": "Facebook",
+          "url": "https://www.facebook.com/learnwithjonjon",
+          "linkType": "Facebook"
+        },
+        {
+          "title": "Blog",
+          "url": "https://medium.com/@ryanninodizon",
+          "linkType": "Blog"
+        }
+      ],
+      "questionAnswers": [
+        {
+          "id": 64148,
+          "question": "Company",
+          "questionType": "Short_Text",
+          "answer": null,
+          "sort": 17,
+          "answerExtra": null
+        }
+      ],
+      "categories": []
+    },
+    {
+      "id": "400f198d-0118-43f8-84ab-e8294277551d",
+      "firstName": "Sara",
+      "lastName": "Qasmi",
+      "fullName": "Sara Qasmi",
+      "bio": "Sara Qasmi is a Platform Engineer/SRE at German Edge Cloud, specializing in building secure and reliable Kubernetes platforms at the edge. With a diverse background in software engineering and DevOps, she actively contributes to the development of modern platforms.",
+      "tagLine": "German Edge Cloud, Platform engineer ",
+      "profilePicture": "https://sessionize.com/image/533b-400o400o1-QgrK41o3iVETBTLaiLCg7H.png",
+      "sessions": [
+        {
+          "id": 615894,
+          "name": "Introducing the BACK stack!"
+        }
+      ],
+      "isTopSpeaker": false,
+      "links": [
+        {
+          "title": "LinkedIn",
+          "url": "https://www.linkedin.com/in/sara-qasmi-6022558b/",
+          "linkType": "LinkedIn"
+        }
+      ],
+      "questionAnswers": [
+        {
+          "id": 64148,
+          "question": "Company",
+          "questionType": "Short_Text",
+          "answer": "ClOuDE Consulting",
+          "sort": 17,
+          "answerExtra": null
+        }
+      ],
+      "categories": []
+    },
+    {
+      "id": "27976720-3772-415e-b8d0-f4e8f359d8aa",
+      "firstName": "Shedrack",
+      "lastName": "Akintayo",
+      "fullName": "Shedrack Akintayo",
+      "bio": "Shedrack Akintayo is a Developer Relations Professional and Technical Writer with over 5+ years of experience in Technology and a track record in Web Engineering, Community Management, and Developer Relations on a global scale. He has given talks/workshops at developer conferences like DrupalCon North America, JS Nation Live, DevRel Asia, and All Things Open among many others.\r\n\r\nHe also supports DevRel Community Africa, Open-Source Community Africa, and other communities empowering Africa and the world with Technology.",
+      "tagLine": "Developer Advocate",
+      "profilePicture": "https://sessionize.com/image/de2d-400o400o1-sGrMpBv7yLpNam7QdoU6Uz.png",
+      "sessions": [
+        {
+          "id": 625454,
+          "name": "Cloud Native: Your First Steps"
+        }
+      ],
+      "isTopSpeaker": false,
+      "links": [
+        {
+          "title": "Twitter",
+          "url": "https://twitter.com/coder_blvck",
+          "linkType": "Twitter"
+        },
+        {
+          "title": "LinkedIn",
+          "url": "https://linkedin.com/in/shedrackakintayo",
+          "linkType": "LinkedIn"
+        }
+      ],
+      "questionAnswers": [
+        {
+          "id": 64148,
+          "question": "Company",
+          "questionType": "Short_Text",
+          "answer": null,
+          "sort": 17,
+          "answerExtra": null
+        }
+      ],
+      "categories": []
+    },
+    {
+      "id": "6a5b2e1c-5f74-47d1-ba81-de77158a415d",
+      "firstName": "Simon",
+      "lastName": "Bein",
+      "fullName": "Simon Bein",
+      "bio": "Simon originally comes from the DevOps world and first came into contact with containers 6 years ago. Starting from traditional user perspective at large banks and small start-ups, Simon is now working on the provider side. Currently he is focused on making it easier to install Applications into Kubernetes clusters and improving the experience when using Kubernetes locally.\r\nWhen not in front of a computer, Simon can be found running through nature or trying out new recipes in the kitchen.",
+      "tagLine": "Software Engineer",
+      "profilePicture": "https://sessionize.com/image/ea74-400o400o1-7TD2qxtKeFzcTBGrbtS8tR.jpg",
+      "sessions": [
+        {
+          "id": 604491,
+          "name": "Organizing Lots of Kubeconfigs Without Going Crazy"
+        },
+        {
+          "id": 604492,
+          "name": "Papers, Please - Enforcing Security Standards via Validating Admission Policies"
+        }
+      ],
+      "isTopSpeaker": false,
+      "links": [
+        {
+          "title": "LinkedIn",
+          "url": "https://www.linkedin.com/in/simon-bein/",
+          "linkType": "LinkedIn"
+        }
+      ],
+      "questionAnswers": [
+        {
+          "id": 64148,
+          "question": "Company",
+          "questionType": "Short_Text",
+          "answer": "Kubermatic",
+          "sort": 17,
+          "answerExtra": null
+        }
+      ],
+      "categories": []
+    },
+    {
+      "id": "98a486d6-bbee-4d25-9217-a6efbef7d406",
+      "firstName": "Syed Asad",
+      "lastName": "Raza",
+      "fullName": "Syed Asad Raza",
+      "bio": "Am Working in Microsoft Azure and AWS IaaS/PaaS service and Devops enginee. i has Microsoft Certified Trainer (MCT) of High Expertise with Azure IaaS, Linux, Git, GitHub, Bash Scripting, Azure ARM template, Amazon Web Services AWS fundamental, Microsoft Azure Certified AZ-104 and AZ-900, also AZ-500.",
+      "tagLine": "CNCF @Ambassador, CNCF Lahore @Organizer, DevOps Engineer @Ascend solutions,   ",
+      "profilePicture": "https://sessionize.com/image/3297-400o400o1-nz9FixH2zCLSfruuUzMtJH.jpg",
+      "sessions": [
+        {
+          "id": 629031,
+          "name": "Opensource -  Build A Zero-Trust Access To Servers & Cloud Applications"
+        }
+      ],
+      "isTopSpeaker": false,
+      "links": [
+        {
+          "title": "LinkedIn",
+          "url": "https://www.linkedin.com/in/syedasadrazadevops/",
+          "linkType": "LinkedIn"
+        },
+        {
+          "title": "Facebook",
+          "url": "https://www.facebook.com/syedasadrazadevops",
+          "linkType": "Facebook"
+        },
+        {
+          "title": "Blog",
+          "url": "https://dev.to/syedasadrazadevops",
+          "linkType": "Blog"
+        }
+      ],
+      "questionAnswers": [
+        {
+          "id": 64148,
+          "question": "Company",
+          "questionType": "Short_Text",
+          "answer": "Ascend solutions",
+          "sort": 17,
+          "answerExtra": null
+        }
+      ],
+      "categories": []
+    },
+    {
+      "id": "579865d3-94d1-43cb-a15e-502bca4ae540",
+      "firstName": "Thomas",
+      "lastName": "Labarussias",
+      "fullName": "Thomas Labarussias",
+      "bio": "Thomas is Senior Developer Advocate at Sysdig, the company which created and open-sourced Falco, the Security Runtime Engine for Kubernetes and Cloud-Native technologies. Thomas worked for Qonto, a modern banking for SMEs and freelancers, where he managed their Kubernetes clusters and the enthusiastic tools around, like ArgoCD, Traefik, Prometheus. He also assisted for many years pure-players and e-business companies for a large managed service provider, as an AWS expert and FinOps. He's one of the longest tenured members of the Falco community, and creator of Falcosidekick and Falcosidekick-UI, two major components of the Falco ecosystem.",
+      "tagLine": "Senior Developer Advocate",
+      "profilePicture": "https://sessionize.com/image/4c67-400o400o1-db80c6ef-7614-4035-a33b-55ed61be7dd5.jpg",
+      "sessions": [
+        {
+          "id": 619807,
+          "name": "Closing the Loop: Applying Least Privilege and Ensuring We Did It Well"
+        }
+      ],
+      "isTopSpeaker": false,
+      "links": [
+        {
+          "title": "Twitter",
+          "url": "https://twitter.com/TLabarussias",
+          "linkType": "Twitter"
+        },
+        {
+          "title": "LinkedIn",
+          "url": "https://www.linkedin.com/in/thomas-labarussias-9229b522a/",
+          "linkType": "LinkedIn"
+        },
+        {
+          "title": "Blog",
+          "url": "https://thomas.labarussias.fr",
+          "linkType": "Blog"
+        }
+      ],
+      "questionAnswers": [
+        {
+          "id": 64148,
+          "question": "Company",
+          "questionType": "Short_Text",
+          "answer": "Sysdig",
+          "sort": 17,
+          "answerExtra": null
+        }
+      ],
+      "categories": []
+    },
+    {
+      "id": "86c8f476-5a3d-4c3e-a299-a75bdc149d0b",
+      "firstName": "Thomas",
+      "lastName": "Vitale",
+      "fullName": "Thomas Vitale",
+      "bio": "Thomas Vitale is a software engineer and architect specialized in building cloud native, resilient, and secure enterprise applications. He’s the author of “Cloud Native Spring in Action” published by Manning. Thomas designs and develops software solutions at Systematic, Denmark, where he’s been working on modernizing platforms and applications for the cloud native world, focusing on developer experience and security.\r\n\r\nSome of his main interests and focus areas are Java, Spring Boot, Kubernetes, Knative, and cloud native technologies in general. Thomas supports continuous delivery practices and believes in a collaboration culture aimed at working together to deliver value to users, customers, and businesses. He likes contributing to open source projects in the Java and cloud native space, and sharing knowledge with the community.\r\n\r\nThomas has an MSc in Computer Engineering, specializing in software from the Polytechnic University of Turin (Italy). He is a CNCF Certified Kubernetes Application Developer, Red Hat Certified Specialist in OpenShift Application Development, and Pivotal Certified Spring Professional. His speaking engagements include those for KubeCon+CloudNativeCon, Devoxx, GOTO, SpringOne, Spring I/O, JBCNConf, DevTalks, and J4K.",
+      "tagLine": "Software Architect - Author of \"Cloud Native Spring in Action\" - OSS Contributor",
+      "profilePicture": "https://sessionize.com/image/bc6b-400o400o1-K7pCGWAgqHXrkoit3qHjKr.jpg",
+      "sessions": [
+        {
+          "id": 633036,
+          "name": "Unlocking New Platform Experiences With Open Interfaces"
+        }
+      ],
+      "isTopSpeaker": false,
+      "links": [
+        {
+          "title": "Twitter",
+          "url": "https://twitter.com/vitalethomas",
+          "linkType": "Twitter"
+        },
+        {
+          "title": "LinkedIn",
+          "url": "https://www.linkedin.com/in/vitalethomas/",
+          "linkType": "LinkedIn"
+        },
+        {
+          "title": "Blog",
+          "url": "https://thomasvitale.com",
+          "linkType": "Blog"
+        }
+      ],
+      "questionAnswers": [
+        {
+          "id": 64148,
+          "question": "Company",
+          "questionType": "Short_Text",
+          "answer": "Systematic",
+          "sort": 17,
+          "answerExtra": null
+        }
+      ],
+      "categories": []
+    },
+    {
+      "id": "273b1032-92e0-4956-855c-c0fd263bec55",
+      "firstName": "Tiago",
+      "lastName": "Barbosa",
+      "fullName": "Tiago Barbosa",
+      "bio": "I'm Tiago, a Developer Advocate for PagerDuty and an open source contributor and maintainer.\r\n\r\nBefore joining PagerDuty, I led the cloud and platform engineering teams at MUSIC Tribe, working on cloud-connected instruments. My career has always been focused on supporting developers and engineering teams worldwide, first at Microsoft (10 years) and then at AWS (2 years). \r\n\r\nI'm an experienced public speaker, regularly participating in meetups and conferences.",
+      "tagLine": "Developer Advocate @ PagerDuty",
+      "profilePicture": "https://sessionize.com/image/d23b-400o400o1-sg2bEaPVfo7fgh9PTkcDFC.jpg",
+      "sessions": [
+        {
+          "id": 632386,
+          "name": "10 things you must know as a Backstage plugin contributor"
+        },
+        {
+          "id": 632389,
+          "name": "Backstage Scaffolder: a quick win for some, the path to engineering excellence for many"
+        }
+      ],
+      "isTopSpeaker": false,
+      "links": [
+        {
+          "title": "Twitter",
+          "url": "https://twitter.com/t1agoB",
+          "linkType": "Twitter"
+        },
+        {
+          "title": "LinkedIn",
+          "url": "https://www.linkedin.com/in/tiagobarbosa/",
+          "linkType": "LinkedIn"
+        }
+      ],
+      "questionAnswers": [
+        {
+          "id": 64148,
+          "question": "Company",
+          "questionType": "Short_Text",
+          "answer": "PagerDuty",
+          "sort": 17,
+          "answerExtra": null
+        }
+      ],
+      "categories": []
+    },
+    {
+      "id": "5cc6fcc2-370f-4095-948d-094246854aca",
+      "firstName": "Tobias",
+      "lastName": "Schneck",
+      "fullName": "Tobias Schneck",
+      "bio": "Tobias Schneck is a Principal Architect at Kubermatic, an open-source platform for Kubernetes management. He is a passionate advocate for open-source technologies and has a deep understanding of cloud-native infrastructure. Tobias has over 10 years of experience in the IT industry and has held various positions in development, operations, and architecture. He is a regular speaker at industry conferences and has written numerous blog posts and articles on cloud-native topics. Bringing the advantages of cloud native technologies and development workflows to everybody is his aim.",
+      "tagLine": "Kubermatic, Principal Architect",
+      "profilePicture": "https://sessionize.com/image/0b42-400o400o1-c2-370f-4095-948d-094246854aca.c33b576a-d509-4cc9-8fd1-ee16ae83fde1.png",
+      "sessions": [
+        {
+          "id": 605184,
+          "name": "Kubernetes & AI - Beauty and the Beast!?!"
+        }
+      ],
+      "isTopSpeaker": false,
+      "links": [
+        {
+          "title": "Twitter",
+          "url": "https://twitter.com/toschneck",
+          "linkType": "Twitter"
+        },
+        {
+          "title": "LinkedIn",
+          "url": "https://www.linkedin.com/in/toschneck",
+          "linkType": "LinkedIn"
+        },
+        {
+          "title": "Blog",
+          "url": "https://github.com/toschneck",
+          "linkType": "Blog"
+        }
+      ],
+      "questionAnswers": [
+        {
+          "id": 64148,
+          "question": "Company",
+          "questionType": "Short_Text",
+          "answer": "Kubermatic",
+          "sort": 17,
+          "answerExtra": null
+        }
+      ],
+      "categories": []
+    },
+    {
+      "id": "97fd9697-d280-4391-8e99-0e4698bc76db",
+      "firstName": "Viktor",
+      "lastName": "Farcic",
+      "fullName": "Viktor Farcic",
+      "bio": "Viktor Farcic is a Developer Advocate at Upbound, a member of the Google Developer Experts and Docker Captains groups, and a published author.\r\n\r\nHis big passions are DevOps, Containers, Kubernetes, Microservices, Continuous Integration, Delivery and Deployment (CI/CD) and Test-Driven Development (TDD).\r\n\r\nHe often speaks at community gatherings and conferences.\r\n\r\nHe published The DevOps Toolkit Series (https://www.devopstoolkitseries.com/), DevOps Paradox (https://amzn.to/2myrYYA) and Test-Driven Java Development (http://www.amazon.com/Test-Driven-Java-Development-Viktor-Farcic-ebook/dp/B00YSIM3SC), as well as courses in Udemy (https://www.udemy.com/user/viktor-farcic/).\r\n\r\nHis random thoughts and tutorials can be found in his blog TechnologyConversations.com.\r\n\r\nHe is the host of the DevOps Toolkit (https://youtube.com/c/devopstoolkit) YouTube channel and a co-host of DevOps Paradox (https://www.devopsparadox.com/) podcast.",
+      "tagLine": "Developer Advocate",
+      "profilePicture": "https://sessionize.com/image/f866-400o400o1-KwmEomPTBJ9PckZkggq9ih.jpg",
+      "sessions": [
+        {
+          "id": 627386,
+          "name": "Choose Your Own Adventure: The Struggle for Security"
+        },
+        {
+          "id": 597042,
+          "name": "Serverless Computing on Kubernetes with Knative, Crossplane, Dapr, KEDA, Shipwright, and Friends"
+        }
+      ],
+      "isTopSpeaker": false,
+      "links": [
+        {
+          "title": "Twitter",
+          "url": "https://twitter.com/vfarcic",
+          "linkType": "Twitter"
+        },
+        {
+          "title": "LinkedIn",
+          "url": "https://www.linkedin.com/in/viktorfarcic/",
+          "linkType": "LinkedIn"
+        },
+        {
+          "title": "Blog",
+          "url": "https://youtube.com/@DevOpsToolkit",
+          "linkType": "Blog"
+        }
+      ],
+      "questionAnswers": [
+        {
+          "id": 64148,
+          "question": "Company",
+          "questionType": "Short_Text",
+          "answer": "Upbound",
+          "sort": 17,
+          "answerExtra": null
+        }
+      ],
+      "categories": []
+    },
+    {
+      "id": "3f4d3de3-3518-49b8-9e41-ce9a02d43c24",
+      "firstName": "Whitney",
+      "lastName": "Lee",
+      "fullName": "Whitney Lee",
+      "bio": "Whitney is a lovable goofball and a CNCF Ambassador who enjoys understanding and using tools in the cloud native landscape. Creative and driven, Whitney recently pivoted from an art-related career to one in tech. You can catch her lightboard streaming show ⚡️ Enlightning on Tanzu.TV, and she also co-hosts the streaming show You Choose! - a 'Choose-Your-Own-Adventure'-style journey through the CNCF landscape alongside Viktor Farcic.",
+      "tagLine": "CNCF Ambassador, Developer Advocate at Broadcom",
+      "profilePicture": "https://sessionize.com/image/1bad-400o400o1-fDGn5tH9aYmxUZydU4Mrzz.jpg",
+      "sessions": [
+        {
+          "id": 627386,
+          "name": "Choose Your Own Adventure: The Struggle for Security"
+        },
+        {
+          "id": 627388,
+          "name": "Security Showdown: The Overconfident Operator vs the Nefarious Ne’er-Do-Well"
+        }
+      ],
+      "isTopSpeaker": false,
+      "links": [
+        {
+          "title": "Twitter",
+          "url": "https://twitter.com/wiggitywhitney",
+          "linkType": "Twitter"
+        },
+        {
+          "title": "LinkedIn",
+          "url": "https://www.linkedin.com/in/whitneylee/",
+          "linkType": "LinkedIn"
+        },
+        {
+          "title": "Blog",
+          "url": "https://via.vmw.com/Whitney",
+          "linkType": "Blog"
+        }
+      ],
+      "questionAnswers": [
+        {
+          "id": 64148,
+          "question": "Company",
+          "questionType": "Short_Text",
+          "answer": "Tanzu by Broadcom",
+          "sort": 17,
+          "answerExtra": null
+        }
+      ],
+      "categories": []
+    },
+    {
+      "id": "16be9be3-3f14-4825-bb9e-4541215be6f5",
+      "firstName": "Xoan",
+      "lastName": "Mallon Moure",
+      "fullName": "Xoan Mallon Moure",
+      "bio": "I am a passionate DevOps engineer with expertise in automation and cloud technologies. I have focused on Kubernetes and surrounding projects, specializing in GitOps with ArgoCD. Additionally, I have hands-on experience in enhancing developer experience with Backstage. My goal is to design scalable, efficient, and automated infrastructure solutions, enabling continuous integration, delivery, and deployment.",
+      "tagLine": "Senior DevOps Engineer",
+      "profilePicture": "https://sessionize.com/image/939f-400o400o1-TYH9nDVtfSFZFapdvhSxTB.jpg",
+      "sessions": [
+        {
+          "id": 616190,
+          "name": "Creating an IDP - From Zero to Production in 5 Minutes with Backstage + ArgoCD"
+        }
+      ],
+      "isTopSpeaker": false,
+      "links": [
+        {
+          "title": "Twitter",
+          "url": "https://twitter.com/xoanmallon",
+          "linkType": "Twitter"
+        },
+        {
+          "title": "LinkedIn",
+          "url": "https://www.linkedin.com/in/xoan-mallon-moure/",
+          "linkType": "LinkedIn"
+        },
+        {
+          "title": "Blog",
+          "url": "https://github.com/xoanmm",
+          "linkType": "Blog"
+        }
+      ],
+      "questionAnswers": [
+        {
+          "id": 64148,
+          "question": "Company",
+          "questionType": "Short_Text",
+          "answer": "Zscaler",
+          "sort": 17,
+          "answerExtra": null
+        }
+      ],
+      "categories": []
+    },
+    {
+      "id": "da668989-d445-4d97-aaa3-689e661db0d4",
+      "firstName": "Yash",
+      "lastName": "Raj Verma",
+      "fullName": "Yash Raj Verma",
+      "bio": "Yash is a Computing Researcher at the University of Calgary, specializing in Distributed Systems and passionate about Cloud Native Observability. Contributor to OpenTelemetry project and an open source advocate.",
+      "tagLine": "Computing Researcher at University Of Calgary",
+      "profilePicture": "https://sessionize.com/image/6675-400o400o1-s45wBtncfiZAJeqN2SkEe4.jpg",
+      "sessions": [
+        {
+          "id": 624705,
+          "name": "Democratise Observability: Empowering the future with OpenTelemetry."
+        }
+      ],
+      "isTopSpeaker": false,
+      "links": [
+        {
+          "title": "Twitter",
+          "url": "https://twitter.com/alwayshuds",
+          "linkType": "Twitter"
+        },
+        {
+          "title": "LinkedIn",
+          "url": "https://linkedin.com/in/yashrv",
+          "linkType": "LinkedIn"
+        },
+        {
+          "title": "Instagram",
+          "url": "https://www.instagram.com/_yashssv/",
+          "linkType": "Instagram"
+        },
+        {
+          "title": "Blog",
+          "url": "https://yashrv.hashnode.dev",
+          "linkType": "Blog"
+        }
+      ],
+      "questionAnswers": [
+        {
+          "id": 64148,
+          "question": "Company",
+          "questionType": "Short_Text",
+          "answer": "University of Calgary",
+          "sort": 17,
+          "answerExtra": null
+        }
+      ],
+      "categories": []
+    },
+    {
+      "id": "f81e432b-53cf-463e-abf4-15f3096783db",
+      "firstName": "Yujin",
+      "lastName": "Kim",
+      "fullName": "Yujin Kim",
+      "bio": "Yujin is a software engineer at Consider IT GmbH, specializing in Kubernetes and infrastructure. With experience in V2X (Vehicle to Everything) technology, she has a keen interest in cloud-native solutions.",
+      "tagLine": "consider it GmbH, Software Engineer",
+      "profilePicture": "https://sessionize.com/image/93be-400o400o1-XQzgBoTjDteHD4M66mxDQL.jpg",
+      "sessions": [
+        {
+          "id": 599978,
+          "name": "Securing the Cluster: Navigating Kubernetes Backup and Recovery"
+        }
+      ],
+      "isTopSpeaker": false,
+      "links": [
+        {
+          "title": "LinkedIn",
+          "url": "https://www.linkedin.com/in/yjink",
+          "linkType": "LinkedIn"
+        }
+      ],
+      "questionAnswers": [
+        {
+          "id": 64148,
+          "question": "Company",
+          "questionType": "Short_Text",
+          "answer": "consider it GmbH",
+          "sort": 17,
+          "answerExtra": null
+        }
+      ],
+      "categories": []
+    }
+  ]
