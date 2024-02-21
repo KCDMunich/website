@@ -6,20 +6,8 @@ import LINKS from 'constants/links';
 
 import ApeFactory from 'icons/apefactory.webp';
 import Camptocamp from 'icons/camptocamp.svg';
-//import Elasticbrains from 'icons/elasticbrain.webp';
-//import Exoscale from 'icons/exoscale.webp';
-//import Grafana from 'icons/grafanalabs.webp';
-//import Isovalent from 'icons/isovalent.svg';
-//import Lumigo from 'icons/lumigo.webp';
 import MetalStack from 'icons/metalstackcloud.webp';
-//import Mkdev from 'icons/mkdev.png';
 import Qaware from 'icons/qaware.svg';
-//import Redhat from 'icons/redhat.png';
-//import Stormforge from 'icons/stormforge.webp';
-//import Google from 'icons/google-cloud.svg';
-//import Okteto from 'icons/okteto.png';
-//import Appscode from 'icons/appsCode.png';
-//import unikube from 'icons/Blueshoe.webp';
 import liquid from 'icons/liquid.png';
 import whiteduck from 'icons/whiteduck.png';
 import Cloudnative from 'icons/cloudnative.svg';
@@ -29,6 +17,7 @@ import StackState from 'icons/stackstate.png';
 import germantech from 'icons/germantech.svg';
 import Syseleven from 'icons/syseleven.png';
 import pulumi from 'icons/pulumi_logo.svg';
+import adn from 'icons/adn_logo.png';
 
 const TITLE = 'Sponsors';
 
@@ -62,14 +51,17 @@ const ITEMS = [
     cardClassname: 'min-w-[384px] min-h-[122px] sm:min-w-[320px] sm:min-h-[115px]',
     iconClassname: 'max-w-[330px] sm:min-w-[290px]',
   },
-  //  {
-  //    title: 'Bronze',
-  //    logos: [
-  //      //{ icon: Redhat, url: 'https://www.redhat.com/de/our-code-is-open?sc_cid=7013a000002w5fEAAQ&gclsrc=aw.ds',},
-  //    ],
-  //    cardClassname: 'min-w-[280px] min-h-[104px] sm:min-w-[250px] sm:min-h-[94px]',
-  //    iconClassname: 'max-w-[330px] sm:min-w-[290px]',
-  //  },
+  {
+    title: 'Bronze',
+    logos: [
+      {
+        icon: adn,
+        url: 'https://shop.adn.de/',
+      },
+    ],
+    cardClassname: 'min-w-[280px] min-h-[104px] sm:min-w-[250px] sm:min-h-[94px]',
+    iconClassname: 'max-w-[330px] sm:min-w-[290px]',
+  },
   {
     title: 'Organizers',
     logos: [
@@ -127,10 +119,19 @@ const Sponsors = () => (
           </span>
         </Button>
       </div>
-      <ul className="mt-16 flex flex-col">
+      <ul className="mt-16 flex flex-col ">
         {ITEMS.map(({ title, logos, cardClassname, iconClassname }, index) => (
           <li className="" key={index}>
-            <p className="text-center text-4xl font-bold leading-normal text-primary-1">{title}</p>
+            <p
+              className="text-center text-4xl font-bold leading-normal text-primary-1"
+              style={{
+                background:
+                  'linear-gradient(to right, #FFFFFF 0%, #7b79791f 30%, #7b79791f 70%, #FFFFFF 100%)',
+                borderRadius: '10px',
+              }}
+            >
+              {title}
+            </p>
 
             <ul className="mb-[70px] mt-10 flex flex-wrap justify-center gap-x-8 xl:gap-y-6">
               {logos.map(({ icon, url }, index) => (
