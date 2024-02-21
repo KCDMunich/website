@@ -82,7 +82,22 @@ const DangerComponent = () => {
 
   const findCompany = (speaker) => {
     const company = speaker.questionAnswers.find((q) => q.question === 'Company');
-    return company.answer;
+    if (company && company.answer) {
+      return (
+        <span
+          className="tex-4xl truncate text-center"
+          style={{
+            textDecoration: 'underline',
+            textDecorationColor: 'whitesmoke',
+            textDecorationThickness: '1px',
+          }}
+        >
+          {company.answer}
+        </span>
+      );
+    } else {
+      return <div style={{ height: '20px' }}></div>;
+    }
   };
 
   return (
@@ -130,20 +145,13 @@ const DangerComponent = () => {
                 height: '396px',
                 backgroundColor: '#283058',
                 color: 'whitesmoke',
+                justifyContent: 'space-between',
+                paddingBottom: '18px',
               }}
             >
               <div className="flex h-2/6 w-full flex-col items-center justify-center" style={{}}>
                 <span className="text-center text-xl font-bold">{speaker.fullName}</span>
-                <span
-                  className="truncate text-center"
-                  style={{
-                    textDecoration: 'underline',
-                    textDecorationColor: 'whitesmoke',
-                    textDecorationThickness: '1px',
-                  }}
-                >
-                  {findCompany(speaker)}
-                </span>
+                {findCompany(speaker)}
               </div>
               <div
                 className="flex h-3/6 w-full flex-col px-5 text-center"
@@ -151,7 +159,7 @@ const DangerComponent = () => {
               >
                 {trimText(speaker.bio, 190)}
               </div>
-              <div>
+              <div className="flex h-1/6 w-full items-center justify-center gap-x-0.5">
                 {speaker.links.length > 0 ? (
                   speaker.links.slice(0, 3).map((link, index) => (
                     <a key={index} href={link.url} target="_blank" rel="noopener noreferrer">
