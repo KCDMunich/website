@@ -4,7 +4,7 @@ import ReactCardFlip from 'react-card-flip';
 import { isMobile } from 'react-device-detect';
 import { SocialIcon } from 'react-social-icons';
 import speakerJSON from './speaker.json'; //Daten aus der speaker.json
-
+import './speakers.css';
 const scriptUrl = 'https://sessionize.com/api/v2/6dqtqpt2/view/Speakers';
 
 const Speakers = () => (
@@ -13,7 +13,7 @@ const Speakers = () => (
       <div className="text-primary-1 lg:flex lg:flex-col lg:items-center lg:justify-center lg:text-center">
         <br />
         <div className=" w-full overflow-auto scrollbar-hide" style={{ height: '500vh' }}>
-          <DangerComponent />
+          <SpeakerComponent />
         </div>
       </div>
     </div>
@@ -103,7 +103,7 @@ const DangerComponent = () => {
   return (
     <div className="flex flex-row flex-wrap justify-around">
       {speakerData.map((speaker) => (
-        <div className="pb-5 shadow-sm">
+        <div className="card-container pb-5 shadow-sm" key={speaker.id}>
           <ReactCardFlip
             key={speaker.id}
             isFlipped={speaker.isFlipped}
@@ -178,4 +178,138 @@ const DangerComponent = () => {
   );
 };
 
+const SpeakerComponent = () => {
+  const [speakerData, setSpeakerData] = useState([]);
+
+  useEffect(() => {
+    // aus der speaker.json
+    const speakersWithFlipState = speakerJSON.map((speaker) => ({
+      ...speaker,
+      isFlipped: false,
+    }));
+    const shuffledSpeaker = shuffleSpeaker(speakersWithFlipState);
+    setSpeakerData(shuffledSpeaker);
+  }, []);
+
+  const handleFlip = (id) => {
+    setSpeakerData(
+      speakerData.map((speaker) => {
+        if (speaker.id === id) {
+          return { ...speaker, isFlipped: !speaker.isFlipped };
+        }
+        return speaker;
+      })
+    );
+  };
+
+  const trimText = (text, maxLength) => {
+    if (text.length > maxLength) {
+      return text.substring(0, maxLength - 3) + '...';
+    } else {
+      return text;
+    }
+  };
+
+  const shuffleSpeaker = (array) => {
+    let currentIndex = array.length,
+      randomIndex;
+
+    while (currentIndex > 0) {
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex--;
+
+      [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
+    }
+    return array;
+  };
+
+  const findCompany = (speaker) => {
+    const company = speaker.questionAnswers.find((q) => q.question === 'Company');
+    if (company && company.answer) {
+      return (
+        <span
+          className="tex-4xl truncate text-center"
+          style={{
+            textDecoration: 'underline',
+            textDecorationColor: 'whitesmoke',
+            textDecorationThickness: '1px',
+          }}
+        >
+          {company.answer}
+        </span>
+      );
+    } else {
+      return <div style={{ height: '20px' }}></div>;
+    }
+  };
+
+  return (
+    <div className="flex flex-row flex-wrap justify-around">
+      {speakerData.map((speaker) => (
+        <div className="pb-5">
+          <div className="flip-card" key={speaker.id}>
+            <div className="flip-card-inner">
+              <div className="flip-card-front rounded-md">
+                <img
+                  src={speaker.profilePicture}
+                  alt={speaker.fullName}
+                  className="w-full cursor-pointer rounded-md object-cover"
+                  style={{
+                    height: '325px',
+                    padding: '10px',
+                  }}
+                />
+                <div className="flex flex-col items-center justify-between">
+                  <span className="pt-0 text-lg font-bold">{speaker.fullName}</span>
+                  <span className="my-auto flex w-full justify-center truncate text-center text-sm">
+                    {trimText(speaker.tagLine, 40)}
+                  </span>
+                </div>
+              </div>
+              <div className="flip-card-back justify-between rounded-md pb-5">
+                <div className="flex h-2/6 w-full flex-col items-center justify-center" style={{}}>
+                  <span className="text-center text-xl font-bold">{speaker.fullName}</span>
+                  {findCompany(speaker)}
+                </div>
+                <div
+                  className="flex h-3/6 w-full flex-col px-5 text-center"
+                  style={{ lineHeight: '30px' }}
+                >
+                  {trimText(speaker.bio, 190)}
+                </div>
+                <div className="flex h-1/6 w-full items-center justify-center gap-x-0.5">
+                  {speaker.links.length > 0 ? (
+                    speaker.links.slice(0, 3).map((link, index) => (
+                      <a key={index} href={link.url} target="_blank" rel="noopener noreferrer">
+                        <SocialIcon url={link.url} bgColor="transparent" fgColor="white" />
+                      </a>
+                    ))
+                  ) : (
+                    <div></div>
+                  )}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+};
+
+/*
+
+      <div class="flip-card">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <span>hallo</span>
+          </div>
+          <div class="flip-card-back">
+            <h1>John Doe</h1>
+            <p>Architect & Engineer</p>
+            <p>We love that guy</p>
+          </div>
+        </div>
+      </div>
+*/
 export default Speakers;
