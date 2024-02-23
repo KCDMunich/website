@@ -48,9 +48,8 @@ const Info = () => (
             width="820"
             height="461"
             src="https://www.youtube.com/embed/fIzXybMaEZ0?si=Ln1spZvT_qSgYh09?controls=1"
-            frameborder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope"
-            allowfullscreen="true"
+            allowFullScreen={true}
           ></iframe>
         </div>
         <div className="container text-center">

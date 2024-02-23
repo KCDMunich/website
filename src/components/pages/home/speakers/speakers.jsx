@@ -107,6 +107,7 @@ const SpeakerComponent = () => {
         >
           {speakerData.map((speaker) => (
             <div
+              key={speaker.id}
               className="flex flex-col items-center justify-between p-4"
               style={{
                 marginBottom: '40px',
@@ -143,12 +144,12 @@ const SpeakerComponent = () => {
                     backgroundColor: '#262f5908',
                   }}
                 >
-                  <div>
+                  <div className="flex flex-row">
                     {speaker.links.length > 0 ? (
-                      speaker.links.slice(0, 5).map((link, index) => (
-                        <a key={index} href={link.url} target="_blank" rel="noopener noreferrer">
+                      speaker.links.slice(0, 3).map((link, index) => (
+                        <div key={index} href={link.url} target="_blank" rel="noopener noreferrer">
                           <SocialIcon url={link.url} bgColor="transparent" fgColor="#262f59" />
-                        </a>
+                        </div>
                       ))
                     ) : (
                       <div></div>

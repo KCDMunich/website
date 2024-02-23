@@ -8,11 +8,11 @@ import './speakers.css';
 const scriptUrl = 'https://sessionize.com/api/v2/6dqtqpt2/view/Speakers';
 
 const Speakers = () => (
-  <section className="safe-paddings relative bg-white pb-40 lg:pb-32 md:py-24 sm:py-16">
-    <div className="container flex justify-between lg:flex-col">
-      <div className="text-primary-1 lg:flex lg:flex-col lg:items-center lg:justify-center lg:text-center">
+  <section className="safe-paddings relative bg-white pb-40 2xl:pb-32 lg:pb-32 md:py-24 sm:py-16">
+    <div className="container flex justify-between 2xl:flex-col lg:flex-col">
+      <div className="text-primary-1 2xl:flex 2xl:flex-col 2xl:items-center 2xl:justify-center lg:flex lg:flex-col lg:items-center lg:justify-center lg:text-center">
         <br />
-        <div className=" w-full overflow-auto scrollbar-hide" style={{ height: '500vh' }}>
+        <div className=" w-full">
           <SpeakerComponent />
         </div>
       </div>
@@ -244,55 +244,77 @@ const SpeakerComponent = () => {
   };
 
   return (
-    <div className="flex flex-row flex-wrap justify-around">
-      {speakerData.map((speaker) => (
-        <div className="pb-5">
-          <div className="flip-card" key={speaker.id}>
-            <div className="flip-card-inner">
-              <div className="flip-card-front rounded-md">
-                <img
-                  src={speaker.profilePicture}
-                  alt={speaker.fullName}
-                  className="w-full cursor-pointer rounded-md object-cover"
-                  style={{
-                    height: '325px',
-                    padding: '10px',
-                  }}
-                />
-                <div className="flex flex-col items-center justify-between">
-                  <span className="pt-0 text-lg font-bold">{speaker.fullName}</span>
-                  <span className="my-auto flex w-full justify-center truncate text-center text-sm">
-                    {trimText(speaker.tagLine, 40)}
-                  </span>
-                </div>
-              </div>
-              <div className="flip-card-back justify-between rounded-md pb-5">
-                <div className="flex h-2/6 w-full flex-col items-center justify-center" style={{}}>
-                  <span className="text-center text-xl font-bold">{speaker.fullName}</span>
-                  {findCompany(speaker)}
-                </div>
-                <div
-                  className="flex h-3/6 w-full flex-col px-5 text-center"
-                  style={{ lineHeight: '30px' }}
-                >
-                  {trimText(speaker.bio, 190)}
-                </div>
-                <div className="flex h-1/6 w-full items-center justify-center gap-x-0.5">
-                  {speaker.links.length > 0 ? (
-                    speaker.links.slice(0, 3).map((link, index) => (
-                      <a key={index} href={link.url} target="_blank" rel="noopener noreferrer">
-                        <SocialIcon url={link.url} bgColor="transparent" fgColor="white" />
-                      </a>
-                    ))
-                  ) : (
-                    <div></div>
-                  )}
+    <div className="flex w-full items-center justify-center">
+      {speakerData.length === 0 ? (
+        <div
+          className="flex items-center justify-center"
+          style={{ height: '90px', width: '100%', border: 'solid orange' }}
+        >
+          <p className="text-lg leading-normal text-primary-1">Coming soon...</p>
+        </div>
+      ) : (
+        <div
+          className="flex flex-row flex-wrap justify-around  overflow-auto scrollbar-hide"
+          style={{ height: '500vh' }}
+        >
+          {speakerData.map((speaker) => (
+            <div className="pb-5" key={speaker.id}>
+              <div className="flip-card">
+                <div className="flip-card-inner">
+                  <div className="flip-card-front rounded-md">
+                    <img
+                      src={speaker.profilePicture}
+                      alt={speaker.fullName}
+                      className="w-full cursor-pointer rounded-md object-cover"
+                      style={{
+                        height: '325px',
+                        padding: '10px',
+                      }}
+                    />
+                    <div className="flex flex-col items-center justify-between">
+                      <span className="pt-0 text-lg font-bold">{speaker.fullName}</span>
+                      <span className="my-auto flex w-full justify-center truncate text-center text-sm">
+                        {trimText(speaker.tagLine, 40)}
+                      </span>
+                    </div>
+                  </div>
+                  <div className="flip-card-back justify-between rounded-md pb-5">
+                    <div
+                      className="flex h-2/6 w-full flex-col items-center justify-center"
+                      style={{}}
+                    >
+                      <span className="text-center text-xl font-bold">{speaker.fullName}</span>
+                      {findCompany(speaker)}
+                    </div>
+                    <div
+                      className="flex h-3/6 w-full flex-col px-5 text-center"
+                      style={{ lineHeight: '30px' }}
+                    >
+                      {trimText(speaker.bio, 190)}
+                    </div>
+                    <div className="flex h-1/6 w-full items-center justify-center gap-x-0.5">
+                      {speaker.links.length > 0 ? (
+                        speaker.links.slice(0, 3).map((link, index) => (
+                          <div
+                            key={index}
+                            href={link.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            <SocialIcon url={link.url} bgColor="transparent" fgColor="white" />
+                          </div>
+                        ))
+                      ) : (
+                        <div></div>
+                      )}
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
+          ))}
         </div>
-      ))}
+      )}
     </div>
   );
 };
