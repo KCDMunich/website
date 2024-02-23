@@ -18,6 +18,7 @@ import germantech from 'icons/germantech.svg';
 import Syseleven from 'icons/syseleven.png';
 import pulumi from 'icons/pulumi_logo.svg';
 import adn from 'icons/adn_logo.png';
+import Exoscale from 'icons/exoscale.webp';
 
 const TITLE = 'Sponsors';
 
@@ -26,9 +27,8 @@ const ITEMS = [
     title: 'Gold',
     logos: [
       { icon: ApeFactory, url: 'https://www.apefactory.com/de' },
-      //{ icon: Elasticbrains, url: 'https://www.elasticbrains.de/de/' },
+
       { icon: MetalStack, url: 'https://metalstack.cloud/de' },
-      //{ icon: Google, url: 'https://www.google.com/' },
     ],
     cardClassname: 'min-w-[488px] max-w-[330px] min-h-[152px] sm:min-w-[350px] sm:min-h-[130px]',
     iconClassname: 'max-w-[390px] sm:max-w-[350px]',
@@ -36,15 +36,8 @@ const ITEMS = [
   {
     title: 'Silver',
     logos: [
-      //{ icon: Isovalent, url: 'https://isovalent.com/' },
-      //{ icon: Grafana, url: 'https://grafana.com/' },
       { icon: Camptocamp, url: 'https://www.camptocamp.com/en' },
-      //{ icon: Exoscale, url: 'https://www.exoscale.com/' },
-      //{ icon: Stormforge, url: 'https://www.stormforge.io/?utm_medium=tradeshow&utm_source=conference-website&utm_campaign=2023-07_kcd-munich',},
-      //{ icon: Lumigo, url: 'https://lumigo.io/' },
-      //{ icon: Okteto, url: 'https://www.okteto.com' },
-      //{ icon: Mkdev, url: 'https://mkdev.me/' },
-      //{ icon: Appscode, url: 'https://appscode.com/' },
+      { icon: Exoscale, url: 'https://www.exoscale.com/' },
       { icon: StackState, url: 'https://stackstate.com/' },
       { icon: pulumi, url: 'https://www.pulumi.com/' },
     ],
