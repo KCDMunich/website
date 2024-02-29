@@ -20,6 +20,7 @@ import pulumi from 'icons/pulumi_logo.svg';
 import adn from 'icons/adn_logo.png';
 import Exoscale from 'icons/exoscale.webp';
 import Steadforce from 'icons/steadforce_logo.png';
+import MindcurvGmbH from 'icons/MindcurvGmbH.png';
 
 const TITLE = 'Sponsors';
 
@@ -42,6 +43,7 @@ const ITEMS = [
       { icon: StackState, url: 'https://stackstate.com/' },
       { icon: pulumi, url: 'https://www.pulumi.com/' },
       { icon: Steadforce, url: 'https://www.steadforce.com/' },
+      { icon: MindcurvGmbH, url: 'https://www.mindcurv.com/' },
     ],
     cardClassname: 'min-w-[384px] min-h-[122px] sm:min-w-[320px] sm:min-h-[115px]',
     iconClassname: 'max-w-[330px] sm:min-w-[290px]',
