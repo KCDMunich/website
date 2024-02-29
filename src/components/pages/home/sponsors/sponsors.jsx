@@ -19,6 +19,7 @@ import Syseleven from 'icons/syseleven.png';
 import pulumi from 'icons/pulumi_logo.svg';
 import adn from 'icons/adn_logo.png';
 import Exoscale from 'icons/exoscale.webp';
+import Steadforce from 'icons/steadforce_logo.png';
 
 const TITLE = 'Sponsors';
 
@@ -40,6 +41,7 @@ const ITEMS = [
       { icon: Exoscale, url: 'https://www.exoscale.com/' },
       { icon: StackState, url: 'https://stackstate.com/' },
       { icon: pulumi, url: 'https://www.pulumi.com/' },
+      { icon: Steadforce, url: 'https://www.steadforce.com/' },
     ],
     cardClassname: 'min-w-[384px] min-h-[122px] sm:min-w-[320px] sm:min-h-[115px]',
     iconClassname: 'max-w-[330px] sm:min-w-[290px]',
@@ -61,7 +63,6 @@ const ITEMS = [
       { icon: liquid, url: 'http://liquidreply.com/' },
       { icon: whiteduck, url: 'https://whiteduck.de/' },
       { icon: Qaware, url: 'https://www.qaware.de/en/' },
-      //{ icon: unikube, url: 'https://www.blueshoe.io/' },
     ],
     cardClassname: 'min-w-[280px] min-h-[104px] sm:min-w-[250px] sm:min-h-[94px]',
     iconClassname: 'max-w-[300px] sm:min-w-[104px]',
