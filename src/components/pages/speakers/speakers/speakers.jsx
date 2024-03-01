@@ -227,9 +227,12 @@ const SpeakerComponent = () => {
     const link = speaker.links.find((l) => l.title === 'Sessionize');
     if (link && link.url) {
       return (
-        <a href={link.url} style={{ color: '#1800d4' }}>
-          about me
-        </a>
+        <div>
+          /
+          <a href={link.url} style={{ color: '#1800d4' }}>
+            about me
+          </a>
+        </div>
       );
     }
     return <div></div>;
@@ -238,9 +241,9 @@ const SpeakerComponent = () => {
   const findCompany = (speaker) => {
     const company = speaker.questionAnswers.find((q) => q.question === 'Company');
     if (company && company.answer) {
-      return <span className="tex-xs truncate text-center italic">{company.answer}</span>;
+      return company.answer;
     } else {
-      return;
+      return 'Speaker';
     }
   };
 
@@ -257,7 +260,10 @@ const SpeakerComponent = () => {
               <div className="flip-card rounded-md">
                 <div className="flip-card-inner rounded-md">
                   <div className="flip-card-front rounded-md">
-                    <div className="h-full w-full" style={{ position: 'relative', zIndex: '1' }}>
+                    <div
+                      className="flex h-full w-full flex-row-reverse"
+                      style={{ position: 'relative', zIndex: '1' }}
+                    >
                       <img
                         src={speaker.profilePicture}
                         alt={speaker.fullName}
@@ -280,9 +286,12 @@ const SpeakerComponent = () => {
                     </div>
                   </div>
                   <div className="flip-card-back flex flex-col justify-between rounded-md">
-                    <div className="flex h-1/6 w-full flex-col items-center justify-center ">
+                    <div
+                      className="flex h-1/6 w-full flex-col items-center justify-center"
+                      style={{ paddingTop: '3px' }}
+                    >
                       <span className="w-full px-1 text-center text-lg font-bold">
-                        {speaker.fullName}
+                        {findCompany(speaker)}
                       </span>
 
                       <span
@@ -298,16 +307,20 @@ const SpeakerComponent = () => {
                     </div>
                     <div className="flex h-3/6 w-full flex-col items-center">
                       <span
-                        className="speaker-bio w-full overflow-hidden px-3 text-base"
-                        style={{ lineHeight: '35px', height: '100%' }}
+                        className="speaker-bio w-full overflow-hidden px-3 text-lg italic"
+                        style={{ lineHeight: '37px', height: '100%', scale: '0.8' }}
                       >
                         {speaker.bio}
                       </span>
                     </div>
-                    <div className="flex h-1/6 items-center justify-center truncate px-1 text-center text-base">
-                      {findCompany(speaker)}/{getSpeakerProfile(speaker)}
+                    <div className="flex h-1/6 items-center justify-center px-1 text-center text-base ">
+                      {speaker.firstName}
+                      {getSpeakerProfile(speaker)}
                     </div>
-                    <div className="flex h-1/6 w-full items-center justify-center gap-x-0.5">
+                    <div
+                      className="flex h-1/6 w-full items-center justify-center gap-x-0.5"
+                      style={{ paddingBottom: '5px' }}
+                    >
                       {speaker.links.length > 0 ? (
                         speaker.links.slice(0, 3).map((link, index) => (
                           <i key={index} href={link.url} target="_blank" rel="noopener noreferrer">

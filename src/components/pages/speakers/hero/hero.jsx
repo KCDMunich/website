@@ -17,7 +17,7 @@ const Hero = () => (
         {DESCRIPTION}
       </p>
       <Button
-        className="mt-10 shadow-xl hover:bg-blue-2 hover:shadow-[0px_15px_30px_#adadad] md:mt-8 xs:mt-7 xs:w-full"
+        className="mt-10  hover:bg-blue-2 hover:shadow-[0px_15px_30px_#adadad] md:mt-8 xs:mt-7 xs:w-full"
         size="lg"
         theme="blue"
         to="https://kcdmunich-2.ticketbutler.io/en/e/kcd-munich-2024/"

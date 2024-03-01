@@ -1,7 +1,7 @@
 .flip-card {
   background-color: transparent;
-  width: 273px;
-  height: 335px;
+  width: 275px;
+  height: 275px;
   //perspective: 1000px; /* Remove this if you don't want the 3D effect */
 }
 
@@ -44,7 +44,7 @@
 /* Style the back side */
 .flip-card-back {
   background-color: #e3e3e3;
-  color: #283058;
+  color: #282e58;
   transform: rotateY(180deg);
   z-index: 0;
 }
@@ -57,13 +57,13 @@
     rgba(40, 55, 163, 0.7931547619047619) 0%,
     rgba(55, 131, 252, 0.5326505602240896) 100%
   );
-  border-bottom-left-radius: 0.375rem;
-  border-top-right-radius: 0.375rem;
+  border-top-left-radius: 0.375rem;
+  border-bottom-right-radius: 0.375rem;
 }
 
 .speaker-bio {
   display: -webkit-box;
-  -webkit-line-clamp: 5;
-  line-clamp: 5;
+  -webkit-line-clamp: 4;
+  line-clamp: 4;
   -webkit-box-orient: vertical;
 }
