@@ -6,20 +6,8 @@ import LINKS from 'constants/links';
 
 import ApeFactory from 'icons/apefactory.webp';
 import Camptocamp from 'icons/camptocamp.svg';
-//import Elasticbrains from 'icons/elasticbrain.webp';
-//import Exoscale from 'icons/exoscale.webp';
-//import Grafana from 'icons/grafanalabs.webp';
-//import Isovalent from 'icons/isovalent.svg';
-//import Lumigo from 'icons/lumigo.webp';
 import MetalStack from 'icons/metalstackcloud.webp';
-//import Mkdev from 'icons/mkdev.png';
 import Qaware from 'icons/qaware.svg';
-//import Redhat from 'icons/redhat.png';
-//import Stormforge from 'icons/stormforge.webp';
-//import Google from 'icons/google-cloud.svg';
-//import Okteto from 'icons/okteto.png';
-//import Appscode from 'icons/appsCode.png';
-//import unikube from 'icons/Blueshoe.webp';
 import liquid from 'icons/liquid.png';
 import whiteduck from 'icons/whiteduck.png';
 import Cloudnative from 'icons/cloudnative.svg';
@@ -29,6 +17,10 @@ import StackState from 'icons/stackstate.png';
 import germantech from 'icons/germantech.svg';
 import Syseleven from 'icons/syseleven.png';
 import pulumi from 'icons/pulumi_logo.svg';
+import adn from 'icons/adn_logo.png';
+import Exoscale from 'icons/exoscale.webp';
+import Steadforce from 'icons/steadforce_logo.png';
+import MindcurvGmbH from 'icons/MindcurvGmbH.png';
 
 const TITLE = 'Sponsors';
 
@@ -37,9 +29,8 @@ const ITEMS = [
     title: 'Gold',
     logos: [
       { icon: ApeFactory, url: 'https://www.apefactory.com/de' },
-      //{ icon: Elasticbrains, url: 'https://www.elasticbrains.de/de/' },
+
       { icon: MetalStack, url: 'https://metalstack.cloud/de' },
-      //{ icon: Google, url: 'https://www.google.com/' },
     ],
     cardClassname: 'min-w-[488px] max-w-[330px] min-h-[152px] sm:min-w-[350px] sm:min-h-[130px]',
     iconClassname: 'max-w-[390px] sm:max-w-[350px]',
@@ -47,36 +38,33 @@ const ITEMS = [
   {
     title: 'Silver',
     logos: [
-      //{ icon: Isovalent, url: 'https://isovalent.com/' },
-      //{ icon: Grafana, url: 'https://grafana.com/' },
       { icon: Camptocamp, url: 'https://www.camptocamp.com/en' },
-      //{ icon: Exoscale, url: 'https://www.exoscale.com/' },
-      //{ icon: Stormforge, url: 'https://www.stormforge.io/?utm_medium=tradeshow&utm_source=conference-website&utm_campaign=2023-07_kcd-munich',},
-      //{ icon: Lumigo, url: 'https://lumigo.io/' },
-      //{ icon: Okteto, url: 'https://www.okteto.com' },
-      //{ icon: Mkdev, url: 'https://mkdev.me/' },
-      //{ icon: Appscode, url: 'https://appscode.com/' },
+      { icon: Exoscale, url: 'https://www.exoscale.com/' },
       { icon: StackState, url: 'https://stackstate.com/' },
       { icon: pulumi, url: 'https://www.pulumi.com/' },
+      { icon: Steadforce, url: 'https://www.steadforce.com/' },
+      { icon: MindcurvGmbH, url: 'https://www.mindcurv.com/' },
     ],
     cardClassname: 'min-w-[384px] min-h-[122px] sm:min-w-[320px] sm:min-h-[115px]',
     iconClassname: 'max-w-[330px] sm:min-w-[290px]',
   },
-  //  {
-  //    title: 'Bronze',
-  //    logos: [
-  //      //{ icon: Redhat, url: 'https://www.redhat.com/de/our-code-is-open?sc_cid=7013a000002w5fEAAQ&gclsrc=aw.ds',},
-  //    ],
-  //    cardClassname: 'min-w-[280px] min-h-[104px] sm:min-w-[250px] sm:min-h-[94px]',
-  //    iconClassname: 'max-w-[330px] sm:min-w-[290px]',
-  //  },
+  {
+    title: 'Bronze',
+    logos: [
+      {
+        icon: adn,
+        url: 'https://shop.adn.de/',
+      },
+    ],
+    cardClassname: 'min-w-[280px] min-h-[104px] sm:min-w-[250px] sm:min-h-[94px]',
+    iconClassname: 'max-w-[330px] sm:min-w-[290px]',
+  },
   {
     title: 'Organizers',
     logos: [
       { icon: liquid, url: 'http://liquidreply.com/' },
       { icon: whiteduck, url: 'https://whiteduck.de/' },
       { icon: Qaware, url: 'https://www.qaware.de/en/' },
-      //{ icon: unikube, url: 'https://www.blueshoe.io/' },
     ],
     cardClassname: 'min-w-[280px] min-h-[104px] sm:min-w-[250px] sm:min-h-[94px]',
     iconClassname: 'max-w-[300px] sm:min-w-[104px]',
@@ -127,10 +115,19 @@ const Sponsors = () => (
           </span>
         </Button>
       </div>
-      <ul className="mt-16 flex flex-col">
+      <ul className="mt-16 flex flex-col ">
         {ITEMS.map(({ title, logos, cardClassname, iconClassname }, index) => (
           <li className="" key={index}>
-            <p className="text-center text-4xl font-bold leading-normal text-primary-1">{title}</p>
+            <p
+              className="text-center text-4xl font-bold leading-normal text-primary-1"
+              style={{
+                background:
+                  'linear-gradient(to right, #FFFFFF 0%, #7b79791f 30%, #7b79791f 70%, #FFFFFF 100%)',
+                borderRadius: '10px',
+              }}
+            >
+              {title}
+            </p>
 
             <ul className="mb-[70px] mt-10 flex flex-wrap justify-center gap-x-8 xl:gap-y-6">
               {logos.map(({ icon, url }, index) => (
