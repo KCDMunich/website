@@ -1,7 +1,7 @@
 .flip-card {
   background-color: transparent;
-  width: 342px;
-  height: 396px;
+  width: 273px;
+  height: 335px;
   //perspective: 1000px; /* Remove this if you don't want the 3D effect */
 }
 
@@ -14,8 +14,6 @@
   transition: transform 0.4s;
   transform-style: preserve-3d;
 }
-
-/* Do an horizontal flip when you move the mouse over the flip box container */
 .flip-card:hover .flip-card-inner {
   transform: rotateY(180deg);
 }
@@ -32,13 +30,40 @@
 
 /* Style the front side (fallback if image is missing) */
 .flip-card-front {
-  background-color: #e0e4e7;
+  background-color: white;
   color: #282e58;
+}
+.flip-card:hover .flip-card-front {
+  z-index: 1;
+}
+
+.flip-card:hover .flip-card-back {
+  z-index: 2; /* Stellt die Rückseite über die Vorderseite, wenn geflippt */
 }
 
 /* Style the back side */
 .flip-card-back {
-  background-color: #283058;
-  color: whitesmoke;
+  background-color: #e3e3e3;
+  color: #283058;
   transform: rotateY(180deg);
+  z-index: 0;
+}
+
+.text-tag {
+  background: rgb(12, 12, 126);
+  background: linear-gradient(
+    90deg,
+    rgba(12, 12, 126, 1) 0%,
+    rgba(40, 55, 163, 0.7931547619047619) 0%,
+    rgba(55, 131, 252, 0.5326505602240896) 100%
+  );
+  border-bottom-left-radius: 0.375rem;
+  border-top-right-radius: 0.375rem;
+}
+
+.speaker-bio {
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  line-clamp: 5;
+  -webkit-box-orient: vertical;
 }

@@ -4,6 +4,7 @@ import { SocialIcon } from 'react-social-icons';
 import ReactCardFlip from 'react-card-flip';
 import { isMobile } from 'react-device-detect';
 import speakersJSON from './speaker2.json'; //speaker aus json 2
+import './speakers3.css';
 
 const TITLE = 'Speakers';
 const scriptUrl = 'https://sessionize.com/api/v2/6dqtqpt2/view/Speakers';
@@ -20,7 +21,7 @@ const Speakers = () => (
         </h2>
         <br />
         <div className="w-full ">
-          <SpeakerComponent />
+          <DangerComponent1 />
         </div>
       </div>
     </div>
@@ -144,12 +145,12 @@ const SpeakerComponent = () => {
                     backgroundColor: '#262f5908',
                   }}
                 >
-                  <div className="flex flex-row">
+                  <div>
                     {speaker.links.length > 0 ? (
-                      speaker.links.slice(0, 3).map((link, index) => (
-                        <div key={index} href={link.url} target="_blank" rel="noopener noreferrer">
+                      speaker.links.slice(0, 5).map((link, index) => (
+                        <a key={index} href={link.url} target="_blank" rel="noopener noreferrer">
                           <SocialIcon url={link.url} bgColor="transparent" fgColor="#262f59" />
-                        </div>
+                        </a>
                       ))
                     ) : (
                       <div></div>
@@ -190,6 +191,147 @@ const SpeakerComponent = () => {
                 >
                   {speaker.tagLine}
                 </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+};
+
+const DangerComponent1 = () => {
+  const [speakerData, setSpeakerData] = useState([]);
+  // useEffect(() => {
+  //   fetch(scriptUrl)
+  //     .then((response) => response.json())
+  //     .then((data) => {
+  //       if (data && data.length > 0) {
+  //         const speakersWithFlipState = data.map((speaker) => ({
+  //           ...speaker,
+  //           isFlipped: false,
+  //           canFlip: speaker.links.length > 0 || findCompany(speaker) != null,
+  //         }));
+  //         const shuffledSpeaker = shuffleSpeaker(speakersWithFlipState);
+  //         setSpeakerData(shuffledSpeaker);
+  //       } else {
+  //         setSpeakerData([]);
+  //       }
+  //     })
+  //     .catch((error) => console.error('Error:', error));
+  // }, []);
+
+  useEffect(() => {
+    if (speakersJSON && speakersJSON.length > 0) {
+      const speakersWithFlipState = speakersJSON.map((speaker) => ({
+        ...speaker,
+        isFlipped: false,
+        canFlip: speaker.links.length > 0 || findCompany(speaker) != null,
+      }));
+      const shuffledSpeaker = shuffleSpeaker(speakersWithFlipState);
+      setSpeakerData(shuffledSpeaker);
+    } else {
+      setSpeakerData([]);
+    }
+  }, []);
+
+  const handleClick = (id) => {
+    setSpeakerData(
+      speakerData.map((speaker) => {
+        if (speaker.id === id && speaker.canFlip) {
+          return { ...speaker, isFlipped: !speaker.isFlipped };
+        }
+        return speaker;
+      })
+    );
+  };
+
+  const shuffleSpeaker = (array) => {
+    let currentIndex = array.length,
+      randomIndex;
+
+    while (currentIndex > 0) {
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex--;
+
+      [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
+    }
+    return array;
+  };
+
+  const trimText = (text, maxLength) => {
+    if (text.length > maxLength) {
+      return text.substring(0, maxLength - 3) + '...';
+    } else {
+      return text;
+    }
+  };
+
+  const findCompany = (speaker) => {
+    const company = speaker.questionAnswers.find((q) => q.question === 'Company');
+    return company.answer;
+  };
+  return (
+    <div className="flex h-full w-full items-center justify-center">
+      {speakerData.length === 0 ? (
+        <div className="flex items-center justify-center" style={{ height: '90px', width: '100%' }}>
+          <p className="text-lg leading-normal text-primary-1" style={{ marginTop: '7vh' }}>
+            Coming soon...
+          </p>
+        </div>
+      ) : (
+        <div
+          className="flex flex-row flex-wrap justify-around overflow-auto scrollbar-hide"
+          style={{ height: '55vh' }}
+        >
+          {speakerData.map((speaker) => (
+            <div className="flex flex-col p-4" key={speaker.id}>
+              <div className="card">
+                <div className="card-inner">
+                  <div className="card-front rounded-md">
+                    <img
+                      src={speaker.profilePicture}
+                      alt={speaker.fullName}
+                      className="w-full cursor-pointer rounded-lg object-cover"
+                    />
+                  </div>
+                  <div
+                    className="card-back flex flex-col justify-between rounded-lg"
+                    style={{ borderBottom: 'solid 3px #5f6ab5' }}
+                  >
+                    <div>
+                      {speaker.links.length > 0 ? (
+                        speaker.links.slice(0, 5).map((link, index) => (
+                          <i key={index} href={link.url} target="_blank" rel="noopener noreferrer">
+                            <SocialIcon
+                              url={link.url}
+                              bgColor="transparent"
+                              fgColor="#262f59"
+                              style={{ size: '30px' }}
+                            />
+                          </i>
+                        ))
+                      ) : (
+                        <div></div>
+                      )}
+                    </div>
+                    <div style={{ width: '100%', marginBottom: '10px' }}>
+                      <span className="font-semibold">{findCompany(speaker)}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div
+                className="flex  items-center justify-center font-bold"
+                style={{ width: '190px', height: '30px' }}
+              >
+                <span className="flex truncate text-sm">{speaker.fullName}</span>
+              </div>
+              <div
+                className="flex  items-center justify-center "
+                style={{ width: '190px', height: '35px', marginTop: '-10px' }}
+              >
+                <span className="truncate  text-xs italic">{speaker.tagLine}</span>
               </div>
             </div>
           ))}

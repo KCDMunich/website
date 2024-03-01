@@ -113,7 +113,7 @@ const DangerComponent = () => {
           >
             <div
               onClick={() => isMobile && handleClick(speaker.id)}
-              onMouseEnter={() => !isMobile && handleClick(speaker.id)}
+              onMouseOver={() => !isMobile && handleClick(speaker.id)}
               className="front flex flex-col items-center justify-between rounded-md p-4"
               style={{
                 width: '342px',
@@ -139,7 +139,7 @@ const DangerComponent = () => {
             <div
               className="back flex flex-col items-center rounded-md"
               onClick={() => isMobile && handleClick(speaker.id)}
-              onMouseLeave={() => !isMobile && handleClick(speaker.id)}
+              onMouseOut={() => !isMobile && handleClick(speaker.id)}
               style={{
                 width: '342px',
                 height: '396px',
@@ -223,86 +223,96 @@ const SpeakerComponent = () => {
     return array;
   };
 
+  const getSpeakerProfile = (speaker) => {
+    const link = speaker.links.find((l) => l.title === 'Sessionize');
+    if (link && link.url) {
+      return (
+        <a href={link.url} style={{ color: '#1800d4' }}>
+          about me
+        </a>
+      );
+    }
+    return <div></div>;
+  };
+
   const findCompany = (speaker) => {
     const company = speaker.questionAnswers.find((q) => q.question === 'Company');
     if (company && company.answer) {
-      return (
-        <span
-          className="tex-4xl truncate text-center"
-          style={{
-            textDecoration: 'underline',
-            textDecorationColor: 'whitesmoke',
-            textDecorationThickness: '1px',
-          }}
-        >
-          {company.answer}
-        </span>
-      );
+      return <span className="tex-xs truncate text-center italic">{company.answer}</span>;
     } else {
-      return <div style={{ height: '20px' }}></div>;
+      return;
     }
   };
 
   return (
     <div className="flex w-full items-center justify-center">
       {speakerData.length === 0 ? (
-        <div
-          className="flex items-center justify-center"
-          style={{ height: '90px', width: '100%', border: 'solid orange' }}
-        >
+        <div className="flex items-center justify-center" style={{ height: '90px', width: '100%' }}>
           <p className="text-lg leading-normal text-primary-1">Coming soon...</p>
         </div>
       ) : (
-        <div
-          className="flex flex-row flex-wrap justify-around  overflow-auto scrollbar-hide"
-          style={{ height: '500vh' }}
-        >
+        <div className="flex flex-row flex-wrap justify-around  overflow-auto scrollbar-hide">
           {speakerData.map((speaker) => (
             <div className="pb-5" key={speaker.id}>
-              <div className="flip-card">
-                <div className="flip-card-inner">
+              <div className="flip-card rounded-md">
+                <div className="flip-card-inner rounded-md">
                   <div className="flip-card-front rounded-md">
-                    <img
-                      src={speaker.profilePicture}
-                      alt={speaker.fullName}
-                      className="w-full cursor-pointer rounded-md object-cover"
-                      style={{
-                        height: '325px',
-                        padding: '10px',
-                      }}
-                    />
-                    <div className="flex flex-col items-center justify-between">
-                      <span className="pt-0 text-lg font-bold">{speaker.fullName}</span>
-                      <span className="my-auto flex w-full justify-center truncate text-center text-sm">
-                        {trimText(speaker.tagLine, 40)}
+                    <div className="h-full w-full" style={{ position: 'relative', zIndex: '1' }}>
+                      <img
+                        src={speaker.profilePicture}
+                        alt={speaker.fullName}
+                        className="h-full w-full cursor-pointer rounded-md object-cover"
+                      />
+                      <span
+                        className="text-tag flex"
+                        style={{
+                          paddingLeft: '5px',
+                          paddingRight: '4px',
+                          position: 'absolute',
+                          bottom: '0px',
+                          textAlign: 'center',
+                          zIndex: '3',
+                          color: 'white',
+                        }}
+                      >
+                        {speaker.fullName}
                       </span>
                     </div>
                   </div>
-                  <div className="flip-card-back justify-between rounded-md pb-5">
-                    <div
-                      className="flex h-2/6 w-full flex-col items-center justify-center"
-                      style={{}}
-                    >
-                      <span className="text-center text-xl font-bold">{speaker.fullName}</span>
-                      {findCompany(speaker)}
+                  <div className="flip-card-back flex flex-col justify-between rounded-md">
+                    <div className="flex h-1/6 w-full flex-col items-center justify-center ">
+                      <span className="w-full px-1 text-center text-lg font-bold">
+                        {speaker.fullName}
+                      </span>
+
+                      <span
+                        className=" w-full truncate px-3 text-sm "
+                        style={{
+                          textDecoration: 'underline',
+                          textDecorationColor: '#283058',
+                          textDecorationThickness: '1px',
+                        }}
+                      >
+                        {speaker.tagLine}
+                      </span>
                     </div>
-                    <div
-                      className="flex h-3/6 w-full flex-col px-5 text-center"
-                      style={{ lineHeight: '30px' }}
-                    >
-                      {trimText(speaker.bio, 190)}
+                    <div className="flex h-3/6 w-full flex-col items-center">
+                      <span
+                        className="speaker-bio w-full overflow-hidden px-3 text-base"
+                        style={{ lineHeight: '35px', height: '100%' }}
+                      >
+                        {speaker.bio}
+                      </span>
+                    </div>
+                    <div className="flex h-1/6 items-center justify-center truncate px-1 text-center text-base">
+                      {findCompany(speaker)}/{getSpeakerProfile(speaker)}
                     </div>
                     <div className="flex h-1/6 w-full items-center justify-center gap-x-0.5">
                       {speaker.links.length > 0 ? (
                         speaker.links.slice(0, 3).map((link, index) => (
-                          <div
-                            key={index}
-                            href={link.url}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          >
-                            <SocialIcon url={link.url} bgColor="transparent" fgColor="white" />
-                          </div>
+                          <i key={index} href={link.url} target="_blank" rel="noopener noreferrer">
+                            <SocialIcon url={link.url} bgColor="transparent" fgColor="#283058" />
+                          </i>
                         ))
                       ) : (
                         <div></div>
