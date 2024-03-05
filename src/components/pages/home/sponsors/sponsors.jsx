@@ -20,7 +20,7 @@ import pulumi from 'icons/pulumi_logo.svg';
 import adn from 'icons/adn_logo.png';
 import Exoscale from 'icons/exoscale.webp';
 import Steadforce from 'icons/steadforce_logo.png';
-import MindcurvGmbH from 'icons/MindcurvGmbH.png';
+import MindcurvGmbH from 'icons/mindcurv-group.png';
 import spectrocloud from 'icons/spectrocloud.svg';
 
 const TITLE = 'Sponsors';
