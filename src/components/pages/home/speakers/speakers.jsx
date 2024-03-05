@@ -88,7 +88,7 @@ const SpeakerComponent = () => {
       ) : (
         <div
           className="flex flex-row flex-wrap justify-around overflow-auto scrollbar-hide"
-          style={{ height: '55vh' }}
+          style={{ height: 'fit-content' }}
         >
           {speakerData.map((speaker) => (
             <div
