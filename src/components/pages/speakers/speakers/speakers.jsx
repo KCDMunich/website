@@ -129,7 +129,14 @@ const SpeakerComponent = () => {
                         <div className="text-tag px-2 text-center" style={{ borderRadius: '0' }}>
                           {speaker.fullName}
                         </div>
-                        <div className="text-tag px-2 text-center" style={{ borderRadius: '0' }}>
+                        <div
+                          className="text-tag px-2 text-center"
+                          style={{
+                            borderRadius: '0',
+                            borderBottomLeftRadius: '0.375rem',
+                            borderBottomRightRadius: '0.375rem',
+                          }}
+                        >
                           {findCompany(speaker)}
                         </div>
                       </div>
