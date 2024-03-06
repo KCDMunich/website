@@ -3,8 +3,7 @@ import React from 'react';
 import Button from 'components/shared/button';
 
 const TITLE = 'Speaker Lineup';
-const DESCRIPTION =
-  'Meet our fantastic speakers and learn from their experience. The whole event will be held in English.';
+const DESCRIPTION = 'Meet our fantastic speakers and learn from their experience.';
 
 const Hero = () => (
   <section className="safe-paddings pb-10 pt-24 lg:pt-[4.5rem] md:pb-4 md:pt-16 sm:py-8">
@@ -17,7 +16,7 @@ const Hero = () => (
         {DESCRIPTION}
       </p>
       <Button
-        className="mt-10 shadow-xl hover:bg-blue-2 hover:shadow-[0px_15px_30px_#adadad] md:mt-8 xs:mt-7 xs:w-full"
+        className="mt-10  hover:bg-blue-2 hover:shadow-[0px_15px_30px_#adadad] md:mt-8 xs:mt-7 xs:w-full"
         size="lg"
         theme="blue"
         to="https://kcdmunich-2.ticketbutler.io/en/e/kcd-munich-2024/"

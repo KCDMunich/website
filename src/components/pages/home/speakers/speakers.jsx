@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import LINKS from 'constants/links';
 import { SocialIcon } from 'react-social-icons';
-import ReactCardFlip from 'react-card-flip';
-import { isMobile } from 'react-device-detect';
+import speakersJSON from './speaker2.json'; //speaker aus json 2
+import './speakers3.css';
 
 const TITLE = 'Speakers';
 const scriptUrl = 'https://sessionize.com/api/v2/6dqtqpt2/view/Speakers';
@@ -19,14 +19,14 @@ const Speakers = () => (
         </h2>
         <br />
         <div className="w-full ">
-          <SpeakerComponent />
+          <DangerComponent1 />
         </div>
       </div>
     </div>
   </section>
 );
 
-const SpeakerComponent = () => {
+const DangerComponent1 = () => {
   const [speakerData, setSpeakerData] = useState([]);
 
   useEffect(() => {
@@ -48,16 +48,19 @@ const SpeakerComponent = () => {
       .catch((error) => console.error('Error:', error));
   }, []);
 
-  const handleClick = (id) => {
-    setSpeakerData(
-      speakerData.map((speaker) => {
-        if (speaker.id === id && speaker.canFlip) {
-          return { ...speaker, isFlipped: !speaker.isFlipped };
-        }
-        return speaker;
-      })
-    );
-  };
+  // useEffect(() => {
+  //   if (speakersJSON && speakersJSON.length > 0) {
+  //     const speakersWithFlipState = speakersJSON.map((speaker) => ({
+  //       ...speaker,
+  //       isFlipped: false,
+  //       canFlip: speaker.links.length > 0 || findCompany(speaker) != null,
+  //     }));
+  //     const shuffledSpeaker = shuffleSpeaker(speakersWithFlipState);
+  //     setSpeakerData(shuffledSpeaker);
+  //   } else {
+  //     setSpeakerData([]);
+  //   }
+  // }, []);
 
   const shuffleSpeaker = (array) => {
     let currentIndex = array.length,
@@ -76,7 +79,6 @@ const SpeakerComponent = () => {
     const company = speaker.questionAnswers.find((q) => q.question === 'Company');
     return company.answer;
   };
-
   return (
     <div className="flex h-full w-full items-center justify-center">
       {speakerData.length === 0 ? (
@@ -91,89 +93,53 @@ const SpeakerComponent = () => {
           style={{ height: 'fit-content' }}
         >
           {speakerData.map((speaker) => (
-            <div
-              className="flex flex-col items-center justify-between p-4"
-              style={{
-                marginBottom: '40px',
-                maxWidth: '190px',
-                minWidth: '190px',
-                height: '220px',
-              }}
-            >
-              <ReactCardFlip
-                key={speaker.id}
-                isFlipped={speaker.isFlipped}
-                flipDirection="horizontal"
-                flipSpeedBackToFront="0.3"
-                flipSpeedFrontToBack="0.3"
-              >
-                <img
-                  onClick={() => isMobile && handleClick(speaker.id)}
-                  onMouseEnter={() => !isMobile && handleClick(speaker.id)}
-                  src={speaker.profilePicture}
-                  alt={speaker.fullName}
-                  className="front w-full cursor-pointer rounded-md object-cover"
-                  style={{
-                    height: '160px',
-                  }}
-                />
-                <div
-                  onClick={() => isMobile && handleClick(speaker.id)}
-                  onMouseLeave={() => !isMobile && handleClick(speaker.id)}
-                  className="back flex cursor-pointer flex-col justify-between rounded-md"
-                  style={{
-                    height: '160px',
-                    borderBottom: 'solid 3px #5f6ab5',
-                    width: '153px',
-                    backgroundColor: '#262f5908',
-                  }}
-                >
-                  <div>
-                    {speaker.links.length > 0 ? (
-                      speaker.links.slice(0, 5).map((link, index) => (
-                        <a key={index} href={link.url} target="_blank" rel="noopener noreferrer">
-                          <SocialIcon url={link.url} bgColor="transparent" fgColor="#262f59" />
-                        </a>
-                      ))
-                    ) : (
-                      <div></div>
-                    )}
+            <div className="flex flex-col p-4" key={speaker.id}>
+              <div className="card">
+                <div className="card-inner">
+                  <div className="card-front rounded-md">
+                    <img
+                      src={speaker.profilePicture}
+                      alt={speaker.fullName}
+                      className="w-full cursor-pointer rounded-lg object-cover"
+                    />
                   </div>
-                  <div style={{ padding: '10px', marginTop: 'auto' }}>
-                    <span className="flex justify-center text-center text-sm font-bold">
-                      {findCompany(speaker)}
-                    </span>
+                  <div
+                    className="card-back flex flex-col justify-between rounded-lg"
+                    style={{ borderBottom: 'solid 3px #5f6ab5' }}
+                  >
+                    <div>
+                      {speaker.links.length > 0 ? (
+                        speaker.links.slice(0, 5).map((link, index) => (
+                          <i key={index} href={link.url} target="_blank" rel="noopener noreferrer">
+                            <SocialIcon
+                              url={link.url}
+                              bgColor="transparent"
+                              fgColor="#262f59"
+                              style={{ size: '30px' }}
+                            />
+                          </i>
+                        ))
+                      ) : (
+                        <div></div>
+                      )}
+                    </div>
+                    <div style={{ width: '100%', marginBottom: '10px' }}>
+                      <span className="font-semibold">{findCompany(speaker)}</span>
+                    </div>
                   </div>
                 </div>
-              </ReactCardFlip>
-              <div
-                className="flex flex-col items-center"
-                style={{
-                  paddingTop: '5px',
-                }}
-              >
-                <span className="w-full items-center truncate text-sm font-bold">
-                  {speaker.fullName}
-                </span>
               </div>
               <div
-                className="mt-auto w-full"
-                style={{
-                  padding: '0 4px',
-                }}
+                className="flex  items-center justify-center font-bold"
+                style={{ width: '190px', height: '30px' }}
               >
-                <div
-                  className="overflow-hidden text-ellipsis text-center italic"
-                  style={{
-                    height: '3em',
-                    display: '-webkit-box',
-                    WebkitLineClamp: '3',
-                    WebkitBoxOrient: 'vertical',
-                    fontSize: 'small',
-                  }}
-                >
-                  {speaker.tagLine}
-                </div>
+                <span className="flex truncate text-sm">{speaker.fullName}</span>
+              </div>
+              <div
+                className="flex  items-center justify-center "
+                style={{ width: '190px', height: '35px', marginTop: '-10px' }}
+              >
+                <span className="truncate  text-xs italic">{speaker.tagLine}</span>
               </div>
             </div>
           ))}
