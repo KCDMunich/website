@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Speakers from '../speakers';
 
 const Info = () => (
@@ -41,7 +41,6 @@ const Info = () => (
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
-            paddingBottom: '7rem',
           }}
         >
           <iframe
@@ -52,21 +51,12 @@ const Info = () => (
             allowFullScreen={true}
           ></iframe>
         </div>
-        <div className="container text-center">
-          <h2 className="text-6xl font-bold leading-denser text-primary-1">Tickets</h2>
-        </div>
-        <div
-          className="ticketbutler-iframe"
-          data-type="EVENT_LIST"
-          data-domain="kcdmunich-2.ticketbutler.io"
-          data-slug="kcdmunich-2"
-        ></div>
-        <TicketButler />
       </div>
     </div>
   </section>
 );
 
+/*
 const TicketButler = () => {
   useEffect(() => {
     const script = document.createElement('script');
@@ -81,5 +71,6 @@ const TicketButler = () => {
 
   return null;
 };
+*/
 
 export default Info;

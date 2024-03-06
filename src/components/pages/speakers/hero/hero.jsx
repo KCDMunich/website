@@ -3,8 +3,7 @@ import React from 'react';
 import Button from 'components/shared/button';
 
 const TITLE = 'Speaker Lineup';
-const DESCRIPTION =
-  'Meet our fantastic speakers and learn from their experience. The whole event will be held in English.';
+const DESCRIPTION = 'Meet our fantastic speakers and learn from their experience.';
 
 const Hero = () => (
   <section className="safe-paddings pb-10 pt-24 lg:pt-[4.5rem] md:pb-4 md:pt-16 sm:py-8">

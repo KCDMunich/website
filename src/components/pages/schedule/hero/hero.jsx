@@ -2,9 +2,10 @@ import React from 'react';
 
 import Button from 'components/shared/button';
 
-const TITLE = 'Schedule for <time className="text-blue-1 xs:block">17th & 18th of July, 2023</time>';
+const TITLE =
+  'Schedule for <time className="text-blue-1 xs:block">17th & 18th of July, 2023</time>';
 const DESCRIPTION =
-  "Get ready for action-packed days. With two tracks and more than 45 sessions to choose from, you'll have plenty of opportunities to learn from experts in the field. The whole event will be held in English.";
+  "Get ready for action-packed days. With two tracks and more than 45 sessions to choose from, you'll have plenty of opportunities to learn from experts in the field.";
 
 const Hero = () => (
   <section className="safe-paddings pb-10 pt-24 lg:pt-[4.5rem] md:pb-4 md:pt-16 sm:py-8">

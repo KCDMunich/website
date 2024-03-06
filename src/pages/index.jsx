@@ -13,12 +13,14 @@ import Details from 'components/pages/home/details';
 // import Workshops from 'components/pages/home/workshops';
 import Layout from 'components/shared/layout';
 import SEO from 'components/shared/seo';
+import Tickets from 'components/pages/home/tickets/tickets';
 
 const HomePage = ({ location }) => (
   <Layout homepage>
     <Hero />
     <Info />
     <Speakers />
+    <Tickets />
     <Proposal />
     <Sponsors />
   </Layout>
