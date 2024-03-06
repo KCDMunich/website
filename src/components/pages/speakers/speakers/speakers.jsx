@@ -145,7 +145,7 @@ const SpeakerComponent = () => {
                       </span>
 
                       <span
-                        className=" w-full truncate px-3 text-sm "
+                        className=" w-full truncate px-7 text-sm "
                         style={{
                           textDecoration: 'underline',
                           textDecorationColor: '#283058',
