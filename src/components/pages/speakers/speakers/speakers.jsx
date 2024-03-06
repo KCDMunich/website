@@ -20,7 +20,7 @@ const Speakers = () => (
   </section>
 );
 
-const DangerComponent = () => {
+const SpeakerComponent = () => {
   const [speakerData, setSpeakerData] = useState([]);
 
   //Speaker aus der api fetchen
@@ -47,168 +47,6 @@ const DangerComponent = () => {
     const shuffledSpeaker = shuffleSpeaker(speakersWithFlipState);
     setSpeakerData(shuffledSpeaker);
   }, []);
-
-  const handleClick = (id) => {
-    setSpeakerData(
-      speakerData.map((speaker) => {
-        if (speaker.id === id) {
-          return { ...speaker, isFlipped: !speaker.isFlipped };
-        }
-        return speaker;
-      })
-    );
-  };
-
-  const trimText = (text, maxLength) => {
-    if (text.length > maxLength) {
-      return text.substring(0, maxLength - 3) + '...';
-    } else {
-      return text;
-    }
-  };
-
-  const shuffleSpeaker = (array) => {
-    let currentIndex = array.length,
-      randomIndex;
-
-    while (currentIndex > 0) {
-      randomIndex = Math.floor(Math.random() * currentIndex);
-      currentIndex--;
-
-      [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
-    }
-    return array;
-  };
-
-  const findCompany = (speaker) => {
-    const company = speaker.questionAnswers.find((q) => q.question === 'Company');
-    if (company && company.answer) {
-      return (
-        <span
-          className="tex-4xl truncate text-center"
-          style={{
-            textDecoration: 'underline',
-            textDecorationColor: 'whitesmoke',
-            textDecorationThickness: '1px',
-          }}
-        >
-          {company.answer}
-        </span>
-      );
-    } else {
-      return <div style={{ height: '20px' }}></div>;
-    }
-  };
-
-  return (
-    <div className="flex flex-row flex-wrap justify-around">
-      {speakerData.map((speaker) => (
-        <div className="card-container pb-5 shadow-sm" key={speaker.id}>
-          <ReactCardFlip
-            key={speaker.id}
-            isFlipped={speaker.isFlipped}
-            flipDirection="horizontal"
-            flipSpeedBackToFront="0.3"
-            flipSpeedFrontToBack="0.3"
-          >
-            <div
-              onClick={() => isMobile && handleClick(speaker.id)}
-              onMouseOver={() => !isMobile && handleClick(speaker.id)}
-              className="front flex flex-col items-center justify-between rounded-md p-4"
-              style={{
-                width: '342px',
-                height: '396px',
-                backgroundColor: '#e0e4e7',
-              }}
-            >
-              <img
-                src={speaker.profilePicture}
-                alt={speaker.fullName}
-                className="front w-full cursor-pointer rounded-md object-cover"
-                style={{
-                  height: '288px',
-                }}
-              />
-              <div className="flex flex-col items-center justify-between">
-                <span className="pt-0 text-lg font-bold">{speaker.fullName}</span>
-                <span className="my-auto flex w-full justify-center truncate text-center text-sm">
-                  {trimText(speaker.tagLine, 40)}
-                </span>
-              </div>
-            </div>
-            <div
-              className="back flex flex-col items-center rounded-md"
-              onClick={() => isMobile && handleClick(speaker.id)}
-              onMouseOut={() => !isMobile && handleClick(speaker.id)}
-              style={{
-                width: '342px',
-                height: '396px',
-                backgroundColor: '#283058',
-                color: 'whitesmoke',
-                justifyContent: 'space-between',
-                paddingBottom: '18px',
-              }}
-            >
-              <div className="flex h-2/6 w-full flex-col items-center justify-center" style={{}}>
-                <span className="text-center text-xl font-bold">{speaker.fullName}</span>
-                {findCompany(speaker)}
-              </div>
-              <div
-                className="flex h-3/6 w-full flex-col px-5 text-center"
-                style={{ lineHeight: '30px' }}
-              >
-                {trimText(speaker.bio, 190)}
-              </div>
-              <div className="flex h-1/6 w-full items-center justify-center gap-x-0.5">
-                {speaker.links.length > 0 ? (
-                  speaker.links.slice(0, 3).map((link, index) => (
-                    <a key={index} href={link.url} target="_blank" rel="noopener noreferrer">
-                      <SocialIcon url={link.url} bgColor="transparent" fgColor="white" />
-                    </a>
-                  ))
-                ) : (
-                  <div></div>
-                )}
-              </div>
-            </div>
-          </ReactCardFlip>
-        </div>
-      ))}
-    </div>
-  );
-};
-
-const SpeakerComponent = () => {
-  const [speakerData, setSpeakerData] = useState([]);
-
-  useEffect(() => {
-    // aus der speaker.json
-    const speakersWithFlipState = speakerJSON.map((speaker) => ({
-      ...speaker,
-      isFlipped: false,
-    }));
-    const shuffledSpeaker = shuffleSpeaker(speakersWithFlipState);
-    setSpeakerData(shuffledSpeaker);
-  }, []);
-
-  const handleFlip = (id) => {
-    setSpeakerData(
-      speakerData.map((speaker) => {
-        if (speaker.id === id) {
-          return { ...speaker, isFlipped: !speaker.isFlipped };
-        }
-        return speaker;
-      })
-    );
-  };
-
-  const trimText = (text, maxLength) => {
-    if (text.length > maxLength) {
-      return text.substring(0, maxLength - 3) + '...';
-    } else {
-      return text;
-    }
-  };
 
   const shuffleSpeaker = (array) => {
     let currentIndex = array.length,
@@ -246,6 +84,14 @@ const SpeakerComponent = () => {
       return 'Speaker';
     }
   };
+  const findCompanyFrontside = (speaker) => {
+    const company = speaker.questionAnswers.find((q) => q.question === 'Company');
+    if (company && company.answer) {
+      return company.answer;
+    } else {
+      return;
+    }
+  };
 
   return (
     <div className="flex w-full items-center justify-center">
@@ -256,9 +102,15 @@ const SpeakerComponent = () => {
       ) : (
         <div className="flex flex-row flex-wrap justify-around  overflow-auto scrollbar-hide">
           {speakerData.map((speaker) => (
-            <div className="pb-5" key={speaker.id}>
-              <div className="flip-card rounded-md">
-                <div className="flip-card-inner rounded-md">
+            <div className="pb-5 pr-1" key={speaker.id}>
+              <div
+                className="flip-card rounded-md bg-transparent"
+                style={{ width: '275px', height: '290px' }}
+              >
+                <div
+                  className="flip-card-inner relative h-full w-full rounded-md text-center"
+                  style={{ transition: 'transform 0.4s', transformStyle: 'preserve-3d' }}
+                >
                   <div className="flip-card-front rounded-md">
                     <div
                       className="flex h-full w-full flex-row-reverse"
@@ -269,26 +121,26 @@ const SpeakerComponent = () => {
                         alt={speaker.fullName}
                         className="h-full w-full cursor-pointer rounded-md object-cover"
                       />
-                      <span
-                        className="text-tag flex"
+                      <div
+                        className="absolute bottom-0  w-full "
                         style={{
-                          paddingLeft: '5px',
-                          paddingRight: '4px',
-                          position: 'absolute',
-                          bottom: '0px',
-                          textAlign: 'center',
-                          zIndex: '3',
-                          color: 'white',
+                          color: 'whitesmoke',
+                          borderRadius: '0',
                         }}
                       >
-                        {speaker.fullName}
-                      </span>
+                        <div className="text-tag px-2 text-center" style={{ borderRadius: '0' }}>
+                          {speaker.fullName}
+                        </div>
+                        <div className="text-tag px-2 text-center" style={{ borderRadius: '0' }}>
+                          {findCompany(speaker)}
+                        </div>
+                      </div>
                     </div>
                   </div>
                   <div className="flip-card-back flex flex-col justify-between rounded-md">
                     <div
                       className="flex h-1/6 w-full flex-col items-center justify-center"
-                      style={{ paddingTop: '3px' }}
+                      style={{ paddingTop: '4px' }}
                     >
                       <span className="w-full px-1 text-center text-lg font-bold">
                         {findCompany(speaker)}
@@ -308,7 +160,12 @@ const SpeakerComponent = () => {
                     <div className="flex h-3/6 w-full flex-col items-center">
                       <span
                         className="speaker-bio w-full overflow-hidden px-3 text-lg italic"
-                        style={{ lineHeight: '37px', height: '100%', scale: '0.8' }}
+                        style={{
+                          lineHeight: '37px',
+                          height: '100%',
+                          scale: '0.8',
+                          paddingTop: '7px',
+                        }}
                       >
                         {speaker.bio}
                       </span>
@@ -342,19 +199,4 @@ const SpeakerComponent = () => {
   );
 };
 
-/*
-
-      <div class="flip-card">
-        <div class="flip-card-inner">
-          <div class="flip-card-front">
-            <span>hallo</span>
-          </div>
-          <div class="flip-card-back">
-            <h1>John Doe</h1>
-            <p>Architect & Engineer</p>
-            <p>We love that guy</p>
-          </div>
-        </div>
-      </div>
-*/
 export default Speakers;
