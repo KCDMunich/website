@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import LINKS from 'constants/links';
 import { SocialIcon } from 'react-social-icons';
-import ReactCardFlip from 'react-card-flip';
-import { isMobile } from 'react-device-detect';
 import speakersJSON from './speaker2.json'; //speaker aus json 2
 import './speakers3.css';
 
