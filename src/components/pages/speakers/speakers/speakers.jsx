@@ -1,7 +1,5 @@
 /* eslint-disable react/prop-types */
 import React, { useEffect, useState } from 'react';
-import ReactCardFlip from 'react-card-flip';
-import { isMobile } from 'react-device-detect';
 import { SocialIcon } from 'react-social-icons';
 import speakerJSON from './speaker.json'; //Daten aus der speaker.json
 import './speakers.css';
