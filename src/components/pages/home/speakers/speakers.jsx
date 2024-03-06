@@ -92,7 +92,7 @@ const DangerComponent1 = () => {
       ) : (
         <div
           className="flex flex-row flex-wrap justify-around overflow-auto scrollbar-hide"
-          style={{ height: '55vh' }}
+          style={{ height: 'fit-content' }}
         >
           {speakerData.map((speaker) => (
             <div className="flex flex-col p-4" key={speaker.id}>
