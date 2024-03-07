@@ -1,0 +1,89 @@
+[
+    {
+      "groupId": null,
+      "groupName": "All",
+      "sessions": [
+        {
+          "questionAnswers": [],
+          "id": "627386",
+          "title": "Choose Your Own Adventure: The Struggle for Security",
+          "description": "Our hero, a running application in a Kubernetes production environment, knows they are destined for greater things! They are serving end users, but currently, they are also endangering those users, the system, and themselves! But the struggle for security is HARD, filled with system design choices concerning secrets management; cluster-level, runtime, and network policies; and image scanning and signing.\r\n\r\nIt is up to you, the audience, to guide our hero and help them grow from a vulnerable, unprotected application to their final form⎯an app that is secure against invasion. In their third ‘Choose Your Own Adventure’-style talk, Whitney and Viktor will present choices that an anthropomorphized app must make as they try to protect themselves against every kind of exploit. Throughout the presentation, the audience (YOU!) will vote to decide our hero app's path! Can we navigate CNCF projects to safeguard our app, system, and users against attack before the session time elapses?",
+          "startsAt": null,
+          "endsAt": null,
+          "isServiceSession": false,
+          "isPlenumSession": false,
+          "speakers": [
+            {
+              "id": "3f4d3de3-3518-49b8-9e41-ce9a02d43c24",
+              "name": "Whitney Lee"
+            },
+            {
+              "id": "97fd9697-d280-4391-8e99-0e4698bc76db",
+              "name": "Viktor Farcic"
+            }
+          ],
+          "categories": [],
+          "roomId": null,
+          "room": null,
+          "liveUrl": null,
+          "recordingUrl": null,
+          "status": "Accepted",
+          "isInformed": false,
+          "isConfirmed": false
+        },
+        {
+          "questionAnswers": [],
+          "id": "594810",
+          "title": "Platform as a Product: Stories from the Field",
+          "description": "Platform as a Product expression has become a popular chant in the industry although many are unclear about what it really means. We go beyond the fad and look at a repeatable framework, which you can run as a workshop with your team/s and define the changes required for your organization to treat the platform as a product, the benefits from doing so as well as the challenges in making that move.\r\n\r\nFor the past years, we have run Platform as a Product workshop with different organizations and helped them implement ideas into reality. This session will be the summary of our findings and lessons learned. We also give participants a sneak peek of the workshop and guidance on how could they run it themselves. And moreover, the workshop is already accessible to everybody via the Miroverse community!*\r\n\r\n* https://miro.com/miroverse/platform-as-a-product-workshop/",
+          "startsAt": null,
+          "endsAt": null,
+          "isServiceSession": false,
+          "isPlenumSession": false,
+          "speakers": [
+            {
+              "id": "81a52ccf-95b9-49fe-aefc-5522cdcc382a",
+              "name": "Cansu Kavili Örnek"
+            }
+          ],
+          "categories": [],
+          "roomId": null,
+          "room": null,
+          "liveUrl": null,
+          "recordingUrl": null,
+          "status": "Accepted",
+          "isInformed": false,
+          "isConfirmed": false
+        },
+        {
+          "questionAnswers": [],
+          "id": "633036",
+          "title": "Unlocking New Platform Experiences With Open Interfaces",
+          "description": "Building beautiful, tailored experiences on top of Kubernetes is hard. Are you building the right abstractions for dev teams to perform their tasks? It is challenging for platform teams to enable such experiences and choose what components they have to build themselves.\r\n\r\nMauricio and Thomas will analyze existing CNCF projects to implement an end-to-end experience and support teams from idea to production, using a “function-as-a-service” example.\r\n\r\nThey will look into how:\r\n- Knative Serving provides a simplified serverless experience \r\n- Knative Func provides a polyglot CLI tool for developers \r\n- OpenFunction orchestrates the functions lifecycle\r\n- OpenFunction integrates KEDA and Dapr to enable complex use cases.\r\n\r\nThe presentation will identify the strengths of these tools and which gaps platform teams will need to bridge when building a FaaS experience. The lessons learned and tips shared will help teams bring more projects to their platforms without complicating end-to-end workflows.",
+          "startsAt": null,
+          "endsAt": null,
+          "isServiceSession": false,
+          "isPlenumSession": false,
+          "speakers": [
+            {
+              "id": "86c8f476-5a3d-4c3e-a299-a75bdc149d0b",
+              "name": "Thomas Vitale"
+            },
+            {
+              "id": "f44f5308-1287-4e6c-8f48-6ed26ea9f9d3",
+              "name": "Mauricio \"Salaboy\" Salatino"
+            }
+          ],
+          "categories": [],
+          "roomId": null,
+          "room": null,
+          "liveUrl": null,
+          "recordingUrl": null,
+          "status": "Accepted",
+          "isInformed": false,
+          "isConfirmed": false
+        }
+      ],
+      "isDefault": false
+    }
+  ]
