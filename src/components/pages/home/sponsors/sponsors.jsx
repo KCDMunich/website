@@ -22,6 +22,7 @@ import Exoscale from 'icons/exoscale.webp';
 import Steadforce from 'icons/steadforce_logo.png';
 import MindcurvGmbH from 'icons/mindcurv-group.png';
 import spectrocloud from 'icons/spectrocloud.svg';
+import csp2 from 'icons/csp2_claim_logo_V1.jpg';
 
 const TITLE = 'Sponsors';
 
@@ -56,6 +57,10 @@ const ITEMS = [
       {
         icon: adn,
         url: 'https://shop.adn.de/',
+      },
+      {
+        icon: csp2,
+        url: 'https://geschaeftskunden.telekom.de/digitale-loesungen/software-as-a-service/microsoft/cloud-solution-partner',
       },
     ],
     cardClassname: 'min-w-[280px] min-h-[104px] sm:min-w-[250px] sm:min-h-[94px]',
