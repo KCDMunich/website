@@ -32,43 +32,57 @@ const SessionListComponent = () => {
   //     .catch((error) => console.error('Error:', error));
   // }, []);
 
+  const convertSessionsToEvents = (sessions) => {
+    return sessions.flatMap((group) =>
+      group.sessions.map((session) => ({
+        id: session.id,
+        title: session.title,
+        start: session.startsAt.replace("'", ''), // Korrigieren Sie den Startzeit-String, falls nötig
+        end: session.endsAt.replace("'", ''), // Korrigieren Sie den Endzeit-String, falls nötig
+        description: session.description,
+        room: session.room,
+      }))
+    );
+  };
+
   useEffect(() => {
-    // aus der speaker.json
-    setSessionData(scheduleJSON);
+    // Angenommen, scheduleJSON ist die JSON-Datenvariable
+    const events = convertSessionsToEvents(scheduleJSON);
+    setSessionData(events);
   }, []);
+
+  // Optionale Funktion zur Anzeige der Event-Inhalte
+  const renderEventContent = (eventInfo) => (
+    <div className="flex flex-col">
+      <span className="flex font-bold">{eventInfo.event.title}</span>
+      <span className="flex">{eventInfo.timeText}</span>
+      <span className="flex">Room: {eventInfo.event.extendedProps.room}</span>
+      <span className="truncate">{eventInfo.event.extendedProps.description}</span>
+    </div>
+  );
 
   return (
     <div style={{ border: 'solid red' }}>
       <FullCalendar
-        allDaySlot={true}
+        allDaySlot={false}
         plugins={[timeGridPlugin]}
         initialView="timeGrid"
-        slotLabelInterval={{ hours: 1 }} // Definiert die Intervalle in Stunden
-        slotMinTime="08:00:00" // Startzeit des Kalenders
-        slotMaxTime="24:00:00" // Endzeit des Kalenders
-        height="auto" // Passt die Höhe automatisch an
+        slotEventOverlap={false}
+        slotLabelInterval={{ hours: 1 }}
+        slotMinTime="08:00:00"
+        slotMaxTime="24:00:00"
+        height="auto"
         headerToolbar={{
           left: '',
           center: 'title',
           right: '',
         }}
         visibleRange={{
-          start: '2024-03-08', // Startdatum
-          end: '2024-03-10', // Enddatum (exklusiv, also +1 Tag zum gewünschten Enddatum)
+          start: '2024-07-01',
+          end: '2024-07-03',
         }}
-        // Weitere Optionen und Event-Handler nach Bedarf
-        events={[
-          {
-            title: 'event 1',
-            start: '2024-03-08T08:00:00', // Beginn des Ereignisses um 8 Uhr
-            end: '2024-03-08T12:00:00',
-          },
-          {
-            title: 'event 2',
-            start: '2024-03-09T08:00:00', // Beginn des Ereignisses um 8 Uhr
-            end: '2024-03-09T12:00:00',
-          }, // Ende des Ereignisses um 12 Uhr},
-        ]}
+        events={sessionData}
+        eventContent={renderEventContent} // Verwenden Sie dies, um benutzerdefinierte Inhalte anzuzeigen
         locale="de"
       />
     </div>
