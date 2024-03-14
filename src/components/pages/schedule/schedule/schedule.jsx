@@ -4,6 +4,7 @@ import './schedule.css';
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
+import deLocale from '@fullcalendar/core/locales/de'; // Importieren des deutschen Locale-Pakets
 
 // const scriptUrl = 'https://sessionize.com/api/v2/t71l7ld5/view/GridSmart';
 // const scriptUrl = 'https://sessionize.com/api/v2/6dqtqpt2/view/Sessions'; api -> sessionList
@@ -39,7 +40,7 @@ const SessionListComponent = () => {
   return (
     <div style={{ border: 'solid red' }}>
       <FullCalendar
-        allDaySlot="false"
+        allDaySlot={true}
         plugins={[timeGridPlugin]}
         initialView="timeGrid"
         slotLabelInterval={{ hours: 1 }} // Definiert die Intervalle in Stunden
@@ -56,6 +57,19 @@ const SessionListComponent = () => {
           end: '2024-03-10', // Enddatum (exklusiv, also +1 Tag zum gewünschten Enddatum)
         }}
         // Weitere Optionen und Event-Handler nach Bedarf
+        events={[
+          {
+            title: 'event 1',
+            start: '2024-03-08T08:00:00', // Beginn des Ereignisses um 8 Uhr
+            end: '2024-03-08T12:00:00',
+          },
+          {
+            title: 'event 2',
+            start: '2024-03-09T08:00:00', // Beginn des Ereignisses um 8 Uhr
+            end: '2024-03-09T12:00:00',
+          }, // Ende des Ereignisses um 12 Uhr},
+        ]}
+        locale="de"
       />
     </div>
   );
