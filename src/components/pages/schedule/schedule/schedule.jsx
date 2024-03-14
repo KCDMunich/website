@@ -37,8 +37,8 @@ const SessionListComponent = () => {
       group.sessions.map((session) => ({
         id: session.id,
         title: session.title,
-        start: session.startsAt.replace("'", ''), // Korrigieren Sie den Startzeit-String, falls nötig
-        end: session.endsAt.replace("'", ''), // Korrigieren Sie den Endzeit-String, falls nötig
+        start: session.startsAt.replace("'", ''),
+        end: session.endsAt.replace("'", ''),
         description: session.description,
         room: session.room,
       }))
@@ -46,12 +46,10 @@ const SessionListComponent = () => {
   };
 
   useEffect(() => {
-    // Angenommen, scheduleJSON ist die JSON-Datenvariable
     const events = convertSessionsToEvents(scheduleJSON);
     setSessionData(events);
   }, []);
 
-  // Optionale Funktion zur Anzeige der Event-Inhalte
   const renderEventContent = (eventInfo) => (
     <div className="flex flex-col">
       <span className="flex font-bold">{eventInfo.event.title}</span>
@@ -62,7 +60,7 @@ const SessionListComponent = () => {
   );
 
   return (
-    <div style={{ border: 'solid red' }}>
+    <div style={{ border: 'solid red', background: '#ececec' }}>
       <FullCalendar
         allDaySlot={false}
         plugins={[timeGridPlugin]}
@@ -82,7 +80,7 @@ const SessionListComponent = () => {
           end: '2024-07-03',
         }}
         events={sessionData}
-        eventContent={renderEventContent} // Verwenden Sie dies, um benutzerdefinierte Inhalte anzuzeigen
+        eventContent={renderEventContent}
         locale="de"
       />
     </div>
