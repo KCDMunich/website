@@ -5,16 +5,16 @@ import Link from 'components/shared/link';
 const TITLE = 'Hotel information';
 
 const Details = () => (
-  <section className="safe-paddings bg-white py-40 2xl:py-24 md:py-24 sm:py-16">
+  <section className="safe-paddings bg-white  2xl:pb-0 2xl:pt-8 md:pb-0  md:pt-8 sm:pb-0 sm:pt-8">
     <div className="container-md">
-      <div className="lg:mt-38 2xl:mt-24 xl:mt-32 md:mt-24">
+      <div className="2xl:mt-16 xl:mt-16 lg:mt-16 md:mt-16">
         <h2 className="mt-3 text-center text-6xl font-bold leading-tight text-primary-1">
           {TITLE}
         </h2>
 
         <div className="lg:mt-38 2xl:mt-24 xl:mt-32 md:mt-24">
           <div className="mx-auto mt-5 max-w-[800px] text-center text-lg leading-normal text-primary-1">
-            <p className="mt-7">Below you will find a hotel for accommodation:</p>
+            <p style={{ marginTop: '-71px' }}>Below you will find a hotel for accommodation:</p>
             <p className="mt-7">
               <span className="font-bold">Best Western Hotel Arabellapark Munich</span>
             </p>
