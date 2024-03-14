@@ -8,7 +8,7 @@ const TITLE = 'Speakers';
 const scriptUrl = 'https://sessionize.com/api/v2/6dqtqpt2/view/Speakers';
 
 const Speakers = () => (
-  <section className="safe-paddings relative bg-white pb-40 2xl:pb-32 lg:pb-32 sm:py-16">
+  <section className="safe-paddings relative bg-white  2xl:pb-20 md:pb-20 sm:pb-20">
     <div className="container lg:mt-38 2xl:mt-38 mt-40 flex justify-between 2xl:flex-col xl:mt-32 lg:flex-col md:mt-24">
       <div className="text-primary-1 2xl:flex 2xl:flex-col 2xl:items-center 2xl:justify-center lg:flex lg:flex-col lg:items-center lg:justify-center lg:text-center">
         <h2
