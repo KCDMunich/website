@@ -145,7 +145,7 @@ const SessionListComponent = () => {
             isOpen={isDialogOpen}
             onClose={() => {
               setIsDialogOpen(false);
-              setSelectedEvent(null); // Setzen Sie selectedEvent zurück, wenn das Dialog geschlossen wird.
+              setSelectedEvent(null);
             }}
           >
             {selectedEvent && (
