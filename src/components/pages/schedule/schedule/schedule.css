@@ -1,6 +1,5 @@
 .fc .fc-timegrid-slot {
-  border-bottom: 0px;
-  height: 4.5em;
+  height: 4.95em;
 }
 /* Entfernen der Borders in FullCalendar */
 .fc .fc-scrollgrid,
@@ -8,26 +7,60 @@
 .fc .fc-scrollgrid-section > td,
 .fc .fc-col-header-cell,
 .fc .fc-daygrid-day,
-.fc .fc-timegrid-slot {
-  border: none !important;
-}
-
-/* Entfernt Borders an der Zeitachse */
+.fc .fc-timegrid-slot,
 .fc .fc-timegrid-slot-label,
-.fc .fc-timegrid-slot-label-frame {
-  border: none !important;
-}
-
-/* Behält den vertikalen Divider zwischen den Tagen bei */
-.fc .fc-timegrid-body .fc-timegrid-col {
-  border-right: none !important; /* Farbe und Stil des Borders anpassen, falls nötig */
-}
-
-/* Entfernt den unteren Border der letzten Zeit-Slot-Zelle, falls gewünscht */
-.fc .fc-timegrid-slot-label:last-child {
-  border-bottom: none !important;
-}
+.fc .fc-timegrid-slot-label-frame,
+.fc .fc-timegrid-body .fc-timegrid-col,
+.fc .fc-timegrid-slot-label:last-child,
 .fc-theme-standard td,
 .fc-theme-standard th {
-  border: none;
+  border: none !important;
+}
+.fc .fc-timegrid-slot {
+  border-top: 0.5px solid lightgrey !important;
+  border-bottom: 0.5px solid lightgrey !important;
+}
+
+.fc-event {
+  width: 100%;
+  background: rgb(13, 50, 233);
+}
+
+.fc .fc-toolbar {
+  font-weight: bold;
+}
+
+.fc .fc-toolbar-title {
+  padding-top: 10px;
+}
+.fc .fc-toolbar.fc-header-toolbar {
+  margin-bottom: 0px;
+  background: darkgray;
+}
+
+.fc .fc-col-header-cell-cushion {
+  font-size: 22px;
+}
+
+.fc-scrollgrid-sync-inner {
+  background: lightgray;
+}
+.fc th {
+  background: lightgray;
+}
+
+.fc-timegrid-axis {
+  background: #d3d3d342;
+}
+
+.fc-timegrid-event-harness {
+  margin-left: 4px;
+}
+
+td {
+  padding-right: 2px !important;
+}
+
+.fc-direction-ltr .fc-timegrid-slot-label-frame {
+  text-align: center;
 }

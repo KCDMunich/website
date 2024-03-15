@@ -2,19 +2,17 @@ import React, { useEffect, useState } from 'react';
 import scheduleJSON from './schedule.json'; //Daten aus der schedule.json
 import './schedule.css';
 import FullCalendar from '@fullcalendar/react';
-import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
-import deLocale from '@fullcalendar/core/locales/de'; // Importieren des deutschen Locale-Pakets
-
+import { isMobile } from 'react-device-detect';
+import Modal from 'react-modal';
 // const scriptUrl = 'https://sessionize.com/api/v2/t71l7ld5/view/GridSmart';
 // const scriptUrl = 'https://sessionize.com/api/v2/6dqtqpt2/view/Sessions'; api -> sessionList
 
 const Schedule = () => {
   return (
     <section className="safe-paddings relative bg-white pb-40 lg:pb-32 md:py-24 sm:py-16">
-      <div className="container flex justify-between lg:flex-col">
-        <div className="text-primary-1 lg:flex lg:flex-col lg:items-center lg:justify-center lg:text-center">
-          <br />
+      <div className="container-lg flex justify-between lg:flex-col">
+        <div className="w-full text-primary-1 2xl:flex 2xl:flex-col 2xl:items-center 2xl:justify-center 2xl:text-center lg:flex lg:flex-col lg:items-center lg:justify-center lg:text-center">
           <SessionListComponent />
         </div>
       </div>
@@ -24,6 +22,8 @@ const Schedule = () => {
 
 const SessionListComponent = () => {
   const [sessionData, setSessionData] = useState([]);
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [selectedEvent, setSelectedEvent] = useState(null);
 
   // useEffect(() => {
   //   fetch(scriptUrl)
@@ -31,6 +31,42 @@ const SessionListComponent = () => {
   //     .then((data) => setSessionData(data))
   //     .catch((error) => console.error('Error:', error));
   // }, []);
+
+  function Dialog({ isOpen, onClose, children }) {
+    if (!isOpen) return null;
+
+    return (
+      <div
+        style={{
+          zIndex: '500000',
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          backgroundColor: 'rgba(0, 0, 0, 0.5)',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+      >
+        <div
+          style={{
+            border: 'solid rgb(13, 50, 233)',
+            backgroundColor: 'white',
+            padding: '20px',
+            borderRadius: '5px',
+            width: '50vw',
+            height: '50vh',
+            color: 'black',
+          }}
+        >
+          {children}
+          <button onClick={onClose}>Close</button>
+        </div>
+      </div>
+    );
+  }
 
   const convertSessionsToEvents = (sessions) => {
     return sessions.flatMap((group) =>
@@ -51,38 +87,110 @@ const SessionListComponent = () => {
   }, []);
 
   const renderEventContent = (eventInfo) => (
-    <div className="flex flex-col">
+    <div
+      className=" flex h-full w-full flex-col overflow-clip p-1 2xl:text-lg lg:text-base md:text-sm sm:text-xs "
+      onClick={() => {
+        setSelectedEvent(eventInfo.event);
+        setIsDialogOpen(true);
+      }}
+    >
       <span className="flex font-bold">{eventInfo.event.title}</span>
       <span className="flex">{eventInfo.timeText}</span>
-      <span className="flex">Room: {eventInfo.event.extendedProps.room}</span>
-      <span className="truncate">{eventInfo.event.extendedProps.description}</span>
+      <span className="flex overflow-hidden italic">
+        Room: {eventInfo.event.extendedProps.room}
+      </span>
+    </div>
+  );
+
+  const renderEventContentMobile = (eventInfo) => (
+    <div
+      className="textContainer flex h-full w-full flex-col overflow-clip"
+      style={{ paddingLeft: '4px', fontSize: '10px' }}
+    >
+      <span className="flex font-bold">{eventInfo.event.title}</span>
+      <span className="flex">{eventInfo.timeText}</span>
+      <span className="flex overflow-hidden italic">
+        Room: {eventInfo.event.extendedProps.room}
+      </span>
     </div>
   );
 
   return (
-    <div style={{ border: 'solid red', background: '#ececec' }}>
-      <FullCalendar
-        allDaySlot={false}
-        plugins={[timeGridPlugin]}
-        initialView="timeGrid"
-        slotEventOverlap={false}
-        slotLabelInterval={{ hours: 1 }}
-        slotMinTime="08:00:00"
-        slotMaxTime="24:00:00"
-        height="auto"
-        headerToolbar={{
-          left: '',
-          center: 'title',
-          right: '',
-        }}
-        visibleRange={{
-          start: '2024-07-01',
-          end: '2024-07-03',
-        }}
-        events={sessionData}
-        eventContent={renderEventContent}
-        locale="de"
-      />
+    <div className="w-full overflow-hidden rounded-md" style={{ background: '#dadada21' }}>
+      {!isMobile ? (
+        <div>
+          <FullCalendar
+            allDaySlot={false}
+            plugins={[timeGridPlugin]}
+            initialView="timeGrid"
+            slotEventOverlap={false}
+            slotLabelInterval={{ hours: 1 }}
+            slotMinTime="08:00:00"
+            slotMaxTime="24:00:00"
+            height="auto"
+            headerToolbar={{
+              left: '',
+              center: 'title',
+              right: '',
+            }}
+            visibleRange={{
+              start: '2024-07-01',
+              end: '2024-07-03',
+            }}
+            events={sessionData}
+            eventContent={renderEventContent}
+            locale="de"
+          />
+          <Dialog
+            isOpen={isDialogOpen}
+            onClose={() => {
+              setIsDialogOpen(false);
+              setSelectedEvent(null); // Setzen Sie selectedEvent zurück, wenn das Dialog geschlossen wird.
+            }}
+          >
+            {selectedEvent && (
+              <div className="h-full w-full">
+                <h2 className="font-bold">{selectedEvent.title}</h2>
+                <p>
+                  <strong>Start:</strong> {selectedEvent.start.toLocaleString()}
+                </p>{' '}
+                <p>
+                  <strong>End:</strong> {selectedEvent.end.toLocaleString()}
+                </p>{' '}
+                <p>
+                  <strong>Description:</strong> {selectedEvent.extendedProps.description}
+                </p>{' '}
+                <p>
+                  <strong>Room:</strong> {selectedEvent.extendedProps.room}
+                </p>{' '}
+              </div>
+            )}
+          </Dialog>
+        </div>
+      ) : (
+        <FullCalendar
+          allDaySlot={false}
+          plugins={[timeGridPlugin]}
+          initialView="timeGrid"
+          slotEventOverlap={false}
+          slotLabelInterval={{ hours: 1 }}
+          slotMinTime="08:00:00"
+          slotMaxTime="24:00:00"
+          height="auto"
+          headerToolbar={{
+            left: '',
+            center: 'title',
+            right: '',
+          }}
+          visibleRange={{
+            start: '2024-07-01',
+            end: '2024-07-03',
+          }}
+          events={sessionData}
+          eventContent={renderEventContentMobile}
+          locale="de"
+        />
+      )}
     </div>
   );
 
