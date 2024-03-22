@@ -3,7 +3,7 @@ import React from 'react';
 import Button from 'components/shared/button';
 import LINKS from 'constants/links';
 
-const TITLE = 'Call for Proposal';
+const TITLE = 'Call for Speakers';
 const DESCRIPTION =
   "If you are an expert or newcomer in the cloud native computing world and would like to share your knowledge and experience with the community, we encourage you to submit a proposal. Our committee is looking for diverse topics and speakers, so don't hesitate to submit your ideas. We can't wait to see what the community offers, and we look forward to receiving your submissions.";
 
@@ -28,7 +28,7 @@ const Proposal = () => (
         >
           <span className="absolute h-full w-full bg-gradient-to-br from-[#3333ff] via-[#3333ff] to-[#3333ff] group-hover:from-[#ff00c6] group-hover:via-[#ff5478] group-hover:to-[#ff8a05]"></span>
           <span className="bg-gray-900 duration-400 relative rounded-md px-6 py-3 transition-all ease-out group-hover:bg-opacity-0">
-            <span className="relative text-white">Call for Proposal</span>
+            <span className="relative text-white">Call for Speakers</span>
           </span>
         </Button>
       </div>
