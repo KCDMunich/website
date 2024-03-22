@@ -50,7 +50,7 @@ const ITEMS = [
     name: 'Tom Uhlig',
     position: 'Consultant - Liquid Reply',
     photo: TomPhoto,
-    url: 'https://www.linkedin.com/in/msuemmchen/',
+    url: 'https://www.linkedin.com/in/tom-uhlig/',
   },
   {
     name: 'Anela Avdibegovic',

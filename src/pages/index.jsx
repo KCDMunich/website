@@ -19,11 +19,11 @@ const HomePage = ({ location }) => (
   <Layout homepage>
     <Hero />
     <Info />
-    <Details />
     <Speakers />
     <Tickets />
     <Proposal />
     <Sponsors />
+    <Details />
   </Layout>
 );
 
