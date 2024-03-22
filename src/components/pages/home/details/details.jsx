@@ -17,7 +17,7 @@ const Details = () => (
 
         <div className="lg:mt-38 2xl:mt-24 xl:mt-32 md:mt-24">
           <div className="mx-auto mt-5 max-w-[800px] text-center text-lg leading-normal text-primary-1">
-            <p>
+            <p style={{ marginTop: '-43px' }}>
               <span className="font-bold">Best Western Hotel Arabellapark Munich</span>
             </p>
             <p className="mt-7">
