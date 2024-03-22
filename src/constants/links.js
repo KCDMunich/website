@@ -23,8 +23,8 @@ export default {
     homeTo: '/workshops',
   },
   proposal: {
-    to: `/#${getAnchor('Call for Proposal')}`,
-    id: getAnchor('Call for Proposal'),
+    to: `/#${getAnchor('Call for Speakers')}`,
+    id: getAnchor('Call for Speakers'),
     homeTo: null,
   },
   team: {
