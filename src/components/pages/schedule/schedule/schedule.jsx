@@ -48,21 +48,36 @@ const SessionListComponent = () => {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
+          overflow: 'auto',
+          overscrollBehavior: 'contain',
+          padding: '100px',
         }}
       >
         <div
           style={{
+            position: 'relative',
             border: 'solid rgb(13, 50, 233)',
-            backgroundColor: 'white',
+            backgroundColor: '#f5f5f5',
             padding: '20px',
             borderRadius: '5px',
-            width: '50vw',
-            height: '50vh',
             color: 'black',
+            width: 'auto',
           }}
         >
+          <button
+            className="text-primary-1"
+            style={{
+              position: 'absolute',
+              right: '19px',
+              top: '-4px',
+              fontSize: '30px',
+              fontWeight: 'bold',
+            }}
+            onClick={onClose}
+          >
+            x
+          </button>
           {children}
-          <button onClick={onClose}>Close</button>
         </div>
       </div>
     );
@@ -88,7 +103,7 @@ const SessionListComponent = () => {
 
   const renderEventContent = (eventInfo) => (
     <div
-      className=" flex h-full w-full flex-col overflow-clip p-1 2xl:text-lg lg:text-base md:text-sm sm:text-xs "
+      className=" renderContent flex h-full w-full flex-col overflow-clip p-1 2xl:text-lg lg:text-base md:text-sm  "
       onClick={() => {
         setSelectedEvent(eventInfo.event);
         setIsDialogOpen(true);
@@ -117,57 +132,7 @@ const SessionListComponent = () => {
 
   return (
     <div className="w-full overflow-hidden rounded-md" style={{ background: '#dadada21' }}>
-      {!isMobile ? (
-        <div>
-          <FullCalendar
-            allDaySlot={false}
-            plugins={[timeGridPlugin]}
-            initialView="timeGrid"
-            slotEventOverlap={false}
-            slotLabelInterval={{ hours: 1 }}
-            slotMinTime="08:00:00"
-            slotMaxTime="24:00:00"
-            height="auto"
-            headerToolbar={{
-              left: '',
-              center: 'title',
-              right: '',
-            }}
-            visibleRange={{
-              start: '2024-07-01',
-              end: '2024-07-03',
-            }}
-            events={sessionData}
-            eventContent={renderEventContent}
-            locale="de"
-          />
-          <Dialog
-            isOpen={isDialogOpen}
-            onClose={() => {
-              setIsDialogOpen(false);
-              setSelectedEvent(null);
-            }}
-          >
-            {selectedEvent && (
-              <div className="h-full w-full">
-                <h2 className="font-bold">{selectedEvent.title}</h2>
-                <p>
-                  <strong>Start:</strong> {selectedEvent.start.toLocaleString()}
-                </p>{' '}
-                <p>
-                  <strong>End:</strong> {selectedEvent.end.toLocaleString()}
-                </p>{' '}
-                <p>
-                  <strong>Description:</strong> {selectedEvent.extendedProps.description}
-                </p>{' '}
-                <p>
-                  <strong>Room:</strong> {selectedEvent.extendedProps.room}
-                </p>{' '}
-              </div>
-            )}
-          </Dialog>
-        </div>
-      ) : (
+      <div>
         <FullCalendar
           allDaySlot={false}
           plugins={[timeGridPlugin]}
@@ -187,10 +152,42 @@ const SessionListComponent = () => {
             end: '2024-07-03',
           }}
           events={sessionData}
-          eventContent={renderEventContentMobile}
-          locale="de"
+          eventContent={renderEventContent}
         />
-      )}
+        <Dialog
+          isOpen={isDialogOpen}
+          onClose={() => {
+            setIsDialogOpen(false);
+            setSelectedEvent(null);
+          }}
+        >
+          {selectedEvent && (
+            <div className="h-auto w-auto" style={{ padding: '25px' }}>
+              <h2
+                className="font-black 2xl:text-7xl xl:text-6xl lg:text-5xl md:text-4xl"
+                style={{ marginTop: '-10px', marginBottom: '15px' }}
+              >
+                {selectedEvent.title}
+              </h2>
+              <p className="py-2" style={{ fontSize: '18px' }}>
+                <strong>Start:</strong> {selectedEvent.start.toLocaleString()}
+              </p>{' '}
+              <p className="py-2" style={{ fontSize: '18px' }}>
+                <strong>End:</strong> {selectedEvent.end.toLocaleString()}
+              </p>{' '}
+              <p className="py-2" style={{ fontSize: '18px' }}>
+                <strong>Room:</strong> {selectedEvent.extendedProps.room}
+              </p>{' '}
+              <p
+                className="py-2"
+                style={{ fontSize: '18px', textAlign: 'left', height: '33vh', overflow: 'auto' }}
+              >
+                <strong>Description:</strong> {selectedEvent.extendedProps.description}
+              </p>{' '}
+            </div>
+          )}
+        </Dialog>
+      </div>
     </div>
   );
 

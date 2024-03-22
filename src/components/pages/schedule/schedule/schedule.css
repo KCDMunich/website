@@ -64,3 +64,9 @@ td {
 .fc-direction-ltr .fc-timegrid-slot-label-frame {
   text-align: center;
 }
+
+@media screen and (max-width: 800px) {
+  .renderContent {
+    font-size: 9px;
+  }
+}
