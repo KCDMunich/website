@@ -70,3 +70,24 @@ td {
     font-size: 9px;
   }
 }
+
+@media screen and (max-width: 600px) {
+  .dialog-title {
+    font-size: 14px;
+  }
+
+  .dialog-start {
+    font-size: 10px;
+  }
+
+  .dialog-end {
+    font-size: 10px;
+  }
+
+  .dialog-room {
+    font-size: 10px;
+  }
+  .dialog-description {
+    font-size: 10px;
+  }
+}

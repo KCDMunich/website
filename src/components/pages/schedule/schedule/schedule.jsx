@@ -49,7 +49,6 @@ const SessionListComponent = () => {
           alignItems: 'center',
           justifyContent: 'center',
           overflow: 'auto',
-          overscrollBehavior: 'contain',
           padding: '100px',
         }}
       >
@@ -164,23 +163,23 @@ const SessionListComponent = () => {
           {selectedEvent && (
             <div className="h-auto w-auto" style={{ padding: '25px' }}>
               <h2
-                className="font-black 2xl:text-7xl xl:text-6xl lg:text-5xl md:text-4xl"
+                className="dialog-title font-black 2xl:text-7xl xl:text-6xl lg:text-5xl md:text-4xl"
                 style={{ marginTop: '-10px', marginBottom: '15px' }}
               >
                 {selectedEvent.title}
               </h2>
-              <p className="py-2" style={{ fontSize: '18px' }}>
+              <p className="dialog-start py-2 2xl:text-base">
                 <strong>Start:</strong> {selectedEvent.start.toLocaleString()}
               </p>{' '}
-              <p className="py-2" style={{ fontSize: '18px' }}>
+              <p className="dialog-end py-2 2xl:text-base">
                 <strong>End:</strong> {selectedEvent.end.toLocaleString()}
               </p>{' '}
-              <p className="py-2" style={{ fontSize: '18px' }}>
+              <p className="dialog-room py-2 2xl:text-base">
                 <strong>Room:</strong> {selectedEvent.extendedProps.room}
               </p>{' '}
               <p
-                className="py-2"
-                style={{ fontSize: '18px', textAlign: 'left', height: '33vh', overflow: 'auto' }}
+                className="dialog-description py-2 2xl:text-base"
+                style={{ textAlign: 'left', height: '33vh', overflow: 'auto' }}
               >
                 <strong>Description:</strong> {selectedEvent.extendedProps.description}
               </p>{' '}
