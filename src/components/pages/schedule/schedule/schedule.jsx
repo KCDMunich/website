@@ -3,8 +3,6 @@ import scheduleJSON from './schedule.json'; //Daten aus der schedule.json
 import './schedule.css';
 import FullCalendar from '@fullcalendar/react';
 import timeGridPlugin from '@fullcalendar/timegrid';
-import { isMobile } from 'react-device-detect';
-import Modal from 'react-modal';
 // const scriptUrl = 'https://sessionize.com/api/v2/t71l7ld5/view/GridSmart';
 // const scriptUrl = 'https://sessionize.com/api/v2/6dqtqpt2/view/Sessions'; api -> sessionList
 
@@ -107,19 +105,6 @@ const SessionListComponent = () => {
         setSelectedEvent(eventInfo.event);
         setIsDialogOpen(true);
       }}
-    >
-      <span className="flex font-bold">{eventInfo.event.title}</span>
-      <span className="flex">{eventInfo.timeText}</span>
-      <span className="flex overflow-hidden italic">
-        Room: {eventInfo.event.extendedProps.room}
-      </span>
-    </div>
-  );
-
-  const renderEventContentMobile = (eventInfo) => (
-    <div
-      className="textContainer flex h-full w-full flex-col overflow-clip"
-      style={{ paddingLeft: '4px', fontSize: '10px' }}
     >
       <span className="flex font-bold">{eventInfo.event.title}</span>
       <span className="flex">{eventInfo.timeText}</span>

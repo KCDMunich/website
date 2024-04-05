@@ -192,6 +192,33 @@
           "status": "Accepted",
           "isInformed": false,
           "isConfirmed": false
+        },{
+          "questionAnswers": [],
+          "id": "6273869",
+          "title": "Choose Your Own Adventure: The Struggle for Security",
+          "description": "Our hero, a running application in a Kubernetes production environment, knows they are destined for greater things! They are serving end users, but currently, they are also endangering those users, the system, and themselves! But the struggle for security is HARD, filled with system design choices concerning secrets management; cluster-level, runtime, and network policies; and image scanning and signing.\r\n\r\nIt is up to you, the audience, to guide our hero and help them grow from a vulnerable, unprotected application to their final form⎯an app that is secure against invasion. In their third ‘Choose Your Own Adventure’-style talk, Whitney and Viktor will present choices that an anthropomorphized app must make as they try to protect themselves against every kind of exploit. Throughout the presentation, the audience (YOU!) will vote to decide our hero app's path! Can we navigate CNCF projects to safeguard our app, system, and users against attack before the session time elapses?",
+          "startsAt": "'2024-07-01T12:30:00",
+          "endsAt": "2024-07-01T13:15:00",
+          "isServiceSession": false,
+          "isPlenumSession": false,
+          "speakers": [
+            {
+              "id": "3f4d3de3-3518-49b8-9e41-ce9a02d43c24",
+              "name": "Whitney Lee"
+            },
+            {
+              "id": "97fd9697-d280-4391-8e99-0e4698bc76db",
+              "name": "Viktor Farcic"
+            }
+          ],
+          "categories": [],
+          "roomId": null,
+          "room": "1",
+          "liveUrl": null,
+          "recordingUrl": null,
+          "status": "Accepted",
+          "isInformed": false,
+          "isConfirmed": false
         }
 
       ],
