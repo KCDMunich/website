@@ -100,14 +100,13 @@ const SessionListComponent = () => {
 
   const renderEventContent = (eventInfo) => (
     <div
-      className=" renderContent flex h-full w-full flex-col overflow-clip p-1 2xl:text-lg lg:text-base md:text-sm  "
+      className=" renderContent flex h-full w-full flex-col overflow-clip p-1 2xl:text-lg lg:text-sm md:text-xs  "
       onClick={() => {
         setSelectedEvent(eventInfo.event);
         setIsDialogOpen(true);
       }}
     >
       <span className="flex font-bold">{eventInfo.event.title}</span>
-      <span className="flex">{eventInfo.timeText}</span>
       <span className="flex overflow-hidden italic">
         Room: {eventInfo.event.extendedProps.room}
       </span>
