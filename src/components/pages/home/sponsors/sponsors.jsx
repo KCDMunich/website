@@ -23,6 +23,10 @@ import Steadforce from 'icons/steadforce_logo.png';
 import MindcurvGmbH from 'icons/mindcurv-group.png';
 import spectrocloud from 'icons/spectrocloud.svg';
 import csp2 from 'icons/csp2_claim_logo_V1.jpg';
+import veeam from 'icons/veeam.png';
+import dynatrace from 'icons/dynatrace.png';
+import consol from 'icons/consol.png';
+import cisco from 'icons/cisco.png';
 
 const TITLE = 'Sponsors';
 
@@ -30,6 +34,9 @@ const ITEMS = [
   {
     title: 'Gold',
     logos: [
+      { icon: cisco, url: 'https://www.cisco.com/' },
+      { icon: consol, url: 'https://www.consol.com/' },
+      { icon: veeam, url: 'https://www.veeam.com/' },
       { icon: ApeFactory, url: 'https://www.apefactory.com/de' },
 
       { icon: MetalStack, url: 'https://metalstack.cloud/de' },
@@ -40,6 +47,7 @@ const ITEMS = [
   {
     title: 'Silver',
     logos: [
+      { icon: dynatrace, url: 'https://www.dynatrace.com/' },
       { icon: Camptocamp, url: 'https://www.camptocamp.com/en' },
       { icon: Exoscale, url: 'https://www.exoscale.com/' },
       { icon: StackState, url: 'https://stackstate.com/' },
