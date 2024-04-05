@@ -29,38 +29,38 @@ const Speakers = () => (
 const DangerComponent1 = () => {
   const [speakerData, setSpeakerData] = useState([]);
 
-  useEffect(() => {
-    fetch(scriptUrl)
-      .then((response) => response.json())
-      .then((data) => {
-        if (data && data.length > 0) {
-          const speakersWithFlipState = data.map((speaker) => ({
-            ...speaker,
-            isFlipped: false,
-            canFlip: speaker.links.length > 0 || findCompany(speaker) != null,
-          }));
-          const shuffledSpeaker = shuffleSpeaker(speakersWithFlipState);
-          setSpeakerData(shuffledSpeaker);
-        } else {
-          setSpeakerData([]);
-        }
-      })
-      .catch((error) => console.error('Error:', error));
-  }, []);
-
   // useEffect(() => {
-  //   if (speakersJSON && speakersJSON.length > 0) {
-  //     const speakersWithFlipState = speakersJSON.map((speaker) => ({
-  //       ...speaker,
-  //       isFlipped: false,
-  //       canFlip: speaker.links.length > 0 || findCompany(speaker) != null,
-  //     }));
-  //     const shuffledSpeaker = shuffleSpeaker(speakersWithFlipState);
-  //     setSpeakerData(shuffledSpeaker);
-  //   } else {
-  //     setSpeakerData([]);
-  //   }
+  //   fetch(scriptUrl)
+  //     .then((response) => response.json())
+  //     .then((data) => {
+  //       if (data && data.length > 0) {
+  //         const speakersWithFlipState = data.map((speaker) => ({
+  //           ...speaker,
+  //           isFlipped: false,
+  //           canFlip: speaker.links.length > 0 || findCompany(speaker) != null,
+  //         }));
+  //         const shuffledSpeaker = shuffleSpeaker(speakersWithFlipState);
+  //         setSpeakerData(shuffledSpeaker);
+  //       } else {
+  //         setSpeakerData([]);
+  //       }
+  //     })
+  //     .catch((error) => console.error('Error:', error));
   // }, []);
+
+  useEffect(() => {
+    if (speakersJSON && speakersJSON.length > 0) {
+      const speakersWithFlipState = speakersJSON.map((speaker) => ({
+        ...speaker,
+        isFlipped: false,
+        canFlip: speaker.links.length > 0 || findCompany(speaker) != null,
+      }));
+      const shuffledSpeaker = shuffleSpeaker(speakersWithFlipState);
+      setSpeakerData(shuffledSpeaker);
+    } else {
+      setSpeakerData([]);
+    }
+  }, []);
 
   const shuffleSpeaker = (array) => {
     let currentIndex = array.length,
