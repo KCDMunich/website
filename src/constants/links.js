@@ -22,11 +22,6 @@ export default {
     id: getAnchor('Workshops'),
     homeTo: '/workshops',
   },
-  proposal: {
-    to: `/#${getAnchor('Call for Speakers')}`,
-    id: getAnchor('Call for Speakers'),
-    homeTo: null,
-  },
   team: {
     to: '/team',
   },
@@ -76,6 +71,11 @@ export default {
     to: '/schedule',
     id: getAnchor('Schedule'),
     homeTo: '/schedule',
+  },
+  proposal: {
+    to: `/#${getAnchor('Call for Speakers')}`,
+    id: getAnchor('Call for Speakers'),
+    homeTo: null,
   },
   sponsors: {
     to: `/#${getAnchor('Sponsors')}`,
