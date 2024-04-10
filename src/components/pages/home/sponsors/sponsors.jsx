@@ -35,12 +35,11 @@ const ITEMS = [
   {
     title: 'Gold',
     logos: [
+      { icon: ApeFactory, url: 'https://www.apefactory.com/de' },
       { icon: cisco, url: 'https://www.cisco.com/' },
       { icon: consol, url: 'https://www.consol.com/' },
-      { icon: veeam, url: 'https://www.veeam.com/' },
-      { icon: ApeFactory, url: 'https://www.apefactory.com/de' },
-
       { icon: MetalStack, url: 'https://metalstack.cloud/de' },
+      { icon: veeam, url: 'https://www.veeam.com/' },
     ],
     cardClassname: 'min-w-[488px] max-w-[330px] min-h-[152px] sm:min-w-[350px] sm:min-h-[130px]',
     iconClassname: 'max-w-[390px] sm:max-w-[350px]',
@@ -48,15 +47,15 @@ const ITEMS = [
   {
     title: 'Silver',
     logos: [
-      { icon: dynatrace, url: 'https://www.dynatrace.com/' },
       { icon: Camptocamp, url: 'https://www.camptocamp.com/en' },
+      { icon: dynatrace, url: 'https://www.dynatrace.com/' },
       { icon: Exoscale, url: 'https://www.exoscale.com/' },
-      { icon: StackState, url: 'https://stackstate.com/' },
-      { icon: pulumi, url: 'https://www.pulumi.com/' },
-      { icon: Steadforce, url: 'https://www.steadforce.com/' },
-      { icon: MindcurvGmbH, url: 'https://www.mindcurv.com/' },
-      { icon: spectrocloud, url: 'https://spectrocloud.com/' },
       { icon: Isovalent, url: 'https://www.isovalent.com/' },
+      { icon: MindcurvGmbH, url: 'https://www.mindcurv.com/' },
+      { icon: pulumi, url: 'https://www.pulumi.com/' },
+      { icon: spectrocloud, url: 'https://spectrocloud.com/' },
+      { icon: StackState, url: 'https://stackstate.com/' },
+      { icon: Steadforce, url: 'https://www.steadforce.com/' },
     ],
     cardClassname: 'min-w-[384px] min-h-[122px] sm:min-w-[320px] sm:min-h-[115px]',
     iconClassname: 'max-w-[330px] sm:min-w-[290px]',
