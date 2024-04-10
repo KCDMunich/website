@@ -1,32 +1,33 @@
-import React from 'react';
 import clsx from 'clsx';
+import React from 'react';
+
 import Button from 'components/shared/button';
 import Link from 'components/shared/link';
 import LINKS from 'constants/links';
-
+import adn from 'icons/adn_logo.png';
 import ApeFactory from 'icons/apefactory.webp';
 import Camptocamp from 'icons/camptocamp.svg';
-import MetalStack from 'icons/metalstackcloud.webp';
-import Qaware from 'icons/qaware.svg';
-import liquid from 'icons/liquid.png';
-import whiteduck from 'icons/whiteduck.png';
+import cisco from 'icons/cisco.png';
 import Cloudnative from 'icons/cloudnative.svg';
+import consol from 'icons/consol.png';
+import csp2 from 'icons/csp2_claim_logo_V1.jpg';
+import dynatrace from 'icons/dynatrace.png';
+import Exoscale from 'icons/exoscale.webp';
+import germantech from 'icons/germantech.svg';
+import Isovalent from 'icons/isovalent.svg';
 import Kubecareers from 'icons/kubecareers_1.svg';
 import Kubeevents from 'icons/kubeevents_2.svg';
-import StackState from 'icons/stackstate.png';
-import germantech from 'icons/germantech.svg';
-import Syseleven from 'icons/syseleven.png';
-import pulumi from 'icons/pulumi_logo.svg';
-import adn from 'icons/adn_logo.png';
-import Exoscale from 'icons/exoscale.webp';
-import Steadforce from 'icons/steadforce_logo.png';
+import liquid from 'icons/liquid.png';
+import MetalStack from 'icons/metalstackcloud.webp';
 import MindcurvGmbH from 'icons/mindcurv-group.png';
+import pulumi from 'icons/pulumi_logo.svg';
+import Qaware from 'icons/qaware.svg';
 import spectrocloud from 'icons/spectrocloud.svg';
-import csp2 from 'icons/csp2_claim_logo_V1.jpg';
+import StackState from 'icons/stackstate.png';
+import Steadforce from 'icons/steadforce_logo.png';
+import Syseleven from 'icons/syseleven.png';
 import veeam from 'icons/veeam.png';
-import dynatrace from 'icons/dynatrace.png';
-import consol from 'icons/consol.png';
-import cisco from 'icons/cisco.png';
+import whiteduck from 'icons/whiteduck.png';
 
 const TITLE = 'Sponsors';
 
@@ -55,6 +56,7 @@ const ITEMS = [
       { icon: Steadforce, url: 'https://www.steadforce.com/' },
       { icon: MindcurvGmbH, url: 'https://www.mindcurv.com/' },
       { icon: spectrocloud, url: 'https://spectrocloud.com/' },
+      { icon: Isovalent, url: 'https://www.isovalent.com/' },
     ],
     cardClassname: 'min-w-[384px] min-h-[122px] sm:min-w-[320px] sm:min-h-[115px]',
     iconClassname: 'max-w-[330px] sm:min-w-[290px]',
@@ -124,7 +126,7 @@ const Sponsors = () => (
           theme="primary"
           target="_blank"
         >
-          <span className="absolute h-full w-full bg-gradient-to-br from-[#3333ff] via-[#3333ff] to-[#3333ff] group-hover:from-[#ff00c6] group-hover:via-[#ff5478] group-hover:to-[#ff8a05]"></span>
+          <span className="absolute h-full w-full bg-gradient-to-br from-[#3333ff] via-[#3333ff] to-[#3333ff] group-hover:from-[#ff00c6] group-hover:via-[#ff5478] group-hover:to-[#ff8a05]" />
           <span className="duration-400 bg-gray-900 relative rounded-md px-6 py-3 transition-all ease-out group-hover:bg-opacity-0">
             <span className="relative text-white">Information Slide</span>
           </span>
