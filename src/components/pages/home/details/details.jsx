@@ -31,7 +31,7 @@ const Details = () => (
             <p className="mt-7">
               Bookable under the following email address:{' '}
               <a href="mailto:info@arabellapark.bestwestern.de" style={{ color: '#1800d4' }}>
-                info@arabellapark.bestwestern.de
+                info@hotel-arabellapark.de
               </a>{' '}
               with the code "KCD Munich"
             </p>
