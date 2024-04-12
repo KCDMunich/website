@@ -22,6 +22,14 @@ const SessionListComponent = () => {
   const [sessionData, setSessionData] = useState([]);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [selectedEvent, setSelectedEvent] = useState(null);
+  const [visibleDay, setVisibleDay] = useState('2024-07-01');
+
+  const resources = [
+    { id: '1', title: 'Room 1' },
+    { id: '2', title: 'Room 2' },
+    { id: '3', title: 'Room 3' },
+    { id: '4', title: 'Room 4' },
+  ];
 
   // useEffect(() => {
   //   fetch(scriptUrl)
@@ -80,6 +88,10 @@ const SessionListComponent = () => {
     );
   }
 
+  const handleDayChange = (day) => {
+    setVisibleDay(day);
+  };
+
   const convertSessionsToEvents = (sessions) => {
     return sessions.flatMap((group) =>
       group.sessions.map((session) => ({
@@ -116,6 +128,10 @@ const SessionListComponent = () => {
   return (
     <div className="w-full overflow-hidden rounded-md" style={{ background: '#dadada21' }}>
       <div>
+        <button onClick={() => handleDayChange('2024-07-01')}>Monday</button>
+        <button onClick={() => handleDayChange('2024-07-02')}>Tuesday</button>
+      </div>
+      <div className="calendar-container">
         <FullCalendar
           allDaySlot={false}
           plugins={[timeGridPlugin]}
@@ -131,11 +147,12 @@ const SessionListComponent = () => {
             right: '',
           }}
           visibleRange={{
-            start: '2024-07-01',
-            end: '2024-07-03',
+            start: visibleDay,
+            end: visibleDay === '2024-07-01' ? '2024-07-02' : '2024-07-03',
           }}
           events={sessionData}
           eventContent={renderEventContent}
+          re
         />
         <Dialog
           isOpen={isDialogOpen}
@@ -158,8 +175,8 @@ const SessionListComponent = () => {
               <p className="dialog-end py-2 2xl:text-base">
                 <strong>End:</strong> {selectedEvent.end.toLocaleString()}
               </p>{' '}
-              <p className="dialog-room py-2 2xl:text-base">
-                <strong>Room:</strong> {selectedEvent.extendedProps.room}
+              <p className="dialog- py-2 2xl:text-base">
+                <strongroom>Room:</strongroom> {selectedEvent.extendedProps.room}
               </p>{' '}
               <p
                 className="dialog-description py-2 2xl:text-base"
