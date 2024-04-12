@@ -21,7 +21,6 @@ const HomePage = ({ location }) => (
     <Info />
     <Speakers />
     <Tickets />
-    <Proposal />
     <Sponsors />
     <Details />
   </Layout>
@@ -33,6 +32,7 @@ const HomePage = ({ location }) => (
 <Venue />
 <Details />
 <Partners />
+<Proposal />
 */
 
 export default HomePage;
