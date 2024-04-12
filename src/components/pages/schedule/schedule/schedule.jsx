@@ -5,6 +5,7 @@ import FullCalendar from '@fullcalendar/react';
 import timeGridPlugin from '@fullcalendar/timegrid';
 // const scriptUrl = 'https://sessionize.com/api/v2/t71l7ld5/view/GridSmart';
 // const scriptUrl = 'https://sessionize.com/api/v2/6dqtqpt2/view/Sessions'; api -> sessionList
+const speakerURL = 'https://sessionize.com/api/v2/6dqtqpt2/view/Speakers';
 
 const Schedule = () => {
   return (
@@ -23,13 +24,17 @@ const SessionListComponent = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [selectedEvent, setSelectedEvent] = useState(null);
   const [visibleDay, setVisibleDay] = useState('2024-07-01');
+  const [speakerData, setSpeakerData] = useState([]);
 
-  const resources = [
-    { id: '1', title: 'Room 1' },
-    { id: '2', title: 'Room 2' },
-    { id: '3', title: 'Room 3' },
-    { id: '4', title: 'Room 4' },
-  ];
+  //Speaker aus der api fetchen
+  useEffect(() => {
+    fetch(speakerURL)
+      .then((response) => response.json())
+      .then((data) => {
+        setSpeakerData(data);
+      })
+      .catch((error) => console.error('Error:', error));
+  }, []);
 
   // useEffect(() => {
   //   fetch(scriptUrl)
@@ -125,6 +130,50 @@ const SessionListComponent = () => {
     </div>
   );
 
+  const EventDialog = () => {
+    return (
+      <div className="h-auto w-auto" style={{ padding: '25px', display: 'flex' }}>
+        {/* Left Column for Event Information */}
+        <div style={{ flex: 1, paddingRight: '10px' }}>
+          <h2
+            className="dialog-title font-black 2xl:text-7xl xl:text-6xl lg:text-5xl md:text-4xl"
+            style={{ marginTop: '-10px', marginBottom: '15px' }}
+          >
+            {selectedEvent.title}
+          </h2>
+          <p className="dialog-start py-2 2xl:text-base">
+            <strong>Start:</strong> {selectedEvent.start.toLocaleString()}
+          </p>
+          <p className="dialog-end py-2 2xl:text-base">
+            <strong>End:</strong> {selectedEvent.end.toLocaleString()}
+          </p>
+          <p className="dialog-room py-2 2xl:text-base">
+            <strong>Room:</strong> {selectedEvent.extendedProps.room}
+          </p>
+          <p
+            className="dialog-description py-2 2xl:text-base"
+            style={{ textAlign: 'left', height: '33vh', overflow: 'auto' }}
+          >
+            <strong>Description:</strong> {selectedEvent.extendedProps.description}
+          </p>
+        </div>
+
+        {/* Right Column for Sample Participant Values */}
+        <div style={{ flex: 1, paddingLeft: '10px' }}>
+          <p className="participant-name py-2 2xl:text-base">
+            <strong>Name:</strong> Max Mustermann
+          </p>
+          <p className="participant-firstname py-2 2xl:text-base">
+            <strong>First Name:</strong> Max
+          </p>
+          <p className="participant-company py-2 2xl:text-base">
+            <strong>Company:</strong> Mustermann GmbH
+          </p>
+        </div>
+      </div>
+    );
+  };
+
   return (
     <div className="w-full overflow-hidden rounded-md" style={{ background: '#dadada21' }}>
       <div>
@@ -161,31 +210,7 @@ const SessionListComponent = () => {
             setSelectedEvent(null);
           }}
         >
-          {selectedEvent && (
-            <div className="h-auto w-auto" style={{ padding: '25px' }}>
-              <h2
-                className="dialog-title font-black 2xl:text-7xl xl:text-6xl lg:text-5xl md:text-4xl"
-                style={{ marginTop: '-10px', marginBottom: '15px' }}
-              >
-                {selectedEvent.title}
-              </h2>
-              <p className="dialog-start py-2 2xl:text-base">
-                <strong>Start:</strong> {selectedEvent.start.toLocaleString()}
-              </p>{' '}
-              <p className="dialog-end py-2 2xl:text-base">
-                <strong>End:</strong> {selectedEvent.end.toLocaleString()}
-              </p>{' '}
-              <p className="dialog- py-2 2xl:text-base">
-                <strongroom>Room:</strongroom> {selectedEvent.extendedProps.room}
-              </p>{' '}
-              <p
-                className="dialog-description py-2 2xl:text-base"
-                style={{ textAlign: 'left', height: '33vh', overflow: 'auto' }}
-              >
-                <strong>Description:</strong> {selectedEvent.extendedProps.description}
-              </p>{' '}
-            </div>
-          )}
+          {selectedEvent && <EventDialog />}
         </Dialog>
       </div>
     </div>
