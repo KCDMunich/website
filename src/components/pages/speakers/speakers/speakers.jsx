@@ -22,29 +22,30 @@ const SpeakerComponent = () => {
   const [speakerData, setSpeakerData] = useState([]);
 
   //Speaker aus der api fetchen
-  // useEffect(() => {
-  //   fetch(scriptUrl)
-  //     .then((response) => response.json())
-  //     .then((data) => {
-  //       const speakersWithFlipState = data.map((speaker) => ({
-  //         ...speaker,
-  //         isFlipped: false,
-  //       }));
-  //       const shuffledSpeaker = shuffleSpeaker(speakersWithFlipState);
-  //       setSpeakerData(shuffledSpeaker);
-  //     })
-  //     .catch((error) => console.error('Error:', error));
-  // }, []);
-
   useEffect(() => {
-    // aus der speaker.json
-    const speakersWithFlipState = speakerJSON.map((speaker) => ({
-      ...speaker,
-      isFlipped: false,
-    }));
-    const shuffledSpeaker = shuffleSpeaker(speakersWithFlipState);
-    setSpeakerData(shuffledSpeaker);
+    fetch(scriptUrl)
+      .then((response) => response.json())
+      .then((data) => {
+        const speakersWithFlipState = data.map((speaker) => ({
+          ...speaker,
+          isFlipped: false,
+        }));
+        const shuffledSpeaker = shuffleSpeaker(speakersWithFlipState);
+        setSpeakerData(shuffledSpeaker);
+      })
+      .catch((error) => console.error('Error:', error));
   }, []);
+
+  // aus der speaker.json
+  // useEffect(() => {
+
+  //   const speakersWithFlipState = speakerJSON.map((speaker) => ({
+  //     ...speaker,
+  //     isFlipped: false,
+  //   }));
+  //   const shuffledSpeaker = shuffleSpeaker(speakersWithFlipState);
+  //   setSpeakerData(shuffledSpeaker);
+  // }, []);
 
   const shuffleSpeaker = (array) => {
     let currentIndex = array.length,
