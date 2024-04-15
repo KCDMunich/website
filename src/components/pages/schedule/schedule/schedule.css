@@ -50,7 +50,7 @@
 }
 
 .fc-timegrid-axis {
-  background: #d3d3d342;
+  display: none;
 }
 
 .fc-timegrid-event-harness {
@@ -90,4 +90,8 @@ td {
   .dialog-description {
     font-size: 10px;
   }
+}
+
+.fc-direction-ltr .fc-timegrid-slot-label-frame {
+  display: none;
 }

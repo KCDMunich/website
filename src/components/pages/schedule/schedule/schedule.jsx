@@ -3,6 +3,7 @@ import scheduleJSON from './schedule.json'; //Daten aus der schedule.json
 import './schedule.css';
 import FullCalendar from '@fullcalendar/react';
 import timeGridPlugin from '@fullcalendar/timegrid';
+
 // const scriptUrl = 'https://sessionize.com/api/v2/t71l7ld5/view/GridSmart';
 // const scriptUrl = 'https://sessionize.com/api/v2/6dqtqpt2/view/Sessions'; api -> sessionList
 const speakerURL = 'https://sessionize.com/api/v2/6dqtqpt2/view/Speakers';
@@ -59,15 +60,13 @@ const SessionListComponent = () => {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          overflow: 'auto',
           padding: '100px',
         }}
       >
         <div
           style={{
             position: 'relative',
-            border: 'solid rgb(13, 50, 233)',
-            backgroundColor: '#f5f5f5',
+            backgroundColor: 'rgb(237 237 237)',
             padding: '20px',
             borderRadius: '5px',
             color: 'black',
@@ -106,6 +105,7 @@ const SessionListComponent = () => {
         end: session.endsAt.replace("'", ''),
         description: session.description,
         room: session.room,
+        speakers: session.speakers,
       }))
     );
   };
@@ -124,51 +124,56 @@ const SessionListComponent = () => {
       }}
     >
       <span className="flex font-bold">{eventInfo.event.title}</span>
-      <span className="flex overflow-hidden italic">
-        Room: {eventInfo.event.extendedProps.room}
-      </span>
+      <div className="flex overflow-hidden italic">
+        Speaker:
+        <div style={{ display: 'flex' }}>
+          {eventInfo.event.extendedProps.speakers.map((speaker) => (
+            <span>{speaker.name}</span>
+          ))}
+        </div>
+        <span>{eventInfo.event.extendedProps.startAt}</span>
+      </div>
     </div>
   );
 
   const EventDialog = () => {
     return (
-      <div className="h-auto w-auto" style={{ padding: '25px', display: 'flex' }}>
-        {/* Left Column for Event Information */}
-        <div style={{ flex: 1, paddingRight: '10px' }}>
-          <h2
-            className="dialog-title font-black 2xl:text-7xl xl:text-6xl lg:text-5xl md:text-4xl"
-            style={{ marginTop: '-10px', marginBottom: '15px' }}
-          >
-            {selectedEvent.title}
-          </h2>
-          <p className="dialog-start py-2 2xl:text-base">
-            <strong>Start:</strong> {selectedEvent.start.toLocaleString()}
-          </p>
-          <p className="dialog-end py-2 2xl:text-base">
-            <strong>End:</strong> {selectedEvent.end.toLocaleString()}
-          </p>
-          <p className="dialog-room py-2 2xl:text-base">
-            <strong>Room:</strong> {selectedEvent.extendedProps.room}
-          </p>
-          <p
-            className="dialog-description py-2 2xl:text-base"
-            style={{ textAlign: 'left', height: '33vh', overflow: 'auto' }}
-          >
-            <strong>Description:</strong> {selectedEvent.extendedProps.description}
-          </p>
-        </div>
+      <div className="h-auto w-auto" style={{ padding: '25px' }}>
+        {/* Main Title Above Both Columns */}
+        <h2
+          className="dialog-title font-black 2xl:text-7xl xl:text-6xl lg:text-5xl md:text-4xl"
+          style={{ marginBottom: '15px' }}
+        >
+          {selectedEvent.title}
+        </h2>
 
-        {/* Right Column for Sample Participant Values */}
-        <div style={{ flex: 1, paddingLeft: '10px' }}>
-          <p className="participant-name py-2 2xl:text-base">
-            <strong>Name:</strong> Max Mustermann
-          </p>
-          <p className="participant-firstname py-2 2xl:text-base">
-            <strong>First Name:</strong> Max
-          </p>
-          <p className="participant-company py-2 2xl:text-base">
-            <strong>Company:</strong> Mustermann GmbH
-          </p>
+        {/* Flex Container for Two Columns */}
+        <div style={{ display: 'flex' }}>
+          {/* Left Column for Event Information */}
+          <div style={{ flex: 1, paddingRight: '10px' }}>
+            <p className="dialog-start py-2 2xl:text-base">
+              <strong>Start:</strong> {selectedEvent.start.toLocaleString()}
+            </p>
+            <p className="dialog-end py-2 2xl:text-base">
+              <strong>End:</strong> {selectedEvent.end.toLocaleString()}
+            </p>
+            <p className="dialog-room py-2 2xl:text-base">
+              <strong>Room:</strong> {selectedEvent.extendedProps.room}
+            </p>
+            <p
+              className="dialog-description py-2 2xl:text-base"
+              style={{ textAlign: 'left', height: '33vh', overflow: 'auto' }}
+            >
+              <strong>Description:</strong> {selectedEvent.extendedProps.description}
+            </p>
+          </div>
+
+          {/* Right Column for Sample Participant Values */}
+          <div style={{ flex: 1, paddingLeft: '10px' }}>
+            {selectedEvent.extendedProps.speakers.map((speaker) => (
+              <div></div>
+            ))}
+          </div>
         </div>
       </div>
     );
@@ -181,28 +186,96 @@ const SessionListComponent = () => {
         <button onClick={() => handleDayChange('2024-07-02')}>Tuesday</button>
       </div>
       <div className="calendar-container">
-        <FullCalendar
-          allDaySlot={false}
-          plugins={[timeGridPlugin]}
-          initialView="timeGrid"
-          slotEventOverlap={false}
-          slotLabelInterval={{ hours: 1 }}
-          slotMinTime="08:00:00"
-          slotMaxTime="24:00:00"
-          height="auto"
-          headerToolbar={{
-            left: '',
-            center: 'title',
-            right: '',
-          }}
-          visibleRange={{
-            start: visibleDay,
-            end: visibleDay === '2024-07-01' ? '2024-07-02' : '2024-07-03',
-          }}
-          events={sessionData}
-          eventContent={renderEventContent}
-          re
-        />
+        <div className="flex">
+          <FullCalendar
+            allDaySlot={false}
+            plugins={[timeGridPlugin]}
+            displayEventTime={false}
+            initialView="timeGrid"
+            slotEventOverlap={false}
+            slotLabelInterval={{ hours: 1 }}
+            slotMinTime="08:00:00"
+            slotMaxTime="24:00:00"
+            height="auto"
+            headerToolbar={{
+              left: '',
+              right: '',
+            }}
+            visibleRange={{
+              start: visibleDay,
+              end: visibleDay === '2024-07-01' ? '2024-07-02' : '2024-07-03',
+            }}
+            events={sessionData}
+            eventContent={renderEventContent}
+            dayHeaderContent="Main Stage"
+          />
+          <FullCalendar
+            allDaySlot={false}
+            plugins={[timeGridPlugin]}
+            displayEventTime={false}
+            initialView="timeGrid"
+            slotEventOverlap={false}
+            slotLabelInterval={{ hours: 1 }}
+            slotMinTime="08:00:00"
+            slotMaxTime="24:00:00"
+            height="auto"
+            headerToolbar={{
+              left: '',
+              right: '',
+            }}
+            visibleRange={{
+              start: visibleDay,
+              end: visibleDay === '2024-07-01' ? '2024-07-02' : '2024-07-03',
+            }}
+            events={sessionData}
+            eventContent={renderEventContent}
+            dayHeaderContent="Top Stage"
+          />
+          <FullCalendar
+            allDaySlot={false}
+            plugins={[timeGridPlugin]}
+            displayEventTime={false}
+            initialView="timeGrid"
+            slotEventOverlap={false}
+            slotLabelInterval={{ hours: 1 }}
+            slotMinTime="08:00:00"
+            slotMaxTime="24:00:00"
+            height="auto"
+            headerToolbar={{
+              left: '',
+              right: '',
+            }}
+            visibleRange={{
+              start: visibleDay,
+              end: visibleDay === '2024-07-01' ? '2024-07-02' : '2024-07-03',
+            }}
+            events={sessionData}
+            eventContent={renderEventContent}
+            dayHeaderContent="Workshop Room"
+          />
+          <FullCalendar
+            allDaySlot={false}
+            plugins={[timeGridPlugin]}
+            displayEventTime={false}
+            initialView="timeGrid"
+            slotEventOverlap={false}
+            slotLabelInterval={{ hours: 1 }}
+            slotMinTime="08:00:00"
+            slotMaxTime="24:00:00"
+            height="auto"
+            headerToolbar={{
+              left: '',
+              right: '',
+            }}
+            visibleRange={{
+              start: visibleDay,
+              end: visibleDay === '2024-07-01' ? '2024-07-02' : '2024-07-03',
+            }}
+            events={sessionData}
+            eventContent={renderEventContent}
+            dayHeaderContent="The Unconference"
+          />
+        </div>
         <Dialog
           isOpen={isDialogOpen}
           onClose={() => {
