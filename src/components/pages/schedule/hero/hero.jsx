@@ -2,8 +2,7 @@ import React from 'react';
 
 import Button from 'components/shared/button';
 
-const TITLE =
-  'Schedule for <time className="text-blue-1 xs:block">17th & 18th of July, 2023</time>';
+const TITLE = 'Schedule for <time className="text-blue-1 xs:block">1th & 2nd of July, 2024</time>';
 const DESCRIPTION =
   "Get ready for action-packed days. With two tracks and more than 45 sessions to choose from, you'll have plenty of opportunities to learn from experts in the field.";
 
@@ -19,6 +18,7 @@ const Hero = () => (
       </p>
       <Button
         className="border-nonemd:hidden group relative inline-flex w-fit items-center justify-center overflow-hidden"
+        style={{ marginTop: '1.5rem' }}
         to="https://kcdmunich-2.ticketbutler.io/en/e/kcd-munich-2024/"
         target="_blank"
       >

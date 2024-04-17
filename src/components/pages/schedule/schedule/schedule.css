@@ -1,0 +1,171 @@
+.fc .fc-timegrid-slot {
+  height: 4.95em;
+}
+/* Entfernen der Borders in FullCalendar */
+.fc .fc-scrollgrid,
+.fc .fc-scrollgrid-section,
+.fc .fc-scrollgrid-section > td,
+.fc .fc-col-header-cell,
+.fc .fc-daygrid-day,
+.fc .fc-timegrid-slot,
+.fc .fc-timegrid-slot-label,
+.fc .fc-timegrid-slot-label-frame,
+.fc .fc-timegrid-body .fc-timegrid-col,
+.fc .fc-timegrid-slot-label:last-child,
+.fc-theme-standard td,
+.fc-theme-standard th {
+  border: none !important;
+}
+.fc .fc-timegrid-slot {
+  border-top: 0.5px solid lightgrey !important;
+  border-bottom: 0.5px solid lightgrey !important;
+}
+
+.fc-event {
+  width: 100%;
+  height: fit-content;
+  background: rgb(13, 50, 233);
+}
+
+.fc .fc-toolbar {
+  font-weight: bold;
+}
+
+.fc .fc-toolbar-title {
+  padding-top: 10px;
+}
+.fc .fc-toolbar.fc-header-toolbar {
+  margin-bottom: 0px;
+  background: darkgray;
+}
+
+.fc .fc-col-header-cell-cushion {
+  font-size: 22px;
+}
+
+.fc-scrollgrid-sync-inner {
+  background: lightgray;
+}
+.fc th {
+  background: lightgray;
+}
+
+.fc-timegrid-axis {
+  display: none;
+}
+
+.fc-timegrid-event-harness {
+  margin-left: 4px;
+}
+
+td {
+  padding-right: 2px !important;
+}
+
+.fc-direction-ltr .fc-timegrid-slot-label-frame {
+  text-align: center;
+}
+
+@media screen and (max-width: 800px) {
+  .renderContent {
+    font-size: 9px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .dialog-title {
+    font-size: 14px;
+  }
+
+  .dialog-start {
+    font-size: 10px;
+  }
+
+  .dialog-end {
+    font-size: 10px;
+  }
+
+  .dialog-room {
+    font-size: 10px;
+  }
+  .dialog-description {
+    font-size: 10px;
+  }
+}
+
+.fc-direction-ltr .fc-timegrid-slot-label-frame {
+  display: none;
+}
+
+/* Standardmäßige Desktop-Stile */
+.event-content {
+  margin: 5%;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  height: fit-content;
+}
+
+.event-time {
+  display: flex;
+  justify-content: left;
+  font-weight: bold;
+}
+
+.event-title {
+  font-weight: bold;
+}
+
+.speaker-list {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Medienabfragen für mobile Geräte */
+@media (max-width: 600px, max-height: 30vh) {
+  .event-time {
+    font-size: 0.8rem; /* Kleinere Schriftgröße für kleine Geräte */
+  }
+
+  .speaker-list {
+    gap: 0.3rem;
+  }
+
+  .event-content {
+    margin: 2%; /* Kleinere Ränder für kleine Geräte */
+  }
+}
+
+@media (max-width: 430px) {
+  .event-time {
+    display: flex;
+    justify-content: left;
+    width: max-content;
+    font-size: 0.6rem; /* Noch kleinere Schriftgröße für sehr kleine Geräte */
+  }
+  .event-title {
+    display: flex;
+    justify-content: left;
+    font-size: 0.5rem; /* Noch kleinere Schriftgröße für sehr kleine Geräte */
+  }
+  .event-content {
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    font-size: 0.3rem; /* Noch kleinere Schriftgröße für sehr kleine Geräte */
+  }
+  .event-info {
+    display: none;
+  }
+  .speaker-list {
+    display: flex;
+    flex-direction: column;
+    font-size: 0.7rem; /* Noch kleinere Schriftgröße für sehr kleine Geräte */
+  }
+  .fc-event {
+    height: fit-content;
+    margin: 0.5%;
+  }
+}
