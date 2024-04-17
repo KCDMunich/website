@@ -5,6 +5,7 @@ import Button from 'components/shared/button';
 import Link from 'components/shared/link';
 import LINKS from 'constants/links';
 import adn from 'icons/adn_logo.png';
+import Akamai from 'icons/akamai.svg';
 import ApeFactory from 'icons/apefactory.webp';
 import Camptocamp from 'icons/camptocamp.svg';
 import cisco from 'icons/cisco.png';
@@ -47,6 +48,7 @@ const ITEMS = [
   {
     title: 'Silver',
     logos: [
+      { icon: Akamai, url: 'https://www.akamai.com/' },
       { icon: Camptocamp, url: 'https://www.camptocamp.com/en' },
       { icon: dynatrace, url: 'https://www.dynatrace.com/' },
       { icon: Exoscale, url: 'https://www.exoscale.com/' },
