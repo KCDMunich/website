@@ -19,6 +19,7 @@ const Hero = () => (
       </p>
       <Button
         className="border-nonemd:hidden group relative inline-flex w-fit items-center justify-center overflow-hidden"
+        style={{ marginTop: '1.5rem' }}
         to="https://kcdmunich-2.ticketbutler.io/en/e/kcd-munich-2024/"
         target="_blank"
       >

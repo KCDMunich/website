@@ -1,227 +1,1145 @@
 [
-    {
-      "groupId": null,
-      "groupName": "All",
-      "sessions": [
-        {
-          "questionAnswers": [],
-          "id": "627386",
-          "title": "Choose Your Own Adventure: The Struggle for Security",
-          "description": "Our hero, a running application in a Kubernetes production environment, knows they are destined for greater things! They are serving end users, but currently, they are also endangering those users, the system, and themselves! But the struggle for security is HARD, filled with system design choices concerning secrets management; cluster-level, runtime, and network policies; and image scanning and signing.\r\n\r\nIt is up to you, the audience, to guide our hero and help them grow from a vulnerable, unprotected application to their final form⎯an app that is secure against invasion. In their third ‘Choose Your Own Adventure’-style talk, Whitney and Viktor will present choices that an anthropomorphized app must make as they try to protect themselves against every kind of exploit. Throughout the presentation, the audience (YOU!) will vote to decide our hero app's path! Can we navigate CNCF projects to safeguard our app, system, and users against attack before the session time elapses?",
-          "startsAt": "'2024-07-01T12:30:00",
-          "endsAt": "2024-07-01T13:15:00",
-          "isServiceSession": false,
-          "isPlenumSession": false,
-          "speakers": [
-            {
-              "id": "3f4d3de3-3518-49b8-9e41-ce9a02d43c24",
-              "name": "Whitney Lee"
-            },
-            {
-              "id": "97fd9697-d280-4391-8e99-0e4698bc76db",
-              "name": "Viktor Farcic"
-            }
-          ],
-          "categories": [],
-          "roomId": null,
-          "room": "1",
-          "liveUrl": null,
-          "recordingUrl": null,
-          "status": "Accepted",
-          "isInformed": false,
-          "isConfirmed": false
-        },
-        {
-          "questionAnswers": [],
-          "id": "594810",
-          "title": "Platform as a Product: Stories from the Field",
-          "description": "Platform as a Product expression has become a popular chant in the industry although many are unclear about what it really means. We go beyond the fad and look at a repeatable framework, which you can run as a workshop with your team/s and define the changes required for your organization to treat the platform as a product, the benefits from doing so as well as the challenges in making that move.\r\n\r\nFor the past years, we have run Platform as a Product workshop with different organizations and helped them implement ideas into reality. This session will be the summary of our findings and lessons learned. We also give participants a sneak peek of the workshop and guidance on how could they run it themselves. And moreover, the workshop is already accessible to everybody via the Miroverse community!*\r\n\r\n* https://miro.com/miroverse/platform-as-a-product-workshop/",
-          "startsAt": "'2024-07-01T12:30:00",
-          "endsAt": "2024-07-01T13:15:00",
-          "isServiceSession": false,
-          "isPlenumSession": false,
-          "speakers": [
-            {
-              "id": "81a52ccf-95b9-49fe-aefc-5522cdcc382a",
-              "name": "Cansu Kavili Örnek"
-            }
-          ],
-          "categories": [],
-          "roomId": null,
-          "room": "2",
-          "liveUrl": null,
-          "recordingUrl": null,
-          "status": "Accepted",
-          "isInformed": false,
-          "isConfirmed": false
-        },
-        {
-          "questionAnswers": [],
-          "id": "633036",
-          "title": "Unlocking New Platform Experiences With Open Interfaces",
-          "description": "Building beautiful, tailored experiences on top of Kubernetes is hard. Are you building the right abstractions for dev teams to perform their tasks? It is challenging for platform teams to enable such experiences and choose what components they have to build themselves.\r\n\r\nMauricio and Thomas will analyze existing CNCF projects to implement an end-to-end experience and support teams from idea to production, using a “function-as-a-service” example.\r\n\r\nThey will look into how:\r\n- Knative Serving provides a simplified serverless experience \r\n- Knative Func provides a polyglot CLI tool for developers \r\n- OpenFunction orchestrates the functions lifecycle\r\n- OpenFunction integrates KEDA and Dapr to enable complex use cases.\r\n\r\nThe presentation will identify the strengths of these tools and which gaps platform teams will need to bridge when building a FaaS experience. The lessons learned and tips shared will help teams bring more projects to their platforms without complicating end-to-end workflows.",
-          "startsAt": "'2024-07-02T08:00:00",
-          "endsAt": "2024-07-02T08:45:00",
-          "isServiceSession": false,
-          "isPlenumSession": false,
-          "speakers": [
-            {
-              "id": "86c8f476-5a3d-4c3e-a299-a75bdc149d0b",
-              "name": "Thomas Vitale"
-            },
-            {
-              "id": "f44f5308-1287-4e6c-8f48-6ed26ea9f9d3",
-              "name": "Mauricio \"Salaboy\" Salatino"
-            }
-          ],
-          "categories": [],
-          "roomId": null,
-          "room": "3",
-          "liveUrl": null,
-          "recordingUrl": null,
-          "status": "Accepted",
-          "isInformed": false,
-          "isConfirmed": false
-        },{
-          "questionAnswers": [],
-          "id": "627399",
-          "title": "Trudelu",
-          "description": "Our hero, a running application in a Kubernetes production environment, knows they are destined for greater things! They are serving end users, but currently, they are also endangering those users, the system, and themselves! But the struggle for security is HARD, filled with system design choices concerning secrets management; cluster-level, runtime, and network policies; and image scanning and signing.\r\n\r\nIt is up to you, the audience, to guide our hero and help them grow from a vulnerable, unprotected application to their final form⎯an app that is secure against invasion. In their third ‘Choose Your Own Adventure’-style talk, Whitney and Viktor will present choices that an anthropomorphized app must make as they try to protect themselves against every kind of exploit. Throughout the presentation, the audience (YOU!) will vote to decide our hero app's path! Can we navigate CNCF projects to safeguard our app, system, and users against attack before the session time elapses?",
-          "startsAt": "'2024-07-01T16:15:00",
-          "endsAt": "2024-07-01T17:00:00",
-          "isServiceSession": false,
-          "isPlenumSession": false,
-          "speakers": [
-            {
-              "id": "3f4d3de3-3518-49b8-9e41-ce9a02d43c24",
-              "name": "Whitney Lee"
-            },
-            {
-              "id": "97fd9697-d280-4391-8e99-0e4698bc76db",
-              "name": "Viktor Farcic"
-            }
-          ],
-          "categories": [],
-          "roomId": null,
-          "room":" 5",
-          "liveUrl": null,
-          "recordingUrl": null,
-          "status": "Accepted",
-          "isInformed": false,
-          "isConfirmed": false
-        },
-        {
-          "questionAnswers": [],
-          "id": "627398",
-          "title": "Trudelu",
-          "description": "Our hero, a running application in a Kubernetes production environment, knows they are destined for greater things! They are serving end users, but currently, they are also endangering those users, the system, and themselves! But the struggle for security is HARD, filled with system design choices concerning secrets management; cluster-level, runtime, and network policies; and image scanning and signing.\r\n\r\nIt is up to you, the audience, to guide our hero and help them grow from a vulnerable, unprotected application to their final form⎯an app that is secure against invasion. In their third ‘Choose Your Own Adventure’-style talk, Whitney and Viktor will present choices that an anthropomorphized app must make as they try to protect themselves against every kind of exploit. Throughout the presentation, the audience (YOU!) will vote to decide our hero app's path! Can we navigate CNCF projects to safeguard our app, system, and users against attack before the session time elapses?",
-          "startsAt": "'2024-07-01T14:15:00",
-          "endsAt": "2024-07-01T15:00:00",
-          "isServiceSession": false,
-          "isPlenumSession": false,
-          "speakers": [
-            {
-              "id": "3f4d3de3-3518-49b8-9e41-ce9a02d43c24",
-              "name": "Whitney Lee"
-            },
-            {
-              "id": "97fd9697-d280-4391-8e99-0e4698bc76db",
-              "name": "Viktor Farcic"
-            }
-          ],
-          "categories": [],
-          "roomId": null,
-          "room":" 5",
-          "liveUrl": null,
-          "recordingUrl": null,
-          "status": "Accepted",
-          "isInformed": false,
-          "isConfirmed": false
-        },
-        {
-          "questionAnswers": [],
-          "id": "627397",
-          "title": "Trudelu",
-          "description": "Our hero, a running application in a Kubernetes production environment, knows they are destined for greater things! They are serving end users, but currently, they are also endangering those users, the system, and themselves! But the struggle for security is HARD, filled with system design choices concerning secrets management; cluster-level, runtime, and network policies; and image scanning and signing.\r\n\r\nIt is up to you, the audience, to guide our hero and help them grow from a vulnerable, unprotected application to their final form⎯an app that is secure against invasion. In their third ‘Choose Your Own Adventure’-style talk, Whitney and Viktor will present choices that an anthropomorphized app must make as they try to protect themselves against every kind of exploit. Throughout the presentation, the audience (YOU!) will vote to decide our hero app's path! Can we navigate CNCF projects to safeguard our app, system, and users against attack before the session time elapses?",
-          "startsAt": "'2024-07-01T09:15:00",
-          "endsAt": "2024-07-01T10:00:00",
-          "isServiceSession": false,
-          "isPlenumSession": false,
-          "speakers": [
-            {
-              "id": "3f4d3de3-3518-49b8-9e41-ce9a02d43c24",
-              "name": "Whitney Lee"
-            },
-            {
-              "id": "97fd9697-d280-4391-8e99-0e4698bc76db",
-              "name": "Viktor Farcic"
-            }
-          ],
-          "categories": [],
-          "roomId": null,
-          "room":" 5",
-          "liveUrl": null,
-          "recordingUrl": null,
-          "status": "Accepted",
-          "isInformed": false,
-          "isConfirmed": false
-        },{
-          "questionAnswers": [],
-          "id": "627396",
-          "title": "Trudelu",
-          "description": "Our hero, a running application in a Kubernetes production environment, knows they are destined for greater things! They are serving end users, but currently, they are also endangering those users, the system, and themselves! But the struggle for security is HARD, filled with system design choices concerning secrets management; cluster-level, runtime, and network policies; and image scanning and signing.\r\n\r\nIt is up to you, the audience, to guide our hero and help them grow from a vulnerable, unprotected application to their final form⎯an app that is secure against invasion. In their third ‘Choose Your Own Adventure’-style talk, Whitney and Viktor will present choices that an anthropomorphized app must make as they try to protect themselves against every kind of exploit. Throughout the presentation, the audience (YOU!) will vote to decide our hero app's path! Can we navigate CNCF projects to safeguard our app, system, and users against attack before the session time elapses?",
-          "startsAt": "'2024-07-01T20:15:00",
-          "endsAt": "2024-07-01T21:00:00",
-          "isServiceSession": false,
-          "isPlenumSession": false,
-          "speakers": [
-            {
-              "id": "3f4d3de3-3518-49b8-9e41-ce9a02d43c24",
-              "name": "Whitney Lee"
-            },
-            {
-              "id": "97fd9697-d280-4391-8e99-0e4698bc76db",
-              "name": "Viktor Farcic"
-            }
-          ],
-          "categories": [],
-          "roomId": null,
-          "room":" 5",
-          "liveUrl": null,
-          "recordingUrl": null,
-          "status": "Accepted",
-          "isInformed": false,
-          "isConfirmed": false
-        },{
-          "questionAnswers": [],
-          "id": "6273869",
-          "title": "Choose Your Own Adventure: The Struggle for Security",
-          "description": "Our hero, a running application in a Kubernetes production environment, knows they are destined for greater things! They are serving end users, but currently, they are also endangering those users, the system, and themselves! But the struggle for security is HARD, filled with system design choices concerning secrets management; cluster-level, runtime, and network policies; and image scanning and signing.\r\n\r\nIt is up to you, the audience, to guide our hero and help them grow from a vulnerable, unprotected application to their final form⎯an app that is secure against invasion. In their third ‘Choose Your Own Adventure’-style talk, Whitney and Viktor will present choices that an anthropomorphized app must make as they try to protect themselves against every kind of exploit. Throughout the presentation, the audience (YOU!) will vote to decide our hero app's path! Can we navigate CNCF projects to safeguard our app, system, and users against attack before the session time elapses?",
-          "startsAt": "'2024-07-01T12:30:00",
-          "endsAt": "2024-07-01T13:15:00",
-          "isServiceSession": false,
-          "isPlenumSession": false,
-          "speakers": [
-            {
-              "id": "3f4d3de3-3518-49b8-9e41-ce9a02d43c24",
-              "name": "Whitney Lee"
-            },
-            {
-              "id": "97fd9697-d280-4391-8e99-0e4698bc76db",
-              "name": "Viktor Farcic"
-            }
-          ],
-          "categories": [],
-          "roomId": null,
-          "room": "1",
-          "liveUrl": null,
-          "recordingUrl": null,
-          "status": "Accepted",
-          "isInformed": false,
-          "isConfirmed": false
-        }
-
-      ],
-      "isDefault": false
-    }
-  ]
+  {
+    "groupId": null,
+    "groupName": "All",
+    "sessions": [
+      {
+        "questionAnswers": [],
+        "id": "599796",
+        "title": "Reflections on a decade of Kubernetes. How it has been and what the future is holding for us",
+        "description": "It’s undeniable that Kubernetes changed the Tech industry. It changed the way we build and deploy workloads. True there are still organizations out there doing it the old school way. But almost everyone is looking at containers and Kubernetes as a potential way forward. When Kubernetes was released a decade ago it was built to run APIs and backend. But things took a drastic shift with the emergence of AI, ML, Games, Edge... The community supported by various vendors worked hard on implementing new features to meet the requirements of these new use cases. And as we move forward in this new space of GenAI and with WebAssembly creeping up as a contender to containers. Kubernetes will play a key role in enabling people to build and run apps even faster. In this talk Abdel will reflect on what happened in the Kubernetes and Containers space in the last decade and what the future looks like for the project and the community as whole.\r\n\r\n\r\n",
+        "startsAt": "2024-07-01T09:50:00",
+        "endsAt": "2024-07-01T10:20:00",
+        "isServiceSession": false,
+        "isPlenumSession": true,
+        "speakers": [
+          {
+            "id": "f2e1dff5-e8b9-4b4b-a8e4-4f5c6c61158f",
+            "name": "Abdel Sghiouar"
+          },
+          {
+            "id": "bed265e5-76db-4a71-9c0d-c91371e85a87",
+            "name": "Max Körbächer"
+          }
+        ],
+        "categories": [],
+        "roomId": 43211,
+        "room": "Main Stage",
+        "liveUrl": null,
+        "recordingUrl": null,
+        "status": "Accepted",
+        "isInformed": true,
+        "isConfirmed": true
+      },
+      {
+        "questionAnswers": [],
+        "id": "658933",
+        "title": "Introducing a Product-based Approach in an Engineering-focused Container Platform Team",
+        "description": "Your container platform is up to speed technically and your most advanced developers are already running production workloads.\r\nBut – legacy developers see you as a new operations team, are skeptical about cloud-native concepts – and on top of it, your finance team is politely asking: why do we actually need a team of platform engineers? After all, “you build it, you run it”?\r\n\r\nThis session will present the speaker’s learnings in platform engineering, consulting and sales engineering roles and show how adopting product management practices can improve the situation.\r\nIt will explain how to clarify the value and benefits of your container platform for developers and other stakeholders, especially by creating a platform architecture which is not only focused on technical features. It will also explain how to solve some of the specific challenges of container platform – for example, how to make platform capabilities visible and understandable to a broad and varied audience.",
+        "startsAt": "2024-07-01T10:25:00",
+        "endsAt": "2024-07-01T10:55:00",
+        "isServiceSession": false,
+        "isPlenumSession": false,
+        "speakers": [
+          {
+            "id": "304d477f-edb9-4b6f-b112-2bc5a125197d",
+            "name": "Stéphane Di Cesare"
+          }
+        ],
+        "categories": [],
+        "roomId": 43211,
+        "room": "Main Stage",
+        "liveUrl": null,
+        "recordingUrl": null,
+        "status": "Accepted",
+        "isInformed": true,
+        "isConfirmed": true
+      },
+      {
+        "questionAnswers": [],
+        "id": "657621",
+        "title": "Boss I crashed Production again! - How to prevent this with Chainsaw, Kyverno, and Keptn.",
+        "description": "In this workshop, you will learn how to build and deploy applications with security, observability, and reliability in mind.\r\n\r\nWe will use Chainsaw to ensure your application behaves correctly, Kyverno to validate and enforce security policies in CI/CD Pipelines and at Runtime.\r\n\r\nFurthermore you will learn how to make your deployment observable with Keptn and how to automate the promotion of your application through different stages with a GitOps approach.",
+        "startsAt": "2024-07-01T11:00:00",
+        "endsAt": "2024-07-01T12:30:00",
+        "isServiceSession": false,
+        "isPlenumSession": false,
+        "speakers": [
+          {
+            "id": "6f756387-313f-49cc-ac40-3e3b0d35fa8c",
+            "name": "Charles-Edouard Brétéché"
+          },
+          {
+            "id": "9740d8c8-8375-4fcf-8426-1db1e937ec76",
+            "name": "Christian Heckelmann"
+          }
+        ],
+        "categories": [],
+        "roomId": 43213,
+        "room": "Workshop Room",
+        "liveUrl": null,
+        "recordingUrl": null,
+        "status": "Accepted",
+        "isInformed": true,
+        "isConfirmed": true
+      },
+      {
+        "questionAnswers": [],
+        "id": "633036",
+        "title": "Unlocking New Platform Experiences With Open Interfaces",
+        "description": "Building beautiful, tailored experiences on top of Kubernetes is hard. Are you building the right abstractions for dev teams to perform their tasks? It is challenging for platform teams to enable such experiences and choose what components they have to build themselves.\r\n\r\nMauricio and Thomas will analyze existing CNCF projects to implement an end-to-end experience and support teams from idea to production, using a “function-as-a-service” example.\r\n\r\nThey will look into how:\r\n- Knative Serving provides a simplified serverless experience \r\n- Knative Func provides a polyglot CLI tool for developers \r\n- OpenFunction orchestrates the functions lifecycle\r\n- OpenFunction integrates KEDA and Dapr to enable complex use cases.\r\n\r\nThe presentation will identify the strengths of these tools and which gaps platform teams will need to bridge when building a FaaS experience. The lessons learned and tips shared will help teams bring more projects to their platforms without complicating end-to-end workflows.",
+        "startsAt": "2024-07-01T11:05:00",
+        "endsAt": "2024-07-01T11:35:00",
+        "isServiceSession": false,
+        "isPlenumSession": false,
+        "speakers": [
+          {
+            "id": "86c8f476-5a3d-4c3e-a299-a75bdc149d0b",
+            "name": "Thomas Vitale"
+          },
+          {
+            "id": "f44f5308-1287-4e6c-8f48-6ed26ea9f9d3",
+            "name": "Mauricio \"Salaboy\" Salatino"
+          }
+        ],
+        "categories": [],
+        "roomId": 43211,
+        "room": "Main Stage",
+        "liveUrl": null,
+        "recordingUrl": null,
+        "status": "Accepted",
+        "isInformed": true,
+        "isConfirmed": true
+      },
+      {
+        "questionAnswers": [],
+        "id": "618531",
+        "title": "Go Green: Reducing Emissions, Costs, and Greenwashing",
+        "description": "Our planet is screaming for action, and businesses have a powerful opportunity to lead the charge. But navigating the world of sustainability is fraught with pitfalls, from hidden emissions to misleading greenwashing tactics. This talk cuts through the hype and delivers actionable strategies for reducing your carbon footprint, slashing costs, and avoiding greenwashing traps.\r\n\r\nLearn:\r\n\r\n- Concrete measures to cut carbon emissions throughout your IT operations and beyond, from energy use to supply chains. Including Quantifying carbon, Greener Tech (clouds, hardware, data, networking, languages) and Impact of the Tech on the rest of the business operations.\r\n- Cost-saving, compliance and value generating benefits that come hand-in-hand with environmental action, boosting both your bottom line and your brand.\r\n- Red flags to watch out for when evaluating sustainability claims, ensuring you make informed decisions and avoid greenwashing.\r\n\r\nLeave with:\r\n\r\n- Actionable blueprints: Implement practical strategies to build a lean, green IT infrastructure that saves money and the planet.\r\n- Data-driven insights: Quantify the financial and environmental benefits of your green efforts.\r\n- Critical thinking skills: Discern genuine sustainability from greenwashing tactics.\r\n\r\nJoin us on this journey to a greener, more profitable future!",
+        "startsAt": "2024-07-01T11:05:00",
+        "endsAt": "2024-07-01T11:35:00",
+        "isServiceSession": false,
+        "isPlenumSession": false,
+        "speakers": [
+          {
+            "id": "8f398417-82f0-467a-b234-08e82f7f9acd",
+            "name": "Pini Reznik"
+          }
+        ],
+        "categories": [],
+        "roomId": 43212,
+        "room": "Top Stage",
+        "liveUrl": null,
+        "recordingUrl": null,
+        "status": "Accepted",
+        "isInformed": true,
+        "isConfirmed": true
+      },
+      {
+        "questionAnswers": [],
+        "id": "657117",
+        "title": "Goodbye Ingress - Hello Gateway API",
+        "description": "The majority of Kubernetes users needing to expose an HTTP application, will have come across the Ingress API. The ingress API is widely adopted and well documented. There are also a wide range of stable ingress controllers to choose from. The current ingress implementation has some limitations. The Ingress controller only handles layer 7 traffic, while an ingress routes HTTP and HTTPS traffic. This means it is not possible to route TCP and UDP traffic. Ingress also lacks native support for more advanced routing features such as traffic splitting, header modification, and URL rewriting. To solve this problem, Kubernetes has introduced the gateway API. Gateway API is an open-source project, managed by SIG networking. The goal is to evolve Kubernetes service networking through expressive, extensible, and role-oriented interfaces. During my talk I will demonstrate the key differences between the two existing API’s. I will introduce you to the new gateway API resources. We will also talk about the available roles and personas. And possible options to migrate your existing ingress resources. I will finish off with a demo showing Cilium CNI and the Gateway API to manage ingress traffic.  \r\n",
+        "startsAt": "2024-07-01T11:45:00",
+        "endsAt": "2024-07-01T12:15:00",
+        "isServiceSession": false,
+        "isPlenumSession": false,
+        "speakers": [
+          {
+            "id": "1e834099-758d-406d-984c-390847117374",
+            "name": "Simon Pearce"
+          }
+        ],
+        "categories": [],
+        "roomId": 43211,
+        "room": "Main Stage",
+        "liveUrl": null,
+        "recordingUrl": null,
+        "status": "Accepted",
+        "isInformed": true,
+        "isConfirmed": true
+      },
+      {
+        "questionAnswers": [],
+        "id": "655445",
+        "title": "The CNCF EndUser TAB - update and future",
+        "description": "Sergiu and Mario will give a status update on the EndUser TAB work. They want to know all the struggle, pain and experience what EndUsers currently dealing with, when they adopt toola from the CNCF ecosystem.\r\n",
+        "startsAt": "2024-07-01T11:45:00",
+        "endsAt": "2024-07-01T12:15:00",
+        "isServiceSession": false,
+        "isPlenumSession": false,
+        "speakers": [
+          {
+            "id": "39d86ad7-17c6-4f55-a527-a89d7f054c47",
+            "name": "Mario Constanti"
+          },
+          {
+            "id": "14f866e6-8ba6-4dbc-8e2f-48e95c253cdd",
+            "name": "Sergiu Petean"
+          }
+        ],
+        "categories": [],
+        "roomId": 43212,
+        "room": "Top Stage",
+        "liveUrl": null,
+        "recordingUrl": null,
+        "status": "Accepted",
+        "isInformed": true,
+        "isConfirmed": true
+      },
+      {
+        "questionAnswers": [],
+        "id": "657779",
+        "title": "Rethinking Package Management in Kubernetes with Helm and Glasskube",
+        "description": "Helm was the 10th project to graduate the CNCF in 2020; described as a package manager for Kubernetes. While Helm is the most popular tool, it’s also the only one that allows you to bundle YAML manifests, configure `packages`, and version-control deployments, among many other features. Four years after Helm graduated, we ask the question: What’s next? And if we create a new package manager targeting Kubernetes workloads, how would it look?\r\n\r\nIn this talk, Anais will first discuss the history of package managers for infrastructure management and how Helm has become the de facto standard in the Kubernetes ecosystem. Next, we will explore different use cases and potential shortcomings of Helm and Timoni, as well as how those are solved with other tooling we see within GitOps, IaC and Platform Engineering. Following the discussion, Philip will introduce Glasskube, an open source package manager for cloud native environments.",
+        "startsAt": "2024-07-01T13:20:00",
+        "endsAt": "2024-07-01T13:50:00",
+        "isServiceSession": false,
+        "isPlenumSession": false,
+        "speakers": [
+          {
+            "id": "2a03b916-bc2b-4a06-98bf-c5ad02108d25",
+            "name": "Philip Miglinci"
+          },
+          {
+            "id": "b85242a8-a544-4a88-b913-0cf810753e8d",
+            "name": "Anais Urlichs"
+          }
+        ],
+        "categories": [],
+        "roomId": 43211,
+        "room": "Main Stage",
+        "liveUrl": null,
+        "recordingUrl": null,
+        "status": "Accepted",
+        "isInformed": true,
+        "isConfirmed": true
+      },
+      {
+        "questionAnswers": [],
+        "id": "660753",
+        "title": "Managing Kubernetes with Cluster API and Cluster Stacks",
+        "description": "Cluster API is a great tool to manage the lifecycle of your Kubernetes cluster. But it doesn't tell you how to configure your cluster. It doesn't take care of installing a CCM, CNI, etc. It also doesn't tell you how your node images should look like.\r\n\r\nIn reality, maintaining a Kubernetes platform with Cluster API requires a lot of configuration files and additional tools on top that manage the lifecycle of the core cluster components, the cluster addons.\r\n\r\nOur answer is the Cluster Stack Framework. In this framework, all configurations that are necessary for a cluster, including node images and cluster addons, are bundled and released together.\r\n\r\nThe Cluster Stack Operator takes care of the lifecycle of Cluster Stacks for users. \r\n\r\nThe controller manages cluster addons and applies them in a multi-stage process and is integrated into the Cluster API lifecycle using the CAPI hooks.\r\n\r\nIf you want to know about how we manage Kubernetes platforms with Cluster API, join us!",
+        "startsAt": "2024-07-01T13:20:00",
+        "endsAt": "2024-07-01T13:50:00",
+        "isServiceSession": false,
+        "isPlenumSession": false,
+        "speakers": [
+          {
+            "id": "042d42e3-d1b7-43e7-a9e3-b54331c86ba6",
+            "name": "Aniruddha Basak"
+          },
+          {
+            "id": "ac557a3d-1421-4233-a09e-2511dd102254",
+            "name": "Janis Kemper"
+          }
+        ],
+        "categories": [],
+        "roomId": 43212,
+        "room": "Top Stage",
+        "liveUrl": null,
+        "recordingUrl": null,
+        "status": "Accepted",
+        "isInformed": true,
+        "isConfirmed": true
+      },
+      {
+        "questionAnswers": [],
+        "id": "660769",
+        "title": "Platform Engineering: DevOps Evolution or a Fancy Rename?",
+        "description": "Everyone’s talking about Platform Engineering these days. Even Gartner featured it in its Hype Cycle for Software Engineering. But what is Platform Engineering really about? Is it the next stage in the evolution of DevOps? Is it just a fancy rebrand for DevOps or SRE? And most importantly - do I need it?\r\n\r\nIn this talk Horovits, a CNCF ambassador and DevOps advocate, will look into the accumulated experience of larger organizations, the common pains that drive them to adopt Platform Engineering, and what DevOps responsibilities it covers. The talk will also share insights from the recent whitepaper published by the Cloud Native Computing Foundation’s TAG App Delivery. \r\n\r\nHorovits will also provide guidance on which organizations should adopt Platform Engineering and at which point in their DevOps maturity lifecycle. This talk will equip you with the fundamentals to assess Platform Engineering for your organization.\r\n",
+        "startsAt": "2024-07-01T14:00:00",
+        "endsAt": "2024-07-01T14:30:00",
+        "isServiceSession": false,
+        "isPlenumSession": false,
+        "speakers": [
+          {
+            "id": "cc1e50f9-dc4a-4a1b-86fa-a012194cc751",
+            "name": "Dotan Horovits"
+          }
+        ],
+        "categories": [],
+        "roomId": 43211,
+        "room": "Main Stage",
+        "liveUrl": null,
+        "recordingUrl": null,
+        "status": "Accepted",
+        "isInformed": true,
+        "isConfirmed": true
+      },
+      {
+        "questionAnswers": [],
+        "id": "658988",
+        "title": "Build and run your own intelligent application based on open source using Semantic Kernel and Kaito",
+        "description": "In this session, Martin and Philip will show you how easy it is to build & run intelligent applications & AI models on Kubernetes. We will utilising Semantic Kernel, an innovative open-source methodology for conducting AI model inference, to power our intelligent application. Currently, the most widely used method for consuming any AI model is through REST APIs utilising the Model-as-a-Service (MaaS) approach. By using Kaito, we will show you how to deploy open-source or custom AI models and understand the benefits of running these models on your Kubernetes platform to bring the models closer to the data. The session includes real-world examples and live demos.\r\n \r\nDon't miss out on this to learn about the benefits of running intelligent applications & AI models on Kubernetes!",
+        "startsAt": "2024-07-01T14:00:00",
+        "endsAt": "2024-07-01T14:30:00",
+        "isServiceSession": false,
+        "isPlenumSession": false,
+        "speakers": [
+          {
+            "id": "0a64bd88-d115-4a26-95c9-35eb401bc696",
+            "name": "Philip Welz"
+          },
+          {
+            "id": "7640330e-9d06-4dd0-8f70-2a8ab5bb4972",
+            "name": "Martin Brandl"
+          }
+        ],
+        "categories": [],
+        "roomId": 43212,
+        "room": "Top Stage",
+        "liveUrl": null,
+        "recordingUrl": null,
+        "status": "Accepted",
+        "isInformed": true,
+        "isConfirmed": true
+      },
+      {
+        "questionAnswers": [],
+        "id": "594570",
+        "title": "GITOPSIFY ALL THE THINGS! 🚀 - Get hands on with Argo CD, Tekton and all the other cool stuff",
+        "description": "GitOps is here to solve the “How do I make my Kubernetes Cluster reflect what I have in Git?'' problem. However, there is more that GitOps can offer beyond Deployments and ConfigMaps (etc), especially for an organization that would like to adopt DevOps culture and practices. \r\n\r\nJoin us to get your hands dirty with the tools of GitOps and modern CI/CD processes! This session should give you:\r\n\r\n- A repeatable pattern for separating CI from CD and building a reusable pipeline\r\n- Extend the tooling for the CI/CD journey using the very same pattern used to manage applications and their configurations\r\n- With a basic pipeline in place, learn how your organization can accelerate all app delivery by implementing reusable tasks\r\n- Configure meaningful metrics (SLIs / SLAs / SLOs) to measure the right things\r\n- A view on how to build a self-service platform for many apps and teams using these basic building blocks as the starting point\r\n- Ideas on the limitations and pitfalls we encountered when driving GitOps adoption in a heavily siloed organization\r\n\r\n..all of this unfolds seamlessly through the enchanting magic of GIT 🪄✨\r\n\r\nThe only prerequisite for this journey is a laptop equipped with Chrome or a Chromium-based browser 👩‍💻🧑‍💻 - we'll take care of the rest 🍪🍪*!\r\n\r\n* Please note that the provision of cookies is a metaphorical treat and may not materialize in edible form 🫣",
+        "startsAt": "2024-07-01T14:00:00",
+        "endsAt": "2024-07-01T15:25:00",
+        "isServiceSession": false,
+        "isPlenumSession": false,
+        "speakers": [
+          {
+            "id": "81a52ccf-95b9-49fe-aefc-5522cdcc382a",
+            "name": "Cansu Kavili Örnek"
+          }
+        ],
+        "categories": [],
+        "roomId": 43213,
+        "room": "Workshop Room",
+        "liveUrl": null,
+        "recordingUrl": null,
+        "status": "Accepted",
+        "isInformed": true,
+        "isConfirmed": true
+      },
+      {
+        "questionAnswers": [],
+        "id": "661275",
+        "title": "A hitchhiker's guide to CNCF/OSS observability solutions around Kubernetes",
+        "description": "Understanding what is happening in your cluster can be challenging. How can you quickly and easily tell if your cluster and apps are healthy, well utilized and running as expected?\r\n\r\nIn this overview, we'll look at various aspects of Kubernetes observability, and present multiple OSS solutions from the CNCF landscape and beyond to achieve that.\r\n\r\nWe will start with tools that simply query the Kubernetes API and deliver the output in an easy-to-understand UI (e.g. Headlamp, Skooner, k9s), go over sidecar-based and eBPF-based services meshes (e.g. Istio Kiali, Cilium Hubble UI) and end with application-side logging and monitoring (e.g. OpenTelemetry, fluentd, Jaeger, Grafana). Each level of observability demands a certain price in terms of configuration and runtime overhead. In turn the quality and depth of the information is different.\r\n\r\nThe intended take-away is to get an understanding which type of tooling is the right one for a given purpose.",
+        "startsAt": "2024-07-01T14:40:00",
+        "endsAt": "2024-07-01T15:10:00",
+        "isServiceSession": false,
+        "isPlenumSession": false,
+        "speakers": [
+          {
+            "id": "fbab1620-10ed-4a1c-bdab-71096fae74a6",
+            "name": "Tiffany Jernigan"
+          },
+          {
+            "id": "47b68f7c-d842-4081-abad-560280ad2a11",
+            "name": "Matthias Haeussler"
+          }
+        ],
+        "categories": [],
+        "roomId": 43211,
+        "room": "Main Stage",
+        "liveUrl": null,
+        "recordingUrl": null,
+        "status": "Accepted",
+        "isInformed": true,
+        "isConfirmed": true
+      },
+      {
+        "questionAnswers": [],
+        "id": "661062",
+        "title": "Intent Based Access Control at Scale With BPF and Traffic Pattern Detection",
+        "description": "Managing network access policies in large-scale Kubernetes environments is a constant challenge. Traditional allow/deny lists become unmanageable as deployments grow, leading to security gaps and operational bottlenecks. Add workload identity management and application-level access policies to the picture, and you get a never-ending puzzle to solve on a daily basis.\r\n\r\nBut what if you could dynamically generate network and application-level policies, or even Istio authorization policies, by detecting traffic patterns with BPF and directly polling metrics from Envoy, and build an \"Intent\" custom resources?  This would alleviate a lot of the hurdle and allow for healthier, faster growth of your most valuable business applications.\r\n\r\nJoin Nic in this talk, where he’s going to introduce and demonstrate how Otterize has developed an intent-based operator together with an BPF network mapper operator to make this dream come true! “Wow effect guaranteed”, that’s what the otter said!",
+        "startsAt": "2024-07-01T14:40:00",
+        "endsAt": "2024-07-01T15:10:00",
+        "isServiceSession": false,
+        "isPlenumSession": false,
+        "speakers": [
+          {
+            "id": "1829d862-9dc7-49f7-b290-0f69bf61f7d0",
+            "name": "Nic Vermande"
+          }
+        ],
+        "categories": [],
+        "roomId": 43212,
+        "room": "Top Stage",
+        "liveUrl": null,
+        "recordingUrl": null,
+        "status": "Accepted",
+        "isInformed": true,
+        "isConfirmed": true
+      },
+      {
+        "questionAnswers": [],
+        "id": "660404",
+        "title": "From Dashboard to Headlamp: Evolution of the Kubernetes User Experience",
+        "description": "Kubernetes has a famously steep learning curve. Understanding all the components of a complex distributed system, and then managing them via the secret code we call \"yaml\", is not for the faint-hearted.\r\nThe Kubernetes dashboard provides some level of graphical representation of a running system, but doesn't help with getting started from scratch, nor multi-cluster deployments, nor provide an integrated user experience across the multiple tools and projects required in a modern Kubernetes environment.\r\nIn this session, we will explain how Headlamp, a CNCF sandbox project, addresses these challenges with its ambition to be the primary graphical user interface for new and experienced users alike.",
+        "startsAt": "2024-07-01T15:40:00",
+        "endsAt": "2024-07-01T16:10:00",
+        "isServiceSession": false,
+        "isPlenumSession": false,
+        "speakers": [
+          {
+            "id": "eca14bca-7957-4c95-8c1b-7be2017a54af",
+            "name": "Andrew Randall"
+          }
+        ],
+        "categories": [],
+        "roomId": 43211,
+        "room": "Main Stage",
+        "liveUrl": null,
+        "recordingUrl": null,
+        "status": "Accepted",
+        "isInformed": true,
+        "isConfirmed": true
+      },
+      {
+        "questionAnswers": [],
+        "id": "657999",
+        "title": "OCI Registry: Beyond Container Images - Migrating from GitOps to RegistryOps",
+        "description": "This session explores the expanded capabilities of OCI registries beyond traditional container image storage, focusing on a use case to migration from GitOps to RegistryOps.\r\n\r\nLeveraging OCI registries for storing Helm charts and Kubernetes manifests presents a novel approach to manage deployments. The discussion will include key features and capabilities of tools such as Flux and ORAS, highlighting their role in enhancing the functionality of OCI registries.\r\n\r\nBy elaborating on the practical use cases, such as the deployment of signed Helm charts in secure environments, signed GitOps artefacts delivery, this presentation aims to showcase the versatility of OCI registries and their pivotal role in secured software supply-chain.",
+        "startsAt": "2024-07-01T15:40:00",
+        "endsAt": "2024-07-01T16:10:00",
+        "isServiceSession": false,
+        "isPlenumSession": false,
+        "speakers": [
+          {
+            "id": "0a25a8f0-4777-484d-9419-67eb4029a96a",
+            "name": "Stéphane Este-Gracias"
+          }
+        ],
+        "categories": [],
+        "roomId": 43212,
+        "room": "Top Stage",
+        "liveUrl": null,
+        "recordingUrl": null,
+        "status": "Accepted",
+        "isInformed": true,
+        "isConfirmed": true
+      },
+      {
+        "questionAnswers": [],
+        "id": "658702",
+        "title": "Demo: Energy aware CI/CD pipeline with Kepler",
+        "description": "During this session we will see how a CICD pipeline can be energy aware, we will:\r\n- set up a local Minikube environment\r\n- deploy our first application \r\n- install Kepler (eBPF based tool to meaure energy at container level)\r\n- take a look at the energy metrics of the application just deployed. \r\nWe will then modify the application by inserting some new libraries and adding features to the code. How do new features impact the energy used by the software? We will discuss this together. After the demo we will close up with some technical considerations related to what we have done, what is left unmeasured and how this is just a first step towards a energy-aware cloud.",
+        "startsAt": "2024-07-01T16:05:00",
+        "endsAt": "2024-07-01T17:05:00",
+        "isServiceSession": false,
+        "isPlenumSession": false,
+        "speakers": [
+          {
+            "id": "6e589f62-b3e8-48ce-aee6-e01e931c4729",
+            "name": "Antonio Di Turi"
+          }
+        ],
+        "categories": [],
+        "roomId": 43213,
+        "room": "Workshop Room",
+        "liveUrl": null,
+        "recordingUrl": null,
+        "status": "Accepted",
+        "isInformed": true,
+        "isConfirmed": true
+      },
+      {
+        "questionAnswers": [],
+        "id": "657534",
+        "title": "No More YAML Soup: Taking Control with Dagger's Pipeline-as-Code Philosophy",
+        "description": "In today's fast-paced software development landscape, maintaining complex, YAML-based CI/CD pipelines can become a bottleneck, leading to what many developers lament as \"YAML Soup\". This talk proposes a revolutionary shift with the adoption of Dagger, developed by Solomon Hykes's team, which replaces traditional, error-prone scripting with a robust, language-agnostic API and cross-language scripting engine. This session aims to demonstrate how Dagger enables developers to write their pipelines as code directly within the language of their project, thereby enhancing readability, maintainability, and scalability.\r\n\r\nWe will start with an overview of Dagger, discussing its core concepts and advantages over traditional pipeline configurations. The presentation will include a detailed walkthrough of transitioning from a YAML-based pipeline to a Dagger-based setup, illustrating the process with real-world examples and best practices. Attendees will leave with a clear understanding of implementing Dagger in their projects, leading to more efficient and manageable development workflows.",
+        "startsAt": "2024-07-01T16:20:00",
+        "endsAt": "2024-07-01T16:50:00",
+        "isServiceSession": false,
+        "isPlenumSession": false,
+        "speakers": [
+          {
+            "id": "145f32e5-880e-45da-a066-230bfb236094",
+            "name": "Koray Oksay"
+          },
+          {
+            "id": "e392d872-8ed5-4c63-80d2-f15cc67b559b",
+            "name": "Batuhan Apaydın"
+          }
+        ],
+        "categories": [],
+        "roomId": 43211,
+        "room": "Main Stage",
+        "liveUrl": null,
+        "recordingUrl": null,
+        "status": "Accepted",
+        "isInformed": true,
+        "isConfirmed": true
+      },
+      {
+        "questionAnswers": [],
+        "id": "596989",
+        "title": "From Chaos to Control: Cloud Native Governance with Kyverno!",
+        "description": "With the cloud-native paradigm shift towards everything-as-code, Kubernetes policies are no exception. Kyverno, a policy engine for Kubernetes, offers low-code declarative policies. In its CNCF incubation status, Kyverno is actively deployed in production environments across various organizations. The tutorial extends beyond fundamentals, exploring real-world applications and offering hands-on exercises mimicking production workflows.\r\n\r\nIn this session I will provide end-user perspectives on Kyverno for policy-as-code workflows and guide the audience through examples which are used at DE-CIX for RBAC, resource protection and Day 1 operations.",
+        "startsAt": "2024-07-01T16:20:00",
+        "endsAt": "2024-07-01T16:50:00",
+        "isServiceSession": false,
+        "isPlenumSession": false,
+        "speakers": [
+          {
+            "id": "ed5c009a-ffd7-4065-8e1e-801c15145d93",
+            "name": "Raúl Garcia Sanchez"
+          }
+        ],
+        "categories": [],
+        "roomId": 43212,
+        "room": "Top Stage",
+        "liveUrl": null,
+        "recordingUrl": null,
+        "status": "Accepted",
+        "isInformed": true,
+        "isConfirmed": true
+      },
+      {
+        "questionAnswers": [],
+        "id": "659012",
+        "title": "The Periodic Table of Cloud Native",
+        "description": "In my previous career as a chemist, I gained a profound appreciation for the intricate harmony of nature's elements. Today, I invite you on a captivating journey through the realms of elements, projects, communities, and molecules. With a blend of scientific insight, technological flair, and unbridled passion, I aim to ignite an engaging and thought-provoking discourse on the ever-evolving landscape of the cloud native ecosystem and its future trajectory.",
+        "startsAt": "2024-07-01T17:00:00",
+        "endsAt": "2024-07-01T17:30:00",
+        "isServiceSession": false,
+        "isPlenumSession": false,
+        "speakers": [
+          {
+            "id": "a17dfd0c-0ae0-4cd3-a5f7-46d687929680",
+            "name": "Alessandro Vozza"
+          }
+        ],
+        "categories": [],
+        "roomId": 43211,
+        "room": "Main Stage",
+        "liveUrl": null,
+        "recordingUrl": null,
+        "status": "Accepted",
+        "isInformed": true,
+        "isConfirmed": true
+      },
+      {
+        "questionAnswers": [],
+        "id": "655308",
+        "title": "Saturating people not systems: Lessons learned from building a platform to serve dishes worldwide",
+        "description": "Building and operating the Thermomix© IoT platform at Vorwerk with two dozens of DevOps teams on a global scale presents quite some challenges. But with the right processes and tools, it can be a little less challenging as it sounds. \r\n\r\nIn this talk, we are going to share our pains and relievers which we encountered over the last years on our journey from an on-premise monolith to a containerized, distributed system where we are constantly trying to balance out performance, cost and reliability in a (near) cloud native organization. \r\n\r\nBased on real world experience we are going to share how we dealt and managed the adaptation of the platform and its people to the ever changing requirements and challenges around practices of development, platform engineering, SRE and FinOps.\r\n\r\nWe will close the talk by giving an outlook of what's not yet solved and our ideas on how to tackle that in the near future by evolving the platform further, considering current trends and our very own situation.\r\n",
+        "startsAt": "2024-07-01T17:00:00",
+        "endsAt": "2024-07-01T17:30:00",
+        "isServiceSession": false,
+        "isPlenumSession": false,
+        "speakers": [
+          {
+            "id": "ffbfdfa1-3b54-45df-b7b8-ea13feecd916",
+            "name": "Tim Schrumpf"
+          },
+          {
+            "id": "fa09f109-f000-4dd5-babc-9071b22e3f74",
+            "name": "David Sterz"
+          },
+          {
+            "id": "0ac63890-d657-41bc-bec6-ad57be56ab0b",
+            "name": "Stefan Schweer"
+          }
+        ],
+        "categories": [],
+        "roomId": 43212,
+        "room": "Top Stage",
+        "liveUrl": null,
+        "recordingUrl": null,
+        "status": "Accepted",
+        "isInformed": true,
+        "isConfirmed": true
+      },
+      {
+        "questionAnswers": [],
+        "id": "627386",
+        "title": "Choose Your Own Adventure: The Struggle for Security",
+        "description": "Our hero, a running application in a Kubernetes production environment, knows they are destined for greater things! They are serving end users, but currently, they are also endangering those users, the system, and themselves! But the struggle for security is HARD, filled with system design choices concerning secrets management; cluster-level, runtime, and network policies; and image scanning and signing.\r\n\r\nIt is up to you, the audience, to guide our hero and help them grow from a vulnerable, unprotected application to their final form⎯an app that is secure against invasion. In their third ‘Choose Your Own Adventure’-style talk, Whitney and Viktor will present choices that an anthropomorphized app must make as they try to protect themselves against every kind of exploit. Throughout the presentation, the audience (YOU!) will vote to decide our hero app's path! Can we navigate CNCF projects to safeguard our app, system, and users against attack before the session time elapses?",
+        "startsAt": "2024-07-02T09:30:00",
+        "endsAt": "2024-07-02T10:00:00",
+        "isServiceSession": false,
+        "isPlenumSession": true,
+        "speakers": [
+          {
+            "id": "3f4d3de3-3518-49b8-9e41-ce9a02d43c24",
+            "name": "Whitney Lee"
+          },
+          {
+            "id": "97fd9697-d280-4391-8e99-0e4698bc76db",
+            "name": "Viktor Farcic"
+          }
+        ],
+        "categories": [],
+        "roomId": 43211,
+        "room": "Main Stage",
+        "liveUrl": null,
+        "recordingUrl": null,
+        "status": "Accepted",
+        "isInformed": true,
+        "isConfirmed": true
+      },
+      {
+        "questionAnswers": [],
+        "id": "644755",
+        "title": "DevOps Lessons from a Primary School Teacher",
+        "description": "Over the years I've heard from my partner about strategies implemented by teachers to enable children in class to learn, progress and excel, thinking this would be great for the tech industry and fits right into the DevOps culture!\r\n\r\nWe can assess our ability to adopt or assess the progression of adoption of DevOps processes through the CALMS framework. As engineers we focus a fair amount on Automation, Lean and Measurement, they kind of come natural to us as they’re tech related, but not as much on Culture and Sharing usually, we seem to find that a little more difficult.\r\n\r\nIn this talk I'll go over some strategies, or lessons, common place to primary school teachers that are novel to us, but shouldn't be, and how it will help us in our day to day activities in ensuring we achieve full CALMS.",
+        "startsAt": "2024-07-02T10:10:00",
+        "endsAt": "2024-07-02T10:40:00",
+        "isServiceSession": false,
+        "isPlenumSession": false,
+        "speakers": [
+          {
+            "id": "b720ee29-21aa-47b0-8d9e-76744aad8bcc",
+            "name": "Timothy Mamo"
+          }
+        ],
+        "categories": [],
+        "roomId": 43211,
+        "room": "Main Stage",
+        "liveUrl": null,
+        "recordingUrl": null,
+        "status": "Accepted",
+        "isInformed": true,
+        "isConfirmed": true
+      },
+      {
+        "questionAnswers": [],
+        "id": "660979",
+        "title": "When They Go High, We Go Low – Hooking Libc Calls To Debug Kubernetes Apps",
+        "description": "Many tools exist for debugging cloud-native applications, and they mostly take one of two approaches: they either continuously sync local files to the remote container, or they connect the local machine to the cluster. mirrord takes a novel approach: when developers run their code with mirrord, it injects a dynamic library into the process, hooks libc calls, and relays some operations to be executed on the cluster instead of locally. That way, developers can run their code locally and debug it with a debugger. With all of the code's input and output forwarded to and from the cluster, the local process “thinks” it’s running in the cluster and can be tested and debugged in cloud conditions.\r\nThis talk will discuss the rationale behind using low-level techniques in cloud-native tooling, explain some of the low level Rust code that makes it possible, and show mirrord in action with a live demo.",
+        "startsAt": "2024-07-02T10:10:00",
+        "endsAt": "2024-07-02T10:40:00",
+        "isServiceSession": false,
+        "isPlenumSession": false,
+        "speakers": [
+          {
+            "id": "4e43b5a9-c5df-414e-a96a-11865f7def37",
+            "name": "Tal Zwick"
+          }
+        ],
+        "categories": [],
+        "roomId": 43212,
+        "room": "Top Stage",
+        "liveUrl": null,
+        "recordingUrl": null,
+        "status": "Accepted",
+        "isInformed": true,
+        "isConfirmed": true
+      },
+      {
+        "questionAnswers": [],
+        "id": "643137",
+        "title": "Owning the Stage",
+        "description": "Have you ever wanted to be on stage, but feel uncomfortable in front of many people? Or are you already a speaker and would like to improve your stage presence? Then this is the workshop for you!\r\n\r\nFolks often underestimate how the way you carry yourself can make all the difference between an engaging talk and a total snoozefest. And this isn’t only relevant to public speaking. But any face to face interactions like meetings or social gatherings can benefit from a bit of “stage presence”.\r\n\r\nIn this workshop, we will learn how to be truly present and connect with our bodies, packed with exercises and games, commonly used in theatre productions. So at your next presentation, you can use these techniques to draw in your audience.",
+        "startsAt": "2024-07-02T10:30:00",
+        "endsAt": "2024-07-02T12:00:00",
+        "isServiceSession": false,
+        "isPlenumSession": false,
+        "speakers": [
+          {
+            "id": "1559cccc-ed7c-4296-973d-3b05f3c3d25e",
+            "name": "Lian Li"
+          }
+        ],
+        "categories": [],
+        "roomId": 43213,
+        "room": "Workshop Room",
+        "liveUrl": null,
+        "recordingUrl": null,
+        "status": "Accepted",
+        "isInformed": true,
+        "isConfirmed": true
+      },
+      {
+        "questionAnswers": [],
+        "id": "608927",
+        "title": "Cloud Native Security: A New Paradigm for a New World",
+        "description": "Cloud native computing has revolutionized the way applications are developed and deployed. However, it has also introduced new security challenges. The traditional security paradigm, which is based on perimeter-based security, static security controls, and a reactive security posture, is no longer sufficient to protect cloud native environments.\r\n\r\nThis talk will discuss the need for a new security paradigm in the cloud native world. It will introduce the concepts of zero-trust security, shift-left security, and continuous security, and explain how these concepts can be applied to cloud native environments. The talk will also discuss the benefits of the new security paradigm, such as improved security posture, reduced risk, and increased agility and scalability.\r\n\r\nFinally, the talk will provide some examples of organizations that have successfully implemented the new security paradigm, and discuss some emerging cloud native security technologies.",
+        "startsAt": "2024-07-02T10:50:00",
+        "endsAt": "2024-07-02T11:20:00",
+        "isServiceSession": false,
+        "isPlenumSession": false,
+        "speakers": [
+          {
+            "id": "60ea1dd4-de82-4570-a4d2-e248421c297c",
+            "name": "Mario Fahlandt"
+          }
+        ],
+        "categories": [],
+        "roomId": 43211,
+        "room": "Main Stage",
+        "liveUrl": null,
+        "recordingUrl": null,
+        "status": "Accepted",
+        "isInformed": true,
+        "isConfirmed": true
+      },
+      {
+        "questionAnswers": [],
+        "id": "660699",
+        "title": "Towards Standardized Platforms: How the CNOE Project Can Help",
+        "description": "Platform building has become an emerging practice in the IT world, and enterprises strive for unified platform experiences on top of Kubernetes and GitOps.\r\n\r\n\u2028This endeavor comes at a risk: How to choose the right building blocks and make sure they are maintained and play nicely with each other?\u2028The CNOE project makes an effort to mitigate these risks by providing reference architectures and implementations built on pluggable and extensible open-source tooling.\r\n\r\nThe speaker will outline the when and why of building platforms before introducing the CNOE project, its tenets, and its aims.\u2028He will also live-demo the deployment of a reference IDP using idpbuilder, a tool maintained by the CNOE project, to provide attendees with steps to get started with platform building and putting together CNCF tools such as ArgoCD, Backstage, or Crossplane.\r\n\r\nAttendees will learn what problems IDPs in general and the CNOE project in particular try to solve, and which steps it takes to get started.",
+        "startsAt": "2024-07-02T10:50:00",
+        "endsAt": "2024-07-02T11:20:00",
+        "isServiceSession": false,
+        "isPlenumSession": false,
+        "speakers": [
+          {
+            "id": "cae90579-5088-473d-bb63-3d617508d73e",
+            "name": "Daniel Bodky"
+          }
+        ],
+        "categories": [],
+        "roomId": 43212,
+        "room": "Top Stage",
+        "liveUrl": null,
+        "recordingUrl": null,
+        "status": "Accepted",
+        "isInformed": true,
+        "isConfirmed": true
+      },
+      {
+        "questionAnswers": [],
+        "id": "660928",
+        "title": "A Greener, Cost-Effective Cloud with Serverless WebAssembly",
+        "description": "Software Carbon Intensity (SCI) quantifies emissions from an application, combining operational and hardware emissions. Serverless functions reduce operational emissions by running apps on-demand, but faces cold-start delays. WebAssembly (Wasm) offers a solution to cold-start issues with near-instant startup, akin to containers but more efficiently.\r\n\r\nWasm modules are just as secure as containers with default sandboxing, yet they start almost instantly (in microseconds). In this session, we discuss why Wasm is the ideal & greenest unit of compute for Serverless applications and how you can get started using Serverless Wasm with Spin - an open source developer tool. We’ll demo running AI inferencing Spin applications and discuss how it also enables better GPU resource sharing. By the end, you’ll have an understanding of the characteristics that make Wasm a cost-effective and sustainable unit for a greener cloud.",
+        "startsAt": "2024-07-02T11:30:00",
+        "endsAt": "2024-07-02T12:00:00",
+        "isServiceSession": false,
+        "isPlenumSession": false,
+        "speakers": [
+          {
+            "id": "cc76489d-2060-4c82-9fe2-b9878e2aa4e3",
+            "name": "Sohan Maheshwar"
+          }
+        ],
+        "categories": [],
+        "roomId": 43211,
+        "room": "Main Stage",
+        "liveUrl": null,
+        "recordingUrl": null,
+        "status": "Accepted",
+        "isInformed": true,
+        "isConfirmed": true
+      },
+      {
+        "questionAnswers": [],
+        "id": "660480",
+        "title": "IoT and WebSockets in K8s: Operating and Scaling an EV Charging Station Network",
+        "description": "The stateful nature of WebSockets carries inherent complexities regarding horizontal scaling. Kubernetes is a natural fit for stateless workloads, but operating scalable stateful applications can be challenging.\r\n\r\nWe discuss these challenges in the context of an EV charging IoT platform. A concrete problem we faced revolves around WebSocket reconnection storms: if thousands of charging stations lose their connection, e.g., due to regional network carrier outages, they all try to reconnect simultaneously once the network issue is resolved, thus causing large load spikes. These load spikes propagate across our systems, potentially causing positive feedback loops and introducing instability.\r\n\r\nIn this talk, we dive into the intricacies of scaling out WebSockets and how we evolved the system architecture towards event-driven communication. We discuss how introducing a Redis-based circuit-breaker component in the connection flow helped us alleviate bottlenecks and improve system stability.",
+        "startsAt": "2024-07-02T11:30:00",
+        "endsAt": "2024-07-02T12:00:00",
+        "isServiceSession": false,
+        "isPlenumSession": false,
+        "speakers": [
+          {
+            "id": "463463e5-6e7d-4588-8ae3-0e0b68666bb6",
+            "name": "Saadi Myftija"
+          }
+        ],
+        "categories": [],
+        "roomId": 43212,
+        "room": "Top Stage",
+        "liveUrl": null,
+        "recordingUrl": null,
+        "status": "Accepted",
+        "isInformed": true,
+        "isConfirmed": true
+      },
+      {
+        "questionAnswers": [],
+        "id": "657584",
+        "title": "The Swiss Army Knife of Cloud Native Networking",
+        "description": "Join us to explore how Cilium powered by eBPF, provides seamless multi-cloud and multi-tenancy networking capabilities. In this session, we will deep dive into Cilium features, including BGP, Load Balancing, LB IPAM, and Network Policies, and how they provide secure and scalable networking solutions.\r\n\r\nWe will discover how Cilium allows for efficient routing and connectivity between Kubernetes clusters and external networks. We will explore the setup and configuration of BGP with Cilium including its adaptability to different network topologies.\r\n\r\nAdditionally, we will delve into Cilium's Load Balancing capabilities, which provide advanced load distribution and high availability for applications. We will discuss its integration with LB IPAM and how it enables platform engineers to configure multi-tenancy routing with multiple IP pools for assigning Load Balancer IPs.\r\n\r\nFurthermore, we will discuss how Network Policies can be leveraged to implement security for multi-tenancy workloads.\r\n\r\nThroughout the session, we will provide examples, configuration guides, and best practices for implementing these features effectively in real-world scenarios. Whether you are a Platform Engineer, Kubernetes administrator, or developer, this session will equip you with the knowledge and tools to optimize your Kubernetes networking architecture with Cilium.\r\n",
+        "startsAt": "2024-07-02T13:00:00",
+        "endsAt": "2024-07-02T13:30:00",
+        "isServiceSession": false,
+        "isPlenumSession": false,
+        "speakers": [
+          {
+            "id": "723a024c-8cc2-4734-8c5d-6d94cae846b8",
+            "name": "Raymond de Jong"
+          }
+        ],
+        "categories": [],
+        "roomId": 43211,
+        "room": "Main Stage",
+        "liveUrl": null,
+        "recordingUrl": null,
+        "status": "Accepted",
+        "isInformed": true,
+        "isConfirmed": true
+      },
+      {
+        "questionAnswers": [],
+        "id": "660809",
+        "title": "Striking the Balance: Cost-Efficient and Agile Kubernetes Workloads with KEDA and Karpenter",
+        "description": "As a software engineer managing Kubernetes workloads, you're likely grappling with the challenge of efficiently scaling resources while minimizing costs. Traditional approaches often lead to underutilized resources, resulting in unnecessary expenses and operational inefficiencies. Without dynamic scaling mechanisms, you're left with the burden of manually allocating resources, leading to potential performance bottlenecks and increased management overhead. This lack of optimization hampers your ability to achieve cost-effectiveness and agility in your infrastructure.\r\n\r\nIntroducing \"Cost-Efficient Optimization for Workloads in Kubernetes (EKS) with KEDA and Karpenter,\" a revolutionary solution designed to tackle these challenges head-on. With KEDA (Kubernetes Event-driven Autoscaling) and Karpenter, you can dynamically scale your workloads based on demand, ensuring optimal resource utilization and cost-effectiveness. KEDA enables automatic scaling of workloads in response to events, while Karpenter automates node scaling, efficiently allocating resources to meet workload requirements.\r\n\r\nIntegrating KEDA and Karpenter seamlessly with Kubernetes (EKS) empowers you to revolutionize your infrastructure. Say goodbye to wasted resources and skyrocketing costs. And unlock unprecedented efficiency without compromising on performance, making your Kubernetes environment leaner, more agile, and cost-effective.\r\n\r\nReady to transform your Kubernetes workloads and streamline costs? Join us on this journey to efficiency with KEDA and Karpenter!",
+        "startsAt": "2024-07-02T13:00:00",
+        "endsAt": "2024-07-02T13:30:00",
+        "isServiceSession": false,
+        "isPlenumSession": false,
+        "speakers": [
+          {
+            "id": "9b45698c-feec-403a-a7c9-12d7f080d3bf",
+            "name": "Naresh Waswani"
+          }
+        ],
+        "categories": [],
+        "roomId": 43212,
+        "room": "Top Stage",
+        "liveUrl": null,
+        "recordingUrl": null,
+        "status": "Accepted",
+        "isInformed": true,
+        "isConfirmed": true
+      },
+      {
+        "questionAnswers": [],
+        "id": "658809",
+        "title": "Cognitive Empowerment through open weight LLMs as Ethical Smart Assistants",
+        "description": "This presentation will first introduce the concept of Large Language Models (LLM) and highlight the strengths of Open Weights LLMs. Following the introduction, the concept of how to effectively use these models will be showcased through a use-case specifically for patients diagnosed with ADHD. Ethical and privacy concerns will be also addressed for this approach and eventually the session will be concluded with a live demo of the aforementioned approach.",
+        "startsAt": "2024-07-02T13:00:00",
+        "endsAt": "2024-07-02T14:30:00",
+        "isServiceSession": false,
+        "isPlenumSession": false,
+        "speakers": [
+          {
+            "id": "92309c46-a60f-4e3d-b3c5-e7133296b225",
+            "name": "Rodeina Mohamed"
+          },
+          {
+            "id": "6b5668b7-6abe-4e73-bc3b-382e5102c6e4",
+            "name": "Kyra Goud"
+          }
+        ],
+        "categories": [],
+        "roomId": 43213,
+        "room": "Workshop Room",
+        "liveUrl": null,
+        "recordingUrl": null,
+        "status": "Accepted",
+        "isInformed": true,
+        "isConfirmed": true
+      },
+      {
+        "questionAnswers": [],
+        "id": "616846",
+        "title": "Telemetry Showdown: Fluent Bit vs. OpenTelemetry Collector - A Comprehensive Benchmark Analysis",
+        "description": "In a push to standardize observability practices, the cloud-native community has embraced OpenTelemetry, offering a unified framework for metrics, logs, and traces. Prior to this, log processing relied on agents like fluent, evolving into fluentbit. With fluentbit's recent expansion to support additional signals and the OpenTelemetry Collector's emergence, a pertinent question arises: Which is the superior choice for performance?\r\n\r\nThis session delves into:\r\n- Unveiling the distinctions between Fluent Bit and the OpenTelemetry Collector.\r\n- Sharing the findings derived from a series of benchmark tests.\r\n- Providing valuable insights to empower the community in selecting the most fitting agent for their cloud-native environments.\r\n",
+        "startsAt": "2024-07-02T13:40:00",
+        "endsAt": "2024-07-02T14:10:00",
+        "isServiceSession": false,
+        "isPlenumSession": false,
+        "speakers": [
+          {
+            "id": "9d8a7f7c-68fd-4855-bcf9-881c24af40ee",
+            "name": "Henrik Rexed"
+          }
+        ],
+        "categories": [],
+        "roomId": 43211,
+        "room": "Main Stage",
+        "liveUrl": null,
+        "recordingUrl": null,
+        "status": "Accepted",
+        "isInformed": true,
+        "isConfirmed": true
+      },
+      {
+        "questionAnswers": [],
+        "id": "594441",
+        "title": "NFD: Simplifying Cluster Administration through Automated Node Labels, Taints, and Annotations",
+        "description": "Join lead contributors for an in-depth update on the Kubernetes SIGs project Node Feature Discovery (NFD) – an indispensable add-on for managing labels and other node properties.  Gain valuable insights into the project and its impact on Kubernetes cluster management, exploring practical applications, hidden capabilities, and future prospects, enriched by our experiences on heterogeneous clusters.\r\n\r\nDelve into the built-in feature detection functions of NFD and explore its diverse customization capabilities, designed to meet a broad spectrum of specific node management needs. Our presentation will showcase the latest developments in NFD, offering a comprehensive view of practical usage scenarios. Witness how NFD enables GPUs and other specialized hardware in Kubernetes and empowers users to integrate confidential computing technologies into their clusters.\r\n\r\nUltimately, NFD delivers cluster admins an automated, secure, and reliable solution for both node feature discovery and labeling.",
+        "startsAt": "2024-07-02T13:40:00",
+        "endsAt": "2024-07-02T14:10:00",
+        "isServiceSession": false,
+        "isPlenumSession": false,
+        "speakers": [
+          {
+            "id": "6115d730-5a36-477a-b58d-712aa42b3dbc",
+            "name": "Eduardo Arango Gutierrez"
+          }
+        ],
+        "categories": [],
+        "roomId": 43212,
+        "room": "Top Stage",
+        "liveUrl": null,
+        "recordingUrl": null,
+        "status": "Accepted",
+        "isInformed": true,
+        "isConfirmed": true
+      },
+      {
+        "questionAnswers": [],
+        "id": "658524",
+        "title": "Confidential Containers as a Gateway to Cloud Adoption in Sensitive Sectors",
+        "description": "In the ever-evolving landscape of Confidential Computing, Confidential Containers (CoCo) have now established themselves as a robust option for deploying secure workloads. With Microsoft Azure's recent integration of CoCo in their Azure Kubernetes Service (AKS), the technology's transition to mainstream production use is evident. CoCo expertly bridges the gap between Intel SGX Enclaves, which offer tight Trusted Computing Base (TCB) and single-workload isolation, and the simplicity of deploying confidential VMs or clusters.\r\n\r\nThis presentation delves into the core advancements in CoCo, particularly its adaptation of VM isolation technologies like AMD SEV or Intel TDX for containerized applications. However, with this achievement comes the need to address familiar challenges in securing distributed containerized systems, akin to those faced with Intel SGX. We will outline these issues, focusing on the complexities of attesting distributed applications and securing container-to-container communications. Additionally, we will examine the nuanced role of Kubernetes in orchestrating these workloads, emphasizing the critical balance between keeping the application isolated from the untrusted orchestrator while maintaining the usability and workflows for the operations team.\r\n\r\nOur discussion will then pivot to innovative solutions, highlighting the concept of execution policies adopted by the CoCo community for effective workload attestation. By revisiting distributed attestation and orchestration principles from the open-source MarbleRun project initially designed for SGX environments, we will explore their potential application in CoCo contexts.\r\n\r\nThe session culminates with a practical demonstration. We will showcase the deployment of a distributed microservice application using unmodified confidential containers. This demo will illustrate not only the protection of service-to-service communications but also the comprehensive attestation of the application as a unified entity, all within a managed Kubernetes framework. This talk aims to provide a deep dive into the current state and future possibilities of CoCo, offering attendees insights into tackling real-world challenges in cloud-native Confidential Computing.",
+        "startsAt": "2024-07-02T14:20:00",
+        "endsAt": "2024-07-02T14:50:00",
+        "isServiceSession": false,
+        "isPlenumSession": false,
+        "speakers": [
+          {
+            "id": "7a88a49e-e912-46a8-b0f1-c9384844da1d",
+            "name": "Moritz Eckert"
+          }
+        ],
+        "categories": [],
+        "roomId": 43211,
+        "room": "Main Stage",
+        "liveUrl": null,
+        "recordingUrl": null,
+        "status": "Accepted",
+        "isInformed": true,
+        "isConfirmed": true
+      },
+      {
+        "questionAnswers": [],
+        "id": "661231",
+        "title": "OpenSSF Scorecard: The Superhero That Saves Your Open Source Project!",
+        "description": "Security is not usually the first thing that comes to mind when starting a new open source project. But security breaches like Log4Shell or the backdoored xz library remind us that missing security measures can become a real threat in the long run.\r\nThis lightning talk shows how we improved the security of our open source project in minutes using the OpenSSF Scorecard by adding just one more Github action, and how you can do the same!",
+        "startsAt": "2024-07-02T14:20:00",
+        "endsAt": "2024-07-02T14:25:00",
+        "isServiceSession": false,
+        "isPlenumSession": false,
+        "speakers": [
+          {
+            "id": "3405d3c4-5ca8-4cda-8af6-d8665417d9a8",
+            "name": "Sven Pfennig"
+          }
+        ],
+        "categories": [],
+        "roomId": 43212,
+        "room": "Top Stage",
+        "liveUrl": null,
+        "recordingUrl": null,
+        "status": "Accepted",
+        "isInformed": true,
+        "isConfirmed": true
+      },
+      {
+        "questionAnswers": [],
+        "id": "651545",
+        "title": "Distributed Tracing using OpenTelemetry and Jaeger",
+        "description": "Several years ago when you had a monolithic application, it was fairly easy to debug and diagnose since there was probably only one service with a couple of users. Nowadays systems are broken up into smaller microservices deployed in containers on top of Kubernetes in multiple clusters across different cloud environments. In these kinds of distributed environments, there is a need to observe it all, both the overall picture, and, if need be, at a more granular level.\r\n\r\nObservability can be roughly divided into three sub-categories: logging, metrics, and tracing. In this blog post we’ll show you how simple it is to get set up with tracing in your new or existing MinIO application. We’ll build a small MinIO app that does a few basic requests; this will be our base application to which we’ll add tracing to gain a better picture of how system components and functions interact.",
+        "startsAt": "2024-07-02T14:30:00",
+        "endsAt": "2024-07-02T14:35:00",
+        "isServiceSession": false,
+        "isPlenumSession": false,
+        "speakers": [
+          {
+            "id": "3c82d55a-f43f-4afa-ace5-9817006d2294",
+            "name": "AJ Jester"
+          }
+        ],
+        "categories": [],
+        "roomId": 43212,
+        "room": "Top Stage",
+        "liveUrl": null,
+        "recordingUrl": null,
+        "status": "Accepted",
+        "isInformed": true,
+        "isConfirmed": true
+      },
+      {
+        "questionAnswers": [],
+        "id": "655766",
+        "title": "custom debug profiles in kubectl",
+        "description": "With kubernetes 1.30 a new alpha feature has landed in kubectl.\r\nIt's now super handy to debug applications which do not have a shell in their container.\r\n\r\nWith that, there are no good reasons anymore for not having secure and tiny container images any more.",
+        "startsAt": "2024-07-02T14:40:00",
+        "endsAt": "2024-07-02T14:45:00",
+        "isServiceSession": false,
+        "isPlenumSession": false,
+        "speakers": [
+          {
+            "id": "39d86ad7-17c6-4f55-a527-a89d7f054c47",
+            "name": "Mario Constanti"
+          }
+        ],
+        "categories": [],
+        "roomId": 43212,
+        "room": "Top Stage",
+        "liveUrl": null,
+        "recordingUrl": null,
+        "status": "Accepted",
+        "isInformed": true,
+        "isConfirmed": true
+      },
+      {
+        "questionAnswers": [],
+        "id": "628156",
+        "title": "Embracing the Future: The Effortless Mutual TLS and Traffic Control Without Sidecars",
+        "description": "In today's environments, sidecars have become the dominant choice for implementing mutual TLS, traffic management and rich Layer 7 authorization policies. However, sidecars require applications to restart after being added to the mesh, causing unnecessary overprovisioning of resources. In this presentation, Lin will explain the key advantages of sidecar-less architecture and demonstrate live how both developers and operators can enjoy mTLS and traffic control without any effort or sidecars!",
+        "startsAt": "2024-07-02T15:30:00",
+        "endsAt": "2024-07-02T16:00:00",
+        "isServiceSession": false,
+        "isPlenumSession": false,
+        "speakers": [
+          {
+            "id": "615aa5ad-a025-4800-91eb-a8997a2fa446",
+            "name": "Lin Sun"
+          }
+        ],
+        "categories": [],
+        "roomId": 43211,
+        "room": "Main Stage",
+        "liveUrl": null,
+        "recordingUrl": null,
+        "status": "Accepted",
+        "isInformed": true,
+        "isConfirmed": true
+      },
+      {
+        "questionAnswers": [],
+        "id": "653008",
+        "title": "Kubernetes Authentication 2.0: Structured Authentication Configuration",
+        "description": "The authentication system in Kubernetes got a significant overhaul with the Structured Authentication Config introduction as alpha in the v1.29 release. It extends existing user authentication methods, enables multiple authentication providers' usage, brings dynamic configurations, and supports CEL for matching the user’s attributes in Kubernetes.\r\n\r\nI will describe the main features of the Structured Authentication Configuration and illustrate the practical use cases when & why Kubernetes operators might benefit from it. They will include the complicated token and user attributes’ validation and claim extraction.\r\n\r\nSince this enhancement not only brings immediate benefits but also lays a fundament for further improvements, I will also cover our future plans related to the Structured Authentication Configuration.",
+        "startsAt": "2024-07-02T15:30:00",
+        "endsAt": "2024-07-02T16:00:00",
+        "isServiceSession": false,
+        "isPlenumSession": false,
+        "speakers": [
+          {
+            "id": "d3c21a26-337f-496b-892c-bc3b703a1fb9",
+            "name": "Maksim Nabokikh"
+          }
+        ],
+        "categories": [],
+        "roomId": 43212,
+        "room": "Top Stage",
+        "liveUrl": null,
+        "recordingUrl": null,
+        "status": "Accepted",
+        "isInformed": true,
+        "isConfirmed": true
+      },
+      {
+        "questionAnswers": [],
+        "id": "637035",
+        "title": "Cilium Workshop: Kubernetes networking with eBPF",
+        "description": "Container workloads and their orchestrations brings new challenges for networking and observability.\r\n\r\nWith micro-services architectures increasing the amount of east-west traffic, transient IPs making it harder to correlate network information with workload identity, and application logic split into a multitude of components, traditional SDN approaches are reaching their limit.\r\n\r\nLeveraging the eBPF kernel technology, Ciliium is a CNCF project which implements a performant and highly scalable CNI plugin and the while providing metadata-rich observability of the network traffic.",
+        "startsAt": "2024-07-02T15:30:00",
+        "endsAt": "2024-07-02T17:00:00",
+        "isServiceSession": false,
+        "isPlenumSession": false,
+        "speakers": [
+          {
+            "id": "9f9be61b-6c2a-4996-aefb-89614da27b0d",
+            "name": "Raphaël Pinson"
+          }
+        ],
+        "categories": [],
+        "roomId": 43213,
+        "room": "Workshop Room",
+        "liveUrl": null,
+        "recordingUrl": null,
+        "status": "Accepted",
+        "isInformed": true,
+        "isConfirmed": true
+      },
+      {
+        "questionAnswers": [],
+        "id": "658764",
+        "title": "Fast Kubernetes Autoscaling with Knative",
+        "description": "Effective auto-scaling ensures that applications can handle increased loads efficiently, improving user experience while optimizing costs and energy consumption. This is beneficial for a wide range of applications, but especially for use-cases with sudden traffic spikes such as e-commerce platforms during flash sales, streaming services broadcasting live events with fluctuating viewer numbers, and financial services handling transactions during volatile market conditions. \r\n\r\nFor Kubernetes, there are various approaches. One of them is the CNCF project Knative, which enables auto-scaling based on incoming HTTP requests. Advantages over Kubernetes default auto-scaling capabilities (HPA, VPA) include faster response to load and support for scale-to-zero. I will show you how much you can reduce cold start times (the delay in serving requests when scaling from zero) and discuss advantages and disadvantages as well as possible use cases.",
+        "startsAt": "2024-07-02T16:10:00",
+        "endsAt": "2024-07-02T16:40:00",
+        "isServiceSession": false,
+        "isPlenumSession": false,
+        "speakers": [
+          {
+            "id": "e56e9e7c-e8fc-4760-ac88-07d6b6a026ef",
+            "name": "Stefan Billet"
+          }
+        ],
+        "categories": [],
+        "roomId": 43211,
+        "room": "Main Stage",
+        "liveUrl": null,
+        "recordingUrl": null,
+        "status": "Accepted",
+        "isInformed": true,
+        "isConfirmed": true
+      },
+      {
+        "questionAnswers": [],
+        "id": "636747",
+        "title": "Updates from the Kubernetes Storm Center: Open Source Threat Intelligence for Cloud Native",
+        "description": "The cloud native ecosystem currently has no consistent Open Source Threat Intelligence. The community initiative \"The Kubernetes Storm Center\" aims to change that.\r\nIn this talk, we show how a non-expert would use a \"Honey-Cluster\" to practically validate threat modelling predictions and quantify the relative risk of different attack vectors. And, as an optional step, how to contribute the collected threat intelligence to (open) upstream databases such as MISP, by mapping the threats onto MITRE.\r\n\r\nAfter a general introduction, we detail how to utilize and adopt our method that, based on a given threat model:\r\na) generates a Kubernetes-based environment with embedded eBPF trip-wires, enabling the detection of real attacker paths without interference,\r\nb) exposes these simulated environments to the wild to observe quantitative threat intelligence in action, and\r\nc) informs cost-effective decisions for a defensive team.\r\nWe discuss recent community development and remaining caveats, emphasise the critical role of automation in scalability across diverse threat models, live showcase one quantified attack tree and discuss data we have collected from experiments, so far.\r\n\r\nTo benefit the Kubernetes ecosystem, this accessible framework can be crowd-sourced into an open source threat intelligence capturing network for risk exposure quantification.",
+        "startsAt": "2024-07-02T16:10:00",
+        "endsAt": "2024-07-02T16:40:00",
+        "isServiceSession": false,
+        "isPlenumSession": false,
+        "speakers": [
+          {
+            "id": "d95e7cb7-6808-4b46-a925-76a9f41d9d01",
+            "name": "Constanze Roedig"
+          }
+        ],
+        "categories": [],
+        "roomId": 43212,
+        "room": "Top Stage",
+        "liveUrl": null,
+        "recordingUrl": null,
+        "status": "Accepted",
+        "isInformed": true,
+        "isConfirmed": true
+      },
+      {
+        "questionAnswers": [],
+        "id": "658623",
+        "title": "Gateway API Unleashed - The next evolution of Kubernetes native API Gateways and why you should care",
+        "description": "When ingress-controller started to sprawl, developers as well as platform engineers were faced with the same challenges: acknowledging a massive sprawl of annotations on our Ingress Resources or, adopting a project specific Custom Resource Definitions to utilize Traffic Management. While ingress annotations had there unique set of challenges such as maintainability and complexity, the latter meant opting-out of the massive ecosystem that is provided. Gateway API as the new, extensible foundation, Kubernetes provides a unique opportunity, since that symbioses already covers a wide variety of use-cases in terms of how we roll out applications and how they get the traffic they need.\r\n\r\nIn this talk you will gain a high level overview of the Gateway API and its extension layers, its community and adoption as well as a live demo of how multiple projects (namely Traefik, external-dns, cert-manager and Argo Rollouts) can be used together to rollout an application quickly and in an automated way",
+        "startsAt": "2024-07-02T16:50:00",
+        "endsAt": "2024-07-02T17:20:00",
+        "isServiceSession": false,
+        "isPlenumSession": false,
+        "speakers": [
+          {
+            "id": "80018ddb-c2d5-46ba-9054-c89ab35bb8b0",
+            "name": "Manuel Zapf"
+          }
+        ],
+        "categories": [],
+        "roomId": 43211,
+        "room": "Main Stage",
+        "liveUrl": null,
+        "recordingUrl": null,
+        "status": "Accepted",
+        "isInformed": true,
+        "isConfirmed": true
+      },
+      {
+        "questionAnswers": [],
+        "id": "653210",
+        "title": "Do your thing: ICHP is building a great support team",
+        "description": "In this talk we'll discuss what the ING Container Hosted Platform team is doing to build and improve the support team for the Openshift platform from the inside out.\r\n \r\nWhat does it take to build a great support team?\r\nWe'll give you some insight on how our team operates and improves.\r\n \r\nWe are just going to give common sense ideas that show signs of success and some ideas that failed. We also talk about the 10 tips found on the internet and our takes on them.\r\n \r\n \r\nBe warned you might have some fun along the way too.",
+        "startsAt": "2024-07-02T16:50:00",
+        "endsAt": "2024-07-02T17:20:00",
+        "isServiceSession": false,
+        "isPlenumSession": false,
+        "speakers": [
+          {
+            "id": "0aae7ddd-fa7e-46b1-9303-f65e5329744e",
+            "name": "Dan Stock"
+          },
+          {
+            "id": "4486b48d-8996-4b2d-b792-f6a909b32975",
+            "name": "Rob de Boer"
+          }
+        ],
+        "categories": [],
+        "roomId": 43212,
+        "room": "Top Stage",
+        "liveUrl": null,
+        "recordingUrl": null,
+        "status": "Accepted",
+        "isInformed": true,
+        "isConfirmed": true
+      }
+    ],
+    "isDefault": false
+  }
+]

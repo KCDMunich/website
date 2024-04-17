@@ -23,6 +23,7 @@
 
 .fc-event {
   width: 100%;
+  height: 17vh;
   background: rgb(13, 50, 233);
 }
 
@@ -94,4 +95,76 @@ td {
 
 .fc-direction-ltr .fc-timegrid-slot-label-frame {
   display: none;
+}
+
+/* Standardmäßige Desktop-Stile */
+.event-content {
+  margin: 5%;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  height: auto;
+}
+
+.event-time {
+  display: flex;
+  justify-content: left;
+  font-weight: bold;
+}
+
+.event-title {
+  font-weight: bold;
+}
+
+.speaker-list {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Medienabfragen für mobile Geräte */
+@media (max-width: 600px, max-height: 30vh) {
+  .event-time {
+    font-size: 0.8rem; /* Kleinere Schriftgröße für kleine Geräte */
+  }
+
+  .speaker-list {
+    gap: 0.3rem;
+  }
+
+  .event-content {
+    margin: 2%; /* Kleinere Ränder für kleine Geräte */
+  }
+}
+
+@media (max-width: 430px) {
+  .event-time {
+    display: flex;
+    justify-content: left;
+    width: max-content;
+    font-size: 0.6rem; /* Noch kleinere Schriftgröße für sehr kleine Geräte */
+  }
+  .event-title {
+    display: flex;
+    justify-content: left;
+    font-size: 0.5rem; /* Noch kleinere Schriftgröße für sehr kleine Geräte */
+  }
+  .event-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    font-size: 0.3rem; /* Noch kleinere Schriftgröße für sehr kleine Geräte */
+  }
+  .event-info {
+    display: none;
+  }
+  .speaker-list {
+    display: flex;
+    flex-direction: column;
+    font-size: 0.7rem; /* Noch kleinere Schriftgröße für sehr kleine Geräte */
+  }
+  .fc-event {
+    height: 30vh;
+    margin: 0.5%;
+  }
 }
