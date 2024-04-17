@@ -63,17 +63,14 @@ const SessionListComponent = () => {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          padding: '100px',
         }}
       >
         <div
           style={{
             position: 'relative',
             backgroundColor: 'rgb(237 237 237)',
-            padding: '20px',
             borderRadius: '5px',
             color: 'black',
-            width: 'auto',
           }}
         >
           <button
@@ -81,7 +78,6 @@ const SessionListComponent = () => {
             style={{
               position: 'absolute',
               right: '19px',
-              top: '-4px',
               fontSize: '30px',
               fontWeight: 'bold',
             }}
@@ -154,15 +150,16 @@ const SessionListComponent = () => {
         style={{
           display: 'flex',
           flexDirection: 'column',
-          alignItems: 'left',
-          width: 'auto',
+          width: '90vw',
           padding: '50px',
+          overflow: 'auto',
+          height: '70vh',
         }}
       >
         <h1 style={{ marginBottom: '15px', fontWeight: 'bold', fontSize: 'larger' }}>
           {selectedEvent.title}
         </h1>
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'left' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'left', gap: '10px' }}>
           <p>
             <strong>Start:</strong> {selectedEvent.start.toLocaleString()}
           </p>
@@ -173,7 +170,14 @@ const SessionListComponent = () => {
             <strong>Room:</strong> {selectedEvent.extendedProps.room}
           </p>
         </div>
-        <div style={{ display: 'flex', flexDirection: 'column', textAlign: 'left' }}>
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            textAlign: 'left',
+            marginTop: '10px',
+          }}
+        >
           <div>
             <strong>Description:</strong>
           </div>{' '}
@@ -207,7 +211,7 @@ const SessionListComponent = () => {
           </span>
         </Button>
       </div>
-      <div className="calendar-container">
+      <div className="calendar-container" style={{ width: 'fit-content', overflow: 'auto' }}>
         <div className="flex">
           <FullCalendar
             allDaySlot={false}
@@ -216,9 +220,9 @@ const SessionListComponent = () => {
             initialView="timeGrid"
             slotEventOverlap={false}
             slotLabelInterval={{ hours: 1 }}
-            slotMinTime="09:30:00"
-            slotMaxTime="24:00:00"
-            slotDuration="00:10:00"
+            slotMinTime="09:20:00"
+            slotMaxTime="18:00:00"
+            slotDuration="00:14:30"
             height="auto"
             headerToolbar={{
               left: '',
@@ -239,9 +243,9 @@ const SessionListComponent = () => {
             initialView="timeGrid"
             slotEventOverlap={false}
             slotLabelInterval={{ hours: 1 }}
-            slotMinTime="09:30:00"
-            slotMaxTime="24:00:00"
-            slotDuration="00:10:00"
+            slotMinTime="09:20:00"
+            slotMaxTime="18:00:00"
+            slotDuration="00:14:30"
             height="auto"
             headerToolbar={{
               left: '',
@@ -262,9 +266,9 @@ const SessionListComponent = () => {
             initialView="timeGrid"
             slotEventOverlap={false}
             slotLabelInterval={{ hours: 1 }}
-            slotMinTime="09:30:00"
-            slotMaxTime="24:00:00"
-            slotDuration="00:10:00"
+            slotMinTime="09:20:00"
+            slotMaxTime="18:00:00"
+            slotDuration="00:14:30"
             height="auto"
             headerToolbar={{
               left: '',
@@ -285,9 +289,9 @@ const SessionListComponent = () => {
             initialView="timeGrid"
             slotEventOverlap={false}
             slotLabelInterval={{ hours: 1 }}
-            slotMinTime="09:30:00"
-            slotMaxTime="24:00:00"
-            slotDuration="00:10:00"
+            slotMinTime="09:20:00"
+            slotMaxTime="18:00:00"
+            slotDuration="00:14:30"
             height="auto"
             headerToolbar={{
               left: '',
