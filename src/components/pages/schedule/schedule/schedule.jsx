@@ -4,11 +4,12 @@ import './schedule.css';
 import FullCalendar from '@fullcalendar/react';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import Button from 'components/shared/button';
+
 import { conformsTo } from 'lodash';
 
-// const scriptUrl = 'https://sessionize.com/api/v2/t71l7ld5/view/GridSmart';
+const scriptUrl = 'https://sessionize.com/api/v2/t71l7ld5/view/GridSmart';
 // const scriptUrl = 'https://sessionize.com/api/v2/6dqtqpt2/view/Sessions'; api -> sessionList
-const speakerURL = 'https://sessionize.com/api/v2/6dqtqpt2/view/Speakers';
+// const speakerURL = 'https://sessionize.com/api/v2/6dqtqpt2/view/Speakers';
 
 const Schedule = () => (
   <section className="safe-paddings relative bg-white pb-40 lg:pb-32 md:py-24 sm:py-16">
@@ -28,11 +29,10 @@ const SessionListComponent = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [selectedEvent, setSelectedEvent] = useState(null);
   const [visibleDay, setVisibleDay] = useState('2024-07-01');
-  const [speakerData, setSpeakerData] = useState([]);
 
   //Speaker aus der api fetchen
   useEffect(() => {
-    fetch(speakerURL)
+    fetch(scriptUrl)
       .then((response) => response.json())
       .then((data) => {
         setSpeakerData(data);
@@ -47,7 +47,7 @@ const SessionListComponent = () => {
   //     .catch((error) => console.error('Error:', error));
   // }, []);
 
-  function Dialog({ isOpen, onClose, children }) {
+  const Dialog = ({ isOpen, onClose, children }) => {
     if (!isOpen) return null;
 
     return (
@@ -89,7 +89,7 @@ const SessionListComponent = () => {
         </div>
       </div>
     );
-  }
+  };
 
   const handleDayChange = (day) => {
     setVisibleDay(day);
