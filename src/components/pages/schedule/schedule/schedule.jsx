@@ -5,8 +5,6 @@ import FullCalendar from '@fullcalendar/react';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import Button from 'components/shared/button';
 
-import { conformsTo } from 'lodash';
-
 const scriptUrl = 'https://sessionize.com/api/v2/t71l7ld5/view/GridSmart';
 // const scriptUrl = 'https://sessionize.com/api/v2/6dqtqpt2/view/Sessions'; api -> sessionList
 // const speakerURL = 'https://sessionize.com/api/v2/6dqtqpt2/view/Speakers';
