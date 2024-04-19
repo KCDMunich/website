@@ -5,7 +5,7 @@ import FullCalendar from '@fullcalendar/react';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import Button from 'components/shared/button';
 
-const scriptUrl = 'https://sessionize.com/api/v2/t71l7ld5/view/GridSmart';
+const scriptUrl = 'https://sessionize.com/api/v2/6dqtqpt2/view/GridSmart';
 // const scriptUrl = 'https://sessionize.com/api/v2/6dqtqpt2/view/Sessions'; api -> sessionList
 // const speakerURL = 'https://sessionize.com/api/v2/6dqtqpt2/view/Speakers';
 
@@ -29,14 +29,14 @@ const SessionListComponent = () => {
   const [visibleDay, setVisibleDay] = useState('2024-07-01');
 
   //Speaker aus der api fetchen
-  useEffect(() => {
-    fetch(scriptUrl)
-      .then((response) => response.json())
-      .then((data) => {
-        setSpeakerData(data);
-      })
-      .catch((error) => console.error('Error:', error));
-  }, []);
+  // useEffect(() => {
+  //   fetch(scriptUrl)
+  //     .then((response) => response.json())
+  //     .then((data) => {
+  //       setSpeakerData(data);
+  //     })
+  //     .catch((error) => console.error('Error:', error));
+  // }, []);
 
   // useEffect(() => {
   //   fetch(scriptUrl)
@@ -93,54 +93,91 @@ const SessionListComponent = () => {
     setVisibleDay(day);
   };
 
-  const convertSessionsToEvents = (sessions) => {
-    return sessions.flatMap((group) =>
-      group.sessions.map((session) => ({
-        id: session.id,
-        title: session.title,
-        start: session.startsAt.replace("'", ''),
-        end: session.endsAt.replace("'", ''),
-        description: session.description,
-        room: session.room,
-        speakers: session.speakers,
-      }))
-    );
+  const convertSessionsToEvents = (data) => {
+    const events = [];
+
+    data.forEach((day) => {
+      day.rooms.forEach((room) => {
+        const roomEvents = room.sessions.map((session) => ({
+          id: session.id,
+          title: session.title,
+          start: session.startsAt,
+          end: session.endsAt,
+          description: session.description || '', // falls description null ist
+          room: session.room,
+          speakers: session.speakers, // Namen der Sprecher als String
+        }));
+        events.push(...roomEvents); // fügt alle Sitzungen des Raumes zu den Events hinzu
+      });
+    });
+
+    return events;
   };
 
   useEffect(() => {
     const events = convertSessionsToEvents(scheduleJSON);
+
     // filter events by room
-    const roomEvents = events.filter((event) => event.room === 'Main Stage');
-    const topStageEvents = events.filter((event) => event.room === 'Top Stage');
+    const roomEvents = events.filter(
+      (event) =>
+        event.room === 'Main Stage' ||
+        event.title === 'Lunch Break' ||
+        event.title === 'Coffee Break'
+    );
+    const topStageEvents = events.filter(
+      (event) =>
+        event.room === 'Top Stage' ||
+        event.title === 'Lunch Break' ||
+        event.title === 'Coffee Break'
+    );
     const workshopRoomEvents = events.filter((event) => event.room === 'Workshop Room');
-    const unconferenceEvents = events.filter((event) => event.room === 'The Unconference');
+    const unconferenceEvents = events.filter(
+      (event) =>
+        event.room === 'The Unconference' ||
+        event.title === 'Lunch Break' ||
+        event.title === 'Coffee Break'
+    );
     setSessionData(roomEvents);
     setStageData(topStageEvents);
     setWorkshopData(workshopRoomEvents);
     setUnconferenceData(unconferenceEvents);
   }, []);
 
-  const renderEventContent = (eventInfo) => (
-    <div
-      className="event-content"
-      onClick={() => {
-        setSelectedEvent(eventInfo.event);
-        setIsDialogOpen(true);
-      }}
-    >
-      <h1 className="event-time">
-        {new Date(eventInfo.event.start).toLocaleString([], { hour: '2-digit', minute: '2-digit' })}{' '}
-        -{new Date(eventInfo.event.end).toLocaleString([], { hour: '2-digit', minute: '2-digit' })}
-      </h1>
-      <span className="event-title">{eventInfo.event.title}</span>
-      <div className="speaker-list">
-        <span className="event-info">Speaker:</span>
-        {eventInfo.event.extendedProps.speakers.map((speaker, index) => (
-          <span key={index}>{speaker.name}</span>
-        ))}
+  const renderEventContent = (eventInfo) => {
+    const breakClasses =
+      eventInfo.event.title === 'Lunch Break' || eventInfo.event.title === 'Coffee Break'
+        ? 'break-event'
+        : '';
+    return (
+      <div
+        className={`event-content ${breakClasses}`}
+        onClick={() => {
+          setSelectedEvent(eventInfo.event);
+          setIsDialogOpen(true);
+        }}
+      >
+        <h1 className="event-time">
+          {new Date(eventInfo.event.start).toLocaleString([], {
+            hour: '2-digit',
+            minute: '2-digit',
+          })}{' '}
+          -
+          {new Date(eventInfo.event.end).toLocaleString([], { hour: '2-digit', minute: '2-digit' })}
+        </h1>
+        <span className="event-title">{eventInfo.event.title}</span>
+        <div className="speaker-list">
+          <span className="event-info" style={{ fontSize: '12px' }}>
+            Speaker:
+          </span>
+          {eventInfo.event.extendedProps.speakers.map((speaker, index) => (
+            <span className="speaker" key={index}>
+              {speaker.name}
+            </span>
+          ))}
+        </div>
       </div>
-    </div>
-  );
+    );
+  };
 
   const EventDialog = () => {
     return (
@@ -211,6 +248,31 @@ const SessionListComponent = () => {
       </div>
       <div className="calendar-container" style={{ width: 'fit-content', overflow: 'auto' }}>
         <div className="flex">
+          <div className="show-time-axis">
+            <FullCalendar
+              allDaySlot={false}
+              plugins={[timeGridPlugin]}
+              displayEventTime={false}
+              initialView="timeGrid"
+              slotEventOverlap={false}
+              slotLabelInterval={{ hours: 1 }}
+              slotMinTime="09:20:00"
+              slotMaxTime="18:00:00"
+              slotDuration="00:10:30"
+              height="auto"
+              headerToolbar={{
+                left: '',
+                right: '',
+              }}
+              visibleRange={{
+                start: visibleDay,
+                end: visibleDay === '2024-07-01' ? '2024-07-02' : '2024-07-03',
+              }}
+              events={sessionData}
+              eventContent={renderEventContent}
+              dayHeaderContent="Main Stage"
+            />
+          </div>
           <FullCalendar
             allDaySlot={false}
             plugins={[timeGridPlugin]}
@@ -220,30 +282,7 @@ const SessionListComponent = () => {
             slotLabelInterval={{ hours: 1 }}
             slotMinTime="09:20:00"
             slotMaxTime="18:00:00"
-            slotDuration="00:14:30"
-            height="auto"
-            headerToolbar={{
-              left: '',
-              right: '',
-            }}
-            visibleRange={{
-              start: visibleDay,
-              end: visibleDay === '2024-07-01' ? '2024-07-02' : '2024-07-03',
-            }}
-            events={sessionData}
-            eventContent={renderEventContent}
-            dayHeaderContent="Main Stage"
-          />
-          <FullCalendar
-            allDaySlot={false}
-            plugins={[timeGridPlugin]}
-            displayEventTime={false}
-            initialView="timeGrid"
-            slotEventOverlap={false}
-            slotLabelInterval={{ hours: 1 }}
-            slotMinTime="09:20:00"
-            slotMaxTime="18:00:00"
-            slotDuration="00:14:30"
+            slotDuration="00:10:30"
             height="auto"
             headerToolbar={{
               left: '',
@@ -266,7 +305,7 @@ const SessionListComponent = () => {
             slotLabelInterval={{ hours: 1 }}
             slotMinTime="09:20:00"
             slotMaxTime="18:00:00"
-            slotDuration="00:14:30"
+            slotDuration="00:10:30"
             height="auto"
             headerToolbar={{
               left: '',
@@ -289,7 +328,7 @@ const SessionListComponent = () => {
             slotLabelInterval={{ hours: 1 }}
             slotMinTime="09:20:00"
             slotMaxTime="18:00:00"
-            slotDuration="00:14:30"
+            slotDuration="00:10:30"
             height="auto"
             headerToolbar={{
               left: '',
