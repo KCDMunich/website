@@ -258,7 +258,7 @@ const SessionListComponent = () => {
               slotLabelInterval={{ hours: 1 }}
               slotMinTime="09:20:00"
               slotMaxTime="18:00:00"
-              slotDuration="00:10:30"
+              slotDuration="00:07:30"
               height="auto"
               headerToolbar={{
                 left: '',
@@ -282,7 +282,7 @@ const SessionListComponent = () => {
             slotLabelInterval={{ hours: 1 }}
             slotMinTime="09:20:00"
             slotMaxTime="18:00:00"
-            slotDuration="00:10:30"
+            slotDuration="00:07:30"
             height="auto"
             headerToolbar={{
               left: '',
@@ -305,7 +305,7 @@ const SessionListComponent = () => {
             slotLabelInterval={{ hours: 1 }}
             slotMinTime="09:20:00"
             slotMaxTime="18:00:00"
-            slotDuration="00:10:30"
+            slotDuration="00:07:30"
             height="auto"
             headerToolbar={{
               left: '',
@@ -328,7 +328,7 @@ const SessionListComponent = () => {
             slotLabelInterval={{ hours: 1 }}
             slotMinTime="09:20:00"
             slotMaxTime="18:00:00"
-            slotDuration="00:10:30"
+            slotDuration="00:07:30"
             height="auto"
             headerToolbar={{
               left: '',
