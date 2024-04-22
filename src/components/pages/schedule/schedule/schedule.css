@@ -210,10 +210,6 @@ td {
     height: max-content;
   }
 
-  .speaker-list {
-    display: none;
-  }
-
   .fc-event {
     width: 100%;
     height: 100%;
