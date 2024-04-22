@@ -23,7 +23,7 @@
 
 .fc-event {
   width: 100%;
-  height: fit-content;
+  height: 95%;
   background: rgb(13, 50, 233);
 }
 
@@ -103,8 +103,7 @@ td {
 }
 
 .break-event {
-  background-color: lightgray !important;
-  height: 100%;
+  width: 100px;
 }
 
 /* Standardmäßige Desktop-Stile */
@@ -125,6 +124,7 @@ td {
 
 .event-title {
   font-weight: bold;
+  font-size: 12px;
 }
 
 .speaker-list {
@@ -216,7 +216,7 @@ td {
 
   .fc-event {
     width: 100%;
-    height: 120px;
+    height: 100%;
     background: rgb(13, 50, 233);
     overflow: hidden;
   }

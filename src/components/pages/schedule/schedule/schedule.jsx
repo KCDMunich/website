@@ -7,7 +7,7 @@ import Button from 'components/shared/button';
 
 const scriptUrl = 'https://sessionize.com/api/v2/6dqtqpt2/view/GridSmart';
 // const scriptUrl = 'https://sessionize.com/api/v2/6dqtqpt2/view/Sessions'; api -> sessionList
-// const speakerURL = 'https://sessionize.com/api/v2/6dqtqpt2/view/Speakers';
+const speakerURL = 'https://sessionize.com/api/v2/6dqtqpt2/view/Speakers';
 
 const Schedule = () => (
   <section className="safe-paddings relative bg-white pb-40 lg:pb-32 md:py-24 sm:py-16">
@@ -20,6 +20,7 @@ const Schedule = () => (
 );
 
 const SessionListComponent = () => {
+  const [speakerData, setSpeakerData] = useState([]);
   const [sessionData, setSessionData] = useState([]);
   const [stageData, setStageData] = useState([]);
   const [workshopData, setWorkshopData] = useState([]);
@@ -29,14 +30,14 @@ const SessionListComponent = () => {
   const [visibleDay, setVisibleDay] = useState('2024-07-01');
 
   //Speaker aus der api fetchen
-  // useEffect(() => {
-  //   fetch(scriptUrl)
-  //     .then((response) => response.json())
-  //     .then((data) => {
-  //       setSpeakerData(data);
-  //     })
-  //     .catch((error) => console.error('Error:', error));
-  // }, []);
+  useEffect(() => {
+    fetch(speakerURL)
+      .then((response) => response.json())
+      .then((data) => {
+        setSpeakerData(data);
+      })
+      .catch((error) => console.error('Error:', error));
+  }, []);
 
   // useEffect(() => {
   //   fetch(scriptUrl)
@@ -44,6 +45,12 @@ const SessionListComponent = () => {
   //     .then((data) => setSessionData(data))
   //     .catch((error) => console.error('Error:', error));
   // }, []);
+
+  const getSpeakerCompany = (speakerId) => {
+    const speaker = speakerData.find((s) => s.id === speakerId);
+    const companyAnswer = speaker?.questionAnswers.find((q) => q.question === 'Company');
+    return companyAnswer ? companyAnswer.answer : 'No company listed';
+  };
 
   const Dialog = ({ isOpen, onClose, children }) => {
     if (!isOpen) return null;
@@ -130,10 +137,15 @@ const SessionListComponent = () => {
         event.title === 'Lunch Break' ||
         event.title === 'Coffee Break'
     );
-    const workshopRoomEvents = events.filter((event) => event.room === 'Workshop Room');
+    const workshopRoomEvents = events.filter(
+      (event) =>
+        event.room === 'Workshop Room' ||
+        event.title === 'Lunch Break' ||
+        event.title === 'Coffee Break'
+    );
     const unconferenceEvents = events.filter(
       (event) =>
-        event.room === 'The Unconference' ||
+        event.room === 'THE UNCONFERENCE' ||
         event.title === 'Lunch Break' ||
         event.title === 'Coffee Break'
     );
@@ -148,6 +160,9 @@ const SessionListComponent = () => {
       eventInfo.event.title === 'Lunch Break' || eventInfo.event.title === 'Coffee Break'
         ? 'break-event'
         : '';
+
+    const isCustomDebugProfiles = eventInfo.event.title === 'custom debug profiles in kubectl';
+
     return (
       <div
         className={`event-content ${breakClasses}`}
@@ -156,6 +171,7 @@ const SessionListComponent = () => {
           setIsDialogOpen(true);
         }}
       >
+        <span className="event-title">{eventInfo.event.title}</span>
         <h1 className="event-time">
           {new Date(eventInfo.event.start).toLocaleString([], {
             hour: '2-digit',
@@ -164,17 +180,21 @@ const SessionListComponent = () => {
           -
           {new Date(eventInfo.event.end).toLocaleString([], { hour: '2-digit', minute: '2-digit' })}
         </h1>
-        <span className="event-title">{eventInfo.event.title}</span>
-        <div className="speaker-list">
-          <span className="event-info" style={{ fontSize: '12px' }}>
-            Speaker:
-          </span>
-          {eventInfo.event.extendedProps.speakers.map((speaker, index) => (
-            <span className="speaker" key={index}>
-              {speaker.name}
-            </span>
-          ))}
-        </div>
+
+        {!isCustomDebugProfiles &&
+          eventInfo.event.extendedProps.speakers &&
+          eventInfo.event.extendedProps.speakers.length > 0 && (
+            <div className="speaker-list">
+              <span className="event-info" style={{ fontSize: '12px' }}>
+                Speaker:
+              </span>
+              {eventInfo.event.extendedProps.speakers.map((speaker, index) => (
+                <span className="speaker" key={index}>
+                  {speaker.name}
+                </span>
+              ))}
+            </div>
+          )}
       </div>
     );
   };
@@ -247,32 +267,7 @@ const SessionListComponent = () => {
         </Button>
       </div>
       <div className="calendar-container" style={{ width: 'fit-content', overflow: 'auto' }}>
-        <div className="flex">
-          <div className="show-time-axis">
-            <FullCalendar
-              allDaySlot={false}
-              plugins={[timeGridPlugin]}
-              displayEventTime={false}
-              initialView="timeGrid"
-              slotEventOverlap={false}
-              slotLabelInterval={{ hours: 1 }}
-              slotMinTime="09:20:00"
-              slotMaxTime="18:00:00"
-              slotDuration="00:07:30"
-              height="auto"
-              headerToolbar={{
-                left: '',
-                right: '',
-              }}
-              visibleRange={{
-                start: visibleDay,
-                end: visibleDay === '2024-07-01' ? '2024-07-02' : '2024-07-03',
-              }}
-              events={sessionData}
-              eventContent={renderEventContent}
-              dayHeaderContent="Main Stage"
-            />
-          </div>
+        <div style={{ display: 'flex' }}>
           <FullCalendar
             allDaySlot={false}
             plugins={[timeGridPlugin]}
@@ -282,7 +277,31 @@ const SessionListComponent = () => {
             slotLabelInterval={{ hours: 1 }}
             slotMinTime="09:20:00"
             slotMaxTime="18:00:00"
-            slotDuration="00:07:30"
+            slotDuration="00:08:30"
+            height="auto"
+            headerToolbar={{
+              left: '',
+              right: '',
+            }}
+            visibleRange={{
+              start: visibleDay,
+              end: visibleDay === '2024-07-01' ? '2024-07-02' : '2024-07-03',
+            }}
+            events={sessionData}
+            eventContent={renderEventContent}
+            dayHeaderContent="Main Stage"
+          />
+          <FullCalendar
+            allDaySlot={false}
+            plugins={[timeGridPlugin]}
+            displayEventTime={false}
+            initialView="timeGrid"
+            eventMinHeight={90}
+            slotEventOverlap={false}
+            slotLabelInterval={{ hours: 1 }}
+            slotMinTime="09:20:00"
+            slotMaxTime="18:00:00"
+            slotDuration="00:08:30"
             height="auto"
             headerToolbar={{
               left: '',
@@ -301,11 +320,12 @@ const SessionListComponent = () => {
             plugins={[timeGridPlugin]}
             displayEventTime={false}
             initialView="timeGrid"
-            slotEventOverlap={false}
+            slotEventOverlap={true}
+            slotMinWidth={200}
             slotLabelInterval={{ hours: 1 }}
             slotMinTime="09:20:00"
             slotMaxTime="18:00:00"
-            slotDuration="00:07:30"
+            slotDuration="00:08:30"
             height="auto"
             headerToolbar={{
               left: '',
@@ -324,11 +344,12 @@ const SessionListComponent = () => {
             plugins={[timeGridPlugin]}
             displayEventTime={false}
             initialView="timeGrid"
-            slotEventOverlap={false}
+            slotEventOverlap={true}
+            slotMinWidth={50}
             slotLabelInterval={{ hours: 1 }}
             slotMinTime="09:20:00"
             slotMaxTime="18:00:00"
-            slotDuration="00:07:30"
+            slotDuration="00:08:30"
             height="auto"
             headerToolbar={{
               left: '',
@@ -355,32 +376,6 @@ const SessionListComponent = () => {
       </div>
     </div>
   );
-
-  // return (
-  //   <div className="grid grid-cols-1 gap-4 lg:grid-cols-3 md:grid-cols-2">
-  //     HALLO
-  //     {sessionData.map((dateData) => (
-  //       <div key={dateData.date}>
-  //         <h2 className="mt-4 text-2xl font-semibold">{dateData.date}</h2>
-  //         {dateData.rooms.map((room) => (
-  //           <div key={room.id}>
-  //             <h3 className="mt-2 text-xl font-semibold">{room.name}</h3>
-  //             {room.sessions.map((session) => (
-  //               <div key={session.id} className="bg-gray-100 mt-2 rounded-lg p-4 shadow-md">
-  //                 <h4 className="text-lg font-semibold">{session.title}</h4>
-  //                 <p className="text-gray-500">{session.description}</p>
-  //                 <p className="mt-2">Speaker: {session.speakers[0]?.name}</p>
-  //                 <p>Starts At: {session.startsAt}</p>
-  //                 <p>Ends At: {session.endsAt}</p>
-  //                 <p>Status: {session.status}</p>
-  //               </div>
-  //             ))}
-  //           </div>
-  //         ))}
-  //       </div>
-  //     ))}
-  //   </div>
-  // );
 };
 
 export default Schedule;
