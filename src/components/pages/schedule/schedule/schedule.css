@@ -217,3 +217,20 @@ td {
     overflow: hidden;
   }
 }
+
+.main-stage-btn {
+  width: 230px;
+  font-size: 11px;
+}
+.top-stage-btn {
+  width: 230px;
+  font-size: 11px;
+}
+.workshop-room-btn {
+  width: 230px;
+  font-size: 11px;
+}
+.the-unconference-btn {
+  width: 240px;
+  font-size: 11px;
+}
