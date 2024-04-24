@@ -165,7 +165,7 @@ const SessionListComponent = () => {
     const breakClasses =
       eventInfo.event.title === 'Lunch Break' || eventInfo.event.title === 'Coffee Break'
         ? 'break-event'
-        : '';
+        : 'regular-event';
 
     const isCustomDebugProfiles = eventInfo.event.title === 'custom debug profiles in kubectl';
 
@@ -274,7 +274,7 @@ const SessionListComponent = () => {
               </span>
             </Button>
           </div>
-          <div className="calendar-container" style={{ width: 'fit-content', overflow: 'auto' }}>
+          <div className="calendar-container">
             <div style={{ display: 'flex' }}>
               <FullCalendar
                 allDaySlot={false}
