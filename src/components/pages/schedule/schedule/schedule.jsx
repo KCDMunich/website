@@ -4,10 +4,11 @@ import './schedule.css';
 import FullCalendar from '@fullcalendar/react';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import Button from 'components/shared/button';
+import { isMobile } from 'react-device-detect';
 
-const scriptUrl = 'https://sessionize.com/api/v2/t71l7ld5/view/GridSmart';
+const scriptUrl = 'https://sessionize.com/api/v2/6dqtqpt2/view/GridSmart';
 // const scriptUrl = 'https://sessionize.com/api/v2/6dqtqpt2/view/Sessions'; api -> sessionList
-// const speakerURL = 'https://sessionize.com/api/v2/6dqtqpt2/view/Speakers';
+const speakerURL = 'https://sessionize.com/api/v2/6dqtqpt2/view/Speakers';
 
 const Schedule = () => (
   <section className="safe-paddings relative bg-white pb-40 lg:pb-32 md:py-24 sm:py-16">
@@ -20,6 +21,7 @@ const Schedule = () => (
 );
 
 const SessionListComponent = () => {
+  const [speakerData, setSpeakerData] = useState([]);
   const [sessionData, setSessionData] = useState([]);
   const [stageData, setStageData] = useState([]);
   const [workshopData, setWorkshopData] = useState([]);
@@ -27,10 +29,11 @@ const SessionListComponent = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [selectedEvent, setSelectedEvent] = useState(null);
   const [visibleDay, setVisibleDay] = useState('2024-07-01');
+  const [currentView, setCurrentView] = useState('Main Stage');
 
   //Speaker aus der api fetchen
   useEffect(() => {
-    fetch(scriptUrl)
+    fetch(speakerURL)
       .then((response) => response.json())
       .then((data) => {
         setSpeakerData(data);
@@ -44,6 +47,12 @@ const SessionListComponent = () => {
   //     .then((data) => setSessionData(data))
   //     .catch((error) => console.error('Error:', error));
   // }, []);
+
+  const getSpeakerCompany = (speakerId) => {
+    const speaker = speakerData.find((s) => s.id === speakerId);
+    const companyAnswer = speaker?.questionAnswers.find((q) => q.question === 'Company');
+    return companyAnswer ? companyAnswer.answer : 'No company listed';
+  };
 
   const Dialog = ({ isOpen, onClose, children }) => {
     if (!isOpen) return null;
@@ -93,54 +102,108 @@ const SessionListComponent = () => {
     setVisibleDay(day);
   };
 
-  const convertSessionsToEvents = (sessions) => {
-    return sessions.flatMap((group) =>
-      group.sessions.map((session) => ({
-        id: session.id,
-        title: session.title,
-        start: session.startsAt.replace("'", ''),
-        end: session.endsAt.replace("'", ''),
-        description: session.description,
-        room: session.room,
-        speakers: session.speakers,
-      }))
-    );
+  const convertSessionsToEvents = (data) => {
+    const events = [];
+
+    data.forEach((day) => {
+      day.rooms.forEach((room) => {
+        const roomEvents = room.sessions.map((session) => ({
+          id: session.id,
+          title: session.title,
+          start: session.startsAt,
+          end: session.endsAt,
+          description: session.description || '', // falls description null ist
+          room: session.room,
+          speakers: session.speakers, // Namen der Sprecher als String
+        }));
+        events.push(...roomEvents); // fügt alle Sitzungen des Raumes zu den Events hinzu
+      });
+    });
+
+    return events;
   };
 
   useEffect(() => {
     const events = convertSessionsToEvents(scheduleJSON);
+
     // filter events by room
-    const roomEvents = events.filter((event) => event.room === 'Main Stage');
-    const topStageEvents = events.filter((event) => event.room === 'Top Stage');
-    const workshopRoomEvents = events.filter((event) => event.room === 'Workshop Room');
-    const unconferenceEvents = events.filter((event) => event.room === 'The Unconference');
+    const roomEvents = events.filter(
+      (event) =>
+        event.room === 'Main Stage' ||
+        event.title === 'Lunch Break' ||
+        event.title === 'Coffee Break'
+    );
+    const topStageEvents = events.filter(
+      (event) =>
+        event.room === 'Top Stage' ||
+        event.title === 'Lunch Break' ||
+        event.title === 'Coffee Break'
+    );
+    const workshopRoomEvents = events.filter(
+      (event) =>
+        event.room === 'Workshop Room' ||
+        event.title === 'Lunch Break' ||
+        event.title === 'Coffee Break'
+    );
+    const unconferenceEvents = events.filter(
+      (event) =>
+        event.room === 'THE UNCONFERENCE' ||
+        event.title === 'Lunch Break' ||
+        event.title === 'Coffee Break'
+    );
     setSessionData(roomEvents);
     setStageData(topStageEvents);
     setWorkshopData(workshopRoomEvents);
     setUnconferenceData(unconferenceEvents);
   }, []);
 
-  const renderEventContent = (eventInfo) => (
-    <div
-      className="event-content"
-      onClick={() => {
-        setSelectedEvent(eventInfo.event);
-        setIsDialogOpen(true);
-      }}
-    >
-      <h1 className="event-time">
-        {new Date(eventInfo.event.start).toLocaleString([], { hour: '2-digit', minute: '2-digit' })}{' '}
-        -{new Date(eventInfo.event.end).toLocaleString([], { hour: '2-digit', minute: '2-digit' })}
-      </h1>
-      <span className="event-title">{eventInfo.event.title}</span>
-      <div className="speaker-list">
-        <span className="event-info">Speaker:</span>
-        {eventInfo.event.extendedProps.speakers.map((speaker, index) => (
-          <span key={index}>{speaker.name}</span>
-        ))}
+  const handleViewChange = (viewName) => {
+    setCurrentView(viewName);
+  };
+
+  const renderEventContent = (eventInfo) => {
+    const breakClasses =
+      eventInfo.event.title === 'Lunch Break' || eventInfo.event.title === 'Coffee Break'
+        ? 'break-event'
+        : '';
+
+    const isCustomDebugProfiles = eventInfo.event.title === 'custom debug profiles in kubectl';
+
+    return (
+      <div
+        className={`event-content ${breakClasses}`}
+        onClick={() => {
+          setSelectedEvent(eventInfo.event);
+          setIsDialogOpen(true);
+        }}
+      >
+        <span className="event-title">{eventInfo.event.title}</span>
+        <h1 className="event-time">
+          {new Date(eventInfo.event.start).toLocaleString([], {
+            hour: '2-digit',
+            minute: '2-digit',
+          })}{' '}
+          -
+          {new Date(eventInfo.event.end).toLocaleString([], { hour: '2-digit', minute: '2-digit' })}
+        </h1>
+
+        {!isCustomDebugProfiles &&
+          eventInfo.event.extendedProps.speakers &&
+          eventInfo.event.extendedProps.speakers.length > 0 && (
+            <div className="speaker-list">
+              <span className="event-info" style={{ fontSize: '12px' }}>
+                Speaker:
+              </span>
+              {eventInfo.event.extendedProps.speakers.map((speaker, index) => (
+                <span className="speaker" key={index}>
+                  {speaker.name}
+                </span>
+              ))}
+            </div>
+          )}
       </div>
-    </div>
-  );
+    );
+  };
 
   const EventDialog = () => {
     return (
@@ -187,161 +250,253 @@ const SessionListComponent = () => {
 
   return (
     <div className="w-full overflow-hidden rounded-md" style={{ background: '#dadada21' }}>
-      <div style={{ marginBottom: '0.5rem' }}>
-        <Button
-          className="border-nonemd:hidden group relative inline-flex w-fit items-center justify-center overflow-hidden"
-          style={{ scale: '0.9' }}
-          onClick={() => handleDayChange('2024-07-01')}
-        >
-          <span className="absolute h-full w-full bg-gradient-to-br from-[#3333ff] via-[#3333ff] to-[#3333ff] group-hover:from-[#ff00c6] group-hover:via-[#ff5478] group-hover:to-[#ff8a05]"></span>
-          <span className="bg-gray-900 duration-400 relative rounded-md px-6 py-3 transition-all ease-out group-hover:bg-opacity-0">
-            <span className="relative font-bold text-white">Monday</span>
-          </span>
-        </Button>
-        <Button
-          className="border-nonemd:hidden group relative inline-flex w-fit items-center justify-center overflow-hidden"
-          style={{ scale: '0.9' }}
-          onClick={() => handleDayChange('2024-07-02')}
-        >
-          <span className="absolute h-full w-full bg-gradient-to-br from-[#3333ff] via-[#3333ff] to-[#3333ff] group-hover:from-[#ff00c6] group-hover:via-[#ff5478] group-hover:to-[#ff8a05]"></span>
-          <span className="bg-gray-900 duration-400 relative rounded-md px-6 py-3 transition-all ease-out group-hover:bg-opacity-0">
-            <span className="relative font-bold text-white">Tuesday</span>
-          </span>
-        </Button>
-      </div>
-      <div className="calendar-container" style={{ width: 'fit-content', overflow: 'auto' }}>
-        <div className="flex">
-          <FullCalendar
-            allDaySlot={false}
-            plugins={[timeGridPlugin]}
-            displayEventTime={false}
-            initialView="timeGrid"
-            slotEventOverlap={false}
-            slotLabelInterval={{ hours: 1 }}
-            slotMinTime="09:20:00"
-            slotMaxTime="18:00:00"
-            slotDuration="00:14:30"
-            height="auto"
-            headerToolbar={{
-              left: '',
-              right: '',
-            }}
-            visibleRange={{
-              start: visibleDay,
-              end: visibleDay === '2024-07-01' ? '2024-07-02' : '2024-07-03',
-            }}
-            events={sessionData}
-            eventContent={renderEventContent}
-            dayHeaderContent="Main Stage"
-          />
-          <FullCalendar
-            allDaySlot={false}
-            plugins={[timeGridPlugin]}
-            displayEventTime={false}
-            initialView="timeGrid"
-            slotEventOverlap={false}
-            slotLabelInterval={{ hours: 1 }}
-            slotMinTime="09:20:00"
-            slotMaxTime="18:00:00"
-            slotDuration="00:14:30"
-            height="auto"
-            headerToolbar={{
-              left: '',
-              right: '',
-            }}
-            visibleRange={{
-              start: visibleDay,
-              end: visibleDay === '2024-07-01' ? '2024-07-02' : '2024-07-03',
-            }}
-            events={stageData}
-            eventContent={renderEventContent}
-            dayHeaderContent="Top Stage"
-          />
-          <FullCalendar
-            allDaySlot={false}
-            plugins={[timeGridPlugin]}
-            displayEventTime={false}
-            initialView="timeGrid"
-            slotEventOverlap={false}
-            slotLabelInterval={{ hours: 1 }}
-            slotMinTime="09:20:00"
-            slotMaxTime="18:00:00"
-            slotDuration="00:14:30"
-            height="auto"
-            headerToolbar={{
-              left: '',
-              right: '',
-            }}
-            visibleRange={{
-              start: visibleDay,
-              end: visibleDay === '2024-07-01' ? '2024-07-02' : '2024-07-03',
-            }}
-            events={workshopData}
-            eventContent={renderEventContent}
-            dayHeaderContent="Workshop Room"
-          />
-          <FullCalendar
-            allDaySlot={false}
-            plugins={[timeGridPlugin]}
-            displayEventTime={false}
-            initialView="timeGrid"
-            slotEventOverlap={false}
-            slotLabelInterval={{ hours: 1 }}
-            slotMinTime="09:20:00"
-            slotMaxTime="18:00:00"
-            slotDuration="00:14:30"
-            height="auto"
-            headerToolbar={{
-              left: '',
-              right: '',
-            }}
-            visibleRange={{
-              start: visibleDay,
-              end: visibleDay === '2024-07-01' ? '2024-07-02' : '2024-07-03',
-            }}
-            events={unconferenceData}
-            eventContent={renderEventContent}
-            dayHeaderContent="The Unconference"
-          />
+      {!isMobile ? (
+        <div>
+          <div style={{ marginBottom: '0.5rem' }}>
+            <Button
+              className="border-nonemd:hidden group relative inline-flex w-fit items-center justify-center overflow-hidden"
+              style={{ scale: '0.9' }}
+              onClick={() => handleDayChange('2024-07-01')}
+            >
+              <span className="absolute h-full w-full bg-gradient-to-br from-[#3333ff] via-[#3333ff] to-[#3333ff] group-hover:from-[#ff00c6] group-hover:via-[#ff5478] group-hover:to-[#ff8a05]"></span>
+              <span className="bg-gray-900 duration-400 relative rounded-md px-6 py-3 transition-all ease-out group-hover:bg-opacity-0">
+                <span className="relative font-bold text-white">Monday</span>
+              </span>
+            </Button>
+            <Button
+              className="border-nonemd:hidden group relative inline-flex w-fit items-center justify-center overflow-hidden"
+              style={{ scale: '0.9' }}
+              onClick={() => handleDayChange('2024-07-02')}
+            >
+              <span className="absolute h-full w-full bg-gradient-to-br from-[#3333ff] via-[#3333ff] to-[#3333ff] group-hover:from-[#ff00c6] group-hover:via-[#ff5478] group-hover:to-[#ff8a05]"></span>
+              <span className="bg-gray-900 duration-400 relative rounded-md px-6 py-3 transition-all ease-out group-hover:bg-opacity-0">
+                <span className="relative font-bold text-white">Tuesday</span>
+              </span>
+            </Button>
+          </div>
+          <div className="calendar-container" style={{ width: 'fit-content', overflow: 'auto' }}>
+            <div style={{ display: 'flex' }}>
+              <FullCalendar
+                allDaySlot={false}
+                plugins={[timeGridPlugin]}
+                displayEventTime={false}
+                initialView="timeGrid"
+                slotEventOverlap={false}
+                slotLabelInterval={{ hours: 1 }}
+                slotMinTime="09:20:00"
+                slotMaxTime="18:00:00"
+                slotDuration="00:08:30"
+                height="auto"
+                headerToolbar={{
+                  left: '',
+                  right: '',
+                }}
+                visibleRange={{
+                  start: visibleDay,
+                  end: visibleDay === '2024-07-01' ? '2024-07-02' : '2024-07-03',
+                }}
+                events={sessionData}
+                eventContent={renderEventContent}
+                dayHeaderContent="Main Stage"
+              />
+              <FullCalendar
+                allDaySlot={false}
+                plugins={[timeGridPlugin]}
+                displayEventTime={false}
+                initialView="timeGrid"
+                eventMinHeight={90}
+                slotEventOverlap={false}
+                slotLabelInterval={{ hours: 1 }}
+                slotMinTime="09:20:00"
+                slotMaxTime="18:00:00"
+                slotDuration="00:08:30"
+                height="auto"
+                headerToolbar={{
+                  left: '',
+                  right: '',
+                }}
+                visibleRange={{
+                  start: visibleDay,
+                  end: visibleDay === '2024-07-01' ? '2024-07-02' : '2024-07-03',
+                }}
+                events={stageData}
+                eventContent={renderEventContent}
+                dayHeaderContent="Top Stage"
+              />
+              <FullCalendar
+                allDaySlot={false}
+                plugins={[timeGridPlugin]}
+                displayEventTime={false}
+                initialView="timeGrid"
+                slotEventOverlap={true}
+                slotMinWidth={200}
+                slotLabelInterval={{ hours: 1 }}
+                slotMinTime="09:20:00"
+                slotMaxTime="18:00:00"
+                slotDuration="00:08:30"
+                height="auto"
+                headerToolbar={{
+                  left: '',
+                  right: '',
+                }}
+                visibleRange={{
+                  start: visibleDay,
+                  end: visibleDay === '2024-07-01' ? '2024-07-02' : '2024-07-03',
+                }}
+                events={workshopData}
+                eventContent={renderEventContent}
+                dayHeaderContent="Workshop Room"
+              />
+              <FullCalendar
+                allDaySlot={false}
+                plugins={[timeGridPlugin]}
+                displayEventTime={false}
+                initialView="timeGrid"
+                slotEventOverlap={true}
+                slotMinWidth={50}
+                slotLabelInterval={{ hours: 1 }}
+                slotMinTime="09:20:00"
+                slotMaxTime="18:00:00"
+                slotDuration="00:08:30"
+                height="auto"
+                headerToolbar={{
+                  left: '',
+                  right: '',
+                }}
+                visibleRange={{
+                  start: visibleDay,
+                  end: visibleDay === '2024-07-01' ? '2024-07-02' : '2024-07-03',
+                }}
+                events={unconferenceData}
+                eventContent={renderEventContent}
+                dayHeaderContent="The Unconference"
+              />
+            </div>
+            <Dialog
+              isOpen={isDialogOpen}
+              onClose={() => {
+                setIsDialogOpen(false);
+                setSelectedEvent(null);
+              }}
+            >
+              {selectedEvent && <EventDialog />}
+            </Dialog>
+          </div>
         </div>
-        <Dialog
-          isOpen={isDialogOpen}
-          onClose={() => {
-            setIsDialogOpen(false);
-            setSelectedEvent(null);
-          }}
-        >
-          {selectedEvent && <EventDialog />}
-        </Dialog>
-      </div>
+      ) : (
+        <div>
+          <div style={{ marginBottom: '0.5rem' }}>
+            <Button
+              className="border-nonemd:hidden group relative inline-flex w-fit items-center justify-center overflow-hidden"
+              style={{ scale: '0.9' }}
+              onClick={() => handleDayChange('2024-07-01')}
+            >
+              <span className="absolute h-full w-full bg-gradient-to-br from-[#3333ff] via-[#3333ff] to-[#3333ff] group-hover:from-[#ff00c6] group-hover:via-[#ff5478] group-hover:to-[#ff8a05]"></span>
+              <span className="bg-gray-900 duration-400 relative rounded-md px-6 py-3 transition-all ease-out group-hover:bg-opacity-0">
+                <span className="relative font-bold text-white">Monday</span>
+              </span>
+            </Button>
+            <Button
+              className="border-nonemd:hidden group relative inline-flex w-fit items-center justify-center overflow-hidden"
+              style={{ scale: '0.9' }}
+              onClick={() => handleDayChange('2024-07-02')}
+            >
+              <span className="absolute h-full w-full bg-gradient-to-br from-[#3333ff] via-[#3333ff] to-[#3333ff] group-hover:from-[#ff00c6] group-hover:via-[#ff5478] group-hover:to-[#ff8a05]"></span>
+              <span className="bg-gray-900 duration-400 relative rounded-md px-6 py-3 transition-all ease-out group-hover:bg-opacity-0">
+                <span className="relative font-bold text-white">Tuesday</span>
+              </span>
+            </Button>
+          </div>
+          <div className="flex" style={{ marginBottom: '0.5rem' }}>
+            <Button
+              className="main-stage-btn border-nonemd:hidden group relative inline-flex w-fit items-center justify-center overflow-hidden"
+              style={{ scale: '0.7' }}
+              onClick={() => handleViewChange('Main Stage')}
+            >
+              <span className="absolute h-full w-full bg-gradient-to-br from-[#3333ff] via-[#3333ff] to-[#3333ff] group-hover:from-[#ff00c6] group-hover:via-[#ff5478] group-hover:to-[#ff8a05]"></span>
+              <span className="bg-gray-900 duration-400 relative rounded-md px-6 py-3 transition-all ease-out group-hover:bg-opacity-0">
+                <span className="relative font-bold text-white">Main Stage</span>
+              </span>
+            </Button>
+            <Button
+              className="top-stage-btn border-nonemd:hidden group relative inline-flex w-fit items-center justify-center overflow-hidden"
+              style={{ scale: '0.7' }}
+              onClick={() => handleViewChange('Top Stage')}
+            >
+              <span className="absolute h-full w-full bg-gradient-to-br from-[#3333ff] via-[#3333ff] to-[#3333ff] group-hover:from-[#ff00c6] group-hover:via-[#ff5478] group-hover:to-[#ff8a05]"></span>
+              <span className="bg-gray-900 duration-400 relative rounded-md px-6 py-3 transition-all ease-out group-hover:bg-opacity-0">
+                <span className="relative font-bold text-white">Top Stage</span>
+              </span>
+            </Button>
+            <Button
+              className="workshop-room-btn border-nonemd:hidden group relative inline-flex w-fit items-center justify-center overflow-hidden"
+              style={{ scale: '0.7' }}
+              onClick={() => handleViewChange('Workshop Room')}
+            >
+              <span className="absolute h-full w-full bg-gradient-to-br from-[#3333ff] via-[#3333ff] to-[#3333ff] group-hover:from-[#ff00c6] group-hover:via-[#ff5478] group-hover:to-[#ff8a05]"></span>
+              <span className="bg-gray-900 duration-400 relative rounded-md px-6 py-3 transition-all ease-out group-hover:bg-opacity-0">
+                <span className="relative font-bold text-white">Workshop Room</span>
+              </span>
+            </Button>
+            <Button
+              className="the-unconference-btn border-nonemd:hidden group relative inline-flex w-fit items-center justify-center overflow-hidden"
+              style={{ scale: '0.7' }}
+              onClick={() => handleViewChange('The Unconference')}
+            >
+              <span className="absolute h-full w-full bg-gradient-to-br from-[#3333ff] via-[#3333ff] to-[#3333ff] group-hover:from-[#ff00c6] group-hover:via-[#ff5478] group-hover:to-[#ff8a05]"></span>
+              <span className="bg-gray-900 duration-400 relative rounded-md px-6 py-3 transition-all ease-out group-hover:bg-opacity-0">
+                <span className="relative font-bold text-white">The Unconference</span>
+              </span>
+            </Button>
+          </div>
+          <div className="calendar-container" style={{ width: 'fit-content', overflow: 'auto' }}>
+            <div style={{ display: 'flex' }}>
+              <FullCalendar
+                allDaySlot={false}
+                plugins={[timeGridPlugin]}
+                displayEventTime={false}
+                initialView="timeGrid"
+                slotEventOverlap={false}
+                slotLabelInterval={{ hours: 1 }}
+                slotMinTime="09:20:00"
+                slotMaxTime="18:00:00"
+                slotDuration="00:08:30"
+                height="auto"
+                headerToolbar={{
+                  left: '',
+                  right: '',
+                }}
+                visibleRange={{
+                  start: visibleDay,
+                  end: visibleDay === '2024-07-01' ? '2024-07-02' : '2024-07-03',
+                }}
+                events={
+                  currentView === 'Main Stage'
+                    ? sessionData
+                    : currentView === 'Top Stage'
+                    ? stageData
+                    : currentView === 'Workshop Room'
+                    ? workshopData
+                    : unconferenceData
+                }
+                eventContent={renderEventContent}
+                dayHeaderContent={currentView}
+              />
+            </div>
+            <Dialog
+              isOpen={isDialogOpen}
+              onClose={() => {
+                setIsDialogOpen(false);
+                setSelectedEvent(null);
+              }}
+            >
+              {selectedEvent && <EventDialog />}
+            </Dialog>
+          </div>
+        </div>
+      )}
     </div>
   );
-
-  // return (
-  //   <div className="grid grid-cols-1 gap-4 lg:grid-cols-3 md:grid-cols-2">
-  //     HALLO
-  //     {sessionData.map((dateData) => (
-  //       <div key={dateData.date}>
-  //         <h2 className="mt-4 text-2xl font-semibold">{dateData.date}</h2>
-  //         {dateData.rooms.map((room) => (
-  //           <div key={room.id}>
-  //             <h3 className="mt-2 text-xl font-semibold">{room.name}</h3>
-  //             {room.sessions.map((session) => (
-  //               <div key={session.id} className="bg-gray-100 mt-2 rounded-lg p-4 shadow-md">
-  //                 <h4 className="text-lg font-semibold">{session.title}</h4>
-  //                 <p className="text-gray-500">{session.description}</p>
-  //                 <p className="mt-2">Speaker: {session.speakers[0]?.name}</p>
-  //                 <p>Starts At: {session.startsAt}</p>
-  //                 <p>Ends At: {session.endsAt}</p>
-  //                 <p>Status: {session.status}</p>
-  //               </div>
-  //             ))}
-  //           </div>
-  //         ))}
-  //       </div>
-  //     ))}
-  //   </div>
-  // );
 };
 
 export default Schedule;

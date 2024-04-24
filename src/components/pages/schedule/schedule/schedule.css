@@ -23,7 +23,7 @@
 
 .fc-event {
   width: 100%;
-  height: fit-content;
+  height: 95%;
   background: rgb(13, 50, 233);
 }
 
@@ -45,6 +45,7 @@
 
 .fc-scrollgrid-sync-inner {
   background: lightgray;
+  justify-content: center;
 }
 .fc th {
   background: lightgray;
@@ -64,6 +65,10 @@ td {
 
 .fc-direction-ltr .fc-timegrid-slot-label-frame {
   text-align: center;
+}
+
+.speaker {
+  font-size: 12px;
 }
 
 @media screen and (max-width: 800px) {
@@ -97,6 +102,10 @@ td {
   display: none;
 }
 
+.break-event {
+  width: 100px;
+}
+
 /* Standardmäßige Desktop-Stile */
 .event-content {
   margin: 5%;
@@ -115,6 +124,7 @@ td {
 
 .event-title {
   font-weight: bold;
+  font-size: 12px;
 }
 
 .speaker-list {
@@ -122,22 +132,65 @@ td {
   flex-direction: column;
 }
 
-/* Medienabfragen für mobile Geräte */
-@media (max-width: 600px, max-height: 30vh) {
-  .event-time {
-    font-size: 0.8rem; /* Kleinere Schriftgröße für kleine Geräte */
-  }
-
-  .speaker-list {
-    gap: 0.3rem;
-  }
-
-  .event-content {
-    margin: 2%; /* Kleinere Ränder für kleine Geräte */
+@media screen and (max-width: 1000px) {
+  .fc .fc-col-header-cell-cushion {
+    display: flex;
+    font-size: 18px;
+    text-align: center;
+    justify-content: center;
   }
 }
 
-@media (max-width: 430px) {
+@media screen and (max-width: 800px) {
+  .fc .fc-col-header-cell-cushion {
+    display: flex;
+    font-size: 13px;
+    text-align: center;
+    justify-content: center;
+  }
+
+  .speaker {
+    font-size: 11px;
+  }
+}
+
+/* Medienabfragen für mobile Geräte */
+@media screen and (max-width: 600px) {
+  .fc .fc-col-header-cell-cushion {
+    display: flex;
+    font-size: 11px;
+    text-align: center;
+    justify-content: center;
+  }
+
+  .event-time {
+    font-size: 0.8rem; /* Kleinere Schriftgröße für kleine Geräte */
+  }
+  .event-title {
+    font-size: 0.7rem;
+  }
+
+  .speaker-list {
+    display: none;
+  }
+
+  .event-content {
+    margin: 2%;
+  }
+
+  .event-info {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 430px) {
+  .fc .fc-col-header-cell-cushion {
+    display: flex;
+    font-size: 8px;
+    text-align: center;
+    justify-content: center;
+  }
+
   .event-time {
     display: flex;
     justify-content: left;
@@ -150,22 +203,34 @@ td {
     font-size: 0.5rem; /* Noch kleinere Schriftgröße für sehr kleine Geräte */
   }
   .event-content {
-    height: fit-content;
     display: flex;
     flex-direction: column;
     gap: 0.3rem;
     font-size: 0.3rem; /* Noch kleinere Schriftgröße für sehr kleine Geräte */
+    height: max-content;
   }
-  .event-info {
-    display: none;
-  }
-  .speaker-list {
-    display: flex;
-    flex-direction: column;
-    font-size: 0.7rem; /* Noch kleinere Schriftgröße für sehr kleine Geräte */
-  }
+
   .fc-event {
-    height: fit-content;
-    margin: 0.5%;
+    width: 100%;
+    height: 100%;
+    background: rgb(13, 50, 233);
+    overflow: hidden;
   }
+}
+
+.main-stage-btn {
+  width: 230px;
+  font-size: 11px;
+}
+.top-stage-btn {
+  width: 230px;
+  font-size: 11px;
+}
+.workshop-room-btn {
+  width: 230px;
+  font-size: 11px;
+}
+.the-unconference-btn {
+  width: 240px;
+  font-size: 11px;
 }
