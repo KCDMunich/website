@@ -29,6 +29,7 @@ import Steadforce from 'icons/steadforce_logo.png';
 import Syseleven from 'icons/syseleven.png';
 import veeam from 'icons/veeam.png';
 import whiteduck from 'icons/whiteduck.png';
+import Maiborn from 'icons/maiborn.jpeg';
 
 const TITLE = 'Sponsors';
 
@@ -72,6 +73,10 @@ const ITEMS = [
       {
         icon: csp2,
         url: 'https://geschaeftskunden.telekom.de/digitale-loesungen/software-as-a-service/microsoft/cloud-solution-partner',
+      },
+      {
+        icon: Maiborn,
+        url: 'https://www.maibornwolff.de/',
       },
     ],
     cardClassname: 'min-w-[280px] min-h-[104px] sm:min-w-[250px] sm:min-h-[94px]',
