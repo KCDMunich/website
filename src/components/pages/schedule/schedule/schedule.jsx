@@ -5,6 +5,7 @@ import FullCalendar from '@fullcalendar/react';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import Button from 'components/shared/button';
 import { isMobile } from 'react-device-detect';
+import { set } from 'lodash';
 
 const scriptUrl = 'https://sessionize.com/api/v2/6dqtqpt2/view/GridSmart';
 // const scriptUrl = 'https://sessionize.com/api/v2/6dqtqpt2/view/Sessions'; api -> sessionList
@@ -30,6 +31,7 @@ const SessionListComponent = () => {
   const [selectedEvent, setSelectedEvent] = useState(null);
   const [visibleDay, setVisibleDay] = useState('2024-07-01');
   const [currentView, setCurrentView] = useState('Main Stage');
+  const [currentStages, setCurrentStages] = useState('Stages');
 
   //Speaker aus der api fetchen
   useEffect(() => {
@@ -130,6 +132,14 @@ const SessionListComponent = () => {
     );
   };
 
+  const isSelectedDay = (day) => {
+    return visibleDay === day;
+  };
+
+  const isSelectedStages = (stages) => {
+    return currentStages === stages;
+  };
+
   const handleDayChange = (day) => {
     setVisibleDay(day);
   };
@@ -159,6 +169,14 @@ const SessionListComponent = () => {
     setCurrentView(viewName);
   };
 
+  const setMainTopStageView = () => {
+    setCurrentStages('Stages');
+  };
+
+  const setWorkshopUnconferenceView = () => {
+    setCurrentStages('Workshops');
+  };
+
   const renderEventContent = (eventInfo) => {
     const breakClasses =
       eventInfo.event.title === 'Lunch Break' || eventInfo.event.title === 'Coffee Break'
@@ -185,18 +203,24 @@ const SessionListComponent = () => {
           {new Date(eventInfo.event.end).toLocaleString([], { hour: '2-digit', minute: '2-digit' })}
         </h1>
 
-        {!isCustomDebugProfiles &&
-          eventInfo.event.extendedProps.speakers &&
+        {eventInfo.event.extendedProps.speakers &&
           eventInfo.event.extendedProps.speakers.length > 0 && (
             <div className="speaker-list">
-              <span className="event-info" style={{ fontSize: '12px' }}>
-                Speaker:
-              </span>
-              {eventInfo.event.extendedProps.speakers.map((speaker, index) => (
-                <span className="speaker" key={index}>
-                  {speaker.name}
-                </span>
-              ))}
+              <div className="mt-5 flex flex-row place-content-evenly content-center">
+                {eventInfo.event.extendedProps.speakers.map((speaker, index) => (
+                  <div className="flex flex-col  items-center ">
+                    <img
+                      className=""
+                      src={findSpeakerProfile(speaker.id)}
+                      alt={speaker.fullName}
+                      style={{ width: '50px', borderRadius: '8px' }}
+                    />
+                    <span className="speaker" key={index}>
+                      {speaker.name}
+                    </span>
+                  </div>
+                ))}
+              </div>
             </div>
           )}
       </div>
@@ -237,9 +261,6 @@ const SessionListComponent = () => {
           eventInfo.event.extendedProps.speakers &&
           eventInfo.event.extendedProps.speakers.length > 0 && (
             <div className="speaker-list">
-              <span className="event-info" style={{ fontSize: '12px' }}>
-                Speaker:
-              </span>
               <div className="mt-5 flex flex-row place-content-evenly content-center">
                 {eventInfo.event.extendedProps.speakers.map((speaker, index) => (
                   <div className="flex flex-col  items-center ">
@@ -304,129 +325,205 @@ const SessionListComponent = () => {
     );
   };
 
+  const renderButton = (label, onClick, isSelected) => (
+    <Button
+      className="border-nonemd:hidden group relative inline-flex w-fit items-center justify-center overflow-hidden"
+      style={{ scale: '0.9' }}
+      onClick={onClick}
+    >
+      <span
+        className={`absolute h-full w-full bg-gradient-to-br ${
+          isSelected
+            ? 'from-[#ff00c6] via-[#ff5478] to-[#ff8a05]'
+            : 'from-[#3333ff] via-[#3333ff] to-[#3333ff]'
+        }`}
+      ></span>
+      <span className="bg-gray-900 duration-400 relative rounded-md px-6 py-3 transition-all ease-out group-hover:bg-opacity-0">
+        <span className="relative font-bold text-white">{label}</span>
+      </span>
+    </Button>
+  );
+
+  const renderStageButton = (stageName, additionalClass) => (
+    <Button
+      className={`border-nonemd:hidden group relative inline-flex w-fit items-center justify-center overflow-hidden ${additionalClass}`}
+      style={{ scale: '0.9', width: '200px', fontSize: '11px' }}
+      onClick={() => handleViewChange(stageName)}
+    >
+      <span
+        className={`absolute h-full w-full bg-gradient-to-br ${
+          currentView === stageName
+            ? 'from-[#ff00c6] via-[#ff5478] to-[#ff8a05]'
+            : 'from-[#3333ff] via-[#3333ff] to-[#3333ff]'
+        }`}
+      ></span>
+      <span className="bg-gray-900 duration-400 relative rounded-md px-6 py-3 transition-all ease-out group-hover:bg-opacity-0">
+        <span className="relative font-bold text-white">{stageName}</span>
+      </span>
+    </Button>
+  );
+  const renderStageButtonDesktopMainTop = (stageName, additionalClass) => (
+    <Button
+      className={`border-nonemd:hidden group relative inline-flex w-fit items-center justify-center overflow-hidden ${additionalClass}`}
+      style={{ scale: '0.9', width: '200px', fontSize: '11px' }}
+      onClick={() => setMainTopStageView()}
+    >
+      <span
+        className={`absolute h-full w-full bg-gradient-to-br ${
+          currentStages === stageName
+            ? 'from-[#ff00c6] via-[#ff5478] to-[#ff8a05]'
+            : 'from-[#3333ff] via-[#3333ff] to-[#3333ff]'
+        }`}
+      ></span>
+      <span className="bg-gray-900 duration-400 relative rounded-md px-6 py-3 transition-all ease-out group-hover:bg-opacity-0">
+        <span className="relative font-bold text-white">{stageName}</span>
+      </span>
+    </Button>
+  );
+
+  const renderStageButtonDesktopWorkshop = (stageName, additionalClass) => (
+    <Button
+      className={`border-nonemd:hidden group relative inline-flex w-fit items-center justify-center overflow-hidden ${additionalClass}`}
+      style={{ scale: '0.9', width: '200px', fontSize: '11px' }}
+      onClick={() => setWorkshopUnconferenceView(stageName)}
+    >
+      <span
+        className={`absolute h-full w-full bg-gradient-to-br ${
+          currentStages === stageName
+            ? 'from-[#ff00c6] via-[#ff5478] to-[#ff8a05]'
+            : 'from-[#3333ff] via-[#3333ff] to-[#3333ff]'
+        }`}
+      ></span>
+      <span className="bg-gray-900 duration-400 relative rounded-md px-6 py-3 transition-all ease-out group-hover:bg-opacity-0">
+        <span className="relative font-bold text-white">{stageName}</span>
+      </span>
+    </Button>
+  );
+
   return (
     <div className="w-full overflow-hidden rounded-md" style={{ background: '#dadada21' }}>
       {!isMobile ? (
         <div>
           <div style={{ marginBottom: '0.5rem' }}>
-            <Button
-              className="border-nonemd:hidden group relative inline-flex w-fit items-center justify-center overflow-hidden"
-              style={{ scale: '0.9' }}
-              onClick={() => handleDayChange('2024-07-01')}
-            >
-              <span className="absolute h-full w-full bg-gradient-to-br from-[#3333ff] via-[#3333ff] to-[#3333ff] group-hover:from-[#ff00c6] group-hover:via-[#ff5478] group-hover:to-[#ff8a05]"></span>
-              <span className="bg-gray-900 duration-400 relative rounded-md px-6 py-3 transition-all ease-out group-hover:bg-opacity-0">
-                <span className="relative font-bold text-white">Monday</span>
-              </span>
-            </Button>
-            <Button
-              className="border-nonemd:hidden group relative inline-flex w-fit items-center justify-center overflow-hidden"
-              style={{ scale: '0.9' }}
-              onClick={() => handleDayChange('2024-07-02')}
-            >
-              <span className="absolute h-full w-full bg-gradient-to-br from-[#3333ff] via-[#3333ff] to-[#3333ff] group-hover:from-[#ff00c6] group-hover:via-[#ff5478] group-hover:to-[#ff8a05]"></span>
-              <span className="bg-gray-900 duration-400 relative rounded-md px-6 py-3 transition-all ease-out group-hover:bg-opacity-0">
-                <span className="relative font-bold text-white">Tuesday</span>
-              </span>
-            </Button>
+            {renderButton(
+              'Monday',
+              () => handleDayChange('2024-07-01'),
+              visibleDay === '2024-07-01'
+            )}
+            {renderButton(
+              'Tuesday',
+              () => handleDayChange('2024-07-02'),
+              visibleDay === '2024-07-02'
+            )}
+          </div>
+          <div>
+            {renderStageButtonDesktopMainTop('Stages', 'main-stage-btn')}
+            {renderStageButtonDesktopWorkshop('Workshops', 'workshop-room-btn')}
           </div>
           <div className="calendar-container">
             <div style={{ display: 'flex' }}>
-              <FullCalendar
-                allDaySlot={false}
-                plugins={[timeGridPlugin]}
-                displayEventTime={false}
-                initialView="timeGrid"
-                slotEventOverlap={false}
-                slotLabelInterval={{ hours: 1 }}
-                slotMinTime="09:20:00"
-                slotMaxTime="18:00:00"
-                slotDuration="00:08:30"
-                height="auto"
-                headerToolbar={{
-                  left: '',
-                  right: '',
-                }}
-                visibleRange={{
-                  start: visibleDay,
-                  end: visibleDay === '2024-07-01' ? '2024-07-02' : '2024-07-03',
-                }}
-                events={mainstageData}
-                eventContent={renderEventContent}
-                dayHeaderContent="Main Stage"
-              />
-              <FullCalendar
-                allDaySlot={false}
-                plugins={[timeGridPlugin]}
-                displayEventTime={false}
-                initialView="timeGrid"
-                eventMinHeight={90}
-                slotEventOverlap={false}
-                slotLabelInterval={{ hours: 1 }}
-                slotMinTime="09:20:00"
-                slotMaxTime="18:00:00"
-                slotDuration="00:08:30"
-                height="auto"
-                headerToolbar={{
-                  left: '',
-                  right: '',
-                }}
-                visibleRange={{
-                  start: visibleDay,
-                  end: visibleDay === '2024-07-01' ? '2024-07-02' : '2024-07-03',
-                }}
-                events={stageData}
-                eventContent={renderEventContent}
-                dayHeaderContent="Top Stage"
-              />
-              <FullCalendar
-                allDaySlot={false}
-                plugins={[timeGridPlugin]}
-                displayEventTime={false}
-                initialView="timeGrid"
-                slotEventOverlap={true}
-                slotMinWidth={200}
-                slotLabelInterval={{ hours: 1 }}
-                slotMinTime="09:20:00"
-                slotMaxTime="18:00:00"
-                slotDuration="00:08:30"
-                height="auto"
-                headerToolbar={{
-                  left: '',
-                  right: '',
-                }}
-                visibleRange={{
-                  start: visibleDay,
-                  end: visibleDay === '2024-07-01' ? '2024-07-02' : '2024-07-03',
-                }}
-                events={workshopData}
-                eventContent={renderEventContent}
-                dayHeaderContent="Workshop Room"
-              />
-              <FullCalendar
-                allDaySlot={false}
-                plugins={[timeGridPlugin]}
-                displayEventTime={false}
-                initialView="timeGrid"
-                slotEventOverlap={true}
-                slotMinWidth={50}
-                slotLabelInterval={{ hours: 1 }}
-                slotMinTime="09:20:00"
-                slotMaxTime="18:00:00"
-                slotDuration="00:08:30"
-                height="auto"
-                headerToolbar={{
-                  left: '',
-                  right: '',
-                }}
-                visibleRange={{
-                  start: visibleDay,
-                  end: visibleDay === '2024-07-01' ? '2024-07-02' : '2024-07-03',
-                }}
-                events={unconferenceData}
-                eventContent={renderEventContent}
-                dayHeaderContent="The Unconference"
-              />
+              {currentStages === 'Stages' ? (
+                <div className="flex">
+                  <FullCalendar
+                    allDaySlot={false}
+                    plugins={[timeGridPlugin]}
+                    displayEventTime={false}
+                    initialView="timeGrid"
+                    slotEventOverlap={false}
+                    slotLabelInterval={{ hours: 1 }}
+                    slotMinTime="09:20:00"
+                    slotMaxTime="18:00:00"
+                    slotDuration="00:08:30"
+                    height="auto"
+                    headerToolbar={{
+                      left: '',
+                      right: '',
+                    }}
+                    visibleRange={{
+                      start: visibleDay,
+                      end: visibleDay === '2024-07-01' ? '2024-07-02' : '2024-07-03',
+                    }}
+                    events={mainstageData}
+                    eventContent={renderEventContent}
+                    dayHeaderContent="Main Stage"
+                  />
+                  <FullCalendar
+                    allDaySlot={false}
+                    plugins={[timeGridPlugin]}
+                    displayEventTime={false}
+                    initialView="timeGrid"
+                    eventMinHeight={85}
+                    slotEventOverlap={false}
+                    slotLabelInterval={{ hours: 1 }}
+                    slotMinTime="09:20:00"
+                    slotMaxTime="18:00:00"
+                    slotDuration="00:08:30"
+                    height="auto"
+                    headerToolbar={{
+                      left: '',
+                      right: '',
+                    }}
+                    visibleRange={{
+                      start: visibleDay,
+                      end: visibleDay === '2024-07-01' ? '2024-07-02' : '2024-07-03',
+                    }}
+                    events={stageData}
+                    eventContent={renderEventContent}
+                    dayHeaderContent="Top Stage"
+                  />
+                </div>
+              ) : (
+                <div className="flex">
+                  <FullCalendar
+                    allDaySlot={false}
+                    plugins={[timeGridPlugin]}
+                    displayEventTime={false}
+                    initialView="timeGrid"
+                    slotEventOverlap={true}
+                    slotMinWidth={200}
+                    slotLabelInterval={{ hours: 1 }}
+                    slotMinTime="09:20:00"
+                    slotMaxTime="18:00:00"
+                    slotDuration="00:08:30"
+                    height="auto"
+                    headerToolbar={{
+                      left: '',
+                      right: '',
+                    }}
+                    visibleRange={{
+                      start: visibleDay,
+                      end: visibleDay === '2024-07-01' ? '2024-07-02' : '2024-07-03',
+                    }}
+                    events={workshopData}
+                    eventContent={renderEventContent}
+                    dayHeaderContent="Workshop Room"
+                  />
+                  <FullCalendar
+                    allDaySlot={false}
+                    plugins={[timeGridPlugin]}
+                    displayEventTime={false}
+                    initialView="timeGrid"
+                    slotEventOverlap={true}
+                    slotMinWidth={50}
+                    slotLabelInterval={{ hours: 1 }}
+                    slotMinTime="09:20:00"
+                    slotMaxTime="18:00:00"
+                    slotDuration="00:08:30"
+                    height="auto"
+                    headerToolbar={{
+                      left: '',
+                      right: '',
+                    }}
+                    visibleRange={{
+                      start: visibleDay,
+                      end: visibleDay === '2024-07-01' ? '2024-07-02' : '2024-07-03',
+                    }}
+                    events={unconferenceData}
+                    eventContent={renderEventContent}
+                    dayHeaderContent="The Unconference"
+                  />
+                </div>
+              )}
             </div>
             <Dialog
               isOpen={isDialogOpen}
@@ -442,68 +539,22 @@ const SessionListComponent = () => {
       ) : (
         <div>
           <div style={{ marginBottom: '0.5rem' }}>
-            <Button
-              className="border-nonemd:hidden group relative inline-flex w-fit items-center justify-center overflow-hidden"
-              style={{ scale: '0.9' }}
-              onClick={() => handleDayChange('2024-07-01')}
-            >
-              <span className="absolute h-full w-full bg-gradient-to-br from-[#3333ff] via-[#3333ff] to-[#3333ff] group-hover:from-[#ff00c6] group-hover:via-[#ff5478] group-hover:to-[#ff8a05]"></span>
-              <span className="bg-gray-900 duration-400 relative rounded-md px-6 py-3 transition-all ease-out group-hover:bg-opacity-0">
-                <span className="relative font-bold text-white">Monday</span>
-              </span>
-            </Button>
-            <Button
-              className="border-nonemd:hidden group relative inline-flex w-fit items-center justify-center overflow-hidden"
-              style={{ scale: '0.9' }}
-              onClick={() => handleDayChange('2024-07-02')}
-            >
-              <span className="absolute h-full w-full bg-gradient-to-br from-[#3333ff] via-[#3333ff] to-[#3333ff] group-hover:from-[#ff00c6] group-hover:via-[#ff5478] group-hover:to-[#ff8a05]"></span>
-              <span className="bg-gray-900 duration-400 relative rounded-md px-6 py-3 transition-all ease-out group-hover:bg-opacity-0">
-                <span className="relative font-bold text-white">Tuesday</span>
-              </span>
-            </Button>
+            {renderButton(
+              'Monday',
+              () => handleDayChange('2024-07-01'),
+              visibleDay === '2024-07-01'
+            )}
+            {renderButton(
+              'Tuesday',
+              () => handleDayChange('2024-07-02'),
+              visibleDay === '2024-07-02'
+            )}
           </div>
           <div className="flex" style={{ marginBottom: '0.5rem' }}>
-            <Button
-              className="main-stage-btn border-nonemd:hidden group relative inline-flex w-fit items-center justify-center overflow-hidden"
-              style={{ scale: '0.7' }}
-              onClick={() => handleViewChange('Main Stage')}
-            >
-              <span className="absolute h-full w-full bg-gradient-to-br from-[#3333ff] via-[#3333ff] to-[#3333ff] group-hover:from-[#ff00c6] group-hover:via-[#ff5478] group-hover:to-[#ff8a05]"></span>
-              <span className="bg-gray-900 duration-400 relative rounded-md px-6 py-3 transition-all ease-out group-hover:bg-opacity-0">
-                <span className="relative font-bold text-white">Main Stage</span>
-              </span>
-            </Button>
-            <Button
-              className="top-stage-btn border-nonemd:hidden group relative inline-flex w-fit items-center justify-center overflow-hidden"
-              style={{ scale: '0.7' }}
-              onClick={() => handleViewChange('Top Stage')}
-            >
-              <span className="absolute h-full w-full bg-gradient-to-br from-[#3333ff] via-[#3333ff] to-[#3333ff] group-hover:from-[#ff00c6] group-hover:via-[#ff5478] group-hover:to-[#ff8a05]"></span>
-              <span className="bg-gray-900 duration-400 relative rounded-md px-6 py-3 transition-all ease-out group-hover:bg-opacity-0">
-                <span className="relative font-bold text-white">Top Stage</span>
-              </span>
-            </Button>
-            <Button
-              className="workshop-room-btn border-nonemd:hidden group relative inline-flex w-fit items-center justify-center overflow-hidden"
-              style={{ scale: '0.7' }}
-              onClick={() => handleViewChange('Workshop Room')}
-            >
-              <span className="absolute h-full w-full bg-gradient-to-br from-[#3333ff] via-[#3333ff] to-[#3333ff] group-hover:from-[#ff00c6] group-hover:via-[#ff5478] group-hover:to-[#ff8a05]"></span>
-              <span className="bg-gray-900 duration-400 relative rounded-md px-6 py-3 transition-all ease-out group-hover:bg-opacity-0">
-                <span className="relative font-bold text-white">Workshop Room</span>
-              </span>
-            </Button>
-            <Button
-              className="the-unconference-btn border-nonemd:hidden group relative inline-flex w-fit items-center justify-center overflow-hidden"
-              style={{ scale: '0.7' }}
-              onClick={() => handleViewChange('The Unconference')}
-            >
-              <span className="absolute h-full w-full bg-gradient-to-br from-[#3333ff] via-[#3333ff] to-[#3333ff] group-hover:from-[#ff00c6] group-hover:via-[#ff5478] group-hover:to-[#ff8a05]"></span>
-              <span className="bg-gray-900 duration-400 relative rounded-md px-6 py-3 transition-all ease-out group-hover:bg-opacity-0">
-                <span className="relative font-bold text-white">The Unconference</span>
-              </span>
-            </Button>
+            {renderStageButton('Main Stage', 'main-stage-btn')}
+            {renderStageButton('Top Stage', 'top-stage-btn')}
+            {renderStageButton('Workshop', 'workshop-room-btn')}
+            {renderStageButton('Unconference', 'the-unconference-btn')}
           </div>
           <div className="calendar-container" style={{ width: 'fit-content', overflow: 'auto' }}>
             <div style={{ display: 'flex' }}>
@@ -532,7 +583,7 @@ const SessionListComponent = () => {
                     ? mainstageData
                     : currentView === 'Top Stage'
                     ? stageData
-                    : currentView === 'Workshop Room'
+                    : currentView === 'Workshop'
                     ? workshopData
                     : unconferenceData
                 }
