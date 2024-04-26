@@ -22,8 +22,8 @@ const Schedule = () => (
 
 const SessionListComponent = () => {
   const [speakerData, setSpeakerData] = useState([]);
-  const [sessionData, setSessionData] = useState([]);
   const [stageData, setStageData] = useState([]);
+  const [mainstageData, setMainStageData] = useState([]);
   const [workshopData, setWorkshopData] = useState([]);
   const [unconferenceData, setUnconferenceData] = useState([]);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
@@ -41,17 +41,49 @@ const SessionListComponent = () => {
       .catch((error) => console.error('Error:', error));
   }, []);
 
-  // useEffect(() => {
-  //   fetch(scriptUrl)
-  //     .then((response) => response.json())
-  //     .then((data) => setSessionData(data))
-  //     .catch((error) => console.error('Error:', error));
-  // }, []);
+  //Schedulegrid
+  useEffect(() => {
+    fetch(scriptUrl)
+      .then((response) => response.json())
+      .then((data) => {
+        const events = convertSessionsToEvents(data);
 
-  const getSpeakerCompany = (speakerId) => {
+        const roomEvents = events.filter(
+          (event) =>
+            event.room === 'Main Stage' ||
+            event.title === 'Lunch Break' ||
+            event.title === 'Coffee Break'
+        );
+        const topStageEvents = events.filter(
+          (event) =>
+            event.room === 'Top Stage' ||
+            event.title === 'Lunch Break' ||
+            event.title === 'Coffee Break'
+        );
+        const workshopRoomEvents = events.filter(
+          (event) =>
+            event.room === 'Workshop Room' ||
+            event.title === 'Lunch Break' ||
+            event.title === 'Coffee Break'
+        );
+        const unconferenceEvents = events.filter(
+          (event) =>
+            event.room === 'THE UNCONFERENCE' ||
+            event.title === 'Lunch Break' ||
+            event.title === 'Coffee Break'
+        );
+        setMainStageData(roomEvents);
+        console.table(roomEvents);
+        setStageData(topStageEvents);
+        setWorkshopData(workshopRoomEvents);
+        setUnconferenceData(unconferenceEvents);
+      })
+      .catch((error) => console.error('Error:', error));
+  }, []);
+
+  const findSpeakerProfile = (speakerId) => {
     const speaker = speakerData.find((s) => s.id === speakerId);
-    const companyAnswer = speaker?.questionAnswers.find((q) => q.question === 'Company');
-    return companyAnswer ? companyAnswer.answer : 'No company listed';
+    return speaker.profilePicture;
   };
 
   const Dialog = ({ isOpen, onClose, children }) => {
@@ -112,50 +144,16 @@ const SessionListComponent = () => {
           title: session.title,
           start: session.startsAt,
           end: session.endsAt,
-          description: session.description || '', // falls description null ist
+          description: session.description || '',
           room: session.room,
-          speakers: session.speakers, // Namen der Sprecher als String
+          speakers: session.speakers, // Adjusted for nested speaker data
         }));
-        events.push(...roomEvents); // fügt alle Sitzungen des Raumes zu den Events hinzu
+        events.push(...roomEvents);
       });
     });
 
     return events;
   };
-
-  useEffect(() => {
-    const events = convertSessionsToEvents(scheduleJSON);
-
-    // filter events by room
-    const roomEvents = events.filter(
-      (event) =>
-        event.room === 'Main Stage' ||
-        event.title === 'Lunch Break' ||
-        event.title === 'Coffee Break'
-    );
-    const topStageEvents = events.filter(
-      (event) =>
-        event.room === 'Top Stage' ||
-        event.title === 'Lunch Break' ||
-        event.title === 'Coffee Break'
-    );
-    const workshopRoomEvents = events.filter(
-      (event) =>
-        event.room === 'Workshop Room' ||
-        event.title === 'Lunch Break' ||
-        event.title === 'Coffee Break'
-    );
-    const unconferenceEvents = events.filter(
-      (event) =>
-        event.room === 'THE UNCONFERENCE' ||
-        event.title === 'Lunch Break' ||
-        event.title === 'Coffee Break'
-    );
-    setSessionData(roomEvents);
-    setStageData(topStageEvents);
-    setWorkshopData(workshopRoomEvents);
-    setUnconferenceData(unconferenceEvents);
-  }, []);
 
   const handleViewChange = (viewName) => {
     setCurrentView(viewName);
@@ -199,6 +197,60 @@ const SessionListComponent = () => {
                   {speaker.name}
                 </span>
               ))}
+            </div>
+          )}
+      </div>
+    );
+  };
+
+  const renderMobileEventConent = (eventInfo) => {
+    const breakClasses =
+      eventInfo.event.title === 'Lunch Break' || eventInfo.event.title === 'Coffee Break'
+        ? 'break-event'
+        : 'regular-event';
+
+    const isCustomDebugProfiles = eventInfo.event.title === 'custom debug profiles in kubectl';
+
+    return (
+      <div
+        className={`event-content ${breakClasses}`}
+        onClick={() => {
+          setSelectedEvent(eventInfo.event);
+          setIsDialogOpen(true);
+        }}
+      >
+        <span className="event-title">{eventInfo.event.title}</span>
+        <h1 className="event-time">
+          {new Date(eventInfo.event.start).toLocaleString([], {
+            hour: '2-digit',
+            minute: '2-digit',
+          })}{' '}
+          -
+          {new Date(eventInfo.event.end).toLocaleString([], { hour: '2-digit', minute: '2-digit' })}
+        </h1>
+
+        {!isCustomDebugProfiles &&
+          eventInfo.event.extendedProps.speakers &&
+          eventInfo.event.extendedProps.speakers.length > 0 && (
+            <div className="speaker-list">
+              <span className="event-info" style={{ fontSize: '12px' }}>
+                Speaker:
+              </span>
+              <div className="mt-5 flex flex-row place-content-evenly content-center">
+                {eventInfo.event.extendedProps.speakers.map((speaker, index) => (
+                  <div className="flex flex-col  items-center ">
+                    <img
+                      className=""
+                      src={findSpeakerProfile(speaker.id)}
+                      alt={speaker.fullName}
+                      style={{ width: '50px', borderRadius: '8px' }}
+                    />
+                    <span className="speaker" key={index}>
+                      {speaker.name}
+                    </span>
+                  </div>
+                ))}
+              </div>
             </div>
           )}
       </div>
@@ -295,7 +347,7 @@ const SessionListComponent = () => {
                   start: visibleDay,
                   end: visibleDay === '2024-07-01' ? '2024-07-02' : '2024-07-03',
                 }}
-                events={sessionData}
+                events={mainstageData}
                 eventContent={renderEventContent}
                 dayHeaderContent="Main Stage"
               />
@@ -455,6 +507,7 @@ const SessionListComponent = () => {
                 allDaySlot={false}
                 plugins={[timeGridPlugin]}
                 displayEventTime={false}
+                eventMinHeight={92}
                 initialView="timeGrid"
                 slotEventOverlap={false}
                 slotLabelInterval={{ hours: 1 }}
@@ -472,14 +525,14 @@ const SessionListComponent = () => {
                 }}
                 events={
                   currentView === 'Main Stage'
-                    ? sessionData
+                    ? mainstageData
                     : currentView === 'Top Stage'
                     ? stageData
                     : currentView === 'Workshop Room'
                     ? workshopData
                     : unconferenceData
                 }
-                eventContent={renderEventContent}
+                eventContent={renderMobileEventConent}
                 dayHeaderContent={currentView}
               />
             </div>

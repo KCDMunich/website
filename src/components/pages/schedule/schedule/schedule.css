@@ -132,12 +132,19 @@ td {
   flex-direction: column;
 }
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 1050px) {
   .fc .fc-col-header-cell-cushion {
     display: flex;
     font-size: 18px;
     text-align: center;
     justify-content: center;
+  }
+
+  .event-title {
+    font-size: 8px;
+  }
+  .event-time {
+    font-size: 11px;
   }
 }
 
@@ -162,59 +169,28 @@ td {
     text-align: center;
     justify-content: center;
   }
-
-  .event-time {
-    font-size: 0.8rem; /* Kleinere Schriftgröße für kleine Geräte */
-  }
-  .event-title {
-    font-size: 0.7rem;
-  }
-
-  .speaker-list {
-    display: none;
-  }
-
-  .event-content {
-    margin: 2%;
-  }
-
-  .event-info {
-    display: none;
-  }
 }
+
+/*Iphone 14 Pro Max*/
 
 @media screen and (max-width: 430px) {
   .fc .fc-col-header-cell-cushion {
     display: flex;
-    font-size: 8px;
+    font-size: 15px;
     text-align: center;
     justify-content: center;
   }
 
-  .event-time {
-    display: flex;
-    justify-content: left;
-    width: max-content;
-    font-size: 0.6rem; /* Noch kleinere Schriftgröße für sehr kleine Geräte */
-  }
   .event-title {
-    display: flex;
-    justify-content: left;
-    font-size: 0.5rem; /* Noch kleinere Schriftgröße für sehr kleine Geräte */
-  }
-  .event-content {
-    display: flex;
-    flex-direction: column;
-    gap: 0.3rem;
-    font-size: 0.3rem; /* Noch kleinere Schriftgröße für sehr kleine Geräte */
-    height: max-content;
+    font-size: 13px;
   }
 
-  .fc-event {
-    width: 100%;
-    height: 100%;
-    background: rgb(13, 50, 233);
-    overflow: hidden;
+  .event-time {
+    font-size: 12px;
+  }
+
+  .speaker-list {
+    font-size: 12px;
   }
 }
 
