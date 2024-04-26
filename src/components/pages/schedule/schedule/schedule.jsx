@@ -210,6 +210,9 @@ const SessionListComponent = () => {
         : 'regular-event';
 
     const isCustomDebugProfiles = eventInfo.event.title === 'custom debug profiles in kubectl';
+    const isOpenSSF =
+      eventInfo.event.title ===
+      'OpenSSF Scorecard: The Superhero That Saves Your Open Source Project!';
 
     return (
       <div
@@ -230,6 +233,7 @@ const SessionListComponent = () => {
         </h1>
 
         {!isCustomDebugProfiles &&
+          !isOpenSSF &&
           eventInfo.event.extendedProps.speakers &&
           eventInfo.event.extendedProps.speakers.length > 0 && (
             <div className="speaker-list">
