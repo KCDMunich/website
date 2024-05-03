@@ -22,6 +22,8 @@
     "lint:md:fix": "markdownlint --fix --ignore-path .gitignore ."
   },
   "dependencies": {
+    "@emotion/react": "^11.11.4",
+    "@emotion/styled": "^11.11.5",
     "@fortawesome/fontawesome-svg-core": "^6.4.2",
     "@fortawesome/free-brands-svg-icons": "^6.4.2",
     "@fortawesome/react-fontawesome": "^0.2.0",
@@ -30,6 +32,7 @@
     "@fullcalendar/react": "^6.1.11",
     "@fullcalendar/timegrid": "^6.1.11",
     "@mdx-js/react": "^2.2.1",
+    "@mui/material": "^5.15.16",
     "clsx": "^1.2.1",
     "dompurify": "^3.0.3",
     "framer-motion": "^7.6.19",

@@ -108,7 +108,7 @@ td {
 
 /* Standardmäßige Desktop-Stile */
 .event-content {
-  margin: 5%;
+  margin: 4%;
   cursor: pointer;
   display: flex;
   flex-direction: column;
@@ -192,4 +192,8 @@ td {
   .speaker-list {
     font-size: 12px;
   }
+}
+
+.css-sjdynl-MuiPaper-root-MuiCard-root {
+  background-color: #2c35ff !important;
 }

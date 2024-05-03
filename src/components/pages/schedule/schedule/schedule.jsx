@@ -5,7 +5,10 @@ import FullCalendar from '@fullcalendar/react';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import Button from 'components/shared/button';
 import { isMobile } from 'react-device-detect';
-import { set } from 'lodash';
+import Buttons from '@mui/material/Button';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
 
 const scriptUrl = 'https://sessionize.com/api/v2/6dqtqpt2/view/GridSmart';
 // const scriptUrl = 'https://sessionize.com/api/v2/6dqtqpt2/view/Sessions'; api -> sessionList
@@ -132,14 +135,6 @@ const SessionListComponent = () => {
     );
   };
 
-  const isSelectedDay = (day) => {
-    return visibleDay === day;
-  };
-
-  const isSelectedStages = (stages) => {
-    return currentStages === stages;
-  };
-
   const handleDayChange = (day) => {
     setVisibleDay(day);
   };
@@ -184,62 +179,13 @@ const SessionListComponent = () => {
         : 'regular-event';
 
     const isCustomDebugProfiles = eventInfo.event.title === 'custom debug profiles in kubectl';
-    const isOpenSSF =      eventInfo.event.title ===
-      'OpenSSF Scorecard: The Superhero That Saves Your Open Source Project!';
-
-    return (
-      <div
-        className={`event-content ${breakClasses}`}
-        onClick={() => {
-          setSelectedEvent(eventInfo.event);
-          setIsDialogOpen(true);
-        }}
-      >
-        <span className="event-title">{eventInfo.event.title}</span>
-        <h1 className="event-time">
-          {new Date(eventInfo.event.start).toLocaleString([], {
-            hour: '2-digit',
-            minute: '2-digit',
-          })}{' '}
-          -
-          {new Date(eventInfo.event.end).toLocaleString([], { hour: '2-digit', minute: '2-digit' })}
-        </h1>
-
-        {!isCustomDebugProfiles &&
-          !isOpenSSF && eventInfo.event.extendedProps.speakers &&
-          eventInfo.event.extendedProps.speakers.length > 0 && (
-            <div className="speaker-list">
-              <div className="mt-5 flex flex-row place-content-evenly content-center">
-                {eventInfo.event.extendedProps.speakers.map((speaker, index) => (
-                  <div className="flex flex-col  items-center ">
-                    <img
-                      className=""
-                      src={findSpeakerProfile(speaker.id)}
-                      alt={speaker.fullName}
-                      style={{ width: '50px', borderRadius: '8px' }}
-                    />
-                    <span className="speaker" key={index}>
-                      {speaker.name}
-                    </span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
-      </div>
-    );
-  };
-
-  const renderMobileEventConent = (eventInfo) => {
-    const breakClasses =
-      eventInfo.event.title === 'Lunch Break' || eventInfo.event.title === 'Coffee Break'
-        ? 'break-event'
-        : 'regular-event';
-
-    const isCustomDebugProfiles = eventInfo.event.title === 'custom debug profiles in kubectl';
     const isOpenSSF =
       eventInfo.event.title ===
       'OpenSSF Scorecard: The Superhero That Saves Your Open Source Project!';
+
+    const formatSpeakerName = (name) => {
+      return name.replace(/"\w+"/g, '').trim(); // Entfernt Wörter in Anführungszeichen und überschüssige Leerzeichen
+    };
 
     return (
       <div
@@ -264,19 +210,93 @@ const SessionListComponent = () => {
           eventInfo.event.extendedProps.speakers &&
           eventInfo.event.extendedProps.speakers.length > 0 && (
             <div className="speaker-list">
-              <div className="mt-5 flex flex-row place-content-evenly content-center">
+              <div className="justify-content-evenly mt-0 flex flex-row content-center">
                 {eventInfo.event.extendedProps.speakers.map((speaker, index) => (
-                  <div className="flex flex-col  items-center ">
-                    <img
-                      className=""
-                      src={findSpeakerProfile(speaker.id)}
-                      alt={speaker.fullName}
-                      style={{ width: '50px', borderRadius: '8px' }}
+                  <Card
+                    style={{ scale: '0.8' }}
+                    sx={{ maxWidth: 100, minWidth: 100 }}
+                    className="mr-5 flex flex-col rounded-lg text-center"
+                  >
+                    <CardMedia
+                      sx={{ height: 90 }}
+                      image={findSpeakerProfile(speaker.id)}
+                      className="rounded-sm"
                     />
-                    <span className="speaker" key={index}>
-                      {speaker.name}
-                    </span>
-                  </div>
+                    <CardContent
+                      className="flex items-center justify-center text-clip p-6 text-center"
+                      style={{ height: '70px' }}
+                    >
+                      <span style={{ fontSize: '13px', color: 'whitesmoke', display: 'flex' }}>
+                        {formatSpeakerName(speaker.name)}
+                      </span>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            </div>
+          )}
+      </div>
+    );
+  };
+
+  const renderMobileEventConent = (eventInfo) => {
+    const breakClasses =
+      eventInfo.event.title === 'Lunch Break' || eventInfo.event.title === 'Coffee Break'
+        ? 'break-event'
+        : 'regular-event';
+
+    const isCustomDebugProfiles = eventInfo.event.title === 'custom debug profiles in kubectl';
+    const isOpenSSF =
+      eventInfo.event.title ===
+      'OpenSSF Scorecard: The Superhero That Saves Your Open Source Project!';
+    const formatSpeakerName = (name) => {
+      return name.replace(/"\w+"/g, '').trim(); // Entfernt Wörter in Anführungszeichen und überschüssige Leerzeichen
+    };
+
+    return (
+      <div
+        className={`event-content ${breakClasses}`}
+        onClick={() => {
+          setSelectedEvent(eventInfo.event);
+          setIsDialogOpen(true);
+        }}
+      >
+        <span className="event-title">{eventInfo.event.title}</span>
+        <h1 className="event-time">
+          {new Date(eventInfo.event.start).toLocaleString([], {
+            hour: '2-digit',
+            minute: '2-digit',
+          })}{' '}
+          -
+          {new Date(eventInfo.event.end).toLocaleString([], { hour: '2-digit', minute: '2-digit' })}
+        </h1>
+
+        {!isCustomDebugProfiles &&
+          !isOpenSSF &&
+          eventInfo.event.extendedProps.speakers &&
+          eventInfo.event.extendedProps.speakers.length > 0 && (
+            <div className="speaker-list">
+              <div className="justify-content-evenly mt-0 flex flex-row flex-wrap content-center">
+                {eventInfo.event.extendedProps.speakers.map((speaker, index) => (
+                  <Card
+                    style={{ scale: '0.8' }}
+                    sx={{ maxWidth: 100, minWidth: 100 }}
+                    className="mr-5 flex flex-col rounded-lg text-center"
+                  >
+                    <CardMedia
+                      sx={{ height: 90 }}
+                      image={findSpeakerProfile(speaker.id)}
+                      className="rounded-sm"
+                    />
+                    <CardContent
+                      className="flex items-center justify-center text-clip p-6 text-center"
+                      style={{ height: '70px' }}
+                    >
+                      <span style={{ fontSize: '13px', color: 'whitesmoke', display: 'flex' }}>
+                        {formatSpeakerName(speaker.name)}
+                      </span>
+                    </CardContent>
+                  </Card>
                 ))}
               </div>
             </div>
