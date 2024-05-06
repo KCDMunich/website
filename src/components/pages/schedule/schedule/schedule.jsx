@@ -224,7 +224,7 @@ const SessionListComponent = () => {
                     />
                     <CardContent
                       className="flex items-center justify-center text-clip p-6 text-center"
-                      style={{ height: '70px' }}
+                      style={{ height: '70px', background: '#01013d' }}
                     >
                       <span style={{ fontSize: '13px', color: 'whitesmoke', display: 'flex' }}>
                         {formatSpeakerName(speaker.name)}
