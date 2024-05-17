@@ -5,10 +5,9 @@ import FullCalendar from '@fullcalendar/react';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import Button from 'components/shared/button';
 import { isMobile } from 'react-device-detect';
-import Buttons from '@mui/material/Button';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
+import Avatar from '@mui/material/Avatar';
+import Chip from '@mui/material/Chip';
+import Divider from '@mui/material/Divider';
 
 const scriptUrl = 'https://sessionize.com/api/v2/6dqtqpt2/view/GridSmart';
 // const scriptUrl = 'https://sessionize.com/api/v2/6dqtqpt2/view/Sessions'; api -> sessionList
@@ -93,6 +92,17 @@ const SessionListComponent = () => {
 
   const Dialog = ({ isOpen, onClose, children }) => {
     if (!isOpen) return null;
+
+    useEffect(() => {
+      if (isOpen) {
+        document.body.style.overflow = 'hidden';
+      } else {
+        document.body.style.overflow = 'unset';
+      }
+      return () => {
+        document.body.style.overflow = 'unset';
+      };
+    }, [isOpen]);
 
     return (
       <div
@@ -184,62 +194,63 @@ const SessionListComponent = () => {
       'OpenSSF Scorecard: The Superhero That Saves Your Open Source Project!';
 
     const formatSpeakerName = (name) => {
-      return name.replace(/"\w+"/g, '').trim(); // Entfernt Wörter in Anführungszeichen und überschüssige Leerzeichen
+      return name.replace(/"\w+"/g, '').trim();
     };
+
+    const isBreakEvent =
+      eventInfo.event.title === 'Lunch Break' || eventInfo.event.title === 'Coffee Break';
 
     return (
       <div
         className={`event-content ${breakClasses}`}
-        onClick={() => {
-          setSelectedEvent(eventInfo.event);
-          setIsDialogOpen(true);
-        }}
+        onClick={
+          !isBreakEvent
+            ? () => {
+                setSelectedEvent(eventInfo.event);
+                setIsDialogOpen(true);
+              }
+            : null
+        }
+        style={{ width: '100%', height: '100%', cursor: !isBreakEvent ? 'pointer' : 'default' }}
       >
-        <span className="event-title">{eventInfo.event.title}</span>
-        <h1 className="event-time">
-          {new Date(eventInfo.event.start).toLocaleString([], {
-            hour: '2-digit',
-            minute: '2-digit',
-          })}{' '}
-          -
-          {new Date(eventInfo.event.end).toLocaleString([], { hour: '2-digit', minute: '2-digit' })}
-        </h1>
-
-        {!isCustomDebugProfiles &&
-          !isOpenSSF &&
-          eventInfo.event.extendedProps.speakers &&
-          eventInfo.event.extendedProps.speakers.length > 0 && (
-            <div className="speaker-list">
-              <div className="justify-content-evenly mt-0 flex flex-row content-center">
-                {eventInfo.event.extendedProps.speakers.map((speaker, index) => (
-                  <Card
-                    style={{ scale: '0.8' }}
-                    sx={{ maxWidth: 100, minWidth: 100 }}
-                    className="mr-5 flex flex-col rounded-lg text-center"
-                  >
-                    <CardMedia
-                      sx={{ height: 90 }}
-                      image={findSpeakerProfile(speaker.id)}
-                      className="rounded-sm"
-                    />
-                    <CardContent
-                      className="flex items-center justify-center text-clip p-6 text-center"
-                      style={{ height: '70px', background: '#01013d' }}
-                    >
-                      <span style={{ fontSize: '13px', color: 'whitesmoke', display: 'flex' }}>
-                        {formatSpeakerName(speaker.name)}
-                      </span>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
+        <div className="h-full w-full rounded-lg bg-[transparent] p-4 text-white">
+          <div className="mb-4 border-b border-white pb-2">
+            <span className="event-title">{eventInfo.event.title}</span>
+            <h1 className="event-time">
+              {new Date(eventInfo.event.start).toLocaleString([], {
+                hour: '2-digit',
+                minute: '2-digit',
+              })}{' '}
+              -
+              {new Date(eventInfo.event.end).toLocaleString([], {
+                hour: '2-digit',
+                minute: '2-digit',
+              })}
+            </h1>
+          </div>
+          {!isCustomDebugProfiles && !isOpenSSF && (
+            <div className="-mx-2 flex flex-wrap">
+              {eventInfo.event.extendedProps.speakers.map((speaker, index) => (
+                <div key={index} className="flex items-center px-2 py-1">
+                  <Avatar
+                    alt={speaker.name}
+                    src={findSpeakerProfile(speaker.id)}
+                    sx={{ width: 50, height: 50 }}
+                  />
+                  <div className="ml-2 flex flex-col">
+                    <span className="font-medium">{formatSpeakerName(speaker.name)}</span>
+                    <span className="text-xs text-white/70">Speaker</span>
+                  </div>
+                </div>
+              ))}
             </div>
           )}
+        </div>
       </div>
     );
   };
 
-  const renderMobileEventConent = (eventInfo) => {
+  const renderMobileEventContent = (eventInfo) => {
     const breakClasses =
       eventInfo.event.title === 'Lunch Break' || eventInfo.event.title === 'Coffee Break'
         ? 'break-event'
@@ -250,62 +261,74 @@ const SessionListComponent = () => {
       eventInfo.event.title ===
       'OpenSSF Scorecard: The Superhero That Saves Your Open Source Project!';
     const formatSpeakerName = (name) => {
-      return name.replace(/"\w+"/g, '').trim(); // Entfernt Wörter in Anführungszeichen und überschüssige Leerzeichen
+      return name.replace(/"\w+"/g, '').trim();
     };
+
+    const isBreakEvent =
+      eventInfo.event.title === 'Lunch Break' || eventInfo.event.title === 'Coffee Break';
 
     return (
       <div
         className={`event-content ${breakClasses}`}
-        onClick={() => {
-          setSelectedEvent(eventInfo.event);
-          setIsDialogOpen(true);
-        }}
+        onClick={
+          !isBreakEvent
+            ? () => {
+                setSelectedEvent(eventInfo.event);
+                setIsDialogOpen(true);
+              }
+            : null
+        }
+        style={{ width: '100%', height: '100%', cursor: !isBreakEvent ? 'pointer' : 'default' }}
       >
-        <span className="event-title">{eventInfo.event.title}</span>
-        <h1 className="event-time">
-          {new Date(eventInfo.event.start).toLocaleString([], {
-            hour: '2-digit',
-            minute: '2-digit',
-          })}{' '}
-          -
-          {new Date(eventInfo.event.end).toLocaleString([], { hour: '2-digit', minute: '2-digit' })}
-        </h1>
-
-        {!isCustomDebugProfiles &&
-          !isOpenSSF &&
-          eventInfo.event.extendedProps.speakers &&
-          eventInfo.event.extendedProps.speakers.length > 0 && (
-            <div className="speaker-list">
-              <div className="justify-content-evenly mt-0 flex flex-row flex-wrap content-center">
-                {eventInfo.event.extendedProps.speakers.map((speaker, index) => (
-                  <Card
-                    style={{ scale: '0.8' }}
-                    sx={{ maxWidth: 100, minWidth: 100 }}
-                    className="mr-5 flex flex-col rounded-lg text-center"
-                  >
-                    <CardMedia
-                      sx={{ height: 90 }}
-                      image={findSpeakerProfile(speaker.id)}
-                      className="rounded-sm"
-                    />
-                    <CardContent
-                      className="flex items-center justify-center text-clip p-6 text-center"
-                      style={{ height: '70px' }}
-                    >
-                      <span style={{ fontSize: '13px', color: 'whitesmoke', display: 'flex' }}>
-                        {formatSpeakerName(speaker.name)}
-                      </span>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
+        <div className="h-full w-full rounded-lg bg-[transparent] p-4 text-white">
+          <div className="mb-4 border-b border-white pb-2">
+            <span className="event-title">{eventInfo.event.title}</span>
+            <h1 className="event-time">
+              {new Date(eventInfo.event.start).toLocaleString([], {
+                hour: '2-digit',
+                minute: '2-digit',
+              })}{' '}
+              -
+              {new Date(eventInfo.event.end).toLocaleString([], {
+                hour: '2-digit',
+                minute: '2-digit',
+              })}
+            </h1>
+          </div>
+          {!isCustomDebugProfiles && !isOpenSSF && (
+            <div className="-mx-2 flex flex-wrap">
+              {eventInfo.event.extendedProps.speakers.map((speaker, index) => (
+                <div key={index} className="flex items-center px-2 py-1">
+                  <Avatar
+                    alt={speaker.name}
+                    src={findSpeakerProfile(speaker.id)}
+                    sx={{ width: 50, height: 50 }}
+                  />
+                  <div className="ml-2 flex flex-col">
+                    <span className="font-medium">{formatSpeakerName(speaker.name)}</span>
+                    <span className="text-xs text-white/70">Speaker</span>
+                  </div>
+                </div>
+              ))}
             </div>
           )}
+        </div>
       </div>
     );
   };
 
   const EventDialog = () => {
+    const formatSpeakerName = (name) => {
+      return name.replace(/"\w+"/g, '').trim();
+    };
+
+    const formatTime = (date) => {
+      return new Date(date).toLocaleTimeString([], {
+        hour: '2-digit',
+        minute: '2-digit',
+      });
+    };
+
     return (
       <div
         style={{
@@ -313,36 +336,122 @@ const SessionListComponent = () => {
           flexDirection: 'column',
           width: '90vw',
           padding: '50px',
-          overflow: 'auto',
-          height: '70vh',
+          height: 'fit-content',
         }}
       >
-        <h1 style={{ marginBottom: '15px', fontWeight: 'bold', fontSize: 'larger' }}>
-          {selectedEvent.title}
-        </h1>
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'left', gap: '10px' }}>
-          <p>
-            <strong>Start:</strong> {selectedEvent.start.toLocaleString()}
-          </p>
-          <p>
-            <strong>End:</strong> {selectedEvent.end.toLocaleString()}
-          </p>
-          <p>
-            <strong>Room:</strong> {selectedEvent.extendedProps.room}
-          </p>
+        <div className="mb-5 flex h-1/6 items-center justify-center">
+          <h2 className="text-center text-xl font-bold">{selectedEvent.title}</h2>
+        </div>
+        <Divider />
+        <div className="my-5 flex h-1/6 flex-wrap items-center justify-center gap-x-2">
+          <Chip
+            className="text-sm"
+            label={`Start: ${formatTime(selectedEvent.start)}`}
+            style={{ background: '#e0f2fe', color: '#0284c7' }}
+          />
+          <Chip
+            className="text-sm"
+            label={`End: ${formatTime(selectedEvent.end)}`}
+            style={{ background: '#fef3c7', color: '#d97706' }}
+          />
+          <Chip
+            className="text-sm"
+            label={`Room: ${selectedEvent.extendedProps.room}`}
+            style={{ background: '#e9d5ff', color: '#7c3aed' }}
+          />
+        </div>
+        <div className="mb-5 h-3/6 text-left">{selectedEvent.extendedProps.description}</div>
+        <Divider />
+        <div className="mt-5 flex h-1/6 flex-wrap gap-x-2">
+          {selectedEvent.extendedProps.speakers.map((speaker, index) => (
+            <div key={index} className="flex items-center px-2 py-1">
+              <Avatar
+                alt={speaker.name}
+                src={findSpeakerProfile(speaker.id)}
+                sx={{ width: 50, height: 50 }}
+              />
+              <div className="ml-2 flex flex-col">
+                <span className="font-medium">{formatSpeakerName(speaker.name)}</span>
+                <span className="text-gray-400 text-xs">Speaker</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  };
+
+  const EventDialogMobile = () => {
+    const formatSpeakerName = (name) => {
+      return name.replace(/"\w+"/g, '').trim();
+    };
+
+    const formatTime = (date) => {
+      return new Date(date).toLocaleTimeString([], {
+        hour: '2-digit',
+        minute: '2-digit',
+      });
+    };
+
+    return (
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          width: '90vw',
+          padding: '50px',
+          height: '85vh',
+          boxSizing: 'border-box',
+        }}
+      >
+        <div className="mb-5 flex h-1/6 items-center justify-center">
+          <h2 className="text-center text-xl font-bold">{selectedEvent.title}</h2>
+        </div>
+        <Divider />
+        <div className="my-5 flex flex-wrap items-center justify-center gap-x-1">
+          <Chip
+            className="mb-1 text-sm"
+            label={`Start: ${formatTime(selectedEvent.start)}`}
+            sx={{ height: '20px' }}
+            style={{ background: '#e0f2fe', color: '#0284c7' }}
+          />
+          <Chip
+            className="mb-1 text-sm"
+            label={`End: ${formatTime(selectedEvent.end)}`}
+            sx={{ height: '20px' }}
+            style={{ background: '#fef3c7', color: '#d97706' }}
+          />
+          <Chip
+            className=" text-sm"
+            label={`Room: ${selectedEvent.extendedProps.room}`}
+            sx={{ height: '20px' }}
+            style={{ background: '#e9d5ff', color: '#7c3aed' }}
+          />
         </div>
         <div
+          className="description mb-5 text-left"
           style={{
-            display: 'flex',
-            flexDirection: 'column',
-            textAlign: 'left',
-            marginTop: '10px',
+            maxHeight: '30vh',
+            overflowY: 'auto',
           }}
         >
-          <div>
-            <strong>Description:</strong>
-          </div>{' '}
           {selectedEvent.extendedProps.description}
+        </div>
+        <Divider />
+        <div className="mt-5 flex flex-wrap gap-x-2">
+          {selectedEvent.extendedProps.speakers.map((speaker, index) => (
+            <div key={index} className="flex items-center px-2 py-2">
+              <Avatar
+                alt={speaker.name}
+                src={findSpeakerProfile(speaker.id)}
+                sx={{ width: 50, height: 50 }}
+              />
+              <div className="ml-2 flex flex-col">
+                <span className="font-medium">{formatSpeakerName(speaker.name)}</span>
+                <span className="text-gray-400 text-xs">Speaker</span>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     );
@@ -444,7 +553,7 @@ const SessionListComponent = () => {
             {renderStageButtonDesktopWorkshop('Workshops', 'workshop-room-btn')}
           </div>
           <div className="calendar-container">
-            <div style={{ display: 'flex' }}>
+            <div>
               {currentStages === 'Stages' ? (
                 <div className="flex">
                   <FullCalendar
@@ -610,7 +719,7 @@ const SessionListComponent = () => {
                     ? workshopData
                     : unconferenceData
                 }
-                eventContent={renderMobileEventConent}
+                eventContent={renderMobileEventContent}
                 dayHeaderContent={currentView}
               />
             </div>
@@ -621,7 +730,7 @@ const SessionListComponent = () => {
                 setSelectedEvent(null);
               }}
             >
-              {selectedEvent && <EventDialog />}
+              {selectedEvent && <EventDialogMobile />}
             </Dialog>
           </div>
         </div>
