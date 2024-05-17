@@ -30,6 +30,7 @@ import Syseleven from 'icons/syseleven.png';
 import veeam from 'icons/veeam.png';
 import whiteduck from 'icons/whiteduck.png';
 import Maiborn from 'icons/maiborn.jpeg';
+import Dgi from 'icons/Dgi.png';
 
 const TITLE = 'Sponsors';
 
@@ -77,6 +78,10 @@ const ITEMS = [
       {
         icon: Maiborn,
         url: 'https://www.maibornwolff.de/',
+      },
+      {
+        icon: Dgi,
+        url: 'https://www.dg-i.net/',
       },
     ],
     cardClassname: 'min-w-[280px] min-h-[104px] sm:min-w-[250px] sm:min-h-[94px]',
