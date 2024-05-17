@@ -345,16 +345,19 @@ const SessionListComponent = () => {
         <Divider />
         <div className="my-5 flex h-1/6 flex-wrap items-center justify-center gap-x-2">
           <Chip
-            className="bg-[#e0f2fe] text-sm text-[#0284c7]"
+            className="text-sm"
             label={`Start: ${formatTime(selectedEvent.start)}`}
+            style={{ background: '#e0f2fe', color: '#0284c7' }}
           />
           <Chip
-            className="bg-[#fef3c7] text-sm text-[#d97706]"
+            className="text-sm"
             label={`End: ${formatTime(selectedEvent.end)}`}
+            style={{ background: '#fef3c7', color: '#d97706' }}
           />
           <Chip
-            className="bg-[#e9d5ff] text-sm text-[#7c3aed]"
+            className="text-sm"
             label={`Room: ${selectedEvent.extendedProps.room}`}
+            style={{ background: '#e9d5ff', color: '#7c3aed' }}
           />
         </div>
         <div className="mb-5 h-3/6 text-left">{selectedEvent.extendedProps.description}</div>
@@ -407,19 +410,22 @@ const SessionListComponent = () => {
         <Divider />
         <div className="my-5 flex flex-wrap items-center justify-center gap-x-1">
           <Chip
-            className="mb-1 bg-[#e0f2fe] text-sm text-[#0284c7]"
+            className="mb-1 text-sm"
             label={`Start: ${formatTime(selectedEvent.start)}`}
             sx={{ height: '20px' }}
+            style={{ background: '#e0f2fe', color: '#0284c7' }}
           />
           <Chip
-            className="mb-1 bg-[#fef3c7] text-sm text-[#d97706]"
+            className="mb-1 text-sm"
             label={`End: ${formatTime(selectedEvent.end)}`}
             sx={{ height: '20px' }}
+            style={{ background: '#fef3c7', color: '#d97706' }}
           />
           <Chip
-            className="bg-[#e9d5ff] text-sm text-[#7c3aed]"
+            className=" text-sm"
             label={`Room: ${selectedEvent.extendedProps.room}`}
             sx={{ height: '20px' }}
+            style={{ background: '#e9d5ff', color: '#7c3aed' }}
           />
         </div>
         <div
