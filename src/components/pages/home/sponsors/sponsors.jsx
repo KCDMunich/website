@@ -20,7 +20,7 @@ import Kubecareers from 'icons/kubecareers_1.svg';
 import Kubeevents from 'icons/kubeevents_2.svg';
 import liquid from 'icons/liquid.png';
 import MetalStack from 'icons/metalstackcloud.webp';
-import MindcurvGmbH from 'icons/mindcurv-group.png';
+import MindcurvGmbH from 'icons/Mindcurv_Logo_Color.svg';
 import pulumi from 'icons/pulumi_logo.svg';
 import Qaware from 'icons/qaware.svg';
 import spectrocloud from 'icons/spectrocloud.svg';
@@ -31,6 +31,7 @@ import veeam from 'icons/veeam.png';
 import whiteduck from 'icons/whiteduck.png';
 import Maiborn from 'icons/maiborn.jpeg';
 import Dgi from 'icons/Dgi.png';
+import Tigera from 'icons/Tigera_Logo_Logo.jpg';
 
 const TITLE = 'Sponsors';
 
@@ -60,6 +61,7 @@ const ITEMS = [
       { icon: spectrocloud, url: 'https://spectrocloud.com/' },
       { icon: StackState, url: 'https://stackstate.com/' },
       { icon: Steadforce, url: 'https://www.steadforce.com/' },
+      { icon: Tigera, url: 'https://www.tigera.io/' },
     ],
     cardClassname: 'min-w-[384px] min-h-[122px] sm:min-w-[320px] sm:min-h-[115px]',
     iconClassname: 'max-w-[330px] sm:min-w-[290px]',
