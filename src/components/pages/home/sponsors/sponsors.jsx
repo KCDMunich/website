@@ -32,6 +32,7 @@ import whiteduck from 'icons/whiteduck.png';
 import Maiborn from 'icons/maiborn.jpeg';
 import Dgi from 'icons/Dgi.png';
 import Tigera from 'icons/Tigera_Logo_Logo.jpg';
+import Splunk from 'icons/Splunk_logo.svg';
 
 const TITLE = 'Sponsors';
 
@@ -59,6 +60,7 @@ const ITEMS = [
       { icon: MindcurvGmbH, url: 'https://www.mindcurv.com/' },
       { icon: pulumi, url: 'https://www.pulumi.com/' },
       { icon: spectrocloud, url: 'https://spectrocloud.com/' },
+      { icon: Splunk, url: 'https://www.splunk.com/' },
       { icon: StackState, url: 'https://stackstate.com/' },
       { icon: Steadforce, url: 'https://www.steadforce.com/' },
       { icon: Tigera, url: 'https://www.tigera.io/' },
