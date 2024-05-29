@@ -14,19 +14,20 @@ import MaxKörbächerPhoto from './images/max_k.jpg';
 import NicoPhoto from './images/nico-m.jpg';
 import TomPhoto from './images/tom_u.jpeg';
 import Suad from './images/swo_kcd.jpg';
+import Nina from './images/NinaWelker.jpeg';
 
 const ITEMS = [
   {
-    name: 'Max Körbächer',
-    position: 'Co-founder - Liquid Reply | CNCF Ambassador',
-    photo: MaxKörbächerPhoto,
-    url: 'https://www.linkedin.com/in/maxkoerbaecher/',
+    name: 'Anela Avdibegovic',
+    position: 'Marketing Manager - white duck',
+    photo: AnelaPhoto,
+    url: 'https://www.linkedin.com/in/anela-avdibegovic/',
   },
   {
-    name: 'Nico Meisenzal',
-    position: 'Head of DevOps Consulting & Operations - white duck',
-    photo: NicoPhoto,
-    url: 'https://www.linkedin.com/in/nicomeisenzahl/',
+    name: 'Dominik Bittl',
+    position: 'Senior Solution Architect - Red Hat',
+    photo: DominikPhoto,
+    url: 'https://www.linkedin.com/in/dominik-bittl/',
   },
   {
     name: 'Leander Reimer',
@@ -41,8 +42,26 @@ const ITEMS = [
     url: 'https://www.linkedin.com/in/msuemmchen/',
   },
   {
+    name: 'Max Körbächer',
+    position: 'Co-founder - Liquid Reply | CNCF Ambassador',
+    photo: MaxKörbächerPhoto,
+    url: 'https://www.linkedin.com/in/maxkoerbaecher/',
+  },
+  {
+    name: 'Nico Meisenzal',
+    position: 'Head of DevOps Consulting & Operations - white duck',
+    photo: NicoPhoto,
+    url: 'https://www.linkedin.com/in/nicomeisenzahl/',
+  },
+  {
+    name: 'Nina Welker',
+    position: 'Community Marketing Managerin - QAware',
+    photo: Nina,
+    url: 'https://www.linkedin.com/in/nina-welker-9a8a0214b/',
+  },
+  {
     name: 'Suad Wolgram',
-    position: 'Software & Cloud Engineer - white duck',
+    position: 'Product Manager & Software Engineer - white duck',
     photo: Suad,
     url: 'https://www.linkedin.com/in/suadwolgram/',
   },
@@ -51,18 +70,6 @@ const ITEMS = [
     position: 'Consultant - Liquid Reply',
     photo: TomPhoto,
     url: 'https://www.linkedin.com/in/tom-uhlig/',
-  },
-  {
-    name: 'Anela Avdibegovic',
-    position: 'Marketing Manager - white duck',
-    photo: AnelaPhoto,
-    url: 'https://www.linkedin.com/in/anela-avdibegovic/',
-  },
-  {
-    name: 'Dominik Bittl',
-    position: 'Senior Solution Architect - Red Hat',
-    photo: DominikPhoto,
-    url: 'https://www.linkedin.com/in/dominik-bittl/',
   },
 ];
 
