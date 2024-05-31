@@ -8,6 +8,7 @@ import { isMobile } from 'react-device-detect';
 import Avatar from '@mui/material/Avatar';
 import Chip from '@mui/material/Chip';
 import Divider from '@mui/material/Divider';
+import CircularProgress from '@mui/material/CircularProgress';
 
 const scriptUrl = 'https://sessionize.com/api/v2/6dqtqpt2/view/GridSmart';
 // const scriptUrl = 'https://sessionize.com/api/v2/6dqtqpt2/view/Sessions'; api -> sessionList
@@ -34,6 +35,7 @@ const SessionListComponent = () => {
   const [visibleDay, setVisibleDay] = useState('2024-07-01');
   const [currentView, setCurrentView] = useState('Main Stage');
   const [currentStages, setCurrentStages] = useState('Stages');
+  const [isLoading, setIsLoading] = useState(true);
 
   //Speaker aus der api fetchen
   useEffect(() => {
@@ -41,6 +43,7 @@ const SessionListComponent = () => {
       .then((response) => response.json())
       .then((data) => {
         setSpeakerData(data);
+        setIsLoading(true);
       })
       .catch((error) => console.error('Error:', error));
   }, []);
@@ -77,17 +80,17 @@ const SessionListComponent = () => {
             event.title === 'Coffee Break'
         );
         setMainStageData(roomEvents);
-        console.table(roomEvents);
         setStageData(topStageEvents);
         setWorkshopData(workshopRoomEvents);
         setUnconferenceData(unconferenceEvents);
+        setIsLoading(false);
       })
       .catch((error) => console.error('Error:', error));
   }, []);
 
   const findSpeakerProfile = (speakerId) => {
     const speaker = speakerData.find((s) => s.id === speakerId);
-    return speaker.profilePicture;
+    return speaker ? speaker.profilePicture : null;
   };
 
   const Dialog = ({ isOpen, onClose, children }) => {
@@ -531,6 +534,12 @@ const SessionListComponent = () => {
       </span>
     </Button>
   );
+
+  if (isLoading) {
+    <div>
+      <CircularProgress color="secondary" />
+    </div>;
+  }
 
   return (
     <div className="w-full overflow-hidden rounded-md" style={{ background: '#dadada21' }}>
