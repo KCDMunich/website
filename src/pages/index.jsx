@@ -19,8 +19,8 @@ const HomePage = ({ location }) => (
   <Layout homepage>
     <Hero />
     <Info />
-    <Speakers />
     <Tickets />
+    <Speakers />
     <Sponsors />
     <Details />
   </Layout>
