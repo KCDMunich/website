@@ -8,6 +8,7 @@ import { isMobile } from 'react-device-detect';
 import Avatar from '@mui/material/Avatar';
 import Chip from '@mui/material/Chip';
 import Divider from '@mui/material/Divider';
+import CircularProgress from '@mui/material/CircularProgress';
 
 const scriptUrl = 'https://sessionize.com/api/v2/6dqtqpt2/view/GridSmart';
 // const scriptUrl = 'https://sessionize.com/api/v2/6dqtqpt2/view/Sessions'; api -> sessionList
@@ -34,6 +35,7 @@ const SessionListComponent = () => {
   const [visibleDay, setVisibleDay] = useState('2024-07-01');
   const [currentView, setCurrentView] = useState('Main Stage');
   const [currentStages, setCurrentStages] = useState('Stages');
+  const [isLoading, setIsLoading] = useState(false);
 
   //Speaker aus der api fetchen
   useEffect(() => {
@@ -41,6 +43,7 @@ const SessionListComponent = () => {
       .then((response) => response.json())
       .then((data) => {
         setSpeakerData(data);
+        setIsLoading(true);
       })
       .catch((error) => console.error('Error:', error));
   }, []);
@@ -77,10 +80,10 @@ const SessionListComponent = () => {
             event.title === 'Coffee Break'
         );
         setMainStageData(roomEvents);
-        console.table(roomEvents);
         setStageData(topStageEvents);
         setWorkshopData(workshopRoomEvents);
         setUnconferenceData(unconferenceEvents);
+        setIsLoading(false);
       })
       .catch((error) => console.error('Error:', error));
   }, []);
@@ -533,206 +536,217 @@ const SessionListComponent = () => {
   );
 
   return (
-    <div className="w-full overflow-hidden rounded-md" style={{ background: '#dadada21' }}>
-      {!isMobile ? (
-        <div>
-          <div style={{ marginBottom: '0.5rem' }}>
-            {renderButton(
-              'Monday',
-              () => handleDayChange('2024-07-01'),
-              visibleDay === '2024-07-01'
-            )}
-            {renderButton(
-              'Tuesday',
-              () => handleDayChange('2024-07-02'),
-              visibleDay === '2024-07-02'
-            )}
-          </div>
-          <div>
-            {renderStageButtonDesktopMainTop('Stages', 'main-stage-btn')}
-            {renderStageButtonDesktopWorkshop('Workshops', 'workshop-room-btn')}
-          </div>
-          <div className="calendar-container">
+    <div>
+      {!isLoading ? (
+        <div className="w-full overflow-hidden rounded-md" style={{ background: '#dadada21' }}>
+          {!isMobile ? (
             <div>
-              {currentStages === 'Stages' ? (
-                <div className="flex">
-                  <FullCalendar
-                    allDaySlot={false}
-                    plugins={[timeGridPlugin]}
-                    displayEventTime={false}
-                    initialView="timeGrid"
-                    slotEventOverlap={false}
-                    slotLabelInterval={{ hours: 1 }}
-                    slotMinTime="09:20:00"
-                    slotMaxTime="18:00:00"
-                    slotDuration="00:08:30"
-                    height="auto"
-                    headerToolbar={{
-                      left: '',
-                      right: '',
-                    }}
-                    visibleRange={{
-                      start: visibleDay,
-                      end: visibleDay === '2024-07-01' ? '2024-07-02' : '2024-07-03',
-                    }}
-                    events={mainstageData}
-                    eventContent={renderEventContent}
-                    dayHeaderContent="Main Stage"
-                  />
-                  <FullCalendar
-                    allDaySlot={false}
-                    plugins={[timeGridPlugin]}
-                    displayEventTime={false}
-                    initialView="timeGrid"
-                    eventMinHeight={85}
-                    slotEventOverlap={false}
-                    slotLabelInterval={{ hours: 1 }}
-                    slotMinTime="09:20:00"
-                    slotMaxTime="18:00:00"
-                    slotDuration="00:08:30"
-                    height="auto"
-                    headerToolbar={{
-                      left: '',
-                      right: '',
-                    }}
-                    visibleRange={{
-                      start: visibleDay,
-                      end: visibleDay === '2024-07-01' ? '2024-07-02' : '2024-07-03',
-                    }}
-                    events={stageData}
-                    eventContent={renderEventContent}
-                    dayHeaderContent="Top Stage"
-                  />
+              <div style={{ marginBottom: '0.5rem' }}>
+                {renderButton(
+                  'Monday',
+                  () => handleDayChange('2024-07-01'),
+                  visibleDay === '2024-07-01'
+                )}
+                {renderButton(
+                  'Tuesday',
+                  () => handleDayChange('2024-07-02'),
+                  visibleDay === '2024-07-02'
+                )}
+              </div>
+              <div>
+                {renderStageButtonDesktopMainTop('Stages', 'main-stage-btn')}
+                {renderStageButtonDesktopWorkshop('Workshops', 'workshop-room-btn')}
+              </div>
+              <div className="calendar-container">
+                <div>
+                  {currentStages === 'Stages' ? (
+                    <div className="flex">
+                      <FullCalendar
+                        allDaySlot={false}
+                        plugins={[timeGridPlugin]}
+                        displayEventTime={false}
+                        initialView="timeGrid"
+                        slotEventOverlap={false}
+                        slotLabelInterval={{ hours: 1 }}
+                        slotMinTime="09:20:00"
+                        slotMaxTime="18:00:00"
+                        slotDuration="00:08:30"
+                        height="auto"
+                        headerToolbar={{
+                          left: '',
+                          right: '',
+                        }}
+                        visibleRange={{
+                          start: visibleDay,
+                          end: visibleDay === '2024-07-01' ? '2024-07-02' : '2024-07-03',
+                        }}
+                        events={mainstageData}
+                        eventContent={renderEventContent}
+                        dayHeaderContent="Main Stage"
+                      />
+                      <FullCalendar
+                        allDaySlot={false}
+                        plugins={[timeGridPlugin]}
+                        displayEventTime={false}
+                        initialView="timeGrid"
+                        eventMinHeight={85}
+                        slotEventOverlap={false}
+                        slotLabelInterval={{ hours: 1 }}
+                        slotMinTime="09:20:00"
+                        slotMaxTime="18:00:00"
+                        slotDuration="00:08:30"
+                        height="auto"
+                        headerToolbar={{
+                          left: '',
+                          right: '',
+                        }}
+                        visibleRange={{
+                          start: visibleDay,
+                          end: visibleDay === '2024-07-01' ? '2024-07-02' : '2024-07-03',
+                        }}
+                        events={stageData}
+                        eventContent={renderEventContent}
+                        dayHeaderContent="Top Stage"
+                      />
+                    </div>
+                  ) : (
+                    <div className="flex">
+                      <FullCalendar
+                        allDaySlot={false}
+                        plugins={[timeGridPlugin]}
+                        displayEventTime={false}
+                        initialView="timeGrid"
+                        slotEventOverlap={true}
+                        slotMinWidth={200}
+                        slotLabelInterval={{ hours: 1 }}
+                        slotMinTime="09:20:00"
+                        slotMaxTime="18:00:00"
+                        slotDuration="00:08:30"
+                        height="auto"
+                        headerToolbar={{
+                          left: '',
+                          right: '',
+                        }}
+                        visibleRange={{
+                          start: visibleDay,
+                          end: visibleDay === '2024-07-01' ? '2024-07-02' : '2024-07-03',
+                        }}
+                        events={workshopData}
+                        eventContent={renderEventContent}
+                        dayHeaderContent="Workshop Room"
+                      />
+                      <FullCalendar
+                        allDaySlot={false}
+                        plugins={[timeGridPlugin]}
+                        displayEventTime={false}
+                        initialView="timeGrid"
+                        slotEventOverlap={true}
+                        slotMinWidth={50}
+                        slotLabelInterval={{ hours: 1 }}
+                        slotMinTime="09:20:00"
+                        slotMaxTime="18:00:00"
+                        slotDuration="00:08:30"
+                        height="auto"
+                        headerToolbar={{
+                          left: '',
+                          right: '',
+                        }}
+                        visibleRange={{
+                          start: visibleDay,
+                          end: visibleDay === '2024-07-01' ? '2024-07-02' : '2024-07-03',
+                        }}
+                        events={unconferenceData}
+                        eventContent={renderEventContent}
+                        dayHeaderContent="The Unconference"
+                      />
+                    </div>
+                  )}
                 </div>
-              ) : (
-                <div className="flex">
-                  <FullCalendar
-                    allDaySlot={false}
-                    plugins={[timeGridPlugin]}
-                    displayEventTime={false}
-                    initialView="timeGrid"
-                    slotEventOverlap={true}
-                    slotMinWidth={200}
-                    slotLabelInterval={{ hours: 1 }}
-                    slotMinTime="09:20:00"
-                    slotMaxTime="18:00:00"
-                    slotDuration="00:08:30"
-                    height="auto"
-                    headerToolbar={{
-                      left: '',
-                      right: '',
-                    }}
-                    visibleRange={{
-                      start: visibleDay,
-                      end: visibleDay === '2024-07-01' ? '2024-07-02' : '2024-07-03',
-                    }}
-                    events={workshopData}
-                    eventContent={renderEventContent}
-                    dayHeaderContent="Workshop Room"
-                  />
-                  <FullCalendar
-                    allDaySlot={false}
-                    plugins={[timeGridPlugin]}
-                    displayEventTime={false}
-                    initialView="timeGrid"
-                    slotEventOverlap={true}
-                    slotMinWidth={50}
-                    slotLabelInterval={{ hours: 1 }}
-                    slotMinTime="09:20:00"
-                    slotMaxTime="18:00:00"
-                    slotDuration="00:08:30"
-                    height="auto"
-                    headerToolbar={{
-                      left: '',
-                      right: '',
-                    }}
-                    visibleRange={{
-                      start: visibleDay,
-                      end: visibleDay === '2024-07-01' ? '2024-07-02' : '2024-07-03',
-                    }}
-                    events={unconferenceData}
-                    eventContent={renderEventContent}
-                    dayHeaderContent="The Unconference"
-                  />
-                </div>
-              )}
+                <Dialog
+                  isOpen={isDialogOpen}
+                  onClose={() => {
+                    setIsDialogOpen(false);
+                    setSelectedEvent(null);
+                  }}
+                >
+                  {selectedEvent && <EventDialog />}
+                </Dialog>
+              </div>
             </div>
-            <Dialog
-              isOpen={isDialogOpen}
-              onClose={() => {
-                setIsDialogOpen(false);
-                setSelectedEvent(null);
-              }}
-            >
-              {selectedEvent && <EventDialog />}
-            </Dialog>
-          </div>
+          ) : (
+            <div>
+              <div style={{ marginBottom: '0.5rem' }}>
+                {renderButton(
+                  'Monday',
+                  () => handleDayChange('2024-07-01'),
+                  visibleDay === '2024-07-01'
+                )}
+                {renderButton(
+                  'Tuesday',
+                  () => handleDayChange('2024-07-02'),
+                  visibleDay === '2024-07-02'
+                )}
+              </div>
+              <div className="flex" style={{ marginBottom: '0.5rem' }}>
+                {renderStageButton('Main Stage', 'main-stage-btn')}
+                {renderStageButton('Top Stage', 'top-stage-btn')}
+                {renderStageButton('Workshop', 'workshop-room-btn')}
+                {renderStageButton('Unconference', 'the-unconference-btn')}
+              </div>
+              <div
+                className="calendar-container"
+                style={{ width: 'fit-content', overflow: 'auto' }}
+              >
+                <div style={{ display: 'flex' }}>
+                  <FullCalendar
+                    allDaySlot={false}
+                    plugins={[timeGridPlugin]}
+                    displayEventTime={false}
+                    eventMinHeight={92}
+                    initialView="timeGrid"
+                    slotEventOverlap={false}
+                    slotLabelInterval={{ hours: 1 }}
+                    slotMinTime="09:20:00"
+                    slotMaxTime="18:00:00"
+                    slotDuration="00:08:30"
+                    height="auto"
+                    headerToolbar={{
+                      left: '',
+                      right: '',
+                    }}
+                    visibleRange={{
+                      start: visibleDay,
+                      end: visibleDay === '2024-07-01' ? '2024-07-02' : '2024-07-03',
+                    }}
+                    events={
+                      currentView === 'Main Stage'
+                        ? mainstageData
+                        : currentView === 'Top Stage'
+                        ? stageData
+                        : currentView === 'Workshop'
+                        ? workshopData
+                        : unconferenceData
+                    }
+                    eventContent={renderMobileEventContent}
+                    dayHeaderContent={currentView}
+                  />
+                </div>
+                <Dialog
+                  isOpen={isDialogOpen}
+                  onClose={() => {
+                    setIsDialogOpen(false);
+                    setSelectedEvent(null);
+                  }}
+                >
+                  {selectedEvent && <EventDialogMobile />}
+                </Dialog>
+              </div>
+            </div>
+          )}
         </div>
       ) : (
         <div>
-          <div style={{ marginBottom: '0.5rem' }}>
-            {renderButton(
-              'Monday',
-              () => handleDayChange('2024-07-01'),
-              visibleDay === '2024-07-01'
-            )}
-            {renderButton(
-              'Tuesday',
-              () => handleDayChange('2024-07-02'),
-              visibleDay === '2024-07-02'
-            )}
-          </div>
-          <div className="flex" style={{ marginBottom: '0.5rem' }}>
-            {renderStageButton('Main Stage', 'main-stage-btn')}
-            {renderStageButton('Top Stage', 'top-stage-btn')}
-            {renderStageButton('Workshop', 'workshop-room-btn')}
-            {renderStageButton('Unconference', 'the-unconference-btn')}
-          </div>
-          <div className="calendar-container" style={{ width: 'fit-content', overflow: 'auto' }}>
-            <div style={{ display: 'flex' }}>
-              <FullCalendar
-                allDaySlot={false}
-                plugins={[timeGridPlugin]}
-                displayEventTime={false}
-                eventMinHeight={92}
-                initialView="timeGrid"
-                slotEventOverlap={false}
-                slotLabelInterval={{ hours: 1 }}
-                slotMinTime="09:20:00"
-                slotMaxTime="18:00:00"
-                slotDuration="00:08:30"
-                height="auto"
-                headerToolbar={{
-                  left: '',
-                  right: '',
-                }}
-                visibleRange={{
-                  start: visibleDay,
-                  end: visibleDay === '2024-07-01' ? '2024-07-02' : '2024-07-03',
-                }}
-                events={
-                  currentView === 'Main Stage'
-                    ? mainstageData
-                    : currentView === 'Top Stage'
-                    ? stageData
-                    : currentView === 'Workshop'
-                    ? workshopData
-                    : unconferenceData
-                }
-                eventContent={renderMobileEventContent}
-                dayHeaderContent={currentView}
-              />
-            </div>
-            <Dialog
-              isOpen={isDialogOpen}
-              onClose={() => {
-                setIsDialogOpen(false);
-                setSelectedEvent(null);
-              }}
-            >
-              {selectedEvent && <EventDialogMobile />}
-            </Dialog>
-          </div>
+          <CircularProgress color="secondary" />
         </div>
       )}
     </div>
