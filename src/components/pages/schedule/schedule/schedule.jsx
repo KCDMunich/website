@@ -35,7 +35,7 @@ const SessionListComponent = () => {
   const [visibleDay, setVisibleDay] = useState('2024-07-01');
   const [currentView, setCurrentView] = useState('Main Stage');
   const [currentStages, setCurrentStages] = useState('Stages');
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   //Speaker aus der api fetchen
   useEffect(() => {
@@ -88,15 +88,9 @@ const SessionListComponent = () => {
       .catch((error) => console.error('Error:', error));
   }, []);
 
-  if (isLoading) {
-    return <div>
-      <CircularProgress color="secondary" />
-    </div>
-  }
-
   const findSpeakerProfile = (speakerId) => {
     const speaker = speakerData.find((s) => s.id === speakerId);
-    return speaker.profilePicture;
+    return speaker ? speaker.profilePicture : null;
   };
 
   const Dialog = ({ isOpen, onClose, children }) => {
@@ -540,6 +534,12 @@ const SessionListComponent = () => {
       </span>
     </Button>
   );
+
+  if (isLoading) {
+    <div>
+      <CircularProgress color="secondary" />
+    </div>;
+  }
 
   return (
     <div className="w-full overflow-hidden rounded-md" style={{ background: '#dadada21' }}>
