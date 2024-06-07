@@ -33,6 +33,7 @@ import Maiborn from 'icons/maiborn.jpeg';
 import Dgi from 'icons/Dgi.png';
 import Tigera from 'icons/Tigera_Logo_Logo.jpg';
 import Splunk from 'icons/Splunk_logo.svg';
+import Paloalto from 'icons/Paloalto.jpeg';
 
 const TITLE = 'Sponsors';
 
@@ -44,6 +45,7 @@ const ITEMS = [
       { icon: cisco, url: 'https://www.cisco.com/' },
       { icon: consol, url: 'https://www.consol.com/' },
       { icon: MetalStack, url: 'https://metalstack.cloud/de' },
+      { icon: Paloalto, url: 'https://www.paloaltonetworks.com/' },
       { icon: veeam, url: 'https://www.veeam.com/' },
     ],
     cardClassname: 'min-w-[488px] max-w-[330px] min-h-[152px] sm:min-w-[350px] sm:min-h-[130px]',
