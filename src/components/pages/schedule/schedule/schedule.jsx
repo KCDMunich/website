@@ -36,6 +36,7 @@ const SessionListComponent = () => {
   const [currentView, setCurrentView] = useState('Main Stage');
   const [currentStages, setCurrentStages] = useState('Stages');
   const [isLoading, setIsLoading] = useState(true);
+  const [sponsorStageData, setSponsorStageData] = useState([]);
 
   //Speaker aus der api fetchen
   useEffect(() => {
@@ -79,6 +80,14 @@ const SessionListComponent = () => {
             event.title === 'Lunch Break' ||
             event.title === 'Coffee Break'
         );
+        const sponsorStageEvents = events.filter(
+          // für Sponsor Stage muss noch entsprechend angpasst werden
+          (event) =>
+            event.room === 'Sponsor Stage' ||
+            event.title === 'Lunch Break' ||
+            event.title === 'Coffee Break'
+        );
+        setSponsorStageData(sponsorStageData);
         setMainStageData(roomEvents);
         setStageData(topStageEvents);
         setWorkshopData(workshopRoomEvents);
