@@ -1,6 +1,5 @@
 import clsx from 'clsx';
 import React from 'react';
-
 import Button from 'components/shared/button';
 import Link from 'components/shared/link';
 import LINKS from 'constants/links';
