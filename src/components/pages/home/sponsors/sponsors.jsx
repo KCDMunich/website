@@ -12,6 +12,7 @@ import cisco from 'icons/cisco.png';
 import Cloudnative from 'icons/cloudnative.svg';
 import consol from 'icons/consol.png';
 import csp2 from 'icons/csp2_claim_logo_V1.jpg';
+import Dgi from 'icons/Dgi.png';
 import dynatrace from 'icons/dynatrace.png';
 import Exoscale from 'icons/exoscale.webp';
 import germantech from 'icons/germantech.svg';
@@ -19,21 +20,20 @@ import Isovalent from 'icons/isovalent.svg';
 import Kubecareers from 'icons/kubecareers_1.svg';
 import Kubeevents from 'icons/kubeevents_2.svg';
 import liquid from 'icons/liquid.png';
+import Maiborn from 'icons/maiborn.jpeg';
 import MetalStack from 'icons/metalstackcloud.webp';
 import MindcurvGmbH from 'icons/Mindcurv_Logo_Color.svg';
+import paloalto from 'icons/paloalto.jpeg';
 import pulumi from 'icons/pulumi_logo.svg';
 import Qaware from 'icons/qaware.svg';
 import spectrocloud from 'icons/spectrocloud.svg';
+import Splunk from 'icons/Splunk_logo.svg';
 import StackState from 'icons/stackstate.png';
 import Steadforce from 'icons/steadforce_logo.png';
 import Syseleven from 'icons/syseleven.png';
+import Tigera from 'icons/Tigera_Logo_Logo.jpg';
 import veeam from 'icons/veeam.png';
 import whiteduck from 'icons/whiteduck.png';
-import Maiborn from 'icons/maiborn.jpeg';
-import Dgi from 'icons/Dgi.png';
-import Tigera from 'icons/Tigera_Logo_Logo.jpg';
-import Splunk from 'icons/Splunk_logo.svg';
-import Paloalto from 'icons/Paloalto.jpeg';
 
 const TITLE = 'Sponsors';
 
@@ -45,11 +45,11 @@ const ITEMS = [
       { icon: cisco, url: 'https://www.cisco.com/' },
       { icon: consol, url: 'https://www.consol.com/' },
       { icon: MetalStack, url: 'https://metalstack.cloud/de' },
-      { icon: Paloalto, url: 'https://www.paloaltonetworks.com/' },
+      { icon: paloalto, url: 'https://www.paloaltonetworks.com/' },
       { icon: veeam, url: 'https://www.veeam.com/' },
     ],
-    cardClassname: 'min-w-[488px] max-w-[330px] min-h-[152px] sm:min-w-[350px] sm:min-h-[130px]',
-    iconClassname: 'max-w-[390px] sm:max-w-[350px]',
+    cardClassname: 'min-w-[384px] min-h-[122px] sm:min-w-[320px] sm:min-h-[115px]',
+    iconClassname: 'max-w-[330px] sm:min-w-[290px]',
   },
   {
     title: 'Silver',
@@ -90,7 +90,7 @@ const ITEMS = [
         url: 'https://www.dg-i.net/',
       },
     ],
-    cardClassname: 'min-w-[280px] min-h-[104px] sm:min-w-[250px] sm:min-h-[94px]',
+    cardClassname: 'min-w-[384px] min-h-[122px] sm:min-w-[320px] sm:min-h-[115px]',
     iconClassname: 'max-w-[330px] sm:min-w-[290px]',
   },
   {
