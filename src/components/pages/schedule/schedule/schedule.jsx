@@ -37,6 +37,8 @@ const SessionListComponent = () => {
   const [currentStages, setCurrentStages] = useState('Stages');
   const [isLoading, setIsLoading] = useState(true);
   const [sponsorStageData, setSponsorStageData] = useState([]);
+  const [santoriniData, setSantoriniData] = useState([]);
+  const [dubrovnikData, setDubrovnikData] = useState([]);
 
   //Speaker aus der api fetchen
   useEffect(() => {
@@ -86,6 +88,21 @@ const SessionListComponent = () => {
             event.title === 'Lunch Break' ||
             event.title === 'Coffee Break'
         );
+        const dubrovnikEvents = events.filter(
+          (event) =>
+            event.room === 'Dubrovnik' ||
+            event.title === 'Lunch Break' ||
+            event.title === 'Coffee Break'
+        );
+
+        const santoriniEvents = events.filter(
+          (event) =>
+            event.room === 'Santorini' ||
+            event.title === 'Lunch Break' ||
+            event.title === 'Coffee Break'
+        );
+        setSantoriniData(santoriniEvents);
+        setDubrovnikData(dubrovnikEvents);
         setSponsorStageData(sponsorStageEvents);
         setMainStageData(roomEvents);
         setStageData(topStageEvents);
@@ -678,9 +695,9 @@ const SessionListComponent = () => {
                     start: visibleDay,
                     end: visibleDay === '2024-07-01' ? '2024-07-02' : '2024-07-03',
                   }}
-                  events={unconferenceData}
+                  events={dubrovnikData}
                   eventContent={renderEventContent}
-                  dayHeaderContent="The Unconference"
+                  dayHeaderContent="Dubrovnik"
                 />
               </div>
             )}
@@ -705,6 +722,26 @@ const SessionListComponent = () => {
                   events={sponsorStageData}
                   eventContent={renderEventContent}
                   dayHeaderContent="Sponsor"
+                />
+                <FullCalendar
+                  allDaySlot={false}
+                  plugins={[timeGridPlugin]}
+                  displayEventTime={false}
+                  initialView="timeGrid"
+                  slotEventOverlap={false}
+                  slotLabelInterval={{ hours: 1 }}
+                  slotMinTime="09:20:00"
+                  slotMaxTime="18:00:00"
+                  slotDuration="00:08:30"
+                  height="auto"
+                  headerToolbar={{ left: '', right: '' }}
+                  visibleRange={{
+                    start: visibleDay,
+                    end: visibleDay === '2024-07-01' ? '2024-07-02' : '2024-07-03',
+                  }}
+                  events={santoriniData}
+                  eventContent={renderEventContent}
+                  dayHeaderContent="Santorini"
                 />
               </div>
             )}
@@ -737,8 +774,9 @@ const SessionListComponent = () => {
             {renderStageButton('Main Stage', 'main-stage-btn')}
             {renderStageButton('Top Stage', 'top-stage-btn')}
             {renderStageButton('Workshop', 'workshop-room-btn')}
-            {renderStageButton('Unconference', 'the-unconference-btn')}
+            {renderStageButton('Santorini', 'santorini-btn')}
             {renderStageButton('Sponsor', 'sponsor-btn')}
+            {renderStageButton('Dubrovnik', 'santorini-btn')}
           </div>
           <div className="calendar-container" style={{ width: 'fit-content', overflow: 'auto' }}>
             <div style={{ display: 'flex' }}>
@@ -769,9 +807,11 @@ const SessionListComponent = () => {
                     ? stageData
                     : currentView === 'Workshop'
                     ? workshopData
-                    : currentView === 'Unconference'
-                    ? unconferenceData
-                    : sponsorStageData
+                    : currentView === 'Santorini'
+                    ? santoriniData
+                    : currentView === 'Sponsor'
+                    ? sponsorStageData
+                    : dubrovnikData
                 }
                 eventContent={renderMobileEventContent}
                 dayHeaderContent={currentView}
