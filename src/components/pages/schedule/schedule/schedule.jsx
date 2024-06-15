@@ -414,16 +414,13 @@ const SessionListComponent = () => {
   };
 
   const EventDialogMobile = () => {
-    const formatSpeakerName = (name) => {
-      return name.replace(/"\w+"/g, '').trim();
-    };
+    const formatSpeakerName = (name) => name.replace(/"\w+"/g, '').trim();
 
-    const formatTime = (date) => {
-      return new Date(date).toLocaleTimeString([], {
+    const formatTime = (date) =>
+      new Date(date).toLocaleTimeString([], {
         hour: '2-digit',
         minute: '2-digit',
       });
-    };
 
     return (
       <div
@@ -501,7 +498,7 @@ const SessionListComponent = () => {
             ? 'from-[#ff00c6] via-[#ff5478] to-[#ff8a05]'
             : 'from-[#3333ff] via-[#3333ff] to-[#3333ff]'
         }`}
-      ></span>
+      />
       <span className="bg-gray-900 duration-400 relative rounded-md px-6 py-3 transition-all ease-out group-hover:bg-opacity-0">
         <span className="relative font-bold text-white">{label}</span>
       </span>
@@ -520,7 +517,7 @@ const SessionListComponent = () => {
             ? 'from-[#ff00c6] via-[#ff5478] to-[#ff8a05]'
             : 'from-[#3333ff] via-[#3333ff] to-[#3333ff]'
         }`}
-      ></span>
+      />
       <span className="bg-gray-900 duration-400 relative rounded-md px-6 py-3 transition-all ease-out group-hover:bg-opacity-0">
         <span className="relative font-bold text-white">{stageName}</span>
       </span>
@@ -538,7 +535,7 @@ const SessionListComponent = () => {
             ? 'from-[#ff00c6] via-[#ff5478] to-[#ff8a05]'
             : 'from-[#3333ff] via-[#3333ff] to-[#3333ff]'
         }`}
-      ></span>
+      />
       <span className="bg-gray-900 duration-400 relative rounded-md px-6 py-3 transition-all ease-out group-hover:bg-opacity-0">
         <span className="relative font-bold text-white">{stageName}</span>
       </span>
@@ -557,7 +554,7 @@ const SessionListComponent = () => {
             ? 'from-[#ff00c6] via-[#ff5478] to-[#ff8a05]'
             : 'from-[#3333ff] via-[#3333ff] to-[#3333ff]'
         }`}
-      ></span>
+      />
       <span className="bg-gray-900 duration-400 relative rounded-md px-6 py-3 transition-all ease-out group-hover:bg-opacity-0">
         <span className="relative font-bold text-white">{stageName}</span>
       </span>
@@ -567,15 +564,15 @@ const SessionListComponent = () => {
     <Button
       className={`border-nonemd:hidden group relative inline-flex w-fit items-center justify-center overflow-hidden ${additionalClass}`}
       style={{ scale: '0.9', width: '200px', fontSize: '11px' }}
-      onClick={() => setSponsorView(stageName)}
+      onClick={() => setSponsorView()}
     >
       <span
         className={`absolute h-full w-full bg-gradient-to-br ${
-          currentStages === stageName
+          currentStages === 'Sponsor'
             ? 'from-[#ff00c6] via-[#ff5478] to-[#ff8a05]'
             : 'from-[#3333ff] via-[#3333ff] to-[#3333ff]'
         }`}
-      ></span>
+      />
       <span className="bg-gray-900 duration-400 relative rounded-md px-6 py-3 transition-all ease-out group-hover:bg-opacity-0">
         <span className="relative font-bold text-white">{stageName}</span>
       </span>
@@ -607,7 +604,7 @@ const SessionListComponent = () => {
           <div>
             {renderStageButtonDesktopMainTop('Stages', 'main-stage-btn')}
             {renderStageButtonDesktopWorkshop('Workshops', 'workshop-room-btn')}
-            {renderStageButtonDesktopSponsor('Sponsor', 'sponsor-room-btn')}
+            {renderStageButtonDesktopSponsor('Workshops & Sponsor', 'sponsor-room-btn')}
           </div>
           <div className="calendar-container">
             {currentStages === 'Stages' && (
@@ -719,9 +716,9 @@ const SessionListComponent = () => {
                     start: visibleDay,
                     end: visibleDay === '2024-07-01' ? '2024-07-02' : '2024-07-03',
                   }}
-                  events={sponsorStageData}
+                  events={santoriniData}
                   eventContent={renderEventContent}
-                  dayHeaderContent="Sponsor"
+                  dayHeaderContent="Santorini"
                 />
                 <FullCalendar
                   allDaySlot={false}
@@ -739,9 +736,9 @@ const SessionListComponent = () => {
                     start: visibleDay,
                     end: visibleDay === '2024-07-01' ? '2024-07-02' : '2024-07-03',
                   }}
-                  events={santoriniData}
+                  events={sponsorStageData}
                   eventContent={renderEventContent}
-                  dayHeaderContent="Santorini"
+                  dayHeaderContent="Sponsor"
                 />
               </div>
             )}
