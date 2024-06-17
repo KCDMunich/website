@@ -500,7 +500,7 @@ const SessionListComponent = () => {
   const renderStageButton = (stageName, additionalClass) => (
     <Button
       className={`border-nonemd:hidden group relative inline-flex w-fit items-center justify-center overflow-hidden ${additionalClass}`}
-      style={{ scale: '0.75', width: '100vw', fontSize: '8px' }}
+      style={{ scale: '0.9', fontSize: '8px' }}
       onClick={() => handleViewChange(stageName)}
     >
       <span
