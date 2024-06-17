@@ -48,6 +48,9 @@ const Details = () => (
           <div className="mx-auto mt-5 max-w-[800px] text-center text-lg leading-normal text-primary-1">
             <div className="mt-7 text-center">
               <p>
+                <b>Best Western Hotel Arabellapark Munich</b> - Arabellastraße 15, Munich
+              </p>
+              <p>
                 <b>Four Points by Sheraton Munich Arabellapark</b> - Arabellastraße 5, Munich
               </p>
               <p>
