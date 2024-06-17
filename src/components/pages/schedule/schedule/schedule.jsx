@@ -1,17 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import scheduleJSON from './schedule.json'; //Daten aus der schedule.json
 import './schedule.css';
 import FullCalendar from '@fullcalendar/react';
 import timeGridPlugin from '@fullcalendar/timegrid';
-import Button from 'components/shared/button';
-import { isMobile } from 'react-device-detect';
 import Avatar from '@mui/material/Avatar';
 import Chip from '@mui/material/Chip';
-import Divider from '@mui/material/Divider';
 import CircularProgress from '@mui/material/CircularProgress';
+import Divider from '@mui/material/Divider';
+import { isMobile } from 'react-device-detect';
+
+import Button from 'components/shared/button';
 
 const scriptUrl = 'https://sessionize.com/api/v2/6dqtqpt2/view/GridSmart';
-// const scriptUrl = 'https://sessionize.com/api/v2/6dqtqpt2/view/Sessions'; api -> sessionList
 const speakerURL = 'https://sessionize.com/api/v2/6dqtqpt2/view/Speakers';
 
 const Schedule = () => (
@@ -26,10 +25,10 @@ const Schedule = () => (
 
 const SessionListComponent = () => {
   const [speakerData, setSpeakerData] = useState([]);
-  const [stageData, setStageData] = useState([]);
+  const [stageData, setTopStageData] = useState([]);
   const [mainstageData, setMainStageData] = useState([]);
   const [workshopData, setWorkshopData] = useState([]);
-  const [unconferenceData, setUnconferenceData] = useState([]);
+  const [sponsorWorkshopsData, setSponsorWorkshopsData] = useState([]);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [selectedEvent, setSelectedEvent] = useState(null);
   const [visibleDay, setVisibleDay] = useState('2024-07-01');
@@ -37,8 +36,7 @@ const SessionListComponent = () => {
   const [currentStages, setCurrentStages] = useState('Stages');
   const [isLoading, setIsLoading] = useState(true);
   const [sponsorStageData, setSponsorStageData] = useState([]);
-  const [santoriniData, setSantoriniData] = useState([]);
-  const [dubrovnikData, setDubrovnikData] = useState([]);
+  const [specials, setSpecials] = useState([]);
 
   //Speaker aus der api fetchen
   useEffect(() => {
@@ -76,9 +74,15 @@ const SessionListComponent = () => {
             event.title === 'Lunch Break' ||
             event.title === 'Coffee Break'
         );
-        const unconferenceEvents = events.filter(
+        const sponsorWorkshopRoomEvents = events.filter(
           (event) =>
-            event.room === 'THE UNCONFERENCE' ||
+            event.room === 'Sponsor Workshops' ||
+            event.title === 'Lunch Break' ||
+            event.title === 'Coffee Break'
+        );
+        const specialStageEvents = events.filter(
+          (event) =>
+            event.room === 'Specials' ||
             event.title === 'Lunch Break' ||
             event.title === 'Coffee Break'
         );
@@ -88,26 +92,14 @@ const SessionListComponent = () => {
             event.title === 'Lunch Break' ||
             event.title === 'Coffee Break'
         );
-        const dubrovnikEvents = events.filter(
-          (event) =>
-            event.room === 'Dubrovnik' ||
-            event.title === 'Lunch Break' ||
-            event.title === 'Coffee Break'
-        );
 
-        const santoriniEvents = events.filter(
-          (event) =>
-            event.room === 'Santorini' ||
-            event.title === 'Lunch Break' ||
-            event.title === 'Coffee Break'
-        );
-        setSantoriniData(santoriniEvents);
-        setDubrovnikData(dubrovnikEvents);
-        setSponsorStageData(sponsorStageEvents);
         setMainStageData(roomEvents);
-        setStageData(topStageEvents);
+        setTopStageData(topStageEvents);
         setWorkshopData(workshopRoomEvents);
-        setUnconferenceData(unconferenceEvents);
+        setSponsorWorkshopsData(sponsorWorkshopRoomEvents);
+        setSpecials(specialStageEvents);
+        setSponsorStageData(sponsorStageEvents);
+
         setIsLoading(false);
       })
       .catch((error) => console.error('Error:', error));
@@ -508,7 +500,7 @@ const SessionListComponent = () => {
   const renderStageButton = (stageName, additionalClass) => (
     <Button
       className={`border-nonemd:hidden group relative inline-flex w-fit items-center justify-center overflow-hidden ${additionalClass}`}
-      style={{ scale: '0.9', width: '200px', fontSize: '9px' }}
+      style={{ scale: '0.75', width: '100vw', fontSize: '8px' }}
       onClick={() => handleViewChange(stageName)}
     >
       <span
@@ -604,7 +596,7 @@ const SessionListComponent = () => {
           <div>
             {renderStageButtonDesktopMainTop('Stages', 'main-stage-btn')}
             {renderStageButtonDesktopWorkshop('Workshops', 'workshop-room-btn')}
-            {renderStageButtonDesktopSponsor('Workshops & Sponsor', 'sponsor-room-btn')}
+            {renderStageButtonDesktopSponsor('Sponsor Talks & Workshops', 'sponsor-room-btn')}
           </div>
           <div className="calendar-container">
             {currentStages === 'Stages' && (
@@ -616,7 +608,7 @@ const SessionListComponent = () => {
                   initialView="timeGrid"
                   slotEventOverlap={false}
                   slotLabelInterval={{ hours: 1 }}
-                  slotMinTime="09:20:00"
+                  slotMinTime="08:20:00"
                   slotMaxTime="18:00:00"
                   slotDuration="00:08:30"
                   height="auto"
@@ -637,7 +629,7 @@ const SessionListComponent = () => {
                   eventMinHeight={85}
                   slotEventOverlap={false}
                   slotLabelInterval={{ hours: 1 }}
-                  slotMinTime="09:20:00"
+                  slotMinTime="10:10:00"
                   slotMaxTime="18:00:00"
                   slotDuration="00:08:30"
                   height="auto"
@@ -662,7 +654,7 @@ const SessionListComponent = () => {
                   slotEventOverlap={true}
                   slotMinWidth={200}
                   slotLabelInterval={{ hours: 1 }}
-                  slotMinTime="09:20:00"
+                  slotMinTime="10:50:00"
                   slotMaxTime="18:00:00"
                   slotDuration="00:08:30"
                   height="auto"
@@ -683,7 +675,7 @@ const SessionListComponent = () => {
                   slotEventOverlap={true}
                   slotMinWidth={50}
                   slotLabelInterval={{ hours: 1 }}
-                  slotMinTime="09:20:00"
+                  slotMinTime="10:50:00"
                   slotMaxTime="18:00:00"
                   slotDuration="00:08:30"
                   height="auto"
@@ -692,9 +684,9 @@ const SessionListComponent = () => {
                     start: visibleDay,
                     end: visibleDay === '2024-07-01' ? '2024-07-02' : '2024-07-03',
                   }}
-                  events={dubrovnikData}
+                  events={sponsorWorkshopsData}
                   eventContent={renderEventContent}
-                  dayHeaderContent="Dubrovnik"
+                  dayHeaderContent="Sponsor Workshops"
                 />
               </div>
             )}
@@ -707,7 +699,7 @@ const SessionListComponent = () => {
                   initialView="timeGrid"
                   slotEventOverlap={false}
                   slotLabelInterval={{ hours: 1 }}
-                  slotMinTime="09:20:00"
+                  slotMinTime="12:06:00"
                   slotMaxTime="18:00:00"
                   slotDuration="00:08:30"
                   height="auto"
@@ -716,9 +708,9 @@ const SessionListComponent = () => {
                     start: visibleDay,
                     end: visibleDay === '2024-07-01' ? '2024-07-02' : '2024-07-03',
                   }}
-                  events={santoriniData}
+                  events={specials}
                   eventContent={renderEventContent}
-                  dayHeaderContent="Santorini"
+                  dayHeaderContent="Specials"
                 />
                 <FullCalendar
                   allDaySlot={false}
@@ -727,7 +719,7 @@ const SessionListComponent = () => {
                   initialView="timeGrid"
                   slotEventOverlap={false}
                   slotLabelInterval={{ hours: 1 }}
-                  slotMinTime="09:20:00"
+                  slotMinTime="10:20:00"
                   slotMaxTime="18:00:00"
                   slotDuration="00:08:30"
                   height="auto"
@@ -767,13 +759,13 @@ const SessionListComponent = () => {
               visibleDay === '2024-07-02'
             )}
           </div>
-          <div className="flex" style={{ marginBottom: '0.5rem' }}>
+          <div className="flex" style={{ marginBottom: '0.5rem', display: 'flex' }}>
             {renderStageButton('Main Stage', 'main-stage-btn')}
             {renderStageButton('Top Stage', 'top-stage-btn')}
-            {renderStageButton('Workshop', 'workshop-room-btn')}
-            {renderStageButton('Santorini', 'santorini-btn')}
-            {renderStageButton('Sponsor', 'sponsor-btn')}
-            {renderStageButton('Dubrovnik', 'santorini-btn')}
+            {renderStageButton('Workshop Room', 'workshop-room-btn')}
+            {renderStageButton('Sponsor Work', 'santorini-btn')}
+            {renderStageButton('Specials', 'sponsor-btn')}
+            {renderStageButton('Sponsor Stage', 'santorini-btn')}
           </div>
           <div className="calendar-container" style={{ width: 'fit-content', overflow: 'auto' }}>
             <div style={{ display: 'flex' }}>
@@ -805,10 +797,10 @@ const SessionListComponent = () => {
                     : currentView === 'Workshop'
                     ? workshopData
                     : currentView === 'Santorini'
-                    ? santoriniData
+                    ? sponsorWorkshopsData
                     : currentView === 'Sponsor'
                     ? sponsorStageData
-                    : dubrovnikData
+                    : specials
                 }
                 eventContent={renderMobileEventContent}
                 dayHeaderContent={currentView}
