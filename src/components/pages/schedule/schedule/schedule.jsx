@@ -654,7 +654,7 @@ const SessionListComponent = () => {
                   slotEventOverlap={true}
                   slotMinWidth={200}
                   slotLabelInterval={{ hours: 1 }}
-                  slotMinTime="09:20:00"
+                  slotMinTime="09:30:00"
                   slotMaxTime="18:00:00"
                   slotDuration="00:08:30"
                   height="auto"
@@ -675,7 +675,7 @@ const SessionListComponent = () => {
                   slotEventOverlap={true}
                   slotMinWidth={50}
                   slotLabelInterval={{ hours: 1 }}
-                  slotMinTime="09:20:00"
+                  slotMinTime="09:30:00"
                   slotMaxTime="18:00:00"
                   slotDuration="00:08:30"
                   height="auto"
@@ -699,7 +699,7 @@ const SessionListComponent = () => {
                   initialView="timeGrid"
                   slotEventOverlap={false}
                   slotLabelInterval={{ hours: 1 }}
-                  slotMinTime="09:20:00"
+                  slotMinTime="10:30:00"
                   slotMaxTime="18:00:00"
                   slotDuration="00:08:30"
                   height="auto"
@@ -719,7 +719,7 @@ const SessionListComponent = () => {
                   initialView="timeGrid"
                   slotEventOverlap={false}
                   slotLabelInterval={{ hours: 1 }}
-                  slotMinTime="09:20:00"
+                  slotMinTime="10:30:00"
                   slotMaxTime="18:00:00"
                   slotDuration="00:08:30"
                   height="auto"
