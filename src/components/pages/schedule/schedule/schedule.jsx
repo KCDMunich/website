@@ -765,7 +765,7 @@ const SessionListComponent = () => {
             {renderStageButton('Workshop Room', 'workshop-room-btn')}
             {renderStageButton('Sponsor Work', 'santorini-btn')}
             {renderStageButton('Specials', 'sponsor-btn')}
-            {renderStageButton('Sponsor Stage', 'santorini-btn')}
+            {renderStageButton('Sponsor', 'santorini-btn')}
           </div>
           <div className="calendar-container" style={{ width: 'fit-content', overflow: 'auto' }}>
             <div style={{ display: 'flex' }}>
