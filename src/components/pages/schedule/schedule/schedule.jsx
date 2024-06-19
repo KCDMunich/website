@@ -596,7 +596,7 @@ const SessionListComponent = () => {
           <div>
             {renderStageButtonDesktopMainTop('Stages', 'main-stage-btn')}
             {renderStageButtonDesktopWorkshop('Workshops', 'workshop-room-btn')}
-            {renderStageButtonDesktopSponsor('Sponsor Talks & Workshops', 'sponsor-room-btn')}
+            {renderStageButtonDesktopSponsor('Sponsor Talks & Specials', 'sponsor-room-btn')}
           </div>
           <div className="calendar-container">
             {currentStages === 'Stages' && (
