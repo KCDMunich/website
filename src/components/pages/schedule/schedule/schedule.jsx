@@ -212,9 +212,9 @@ const SessionListComponent = () => {
   const updateMinTime = (day, stage) => {
     if (stage === 'Stages') {
       if (day === '2024-07-01') {
-        setMinTime('08:30:00');
+        setMinTime('08:29:00');
       } else if (day === '2024-07-02') {
-        setMinTime('09:30:00');
+        setMinTime('09:20:00');
       }
     } else if (stage === 'Workshops') {
       if (day === '2024-07-01') {
@@ -233,7 +233,7 @@ const SessionListComponent = () => {
         setMinTime('10:00:00');
       }
     } else {
-      setMinTime('09:30:00');
+      setMinTime('08:20:00');
     }
   };
 
@@ -613,11 +613,11 @@ const SessionListComponent = () => {
         plugins={[timeGridPlugin]}
         displayEventTime={false}
         initialView="timeGrid"
-        slotEventOverlap={true}
+        slotEventOverlap={false}
         slotLabelInterval={{ hours: 1 }}
         slotMinTime={minTime}
         slotMaxTime={maxTime}
-        slotDuration="00:11:30"
+        slotDuration="00:10:00"
         height="auto"
         headerToolbar={{ left: '', right: '' }}
         visibleRange={{
