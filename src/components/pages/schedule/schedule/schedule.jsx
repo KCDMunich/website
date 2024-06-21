@@ -166,7 +166,7 @@ const SessionListComponent = () => {
 
   const handleDayChange = (day) => {
     setVisibleDay(day);
-    updateMinTime(day, currentStages);
+    updateMinTime(day, !isMobile ? currentStages : currentView);
   };
 
   const convertSessionsToEvents = (data) => {
@@ -192,6 +192,7 @@ const SessionListComponent = () => {
 
   const handleViewChange = (viewName) => {
     setCurrentView(viewName);
+    updateMinTime(visibleDay, viewName);
   };
 
   const setMainTopStageView = () => {
@@ -222,15 +223,41 @@ const SessionListComponent = () => {
       } else if (day === '2024-07-02') {
         setMinTime('09:30:00');
       }
-    } else if (stage === 'Specials') {
-      if (day === '2024-07-01' || day === '2024-07-02') {
-        setMinTime('10:30:00');
-      }
     } else if (stage === 'Sponsor') {
       if (day === '2024-07-01') {
-        setMinTime('10:00:00');
+        setMinTime('10:30:00');
       } else if (day === '2024-07-02') {
         setMinTime('10:00:00');
+      }
+    } else if (stage === 'Top Stage') {
+      if (day === '2024-07-01') {
+        setMinTime('10:25:00');
+      } else if (day === '2024-07-02') {
+        setMinTime('10:10:00');
+      }
+    } else if (stage === 'Workshop Room') {
+      if (day === '2024-07-01') {
+        setMinTime('11:00:00');
+      } else if (day === '2024-07-02') {
+        setMinTime('10:30:00');
+      }
+    } else if (stage === 'Sponsor Work') {
+      if (day === '2024-07-01') {
+        setMinTime('13:00:00');
+      } else if (day === '2024-07-02') {
+        setMinTime('09:30:00');
+      }
+    } else if (stage === 'Specials') {
+      if (day === '2024-07-01') {
+        setMinTime('12:40:00');
+      } else if (day === '2024-07-02') {
+        setMinTime('10:30:00');
+      }
+    } else if (stage === 'Main Stage') {
+      if (day === '2024-07-01') {
+        setMinTime('09:30:00');
+      } else if (day === '2024-07-02') {
+        setMinTime('09:00:00');
       }
     } else {
       setMinTime('08:20:00');
@@ -606,6 +633,8 @@ const SessionListComponent = () => {
 
   const renderCalendars = (events, headerContent) => {
     const maxTime = '18:00:00';
+    const slotOverlap =
+      headerContent === 'Workshop Room' || headerContent === 'Sponsor Work' ? true : false;
 
     return (
       <FullCalendar
@@ -613,7 +642,7 @@ const SessionListComponent = () => {
         plugins={[timeGridPlugin]}
         displayEventTime={false}
         initialView="timeGrid"
-        slotEventOverlap={false}
+        slotEventOverlap={slotOverlap}
         slotLabelInterval={{ hours: 1 }}
         slotMinTime={minTime}
         slotMaxTime={maxTime}
@@ -719,9 +748,9 @@ const SessionListComponent = () => {
                   ? mainstageData
                   : currentView === 'Top Stage'
                   ? stageData
-                  : currentView === 'Workshop'
+                  : currentView === 'Workshop Room'
                   ? workshopData
-                  : currentView === 'Santorini'
+                  : currentView === 'Sponsor Work'
                   ? sponsorWorkshopsData
                   : currentView === 'Sponsor'
                   ? sponsorStageData
