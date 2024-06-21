@@ -243,13 +243,13 @@ const SessionListComponent = () => {
       }
     } else if (stage === 'Sponsor Work') {
       if (day === '2024-07-01') {
-        setMinTime('13:00:00');
+        setMinTime('12:15:00');
       } else if (day === '2024-07-02') {
         setMinTime('09:30:00');
       }
     } else if (stage === 'Specials') {
       if (day === '2024-07-01') {
-        setMinTime('12:40:00');
+        setMinTime('12:15:00');
       } else if (day === '2024-07-02') {
         setMinTime('10:30:00');
       }
@@ -641,7 +641,8 @@ const SessionListComponent = () => {
     const slotOverlap =
       headerContent === 'Workshop Room' ||
       headerContent === 'Sponsor Work' ||
-      headerContent === 'Top Stage'
+      headerContent === 'Top Stage' ||
+      headerContent === 'Specials'
         ? true
         : false;
 
