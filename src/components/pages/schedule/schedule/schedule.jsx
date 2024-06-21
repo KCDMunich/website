@@ -341,6 +341,27 @@ const SessionListComponent = () => {
     );
   };
 
+  const getSlotMinTime = () => {
+    const getDayOfWeek = (date) => {
+      return new Date(date).getDay(); // Gibt 0 für Sonntag, 1 für Montag usw.
+    };
+
+    // Angenommen, `visibleDay` ist als Parameter oder Variable im aktuellen Scope verfügbar
+    if (currentView === 'Sponsor Work' && getDayOfWeek(visibleDay) === 1) {
+      return '13:00:00'; // Spezifischer Fall für Sponsor Work am Montag
+    } else if (currentView === 'Top Stage') {
+      return '10:10:00';
+    } else if (currentView === 'Workshop') {
+      return '10:30:00';
+    } else if (currentView === 'Sponsor Work') {
+      return '09:30:00';
+    } else if (currentView === 'Sponsor' || currentView === 'Specials') {
+      return '10:30:00';
+    } else {
+      return '09:20:00'; // Standardwert, wenn keine der spezifischen Ansichten zutrifft
+    }
+  };
+
   const EventDialog = () => {
     const formatSpeakerName = (name) => {
       return name.replace(/"\w+"/g, '').trim();
@@ -762,7 +783,7 @@ const SessionListComponent = () => {
           <div className="flex" style={{ marginBottom: '0.5rem', display: 'flex' }}>
             {renderStageButton('Main Stage', 'main-stage-btn')}
             {renderStageButton('Top Stage', 'top-stage-btn')}
-            {renderStageButton('Workshop Room', 'workshop-room-btn')}
+            {renderStageButton('Workshop', 'workshop-room-btn')}
             {renderStageButton('Sponsor Work', 'santorini-btn')}
             {renderStageButton('Specials', 'sponsor-btn')}
             {renderStageButton('Sponsor', 'santorini-btn')}
@@ -777,7 +798,7 @@ const SessionListComponent = () => {
                 initialView="timeGrid"
                 slotEventOverlap={false}
                 slotLabelInterval={{ hours: 1 }}
-                slotMinTime="09:20:00"
+                slotMinTime={getSlotMinTime()}
                 slotMaxTime="18:00:00"
                 slotDuration="00:08:30"
                 height="auto"
@@ -796,7 +817,7 @@ const SessionListComponent = () => {
                     ? stageData
                     : currentView === 'Workshop'
                     ? workshopData
-                    : currentView === 'Santorini'
+                    : currentView === 'Sponsor Work'
                     ? sponsorWorkshopsData
                     : currentView === 'Sponsor'
                     ? sponsorStageData
