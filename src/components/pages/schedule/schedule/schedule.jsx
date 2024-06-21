@@ -279,6 +279,11 @@ const SessionListComponent = () => {
       return name.replace(/"\w+"/g, '').trim();
     };
 
+    const scaleStyle =
+      isCustomDebugProfiles || isOpenSSF
+        ? { transform: 'scale(0.9)', marginTop: '-4px', marginLeft: '-8px', borderBottom: 'none' }
+        : {};
+
     const isBreakEvent =
       eventInfo.event.title === 'Lunch Break' || eventInfo.event.title === 'Coffee Break';
 
@@ -296,7 +301,7 @@ const SessionListComponent = () => {
         style={{ width: '100%', height: '100%', cursor: !isBreakEvent ? 'pointer' : 'default' }}
       >
         <div className="h-full w-full rounded-lg bg-[transparent] p-4 text-white">
-          <div className="mb-4 border-b border-white pb-2">
+          <div className="mb-4 border-b border-white pb-2" style={scaleStyle}>
             <span className="event-title">{eventInfo.event.title}</span>
             <h1 className="event-time">
               {new Date(eventInfo.event.start).toLocaleString([], {
@@ -634,10 +639,17 @@ const SessionListComponent = () => {
   const renderCalendars = (events, headerContent) => {
     const maxTime = '18:00:00';
     const slotOverlap =
-      headerContent === 'Workshop Room' || headerContent === 'Sponsor Work' ? true : false;
+      headerContent === 'Workshop Room' ||
+      headerContent === 'Sponsor Work' ||
+      headerContent === 'Top Stage'
+        ? true
+        : false;
+
+    const eventHeight = headerContent === 'Top Stage' ? 80 : 50;
 
     return (
       <FullCalendar
+        eventMinHeight={eventHeight}
         allDaySlot={false}
         plugins={[timeGridPlugin]}
         displayEventTime={false}
