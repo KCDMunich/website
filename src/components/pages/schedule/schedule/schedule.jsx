@@ -213,9 +213,9 @@ const SessionListComponent = () => {
   const updateMinTime = (day, stage) => {
     if (stage === 'Stages') {
       if (day === '2024-07-01') {
-        setMinTime('08:29:00');
+        setMinTime('08:30:00');
       } else if (day === '2024-07-02') {
-        setMinTime('09:20:00');
+        setMinTime('09:00:00');
       }
     } else if (stage === 'Workshops') {
       if (day === '2024-07-01') {
@@ -253,14 +253,8 @@ const SessionListComponent = () => {
       } else if (day === '2024-07-02') {
         setMinTime('10:30:00');
       }
-    } else if (stage === 'Main Stage') {
-      if (day === '2024-07-01') {
-        setMinTime('09:30:00');
-      } else if (day === '2024-07-02') {
-        setMinTime('09:00:00');
-      }
     } else {
-      setMinTime('08:20:00');
+      setMinTime('08:30:00');
     }
   };
 
