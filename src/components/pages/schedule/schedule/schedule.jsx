@@ -45,6 +45,7 @@ const SessionListComponent = () => {
       .then((data) => {
         setSpeakerData(data);
         setIsLoading(true);
+        updateMinTime(visibleDay, currentView);
       })
       .catch((error) => console.error('Error:', error));
   }, []);
