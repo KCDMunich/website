@@ -4,6 +4,10 @@ const getAnchor = (str) => slugify(str).toLocaleLowerCase();
 
 export default {
   // Pages and sections
+  gallery: {
+    to: 'https://lightroom.adobe.com/shares/42d27333b09147bba84e9ed1fb859739',
+    target: '_blank',
+  },
   home: {
     to: '/',
   },
@@ -62,29 +66,6 @@ export default {
   speakers: {
     to: `/speakers`,
     id: getAnchor('Speakers'),
-    homeTo:  '/speakers',
+    homeTo: '/speakers',
   },
 };
-
-/*
- schedule: {
-    to: '/schedule',
-    id: getAnchor('Schedule'),
-    homeTo: '/schedule',
-  },
-  proposal: {
-    to: `/#${getAnchor('Call for Speakers')}`,
-    id: getAnchor('Call for Speakers'),
-    homeTo: null,
-  },
-  sponsors: {
-    to: `/#${getAnchor('Sponsors')}`,
-    id: getAnchor('Sponsors'),
-    homeTo: null,
-  },
-  speakers: {
-    to: `/speakers`,
-    id: getAnchor('Speakers'),
-    homeTo:  '/speakers',
-  },
-  */

@@ -47,23 +47,11 @@ const Header = ({ isMobileMenuOpen, onBurgerClick, additionalClassName, homepage
           <ul className="-ml-8 flex space-x-8 text-white lg:ml-0 lg:space-x-6 md:hidden">
             {MENUS.header.map(({ text, to, homeTo }, index) => (
               <li className="text-[15px] font-semibold text-primary-1" key={index}>
-                {homepage ? (
-                  <Button to={homeTo} theme="link-primary" onClick={handleAnchorClick}>
-                    {text}
-                  </Button>
-                ) : (
-                  <Button to={to} theme="link-primary">
-                    {text}
-                  </Button>
-                )}
+                <Button to={to || `/#${homeTo}`} theme="link-primary" onClick={handleAnchorClick}>
+                  {text}
+                </Button>
               </li>
             ))}
-            <a
-              href="https://lightroom.adobe.com/shares/42d27333b09147bba84e9ed1fb859739"
-              style={{ color: '#26305a', fontSize: '15px', fontWeight: '600' }}
-            >
-              KCD24 Image Gallery
-            </a>
           </ul>
         </nav>
         <Button

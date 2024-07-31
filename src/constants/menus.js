@@ -4,9 +4,9 @@ const MENUS = {
   header: [
     { text: 'Speakers', ...LINKS.speakers },
     { text: 'Schedule', ...LINKS.schedule },
-    //{ text: 'Call for Speakers', ...LINKS.proposal },
+    // { text: 'Call for Speakers', ...LINKS.proposal },
     { text: 'Sponsors', ...LINKS.sponsors },
-    // { text: 'Workshops', ...LINKS.workshops },
+    { text: 'KCD24 Image Gallery', ...LINKS.gallery },
   ],
   footer: [
     { text: 'Code of Conduct', ...LINKS.conduct },
@@ -16,10 +16,11 @@ const MENUS = {
   ],
   mobile: [
     { text: 'Speakers', ...LINKS.speakers },
-   { text: 'Schedule', ...LINKS.schedule },
-    //{ text: 'Call for Speakers', ...LINKS.proposal },
+    { text: 'Schedule', ...LINKS.schedule },
+    // { text: 'Call for Speakers', ...LINKS.proposal },
     // { text: 'Workshops', ...LINKS.workshops },
     { text: 'Sponsors', ...LINKS.sponsors },
+    { text: 'KCD24 Image Gallery', ...LINKS.gallery },
   ],
 };
 
