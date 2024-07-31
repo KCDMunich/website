@@ -58,6 +58,12 @@ const Header = ({ isMobileMenuOpen, onBurgerClick, additionalClassName, homepage
                 )}
               </li>
             ))}
+            <a
+              href="https://lightroom.adobe.com/shares/42d27333b09147bba84e9ed1fb859739"
+              style={{ color: '#26305a', fontSize: '15px', fontWeight: '600' }}
+            >
+              KCD24 Image Gallery
+            </a>
           </ul>
         </nav>
         <Button
