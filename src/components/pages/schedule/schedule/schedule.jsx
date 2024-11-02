@@ -47,6 +47,10 @@ const Schedule = () => {
             hour: '2-digit',
             minute: '2-digit',
           }),
+          endTime: new Date(session.endsAt).toLocaleTimeString([], {
+            hour: '2-digit',
+            minute: '2-digit',
+          }),
           duration: calculateDuration(session.startsAt, session.endsAt),
           room: session.room,
           type: determineEventType(session.room),
@@ -61,7 +65,16 @@ const Schedule = () => {
   };
 
   const calculateDuration = (start, end) => {
-    const duration = (new Date(end) - new Date(start)) / 1000 / 60;
+    const startDate = new Date(start);
+    const endDate = new Date(end);
+    const duration = (endDate - startDate) / 1000 / 60;
+    
+    console.log({
+      start: startDate.toLocaleString(),
+      end: endDate.toLocaleString(),
+      duration: Math.round(duration)
+    });
+    
     return Math.round(duration);
   };
 
@@ -178,8 +191,8 @@ const Schedule = () => {
               <div key={event.id} className="event-card" onClick={() => setSelectedEvent(event)}>
                 <div className="event-header">
                   <div className="event-time">
-                    <span>{event.time}</span>
-                    <span>({event.duration} min)</span>
+                    <span>{event.time} - {event.endTime}</span>
+                    <span className="duration-badge">{event.duration} min</span>
                   </div>
                   <span className="event-type">{event.type}</span>
                 </div>
@@ -209,7 +222,7 @@ const Schedule = () => {
             <h2>{selectedEvent.title}</h2>
             <div className="event-details">
               <div className="time-details">
-                <span>{selectedEvent.time}</span>
+                <span>{selectedEvent.time} - {selectedEvent.endTime}</span>
                 <span>({selectedEvent.duration} min)</span>
               </div>
               <div className="room-details">
