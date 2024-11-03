@@ -1,5 +1,6 @@
 /* eslint-disable import/no-extraneous-dependencies, global-require */
 const defaultTheme = require('tailwindcss/defaultTheme');
+const colors = require('tailwindcss/colors');
 
 module.exports = {
   content: ['./src/**/*.{js,jsx,ts,tsx}'],
@@ -7,7 +8,6 @@ module.exports = {
     container: false,
   },
   theme: {
-    // TODO: Uncomment this part of the code and the import of "defaultTheme" above, and complete TODOs
     fontFamily: {
       sans: ['Plus Jakarta Sans', 'Plus Jakarta Sans Fallback', ...defaultTheme.fontFamily.sans],
       mono: ['', ...defaultTheme.fontFamily.mono],
@@ -26,26 +26,16 @@ module.exports = {
       '7xl': ['56px'],
       '8xl': ['80px'],
     },
-    colors: ({ colors }) => ({
-      inherit: colors.inherit,
-      current: colors.current,
-      transparent: colors.transparent,
-      // TODO: Add colors
-      // Make sure that they are prepared in the Figma and follow the naming primary/secondary/gray-${number}
-      // Example of correctly prepared colors in Figma — https://user-images.githubusercontent.com/20713191/143586876-5e834233-9639-4166-9811-b00e63820d98.png
-      // Example of incorrectly prepared colors in Figma — https://user-images.githubusercontent.com/20713191/143586974-6986149f-aee3-450c-a1dd-26e73e3aca02.png
-      black: '#000000',
-      white: '#ffffff',
-      yellow: '#FFEA7D',
-      blue: { 1: '#3333FF', 2: '#2929FF' },
-      primary: {
-        1: '#262F59',
-        2: 'rgba(38, 47, 89, 0.1)',
-        3: 'rgba(38, 47, 89, 0.3)',
-        4: 'rgba(38, 47, 89, 0.03)',
-        5: 'rgba(38, 47, 89, 0.8)',
-      },
+    colors: ({ colors: defaultColors }) => ({
+      inherit: defaultColors.inherit,
+      current: defaultColors.current,
+      transparent: defaultColors.transparent,
+
+      // Default Tailwind colors
+      slate: colors.slate,
       gray: {
+        ...colors.gray,
+        // Custom gray shades
         1: '#0D0D0D',
         2: '#1A1A1A',
         3: '#262626',
@@ -59,9 +49,99 @@ module.exports = {
         11: '#D1D1E0',
         12: '#F5F5F5',
       },
+      zinc: colors.zinc,
+      neutral: colors.neutral,
+      stone: colors.stone,
+      red: colors.red,
+      orange: colors.orange,
+      amber: colors.amber,
+      yellow: {
+        ...colors.yellow,
+        DEFAULT: '#FFEA7D',
+        50: '#FFFDF0',
+        100: '#FFF9D6',
+        200: '#FFF5BD',
+        300: '#FFEA7D',
+        400: '#FFE563',
+        500: '#E5C941',
+      },
+      lime: colors.lime,
+      green: {
+        ...colors.green,
+        1: '#00FF00',
+        2: '#00E600',
+        3: '#00CC00',
+        4: '#00B300',
+        5: '#009900',
+        6: '#008000',
+        7: '#006600',
+        8: '#004C00',
+        9: '#003300',
+        10: '#001A00',
+        light: '#E6FFE6',
+        lighter: '#F5FFF5',
+        dark: '#004D00',
+        darker: '#003300',
+        forest: '#228B22',
+        mint: '#98FF98',
+        lime: '#32CD32',
+        sage: '#9DC183',
+        olive: '#808000',
+        emerald: '#50C878'
+      },
+      emerald: colors.emerald,
+      teal: colors.teal,
+      cyan: colors.cyan,
+      sky: colors.sky,
+      blue: {
+        ...colors.blue,
+        1: '#3333FF',
+        2: '#2929FF',
+        3: '#1F1FFF',
+        4: '#1414FF',
+        5: '#0A0AFF',
+        6: '#0000FF',
+        7: '#0000E6',
+        8: '#0000CC',
+        9: '#0000B3',
+        10: '#00009A',
+        light: '#E6E6FF',
+        lighter: '#F5F5FF',
+        dark: '#000080',
+        darker: '#000066',
+      },
+      indigo: colors.indigo,
+      violet: colors.violet,
+      purple: colors.purple,
+      fuchsia: colors.fuchsia,
+      pink: colors.pink,
+      rose: colors.rose,
+
+      // Custom colors
+      black: '#000000',
+      white: '#ffffff',
+      primary: {
+        1: '#262F59',
+        2: 'rgba(38, 47, 89, 0.1)',
+        3: 'rgba(38, 47, 89, 0.3)',
+        4: 'rgba(38, 47, 89, 0.03)',
+        5: 'rgba(38, 47, 89, 0.8)',
+      },
       lightYellow: 'rgba(255, 234, 125, 0.3)',
       lightGreen: 'rgba(125, 255, 208, 0.2)',
       lightOrange: 'rgba(255, 180, 125, 0.2)',
+      bronze: {
+        50: '#FAF5EF',
+        100: '#F5EBE0',
+        200: '#E8D3BA',
+        300: '#D4B594',
+        400: '#CD8E54',
+        500: '#CD7F32', // Classic bronze color
+        600: '#B36A1B',
+        700: '#8C541B',
+        800: '#724223',
+        900: '#5C371F',
+      },
     }),
     backgroundImage: {
       'header-gradient': 'linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%)',
