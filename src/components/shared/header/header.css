@@ -1,21 +1,16 @@
-.hero-cta-container {
-  display: flex;
-  align-items: center;
+.navbar-logo {
+  width: 15rem;
+  height: auto;
+  cursor: pointer;
 }
 
-.hero-cta-primary {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+.button {
+  display: inline-block;
   padding: 0.75rem 1.5rem;
   font-size: 1rem;
   font-weight: 500;
   color: white;
-  background: linear-gradient(to right, #3333ff, #3333ff);
+  background: #004258;
   border-radius: 0.375rem;
-  transition: background 0.3s ease;
-}
-
-.hero-cta-primary.hovered {
-  background: linear-gradient(to right, #ff00c6, #ff5478, #ff8a05);
+  cursor: pointer;
 }

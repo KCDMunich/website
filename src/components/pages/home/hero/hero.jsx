@@ -1,12 +1,9 @@
-import React, { useState } from 'react';
-import { Link } from 'gatsby';
-import { Calendar, MapPin, Users } from 'lucide-react';
-import './hero.css';
 import { StaticImage } from 'gatsby-plugin-image';
+import { Calendar, MapPin, Users } from 'lucide-react';
+import React from 'react';
+import './hero.css';
 
 const Hero = () => {
-  const [isHovered, setIsHovered] = useState(false);
-
   return (
     <div className="hero-container">
       <section className="hero-section">
@@ -46,17 +43,24 @@ const Hero = () => {
 
               {/* CTA Buttons */}
               <div className="hero-cta-container">
-                <Link
-                  to="https://kcdmunich-2.ticketbutler.io/en/e/kcd-munich-2024/"
-                  className={`hero-cta-primary ${isHovered ? 'hovered' : ''}`}
-                  onMouseEnter={() => setIsHovered(true)}
-                  onMouseLeave={() => setIsHovered(false)}
+                <button
+                  type="button"
+                  className="button"
+                  style={{ cursor: 'pointer' }}
+                  onClick={() => {
+                    window.location.href =
+                      'https://kcdmunich-2.ticketbutler.io/en/e/kcd-munich-2024/';
+                  }}
                 >
                   Get your tickets now
-                </Link>
-                <Link to="#schedule" className="hero-cta-secondary">
+                </button>
+                <button
+                  type="button"
+                  className="hero-cta-secondary"
+                  onClick={() => (window.location.href = '#schedule')}
+                >
                   View Schedule
-                </Link>
+                </button>
               </div>
 
               <p className="hero-support-text">This community event is supported by the CNCF.</p>

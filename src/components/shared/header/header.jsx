@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import slugify from 'slugify';
 import MENUS from 'constants/menus';
-import Logo from 'icons/logo.inline.svg';
 import Burger from '../burger';
 import Link from '../link';
+import { StaticImage } from 'gatsby-plugin-image';
 import './header.css';
 
 const Header = ({ isMobileMenuOpen, onBurgerClick, additionalClassName, homepage }) => {
@@ -39,16 +39,25 @@ const Header = ({ isMobileMenuOpen, onBurgerClick, additionalClassName, homepage
     >
       <div className="container flex items-center justify-between pb-2 pt-5">
         <Link className="z-50 ml-2" to="/">
-          <Logo className="h-12" />
+          <StaticImage
+            src="./images/logo.svg"
+            alt="logo"
+            formats={['auto', 'webp', 'avif']}
+            className="navbar-logo"
+          />
         </Link>
 
         <nav>
           <ul className="-ml-8 flex space-x-8 text-white lg:ml-0 lg:space-x-6 md:hidden">
             {MENUS.header.map(({ text, to, homeTo }, index) => (
-              <li className="text-[15px] font-semibold text-primary-1" key={index}>
+              <li
+                className="text-[15px] font-semibold"
+                key={index}
+                style={{ color: '#004258', cursor: 'pointer' }}
+              >
                 <Link
                   to={to || `/#${homeTo}`}
-                  className="text-primary hover:text-primary-dark transition-colors duration-200"
+                  className="text-primary hover:text-primary-dark cursor-pointer transition-colors duration-200"
                   onClick={handleAnchorClick}
                 >
                   {text}
@@ -59,16 +68,16 @@ const Header = ({ isMobileMenuOpen, onBurgerClick, additionalClassName, homepage
         </nav>
 
         <div className="md:hidden">
-          <Link
-            to="https://kcdmunich-2.ticketbutler.io/en/e/kcd-munich-2024/"
-            className={`hero-cta-primary ${isHovered ? 'hovered' : ''} `}
-            target="_blank"
-            rel="noopener noreferrer"
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
+          <button
+            type="button"
+            className="button"
+            style={{ cursor: 'pointer' }}
+            onClick={() => {
+              window.location.href = 'https://kcdmunich-2.ticketbutler.io/en/e/kcd-munich-2024/';
+            }}
           >
             Get your tickets now
-          </Link>
+          </button>
         </div>
 
         <Burger

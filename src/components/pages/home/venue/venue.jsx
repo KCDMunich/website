@@ -118,6 +118,7 @@ const Venue = () => {
           fontWeight: 'bold',
           textAlign: 'center',
           marginBottom: '3rem',
+          color: ' #004258',
         }}
       >
         Venue Information
@@ -152,7 +153,9 @@ const Venue = () => {
           <Card>
             <div style={{ padding: '1.5rem' }}>
               <div style={{ marginBottom: '1rem' }}>
-                <h2 style={{ fontSize: '1.5rem', fontWeight: 'bold' }}>smartvillage Bogenhausen</h2>
+                <h2 style={{ fontSize: '1.5rem', fontWeight: 'bold', color: '#004258' }}>
+                  smartvillage Bogenhausen
+                </h2>
                 <h3 style={{ fontSize: '1.25rem', color: '#666' }}>at Munich Arabellapark</h3>
               </div>
 
