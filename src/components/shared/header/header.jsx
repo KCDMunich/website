@@ -1,21 +1,20 @@
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useState } from 'react';
 import slugify from 'slugify';
-
 import MENUS from 'constants/menus';
 import Logo from 'icons/logo.inline.svg';
-
 import Burger from '../burger';
-import Button from '../button';
 import Link from '../link';
+import './header.css';
 
 const Header = ({ isMobileMenuOpen, onBurgerClick, additionalClassName, homepage }) => {
+  const [isHovered, setIsHovered] = useState(false);
+
   const getAnchor = (str) => slugify(str).toLocaleLowerCase();
 
   const handleAnchorClick = (e) => {
     const id = getAnchor(e.target.firstChild.data);
-
     const element = document.getElementById(id);
 
     if (element) {
@@ -47,24 +46,31 @@ const Header = ({ isMobileMenuOpen, onBurgerClick, additionalClassName, homepage
           <ul className="-ml-8 flex space-x-8 text-white lg:ml-0 lg:space-x-6 md:hidden">
             {MENUS.header.map(({ text, to, homeTo }, index) => (
               <li className="text-[15px] font-semibold text-primary-1" key={index}>
-                <Button to={to || `/#${homeTo}`} theme="link-primary" onClick={handleAnchorClick}>
+                <Link
+                  to={to || `/#${homeTo}`}
+                  className="text-primary hover:text-primary-dark transition-colors duration-200"
+                  onClick={handleAnchorClick}
+                >
                   {text}
-                </Button>
+                </Link>
               </li>
             ))}
           </ul>
         </nav>
-        <Button
-          className="group relative -mr-2 inline-flex items-center justify-center overflow-hidden border-none p-0.5 font-bold md:hidden"
-          to="https://kcdmunich-2.ticketbutler.io/en/e/kcd-munich-2024/"
-          theme="primary"
-          target="_blank"
-        >
-          <span className="absolute h-full w-full bg-gradient-to-br from-[#3333ff] via-[#3333ff] to-[#3333ff] group-hover:from-[#ff00c6] group-hover:via-[#ff5478] group-hover:to-[#ff8a05]"></span>
-          <span className="bg-gray-900 duration-400 relative rounded-md px-6 py-3 transition-all ease-out group-hover:bg-opacity-0">
-            <span className="relative text-white">Get your tickets now</span>
-          </span>
-        </Button>
+
+        <div className="md:hidden">
+          <Link
+            to="https://kcdmunich-2.ticketbutler.io/en/e/kcd-munich-2024/"
+            className={`hero-cta-primary ${isHovered ? 'hovered' : ''} `}
+            target="_blank"
+            rel="noopener noreferrer"
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+          >
+            Get your tickets now
+          </Link>
+        </div>
+
         <Burger
           className={clsx('z-50 hidden md:block', isMobileMenuOpen && 'text-black dark:text-black')}
           isToggled={isMobileMenuOpen}
