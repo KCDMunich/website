@@ -37,7 +37,16 @@ const Header = ({ isMobileMenuOpen, onBurgerClick, additionalClassName, homepage
         additionalClassName
       )}
     >
-      <div className="container flex items-center justify-between pb-2 pt-5">
+      <div
+        className="flex items-center justify-between pb-2 pt-5"
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-evenly',
+          marginLeft: '5vw',
+          marginRight: '5vw',
+        }}
+      >
         <Link className="z-50 ml-2" to="/">
           <StaticImage
             src="./images/logo.svg"
@@ -48,7 +57,7 @@ const Header = ({ isMobileMenuOpen, onBurgerClick, additionalClassName, homepage
         </Link>
 
         <nav>
-          <ul className="-ml-8 flex space-x-8 text-white lg:ml-0 lg:space-x-6 md:hidden">
+          <ul className=" flex space-x-8 text-white lg:space-x-6 md:hidden">
             {MENUS.header.map(({ text, to, homeTo }, index) => (
               <li
                 className="text-[15px] font-semibold"

@@ -77,7 +77,7 @@ const Hero = () => {
                   }}
                 >
                   <StaticImage
-                    src="./images/hero-illustration.png"
+                    src="./images/hero.svg"
                     alt="Hero"
                     formats={['auto', 'webp', 'avif']}
                   />
