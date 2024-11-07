@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import './schedule.css';
 
 const scriptUrl = 'https://sessionize.com/api/v2/6dqtqpt2/view/GridSmart';
-
 const speakerURL = 'https://sessionize.com/api/v2/6dqtqpt2/view/Speakers';
 
 const Schedule = () => {
@@ -12,6 +11,7 @@ const Schedule = () => {
   const [selectedType, setSelectedType] = useState('all');
   const [selectedEvent, setSelectedEvent] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [currentTime, setCurrentTime] = useState(new Date());
 
   useEffect(() => {
     const fetchData = async () => {
@@ -34,6 +34,14 @@ const Schedule = () => {
     };
 
     fetchData();
+  }, []);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentTime(new Date());
+    }, 60000); // Update every minute
+
+    return () => clearInterval(interval);
   }, []);
 
   const convertSessionsToEvents = (data) => {
@@ -113,6 +121,66 @@ const Schedule = () => {
     });
   };
 
+  const isLive = (start, end) => {
+    const startTime = new Date(start);
+    const endTime = new Date(end);
+    return true; // true für die demo sonst currentTime >= startTime && currentTime <= endTime;
+  };
+
+  const TimeProgress = ({ startTime, endTime }) => {
+    const [progress, setProgress] = useState(100);
+
+    useEffect(() => {
+      const calculateProgress = () => {
+        const start = new Date(startTime);
+        const end = new Date(endTime);
+
+        if (currentTime < start) return 100;
+        if (currentTime > end) return 50; // Event has ended already gerade am testen!!
+
+        const total = end.getTime() - start.getTime();
+        const elapsed = end.getTime() - currentTime.getTime();
+        return (elapsed / total) * 100;
+      };
+
+      const timer = setInterval(() => {
+        setProgress(calculateProgress());
+      }, 1000);
+
+      return () => clearInterval(timer);
+    }, [startTime, endTime, currentTime]);
+
+    return (
+      <div className="relative h-8 w-8">
+        <svg className="h-8 w-8">
+          <defs>
+            <linearGradient id="greenGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#4ade80" />
+              <stop offset="100%" stopColor="#22c55e" />
+            </linearGradient>
+          </defs>
+          <circle cx="16" cy="16" r="15" fill="none" stroke="#e2e8f0" strokeWidth="2" />
+          <circle
+            cx="16"
+            cy="16"
+            r="15"
+            fill="none"
+            stroke="url(#greenGradient)"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeDasharray={`${2 * Math.PI * 15}`}
+            strokeDashoffset={`${2 * Math.PI * 15 * (1 - progress / 100)}`}
+            className="transition-all duration-200 ease-in-out"
+            transform="rotate(-90 16 16)"
+          />
+        </svg>
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div className="h-2 w-2 animate-pulse rounded-full bg-green-500"></div>
+        </div>
+      </div>
+    );
+  };
+
   const Modal = ({ isOpen, onClose, children }) => {
     if (!isOpen) return null;
 
@@ -189,12 +257,19 @@ const Schedule = () => {
               <h2>{room}</h2>
             </div>
             {events.map((event) => (
-              <div key={event.id} className="event-card" onClick={() => setSelectedEvent(event)}>
+              <div
+                key={event.id}
+                className={`event-card ${isLive(event.start, event.end) ? 'live' : ''}`}
+                onClick={() => setSelectedEvent(event)}
+              >
                 <div className="event-header">
                   <div className="event-time">
                     <span>
                       {event.time} - {event.endTime}
                     </span>
+                    {isLive(event.start, event.end) && (
+                      <TimeProgress startTime={event.start} endTime={event.end} />
+                    )}
                     <span className="duration-badge">{event.duration} min</span>
                   </div>
                   <span className="event-type">{event.type}</span>
