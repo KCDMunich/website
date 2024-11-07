@@ -17,11 +17,11 @@ const Hero = () => {
               <span className="hero-badge">JULY 1st – 2nd, 2024</span>
 
               {/* Title */}
-              <h1 className="hero-title">KCD Munich</h1>
+              <h1 className="hero-title">CNS Munich</h1>
 
               {/* Description */}
               <p className="hero-description">
-                The Kubernetes & Cloud Native community will gather at the smartvillage Bogenhausen
+                The Cloud Native community will gather at the smartvillage Bogenhausen
                 in Munich, Germany.
               </p>
 
@@ -63,7 +63,7 @@ const Hero = () => {
                 </button>
               </div>
 
-              <p className="hero-support-text">This community event is supported by the CNCF.</p>
+              <p className="hero-support-text">This community event is supported by the XYZ.</p>
             </div>
 
             <div className="hero-right-column fade-in-scale">

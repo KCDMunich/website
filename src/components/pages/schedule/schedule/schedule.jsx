@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './schedule.css';
 
 const scriptUrl = 'https://sessionize.com/api/v2/6dqtqpt2/view/GridSmart';
+
 const speakerURL = 'https://sessionize.com/api/v2/6dqtqpt2/view/Speakers';
 
 const Schedule = () => {
@@ -68,13 +69,13 @@ const Schedule = () => {
     const startDate = new Date(start);
     const endDate = new Date(end);
     const duration = (endDate - startDate) / 1000 / 60;
-    
+
     console.log({
       start: startDate.toLocaleString(),
       end: endDate.toLocaleString(),
-      duration: Math.round(duration)
+      duration: Math.round(duration),
     });
-    
+
     return Math.round(duration);
   };
 
@@ -191,7 +192,9 @@ const Schedule = () => {
               <div key={event.id} className="event-card" onClick={() => setSelectedEvent(event)}>
                 <div className="event-header">
                   <div className="event-time">
-                    <span>{event.time} - {event.endTime}</span>
+                    <span>
+                      {event.time} - {event.endTime}
+                    </span>
                     <span className="duration-badge">{event.duration} min</span>
                   </div>
                   <span className="event-type">{event.type}</span>
@@ -222,7 +225,9 @@ const Schedule = () => {
             <h2>{selectedEvent.title}</h2>
             <div className="event-details">
               <div className="time-details">
-                <span>{selectedEvent.time} - {selectedEvent.endTime}</span>
+                <span>
+                  {selectedEvent.time} - {selectedEvent.endTime}
+                </span>
                 <span>({selectedEvent.duration} min)</span>
               </div>
               <div className="room-details">
