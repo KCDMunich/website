@@ -15,8 +15,8 @@ const MENUS = {
     { text: 'Impressum & Data Privacy', ...LINKS.privacy },
   ],
   mobile: [
-    { text: 'Speakers', ...LINKS.speakers },
-    { text: 'Schedule', ...LINKS.schedule },
+    // { text: 'Speakers', ...LINKS.speakers },
+    // { text: 'Schedule', ...LINKS.schedule },
     // { text: 'Call for Speakers', ...LINKS.proposal },
     // { text: 'Workshops', ...LINKS.workshops },
     { text: 'Sponsors', ...LINKS.sponsors },
