@@ -1,6 +1,7 @@
-import React from 'react';
-import { StaticImage } from 'gatsby-plugin-image';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
 
+// Icons aus dem ursprünglichen Code
 const IconMapPin = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -96,77 +97,127 @@ const IconExternal = () => (
 );
 
 const Card = ({ children, className = '' }) => (
-  <div
-    style={{
-      backgroundColor: 'white',
-      borderRadius: '0.75rem',
-      boxShadow: '0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24)',
-      overflow: 'hidden',
-    }}
-    className={className}
-  >
-    {children}
-  </div>
+  <div className={`overflow-hidden rounded-xl bg-white shadow-md ${className}`}>{children}</div>
 );
 
-const Venue = () => {
-  return (
-    <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '3rem 1rem' }}>
-      <h1
-        style={{
-          fontSize: '2.25rem',
-          fontWeight: 'bold',
-          textAlign: 'center',
-          marginBottom: '3rem',
-          color: ' #004258',
-        }}
-      >
-        Venue Information
-      </h1>
+const ImageSlider = ({ images }) => {
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+  const [fade, setFade] = useState(false);
 
-      <div
-        style={{
-          display: 'grid',
-          gap: '2rem',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 600px), 1fr))',
-        }}
-      >
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-          <div
-            style={{
-              position: 'relative',
-              aspectRatio: '16/9',
-              borderRadius: '0.75rem',
-              overflow: 'hidden',
-              backgroundColor: '#f5f5f5',
-            }}
-          >
-            <StaticImage
-              src="./images/card-illustration.jpg"
-              alt="smartvillage Bogenhausen"
-              placeholder="blurred"
-              formats={['auto', 'webp', 'avif']}
-              quality={90}
+  useEffect(() => {
+    if (!isPaused) {
+      const timer = setInterval(() => {
+        setFade(true); // Startet die Animation
+        setTimeout(() => {
+          setCurrentImageIndex((prevIndex) =>
+            prevIndex === images.length - 1 ? 0 : prevIndex + 1
+          );
+          setFade(false); // Entfernt die Animation
+        }, 500); // Animation-Dauer (500ms) synchronisieren
+      }, 5000); // Intervall für den Bildwechsel
+
+      return () => clearInterval(timer);
+    }
+  }, [images.length, isPaused]);
+
+  const handleMouseEnter = () => setIsPaused(true);
+  const handleMouseLeave = () => setIsPaused(false);
+
+  const goToPrevious = () => {
+    setFade(true);
+    setTimeout(() => {
+      setCurrentImageIndex((prevIndex) => (prevIndex === 0 ? images.length - 1 : prevIndex - 1));
+      setFade(false);
+    }, 500);
+  };
+
+  const goToNext = () => {
+    setFade(true);
+    setTimeout(() => {
+      setCurrentImageIndex((prevIndex) => (prevIndex === images.length - 1 ? 0 : prevIndex + 1));
+      setFade(false);
+    }, 500);
+  };
+
+  return (
+    <div
+      className="relative h-full w-full"
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+    >
+      <div className="relative h-full transition-all duration-500 ease-in-out">
+        <img
+          src={images[currentImageIndex]}
+          alt={`Venue slide ${currentImageIndex + 1}`}
+          className={`h-full w-full object-cover transition-opacity duration-500 ${
+            fade ? 'opacity-0' : 'opacity-100'
+          }`}
+        />
+
+        {/* Navigation Dots */}
+        <div className="absolute bottom-4 left-1/2 flex -translate-x-1/2 transform space-x-2">
+          {images.map((_, index) => (
+            <button
+              type="button"
+              key={index}
+              onClick={() => setCurrentImageIndex(index)}
+              className={`h-2 w-2 rounded-full ${
+                index === currentImageIndex ? 'bg-white' : 'bg-white/50'
+              }`}
             />
+          ))}
+        </div>
+
+        {/* Navigation Arrows */}
+        <button
+          onClick={goToPrevious}
+          className="absolute left-4 top-1/2 -translate-y-1/2 transform rounded-full bg-black/30 p-2 text-white transition-colors hover:bg-black/50"
+        >
+          <ChevronLeft size={24} />
+        </button>
+        <button
+          onClick={goToNext}
+          className="absolute right-4 top-1/2 -translate-y-1/2 transform rounded-full bg-black/30 p-2 text-white transition-colors hover:bg-black/50"
+        >
+          <ChevronRight size={24} />
+        </button>
+      </div>
+    </div>
+  );
+};
+
+const Venue = ({
+  images = [
+    'https://lightroom.adobe.com/v2c/spaces/42d27333b09147bba84e9ed1fb859739/assets/200c0e80e3ce4d879e13914be9b8893f/revisions/7fb60a50c4c24304b09e46c1865ad139/renditions/cf803484d4c9185bb7e3bef1890e610f',
+    'https://lightroom.adobe.com/v2c/spaces/42d27333b09147bba84e9ed1fb859739/assets/7f5815893db1972ef9ae44f387e14ab6/revisions/94992f627ab828172e0f33b01788f0b6/renditions/1a8eb83f682f28bfb4255d92e7a86eea',
+    'https://lightroom.adobe.com/v2c/spaces/42d27333b09147bba84e9ed1fb859739/assets/d967558d7c374ca29db41b309e113594/revisions/1ee9249d967b4d4c984bde2153b77079/renditions/b89705cd93eaa91a943682ca8948bdae',
+  ],
+}) => {
+  return (
+    <div className="mx-auto max-w-7xl px-4 py-12">
+      <h1 className="mb-12 text-center text-4xl font-bold text-[#004258]">Venue Information</h1>
+
+      <div className="gap-8 ">
+        <div className="flex flex-col gap-6">
+          <div className="relative aspect-video overflow-hidden rounded-xl bg-gray-100">
+            <ImageSlider images={images} />
           </div>
 
           <Card>
-            <div style={{ padding: '1.5rem' }}>
-              <div style={{ marginBottom: '1rem' }}>
-                <h2 style={{ fontSize: '1.5rem', fontWeight: 'bold', color: '#004258' }}>
-                  smartvillage Bogenhausen
-                </h2>
-                <h3 style={{ fontSize: '1.25rem', color: '#666' }}>at Munich Arabellapark</h3>
+            <div
+              className="p-6"
+              style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}
+            >
+              <div
+                className="mb-4"
+                style={{ display: 'flex', alignItems: 'center', flexDirection: 'column' }}
+              >
+                <h2 className="text-2xl font-bold text-[#004258]">smartvillage Bogenhausen</h2>
+                <h3 className="text-xl text-gray-600">at Munich Arabellapark</h3>
               </div>
 
-              <div
-                style={{
-                  display: 'flex',
-                  gap: '0.5rem',
-                  color: '#666',
-                  marginBottom: '1rem',
-                }}
-              >
+              <div className="mb-4 flex gap-2 text-gray-600">
                 <IconMapPin />
                 <div>
                   <p>Rosenkavalierpl. 13</p>
@@ -178,111 +229,58 @@ const Venue = () => {
                 href="https://maps.google.com/?q=smartvillage+Bogenhausen+Rosenkavalierpl.+13+81925+Munich"
                 target="_blank"
                 rel="noopener noreferrer"
-                style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  width: '100%',
-                  padding: '0.5rem 1rem',
-                  border: '1px solid #ddd',
-                  borderRadius: '0.5rem',
-                  textDecoration: 'none',
-                  color: 'inherit',
-                  transition: 'background-color 0.2s',
-                }}
-                onMouseOver={(e) => (e.target.style.backgroundColor = '#f5f5f5')}
-                onMouseOut={(e) => (e.target.style.backgroundColor = 'transparent')}
+                className="inline-flex w-full items-center justify-center rounded-lg border border-gray-300 px-4 py-2 text-gray-700 transition-colors hover:bg-gray-50"
               >
                 Open in Google Maps
-                <IconExternal style={{ marginLeft: '0.5rem' }} />
+                <IconExternal className="ml-2" />
               </a>
             </div>
           </Card>
         </div>
 
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
-          <div style={{ display: 'flex', textAlign: 'center', flexDirection: 'column' }}>
-            <p style={{ fontSize: '1.125rem', marginBottom: '1.25rem' }}>
+        <div className="flex flex-col gap-8">
+          <div className="flex flex-col text-center">
+            <p className="mb-5 text-lg" style={{ marginTop: '1rem' }}>
               The KCD Munich will be held at the smartvillage Bogenhausen at Munich Arabellapark.
               Attendees can expect to enjoy a variety of vegetarian and vegan food options
               throughout the day.
             </p>
-            <p style={{ fontSize: '1.125rem', marginBottom: '1.25rem' }}>
+            <p className="mb-5 text-lg">
               Do not miss out on the opportunity of fun, to connect with fellow attendees and
               continue the conversation at the networking Bowling event.
             </p>
-            <p style={{ fontSize: '1.25rem', fontWeight: '600' }}>
-              We can not wait to see you there!
-            </p>
+            <p className="text-xl font-semibold">We can not wait to see you there!</p>
           </div>
 
-          <div>
-            <h3
-              style={{
-                fontSize: '1.25rem',
-                fontWeight: '600',
-                marginBottom: '1rem',
-              }}
-            >
-              Venue Amenities
-            </h3>
-
-            <div
-              style={{
-                display: 'grid',
-                gap: '1rem',
-                gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 250px), 1fr))',
-              }}
-            >
-              <Card>
-                <div
-                  style={{
-                    padding: '1rem',
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '1rem',
-                  }}
-                >
+          <div className="flex flex-col gap-8">
+            <h3 className="mb-4 text-xl font-semibold">Venue Amenities</h3>
+            <div className="flex flex-row gap-4 md:flex-col">
+              <Card className="flex-1">
+                <div className="flex items-center gap-4 p-4">
                   <IconUtensils />
                   <div>
-                    <h4 style={{ fontWeight: '500' }}>Catering</h4>
-                    <p style={{ fontSize: '0.875rem', color: '#666' }}>
-                      Vegetarian & Vegan options
-                    </p>
+                    <h4 className="font-medium">Catering</h4>
+                    <p className="text-sm text-gray-600">Vegetarian & Vegan options</p>
                   </div>
                 </div>
               </Card>
 
-              <Card>
-                <div
-                  style={{
-                    padding: '1rem',
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '1rem',
-                  }}
-                >
+              <Card className="flex-1">
+                <div className="flex items-center gap-4 p-4">
                   <IconClock />
                   <div>
-                    <h4 style={{ fontWeight: '500' }}>Full Day Event</h4>
-                    <p style={{ fontSize: '0.875rem', color: '#666' }}>Including breaks</p>
+                    <h4 className="font-medium">Full Day Event</h4>
+                    <p className="text-sm text-gray-600">Including breaks</p>
                   </div>
                 </div>
               </Card>
 
-              <Card style={{ gridColumn: '1 / -1' }}>
-                <div
-                  style={{
-                    padding: '1rem',
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '1rem',
-                  }}
-                >
+              <Card className="flex-1">
+                <div className="flex items-center gap-4 p-4">
                   <IconParty />
                   <div>
-                    <h4 style={{ fontWeight: '500' }}>Networking Event</h4>
-                    <p style={{ fontSize: '0.875rem', color: '#666' }}>Bowling activity included</p>
+                    <h4 className="font-medium">Networking Event</h4>
+                    <p className="text-sm text-gray-600">Bowling activity included</p>
                   </div>
                 </div>
               </Card>

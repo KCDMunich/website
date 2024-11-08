@@ -66,7 +66,7 @@ const Footer = () => {
             <Link
               className="ml-2 font-semibold transition-colors duration-200"
               theme="primary"
-              to="mailto:organizers-munich@kubernetescommunitydays.org"
+              to="mailto:team@cloudnativesummit.de"
             >
               Contact us
             </Link>

@@ -2,11 +2,11 @@ import LINKS from 'constants/links.js';
 
 const MENUS = {
   header: [
-    { text: 'Speakers', ...LINKS.speakers },
-    { text: 'Schedule', ...LINKS.schedule },
+    // { text: 'Speakers', ...LINKS.speakers },
+    // { text: 'Schedule', ...LINKS.schedule },
     // { text: 'Call for Speakers', ...LINKS.proposal },
     { text: 'Sponsors', ...LINKS.sponsors },
-    { text: 'KCD24 Image Gallery', ...LINKS.gallery },
+    { text: 'Last event Image Gallery', ...LINKS.gallery },
   ],
   footer: [
     { text: 'Code of Conduct', ...LINKS.conduct },

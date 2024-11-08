@@ -21,8 +21,8 @@ const Hero = () => {
 
               {/* Description */}
               <p className="hero-description">
-                The Cloud Native community will gather at the smartvillage Bogenhausen
-                in Munich, Germany.
+                The Cloud Native community will gather at the smartvillage Bogenhausen in Munich,
+                Germany.
               </p>
 
               {/* Feature List */}
@@ -52,7 +52,7 @@ const Hero = () => {
                       'https://kcdmunich-2.ticketbutler.io/en/e/kcd-munich-2024/';
                   }}
                 >
-                  Get your tickets now
+                  Statemant
                 </button>
                 <button
                   type="button"

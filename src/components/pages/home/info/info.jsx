@@ -1,5 +1,7 @@
-import React from 'react';
 import { Users, Calendar, MapPin } from 'lucide-react';
+
+import React from 'react';
+
 import './info.css';
 
 const Info = () => (
@@ -19,10 +21,9 @@ const Info = () => (
           </div>
           <div className="about-text">
             <p>
-              This is our third edition in Munich, and we're excited to bring the community
-              together. We want to provide a platform for professionals and experts from all levels
-              and backgrounds to learn, network, and share their knowledge on all things cloud
-              native.
+              This is our third edition in Munich, and were excited to bring the community together.
+              We want to provide a platform for professionals and experts from all levels and
+              backgrounds to learn, network, and share their knowledge on all things cloud native.
             </p>
           </div>
         </div>

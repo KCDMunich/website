@@ -82,10 +82,10 @@ const Header = ({ isMobileMenuOpen, onBurgerClick, additionalClassName, homepage
             className="button"
             style={{ cursor: 'pointer' }}
             onClick={() => {
-              window.location.href = 'https://kcdmunich-2.ticketbutler.io/en/e/kcd-munich-2024/';
+              window.location.href = `mailto:team@cloudnativesummit.de`;
             }}
           >
-            Get your tickets now
+            Contact Us
           </button>
         </div>
 

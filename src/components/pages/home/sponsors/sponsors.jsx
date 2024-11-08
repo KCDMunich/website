@@ -125,7 +125,7 @@ const sponsorsList = [
   { name: 'SysEleven', icon: Syseleven, url: 'https://www.syseleven.de/', tier: 'partner' },
 ];
 
-const Sponsors = ({ becomeASponsorUrl = '#', contactEmail = 'sponsor@example.com' }) => {
+const Sponsors = ({ becomeASponsorUrl = '#', contactEmail = 'team@cloudnativesummit.de' }) => {
   if (!SHOW_SPONSORS) {
     return (
       <section className="mx-auto max-w-7xl px-4 py-16">
@@ -141,10 +141,10 @@ const Sponsors = ({ becomeASponsorUrl = '#', contactEmail = 'sponsor@example.com
               className="button"
               style={{ cursor: 'pointer' }}
               onClick={() => {
-                window.location.href = 'LINK';
+                window.location.href = `mailto:${contactEmail}`;
               }}
             >
-              Get your tickets now
+              Contact Us
             </button>
             <p className="text-sm text-gray-600">
               Contact us at{' '}

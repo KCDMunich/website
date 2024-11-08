@@ -1,0 +1,23 @@
+.venue-container {
+  padding: 16px;
+  text-align: center;
+}
+
+.card-group {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.card {
+  border: 1px solid #ddd;
+  padding: 16px;
+  border-radius: 8px;
+  text-align: left;
+}
+
+@media (min-width: 768px) {
+  .card-group {
+    flex-direction: row;
+  }
+}
