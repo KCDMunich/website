@@ -65,11 +65,13 @@ const Info = () => (
       <div className="video-section">
         <iframe
           className="video-frame"
-          src="https://www.youtube.com/embed/fIzXybMaEZ0?si=Ln1spZvT_qSgYh09?controls=1"
-          title="KCD Munich 2023 Recap"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope"
-          allowFullScreen
-        />
+          src="https://www.youtube.com/embed/Ty4B7VPdWDs?si=vslSzh9_t7l164xg&autoplay=1&mute=1"
+          title="YouTube video player"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen
+        ></iframe>
       </div>
     </div>
   </section>

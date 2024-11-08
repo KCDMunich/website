@@ -1,7 +1,9 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import { ExternalLink } from 'lucide-react';
 
-// Icon imports
+// Icon imports - Note: These would need to be handled by your application
 import adn from 'icons/adn_logo.png';
 import Akamai from 'icons/akamai.svg';
 import ApeFactory from 'icons/apefactory.webp';
@@ -32,19 +34,22 @@ import Syseleven from 'icons/syseleven.png';
 import Tigera from 'icons/Tigera_Logo_Logo.jpg';
 import veeam from 'icons/veeam.png';
 import whiteduck from 'icons/whiteduck.png';
+import './sponsor.css';
 
-const CARD_STYLES = 'w-[180px] h-[120px]'; // Einheitliche Kartengröße für alle Tiers
+const CARD_STYLES = 'w-[180px] h-[120px]';
+
+const SHOW_SPONSORS = false;
 
 const tierConfig = {
   gold: {
     title: 'Gold',
     class: 'bg-white shadow-sm',
-    badgeClass: 'bg-yellow-50  text-yellow-500',
+    badgeClass: 'bg-yellow-50 text-yellow-500',
     count: 6,
   },
   silver: {
     title: 'Silver',
-    class: 'bg-white  shadow-sm',
+    class: 'bg-white shadow-sm',
     badgeClass: 'bg-gray-50 text-gray-500',
     count: 12,
   },
@@ -56,82 +61,141 @@ const tierConfig = {
   },
   organizer: {
     title: 'Organizers',
-    class: 'bg-white  shadow-sm',
+    class: 'bg-white shadow-sm',
     badgeClass: 'bg-blue-50 text-blue-500',
     count: 3,
   },
   partner: {
     title: 'Community & Media Partners',
-    class: 'bg-white  shadow-sm',
+    class: 'bg-white shadow-sm',
     badgeClass: 'bg-green-50 text-green-500',
     count: 5,
   },
 };
 
-const Sponsors = () => {
-  const sponsors = [
-    // Gold Sponsors
-    { name: 'APE Factory', icon: ApeFactory, url: 'https://www.apefactory.com/de', tier: 'gold' },
-    { name: 'Cisco', icon: cisco, url: 'https://www.cisco.com/', tier: 'gold' },
-    { name: 'Consol', icon: consol, url: 'https://www.consol.com/', tier: 'gold' },
-    { name: 'MetalStack', icon: MetalStack, url: 'https://metalstack.cloud/de', tier: 'gold' },
-    { name: 'Palo Alto', icon: paloalto, url: 'https://www.paloaltonetworks.com/', tier: 'gold' },
-    { name: 'Veeam', icon: veeam, url: 'https://www.veeam.com/', tier: 'gold' },
+const sponsorsList = [
+  // Gold Sponsors
+  { name: 'APE Factory', icon: ApeFactory, url: 'https://www.apefactory.com/de', tier: 'gold' },
+  { name: 'Cisco', icon: cisco, url: 'https://www.cisco.com/', tier: 'gold' },
+  { name: 'Consol', icon: consol, url: 'https://www.consol.com/', tier: 'gold' },
+  { name: 'MetalStack', icon: MetalStack, url: 'https://metalstack.cloud/de', tier: 'gold' },
+  { name: 'Palo Alto', icon: paloalto, url: 'https://www.paloaltonetworks.com/', tier: 'gold' },
+  { name: 'Veeam', icon: veeam, url: 'https://www.veeam.com/', tier: 'gold' },
 
-    // Silver Sponsors
-    { name: 'Akamai', icon: Akamai, url: 'https://www.akamai.com/', tier: 'silver' },
-    { name: 'Camptocamp', icon: Camptocamp, url: 'https://www.camptocamp.com/en', tier: 'silver' },
-    { name: 'Dynatrace', icon: dynatrace, url: 'https://www.dynatrace.com/', tier: 'silver' },
-    { name: 'Exoscale', icon: Exoscale, url: 'https://www.exoscale.com/', tier: 'silver' },
-    { name: 'Isovalent', icon: Isovalent, url: 'https://www.isovalent.com/', tier: 'silver' },
-    { name: 'Mindcurv', icon: MindcurvGmbH, url: 'https://www.mindcurv.com/', tier: 'silver' },
-    { name: 'Pulumi', icon: pulumi, url: 'https://www.pulumi.com/', tier: 'silver' },
-    { name: 'Spectro Cloud', icon: spectrocloud, url: 'https://spectrocloud.com/', tier: 'silver' },
-    { name: 'Splunk', icon: Splunk, url: 'https://www.splunk.com/', tier: 'silver' },
-    { name: 'StackState', icon: StackState, url: 'https://stackstate.com/', tier: 'silver' },
-    { name: 'Steadforce', icon: Steadforce, url: 'https://www.steadforce.com/', tier: 'silver' },
-    { name: 'Tigera', icon: Tigera, url: 'https://www.tigera.io/', tier: 'silver' },
+  // Silver Sponsors
+  { name: 'Akamai', icon: Akamai, url: 'https://www.akamai.com/', tier: 'silver' },
+  { name: 'Camptocamp', icon: Camptocamp, url: 'https://www.camptocamp.com/en', tier: 'silver' },
+  { name: 'Dynatrace', icon: dynatrace, url: 'https://www.dynatrace.com/', tier: 'silver' },
+  { name: 'Exoscale', icon: Exoscale, url: 'https://www.exoscale.com/', tier: 'silver' },
+  { name: 'Isovalent', icon: Isovalent, url: 'https://www.isovalent.com/', tier: 'silver' },
+  { name: 'Mindcurv', icon: MindcurvGmbH, url: 'https://www.mindcurv.com/', tier: 'silver' },
+  { name: 'Pulumi', icon: pulumi, url: 'https://www.pulumi.com/', tier: 'silver' },
+  { name: 'Spectro Cloud', icon: spectrocloud, url: 'https://spectrocloud.com/', tier: 'silver' },
+  { name: 'Splunk', icon: Splunk, url: 'https://www.splunk.com/', tier: 'silver' },
+  { name: 'StackState', icon: StackState, url: 'https://stackstate.com/', tier: 'silver' },
+  { name: 'Steadforce', icon: Steadforce, url: 'https://www.steadforce.com/', tier: 'silver' },
+  { name: 'Tigera', icon: Tigera, url: 'https://www.tigera.io/', tier: 'silver' },
 
-    // Bronze Sponsors
-    { name: 'ADN', icon: adn, url: 'https://shop.adn.de/', tier: 'bronze' },
-    {
-      name: 'CSP',
-      icon: csp2,
-      url: 'https://geschaeftskunden.telekom.de/digitale-loesungen/software-as-a-service/microsoft/cloud-solution-partner',
-      tier: 'bronze',
-    },
-    { name: 'Maiborn Wolff', icon: Maiborn, url: 'https://www.maibornwolff.de/', tier: 'bronze' },
-    { name: 'DGi', icon: Dgi, url: 'https://www.dg-i.net/', tier: 'bronze' },
+  // Bronze Sponsors
+  { name: 'ADN', icon: adn, url: 'https://shop.adn.de/', tier: 'bronze' },
+  {
+    name: 'CSP',
+    icon: csp2,
+    url: 'https://geschaeftskunden.telekom.de/digitale-loesungen/software-as-a-service/microsoft/cloud-solution-partner',
+    tier: 'bronze',
+  },
+  { name: 'Maiborn Wolff', icon: Maiborn, url: 'https://www.maibornwolff.de/', tier: 'bronze' },
+  { name: 'DGi', icon: Dgi, url: 'https://www.dg-i.net/', tier: 'bronze' },
 
-    // Organizers
-    { name: 'Liquid Reply', icon: liquid, url: 'http://liquidreply.com/', tier: 'organizer' },
-    { name: 'White Duck', icon: whiteduck, url: 'https://whiteduck.de/', tier: 'organizer' },
-    { name: 'QAware', icon: Qaware, url: 'https://www.qaware.de/en/', tier: 'organizer' },
+  // Organizers
+  { name: 'Liquid Reply', icon: liquid, url: 'http://liquidreply.com/', tier: 'organizer' },
+  { name: 'White Duck', icon: whiteduck, url: 'https://whiteduck.de/', tier: 'organizer' },
+  { name: 'QAware', icon: Qaware, url: 'https://www.qaware.de/en/', tier: 'organizer' },
 
-    // Community & Media Partners
-    { name: 'Cloud Native', icon: Cloudnative, url: 'https://www.cncf.io/', tier: 'partner' },
-    { name: 'Kube Events', icon: Kubeevents, url: 'https://kube.events/', tier: 'partner' },
-    { name: 'Kube Careers', icon: Kubecareers, url: 'https://kube.careers/', tier: 'partner' },
-    {
-      name: 'German Tech Jobs',
-      icon: germantech,
-      url: 'https://germantechjobs.de/',
-      tier: 'partner',
-    },
-    { name: 'SysEleven', icon: Syseleven, url: 'https://www.syseleven.de/', tier: 'partner' },
-  ];
+  // Community & Media Partners
+  { name: 'Cloud Native', icon: Cloudnative, url: 'https://www.cncf.io/', tier: 'partner' },
+  { name: 'Kube Events', icon: Kubeevents, url: 'https://kube.events/', tier: 'partner' },
+  { name: 'Kube Careers', icon: Kubecareers, url: 'https://kube.careers/', tier: 'partner' },
+  {
+    name: 'German Tech Jobs',
+    icon: germantech,
+    url: 'https://germantechjobs.de/',
+    tier: 'partner',
+  },
+  { name: 'SysEleven', icon: Syseleven, url: 'https://www.syseleven.de/', tier: 'partner' },
+];
 
+const Sponsors = ({ becomeASponsorUrl = '#', contactEmail = 'sponsor@example.com' }) => {
+  if (!SHOW_SPONSORS) {
+    return (
+      <section className="mx-auto max-w-7xl px-4 py-16">
+        <div className="mb-16 text-center">
+          <h2 className="mb-4 text-4xl font-bold text-gray-900">Become a Sponsor</h2>
+          <p className="mb-8 text-lg text-gray-500">
+            Support our event and reach out to the cloud native community
+          </p>
+
+          <div className="flex flex-col items-center justify-center gap-4">
+            <button
+              type="button"
+              className="button"
+              style={{ cursor: 'pointer' }}
+              onClick={() => {
+                window.location.href = 'LINK';
+              }}
+            >
+              Get your tickets now
+            </button>
+            <p className="text-sm text-gray-600">
+              Contact us at{' '}
+              <a
+                href={`mailto:${contactEmail}`}
+                className=" hover:underline"
+                style={{ color: '004258', fontWeight: 'bold' }}
+              >
+                {contactEmail}
+              </a>{' '}
+              to learn more about sponsorship opportunities
+            </p>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  // Show the full sponsors section when SHOW_SPONSORS is true
   return (
     <section className="mx-auto max-w-7xl px-4 py-16">
       <div className="mb-16 text-center">
         <h2 className="mb-4 text-4xl font-bold text-gray-900">Our Sponsors</h2>
-        <p className="text-lg text-gray-500">
+        <p className="mb-8 text-lg text-gray-500">
           Thank you to our amazing sponsors who make this event possible
         </p>
+
+        <div className="flex flex-col items-center justify-center gap-4">
+          <a
+            href={becomeASponsorUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 rounded-lg bg-blue-600 px-6 py-3 text-white transition-all hover:bg-blue-700"
+          >
+            Become a Sponsor
+            <ExternalLink className="h-4 w-4" />
+          </a>
+          <p className="text-sm text-gray-600">
+            Contact us at{' '}
+            <a href={`mailto:${contactEmail}`} className="text-blue-600 hover:underline">
+              {contactEmail}
+            </a>{' '}
+            to learn more about sponsorship opportunities
+          </p>
+        </div>
       </div>
 
       {Object.entries(tierConfig).map(([tier, config]) => {
-        const tierSponsors = sponsors.filter((s) => s.tier === tier);
+        const tierSponsors = sponsorsList.filter((s) => s.tier === tier);
+
+        if (tierSponsors.length === 0) return null;
 
         return (
           <div key={tier} className="mb-12">
@@ -140,7 +204,7 @@ const Sponsors = () => {
               <span
                 className={clsx('rounded-full px-2 py-0.5 text-xs font-medium', config.badgeClass)}
               >
-                {config.count}
+                {tierSponsors.length}
               </span>
             </div>
 
@@ -153,7 +217,7 @@ const Sponsors = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                     className={clsx(
-                      'flex items-center justify-center rounded-lg  p-4 transition-all duration-200',
+                      'flex items-center justify-center rounded-lg p-4 transition-all duration-200',
                       'hover:scale-[1.02] hover:shadow-md',
                       CARD_STYLES,
                       config.class
@@ -176,6 +240,10 @@ const Sponsors = () => {
       })}
     </section>
   );
+};
+Sponsors.propTypes = {
+  becomeASponsorUrl: PropTypes.string,
+  contactEmail: PropTypes.string,
 };
 
 export default Sponsors;
