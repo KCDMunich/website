@@ -28,19 +28,18 @@ const Info = () => (
 
         {/* Video Section */}
         <div className="video-section">
-          <iframe
-            style={{
-              width: '1284px',
-              height: '702px',
-              borderRadius: '0.5rem',
-            }}
-            src="https://www.youtube.com/embed/Ty4B7VPdWDs?si=vslSzh9_t7l164xg&autoplay=1&mute=1"
-            title="YouTube video player"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            referrerpolicy="strict-origin-when-cross-origin"
-            allowfullscreen
-          ></iframe>
+          <div style={{ aspectRatio: '16/9', width: '100%' }}>
+            <iframe
+              style={{ width: '100%', height: '100%', borderRadius: '0.5rem' }}
+              className="m:w-full m:h-full"
+              src="https://www.youtube.com/embed/Ty4B7VPdWDs?si=vslSzh9_t7l164xg&autoplay=1&mute=1"
+              title="YouTube video player"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin"
+              allowfullscreen
+            ></iframe>
+          </div>
         </div>
       </div>
 

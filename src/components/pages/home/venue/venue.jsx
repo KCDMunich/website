@@ -237,40 +237,37 @@ const Venue = ({
           </Card>
         </div>
 
-        <div className="flex flex-col gap-8">
-          <div className="flex flex-col gap-8">
-            <h3 className="mb-4 text-xl font-semibold">Venue Amenities</h3>
-            <div className="flex flex-row gap-4 md:flex-col">
-              <Card className="flex-1">
-                <div className="flex items-center gap-4 p-4">
-                  <IconUtensils />
-                  <div>
-                    <h4 className="font-medium">Catering</h4>
-                    <p className="text-sm text-gray-600">Vegetarian & Vegan options</p>
-                  </div>
+        <div className="flex flex-col gap-8" style={{ marginTop: '4rem' }}>
+          <div className="flex flex-row gap-4 md:flex-col">
+            <Card className="flex-1">
+              <div className="flex items-center gap-4 p-4">
+                <IconUtensils />
+                <div>
+                  <h4 className="font-medium">Catering</h4>
+                  <p className="text-sm text-gray-600">Vegetarian & Vegan options</p>
                 </div>
-              </Card>
+              </div>
+            </Card>
 
-              <Card className="flex-1">
-                <div className="flex items-center gap-4 p-4">
-                  <IconClock />
-                  <div>
-                    <h4 className="font-medium">2-Day Event</h4>
-                    <p className="text-sm text-gray-600">With many activities</p>
-                  </div>
+            <Card className="flex-1">
+              <div className="flex items-center gap-4 p-4">
+                <IconClock />
+                <div>
+                  <h4 className="font-medium">2-Day Event</h4>
+                  <p className="text-sm text-gray-600">With many activities</p>
                 </div>
-              </Card>
+              </div>
+            </Card>
 
-              <Card className="flex-1">
-                <div className="flex items-center gap-4 p-4">
-                  <IconParty />
-                  <div>
-                    <h4 className="font-medium">Networking Event</h4>
-                    <p className="text-sm text-gray-600">Connect with your fellows</p>
-                  </div>
+            <Card className="flex-1">
+              <div className="flex items-center gap-4 p-4">
+                <IconParty />
+                <div>
+                  <h4 className="font-medium">Networking Event</h4>
+                  <p className="text-sm text-gray-600">Connect with your fellows</p>
                 </div>
-              </Card>
-            </div>
+              </div>
+            </Card>
           </div>
         </div>
       </div>
