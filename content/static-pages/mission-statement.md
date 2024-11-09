@@ -19,11 +19,11 @@ Therefore, we decided not to apply for the KCD program and stay independent but 
 
 ### More than Kubernetes - a Cloud Native Summit
 
-The decision to not take part in the KCD 2.0 program has come a long way, with dozens of discussions, meetings, and reflections. We came to the conclusion that the community itself gives the success of the event, the speaker, the sponsors, and the magic in between all of it. We aim to bring together the best, most curious, deepest tech, and craziest innovative mindset people – a summit. Our vision is to encourage and support the open-source community, build on the cloud-native ecosystem, and foster collaboration between all parties.
+The decision to not take part in the KCD 2.0 program has come a long way, with dozens of discussions, meetings, and reflections. We came to the conclusion that the community itself gives the success of the event, the speaker, the sponsors, and the magic in between all of it. We aim to bring together the best, most curious, deepest tech, and craziest innovative mindset people - a summit. Our vision is to encourage and support the open-source community, build on the cloud-native ecosystem, and foster collaboration between all parties.
 
 ### Double down on the community
 
-We would like to use this change to put ourselves on a solid base for the future. Therefore, we have decided to found a non-profit organization (Förderverein für Cloud-Native und Open-Source Bayern e.V) to host any future Cloud Native Summits starting with the 2025 edition.
+We would like to use this change to put ourselves on a solid base for the future. Therefore, we have decided to found a non-profit organization to host any future Cloud Native Summits starting with the 2025 edition.
 
 ### Onwards and Upwards
 
