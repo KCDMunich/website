@@ -60,7 +60,7 @@ export default {
     target: '_blank',
   },
   youtube: {
-    to: 'https://www.youtube.com/@cncf',
+    to: 'https://www.youtube.com/@KCDMunich',
     target: '_blank',
   },
   speakers: {

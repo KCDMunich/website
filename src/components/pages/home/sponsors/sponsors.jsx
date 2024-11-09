@@ -183,13 +183,6 @@ const Sponsors = ({ becomeASponsorUrl = '#', contactEmail = 'team@cloudnativesum
           >
             Become a Sponsor
           </a>
-          <p className="text-sm text-gray-600">
-            Contact us at{' '}
-            <a href={`mailto:${contactEmail}`} style={{ color: '#004258', fontWeight: 'bold' }}>
-              {contactEmail}
-            </a>{' '}
-            to learn more about sponsorship opportunities
-          </p>
         </div>
       </div>
 

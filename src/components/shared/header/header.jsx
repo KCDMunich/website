@@ -6,6 +6,8 @@ import MENUS from 'constants/menus';
 import Burger from '../burger';
 import Link from '../link';
 import { StaticImage } from 'gatsby-plugin-image';
+import { FaDiscord } from 'react-icons/fa';
+
 import './header.css';
 
 const Header = ({ isMobileMenuOpen, onBurgerClick, additionalClassName, homepage }) => {
@@ -79,12 +81,17 @@ const Header = ({ isMobileMenuOpen, onBurgerClick, additionalClassName, homepage
           <button
             type="button"
             className="button"
-            style={{ cursor: 'pointer' }}
+            style={{
+              cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+            }}
             onClick={() => {
-              window.location.href = `https://www.linkedin.com/company/kubernetes-community-days-munich`;
+              window.location.href = `https://discord.gg/Ht3upbGey9`;
             }}
           >
-            Stay in touch
+            Join our Discord
+            <FaDiscord style={{ marginLeft: '1rem' }} />
           </button>
         </div>
 
