@@ -161,24 +161,26 @@ const ImageSlider = ({ images }) => {
             <button
               type="button"
               key={index}
-              onClick={() => setCurrentImageIndex(index)}
               className={`h-2 w-2 rounded-full ${
                 index === currentImageIndex ? 'bg-white' : 'bg-white/50'
               }`}
+              onClick={() => setCurrentImageIndex(index)}
             />
           ))}
         </div>
 
         {/* Navigation Arrows */}
         <button
-          onClick={goToPrevious}
+          type="button"
           className="absolute left-4 top-1/2 -translate-y-1/2 transform rounded-full bg-black/30 p-2 text-white transition-colors hover:bg-black/50"
+          onClick={goToPrevious}
         >
           <ChevronLeft size={24} />
         </button>
         <button
-          onClick={goToNext}
+          type="button"
           className="absolute right-4 top-1/2 -translate-y-1/2 transform rounded-full bg-black/30 p-2 text-white transition-colors hover:bg-black/50"
+          onClick={goToNext}
         >
           <ChevronRight size={24} />
         </button>

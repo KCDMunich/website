@@ -31,7 +31,7 @@ const Info = () => (
           <iframe
             style={{
               width: '100%',
-              height: '68vh',
+              height: '17vh',
               borderRadius: '0.5rem',
             }}
             src="https://www.youtube.com/embed/Ty4B7VPdWDs?si=vslSzh9_t7l164xg&autoplay=1&mute=1"

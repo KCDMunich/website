@@ -40,11 +40,10 @@ const Header = ({ isMobileMenuOpen, onBurgerClick, additionalClassName, homepage
       <div
         className="flex items-center justify-between pb-2 pt-5"
         style={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-evenly',
-          marginLeft: '5vw',
-          marginRight: '5vw',
+          position: 'relative',
+          margin: '0 auto',
+          maxWidth: '80rem',
+          padding: '1rem 1rem',
         }}
       >
         <Link className="z-50 ml-2" to="/">
