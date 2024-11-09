@@ -36,7 +36,7 @@ import veeam from 'icons/veeam.png';
 import whiteduck from 'icons/whiteduck.png';
 import './sponsor.css';
 
-const CARD_STYLES = 'w-[180px] h-[120px]';
+const CARD_STYLES = 'w-[auto] h-[8vh]';
 
 const SHOW_SPONSORS = true;
 
@@ -166,7 +166,9 @@ const Sponsors = ({ becomeASponsorUrl = '#', contactEmail = 'team@cloudnativesum
   return (
     <section className="mx-auto max-w-7xl px-4 py-16">
       <div className="mb-16 text-center">
-        <h2 className="mb-4 text-4xl font-bold text-gray-900">Our Sponsors</h2>
+        <h2 className="mb-4 text-4xl font-bold" style={{ color: '#004258' }}>
+          Our Sponsors
+        </h2>
         <p className="mb-8 text-lg text-gray-500">
           Thank you to our amazing sponsors who make this event possible
         </p>
@@ -176,14 +178,15 @@ const Sponsors = ({ becomeASponsorUrl = '#', contactEmail = 'team@cloudnativesum
             href={becomeASponsorUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 rounded-lg bg-blue-600 px-6 py-3 text-white transition-all hover:bg-blue-700"
+            className="inline-flex items-center gap-2 rounded-lg px-6 py-3 text-white transition-all"
+            style={{ backgroundColor: '#004258' }}
           >
             Become a Sponsor
             <ExternalLink className="h-4 w-4" />
           </a>
           <p className="text-sm text-gray-600">
             Contact us at{' '}
-            <a href={`mailto:${contactEmail}`} className="text-blue-600 hover:underline">
+            <a href={`mailto:${contactEmail}`} style={{ color: '#004258', fontWeight: 'bold' }}>
               {contactEmail}
             </a>{' '}
             to learn more about sponsorship opportunities
@@ -216,7 +219,7 @@ const Sponsors = ({ becomeASponsorUrl = '#', contactEmail = 'team@cloudnativesum
                     target="_blank"
                     rel="noopener noreferrer"
                     className={clsx(
-                      'flex items-center justify-center rounded-lg p-4 transition-all duration-200',
+                      'flex items-center justify-center rounded-lg transition-all duration-200',
                       'hover:scale-[1.02] hover:shadow-md',
                       CARD_STYLES,
                       config.class
@@ -226,8 +229,11 @@ const Sponsors = ({ becomeASponsorUrl = '#', contactEmail = 'team@cloudnativesum
                       <img
                         src={sponsor.icon}
                         alt={sponsor.name}
-                        className="absolute inset-0 m-auto h-auto max-h-[80%] w-auto max-w-[80%] object-contain"
                         loading="lazy"
+                        style={{
+                          height: '100%',
+                          width: '100%',
+                        }}
                       />
                     </div>
                   </a>

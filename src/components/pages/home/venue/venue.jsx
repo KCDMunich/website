@@ -196,8 +196,6 @@ const Venue = ({
 }) => {
   return (
     <div className="mx-auto max-w-7xl px-4 py-12">
-      <h1 className="mb-12 text-center text-4xl font-bold text-[#004258]">Venue Information</h1>
-
       <div className="gap-8 ">
         <div className="flex flex-col gap-6">
           <div className="relative aspect-video overflow-hidden rounded-xl bg-gray-100">
@@ -239,7 +237,6 @@ const Venue = ({
         </div>
 
         <div className="flex flex-col gap-8">
-
           <div className="flex flex-col gap-8">
             <h3 className="mb-4 text-xl font-semibold">Venue Amenities</h3>
             <div className="flex flex-row gap-4 md:flex-col">
