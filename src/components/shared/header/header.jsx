@@ -90,7 +90,7 @@ const Header = ({ isMobileMenuOpen, onBurgerClick, additionalClassName, homepage
               window.location.href = `https://discord.gg/Ht3upbGey9`;
             }}
           >
-            Join our Discord
+            Join our Community
             <FaDiscord style={{ marginLeft: '1rem' }} />
           </button>
         </div>
