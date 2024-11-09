@@ -32,7 +32,7 @@ const Info = () => (
             <iframe
               style={{ width: '100%', height: '100%', borderRadius: '0.5rem' }}
               className="m:w-full m:h-full"
-              src="https://www.youtube.com/embed/Ty4B7VPdWDs?si=vslSzh9_t7l164xg&autoplay=1&mute=1"
+              src="https://www.youtube.com/embed/Ty4B7VPdWDs?si=vzN9-vrqYSNDA3Gc&mute=1&autoplay=1&loop=1&playlist=Ty4B7VPdWDs&cc_load_policy=0&iv_load_policy=3"
               title="YouTube video player"
               frameborder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
