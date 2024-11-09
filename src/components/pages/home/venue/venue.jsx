@@ -264,7 +264,7 @@ const Venue = ({
                 <IconParty />
                 <div>
                   <h4 className="font-medium">Networking Event</h4>
-                  <p className="text-sm text-gray-600">Connect with your fellows</p>
+                  <p className="text-sm text-gray-600">Connect with your peers</p>
                 </div>
               </div>
             </Card>

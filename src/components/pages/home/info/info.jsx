@@ -45,7 +45,7 @@ const Info = () => (
 
       {/* What to Expect Section */}
       <div className="expect-section">
-        <h2 className="section-title">What to expect?</h2>
+        <h2 className="section-title">What to Expect?</h2>
 
         <div className="features-grid">
           <div className="feature-item">
