@@ -30,8 +30,8 @@ const Info = () => (
         <div className="video-section">
           <iframe
             style={{
-              width: '100%',
-              height: '17vh',
+              width: '1284px',
+              height: '702px',
               borderRadius: '0.5rem',
             }}
             src="https://www.youtube.com/embed/Ty4B7VPdWDs?si=vslSzh9_t7l164xg&autoplay=1&mute=1"
