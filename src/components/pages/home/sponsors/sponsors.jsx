@@ -38,10 +38,10 @@ import './sponsor.css';
 
 const CARD_STYLES = 'w-[180px] h-[120px]';
 
-const SHOW_SPONSORS = false;
+const SHOW_SPONSORS = true;
 
 const tierConfig = {
-  gold: {
+  /* gold: {
     title: 'Gold',
     class: 'bg-white shadow-sm',
     badgeClass: 'bg-yellow-50 text-yellow-500',
@@ -58,19 +58,19 @@ const tierConfig = {
     class: 'bg-white shadow-sm',
     badgeClass: 'bg-bronze-50 text-bronze-500',
     count: 4,
-  },
+  }, */
   organizer: {
     title: 'Organizers',
     class: 'bg-white shadow-sm',
     badgeClass: 'bg-blue-50 text-blue-500',
-    count: 3,
+    count: 2,
   },
-  partner: {
+  /* partner: {
     title: 'Community & Media Partners',
     class: 'bg-white shadow-sm',
     badgeClass: 'bg-green-50 text-green-500',
     count: 5,
-  },
+  }, */
 };
 
 const sponsorsList = [
@@ -108,9 +108,8 @@ const sponsorsList = [
   { name: 'DGi', icon: Dgi, url: 'https://www.dg-i.net/', tier: 'bronze' },
 
   // Organizers
-  { name: 'Liquid Reply', icon: liquid, url: 'http://liquidreply.com/', tier: 'organizer' },
-  { name: 'White Duck', icon: whiteduck, url: 'https://whiteduck.de/', tier: 'organizer' },
-  { name: 'QAware', icon: Qaware, url: 'https://www.qaware.de/en/', tier: 'organizer' },
+  { name: 'Liquid Reply', icon: liquid, url: 'https://liquidreply.com/', tier: 'organizer' },
+  { name: 'white duck', icon: whiteduck, url: 'https://whiteduck.de/', tier: 'organizer' },
 
   // Community & Media Partners
   { name: 'Cloud Native', icon: Cloudnative, url: 'https://www.cncf.io/', tier: 'partner' },
@@ -132,7 +131,7 @@ const Sponsors = ({ becomeASponsorUrl = '#', contactEmail = 'team@cloudnativesum
         <div className="mb-16 text-center">
           <h2 className="mb-4 text-4xl font-bold text-gray-900">Become a Sponsor</h2>
           <p className="mb-8 text-lg text-gray-500">
-            Support our event and reach out to the cloud native community
+            Support our local cloud native community by sponsoring CNS Munich
           </p>
 
           <div className="flex flex-col items-center justify-center gap-4">

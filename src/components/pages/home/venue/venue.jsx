@@ -239,18 +239,6 @@ const Venue = ({
         </div>
 
         <div className="flex flex-col gap-8">
-          <div className="flex flex-col text-center">
-            <p className="mb-5 text-lg" style={{ marginTop: '1rem' }}>
-              The KCD Munich will be held at the smartvillage Bogenhausen at Munich Arabellapark.
-              Attendees can expect to enjoy a variety of vegetarian and vegan food options
-              throughout the day.
-            </p>
-            <p className="mb-5 text-lg">
-              Do not miss out on the opportunity of fun, to connect with fellow attendees and
-              continue the conversation at the networking Bowling event.
-            </p>
-            <p className="text-xl font-semibold">We can not wait to see you there!</p>
-          </div>
 
           <div className="flex flex-col gap-8">
             <h3 className="mb-4 text-xl font-semibold">Venue Amenities</h3>
@@ -269,8 +257,8 @@ const Venue = ({
                 <div className="flex items-center gap-4 p-4">
                   <IconClock />
                   <div>
-                    <h4 className="font-medium">Full Day Event</h4>
-                    <p className="text-sm text-gray-600">Including breaks</p>
+                    <h4 className="font-medium">2-Day Event</h4>
+                    <p className="text-sm text-gray-600">With many activities</p>
                   </div>
                 </div>
               </Card>
@@ -280,7 +268,7 @@ const Venue = ({
                   <IconParty />
                   <div>
                     <h4 className="font-medium">Networking Event</h4>
-                    <p className="text-sm text-gray-600">Bowling activity included</p>
+                    <p className="text-sm text-gray-600">Connect with your fellows</p>
                   </div>
                 </div>
               </Card>

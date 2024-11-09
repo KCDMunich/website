@@ -3,7 +3,7 @@ import React from 'react';
 const TITLE = 'Team';
 
 const DESCRIPTION =
-  'The KCD Munich are organized by a dedicated committee who are passionate about bringing people together and fostering a sense of community. Our goal is to provide a platform for like-minded individuals from all levels and backgrounds that is dedicated to learning, growth, and diversity.';
+  'The Cloud Native Summit Munich is organized by a dedicated committee who are passionate about bringing people together and fostering a sense of community. Our goal is to provide a platform for like-minded individuals from all levels and backgrounds that is dedicated to learning, growth, and diversity.';
 
 const Hero = () => (
   <section className="safe-paddings safe-paddings overflow-hidden  bg-opacity-10 pb-20 pt-24">

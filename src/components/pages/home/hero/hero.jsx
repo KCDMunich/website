@@ -17,12 +17,11 @@ const Hero = () => {
               <span className="hero-badge">JULY 1st – 2nd, 2024</span>
 
               {/* Title */}
-              <h1 className="hero-title">CNS Munich</h1>
+              <h1 className="hero-title">Cloud Native Summit Munich</h1>
 
               {/* Description */}
               <p className="hero-description">
-                The Cloud Native community will gather at the smartvillage Bogenhausen in Munich,
-                Germany.
+              In July 2025, the cloud native community will gather in Munich. Come and join us!
               </p>
 
               {/* Feature List */}
@@ -37,10 +36,11 @@ const Hero = () => {
                 </li>
                 <li className="hero-feature-item">
                   <Users className="hero-icon" />
-                  <span>Developers, platform people, and IT professionals</span>
+                  <span>Developers, Platform Engineers, and IT professionals</span>
                 </li>
               </ul>
 
+              <p className="hero-description">New name. Same mission! CNS Munich is run by the community for the community!</p>
               {/* CTA Buttons */}
               <div className="hero-cta-container">
                 <button
@@ -49,21 +49,19 @@ const Hero = () => {
                   style={{ cursor: 'pointer' }}
                   onClick={() => {
                     window.location.href =
-                      'https://kcdmunich-2.ticketbutler.io/en/e/kcd-munich-2024/';
+                      '/mission-statement';
                   }}
                 >
-                  Statemant
+                  Our Statement
                 </button>
-                <button
+                {/* <button
                   type="button"
                   className="hero-cta-secondary"
                   onClick={() => (window.location.href = '#schedule')}
                 >
                   View Schedule
-                </button>
+                </button> */}
               </div>
-
-              <p className="hero-support-text">This community event is supported by the XYZ.</p>
             </div>
 
             <div className="hero-right-column fade-in-scale">

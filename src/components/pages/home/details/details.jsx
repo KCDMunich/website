@@ -33,7 +33,7 @@ const Details = () => (
               <a href="mailto:info@hotel-arabellapark.de" style={{ color: '#1800d4' }}>
                 info@hotel-arabellapark.de
               </a>{' '}
-              with the code "KCD Munich"
+              with the code "CNS Munich"
             </p>
             <p className="mt-7">
               Further details:{' '}

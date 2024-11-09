@@ -6,7 +6,7 @@ const MENUS = {
     // { text: 'Schedule', ...LINKS.schedule },
     // { text: 'Call for Speakers', ...LINKS.proposal },
     { text: 'Sponsors', ...LINKS.sponsors },
-    { text: 'Last event Image Gallery', ...LINKS.gallery },
+    { text: 'Image Gallery', ...LINKS.gallery },
   ],
   footer: [
     { text: 'Code of Conduct', ...LINKS.conduct },
@@ -20,7 +20,7 @@ const MENUS = {
     // { text: 'Call for Speakers', ...LINKS.proposal },
     // { text: 'Workshops', ...LINKS.workshops },
     { text: 'Sponsors', ...LINKS.sponsors },
-    { text: 'KCD24 Image Gallery', ...LINKS.gallery },
+    { text: 'Image Gallery', ...LINKS.gallery },
   ],
 };
 

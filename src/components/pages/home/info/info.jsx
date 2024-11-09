@@ -7,25 +7,34 @@ import './info.css';
 const Info = () => (
   <section className="info-section">
     <div className="info-container">
-      {/* About KCD Section */}
+      {/* About CNS Section */}
       <div className="about-section">
-        <h2 className="section-title">About KCD Munich</h2>
+        <h2 className="section-title">About Cloud Native Summit Munich</h2>
 
         <div className="about-content">
           <div className="about-text">
             <p>
-              Kubernetes Community Days (KCDs) are global, community-organized events that gather
-              adopters and technologists from open source and cloud native communities, supported by
-              the Cloud Native Computing Foundation (CNCF).
+            Cloud Native Summit (CNS) Munich is a local, community-organized event that gathers adopters and technologists from open source and cloud native communities. 
             </p>
           </div>
           <div className="about-text">
             <p>
-              This is our third edition in Munich, and were excited to bring the community together.
-              We want to provide a platform for professionals and experts from all levels and
-              backgrounds to learn, network, and share their knowledge on all things cloud native.
+            This is the fourth edition in Munich, aiming to bring the community together. The event provides a platform for professionals and experts from all levels and backgrounds to learn, network, and share their knowledge about cloud-native technologies.
             </p>
           </div>
+        </div>
+        
+        {/* Video Section - nur wenn benötigt */}
+        <div className="video-section">
+          <iframe
+            className="video-frame"
+            src="https://www.youtube.com/embed/Ty4B7VPdWDs?si=vslSzh9_t7l164xg&autoplay=1&mute=1"
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen
+          ></iframe>
         </div>
       </div>
 
@@ -60,19 +69,6 @@ const Info = () => (
             </div>
           </div>
         </div>
-      </div>
-
-      {/* Video Section - nur wenn benötigt */}
-      <div className="video-section">
-        <iframe
-          className="video-frame"
-          src="https://www.youtube.com/embed/Ty4B7VPdWDs?si=vslSzh9_t7l164xg&autoplay=1&mute=1"
-          title="YouTube video player"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          referrerpolicy="strict-origin-when-cross-origin"
-          allowfullscreen
-        ></iframe>
       </div>
     </div>
   </section>

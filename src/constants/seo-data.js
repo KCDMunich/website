@@ -1,8 +1,8 @@
 export default {
   schedule: {
-    title: 'KCD Munich - Event Schedule for July 17th and 18th, 2023',
+    title: 'CNS Munich - Event Schedule for July 21th and 22th, 2025',
     description:
-      'Explore the detailed agenda for KCD Munich in Munich on July 17th and 18th, 2023. Listen to expert talks, and connect with Kubernetes and Cloud Native professionals. Plan your day now!',
+      'Explore the detailed agenda for CNS Munich in Munich on July 21th and 22th, 2025. Listen to expert talks, and connect with Kubernetes and Cloud Native professionals. Plan your day now!',
   },
   /* workshops: {
     title: 'Workshops — Kubernetes Community Days',
@@ -30,15 +30,15 @@ export default {
       'This one-day training in German or English provides a practical and easy-to-understand introduction to Kubernetes.',
   }, */
   team: {
-    title: 'Team — KCD Munich',
-    description: 'Experience the power of community at the KCD Munich!',
+    title: 'Team — CNS Munich',
+    description: 'Experience the power of community at the CNS Munich!',
   },
   static: ({ title }) => ({
-    title: `${title} — KCD Munich`,
+    title: `${title} — CNS Munich`,
   }),
 
   page404: {
-    title: 'Page Not Found — KCD Munich',
+    title: 'Page Not Found — CNS Munich',
     description: 'Sorry, we couldn’t find the page you’re looking for',
   },
 };

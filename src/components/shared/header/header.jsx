@@ -82,10 +82,10 @@ const Header = ({ isMobileMenuOpen, onBurgerClick, additionalClassName, homepage
             className="button"
             style={{ cursor: 'pointer' }}
             onClick={() => {
-              window.location.href = `mailto:team@cloudnativesummit.de`;
+              window.location.href = `https://www.linkedin.com/company/kubernetes-community-days-munich`;
             }}
           >
-            Contact Us
+            Stay in touch
           </button>
         </div>
 
