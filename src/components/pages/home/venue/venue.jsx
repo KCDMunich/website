@@ -195,13 +195,12 @@ const Venue = ({
   ],
 }) => {
   return (
-    <div className="mx-auto max-w-7xl px-4 py-12">
+    <div className="mx-auto max-w-7xl">
       <div className="gap-8 ">
         <div className="flex flex-col gap-6">
           <div className="relative aspect-video overflow-hidden rounded-xl bg-gray-100">
             <ImageSlider images={images} />
           </div>
-
           <Card>
             <div
               className="p-6"

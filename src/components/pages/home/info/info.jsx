@@ -1,7 +1,5 @@
 import { Users, Calendar, MapPin } from 'lucide-react';
-
 import React from 'react';
-
 import './info.css';
 
 const Info = () => (
@@ -14,20 +12,28 @@ const Info = () => (
         <div className="about-content">
           <div className="about-text">
             <p>
-            Cloud Native Summit (CNS) Munich is a local, community-organized event that gathers adopters and technologists from open source and cloud native communities. 
+              Cloud Native Summit (CNS) Munich is a local, community-organized event that gathers
+              adopters and technologists from open source and cloud native communities.
             </p>
           </div>
           <div className="about-text">
             <p>
-            This is the fourth edition in Munich, aiming to bring the community together. The event provides a platform for professionals and experts from all levels and backgrounds to learn, network, and share their knowledge about cloud-native technologies.
+              This is the fourth edition in Munich, aiming to bring the community together. The
+              event provides a platform for professionals and experts from all levels and
+              backgrounds to learn, network, and share their knowledge about cloud-native
+              technologies.
             </p>
           </div>
         </div>
-        
-        {/* Video Section - nur wenn benötigt */}
+
+        {/* Video Section */}
         <div className="video-section">
           <iframe
-            className="video-frame"
+            style={{
+              width: '100%',
+              height: '68vh',
+              borderRadius: '0.5rem',
+            }}
             src="https://www.youtube.com/embed/Ty4B7VPdWDs?si=vslSzh9_t7l164xg&autoplay=1&mute=1"
             title="YouTube video player"
             frameborder="0"
