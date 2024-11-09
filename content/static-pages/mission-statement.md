@@ -15,7 +15,7 @@ What's the difference between KCD Munich and CNS Munich? Nothing. Same organizat
 
 We have organized the KCD Munich now 3 years in a row and have grown in a healthy, dynamic way to an event with over 420 participants. And we are not alone; KCDs all around the globe become major successes. This very drastic growth in the last years requires some guiding frames, which were implemented in the last year by the Cloud Native Computing Foundation (CNCF). However, those frames are no help for outgrown events like ours.
 
-Therefore, we decided not to apply for the KCD program and stay independent but united with all other European KCDs who take a similar approach. We strongly believe that the unclaimed resources of us can be used by fresh new KCDs somewhere around the globe better; so, go and make it work in your country too!
+Therefore, we decided not to apply for the KCD program and stay independent but united with all other European KCDs, now also known as Cloud Native Days, who take a similar approach. We strongly believe that the unclaimed resources of us can be used by fresh new KCDs somewhere around the globe better; so, go and make it work in your country too!
 
 ### More than Kubernetes - a Cloud Native Summit
 
@@ -30,5 +30,7 @@ We would like to use this change to put ourselves on a solid base for the future
 Only those who dream big will reach something great. The next few months we will throw ourselves into the planning for CNS Munich 2025. Follow us on LinkedIn, X/Twitter, or Instagram to stay up to date.
 
 If you are interested in sponsoring you will find all the details [here](https://cloudnativesummit.de/#sponsors).
+
+CfP and Early Bird tickets will be available soon!
 
 Feel free to contact us for any questions! We can't wait to welcome you again in 2025!
