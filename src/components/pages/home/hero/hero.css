@@ -1,24 +1,13 @@
-/* Hero Container */
-.hero-container {
-  background-color: var(--background-color, #ffffff);
-}
-
 /* Hero Section */
 .hero-section {
   position: relative;
   overflow: hidden;
-  background: linear-gradient(
-    180deg,
-    var(--background-color, #ffffff) 0%,
-    rgba(255, 255, 255, 0.95) 100%
-  );
 }
 
 /* Background Grid */
 .hero-background-grid {
   position: absolute;
   inset: 0;
-  background-image: radial-gradient(#e5e7eb 1px, transparent 1px);
   background-size: 30px 30px;
   mask-image: radial-gradient(ellipse at center, transparent 20%, black);
   -webkit-mask-image: radial-gradient(ellipse at center, transparent 20%, black);
