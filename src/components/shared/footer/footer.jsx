@@ -43,7 +43,7 @@ const Footer = () => {
   };
   return (
     <footer id="sponsors" className="safe-paddings border-t border-t-gray-10 bg-white">
-      <div className="container flex items-center justify-between pb-5 pt-5 sm:flex-col sm:justify-around">
+      <div className="container flex items-center justify-between pb-5 pt-5 sm:flex-col sm:justify-around gap-4">
         <Link className="z-50 ml-2" to="/">
           <StaticImage
             src="./images/logo.svg"
