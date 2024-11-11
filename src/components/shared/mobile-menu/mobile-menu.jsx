@@ -81,8 +81,5 @@ MobileMenu.propTypes = {
   onButtonClick: PropTypes.func.isRequired,
 };
 
-MobileMenu.defaultProps = {
-  isOpen: false,
-};
 
 export default MobileMenu;
