@@ -40,7 +40,7 @@ const Footer = () => {
     }
   };
   return (
-    <footer className="safe-paddings border-t border-t-gray-10 bg-white">
+    <footer id="sponsors" className="safe-paddings border-t border-t-gray-10 bg-white">
       <div className="container flex items-center justify-between pb-5 pt-5 sm:flex-col sm:justify-around">
         <Link className="z-50 ml-2" to="/">
           <StaticImage

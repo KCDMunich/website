@@ -7,6 +7,7 @@ export default {
   gallery: {
     to: 'https://lightroom.adobe.com/shares/42d27333b09147bba84e9ed1fb859739',
     target: '_blank',
+    external: true,
   },
   home: {
     to: '/',
@@ -32,36 +33,44 @@ export default {
   tickets: {
     to: '',
     target: '_blank',
+    external: true,
   },
   mission: {
     to: '/mission-statement',
     target: '_blank',
+    external: true,
   },
   privacy: {
     to: '/data-privacy',
     target: '_blank',
+    external: true,
   },
   conduct: {
     to: 'https://events.linuxfoundation.org/about/code-of-conduct/',
     target: '_blank',
+    external: true,
   },
 
   // Social-links
   linkedin: {
     to: 'https://www.linkedin.com/company/kubernetes-community-days-munich',
     target: '_blank',
+    external: true,
   },
   twitter: {
     to: 'https://twitter.com/KCDMunich',
     target: '_blank',
+    external: true,
   },
   googlemaps: {
     to: 'https://goo.gl/maps/yQ2Xr6Mnoyivh3qq5',
     target: '_blank',
+    external: true,
   },
   youtube: {
     to: 'https://www.youtube.com/@KCDMunich',
     target: '_blank',
+    external: true,
   },
   speakers: {
     to: `/speakers`,

@@ -127,7 +127,7 @@ const sponsorsList = [
 const Sponsors = ({ becomeASponsorUrl = '#', contactEmail = 'team@cloudnativesummit.de' }) => {
   if (!SHOW_SPONSORS) {
     return (
-      <section id="sponsors" className="mx-auto max-w-7xl px-4 py-16">
+      <section className="mx-auto max-w-7xl px-4 py-16">
         <div className="mb-16 text-center">
           <h2 className="mb-4 text-4xl font-bold text-gray-900">Become a Sponsor</h2>
           <p className="mb-8 text-lg text-gray-500">
