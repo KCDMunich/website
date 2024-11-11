@@ -8,6 +8,7 @@ import GoogleMaps from 'icons/google-maps-icon.inline.svg';
 import LinkedIn from 'icons/linkedin-logo.inline.svg';
 import Twitter from 'icons/twitter-logo.inline.svg';
 import Youtube from 'icons/youtube.inline.svg';
+import { FaDiscord } from 'react-icons/fa';
 
 import { StaticImage } from 'gatsby-plugin-image';
 
@@ -21,6 +22,7 @@ const items = [
   { icon: LinkedIn, iconClassName: 'w-5 h-9', url: LINKS.linkedin.to },
   { icon: Twitter, iconClassName: 'w-5 h-9', url: LINKS.twitter.to },
   { icon: Youtube, iconClassName: 'w-7 h-9', url: LINKS.youtube.to },
+  { icon: FaDiscord, iconClassName: 'w-7 h-9', url: 'https://discord.com/invite/Ht3upbGey9' },
 ];
 
 const Footer = () => {
@@ -43,7 +45,7 @@ const Footer = () => {
   };
   return (
     <footer id="sponsors" className="safe-paddings border-t border-t-gray-10 bg-white">
-      <div className="container flex items-center justify-between pb-5 pt-5 sm:flex-col sm:justify-around gap-4">
+      <div className="container flex items-center justify-between gap-4 pb-5 pt-5 sm:flex-col sm:justify-around">
         <Link className="z-50 ml-2" to="/">
           <StaticImage
             src="./images/logo.svg"
@@ -62,7 +64,7 @@ const Footer = () => {
                 style={{ color: '#' }}
               >
                 <Button
-                  className="flex sm:flex-wrap Link"
+                  className="Link flex sm:flex-wrap"
                   to={to}
                   target={target}
                   onClick={handleAnchorClick}
@@ -76,7 +78,7 @@ const Footer = () => {
         <div className="mt-4">
           <div className="flex h-full items-center justify-center">
             <Link
-              className="ml-2 font-semibold transition-colors duration-200 Link"
+              className="Link ml-2 font-semibold transition-colors duration-200"
               theme="primary"
               to="mailto:team@cloudnativesummit.de"
             >
