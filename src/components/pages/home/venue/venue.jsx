@@ -1,4 +1,4 @@
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Users, Calendar, MapPin } from 'lucide-react';
 import React, { useState, useEffect } from 'react';
 
 // Icons aus dem ursprünglichen Code
@@ -96,9 +96,7 @@ const IconExternal = () => (
   </svg>
 );
 
-const Card = ({ children, className = '' }) => (
-  <div className={`overflow-hidden rounded-xl bg-white shadow-md ${className}`}>{children}</div>
-);
+const Card = ({ children, className = '' }) => <div className={` ${className}`}>{children}</div>;
 
 const ImageSlider = ({ images }) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -237,37 +235,32 @@ const Venue = ({
           </Card>
         </div>
 
-        <div className="flex flex-col gap-8" style={{ marginTop: '4rem' }}>
-          <div className="flex flex-row gap-4 md:flex-col">
-            <Card className="flex-1">
-              <div className="flex items-center gap-4 p-4">
-                <IconUtensils />
-                <div>
-                  <h4 className="font-medium text-primary-1">Catering</h4>
-                  <p className="text-sm text-gray-600">Vegetarian & Vegan options</p>
-                </div>
+        {/* What to Expect Section */}
+        <div className="expect-section">
+          <div className="features-grid" style={{ justifyItems: 'center' }}>
+            <div className="feature-item">
+              <Users className="feature-icon" />
+              <div className="feature-content">
+                <h3 className="feature-title">Catering</h3>
+                <p className="feature-text">Vegetarian & Vegan options</p>
               </div>
-            </Card>
+            </div>
 
-            <Card className="flex-1">
-              <div className="flex items-center gap-4 p-4">
-                <IconClock />
-                <div>
-                  <h4 className="font-medium text-primary-1">2-Day Event</h4>
-                  <p className="text-sm text-gray-600">With many activities</p>
-                </div>
+            <div className="feature-item">
+              <Calendar className="feature-icon" />
+              <div className="feature-content">
+                <h3 className="feature-title">2-Day Event</h3>
+                <p className="feature-text">With many activities</p>
               </div>
-            </Card>
+            </div>
 
-            <Card className="flex-1">
-              <div className="flex items-center gap-4 p-4">
-                <IconParty />
-                <div>
-                  <h4 className="font-medium text-primary-1">Networking Event</h4>
-                  <p className="text-sm text-gray-600">Connect with your peers</p>
-                </div>
+            <div className="feature-item">
+              <MapPin className="feature-icon" />
+              <div className="feature-content">
+                <h3 className="feature-title">Networking Event</h3>
+                <p className="feature-text">Connect with your peers</p>
               </div>
-            </Card>
+            </div>
           </div>
         </div>
       </div>

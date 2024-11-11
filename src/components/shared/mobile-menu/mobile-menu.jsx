@@ -7,6 +7,8 @@ import useScrollOverflow from 'hooks/use-scroll-overflow';
 
 import Button from '../button';
 
+import { FaDiscord } from 'react-icons/fa';
+
 const ANIMATION_DURATION = 0.2;
 
 const variants = {
@@ -60,16 +62,21 @@ const MobileMenu = ({ isOpen, onButtonClick }) => {
           </ul>
         </div>
         <div className="flex items-center justify-center">
-          <div className="flex flex-col items-center justify-center gap-4">
-          <a
-            href="mission-statement"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 rounded-lg px-6 py-3 text-white transition-all bg-primary-1"
+          <button
+            type="button"
+            className="button"
+            style={{
+              cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+            }}
+            onClick={() => {
+              window.location.href = `https://discord.gg/Ht3upbGey9`;
+            }}
           >
-            Our Statement
-          </a>
-        </div>
+            Join our Community
+            <FaDiscord style={{ marginLeft: '1rem' }} />
+          </button>
         </div>
       </m.nav>
     </LazyMotion>
@@ -80,6 +87,5 @@ MobileMenu.propTypes = {
   isOpen: PropTypes.bool,
   onButtonClick: PropTypes.func.isRequired,
 };
-
 
 export default MobileMenu;

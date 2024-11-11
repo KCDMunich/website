@@ -124,7 +124,10 @@ const sponsorsList = [
   { name: 'SysEleven', icon: Syseleven, url: 'https://www.syseleven.de/', tier: 'partner' },
 ];
 
-const Sponsors = ({ becomeASponsorUrl = '#', contactEmail = 'team@cloudnativesummit.de' }) => {
+const Sponsors = ({
+  becomeASponsorUrl = 'team@cloudnativesummit.de',
+  contactEmail = 'team@cloudnativesummit.de',
+}) => {
   if (!SHOW_SPONSORS) {
     return (
       <section className="mx-auto max-w-7xl px-4 py-16">
@@ -166,21 +169,18 @@ const Sponsors = ({ becomeASponsorUrl = '#', contactEmail = 'team@cloudnativesum
   return (
     <section className="mx-auto max-w-7xl px-4 py-16">
       <div className="mb-16 text-center">
-        <h2 className="mb-4 text-4xl font-bold text-primary-1">
-          Our Sponsors
-        </h2>
+        <h2 className="mb-4 text-4xl font-bold text-primary-1">Become a Sponsor</h2>
         <p className="mb-8 text-lg text-gray-500">
-          Thank you to our amazing sponsors who make this event possible
+          Support our local cloud native community by sponsoring CNS Munich
         </p>
-
         <div className="flex flex-col items-center justify-center gap-4">
           <a
-            href={becomeASponsorUrl}
+            href={`mailto:${contactEmail}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 rounded-lg px-6 py-3 text-white transition-all bg-primary-1"
+            className="inline-flex items-center gap-2 rounded-lg bg-primary-1 px-6 py-3 text-white transition-all"
           >
-            Become a Sponsor
+            Contact Us
           </a>
         </div>
       </div>
@@ -192,6 +192,12 @@ const Sponsors = ({ becomeASponsorUrl = '#', contactEmail = 'team@cloudnativesum
 
         return (
           <div key={tier} className="mb-12">
+            <div className="mb-16 text-center">
+              <h2 className="mb-4 text-4xl font-bold text-primary-1">Our Sponsors</h2>
+              <p className="mb-8 text-lg text-gray-500" style={{ textAlign: 'center' }}>
+                Thank you to our amazing sponsors who make this event possible
+              </p>
+            </div>
             <div className="mb-6 flex items-center justify-center gap-2">
               <h3 className="text-xl font-semibold text-gray-900">{config.title}</h3>
               <span
