@@ -121,11 +121,7 @@ module.exports = {
       black: '#000000',
       white: '#ffffff',
       primary: {
-        1: '#262F59',
-        2: 'rgba(38, 47, 89, 0.1)',
-        3: 'rgba(38, 47, 89, 0.3)',
-        4: 'rgba(38, 47, 89, 0.03)',
-        5: 'rgba(38, 47, 89, 0.8)',
+        1: '#004258',
       },
       lightYellow: 'rgba(255, 234, 125, 0.3)',
       lightGreen: 'rgba(125, 255, 208, 0.2)',

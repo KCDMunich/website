@@ -228,10 +228,10 @@ const Venue = ({
                 href="https://maps.google.com/?q=smartvillage+Bogenhausen+Rosenkavalierpl.+13+81925+Munich"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex w-full items-center justify-center rounded-lg border border-gray-300 px-4 py-2 text-gray-700 transition-colors hover:bg-gray-50"
+                className="inline-flex items-center gap-2 rounded-lg px-6 py-3 text-white transition-all"
+                style={{ backgroundColor: '#004258' }}
               >
                 Open in Google Maps
-                <IconExternal className="ml-2" />
               </a>
             </div>
           </Card>
@@ -243,7 +243,7 @@ const Venue = ({
               <div className="flex items-center gap-4 p-4">
                 <IconUtensils />
                 <div>
-                  <h4 className="font-medium">Catering</h4>
+                  <h4 className="font-medium text-primary-1">Catering</h4>
                   <p className="text-sm text-gray-600">Vegetarian & Vegan options</p>
                 </div>
               </div>
@@ -253,7 +253,7 @@ const Venue = ({
               <div className="flex items-center gap-4 p-4">
                 <IconClock />
                 <div>
-                  <h4 className="font-medium">2-Day Event</h4>
+                  <h4 className="font-medium text-primary-1">2-Day Event</h4>
                   <p className="text-sm text-gray-600">With many activities</p>
                 </div>
               </div>
@@ -263,7 +263,7 @@ const Venue = ({
               <div className="flex items-center gap-4 p-4">
                 <IconParty />
                 <div>
-                  <h4 className="font-medium">Networking Event</h4>
+                  <h4 className="font-medium text-primary-1">Networking Event</h4>
                   <p className="text-sm text-gray-600">Connect with your peers</p>
                 </div>
               </div>

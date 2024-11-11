@@ -14,6 +14,8 @@ import { StaticImage } from 'gatsby-plugin-image';
 import Button from '../button';
 import Link from '../link';
 
+import './footer.css';
+
 const items = [
   { icon: GoogleMaps, iconClassName: 'w-4 h-9', url: LINKS.googlemaps.to },
   { icon: LinkedIn, iconClassName: 'w-5 h-9', url: LINKS.linkedin.to },
@@ -60,8 +62,7 @@ const Footer = () => {
                 style={{ color: '#' }}
               >
                 <Button
-                  className="flex sm:flex-wrap"
-                  theme="link-primary"
+                  className="flex sm:flex-wrap Link"
                   to={to}
                   target={target}
                   onClick={handleAnchorClick}
@@ -75,7 +76,7 @@ const Footer = () => {
         <div className="mt-4">
           <div className="flex h-full items-center justify-center">
             <Link
-              className="ml-2 font-semibold transition-colors duration-200"
+              className="ml-2 font-semibold transition-colors duration-200 Link"
               theme="primary"
               to="mailto:team@cloudnativesummit.de"
             >

@@ -166,7 +166,7 @@ const Sponsors = ({ becomeASponsorUrl = '#', contactEmail = 'team@cloudnativesum
   return (
     <section className="mx-auto max-w-7xl px-4 py-16">
       <div className="mb-16 text-center">
-        <h2 className="mb-4 text-4xl font-bold" style={{ color: '#004258' }}>
+        <h2 className="mb-4 text-4xl font-bold text-primary-1">
           Our Sponsors
         </h2>
         <p className="mb-8 text-lg text-gray-500">
@@ -178,8 +178,7 @@ const Sponsors = ({ becomeASponsorUrl = '#', contactEmail = 'team@cloudnativesum
             href={becomeASponsorUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 rounded-lg px-6 py-3 text-white transition-all"
-            style={{ backgroundColor: '#004258' }}
+            className="inline-flex items-center gap-2 rounded-lg px-6 py-3 text-white transition-all bg-primary-1"
           >
             Become a Sponsor
           </a>
@@ -223,8 +222,8 @@ const Sponsors = ({ becomeASponsorUrl = '#', contactEmail = 'team@cloudnativesum
                         alt={sponsor.name}
                         loading="lazy"
                         style={{
-                          height: '100%',
-                          width: '100%',
+                          height: '7vh',
+                          width: 'auto',
                         }}
                       />
                     </div>
