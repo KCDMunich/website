@@ -237,7 +237,7 @@ const Venue = ({
 
         {/* What to Expect Section */}
         <div className="expect-section">
-          <div className="features-grid" style={{ justifyItems: 'center' }}>
+          <div className="features-grid justify-items-center md:justify-items-start">
             <div className="feature-item">
               <Users className="feature-icon" />
               <div className="feature-content">
