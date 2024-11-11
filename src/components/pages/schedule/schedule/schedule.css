@@ -1,206 +1,269 @@
-.fc .fc-timegrid-slot {
-  height: 4.95em;
-}
-/* Entfernen der Borders in FullCalendar */
-.fc .fc-scrollgrid,
-.fc .fc-scrollgrid-section,
-.fc .fc-scrollgrid-section > td,
-.fc .fc-col-header-cell,
-.fc .fc-daygrid-day,
-.fc .fc-timegrid-slot,
-.fc .fc-timegrid-slot-label,
-.fc .fc-timegrid-slot-label-frame,
-.fc .fc-timegrid-body .fc-timegrid-col,
-.fc .fc-timegrid-slot-label:last-child,
-.fc-theme-standard td,
-.fc-theme-standard th {
-  border: none !important;
-}
-.fc .fc-timegrid-slot {
-  border-top: 0.5px solid lightgrey !important;
-  border-bottom: 0.5px solid lightgrey !important;
+.schedule-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+  padding: 2rem;
 }
 
-.fc-event {
-  width: 100%;
-  height: 95%;
-  background: rgb(13, 50, 233);
-  border-radius: 10px;
+/* Loading Spinner */
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
 }
 
-.fc .fc-toolbar {
-  font-weight: bold;
+.loading-spinner {
+  width: 50px;
+  height: 50px;
+  border: 3px solid #f3f3f3;
+  border-top: 3px solid #3333ff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
 }
 
-.fc .fc-toolbar-title {
-  padding-top: 10px;
-}
-.fc .fc-toolbar.fc-header-toolbar {
-  margin-bottom: 0px;
-  background: darkgray;
-}
-
-.fc .fc-col-header-cell-cushion {
-  font-size: 22px;
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
-.fc-scrollgrid-sync-inner {
-  background: lightgray;
+/* Tabs and Filters */
+.tab-buttons,
+.filter-buttons {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
   justify-content: center;
 }
-.fc th {
-  background: lightgray;
+
+.tab-button,
+.filter-button {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 4px;
+  background-color: #f0f0f0;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
-.fc-timegrid-axis {
-  display: none;
+.tab-button:hover,
+.filter-button:hover {
+  background-color: #e0e0e0;
 }
 
-.fc-timegrid-event-harness {
-  margin-left: 4px;
+.tab-button.active,
+.filter-button.active {
+  background-color: #3333ff;
+  color: white;
 }
 
-td {
-  padding-right: 2px !important;
+/* Schedule Grid */
+.schedule-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(400px, 1fr));
+  gap: 1rem;
 }
 
-.fc-direction-ltr .fc-timegrid-slot-label-frame {
-  text-align: center;
+.room-section {
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  overflow: hidden;
 }
 
-.speaker {
-  font-size: 12px;
+.room-header {
+  background-color: #e9ecef;
+  padding: 1rem;
 }
 
-@media screen and (max-width: 800px) {
-  .renderContent {
-    font-size: 9px;
-  }
+.room-header h2 {
+  margin: 0;
+  font-size: 1.2rem;
 }
 
-@media screen and (max-width: 600px) {
-  .dialog-title {
-    font-size: 14px;
-  }
-
-  .dialog-start {
-    font-size: 10px;
-  }
-
-  .dialog-end {
-    font-size: 10px;
-  }
-
-  .dialog-room {
-    font-size: 10px;
-  }
-  .dialog-description {
-    font-size: 10px;
-  }
+/* Event Cards */
+.event-card {
+  background-color: white;
+  margin: 1rem;
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: transform 0.2s ease;
 }
 
-.fc-direction-ltr .fc-timegrid-slot-label-frame {
-  display: none;
+.event-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Standardmäßige Desktop-Stile */
+.event-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
 
 .event-time {
-  display: flex;
-  justify-content: left;
-  font-weight: bold;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.event-type {
+  background-color: #e9ecef;
+  padding: 0.25rem 0.5rem;
+  border-radius: 12px;
+  font-size: 0.8rem;
 }
 
 .event-title {
-  font-weight: bold;
-  font-size: 12px;
+  margin: 0.5rem 0;
+  font-size: 1.1rem;
 }
 
-.speaker-list {
+.speaker-info {
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
 }
 
-@media screen and (max-width: 1050px) {
-  .fc .fc-col-header-cell-cushion {
-    display: flex;
-    font-size: 18px;
-    text-align: center;
-    justify-content: center;
+.speaker-avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.event-room {
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+/* Modal */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 8px;
+  max-width: 90%;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  width: 500px;
+}
+
+.modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  border: none;
+  background: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #666;
+}
+
+/* Event Modal Content */
+.event-modal h2 {
+  margin: 0 0 1rem 0;
+  font-size: 1.5rem;
+}
+
+.event-details {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  color: #666;
+}
+
+.event-description {
+  margin: 1rem 0;
+  line-height: 1.5;
+}
+
+.speakers-list {
+  margin-top: 1rem;
+}
+
+.speaker-detail {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.speaker-avatar-large {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .schedule-container {
+    padding: 1rem;
   }
 
-  .event-title {
-    font-size: 8px;
+  .schedule-grid {
+    grid-template-columns: 1fr;
   }
-  .event-time {
-    font-size: 11px;
+
+  .modal-content {
+    width: 95%;
+    padding: 1rem;
   }
 }
 
-@media screen and (max-width: 800px) {
-  .fc .fc-col-header-cell-cushion {
-    display: flex;
-    font-size: 13px;
-    text-align: center;
-    justify-content: center;
+@media (max-width: 480px) {
+  .event-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
   }
 
-  .speaker {
-    font-size: 11px;
-  }
-}
-
-/* Medienabfragen für mobile Geräte */
-@media screen and (max-width: 600px) {
-  .fc .fc-col-header-cell-cushion {
-    display: flex;
-    font-size: 11px;
-    text-align: center;
-    justify-content: center;
+  .tab-buttons,
+  .filter-buttons {
+    flex-direction: column;
   }
 }
 
-/*Iphone 14 Pro Max*/
-
-@media screen and (max-width: 430px) {
-  .fc .fc-col-header-cell-cushion {
-    display: flex;
-    font-size: 15px;
-    text-align: center;
-    justify-content: center;
-  }
-
-  .event-title {
-    font-size: 13px;
-  }
-
-  .event-time {
-    font-size: 12px;
-  }
-
-  .speaker-list {
-    font-size: 12px;
-  }
+.duration-badge {
+  background-color: #f0f0f0;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 0.9em;
+  color: #666;
+  margin-left: 8px;
 }
 
-/*Iphone SE*/
-@media screen and (max-width: 375px) {
-  .fc .fc-col-header-cell-cushion {
-    display: flex;
-    font-size: 15px;
-    text-align: center;
-    justify-content: center;
-  }
+.event-time {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9em;
+  color: #666;
+}
 
-  .event-title {
-    font-size: 13px;
-  }
-
-  .event-time {
-    font-size: 10px;
-  }
-
-  .speaker-list {
-    font-size: 12px;
-  }
+.event-time span:first-child {
+  white-space: nowrap;
 }

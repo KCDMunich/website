@@ -1,21 +1,22 @@
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useState } from 'react';
 import slugify from 'slugify';
-
 import MENUS from 'constants/menus';
-import Logo from 'icons/logo.inline.svg';
-
 import Burger from '../burger';
-import Button from '../button';
 import Link from '../link';
+import { StaticImage } from 'gatsby-plugin-image';
+import { FaDiscord } from 'react-icons/fa';
+
+import './header.css';
 
 const Header = ({ isMobileMenuOpen, onBurgerClick, additionalClassName, homepage }) => {
+  const [isHovered, setIsHovered] = useState(false);
+
   const getAnchor = (str) => slugify(str).toLocaleLowerCase();
 
   const handleAnchorClick = (e) => {
     const id = getAnchor(e.target.firstChild.data);
-
     const element = document.getElementById(id);
 
     if (element) {
@@ -34,37 +35,65 @@ const Header = ({ isMobileMenuOpen, onBurgerClick, additionalClassName, homepage
     <header
       className={clsx(
         'safe-paddings transition-200 z-10 transition-colors',
-        isMobileMenuOpen ? 'bg-white bg-opacity-100' : 'bg-[#ffffff] bg-opacity-10',
         additionalClassName
       )}
     >
-      <div className="container flex items-center justify-between pb-2 pt-5">
+      <div
+        className="flex items-center justify-between pb-2 pt-5"
+        style={{
+          position: 'relative',
+          margin: '0 auto',
+          maxWidth: '80rem',
+          padding: '1rem 1rem',
+        }}
+      >
         <Link className="z-50 ml-2" to="/">
-          <Logo className="h-12" />
+          <StaticImage
+            src="./images/logo.svg"
+            alt="logo"
+            formats={['auto', 'webp', 'avif']}
+            className="navbar-logo"
+          />
         </Link>
 
         <nav>
-          <ul className="-ml-8 flex space-x-8 text-white lg:ml-0 lg:space-x-6 md:hidden">
+          <ul className=" flex space-x-8 text-white lg:space-x-6 md:hidden">
             {MENUS.header.map(({ text, to, homeTo }, index) => (
-              <li className="text-[15px] font-semibold text-primary-1" key={index}>
-                <Button to={to || `/#${homeTo}`} theme="link-primary" onClick={handleAnchorClick}>
+              <li
+                className="text-[15px] font-semibold"
+                key={index}
+                style={{ color: '#004258', cursor: 'pointer' }}
+              >
+                <Link
+                  to={to || `/#${homeTo}`}
+                  className="text-primary hover:text-primary-dark cursor-pointer transition-colors duration-200"
+                  onClick={handleAnchorClick}
+                >
                   {text}
-                </Button>
+                </Link>
               </li>
             ))}
           </ul>
         </nav>
-        <Button
-          className="group relative -mr-2 inline-flex items-center justify-center overflow-hidden border-none p-0.5 font-bold md:hidden"
-          to="https://kcdmunich-2.ticketbutler.io/en/e/kcd-munich-2024/"
-          theme="primary"
-          target="_blank"
-        >
-          <span className="absolute h-full w-full bg-gradient-to-br from-[#3333ff] via-[#3333ff] to-[#3333ff] group-hover:from-[#ff00c6] group-hover:via-[#ff5478] group-hover:to-[#ff8a05]"></span>
-          <span className="bg-gray-900 duration-400 relative rounded-md px-6 py-3 transition-all ease-out group-hover:bg-opacity-0">
-            <span className="relative text-white">Get your tickets now</span>
-          </span>
-        </Button>
+
+        <div className="md:hidden">
+          <button
+            type="button"
+            className="button"
+            style={{
+              cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+            }}
+            onClick={() => {
+              window.location.href = `https://discord.gg/Ht3upbGey9`;
+            }}
+          >
+            Join our Community
+            <FaDiscord style={{ marginLeft: '1rem' }} />
+          </button>
+        </div>
+
         <Burger
           className={clsx('z-50 hidden md:block', isMobileMenuOpen && 'text-black dark:text-black')}
           isToggled={isMobileMenuOpen}

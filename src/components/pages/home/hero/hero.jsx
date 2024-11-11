@@ -1,65 +1,91 @@
+import { StaticImage } from 'gatsby-plugin-image';
+import { Calendar, MapPin, Users } from 'lucide-react';
 import React from 'react';
-import Button from 'components/shared/button';
-import illustration from './images/hero-illustration.png';
-const TITLE = 'KCD Munich';
-
-const DESCRIPTION =
-  'The Kubernetes & Cloud Native community will gather at the smartvillage Bogenhausen in Munich, Germany. Join us for a two-day technical event loaded with exciting talks and networking opportunities. KCD Munich is aimed at developers, platform people, and other IT professionals with an interest in cloud native technologies. This community event is supported by the CNCF.';
+import './hero.css';
 
 const Hero = () => {
-  /*
-  const cloudsBack = {
-    animationData: cloudsAnimation, // Your back animation JSON
-    loop: true,
-    autoplay: true,
-    rendererSettings: {
-      preserveAspectRatio: 'xMidYMid slice',
-    },
-  };
-
-  const { View: View, play: playBack } = useLottie(cloudsBack);
-
-  useEffect(() => {
-    playBack();
-  }, [playBack]);
-
-  */
-
   return (
-    <section className="safe-paddings overflow-hidden bg-opacity-10 pt-28 md:pt-24">
-      <div className="container flex flex-row md:flex-col md:items-center md:text-center">
-        <div className="flex flex-col md:items-center md:text-center">
-          <span className="w-fit rounded-3xl bg-yellow px-4 py-2 text-sm font-bold leading-none text-black">
-            JULY 1st - 2nd, 2024
-          </span>
-          <h1 className="mt-3 min-w-[38rem] max-w-[570px] text-8xl font-bold leading-denser text-primary-1 lg:max-w-[500px] md:min-w-min sm:text-7xl">
-            {TITLE}
-          </h1>
-          <p className="mt-5 max-w-[500px] text-lg leading-normal text-primary-1 lg:max-w-[500px]">
-            {DESCRIPTION}
-          </p>
-          <div style={{ marginTop: '3vh' }}>
-            <Button
-              className="border-nonemd:hidden group relative inline-flex w-fit items-center justify-center overflow-hidden"
-              to="https://kcdmunich-2.ticketbutler.io/en/e/kcd-munich-2024/"
-              target="_blank"
-            >
-              <span className="absolute h-full w-full bg-gradient-to-br from-[#3333ff] via-[#3333ff] to-[#3333ff] group-hover:from-[#ff00c6] group-hover:via-[#ff5478] group-hover:to-[#ff8a05]"></span>
-              <span className="bg-gray-900 duration-400 relative rounded-md px-6 py-3 transition-all ease-out group-hover:bg-opacity-0">
-                <span className="relative font-bold text-white">Get your tickets now</span>
-              </span>
-            </Button>
+    <div className="hero-container">
+      <section className="hero-section">
+        <div className="hero-background-grid" />
+
+        <div className="hero-content-container">
+          <div className="hero-grid">
+            {/* Left column - Content */}
+            <div className="hero-left-column fade-in-up">
+              {/* Date Badge */}
+              <span className="hero-badge">July 21st – 22nd, 2025</span>
+
+              {/* Title */}
+              <h1 className="hero-title">Cloud Native Summit Munich</h1>
+
+              {/* Description */}
+              <p className="hero-description">
+              In July 2025, the cloud native community will gather in Munich. Come and join us!
+              </p>
+
+              {/* Feature List */}
+              <ul className="hero-feature-list">
+                <li className="hero-feature-item">
+                  <Calendar className="hero-icon" />
+                  <span>Two-day technical event</span>
+                </li>
+                <li className="hero-feature-item">
+                  <MapPin className="hero-icon" />
+                  <span>Munich, Germany</span>
+                </li>
+                <li className="hero-feature-item">
+                  <Users className="hero-icon" />
+                  <span>Developers, Platform Engineers, and IT Professionals</span>
+                </li>
+              </ul>
+
+              <p className="hero-description">New name. Same mission! CNS Munich is run by the community for the community!</p>
+              {/* CTA Buttons */}
+              <div className="hero-cta-container">
+                <button
+                  type="button"
+                  className="button"
+                  style={{ cursor: 'pointer' }}
+                  onClick={() => {
+                    window.location.href =
+                      '/mission-statement';
+                  }}
+                >
+                  Our Statement
+                </button>
+                {/* <button
+                  type="button"
+                  className="hero-cta-secondary"
+                  onClick={() => (window.location.href = '#schedule')}
+                >
+                  View Schedule
+                </button> */}
+              </div>
+            </div>
+
+            <div className="hero-right-column fade-in-scale">
+              <div className="hero-illustration-container">
+                <div
+                  style={{
+                    position: 'relative',
+                    aspectRatio: '1',
+                    borderRadius: '0.75rem',
+                    overflow: 'hidden',
+                  }}
+                >
+                  <StaticImage
+                    src="./images/hero.svg"
+                    alt="Hero"
+                    formats={['auto', 'webp', 'avif']}
+                  />
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-        <img
-          className="ml-[-5vw] h-[40rem] scale-125 object-contain 2xl:-mt-20 md:mt-1 md:h-96"
-          style={{ marginLeft: '-1rem' }}
-          src={illustration}
-          loading="eager"
-          alt="Illustration"
-        />
-      </div>
-    </section>
+      </section>
+    </div>
   );
 };
 

@@ -1,205 +1,176 @@
-/* eslint-disable react/prop-types */
-import React, { useEffect, useState } from 'react';
-import { SocialIcon } from 'react-social-icons';
-import speakerJSON from './speaker.json'; //Daten aus der speaker.json
-import './speakers.css';
+import React, { useState, useEffect } from 'react';
+import { Github, Twitter, Linkedin, Globe, Youtube } from 'lucide-react';
+
 const scriptUrl = 'https://sessionize.com/api/v2/6dqtqpt2/view/Speakers';
 
-const Speakers = () => (
-  <section className="safe-paddings relative bg-white pb-40 2xl:pb-32 lg:pb-32 md:py-24 sm:py-16">
-    <div className="container flex justify-between 2xl:flex-col lg:flex-col">
-      <div className="text-primary-1 2xl:flex 2xl:flex-col 2xl:items-center 2xl:justify-center lg:flex lg:flex-col lg:items-center lg:justify-center lg:text-center">
-        <br />
-        <div className=" w-full">
-          <SpeakerComponent />
+const findCompanyInfo = (speaker) => {
+  const company = speaker.questionAnswers.find((q) => q.question === 'Company');
+  return company?.answer || 'Speaker';
+};
+
+const SocialIcon = ({ url }) => {
+  const iconSize = 24;
+  const iconColor = '#283058';
+
+  if (url.includes('github.com')) return <Github size={iconSize} color={iconColor} />;
+  if (url.includes('twitter.com')) return <Twitter size={iconSize} color={iconColor} />;
+  if (url.includes('linkedin.com')) return <Linkedin size={iconSize} color={iconColor} />;
+  if (url.includes('youtube.com')) return <Youtube size={iconSize} color={iconColor} />;
+  return <Globe size={iconSize} color={iconColor} />;
+};
+
+const Dialog = ({ isOpen, onClose, children }) => {
+  if (!isOpen) return null;
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
+      <div className="relative w-full max-w-md rounded-lg bg-white">
+        <button
+          onClick={onClose}
+          className="text-gray-500 hover:text-gray-700 absolute right-4 top-4"
+        >
+          ×
+        </button>
+        {children}
+      </div>
+    </div>
+  );
+};
+
+const SpeakerCard = ({ speaker, onClick }) => {
+  const company = findCompanyInfo(speaker);
+
+  return (
+    <div
+      onClick={onClick}
+      className="w-full cursor-pointer overflow-hidden rounded-lg bg-white shadow-sm transition-all duration-300 hover:shadow-md"
+    >
+      <div className="relative aspect-square">
+        <img
+          src={speaker.profilePicture}
+          alt={speaker.fullName}
+          className="h-full w-full object-cover"
+        />
+      </div>
+      <div className="p-2 text-center">
+        <h3 className="truncate text-sm font-semibold">{speaker.fullName}</h3>
+        <p className="text-gray-600 truncate text-xs">{company}</p>
+      </div>
+    </div>
+  );
+};
+
+const SpeakerDialog = ({ speaker }) => {
+  const company = findCompanyInfo(speaker);
+
+  return (
+    <div className="p-6">
+      <div className="mb-6 text-center">
+        <h2 className="text-xl font-semibold">{speaker.fullName}</h2>
+        <p className="text-gray-600">{company}</p>
+      </div>
+      <div className="space-y-4">
+        <div className="mx-auto h-32 w-32 overflow-hidden rounded-full">
+          <img
+            src={speaker.profilePicture}
+            alt={speaker.fullName}
+            className="h-full w-full object-cover"
+          />
+        </div>
+        <div className="max-h-48 overflow-y-auto rounded-md border p-4">
+          <p className="text-gray-600 text-sm">{speaker.bio || 'No bio available.'}</p>
+        </div>
+        <div className="flex justify-center space-x-4">
+          {speaker.links.map((link, index) => (
+            <a
+              key={index}
+              href={link.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:opacity-80"
+            >
+              <SocialIcon url={link.url} />
+            </a>
+          ))}
         </div>
       </div>
     </div>
-  </section>
-);
+  );
+};
 
-const SpeakerComponent = () => {
+const Speakers = () => {
   const [speakerData, setSpeakerData] = useState([]);
+  const [selectedSpeaker, setSelectedSpeaker] = useState(null);
+  const [currentPage, setCurrentPage] = useState(1);
+  const speakersPerPage = 30;
 
-  //Speaker aus der api fetchen
   useEffect(() => {
     fetch(scriptUrl)
       .then((response) => response.json())
       .then((data) => {
-        const speakersWithFlipState = data.map((speaker) => ({
-          ...speaker,
-          isFlipped: false,
-        }));
-        const shuffledSpeaker = shuffleSpeaker(speakersWithFlipState);
-        setSpeakerData(shuffledSpeaker);
+        const shuffledSpeakers = shuffleSpeaker(data);
+        setSpeakerData(shuffledSpeakers);
       })
       .catch((error) => console.error('Error:', error));
   }, []);
 
-  // aus der speaker.json
-  // useEffect(() => {
-
-  //   const speakersWithFlipState = speakerJSON.map((speaker) => ({
-  //     ...speaker,
-  //     isFlipped: false,
-  //   }));
-  //   const shuffledSpeaker = shuffleSpeaker(speakersWithFlipState);
-  //   setSpeakerData(shuffledSpeaker);
-  // }, []);
-
   const shuffleSpeaker = (array) => {
-    let currentIndex = array.length,
-      randomIndex;
-
-    while (currentIndex > 0) {
-      randomIndex = Math.floor(Math.random() * currentIndex);
-      currentIndex--;
-
-      [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
+    const shuffled = [...array];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
     }
-    return array;
+    return shuffled;
   };
 
-  const getSpeakerProfile = (speaker) => {
-    const link = speaker.links.find((l) => l.title === 'Sessionize');
-    if (link && link.url) {
-      return (
-        <div>
-          /
-          <a href={link.url} style={{ color: '#1800d4' }}>
-            about me
-          </a>
-        </div>
-      );
-    }
-    return <div></div>;
-  };
-
-  const findCompany = (speaker) => {
-    const company = speaker.questionAnswers.find((q) => q.question === 'Company');
-    if (company && company.answer) {
-      return company.answer;
-    } else {
-      return 'Speaker';
-    }
-  };
-  const findCompanyFrontside = (speaker) => {
-    const company = speaker.questionAnswers.find((q) => q.question === 'Company');
-    if (company && company.answer) {
-      return company.answer;
-    } else {
-      return;
-    }
-  };
+  const indexOfLastSpeaker = currentPage * speakersPerPage;
+  const indexOfFirstSpeaker = indexOfLastSpeaker - speakersPerPage;
+  const currentSpeakers = speakerData.slice(indexOfFirstSpeaker, indexOfLastSpeaker);
+  const totalPages = Math.ceil(speakerData.length / speakersPerPage);
 
   return (
-    <div className="flex w-full items-center justify-center">
+    <div className="container mx-auto px-4 py-8">
+      <h1 className="mb-8 text-center text-3xl font-bold text-[#283058]">Speakers</h1>
+
       {speakerData.length === 0 ? (
-        <div className="flex items-center justify-center" style={{ height: '90px', width: '100%' }}>
-          <p className="text-lg leading-normal text-primary-1">Coming soon...</p>
+        <div className="flex h-32 items-center justify-center">
+          <p className="text-gray-600 text-lg">Coming soon...</p>
         </div>
       ) : (
-        <div className="flex flex-row flex-wrap justify-around  overflow-auto scrollbar-hide">
-          {speakerData.map((speaker) => (
-            <div className="pb-5 pr-1" key={speaker.id}>
-              <div
-                className="flip-card rounded-md bg-transparent"
-                style={{ width: '275px', height: '290px' }}
-              >
-                <div
-                  className="flip-card-inner relative h-full w-full rounded-md text-center"
-                  style={{ transition: 'transform 0.4s', transformStyle: 'preserve-3d' }}
-                >
-                  <div className="flip-card-front rounded-md">
-                    <div
-                      className="flex h-full w-full flex-row-reverse"
-                      style={{ position: 'relative', zIndex: '1' }}
-                    >
-                      <img
-                        src={speaker.profilePicture}
-                        alt={speaker.fullName}
-                        className="h-full w-full cursor-pointer rounded-md object-cover"
-                      />
-                      <div
-                        className="absolute bottom-0  w-full "
-                        style={{
-                          color: 'whitesmoke',
-                          borderRadius: '0',
-                        }}
-                      >
-                        <div className="text-tag px-2 text-center" style={{ borderRadius: '0' }}>
-                          {speaker.fullName}
-                        </div>
-                        <div
-                          className="text-tag px-2 text-center"
-                          style={{
-                            borderRadius: '0',
-                            borderBottomLeftRadius: '0.375rem',
-                            borderBottomRightRadius: '0.375rem',
-                          }}
-                        >
-                          {findCompany(speaker)}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="flip-card-back flex flex-col justify-between rounded-md">
-                    <div
-                      className="flex h-1/6 w-full flex-col items-center justify-center"
-                      style={{ paddingTop: '4px' }}
-                    >
-                      <span className="w-full px-1 text-center text-lg font-bold">
-                        {findCompany(speaker)}
-                      </span>
+        <>
+          <div className="grid grid-cols-1 gap-6 2xl:grid-cols-6 xl:grid-cols-5 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2">
+            {currentSpeakers.map((speaker) => (
+              <SpeakerCard
+                key={speaker.id}
+                speaker={speaker}
+                onClick={() => setSelectedSpeaker(speaker)}
+              />
+            ))}
+          </div>
 
-                      <span
-                        className=" w-full truncate px-7 text-sm "
-                        style={{
-                          textDecoration: 'underline',
-                          textDecorationColor: '#283058',
-                          textDecorationThickness: '1px',
-                        }}
-                      >
-                        {speaker.tagLine}
-                      </span>
-                    </div>
-                    <div className="flex h-3/6 w-full flex-col items-center">
-                      <span
-                        className="speaker-bio w-full overflow-hidden px-3 text-lg italic"
-                        style={{
-                          lineHeight: '37px',
-                          height: '100%',
-                          scale: '0.8',
-                          paddingTop: '7px',
-                        }}
-                      >
-                        {speaker.bio}
-                      </span>
-                    </div>
-                    <div className="flex h-1/6 items-center justify-center px-1 text-center text-base ">
-                      {speaker.firstName}
-                      {getSpeakerProfile(speaker)}
-                    </div>
-                    <div
-                      className="flex h-1/6 w-full items-center justify-center gap-x-0.5"
-                      style={{ paddingBottom: '5px' }}
-                    >
-                      {speaker.links.length > 0 ? (
-                        speaker.links.slice(0, 3).map((link, index) => (
-                          <i key={index} href={link.url} target="_blank" rel="noopener noreferrer">
-                            <SocialIcon url={link.url} bgColor="transparent" fgColor="#283058" />
-                          </i>
-                        ))
-                      ) : (
-                        <div></div>
-                      )}
-                    </div>
-                  </div>
-                </div>
-              </div>
+          {speakerData.length > speakersPerPage && (
+            <div className="mt-8 flex flex-wrap justify-center gap-2">
+              {Array.from({ length: totalPages }, (_, i) => (
+                <button
+                  key={i}
+                  onClick={() => setCurrentPage(i + 1)}
+                  className={`rounded-md px-3 py-1 text-sm transition-colors duration-200 
+                    ${
+                      currentPage === i + 1
+                        ? 'bg-[#283058] text-white'
+                        : 'border border-[#283058] text-[#283058] hover:bg-[#283058] hover:text-white'
+                    }`}
+                >
+                  {i + 1}
+                </button>
+              ))}
             </div>
-          ))}
-        </div>
+          )}
+
+          <Dialog isOpen={selectedSpeaker !== null} onClose={() => setSelectedSpeaker(null)}>
+            {selectedSpeaker && <SpeakerDialog speaker={selectedSpeaker} />}
+          </Dialog>
+        </>
       )}
     </div>
   );

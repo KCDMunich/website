@@ -2,19 +2,16 @@ import clsx from 'clsx';
 import React from 'react';
 
 import Link from 'components/shared/link';
-import QAware from 'icons/QAware_h.png';
 import liquid from 'icons/liquid.png';
 import whiteduck from 'icons/whiteduck.png';
 
 import AnelaPhoto from './images/anela_a.jpeg';
-import DominikPhoto from './images/dominik_b.jpeg';
-import HannesPhoto from './images/mlr-black.png';
 import MarkusPhoto from './images/markus_s.jpeg';
 import MaxKörbächerPhoto from './images/max_k.jpg';
 import NicoPhoto from './images/nico-m.jpg';
 import TomPhoto from './images/tom_u.jpeg';
+
 import Suad from './images/swo_kcd.jpg';
-import Nina from './images/NinaWelker.jpeg';
 
 const ITEMS = [
   {
@@ -22,18 +19,6 @@ const ITEMS = [
     position: 'Marketing Manager - white duck',
     photo: AnelaPhoto,
     url: 'https://www.linkedin.com/in/anela-avdibegovic/',
-  },
-  {
-    name: 'Dominik Bittl',
-    position: 'Senior Solution Architect - Red Hat',
-    photo: DominikPhoto,
-    url: 'https://www.linkedin.com/in/dominik-bittl/',
-  },
-  {
-    name: 'Leander Reimer',
-    position: 'Managing Director & CTO - QAware',
-    photo: HannesPhoto,
-    url: 'https://www.linkedin.com/in/mario-leander-reimer-b2b67aa0/',
   },
   {
     name: 'Markus Sümmchen',
@@ -54,12 +39,6 @@ const ITEMS = [
     url: 'https://www.linkedin.com/in/nicomeisenzahl/',
   },
   {
-    name: 'Nina Welker',
-    position: 'Community Marketing Managerin - QAware',
-    photo: Nina,
-    url: 'https://www.linkedin.com/in/nina-welker-9a8a0214b/',
-  },
-  {
     name: 'Suad Wolgram',
     position: 'Product Manager & Software Engineer - white duck',
     photo: Suad,
@@ -76,7 +55,6 @@ const ITEMS = [
 const LOGOS = [
   { icon: liquid, url: 'http://liquidreply.com/', iconClassName: 'w-[250px] h-auto' },
   { icon: whiteduck, url: 'https://whiteduck.de/', iconClassName: 'w-[250px] h-auto' },
-  { icon: QAware, url: 'https://www.qaware.de/', iconClassName: 'w-[250px] h-auto' },
 ];
 
 const Members = () => (
@@ -85,21 +63,25 @@ const Members = () => (
       <ul className="mt-20 grid grid-cols-4 gap-8 lg:gap-6 md:flex md:flex-wrap md:justify-evenly [@media(max-width:900px)]:mx-auto [@media(max-width:900px)]:max-w-[570px]">
         {ITEMS.map(({ name, position, photo, url }, index) => (
           <li
-            className="flex w-[240px] flex-col lg:w-52 md:w-48 sm:w-auto sm:max-w-[200px]"
+            className="flex w-[240px] flex-col lg:w-52 md:w-48 sm:max-w-[200px]"
             key={index}
           >
             <div className="h-64 w-full overflow-hidden rounded-2xl">
               <img className="h-full w-full object-cover" src={photo} loading="lazy" alt={name} />
             </div>
 
-            <p className="mt-2.5 text-2xl font-bold leading-normal text-primary-1 sm:text-left">
+            <p
+              className="mt-2.5 text-2xl font-bold leading-normal sm:text-left"
+              style={{ color: '#004258' }}
+            >
               {name}
             </p>
 
             <span className="mt-1.5 text-primary-1">{position}</span>
 
             <Link
-              className="mt-2.5 text-base font-semibold leading-normal text-blue-1"
+              className="leading-norma mt-2.5 text-base font-semibold"
+              style={{ color: '#004258' }}
               to={url}
               target="_blank"
             >
@@ -117,6 +99,7 @@ const Members = () => (
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'center',
+        alignItems: 'center',
         flexWrap: 'wrap',
         gap: '4rem',
       }}

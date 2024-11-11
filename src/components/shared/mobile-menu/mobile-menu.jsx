@@ -7,6 +7,8 @@ import useScrollOverflow from 'hooks/use-scroll-overflow';
 
 import Button from '../button';
 
+import { FaDiscord } from 'react-icons/fa';
+
 const ANIMATION_DURATION = 0.2;
 
 const variants = {
@@ -60,16 +62,21 @@ const MobileMenu = ({ isOpen, onButtonClick }) => {
           </ul>
         </div>
         <div className="flex items-center justify-center">
-          <Button
-            className="border-nonemd:hidden group relative inline-flex w-fit items-center justify-center overflow-hidden"
-            to="https://kcdmunich-2.ticketbutler.io/en/e/kcd-munich-2024/"
-            target="_blank"
+          <button
+            type="button"
+            className="button"
+            style={{
+              cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+            }}
+            onClick={() => {
+              window.location.href = `https://discord.gg/Ht3upbGey9`;
+            }}
           >
-            <span className="absolute h-full w-full bg-gradient-to-br from-[#3333ff] via-[#3333ff] to-[#3333ff] group-hover:from-[#ff00c6] group-hover:via-[#ff5478] group-hover:to-[#ff8a05]"></span>
-            <span className="bg-gray-900 duration-400 relative rounded-md px-6 py-3 transition-all ease-out group-hover:bg-opacity-0">
-              <span className="relative font-bold text-white">Get your tickets now</span>
-            </span>
-          </Button>
+            Join our Community
+            <FaDiscord style={{ marginLeft: '1rem' }} />
+          </button>
         </div>
       </m.nav>
     </LazyMotion>
@@ -79,10 +86,6 @@ const MobileMenu = ({ isOpen, onButtonClick }) => {
 MobileMenu.propTypes = {
   isOpen: PropTypes.bool,
   onButtonClick: PropTypes.func.isRequired,
-};
-
-MobileMenu.defaultProps = {
-  isOpen: false,
 };
 
 export default MobileMenu;

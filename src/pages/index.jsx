@@ -20,10 +20,7 @@ const HomePage = ({ location }) => (
     <Hero />
     <Info />
     <Venue />
-    <Tickets />
-    <Speakers />
     <Sponsors />
-    <Details />
   </Layout>
 );
 
@@ -34,6 +31,10 @@ const HomePage = ({ location }) => (
 <Details />
 <Partners />
 <Proposal />
+<Tickets />
+    <Speakers />
+    <Sponsors />
+    <Details />
 */
 
 export default HomePage;

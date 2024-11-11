@@ -4,19 +4,25 @@ import slugify from 'slugify';
 import LINKS from 'constants/links.js';
 import MENUS from 'constants/menus';
 import GoogleMaps from 'icons/google-maps-icon.inline.svg';
-import Logo from 'icons/logo.inline.svg';
+
 import LinkedIn from 'icons/linkedin-logo.inline.svg';
 import Twitter from 'icons/twitter-logo.inline.svg';
 import Youtube from 'icons/youtube.inline.svg';
+import { FaDiscord } from 'react-icons/fa';
+
+import { StaticImage } from 'gatsby-plugin-image';
 
 import Button from '../button';
 import Link from '../link';
+
+import './footer.css';
 
 const items = [
   { icon: GoogleMaps, iconClassName: 'w-4 h-9', url: LINKS.googlemaps.to },
   { icon: LinkedIn, iconClassName: 'w-5 h-9', url: LINKS.linkedin.to },
   { icon: Twitter, iconClassName: 'w-5 h-9', url: LINKS.twitter.to },
   { icon: Youtube, iconClassName: 'w-7 h-9', url: LINKS.youtube.to },
+  { icon: FaDiscord, iconClassName: 'w-7 h-9', url: 'https://discord.com/invite/Ht3upbGey9' },
 ];
 
 const Footer = () => {
@@ -38,19 +44,27 @@ const Footer = () => {
     }
   };
   return (
-    <footer className="safe-paddings border-t border-t-gray-10 bg-white">
-      <div className="container flex items-center justify-between pb-5 pt-5 sm:flex-col sm:justify-around">
-        <Link className="ml-2" to="/">
-          <Logo className="h-12" />
+    <footer id="sponsors" className="safe-paddings border-t border-t-gray-10 bg-white">
+      <div className="container flex items-center justify-between gap-4 pb-5 pt-5 sm:flex-col sm:justify-around">
+        <Link className="z-50 ml-2" to="/">
+          <StaticImage
+            src="./images/logo.svg"
+            alt="logo"
+            formats={['auto', 'webp', 'avif']}
+            className="navbar-logo"
+          />
         </Link>
 
         <nav className="mt-4 flex">
           <ul className="grid min-w-fit grid-cols-2 grid-rows-2 gap-x-3 gap-y-4 xl:gap-x-1 lg:mr-6 lg:gap-x-4 sm:mx-auto">
             {MENUS.footer.map(({ text, to, target }, index) => (
-              <li className="w-fit max-w-min text-sm font-semibold text-primary-1" key={index}>
+              <li
+                className="w-fit max-w-min text-sm font-semibold"
+                key={index}
+                style={{ color: '#' }}
+              >
                 <Button
-                  className="flex sm:flex-wrap"
-                  theme="link-primary"
+                  className="Link flex sm:flex-wrap"
                   to={to}
                   target={target}
                   onClick={handleAnchorClick}
@@ -64,9 +78,9 @@ const Footer = () => {
         <div className="mt-4">
           <div className="flex h-full items-center justify-center">
             <Link
-              className="ml-2 font-semibold transition-colors duration-200"
+              className="Link ml-2 font-semibold transition-colors duration-200"
               theme="primary"
-              to="mailto:organizers-munich@kubernetescommunitydays.org"
+              to="mailto:team@cloudnativesummit.de"
             >
               Contact us
             </Link>
