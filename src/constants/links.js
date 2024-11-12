@@ -53,12 +53,12 @@ export default {
 
   // Social-links
   linkedin: {
-    to: 'https://www.linkedin.com/company/kubernetes-community-days-munich',
+    to: 'https://linkedin.com/company/cns-munich',
     target: '_blank',
     external: true,
   },
   twitter: {
-    to: 'https://twitter.com/KCDMunich',
+    to: 'https://x.com/cnsmunich',
     target: '_blank',
     external: true,
   },
@@ -68,7 +68,7 @@ export default {
     external: true,
   },
   youtube: {
-    to: 'https://www.youtube.com/@KCDMunich',
+    to: 'https://www.youtube.com/@cnsmunich',
     target: '_blank',
     external: true,
   },
