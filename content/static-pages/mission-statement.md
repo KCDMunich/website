@@ -27,7 +27,7 @@ We would like to use this change to put ourselves on a solid base for the future
 
 ### Onward and Upward
 
-Only those who dream big will reach something great. The next few months we will throw ourselves into the planning for CNS Munich 2025. Follow us on LinkedIn, X/Twitter, or Instagram to stay up to date.
+Only those who dream big will reach something great. The next few months we will throw ourselves into the planning for CNS Munich 2025. Follow us on [LinkedIn](https://linkedin.com/company/cns-munich), [X/Twitter](https://x.com/cnsmunich), or Instagram to stay up to date.
 
 If you are interested in sponsoring you will find all the details [here](https://cloudnativesummit.de/#sponsors).
 
