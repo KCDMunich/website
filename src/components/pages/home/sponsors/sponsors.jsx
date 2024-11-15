@@ -182,7 +182,7 @@ const Sponsors = ({
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 rounded-lg bg-primary-1 px-6 py-3 text-white transition-all"
           >
-            Become a Sponsor
+            Sponsor Prospectus
           </a>
         </div>
       </div>
@@ -195,7 +195,6 @@ const Sponsors = ({
         return (
           <div key={tier} className="mb-12">
             <div className="mb-16 text-center">
-              <h2 className="mb-4 text-4xl font-bold text-primary-1">Our Sponsors</h2>
               <p className="mb-8 text-lg text-gray-500" style={{ textAlign: 'center' }}>
                 Thank you to our amazing sponsors who make this event possible
               </p>
