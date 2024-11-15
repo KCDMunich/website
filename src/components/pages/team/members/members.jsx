@@ -6,10 +6,11 @@ import liquid from 'icons/liquid.png';
 import whiteduck from 'icons/whiteduck.png';
 
 import AnelaPhoto from './images/anela_a.jpeg';
-import MarkusPhoto from './images/markus_s.jpeg';
+import MarkusPhoto from './images/markus.jpeg';
 import MaxKörbächerPhoto from './images/max_k.jpg';
-import NicoPhoto from './images/nico-m.jpg';
+import NicoPhoto from './images/nico.png';
 import TomPhoto from './images/tom_u.jpeg';
+import Martin from './images/martin.jpeg';
 
 import Suad from './images/swo_kcd.jpg';
 
@@ -34,7 +35,7 @@ const ITEMS = [
   },
   {
     name: 'Nico Meisenzal',
-    position: 'Head of DevOps Consulting & Operations - white duck',
+    position: 'Cloud Solution Architect & Head of Platform Engineering - white duck',
     photo: NicoPhoto,
     url: 'https://www.linkedin.com/in/nicomeisenzahl/',
   },
@@ -50,6 +51,12 @@ const ITEMS = [
     photo: TomPhoto,
     url: 'https://www.linkedin.com/in/tom-uhlig/',
   },
+  {
+    name: 'Martin Brandl',
+    position: 'CTO - white duck',
+    photo: Martin,
+    url: 'https://www.linkedin.com/in/mbrandl/',
+  },
 ];
 
 const LOGOS = [
@@ -62,10 +69,7 @@ const Members = () => (
     <div className="container">
       <ul className="mt-20 grid grid-cols-4 gap-8 lg:gap-6 md:flex md:flex-wrap md:justify-evenly [@media(max-width:900px)]:mx-auto [@media(max-width:900px)]:max-w-[570px]">
         {ITEMS.map(({ name, position, photo, url }, index) => (
-          <li
-            className="flex w-[240px] flex-col lg:w-52 md:w-48 sm:max-w-[200px]"
-            key={index}
-          >
+          <li className="flex w-[240px] flex-col lg:w-52 md:w-48 sm:max-w-[200px]" key={index}>
             <div className="h-64 w-full overflow-hidden rounded-2xl">
               <img className="h-full w-full object-cover" src={photo} loading="lazy" alt={name} />
             </div>

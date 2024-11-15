@@ -169,18 +169,20 @@ const Sponsors = ({
   return (
     <section className="mx-auto max-w-7xl px-4 py-16">
       <div className="mb-16 text-center">
-        <h2 className="mb-4 text-4xl font-bold text-primary-1">Become a Sponsor</h2>
+        <h2 className="mb-4 text-4xl font-bold text-primary-1">Our sponsors</h2>
         <p className="mb-8 text-lg text-gray-500">
           Support our local cloud native community by sponsoring CNS Munich
         </p>
         <div className="flex flex-col items-center justify-center gap-4">
           <a
-            href={`mailto:${contactEmail}`}
+            href={
+              'https://docs.google.com/presentation/d/1NhUXEXdfWjAt1DmFLjMPolwkuE6Y_BZiNQKWYvVmK5Q/edit?usp=sharing'
+            }
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 rounded-lg bg-primary-1 px-6 py-3 text-white transition-all"
           >
-            Contact Us
+            Become a Sponsor
           </a>
         </div>
       </div>

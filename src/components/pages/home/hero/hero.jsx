@@ -21,7 +21,7 @@ const Hero = () => {
 
               {/* Description */}
               <p className="hero-description">
-              In July 2025, the cloud native community will gather in Munich. Come and join us!
+                In July 2025, the cloud native community will gather in Munich. Come and join us!
               </p>
 
               {/* Feature List */}
@@ -40,7 +40,9 @@ const Hero = () => {
                 </li>
               </ul>
 
-              <p className="hero-description">New name. Same mission! CNS Munich is run by the community for the community!</p>
+              <p className="hero-description">
+                New name. Same mission! CNS Munich is run by the community for the community!
+              </p>
               {/* CTA Buttons */}
               <div className="hero-cta-container">
                 <button
@@ -48,19 +50,20 @@ const Hero = () => {
                   className="button"
                   style={{ cursor: 'pointer' }}
                   onClick={() => {
-                    window.location.href =
-                      '/mission-statement';
+                    window.location.href = '/mission-statement';
                   }}
                 >
                   Our Statement
                 </button>
-                {/* <button
-                  type="button"
-                  className="hero-cta-secondary"
-                  onClick={() => (window.location.href = '#schedule')}
-                >
-                  View Schedule
-                </button> */}
+                {
+                  <button
+                    type="button"
+                    className="hero-cta-secondary"
+                    onClick={() => (window.location.href = '#sponsors')}
+                  >
+                    Become a Sponsor
+                  </button>
+                }
               </div>
             </div>
 
