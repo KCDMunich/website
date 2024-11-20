@@ -121,7 +121,9 @@ const Tickets = () => {
             Tickets are purchased through our external ticketing partner.
           </p>
           <button
-            onClick={() => alert('Redirecting to ticket page')}
+            onClick={() =>
+              window.open('https://cnsmunich.ticketbutler.io/en/e/cnsmunich-2025/', '_blank')
+            }
             className="flex w-full items-center justify-center rounded-lg bg-blue-600 px-4 py-2 text-white hover:bg-blue-700"
             style={{ backgroundColor: '#004258' }}
           >
