@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import { Calendar, Clock, MapPin, ExternalLink } from 'lucide-react';
+import React from 'react';
 
 const Tickets = () => {
   const event = {
@@ -9,43 +8,41 @@ const Tickets = () => {
     venue: 'smartvillage Bogenhausen, Rosenkavalierplatz 13, 81925 Munich',
     description:
       'In July 2025, the cloud native community will gather in Munich. Come and join us! Cloud Native Summit (CNS) Munich is a local, community-organized event that gathers adopters and technologists from open source and cloud native communities.',
-    image:
-      'https://cnsmunich.ticketbutler.io/api/thumbs/events/41e57b9c3db5e4dc2e69c01d4dff0c2f_b285947b71864900a5f77d6f24dab3ca_1200x800.jpg',
     tickets: [
       {
         id: 'early-bird',
         name: 'All Days – Early Bird',
         price: 129,
         salesStartDate: null,
-        salesEndDate: new Date('2025-02-28T23:45:00+01:00'),
+        salesEndDate: new Date('2025-02-28'),
       },
       {
         id: 'all-days',
         name: 'All Days',
         price: 189,
-        salesStartDate: new Date('2025-03-01T00:00:00+01:00'),
-        salesEndDate: new Date('2025-07-13T23:45:00+02:00'),
+        salesStartDate: new Date('2025-03-01'),
+        salesEndDate: new Date('2025-07-13'),
       },
       {
         id: 'monday',
         name: 'Monday Only',
         price: 129,
-        salesStartDate: new Date('2025-03-01T00:00:00+01:00'),
-        salesEndDate: new Date('2025-07-13T23:45:00+02:00'),
+        salesStartDate: new Date('2025-03-01'),
+        salesEndDate: new Date('2025-07-13'),
       },
       {
         id: 'tuesday',
         name: 'Tuesday Only',
         price: 129,
-        salesStartDate: new Date('2025-03-01T00:00:00+01:00'),
-        salesEndDate: new Date('2025-07-13T23:45:00+02:00'),
+        salesStartDate: new Date('2025-03-01'),
+        salesEndDate: new Date('2025-07-13'),
       },
       {
         id: 'late-mule',
         name: 'All Days - Late Mule',
         price: 209,
-        salesStartDate: new Date('2025-07-14T00:00:00+02:00'),
-        salesEndDate: new Date('2025-07-22T17:00:00+02:00'),
+        salesStartDate: new Date('2025-07-14'),
+        salesEndDate: new Date('2025-07-22'),
       },
     ],
   };
@@ -61,38 +58,17 @@ const Tickets = () => {
   const availableTickets = event.tickets.filter(isTicketAvailable);
 
   return (
-    <div className="mx-auto max-w-4xl p-4">
+    <div>
       <div className="overflow-hidden rounded-lg bg-white shadow-lg">
-        <div className="relative h-64 md:h-80">
-          <img src={event.image} alt={event.title} className="h-full w-full object-cover" />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-          <div className="absolute bottom-4 left-4 right-4 text-white">
-            <h1 className="mb-2 text-3xl font-bold">{event.title}</h1>
-            <div className="flex flex-wrap gap-2">
-              <span className="inline-flex items-center rounded-full bg-white/20 px-2 py-1 text-xs">
-                <Calendar className="mr-1 h-3 w-3" />
-                {event.date}
-              </span>
-              <span className="inline-flex items-center rounded-full bg-white/20 px-2 py-1 text-xs">
-                <Clock className="mr-1 h-3 w-3" />
-                {event.time}
-              </span>
-            </div>
-          </div>
-        </div>
-
         <div className="space-y-6 p-6">
-          <div className="flex items-center space-x-2 text-sm text-gray-500">
-            <MapPin className="h-4 w-4" />
-            <span>{event.venue}</span>
-          </div>
           <div className="space-y-2 rounded-lg bg-gray-50 p-4">
             <h3 className="font-semibold">Available Ticket Types:</h3>
             {availableTickets.length > 0 ? (
               <ul className="list-inside list-disc space-y-1">
                 {availableTickets.map((ticket) => (
                   <li key={ticket.id} className="text-sm">
-                    {ticket.name} - €{ticket.price}
+                    {ticket.name} - €{ticket.price} - Ends on:{' '}
+                    {ticket.salesEndDate.toLocaleDateString()}
                   </li>
                 ))}
               </ul>
@@ -120,15 +96,17 @@ const Tickets = () => {
           <p className="text-center text-sm text-gray-500">
             Tickets are purchased through our external ticketing partner.
           </p>
-          <button
-            onClick={() =>
-              window.open('https://cnsmunich.ticketbutler.io/en/e/cnsmunich-2025/', '_blank')
-            }
-            className="flex w-full items-center justify-center rounded-lg bg-blue-600 px-4 py-2 text-white hover:bg-blue-700"
-            style={{ backgroundColor: '#004258' }}
-          >
-            Go to Ticket Page
-          </button>
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+            <button
+              onClick={() =>
+                window.open('https://cnsmunich.ticketbutler.io/en/e/cnsmunich-2025/', '_blank')
+              }
+              className="flex w-full items-center justify-center rounded-lg bg-blue-600 px-4 py-2 text-white hover:bg-blue-700"
+              style={{ backgroundColor: '#004258', cursor: 'pointer', width: '15rem' }}
+            >
+              Go to Ticket Page
+            </button>
+          </div>
         </div>
       </div>
     </div>
