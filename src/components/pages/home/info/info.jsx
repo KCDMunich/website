@@ -90,7 +90,7 @@ const Info = () => (
       </div>
       {/* What to Expect Section */}
       <div className="expect-section">
-        <h2 className="section-title">Gey your Ticket now!</h2>
+        <h2 className="section-title">Get your Tickets now!</h2>
         <div className="expect-section">
           {/* Ticket Section */}
           <Tickets />

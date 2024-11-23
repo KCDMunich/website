@@ -53,7 +53,7 @@ const Hero = () => {
                     window.location.href = '#tickets';
                   }}
                 >
-                  Get Tickets
+                  Get your Tickets
                 </button>
                 {
                   <button

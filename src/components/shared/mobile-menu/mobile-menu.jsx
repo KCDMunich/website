@@ -71,11 +71,10 @@ const MobileMenu = ({ isOpen, onButtonClick }) => {
               alignItems: 'center',
             }}
             onClick={() => {
-              window.location.href = `https://discord.gg/Ht3upbGey9`;
+              document.getElementById('tickets').scrollIntoView({ behavior: 'smooth' });
             }}
           >
-            Join our Community
-            <FaDiscord style={{ marginLeft: '1rem' }} />
+            Get Tickets
           </button>
         </div>
       </m.nav>
