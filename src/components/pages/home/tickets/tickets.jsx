@@ -58,7 +58,7 @@ const Tickets = () => {
   const availableTickets = event.tickets.filter(isTicketAvailable);
 
   return (
-    <div>
+    <div id="tickets">
       <div className="overflow-hidden rounded-lg bg-white shadow-lg">
         <div className="space-y-6 p-6">
           <div className="space-y-2 rounded-lg bg-gray-50 p-4">

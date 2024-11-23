@@ -17,6 +17,18 @@ const Info = () => (
               Cloud Native Summit (CNS) Munich is a local, community-organized event that gathers
               adopters and technologists from open source and cloud native communities.
             </p>
+            <div className="text-start">
+              <button
+                type="button"
+                className="button"
+                style={{ cursor: 'pointer', fontWeight: 'bold', marginTop: '2rem' }}
+                onClick={() => {
+                  window.location.href = '/mission-statement';
+                }}
+              >
+                Our Statement
+              </button>
+            </div>
           </div>
           <div className="about-text">
             <p>

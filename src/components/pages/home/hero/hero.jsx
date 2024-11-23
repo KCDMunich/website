@@ -50,10 +50,10 @@ const Hero = () => {
                   className="button"
                   style={{ cursor: 'pointer' }}
                   onClick={() => {
-                    window.location.href = '/mission-statement';
+                    window.location.href = '#tickets';
                   }}
                 >
-                  Our Statement
+                  Get Tickets
                 </button>
                 {
                   <button
