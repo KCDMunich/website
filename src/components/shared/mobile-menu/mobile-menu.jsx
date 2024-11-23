@@ -7,8 +7,6 @@ import useScrollOverflow from 'hooks/use-scroll-overflow';
 
 import Button from '../button';
 
-import { FaDiscord } from 'react-icons/fa';
-
 const ANIMATION_DURATION = 0.2;
 
 const variants = {
@@ -70,9 +68,9 @@ const MobileMenu = ({ isOpen, onButtonClick }) => {
               display: 'flex',
               alignItems: 'center',
             }}
-            onClick={() => {
-              document.getElementById('tickets').scrollIntoView({ behavior: 'smooth' });
-            }}
+            onClick={() =>
+              window.open('https://cnsmunich.ticketbutler.io/en/e/cnsmunich-2025/', '_blank')
+            }
           >
             Get Tickets
           </button>

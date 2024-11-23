@@ -49,9 +49,9 @@ const Hero = () => {
                   type="button"
                   className="button"
                   style={{ cursor: 'pointer' }}
-                  onClick={() => {
-                    window.location.href = '#tickets';
-                  }}
+                  onClick={() =>
+                    (window.open = 'https://cnsmunich.ticketbutler.io/en/e/cnsmunich-2025/')
+                  }
                 >
                   Get your Tickets
                 </button>
