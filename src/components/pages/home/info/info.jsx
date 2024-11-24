@@ -89,7 +89,7 @@ const Info = () => (
         </div>
       </div>
       {/* What to Expect Section */}
-      <div className="expect-section">
+      <div className="expect-section" id="tickets">
         <h2 className="section-title">Get your Ticket now!</h2>
         <div className="expect-section">
           {/* Ticket Section */}

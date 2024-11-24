@@ -10,9 +10,7 @@ import { FaDiscord } from 'react-icons/fa';
 
 import './header.css';
 
-const Header = ({ isMobileMenuOpen, onBurgerClick, additionalClassName, homepage }) => {
-  const [isHovered, setIsHovered] = useState(false);
-
+const Header = ({ isMobileMenuOpen, onBurgerClick, additionalClassName }) => {
   const getAnchor = (str) => slugify(str).toLocaleLowerCase();
 
   const handleAnchorClick = (e) => {
@@ -33,10 +31,7 @@ const Header = ({ isMobileMenuOpen, onBurgerClick, additionalClassName, homepage
 
   return (
     <header
-      className={clsx(
-        'safe-paddings transition-200 z-10 transition-colors',
-        additionalClassName
-      )}
+      className={clsx('safe-paddings transition-200 z-10 transition-colors', additionalClassName)}
     >
       <div
         className="flex items-center justify-between pb-2 pt-5"
@@ -53,6 +48,9 @@ const Header = ({ isMobileMenuOpen, onBurgerClick, additionalClassName, homepage
             alt="logo"
             formats={['auto', 'webp', 'avif']}
             className="navbar-logo"
+            onClick={() => {
+              window.location.href = `/`;
+            }}
           />
         </Link>
 

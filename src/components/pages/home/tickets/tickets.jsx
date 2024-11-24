@@ -65,58 +65,56 @@ const Tickets = () => {
   };
 
   return (
-    <div id="tickets">
-      <div className="overflow-hidden rounded-lg bg-white shadow-lg">
-        <div className="space-y-6 p-6">
-          <div className="space-y-2 rounded-lg bg-gray-50 p-4">
-            <h3 className="font-semibold">Available Ticket Types:</h3>
-            {availableTickets.length > 0 ? (
-              <ul className="list-inside list-disc space-y-1">
-                {availableTickets.map((ticket) => (
-                  <li key={ticket.id} className="ticket-item">
-                    <div className="ticket-name">{ticket.name}</div>
-                    <div className="ticket-price">€{ticket.price}</div>
-                    <div className="ticket-end-date">
-                      Ends on: {ticket.salesEndDate.toLocaleDateString(undefined, dateOptions)}
-                    </div>
-                  </li>
-                ))}
-              </ul>
-            ) : (
-              <p className="text-sm text-gray-500">No tickets are currently available for sale.</p>
-            )}
-          </div>
-
-          <div className="rounded-lg bg-blue-50 p-4">
-            <h4 className="mb-2 font-semibold">Diversity Tickets</h4>
-            <p className="text-sm">
-              Contact us at{' '}
-              <a
-                href="mailto:team@cloudnativesummit.de"
-                className="text-primary font-bold hover:underline"
-              >
-                team@cloudnativesummit.de
-              </a>{' '}
-              to apply for a diversity ticket - sponsored by ape factory.
-            </p>
-          </div>
+    <div className="overflow-hidden rounded-lg bg-white shadow-lg">
+      <div className="space-y-6 p-6">
+        <div className="space-y-2 rounded-lg bg-gray-50 p-4">
+          <h3 className="font-semibold">Available Ticket Types:</h3>
+          {availableTickets.length > 0 ? (
+            <ul className="list-inside list-disc space-y-1">
+              {availableTickets.map((ticket) => (
+                <li key={ticket.id} className="ticket-item">
+                  <div className="ticket-name">{ticket.name}</div>
+                  <div className="ticket-price">€{ticket.price}</div>
+                  <div className="ticket-end-date">
+                    Ends on: {ticket.salesEndDate.toLocaleDateString(undefined, dateOptions)}
+                  </div>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p className="text-sm text-gray-500">No tickets are currently available for sale.</p>
+          )}
         </div>
 
-        <div className="flex flex-col items-stretch gap-4 px-6 pb-6">
-          <p className="text-center text-sm text-gray-500">
-            Tickets are purchased through our external ticketing partner.
-          </p>
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-            <button
-              onClick={() =>
-                window.open('https://cnsmunich.ticketbutler.io/en/e/cnsmunich-2025/', '_blank')
-              }
-              className="flex w-full items-center justify-center rounded-lg bg-blue-600 px-4 py-2 text-white hover:bg-blue-700"
-              style={{ backgroundColor: '#004258', cursor: 'pointer', width: '15rem' }}
+        <div className="rounded-lg bg-blue-50 p-4">
+          <h4 className="mb-2 font-semibold">Diversity Tickets</h4>
+          <p className="text-sm">
+            Contact us at{' '}
+            <a
+              href="mailto:team@cloudnativesummit.de"
+              className="text-primary font-bold hover:underline"
             >
-              Buy your Ticket
-            </button>
-          </div>
+              team@cloudnativesummit.de
+            </a>{' '}
+            to apply for a diversity ticket - sponsored by ape factory.
+          </p>
+        </div>
+      </div>
+
+      <div className="flex flex-col items-stretch gap-4 px-6 pb-6">
+        <p className="text-center text-sm text-gray-500">
+          Tickets are purchased through our external ticketing partner.
+        </p>
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+          <button
+            onClick={() =>
+              window.open('https://cnsmunich.ticketbutler.io/en/e/cnsmunich-2025/', '_blank')
+            }
+            className="flex w-full items-center justify-center rounded-lg bg-blue-600 px-4 py-2 text-white hover:bg-blue-700"
+            style={{ backgroundColor: '#004258', cursor: 'pointer', width: '15rem' }}
+          >
+            Buy your Ticket
+          </button>
         </div>
       </div>
     </div>
