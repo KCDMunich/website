@@ -9,6 +9,7 @@ import LinkedIn from 'icons/linkedin-logo.inline.svg';
 import Twitter from 'icons/twitter-logo.inline.svg';
 import Youtube from 'icons/youtube.inline.svg';
 import { FaDiscord } from 'react-icons/fa';
+import { FaBluesky } from 'react-icons/fa6';
 
 import { StaticImage } from 'gatsby-plugin-image';
 
@@ -23,6 +24,11 @@ const items = [
   { icon: Twitter, iconClassName: 'w-5 h-9', url: LINKS.twitter.to },
   { icon: Youtube, iconClassName: 'w-7 h-9', url: LINKS.youtube.to },
   { icon: FaDiscord, iconClassName: 'w-7 h-9', url: 'https://discord.com/invite/Ht3upbGey9' },
+  {
+    icon: FaBluesky,
+    iconClassName: 'w-5 h-9',
+    url: 'https://bsky.app/profile/cnsmunich.bsky.social',
+  },
 ];
 
 const Footer = () => {

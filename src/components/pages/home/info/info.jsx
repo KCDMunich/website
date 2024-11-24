@@ -1,4 +1,6 @@
 import { Users, Calendar, MapPin } from 'lucide-react';
+import Tickets from 'components/pages/home/tickets/tickets';
+
 import React from 'react';
 import './info.css';
 
@@ -15,6 +17,18 @@ const Info = () => (
               Cloud Native Summit (CNS) Munich is a local, community-organized event that gathers
               adopters and technologists from open source and cloud native communities.
             </p>
+            <div className="text-start">
+              <button
+                type="button"
+                className="button"
+                style={{ cursor: 'pointer', fontWeight: 'bold', marginTop: '2rem' }}
+                onClick={() => {
+                  window.location.href = '/mission-statement';
+                }}
+              >
+                Our Statement
+              </button>
+            </div>
           </div>
           <div className="about-text">
             <p>
@@ -46,7 +60,6 @@ const Info = () => (
       {/* What to Expect Section */}
       <div className="expect-section">
         <h2 className="section-title">What to Expect?</h2>
-
         <div className="features-grid">
           <div className="feature-item">
             <Users className="feature-icon" />
@@ -73,6 +86,14 @@ const Info = () => (
               </p>
             </div>
           </div>
+        </div>
+      </div>
+      {/* What to Expect Section */}
+      <div className="expect-section">
+        <h2 className="section-title">Get your Ticket now!</h2>
+        <div className="expect-section">
+          {/* Ticket Section */}
+          <Tickets />
         </div>
       </div>
     </div>

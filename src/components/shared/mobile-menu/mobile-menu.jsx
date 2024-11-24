@@ -7,8 +7,6 @@ import useScrollOverflow from 'hooks/use-scroll-overflow';
 
 import Button from '../button';
 
-import { FaDiscord } from 'react-icons/fa';
-
 const ANIMATION_DURATION = 0.2;
 
 const variants = {
@@ -70,12 +68,11 @@ const MobileMenu = ({ isOpen, onButtonClick }) => {
               display: 'flex',
               alignItems: 'center',
             }}
-            onClick={() => {
-              window.location.href = `https://discord.gg/Ht3upbGey9`;
-            }}
+            onClick={() =>
+              window.open('https://cnsmunich.ticketbutler.io/en/e/cnsmunich-2025/', '_blank')
+            }
           >
-            Join our Community
-            <FaDiscord style={{ marginLeft: '1rem' }} />
+            Get your Ticket
           </button>
         </div>
       </m.nav>
