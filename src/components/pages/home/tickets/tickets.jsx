@@ -1,4 +1,5 @@
 import React from 'react';
+import './tickets.css';
 
 const Tickets = () => {
   const event = {
@@ -57,6 +58,12 @@ const Tickets = () => {
 
   const availableTickets = event.tickets.filter(isTicketAvailable);
 
+  const dateOptions = {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  };
+
   return (
     <div id="tickets">
       <div className="overflow-hidden rounded-lg bg-white shadow-lg">
@@ -66,9 +73,12 @@ const Tickets = () => {
             {availableTickets.length > 0 ? (
               <ul className="list-inside list-disc space-y-1">
                 {availableTickets.map((ticket) => (
-                  <li key={ticket.id} className="text-sm">
-                    {ticket.name} - €{ticket.price} - Ends on:{' '}
-                    {ticket.salesEndDate.toLocaleDateString()}
+                  <li key={ticket.id} className="ticket-item">
+                    <div className="ticket-name">{ticket.name}</div>
+                    <div className="ticket-price">€{ticket.price}</div>
+                    <div className="ticket-end-date">
+                      Ends on: {ticket.salesEndDate.toLocaleDateString(undefined, dateOptions)}
+                    </div>
                   </li>
                 ))}
               </ul>
@@ -104,7 +114,7 @@ const Tickets = () => {
               className="flex w-full items-center justify-center rounded-lg bg-blue-600 px-4 py-2 text-white hover:bg-blue-700"
               style={{ backgroundColor: '#004258', cursor: 'pointer', width: '15rem' }}
             >
-              Go to Ticket Page
+              Buy your Ticket
             </button>
           </div>
         </div>

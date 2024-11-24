@@ -23,8 +23,8 @@ const Hero = () => (
         target="_blank"
       >
         <span className="absolute h-full w-full bg-gradient-to-br from-[#3333ff] via-[#3333ff] to-[#3333ff] group-hover:from-[#ff00c6] group-hover:via-[#ff5478] group-hover:to-[#ff8a05]"></span>
-        <span className="bg-gray-900 duration-400 relative rounded-md px-6 py-3 transition-all ease-out group-hover:bg-opacity-0">
-          <span className="relative font-bold text-white">Get your tickets now</span>
+        <span className="duration-400 relative rounded-md bg-gray-900 px-6 py-3 transition-all ease-out group-hover:bg-opacity-0">
+          <span className="relative font-bold text-white">Get your ticket now</span>
         </span>
       </Button>
     </div>

@@ -72,7 +72,7 @@ const MobileMenu = ({ isOpen, onButtonClick }) => {
               window.open('https://cnsmunich.ticketbutler.io/en/e/cnsmunich-2025/', '_blank')
             }
           >
-            Get Tickets
+            Get your Ticket
           </button>
         </div>
       </m.nav>

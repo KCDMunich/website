@@ -53,7 +53,7 @@ const Hero = () => {
                     (window.open = 'https://cnsmunich.ticketbutler.io/en/e/cnsmunich-2025/')
                   }
                 >
-                  Get your Tickets
+                  Get your Ticket
                 </button>
                 {
                   <button
