@@ -5,7 +5,7 @@ import Hero from 'components/pages/home/hero';
 import Info from 'components/pages/home/info';
 import Sponsors from 'components/pages/home/sponsors';
 import Venue from 'components/pages/home/venue';
-// import Workshops from 'components/pages/home/workshops';
+import HotelList from 'components/pages/home/hotels';
 import Layout from 'components/shared/layout';
 import SEO from 'components/shared/seo';
 
@@ -15,6 +15,7 @@ const HomePage = ({ location }) => (
     <Info />
     <Venue />
     <Sponsors />
+    <HotelList />
   </Layout>
 );
 
