@@ -14,7 +14,6 @@ import GoldSponsor from 'components/pages/home/goldsponsor';
 const HomePage = ({ location }) => (
   <Layout homepage>
     <Hero />
-    <GoldSponsor />
     <Info />
     <Venue />
     <HotelList />
@@ -24,6 +23,7 @@ const HomePage = ({ location }) => (
 
 /*
 <Speakers location={location} />
+ <GoldSponsor />
 <Schedule />
 <Venue />
 <Details />
