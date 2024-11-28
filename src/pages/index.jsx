@@ -9,13 +9,16 @@ import HotelList from 'components/pages/home/hotels';
 import Layout from 'components/shared/layout';
 import SEO from 'components/shared/seo';
 
+import GoldSponsor from 'components/pages/home/goldsponsor';
+
 const HomePage = ({ location }) => (
   <Layout homepage>
     <Hero />
+    <GoldSponsor />
     <Info />
     <Venue />
-    <Sponsors />
     <HotelList />
+    <Sponsors />
   </Layout>
 );
 

@@ -4,26 +4,21 @@ const hotels = [
   {
     name: 'Best Western Hotel Arabellapark München',
     description:
-      'Do legst di nieda! Nahe dem Englischen Garten, im renommierten Stadtquartier Arabellapark, liegt das moderne Drei-Sterne-Superior-Hotel mit 220 Zimmern',
-    distance: '0.5 km',
-    amenities: ['WLAN', 'Restaurant', 'Parkplatz'],
-    imageUrl:
-      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/328332112.jpg?k=a615641dc57c49a798ebbdd16523217492c089db6f03bf7f11cf4cf79999d402&o=&hp=1',
-    websiteUrl: 'https://www.grandhotelmetropol.com',
+      'The hotel offers 220 rooms in six different categories. Our brand new hotel combines state of the art technology with a regional, very bavarian touch to make you feel home. Spend time in our lobby bar, use the free internet as much as you like or enjoy some delicious bavarian food on our beergarden terrace.',
+    distance: '2 min walk',
+    amenities: ['WLAN', 'Restaurant', 'Parking'],
+    imageUrl: 'https://hotel-arabellapark.de/wp-content/uploads/2021/09/bw-muc-7-scaled.jpg',
+    websiteUrl: 'https://hotel-arabellapark.de/',
   },
   {
-    name: 'HYPERION Hotel München',
-    description: 'Elegantes Hotel in der Nähe des smartvillage mit erstklassigem Service.',
-    distance: '1.2 km',
+    name: 'Four Points by Sheraton Munich Arabellapark',
     amenities: ['Fitnessraum', 'WLAN', 'Frühstück'],
-    websiteUrl: 'https://www.h-hotels.com',
+    websiteUrl: 'https://www.marriott.com/en-us/hotels/mucwi-the-westin-grand-munich/overview/',
   },
   {
-    name: 'Hotel Rothof Bogenhausen',
-    description: 'Ein charmantes Hotel mit grüner Umgebung, ideal für Geschäftsreisende.',
-    distance: '0.8 km',
-    amenities: ['Parkplatz', 'Frühstück', 'WLAN'],
-    websiteUrl: 'https://www.rothof.de',
+    name: 'The Westin Grand Munich',
+    websiteUrl:
+      'https://www.marriott.com/en-us/hotels/mucap-four-points-munich-arabellapark/overview/',
   },
 ];
 
@@ -40,7 +35,7 @@ export default function HotelList() {
           marginBottom: '24px',
         }}
       >
-        Hotels in der Umgebung
+        Near by Hotels
       </h1>
 
       {/* Highlighted Hotel */}
@@ -66,7 +61,7 @@ export default function HotelList() {
             {highlightedHotel.description}
           </p>
           <p style={{ fontSize: '14px', color: '#777', marginBottom: '16px' }}>
-            📍 {highlightedHotel.distance} vom Veranstaltungsort
+            📍 {highlightedHotel.distance}
           </p>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', marginBottom: '16px' }}>
             {highlightedHotel.amenities.map((amenity, idx) => (
@@ -84,30 +79,31 @@ export default function HotelList() {
               </span>
             ))}
           </div>
-          <a
-            href={highlightedHotel.websiteUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{
-              display: 'block',
-              textAlign: 'center',
-              backgroundColor: '#004257',
-              color: '#fff',
-              padding: '10px 16px',
-              borderRadius: '4px',
-              textDecoration: 'none',
-              fontWeight: 'bold',
-            }}
-          >
-            Zur Hotel-Website
-          </a>
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+            <a
+              href={highlightedHotel.websiteUrl}
+              style={{
+                display: 'block',
+                textAlign: 'center',
+                backgroundColor: '#004257',
+                color: '#fff',
+                padding: '10px 16px',
+                borderRadius: '4px',
+                textDecoration: 'none',
+                fontWeight: 'bold',
+                width: '20vw',
+              }}
+            >
+              Booking
+            </a>
+          </div>
         </div>
       </div>
 
       {/* Other Hotels */}
       <div style={{ marginTop: '32px' }}>
         <h3 style={{ fontSize: '18px', fontWeight: 'bold', marginBottom: '16px' }}>
-          Weitere Optionen
+          more hotels nearby
         </h3>
         <ul style={{ listStyleType: 'none', padding: 0, margin: 0 }}>
           {otherHotels.map((hotel, index) => (
@@ -137,9 +133,7 @@ export default function HotelList() {
                   textDecoration: 'none',
                   fontWeight: 'bold',
                 }}
-              >
-                Zur Hotel-Website
-              </a>
+              ></a>
             </li>
           ))}
         </ul>
