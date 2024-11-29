@@ -4,9 +4,9 @@ const hotels = [
   {
     name: 'Best Western Hotel Arabellapark München',
     description:
-      'The hotel offers 220 rooms in six different categories. Our brand new hotel combines state of the art technology with a regional, very bavarian touch to make you feel home. Spend time in our lobby bar, use the free internet as much as you like or enjoy some delicious bavarian food on our beergarden terrace.',
+      'We are pleased to offer reserved rooms for your stay from 20.07.2025 to 22.07.2025. The rate is EUR 100.00 per double room for single use per night, excluding breakfast. Rooms can be booked using the code XXX until 20.06.2025. Cancellations are free until 30.06.2025. After this date, cancellations will incur a charge of 90% of the reservation cost, and non-arrivals will be charged 100%',
     distance: '2 min walk',
-    amenities: ['WLAN', 'Restaurant', 'Parking'],
+    amenities: ['Restaurant'],
     imageUrl: 'https://hotel-arabellapark.de/wp-content/uploads/2021/09/bw-muc-7-scaled.jpg',
     websiteUrl: 'https://hotel-arabellapark.de/',
   },
@@ -35,7 +35,7 @@ export default function HotelList() {
           marginBottom: '24px',
         }}
       >
-        Near by Hotels
+        Nearby hotels
       </h1>
 
       {/* Highlighted Hotel */}
@@ -91,7 +91,7 @@ export default function HotelList() {
                 borderRadius: '4px',
                 textDecoration: 'none',
                 fontWeight: 'bold',
-                width: '20vw',
+                minWidth: '22vw',
               }}
             >
               Booking
@@ -103,7 +103,7 @@ export default function HotelList() {
       {/* Other Hotels */}
       <div style={{ marginTop: '32px' }}>
         <h3 style={{ fontSize: '18px', fontWeight: 'bold', marginBottom: '16px' }}>
-          more hotels nearby
+          More hotels nearby
         </h3>
         <ul style={{ listStyleType: 'none', padding: 0, margin: 0 }}>
           {otherHotels.map((hotel, index) => (
@@ -121,9 +121,7 @@ export default function HotelList() {
               <p style={{ fontSize: '14px', color: '#555', marginBottom: '4px' }}>
                 {hotel.description}
               </p>
-              <p style={{ fontSize: '14px', color: '#777', marginBottom: '8px' }}>
-                📍 {hotel.distance} vom Veranstaltungsort
-              </p>
+              <p style={{ fontSize: '14px', color: '#777', marginBottom: '8px' }}></p>
               <a
                 href={hotel.websiteUrl}
                 target="_blank"
