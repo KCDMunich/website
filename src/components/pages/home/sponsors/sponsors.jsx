@@ -6,6 +6,9 @@ import ApeFactory from 'icons/apefactory.svg';
 
 import liquid from 'icons/liquid.png';
 
+import Kubeevents from 'icons/kubeevents_2.svg';
+import Kubecareers from 'icons/kubecareers.svg';
+
 import whiteduck from 'icons/whiteduck.png';
 import './sponsor.css';
 
@@ -78,28 +81,21 @@ const sponsorsList = [
 
   */
   // Organizers
-  { name: 'Liquid Reply', icon: liquid, url: 'https://liquidreply.com/', tier: 'organizer' },
+  {
+    name: 'Liquid Reply',
+    icon: liquid,
+    url: 'https://www.reply.com/liquid-reply/en/',
+    tier: 'organizer',
+  },
   { name: 'white duck', icon: whiteduck, url: 'https://whiteduck.de/', tier: 'organizer' },
 
-  /*
   // Community & Media Partners
-  { name: 'Cloud Native', icon: Cloudnative, url: 'https://www.cncf.io/', tier: 'partner' },
+
   { name: 'Kube Events', icon: Kubeevents, url: 'https://kube.events/', tier: 'partner' },
   { name: 'Kube Careers', icon: Kubecareers, url: 'https://kube.careers/', tier: 'partner' },
-  {
-    name: 'German Tech Jobs',
-    icon: germantech,
-    url: 'https://germantechjobs.de/',
-    tier: 'partner',
-  },
-  { name: 'SysEleven', icon: Syseleven, url: 'https://www.syseleven.de/', tier: 'partner' },
-   */
 ];
 
-const Sponsors = ({
-  becomeASponsorUrl = 'team@cloudnativesummit.de',
-  contactEmail = 'team@cloudnativesummit.de',
-}) => {
+const Sponsors = ({ contactEmail = 'team@cloudnativesummit.de' }) => {
   if (!SHOW_SPONSORS) {
     return (
       <section className="mx-auto max-w-7xl px-4 py-16">
