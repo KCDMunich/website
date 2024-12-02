@@ -26,17 +26,8 @@ export default function HotelList() {
   const [highlightedHotel, ...otherHotels] = hotels;
 
   return (
-    <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '16px' }}>
-      <h1
-        style={{
-          fontSize: '24px',
-          fontWeight: 'bold',
-          textAlign: 'center',
-          marginBottom: '24px',
-        }}
-      >
-        Nearby hotels
-      </h1>
+    <div style={{ maxWidth: '1284px', margin: '0 auto', padding: '16px' }}>
+      <h2 className="section-title">Nearby hotels</h2>
 
       {/* Highlighted Hotel */}
       <div
@@ -63,29 +54,12 @@ export default function HotelList() {
             double room for single use per night, excluding breakfast.
           </p>
           <p style={{ fontSize: '14px', color: '#555', marginBottom: '16px', lineHeight: '1.6' }}>
-            Rooms can be booked using the code <strong>XXX</strong> until{' '}
+            Rooms can be booked using the code <strong>Cloud Native Summit Munich</strong> until{' '}
             <strong>20.06.2025</strong>. Cancellations are free until <strong>30.06.2025</strong>.
             After this date, cancellations will incur a charge of <strong>90%</strong> of the
             reservation cost, and non-arrivals will be charged <strong>100%</strong>.
           </p>
-          <p style={{ fontSize: '14px', color: '#777' }}>
-            📍 {highlightedHotel.distance}
-            {highlightedHotel.amenities.map((amenity, idx) => (
-              <span
-                key={idx}
-                style={{
-                  fontSize: '12px',
-                  color: '#333',
-                  border: '1px solid #ddd',
-                  borderRadius: '4px',
-                  padding: '4px 8px',
-                  marginLeft: '1rem',
-                }}
-              >
-                {amenity}
-              </span>
-            ))}
-          </p>
+          <p style={{ fontSize: '14px', color: '#777' }}>📍 {highlightedHotel.distance}</p>
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
             <a
               href="mailto:info@hotel-arabellapark.de"
@@ -98,7 +72,8 @@ export default function HotelList() {
                 borderRadius: '4px',
                 textDecoration: 'none',
                 fontWeight: 'bold',
-                minWidth: '22vw',
+                minWidth: '10vw',
+                marginTop: '1rem',
               }}
             >
               Booking
