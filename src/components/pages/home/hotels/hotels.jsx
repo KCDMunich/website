@@ -57,13 +57,19 @@ export default function HotelList() {
           <h2 style={{ fontSize: '20px', fontWeight: 'bold', marginBottom: '8px' }}>
             {highlightedHotel.name}
           </h2>
-          <p style={{ fontSize: '14px', color: '#555', marginBottom: '16px' }}>
-            {highlightedHotel.description}
+          <p style={{ fontSize: '14px', color: '#555', marginBottom: '16px', lineHeight: '1.6' }}>
+            We are pleased to offer reserved rooms for your stay from{' '}
+            <strong>20.07.2025 to 22.07.2025</strong>. The rate is <strong>EUR 100.00</strong> per
+            double room for single use per night, excluding breakfast.
           </p>
-          <p style={{ fontSize: '14px', color: '#777', marginBottom: '16px' }}>
+          <p style={{ fontSize: '14px', color: '#555', marginBottom: '16px', lineHeight: '1.6' }}>
+            Rooms can be booked using the code <strong>XXX</strong> until{' '}
+            <strong>20.06.2025</strong>. Cancellations are free until <strong>30.06.2025</strong>.
+            After this date, cancellations will incur a charge of <strong>90%</strong> of the
+            reservation cost, and non-arrivals will be charged <strong>100%</strong>.
+          </p>
+          <p style={{ fontSize: '14px', color: '#777' }}>
             📍 {highlightedHotel.distance}
-          </p>
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', marginBottom: '16px' }}>
             {highlightedHotel.amenities.map((amenity, idx) => (
               <span
                 key={idx}
@@ -73,15 +79,16 @@ export default function HotelList() {
                   border: '1px solid #ddd',
                   borderRadius: '4px',
                   padding: '4px 8px',
+                  marginLeft: '1rem',
                 }}
               >
                 {amenity}
               </span>
             ))}
-          </div>
+          </p>
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
             <a
-              href={highlightedHotel.websiteUrl}
+              href="mailto:info@hotel-arabellapark.de"
               style={{
                 display: 'block',
                 textAlign: 'center',
@@ -121,9 +128,9 @@ export default function HotelList() {
               <p style={{ fontSize: '14px', color: '#555', marginBottom: '4px' }}>
                 {hotel.description}
               </p>
-              <p style={{ fontSize: '14px', color: '#777', marginBottom: '8px' }}></p>
+              <p style={{ fontSize: '14px', color: '#777', marginBottom: '8px' }} />
               <a
-                href={hotel.websiteUrl}
+                href="mailto:info@hotel-arabellapark.de"
                 target="_blank"
                 rel="noopener noreferrer"
                 style={{
@@ -131,7 +138,7 @@ export default function HotelList() {
                   textDecoration: 'none',
                   fontWeight: 'bold',
                 }}
-              ></a>
+              />
             </li>
           ))}
         </ul>
