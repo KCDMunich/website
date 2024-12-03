@@ -21,7 +21,7 @@ const Info = () => (
               <button
                 type="button"
                 className="button"
-                style={{ cursor: 'pointer', fontWeight: 'bold', marginTop: '2rem' }}
+                style={{ cursor: 'pointer', marginTop: '2rem' }}
                 onClick={() => {
                   window.location.href = '/mission-statement';
                 }}
