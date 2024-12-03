@@ -71,12 +71,11 @@ export default function HotelList() {
                 padding: '10px 16px',
                 borderRadius: '4px',
                 textDecoration: 'none',
-                fontWeight: 'bold',
                 minWidth: '10vw',
                 marginTop: '1rem',
               }}
             >
-              Booking
+              Book now
             </a>
           </div>
         </div>
@@ -111,7 +110,7 @@ export default function HotelList() {
                 style={{
                   color: '#004257',
                   textDecoration: 'none',
-                  fontWeight: 'bold',
+                  fontWeight: 'normal',
                 }}
               />
             </li>
