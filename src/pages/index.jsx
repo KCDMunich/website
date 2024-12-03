@@ -5,21 +5,25 @@ import Hero from 'components/pages/home/hero';
 import Info from 'components/pages/home/info';
 import Sponsors from 'components/pages/home/sponsors';
 import Venue from 'components/pages/home/venue';
-// import Workshops from 'components/pages/home/workshops';
+import HotelList from 'components/pages/home/hotels';
 import Layout from 'components/shared/layout';
 import SEO from 'components/shared/seo';
+
+import GoldSponsor from 'components/pages/home/goldsponsor';
 
 const HomePage = ({ location }) => (
   <Layout homepage>
     <Hero />
     <Info />
     <Venue />
+    <HotelList />
     <Sponsors />
   </Layout>
 );
 
 /*
 <Speakers location={location} />
+ <GoldSponsor />
 <Schedule />
 <Venue />
 <Details />

@@ -196,6 +196,7 @@ const Venue = ({
 }) => {
   return (
     <div className="mx-auto max-w-7xl p-4">
+      <h2 className="section-title">Venue Information</h2>
       <div className="gap-8 ">
         <div className="flex flex-col gap-6">
           <div className="relative aspect-video overflow-hidden rounded-xl bg-gray-100">
