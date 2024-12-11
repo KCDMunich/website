@@ -1,14 +1,12 @@
-import React from 'react';
-import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import PropTypes from 'prop-types';
+import React from 'react';
 
 import ApeFactory from 'icons/apefactory.svg';
-
-import liquid from 'icons/liquid.png';
-
-import Kubeevents from 'icons/kubeevents_2.svg';
 import Kubecareers from 'icons/kubecareers.svg';
-
+import Kubeevents from 'icons/kubeevents_2.svg';
+import liquid from 'icons/liquid.png';
+import MetalStack from 'icons/metalstackcloud.webp';
 import whiteduck from 'icons/whiteduck.png';
 import './sponsor.css';
 
@@ -50,11 +48,13 @@ const sponsorsList = [
   /*
   { name: 'Cisco', icon: cisco, url: 'https://www.cisco.com/', tier: 'gold' },
   { name: 'Consol', icon: consol, url: 'https://www.consol.com/', tier: 'gold' },
-  { name: 'MetalStack', icon: MetalStack, url: 'https://metalstack.cloud/de', tier: 'gold' },
   { name: 'Palo Alto', icon: paloalto, url: 'https://www.paloaltonetworks.com/', tier: 'gold' },
   { name: 'Veeam', icon: veeam, url: 'https://www.veeam.com/', tier: 'gold' },
 
   // Silver Sponsors
+  */
+  { name: 'MetalStack', icon: MetalStack, url: 'https://metalstack.cloud/de', tier: 'silver' },
+  /*
   { name: 'Akamai', icon: Akamai, url: 'https://www.akamai.com/', tier: 'silver' },
   { name: 'Camptocamp', icon: Camptocamp, url: 'https://www.camptocamp.com/en', tier: 'silver' },
   { name: 'Dynatrace', icon: dynatrace, url: 'https://www.dynatrace.com/', tier: 'silver' },
