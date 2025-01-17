@@ -7,6 +7,7 @@ import Kubecareers from 'icons/kubecareers.svg';
 import Kubeevents from 'icons/kubeevents_2.svg';
 import liquid from 'icons/liquid.png';
 import MetalStack from 'icons/metalstackcloud.webp';
+import PlatformEngineeringLabs from 'icons/platformengineeringlabs.png';
 import whiteduck from 'icons/whiteduck.png';
 import './sponsor.css';
 
@@ -67,9 +68,10 @@ const sponsorsList = [
   { name: 'StackState', icon: StackState, url: 'https://stackstate.com/', tier: 'silver' },
   { name: 'Steadforce', icon: Steadforce, url: 'https://www.steadforce.com/', tier: 'silver' },
   { name: 'Tigera', icon: Tigera, url: 'https://www.tigera.io/', tier: 'silver' },
-
+  */
   // Bronze Sponsors
-  { name: 'ADN', icon: adn, url: 'https://shop.adn.de/', tier: 'bronze' },
+  { name: 'Platform Engineering Labs', icon: PlatformEngineeringLabs, url: 'https://platform.engineering/', tier: 'bronze' },
+  /*
   {
     name: 'CSP',
     icon: csp2,
@@ -78,8 +80,8 @@ const sponsorsList = [
   },
   { name: 'Maiborn Wolff', icon: Maiborn, url: 'https://www.maibornwolff.de/', tier: 'bronze' },
   { name: 'DGi', icon: Dgi, url: 'https://www.dg-i.net/', tier: 'bronze' },
-
   */
+
   // Organizers
   {
     name: 'Liquid Reply',
