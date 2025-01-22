@@ -8,6 +8,7 @@ import Kubeevents from 'icons/kubeevents_2.svg';
 import liquid from 'icons/liquid.png';
 import MetalStack from 'icons/metalstackcloud.webp';
 import PlatformEngineeringLabs from 'icons/platformengineeringlabs.png';
+import solarwinds from 'icons/solarwinds.webp';
 import whiteduck from 'icons/whiteduck.png';
 import './sponsor.css';
 
@@ -46,6 +47,7 @@ const tierConfig = {
 const sponsorsList = [
   // Gold Sponsors
   { name: 'APE Factory', icon: ApeFactory, url: 'https://www.apefactory.com/de', tier: 'gold' },
+  { name: 'solarwinds', icon: solarwinds, url: 'https://www.solarwinds.com/', tier: 'gold' },
   /*
   { name: 'Cisco', icon: cisco, url: 'https://www.cisco.com/', tier: 'gold' },
   { name: 'Consol', icon: consol, url: 'https://www.consol.com/', tier: 'gold' },
@@ -70,7 +72,12 @@ const sponsorsList = [
   { name: 'Tigera', icon: Tigera, url: 'https://www.tigera.io/', tier: 'silver' },
   */
   // Bronze Sponsors
-  { name: 'Platform Engineering Labs', icon: PlatformEngineeringLabs, url: 'https://platform.engineering/', tier: 'bronze' },
+  {
+    name: 'Platform Engineering Labs',
+    icon: PlatformEngineeringLabs,
+    url: 'https://platform.engineering/',
+    tier: 'bronze',
+  },
   /*
   {
     name: 'CSP',
