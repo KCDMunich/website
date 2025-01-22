@@ -8,6 +8,7 @@ import Venue from 'components/pages/home/venue';
 import HotelList from 'components/pages/home/hotels';
 import Layout from 'components/shared/layout';
 import SEO from 'components/shared/seo';
+import Proposal from 'components/pages/home/proposal';
 
 import GoldSponsor from 'components/pages/home/goldsponsor';
 
@@ -15,6 +16,7 @@ const HomePage = ({ location }) => (
   <Layout homepage>
     <Hero />
     <Info />
+    <Proposal />
     <Venue />
     <HotelList />
     <Sponsors />

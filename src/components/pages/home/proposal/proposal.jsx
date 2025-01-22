@@ -1,39 +1,383 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { CalendarDays, Info, ExternalLink } from 'lucide-react';
+import './proposal.css';
 
-import Button from 'components/shared/button';
-import LINKS from 'constants/links';
+const PLAYLIST_ID = 'PL54A_DPe8WtBuSp7sqpxeuy_UoTTlKB1O';
 
-const TITLE = 'Call for Speakers';
-const DESCRIPTION =
-  "If you are an expert or newcomer in the cloud native computing world and would like to share your knowledge and experience with the community, we encourage you to submit a proposal. Our committee is looking for diverse topics and speakers, so don't hesitate to submit your ideas. We can't wait to see what the community offers, and we look forward to receiving your submissions.";
+const SAMPLE_VIDEOS = [
+  {
+    id: 'o3MYeUWhETo',
+    title: 'Cloud Native Security Best Practices',
+    year: '2024',
+  },
+  {
+    id: 'oCFNrXWN-HE',
+    title: 'Kubernetes at Scale',
+    year: '2024',
+  },
+  {
+    id: 'Ty4B7VPdWDs',
+    title: 'KCD Munich 2024',
+    year: '2024',
+  },
+  {
+    id: 'oYtguGxGeUw',
+    title: 'Confidential Containers as a Gateway to Cloud Adoption in Sensitive Sectors',
+    year: '2024',
+  },
+  {
+    id: 'oohD1uXGqj8',
+    title: 'From Chaos to Control: Cloud Native Governance with Kyverno!',
+    year: '2024',
+  },
+  {
+    id: 'pxpBlLpt-BQ',
+    title: 'Oh No Our Kubernetes Cluster Has Been Compromised! Will YOU Save the Day?',
+    year: '2024',
+  },
+  {
+    id: 'r7euuyxcjhA',
+    title: 'Cloud Native Security: A New Paradigm for a New World',
+    year: '2024',
+  },
+  {
+    id: 'w8-46FhmxEQ',
+    title:
+      'Telemetry Showdown: Fluent Bit vs. OpenTelemetry Collector - A Comprehensive Benchmark Analysis',
+    year: '2024',
+  },
+  {
+    id: 'xsl86VcsCNA',
+    title: 'Do your thing: ICHP is building a great support team',
+    year: '2024',
+  },
+  {
+    id: 'xtAZdRVdc3U',
+    title: 'Kubernetes with Guardrails – How Mercedes-Benz enables Developers across 900+ Clusters',
+    year: '2024',
+  },
+  {
+    id: 'ykHlvBW564I',
+    title: 'Custom debug profiles in kubectl',
+    year: '2024',
+  },
+  {
+    id: 'lgQ-qhPaalU',
+    title: 'Embracing the Future: The Effortless Mutual TLS and Traffic Control Without Sidecars',
+    year: '2024',
+  },
+  {
+    id: 'mH7B-17zSmM',
+    title: 'Managing Kubernetes with Cluster API and Cluster Stacks',
+    year: '2024',
+  },
+  {
+    id: 'cCFYrZpwS7s',
+    title:
+      'Reflections on a decade of Kubernetes. How it has been and what the future is holding for us',
+    year: '2024',
+  },
+  {
+    id: 'bSuYqi1A2jM',
+    title: 'Unlocking New Platform Experiences With Open Interfaces',
+    year: '2024',
+  },
+  {
+    id: 'axh7SOufh8M',
+    title:
+      'Updates from the Kubernetes Storm Center: Open Source Threat Intelligence for Cloud Native',
+    year: '2024',
+  },
+  {
+    id: 'cRSVBoBWbU0',
+    title: 'OCI Registry: Beyond Container Images - Migrating from GitOps to RegistryOps',
+    year: '2024',
+  },
+  {
+    id: 'hOxjZoogYyY',
+    title: 'OpenSSF Scorecard: The Superhero That Saves Your Open Source Project!',
+    year: '2024',
+  },
+  {
+    id: 'kCm0agoKeSU',
+    title:
+      'Saturating people not systems: Lessons learned from building a platform to serve dishes worldwide',
+    year: '2024',
+  },
+  {
+    id: 'nVjkwcxKuFA',
+    title: 'Intent Based Access Control at Scale With BPF and Traffic Pattern Detection',
+    year: '2024',
+  },
+  {
+    id: 'nyxKd96TQ24',
+    title: 'From Dashboard to Headlamp: Evolution of the Kubernetes User Experience',
+    year: '2024',
+  },
+  {
+    id: 'R7a3b6oj6Dg',
+    title: "No More YAML Soup: Taking Control with Dagger's Pipeline-as-Code Philosophy",
+    year: '2024',
+  },
+  {
+    id: 'CN-Ny3ifPqo',
+    title: 'Go Green: Reducing Emissions, Costs, and Greenwashing',
+    year: '2024',
+  },
+  {
+    id: 'RRZIweUW4YA',
+    title: 'Kubernetes Authentication 2.0: Structured Authentication Configuration',
+    year: '2024',
+  },
+  {
+    id: 'UsIeZFZxak8',
+    title: 'A Greener, Cost-Effective Cloud with Serverless WebAssembly',
+    year: '2024',
+  },
+  {
+    id: 'BGCLszgL9s4',
+    title: 'The CNCF EndUser TAB - update and future',
+    year: '2024',
+  },
+  {
+    id: 'I7CLNMNfR_M',
+    title: 'The Periodic Table of Cloud Native',
+    year: '2024',
+  },
+  {
+    id: 'IeyROQP9YBg',
+    title:
+      'Build and run your own intelligent application based on open source using Semantic Kernel and Kaito',
+    year: '2024',
+  },
+  {
+    id: 'PqZnl34LWZM',
+    title:
+      'Gateway API Unleashed - The next evolution of Kubernetes native API Gateways and why you should care',
+    year: '2024',
+  },
+  {
+    id: 'RRmtCI1qKkk',
+    title: 'Towards Standardized Platforms: How the CNOE Project Can Help',
+    year: '2024',
+  },
+  {
+    id: 'W4mvncgziq4',
+    title: 'Fast Kubernetes Autoscaling with Knative',
+    year: '2024',
+  },
+  {
+    id: '00t13Imk0G0',
+    title: 'DevOps Lessons from a Primary School Teacher',
+    year: '2024',
+  },
+  {
+    id: '42dZ3kDtOSM',
+    title: 'Platform Engineering: DevOps Evolution or a Fancy Rename?',
+    year: '2024',
+  },
+  {
+    id: '-42bqyOK1Ro',
+    title: 'Goodbye Ingress - Hello Gateway API',
+    year: '2024',
+  },
+  {
+    id: '2yNgtxvwDak',
+    title:
+      'NFD: Simplifying Cluster Administration through Automated Node Labels, Taints, and Annotations',
+    year: '2024',
+  },
+  {
+    id: '3aR8yF2mEYQ',
+    title: 'The Swiss Army Knife of Cloud Native Networking',
+    year: '2024',
+  },
+  {
+    id: '3lIUPHQ33GM',
+    title: 'Choose Your Own Adventure: The Struggle for Security',
+    year: '2024',
+  },
+  {
+    id: '3pCmHdMBXE4',
+    title: 'IoT and WebSockets in K8s: Operating and Scaling an EV Charging Station Network',
+    year: '2024',
+  },
+  {
+    id: '6MFflSBCOWY',
+    title: "A hitchhiker's guide to CNCF/OSS observability solutions around Kubernetes",
+    year: '2024',
+  },
+  {
+    id: 'B2-r_2tgkTs',
+    title: 'Cognitive Empowerment through open weight LLMs as Ethical Smart Assistants',
+    year: '2024',
+  },
+  {
+    id: 'BEWCLcZhqpI',
+    title: 'When They Go High, We Go Low – Hooking Libc Calls To Debug Kubernetes Apps',
+    year: '2024',
+  },
+];
 
-const Proposal = () => (
-  <section className="safe-paddings relative bg-white bg-opacity-10">
-    <div className="container-md text-center text-primary-1">
-      <div className="absolute left-1/2 top-0 h-[529px] w-[529px] -translate-x-1/2 bg-white blur-[100px] md:-left-[30%] md:h-[350px] md:w-[350px]" />
-      <div className="relative">
-        <h2 className="text-6xl font-bold leading-tight" id={LINKS.proposal.id}>
-          {TITLE}
-        </h2>
-        <p className="text-lg leading-normal text-primary-1" style={{ marginTop: '4vh' }}>
-          {DESCRIPTION}
-        </p>
-      </div>
-      <div style={{ marginTop: '4vh', marginBottom: '10vh' }}>
-        <Button
-          className="group relative -mr-2 inline-flex items-center justify-center overflow-hidden border-none p-0.5 font-bold"
-          to="https://sessionize.com/kcd-munich-2024-cfp/"
-          theme="primary"
-          target="_blank"
-        >
-          <span className="absolute h-full w-full bg-gradient-to-br from-[#3333ff] via-[#3333ff] to-[#3333ff] group-hover:from-[#ff00c6] group-hover:via-[#ff5478] group-hover:to-[#ff8a05]"></span>
-          <span className="bg-gray-900 duration-400 relative rounded-md px-6 py-3 transition-all ease-out group-hover:bg-opacity-0">
-            <span className="relative text-white">Call for Speakers</span>
-          </span>
-        </Button>
+const Proposal = () => {
+  const [videos, setVideos] = useState(SAMPLE_VIDEOS);
+
+  const shuffleVideos = () => {
+    setVideos([...videos].sort(() => Math.random() - 0.5));
+  };
+
+  useEffect(() => {
+    shuffleVideos();
+  }, []);
+
+  return (
+    <div className="mx-auto max-w-7xl p-4">
+      <div className="mx-auto max-w-7xl space-y-8">
+        {/* Video Section */}
+        <section>
+          <div className="mb-4 flex items-center justify-between">
+            <h2 className="section-title">Previous Talks</h2>
+            <button
+              onClick={shuffleVideos}
+              className="inline-flex items-center gap-2 rounded-md border border-gray-200 bg-white px-4 py-2 text-gray-600 hover:bg-gray-50"
+            >
+              <svg
+                className="h-4 w-4"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+              >
+                <path d="M18 4l3 3-3 3M6 20l-3-3 3-3M21 7H3M21 17H3M12 4v16" />
+              </svg>
+              Shuffle Videos
+            </button>
+          </div>
+
+          <div className="grid grid-cols-3 gap-4 md:grid-cols-3 sm:grid-cols-1">
+            {videos.slice(0, 3).map((video) => (
+              <div key={video.id} className="overflow-hidden rounded-xl bg-white shadow-md">
+                <div className="relative w-full bg-black pt-[56.25%]">
+                  <button
+                    className="absolute inset-0 flex h-full w-full items-center justify-center"
+                    onClick={() =>
+                      window.open(`https://www.youtube.com/watch?v=${video.id}`, '_blank')
+                    }
+                  >
+                    <img
+                      src={`https://img.youtube.com/vi/${video.id}/maxresdefault.jpg`}
+                      alt={video.title}
+                      className="absolute left-0 top-0 h-full w-full object-cover"
+                    />
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <svg
+                        className="h-16 w-16 text-red-600"
+                        viewBox="0 0 68 48"
+                        fill="currentColor"
+                      >
+                        <path
+                          d="M66.52,7.74c-0.78-2.93-2.49-5.41-5.42-6.19C55.79,.13,34,0,34,0S12.21,.13,6.9,1.55 C3.97,2.33,2.27,4.81,1.48,7.74C0.06,13.05,0,24,0,24s0.06,10.95,1.48,16.26c0.78,2.93,2.49,5.41,5.42,6.19 C12.21,47.87,34,48,34,48s21.79-0.13,27.1-1.55c2.93-0.78,4.64-3.26,5.42-6.19C67.94,34.95,68,24,68,24S67.94,13.05,66.52,7.74z"
+                          fill="#f00"
+                        ></path>
+                        <path d="M 45,24 27,14 27,34" fill="#fff"></path>
+                      </svg>
+                    </div>
+                  </button>
+                </div>
+                <div className="p-4">
+                  <h3 className="font-semibold text-gray-900">{video.title}</h3>
+                  <p className="mt-1 text-sm text-gray-500">{video.year}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-4 text-center">
+            <a
+              href={`https://www.youtube.com/playlist?list=${PLAYLIST_ID}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-md border border-gray-200 bg-white px-4 py-2 text-gray-600 hover:bg-gray-50"
+            >
+              <svg
+                className="h-4 w-4"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+              >
+                <circle cx="12" cy="12" r="10" />
+                <path d="M10 8l6 4-6 4V8z" />
+              </svg>
+              View Full Playlist
+            </a>
+          </div>
+        </section>
+
+        {/* Call for Speakers Section */}
+        <h2 className="section-title">Call for Speakers</h2>
+        <section className="rounded-lg bg-white p-6 shadow-lg">
+          {/* Timeline Section */}
+          <div className="mb-8 space-y-4">
+            <h3 className="flex items-center gap-2 text-lg font-semibold">
+              <CalendarDays className="h-5 w-5 text-primary-1" /> Submission Timeline
+            </h3>
+            <div className="space-y-1">
+              <div className="flex justify-start gap-4 rounded-lg bg-gray-50 p-3">
+                <p className="font-medium">Opens:</p>
+                <p className="tabular-nums">12 Jan 2025 12:00 AM</p>
+              </div>
+              <div className="flex justify-start gap-4 rounded-lg bg-gray-50 p-3">
+                <p className="font-medium">Closes:</p>
+                <p className="tabular-nums">06 Apr 2025 11:59 PM</p>
+              </div>
+              <p className="text-xs text-gray-500">W. Europe Daylight Time (UTC+02:00)</p>
+            </div>
+          </div>
+          {/* Guidelines Section */}
+          <div className="mb-8 space-y-4">
+            <h3 className="flex items-center gap-2 text-lg font-semibold">
+              <Info className="h-5 w-5 text-primary-1" /> Guidelines
+            </h3>
+            <p className="text-sm font-medium text-primary-1">
+              First time submitting? Don't feel intimidated.
+            </p>
+            <p className="text-sm text-gray-600">
+              This CNS is an excellent way to get to know the community and share your ideas.
+            </p>
+          </div>
+          {/* Please Avoid Section */}
+          <div className="mb-8 space-y-4">
+            <h3 className="text-lg font-semibold">Please Avoid:</h3>
+            <ul className="space-y-2">
+              <li className="flex items-center gap-2">
+                <span className="h-1.5 w-1.5 rounded-full bg-primary-1"></span>
+                <span className="text-sm">Sales or Marketing Pitches</span>
+              </li>
+              <li className="flex items-center gap-2">
+                <span className="h-1.5 w-1.5 rounded-full bg-primary-1"></span>
+                <span className="text-sm">
+                  Unlicensed or Potentially Closed-Source Technologies
+                </span>
+              </li>
+            </ul>
+          </div>
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+            <button
+              type="button"
+              className="button"
+              style={{ cursor: 'pointer' }}
+              onClick={() =>
+                window.open('https://sessionize.com/cloud-native-summit-munich-2025/', '_blank')
+              }
+            >
+              Submit a session
+            </button>
+          </div>
+        </section>
       </div>
     </div>
-  </section>
-);
+  );
+};
 
 export default Proposal;

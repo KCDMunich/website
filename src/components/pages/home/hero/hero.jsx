@@ -62,15 +62,6 @@ const Hero = () => {
                     Become a Sponsor
                   </button>
                 }
-                {
-                  <button
-                    type="button"
-                    className="hero-cta-secondary"
-                    onClick={() => (window.location.href = 'https://sessionize.com/cloud-native-summit-munich-2025/')}
-                  >
-                    Submit a Talk
-                  </button>
-                }
               </div>
             </div>
 
