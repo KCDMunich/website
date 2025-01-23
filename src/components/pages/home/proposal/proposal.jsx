@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { CalendarDays, Info, ExternalLink } from 'lucide-react';
+import { CalendarDays, Info } from 'lucide-react';
 import './proposal.css';
 
 const PLAYLIST_ID = 'PL54A_DPe8WtBuSp7sqpxeuy_UoTTlKB1O';
@@ -233,87 +233,6 @@ const Proposal = () => {
   return (
     <div className="mx-auto max-w-7xl p-4">
       <div className="mx-auto max-w-7xl space-y-8">
-        {/* Video Section */}
-        <section>
-          <div className="mb-4 flex items-center justify-between">
-            <h2 className="section-title">Previous Talks</h2>
-            <button
-              onClick={shuffleVideos}
-              className="inline-flex items-center gap-2 rounded-md border border-gray-200 bg-white px-4 py-2 text-gray-600 hover:bg-gray-50"
-            >
-              <svg
-                className="h-4 w-4"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-              >
-                <path d="M18 4l3 3-3 3M6 20l-3-3 3-3M21 7H3M21 17H3M12 4v16" />
-              </svg>
-              Shuffle Videos
-            </button>
-          </div>
-
-          <div className="grid grid-cols-3 gap-4 md:grid-cols-3 sm:grid-cols-1">
-            {videos.slice(0, 3).map((video) => (
-              <div key={video.id} className="overflow-hidden rounded-xl bg-white shadow-md">
-                <div className="relative w-full bg-black pt-[56.25%]">
-                  <button
-                    className="absolute inset-0 flex h-full w-full items-center justify-center"
-                    onClick={() =>
-                      window.open(`https://www.youtube.com/watch?v=${video.id}`, '_blank')
-                    }
-                  >
-                    <img
-                      src={`https://img.youtube.com/vi/${video.id}/maxresdefault.jpg`}
-                      alt={video.title}
-                      className="absolute left-0 top-0 h-full w-full object-cover"
-                    />
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <svg
-                        className="h-16 w-16 text-red-600"
-                        viewBox="0 0 68 48"
-                        fill="currentColor"
-                      >
-                        <path
-                          d="M66.52,7.74c-0.78-2.93-2.49-5.41-5.42-6.19C55.79,.13,34,0,34,0S12.21,.13,6.9,1.55 C3.97,2.33,2.27,4.81,1.48,7.74C0.06,13.05,0,24,0,24s0.06,10.95,1.48,16.26c0.78,2.93,2.49,5.41,5.42,6.19 C12.21,47.87,34,48,34,48s21.79-0.13,27.1-1.55c2.93-0.78,4.64-3.26,5.42-6.19C67.94,34.95,68,24,68,24S67.94,13.05,66.52,7.74z"
-                          fill="#f00"
-                        ></path>
-                        <path d="M 45,24 27,14 27,34" fill="#fff"></path>
-                      </svg>
-                    </div>
-                  </button>
-                </div>
-                <div className="p-4">
-                  <h3 className="font-semibold text-gray-900">{video.title}</h3>
-                  <p className="mt-1 text-sm text-gray-500">{video.year}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          <div className="mt-4 text-center">
-            <a
-              href={`https://www.youtube.com/playlist?list=${PLAYLIST_ID}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-md border border-gray-200 bg-white px-4 py-2 text-gray-600 hover:bg-gray-50"
-            >
-              <svg
-                className="h-4 w-4"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-              >
-                <circle cx="12" cy="12" r="10" />
-                <path d="M10 8l6 4-6 4V8z" />
-              </svg>
-              View Full Playlist
-            </a>
-          </div>
-        </section>
-
         {/* Call for Speakers Section */}
         <h2 className="section-title">Call for Speakers</h2>
         <section className="rounded-lg bg-white p-6 shadow-lg">
@@ -372,6 +291,81 @@ const Proposal = () => {
               }
             >
               Submit a session
+            </button>
+          </div>
+        </section>
+        {/* Video Section */}
+        <section>
+          <div className="grid grid-cols-3 gap-4 md:grid-cols-3 sm:grid-cols-1">
+            {videos.slice(0, 3).map((video) => (
+              <div key={video.id} className="overflow-hidden rounded-xl bg-white shadow-md">
+                <div className="relative w-full bg-black pt-[56.25%]">
+                  <button
+                    className="absolute inset-0 flex h-full w-full items-center justify-center"
+                    onClick={() =>
+                      window.open(`https://www.youtube.com/watch?v=${video.id}`, '_blank')
+                    }
+                  >
+                    <img
+                      src={`https://img.youtube.com/vi/${video.id}/maxresdefault.jpg`}
+                      alt={video.title}
+                      className="absolute left-0 top-0 h-full w-full object-cover"
+                    />
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <svg
+                        className="h-16 w-16 text-red-600"
+                        viewBox="0 0 68 48"
+                        fill="currentColor"
+                      >
+                        <path
+                          d="M66.52,7.74c-0.78-2.93-2.49-5.41-5.42-6.19C55.79,.13,34,0,34,0S12.21,.13,6.9,1.55 C3.97,2.33,2.27,4.81,1.48,7.74C0.06,13.05,0,24,0,24s0.06,10.95,1.48,16.26c0.78,2.93,2.49,5.41,5.42,6.19 C12.21,47.87,34,48,34,48s21.79-0.13,27.1-1.55c2.93-0.78,4.64-3.26,5.42-6.19C67.94,34.95,68,24,68,24S67.94,13.05,66.52,7.74z"
+                          fill="#f00"
+                        ></path>
+                        <path d="M 45,24 27,14 27,34" fill="#fff"></path>
+                      </svg>
+                    </div>
+                  </button>
+                </div>
+                <div className="p-4">
+                  <h3 className="font-semibold text-gray-900">{video.title}</h3>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="mb-20 mt-4 flex items-center justify-between">
+            <a
+              href={`https://www.youtube.com/playlist?list=${PLAYLIST_ID}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-md border border-gray-200 bg-white px-4 py-2 text-gray-600 hover:bg-gray-50"
+            >
+              <svg
+                className="h-4 w-4"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+              >
+                <circle cx="12" cy="12" r="10" />
+                <path d="M10 8l6 4-6 4V8z" />
+              </svg>
+              View Full Playlist
+            </a>
+            <button
+              onClick={shuffleVideos}
+              className="inline-flex items-center gap-2 rounded-md border border-gray-200 bg-white px-4 py-2 text-gray-600 hover:bg-gray-50"
+            >
+              <svg
+                className="h-4 w-4"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+              >
+                <path d="M18 4l3 3-3 3M6 20l-3-3 3-3M21 7H3M21 17H3M12 4v16" />
+              </svg>
+              Shuffle Videos
             </button>
           </div>
         </section>
