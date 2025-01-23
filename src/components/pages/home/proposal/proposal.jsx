@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { CalendarDays, Info } from 'lucide-react';
+import { CalendarDays, Info, Clock, ChevronRight } from 'lucide-react';
 import './proposal.css';
 
 const PLAYLIST_ID = 'PL54A_DPe8WtBuSp7sqpxeuy_UoTTlKB1O';
@@ -222,6 +222,20 @@ const SAMPLE_VIDEOS = [
 const Proposal = () => {
   const [videos, setVideos] = useState(SAMPLE_VIDEOS);
 
+  const openDate = new Date('2025-01-12T00:00:00');
+  const closeDate = new Date('2025-04-06T23:59:00');
+  const now = new Date();
+  const total = closeDate.getTime() - openDate.getTime();
+  const progress = Math.max(0, Math.min(100, ((now.getTime() - openDate.getTime()) / total) * 100));
+
+  const sessions = [
+    { type: 'Presentation', duration: '30min' },
+    { type: 'Lightning Talk', duration: '5min' },
+    { type: 'Workshop', duration: '60min' },
+    { type: 'Workshop', duration: '90min' },
+    { type: 'Panel Discussion', duration: '45min' },
+  ];
+
   const shuffleVideos = () => {
     setVideos([...videos].sort(() => Math.random() - 0.5));
   };
@@ -233,67 +247,91 @@ const Proposal = () => {
   return (
     <div className="mx-auto max-w-7xl p-4">
       <div className="mx-auto max-w-7xl space-y-8">
-        {/* Call for Speakers Section */}
-        <h2 className="section-title">Call for Speakers</h2>
-        <section className="rounded-lg bg-white p-6 shadow-lg">
-          {/* Timeline Section */}
-          <div className="mb-8 space-y-4">
-            <h3 className="flex items-center gap-2 text-lg font-semibold">
-              <CalendarDays className="h-5 w-5 text-primary-1" /> Submission Timeline
-            </h3>
-            <div className="space-y-1">
-              <div className="flex justify-start gap-4 rounded-lg bg-gray-50 p-3">
-                <p className="font-medium">Opens:</p>
-                <p className="tabular-nums">12 Jan 2025 12:00 AM</p>
+        {/* Timeline Card */}
+        <div className="rounded-lg border bg-white shadow-sm">
+          <div className="border-b p-6">
+            <h2 className="flex items-center gap-2 text-lg font-semibold">
+              <CalendarDays className="h-5 w-5 text-primary-1" />
+              Submission Timeline
+            </h2>
+          </div>
+          <div className="space-y-6 p-6">
+            <div className="space-y-4">
+              <div className="flex justify-between text-sm">
+                <div>
+                  <div className="text-gray-500">Opens</div>
+                  <div className="font-medium">12 Jan 2025 12:00 AM</div>
+                </div>
+                <div className="text-right">
+                  <div className="text-gray-500">Closes</div>
+                  <div className="font-medium">06 Apr 2025 11:59 PM</div>
+                </div>
               </div>
-              <div className="flex justify-start gap-4 rounded-lg bg-gray-50 p-3">
-                <p className="font-medium">Closes:</p>
-                <p className="tabular-nums">06 Apr 2025 11:59 PM</p>
+
+              {/* Progress Bar */}
+              <div className="h-2 w-full rounded-full bg-gray-200">
+                <div className="h-2 rounded-full bg-primary-1" style={{ width: `${progress}%` }} />
               </div>
-              <p className="text-xs text-gray-500">W. Europe Daylight Time (UTC+02:00)</p>
+
+              <div className="flex items-center text-xs text-gray-500">
+                <Clock className="mr-1 h-3 w-3" />
+                W. Europe Daylight Time (UTC+02:00)
+              </div>
             </div>
           </div>
-          {/* Guidelines Section */}
-          <div className="mb-8 space-y-4">
-            <h3 className="flex items-center gap-2 text-lg font-semibold">
-              <Info className="h-5 w-5 text-primary-1" /> Guidelines
-            </h3>
-            <p className="text-sm font-medium text-primary-1">
-              First time submitting? Don't feel intimidated.
-            </p>
-            <p className="text-sm text-gray-600">
+        </div>
+
+        {/* Guidelines Card */}
+        <div className="rounded-lg border bg-white shadow-sm">
+          <div className="border-b p-6">
+            <h2 className="flex items-center gap-2 text-lg font-semibold">
+              <Info className="h-5 w-5 text-primary-1" />
+              information
+            </h2>
+          </div>
+          <div className="space-y-4 p-6">
+            <p className="text-lg font-medium">First time submitting? Don't feel intimidated.</p>
+            <p className="text-gray-600">
               This CNS is an excellent way to get to know the community and share your ideas.
             </p>
-          </div>
-          {/* Please Avoid Section */}
-          <div className="mb-8 space-y-4">
-            <h3 className="text-lg font-semibold">Please Avoid:</h3>
-            <ul className="space-y-2">
-              <li className="flex items-center gap-2">
-                <span className="h-1.5 w-1.5 rounded-full bg-primary-1"></span>
-                <span className="text-sm">Sales or Marketing Pitches</span>
-              </li>
-              <li className="flex items-center gap-2">
-                <span className="h-1.5 w-1.5 rounded-full bg-primary-1"></span>
-                <span className="text-sm">
-                  Unlicensed or Potentially Closed-Source Technologies
-                </span>
-              </li>
-            </ul>
-          </div>
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-            <button
-              type="button"
-              className="button"
-              style={{ cursor: 'pointer' }}
-              onClick={() =>
-                window.open('https://sessionize.com/cloud-native-summit-munich-2025/', '_blank')
-              }
+
+            <div className="pt-4">
+              <h3 className="mb-4 font-semibold">Session Types:</h3>
+              <div className="space-y-3">
+                {sessions.map((session, index) => (
+                  <div
+                    key={index}
+                    className="flex items-center justify-between rounded-lg border p-3 transition-colors hover:bg-gray-50"
+                  >
+                    <div className="flex items-center gap-3">
+                      <span className="rounded-md border bg-gray-50 px-2 py-1 text-sm">
+                        {session.duration}
+                      </span>
+                      <span className="font-medium">{session.type}</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                gap: '1rem',
+              }}
             >
-              Submit a session
-            </button>
+              <button
+                className="button"
+                onClick={() =>
+                  window.open('https://sessionize.com/cloud-native-summit-munich-2025/', '_blank')
+                }
+              >
+                Submit a session
+              </button>
+            </div>
           </div>
-        </section>
+        </div>
         {/* Video Section */}
         <section>
           <div className="grid grid-cols-3 gap-4 md:grid-cols-3 sm:grid-cols-1">

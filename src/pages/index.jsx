@@ -11,6 +11,7 @@ import SEO from 'components/shared/seo';
 import Proposal from 'components/pages/home/proposal';
 
 import GoldSponsor from 'components/pages/home/goldsponsor';
+import FloorPlan from 'components/pages/home/floorplan/floorplan';
 
 const HomePage = ({ location }) => (
   <Layout homepage>
@@ -25,7 +26,8 @@ const HomePage = ({ location }) => (
 
 /*
 <Speakers location={location} />
- <GoldSponsor />
+<FloorPlan />
+<GoldSponsor />
 <Schedule />
 <Venue />
 <Details />
