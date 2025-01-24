@@ -245,7 +245,7 @@ const Proposal = () => {
   }, []);
 
   return (
-    <div className="mx-auto max-w-7xl p-4">
+    <div className="mx-auto max-w-7xl p-4" id="proposal">
       <div className="mx-auto max-w-7xl space-y-8">
         {/* Timeline Card */}
         <div className="rounded-lg border bg-white shadow-sm">
