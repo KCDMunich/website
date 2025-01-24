@@ -8,9 +8,9 @@
     "npm": ">=v9.8.0"
   },
   "scripts": {
-    "start": "npm run develop",
+    "start": "NODE_NO_WARNINGS=1 npm run develop",
     "develop": "gatsby develop -H 0.0.0.0",
-    "build": "gatsby build",
+    "build": "NODE_NO_WARNINGS=1 gatsby build",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
     "format": "prettier --write --ignore-path .gitignore .",
