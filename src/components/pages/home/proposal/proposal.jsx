@@ -247,6 +247,7 @@ const Proposal = () => {
   return (
     <div className="mx-auto max-w-7xl p-4" id="proposal">
       <div className="mx-auto max-w-7xl space-y-8">
+        <h2 className="section-title">Submit a Talk</h2>
         {/* Timeline Card */}
         <div className="rounded-lg border bg-white shadow-sm">
           <div className="border-b p-6">
@@ -297,13 +298,13 @@ const Proposal = () => {
 
             <div className="pt-4">
               <h3 className="mb-4 font-semibold">Session Types:</h3>
-              <div className="space-y-3">
+              <div className="flex flex-wrap items-center gap-3">
                 {sessions.map((session, index) => (
                   <div
                     key={index}
-                    className="flex items-center justify-between rounded-lg border p-3 transition-colors hover:bg-gray-50"
+                    className="flex flex-shrink-0 items-center rounded-lg border p-3 transition-colors hover:bg-gray-50"
                   >
-                    <div className="flex items-center gap-3">
+                    <div className="flex content-center items-center gap-3">
                       <span className="rounded-md border bg-gray-50 px-2 py-1 text-sm">
                         {session.duration}
                       </span>
