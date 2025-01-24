@@ -66,7 +66,7 @@ const Hero = () => {
                   <button
                     type="button"
                     className="hero-cta-secondary"
-                    onClick={() => (window.location.href = 'https://sessionize.com/cloud-native-summit-munich-2025/')}
+                    onClick={() => (window.location.href = '#proposal')}
                   >
                     Submit a Talk
                   </button>

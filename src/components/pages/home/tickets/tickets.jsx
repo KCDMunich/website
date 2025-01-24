@@ -107,11 +107,12 @@ const Tickets = () => {
         </p>
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
           <button
+            type="button"
+            className="button"
+            style={{ cursor: 'pointer' }}
             onClick={() =>
               window.open('https://cnsmunich.ticketbutler.io/en/e/cnsmunich-2025/', '_blank')
             }
-            className="flex w-full items-center justify-center rounded-lg bg-blue-600 px-4 py-2 text-white hover:bg-blue-700"
-            style={{ backgroundColor: '#004258', cursor: 'pointer', width: '15rem' }}
           >
             Buy your Ticket
           </button>
