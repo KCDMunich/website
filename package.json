@@ -4,8 +4,8 @@
   "version": "0.1.0",
   "author": "Alex Barashkov <alex@pixelpoint.io>",
   "engines": {
-    "node": ">=18.0.0",
-    "npm": ">=8.6.0"
+    "node": ">=20.5.1",
+    "npm": ">=v9.8.0"
   },
   "scripts": {
     "start": "npm run develop",
