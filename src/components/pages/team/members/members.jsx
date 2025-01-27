@@ -35,7 +35,7 @@ const ITEMS = [
   },
   {
     name: 'Nico Meisenzal',
-    position: 'Head of Platform Engineering - white duck',
+    position: 'COO & Head of Platform Engineering - white duck',
     photo: NicoPhoto,
     url: 'https://www.linkedin.com/in/nicomeisenzahl/',
   },
