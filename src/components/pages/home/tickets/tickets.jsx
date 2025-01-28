@@ -65,7 +65,7 @@ const Tickets = () => {
   };
 
   return (
-    <div className="overflow-hidden rounded-lg bg-white shadow-lg">
+    <div className="overflow-hidden rounded-lg  border">
       <div className="space-y-6 p-6">
         <div className="space-y-2 rounded-lg bg-gray-50 p-4">
           <h3 className="font-semibold">Available Ticket Types:</h3>

@@ -36,7 +36,6 @@ export default function HotelList() {
           border: '1px solid #ddd',
           borderRadius: '8px',
           overflow: 'hidden',
-          boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
         }}
       >
         <img
