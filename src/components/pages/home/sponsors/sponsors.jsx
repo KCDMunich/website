@@ -2,6 +2,7 @@ import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import React from 'react';
 
+import Adn from 'icons/adn_logo.png';
 import ApeFactory from 'icons/apefactory.svg';
 import Kubecareers from 'icons/kubecareers.svg';
 import Kubeevents from 'icons/kubeevents_2.svg';
@@ -9,6 +10,7 @@ import liquid from 'icons/liquid.png';
 import MetalStack from 'icons/metalstackcloud.webp';
 import PlatformEngineeringLabs from 'icons/platformengineeringlabs.png';
 import solarwinds from 'icons/solarwinds.webp';
+import SysEleven from 'icons/syseleven.png';
 import whiteduck from 'icons/whiteduck.png';
 import './sponsor.css';
 
@@ -76,6 +78,18 @@ const sponsorsList = [
     name: 'Platform Engineering Labs',
     icon: PlatformEngineeringLabs,
     url: 'https://platform.engineering/',
+    tier: 'bronze',
+  },
+  {
+    name: 'ADN',
+    icon: Adn,
+    url: 'https://www.adn.de/',
+    tier: 'bronze',
+  },
+  {
+    name: 'SysEleven',
+    icon: SysEleven,
+    url: 'https://www.syseleven.de/',
     tier: 'bronze',
   },
   /*
