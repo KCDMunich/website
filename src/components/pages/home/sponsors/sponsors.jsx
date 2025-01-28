@@ -75,15 +75,15 @@ const sponsorsList = [
   */
   // Bronze Sponsors
   {
-    name: 'Platform Engineering Labs',
-    icon: PlatformEngineeringLabs,
-    url: 'https://platform.engineering/',
-    tier: 'bronze',
-  },
-  {
     name: 'ADN',
     icon: Adn,
     url: 'https://www.adn.de/',
+    tier: 'bronze',
+  },
+  {
+    name: 'Platform Engineering Labs',
+    icon: PlatformEngineeringLabs,
+    url: 'https://platform.engineering/',
     tier: 'bronze',
   },
   {
