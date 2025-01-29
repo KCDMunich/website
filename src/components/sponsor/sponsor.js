@@ -3,14 +3,13 @@ import React from 'react';
 
 const CARD_STYLES = 'w-[200px] h-[100px]';
 
-const Sponsors = ({ data }) => {
+const Sponsors = ({data}) => {
     const sponsorsList = data.sponsors.list;
     const tierConfig = data.sponsors.tiers;
 
     return (
         <>
-            {/* Sezione "Diventa Sponsor" */}
-            <section className="mx-auto max-w-7xl px-4 py-6">
+            <section id="sponsors" className="mx-auto max-w-7xl px-4 py-6">
                 <div className="text-center mb-8">
                     <h2 className="mb-4 text-4xl font-bold text-gray-900">{data.sponsors.become.title}</h2>
                     <p className="mb-6 text-lg text-gray-500">{data.sponsors.become.description}</p>
@@ -36,7 +35,6 @@ const Sponsors = ({ data }) => {
                 </div>
             </section>
 
-            {/* Sezione "Lista Sponsor" */}
             <section className="mx-auto max-w-7xl px-4 py-6">
                 <div className="text-center">
                     <h2 className="mb-8 text-3xl font-semibold text-gray-900 text-center">{data.sponsors.active.title}</h2>
@@ -55,11 +53,9 @@ const Sponsors = ({ data }) => {
                                 <span
                                     className={clsx('rounded-full px-2 py-0.5 text-xs font-medium', config.badgeClass)}
                                 >
-                  {tierSponsors.length}
-                </span>
+                                    {tierSponsors.length}
+                                </span>
                             </div>
-
-                            {/* Lista sponsor */}
                             <div className={config.containerClass}>
                                 <div className="flex flex-wrap justify-center gap-4">
                                     {tierSponsors.map((sponsor, index) => (

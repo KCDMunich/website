@@ -20,6 +20,10 @@
           "to": "/"
         },
         {
+          "text": "Sponsors",
+          "to": "#sponsors"
+        },
+        {
           "text": "Team",
           "to": "/team"
         }
