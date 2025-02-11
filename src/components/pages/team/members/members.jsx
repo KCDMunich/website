@@ -6,13 +6,13 @@ import liquid from 'icons/liquid.png';
 import whiteduck from 'icons/whiteduck.png';
 
 import AnelaPhoto from './images/anela_a.jpeg';
+import Les from './images/LesyaKoerbaecher.jpeg';
 import MarkusPhoto from './images/markus.jpeg';
+import Martin from './images/martin.jpeg';
 import MaxKörbächerPhoto from './images/max_k.jpg';
 import NicoPhoto from './images/nico.png';
-import TomPhoto from './images/tom_u.jpeg';
-import Martin from './images/martin.jpeg';
-
 import Suad from './images/swo_kcd.jpg';
+import TomPhoto from './images/tom_u.jpeg';
 
 const ITEMS = [
   {
@@ -20,6 +20,18 @@ const ITEMS = [
     position: 'Marketing Manager - white duck',
     photo: AnelaPhoto,
     url: 'https://www.linkedin.com/in/anela-avdibegovic/',
+  },
+  {
+    name: 'Lesya Koerbaecher',
+    position: 'Scrum Master | SAFe Agilist | Agile Transformation Advisory | Freelance',
+    photo: Les,
+    url: 'https://www.linkedin.com/in/lesyaromanyuk/',
+  },
+  {
+    name: 'Martin Brandl',
+    position: 'CTO - white duck',
+    photo: Martin,
+    url: 'https://www.linkedin.com/in/mbrandl/',
   },
   {
     name: 'Markus Sümmchen',
@@ -50,12 +62,6 @@ const ITEMS = [
     position: 'Consultant - Liquid Reply',
     photo: TomPhoto,
     url: 'https://www.linkedin.com/in/tom-uhlig/',
-  },
-  {
-    name: 'Martin Brandl',
-    position: 'CTO - white duck',
-    photo: Martin,
-    url: 'https://www.linkedin.com/in/mbrandl/',
   },
 ];
 
