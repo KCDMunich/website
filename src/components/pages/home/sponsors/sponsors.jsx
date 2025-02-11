@@ -9,6 +9,7 @@ import Kubeevents from 'icons/kubeevents_2.svg';
 import liquid from 'icons/liquid.png';
 import MetalStack from 'icons/metalstackcloud.webp';
 import PlatformEngineeringLabs from 'icons/platformengineeringlabs.png';
+import QAware from 'icons/qaware.svg';
 import solarwinds from 'icons/solarwinds.webp';
 import SysEleven from 'icons/syseleven.png';
 import whiteduck from 'icons/whiteduck.png';
@@ -59,6 +60,7 @@ const sponsorsList = [
   // Silver Sponsors
   */
   { name: 'MetalStack', icon: MetalStack, url: 'https://metalstack.cloud/de', tier: 'silver' },
+  { name: 'QAware', icon: QAware, url: 'https://www.qaware.de/', tier: 'silver' },
   /*
   { name: 'Akamai', icon: Akamai, url: 'https://www.akamai.com/', tier: 'silver' },
   { name: 'Camptocamp', icon: Camptocamp, url: 'https://www.camptocamp.com/en', tier: 'silver' },
