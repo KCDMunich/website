@@ -22,7 +22,7 @@ const ITEMS = [
     url: 'https://www.linkedin.com/in/anela-avdibegovic/',
   },
   {
-    name: 'Lesya Koerbaecher',
+    name: 'Lesya Körbächer',
     position: 'Scrum Master | SAFe Agilist | Agile Transformation Advisory | Freelance',
     photo: Les,
     url: 'https://www.linkedin.com/in/lesyaromanyuk/',
@@ -47,7 +47,7 @@ const ITEMS = [
   },
   {
     name: 'Nico Meisenzal',
-    position: 'COO & Head of Platform Engineering - white duck',
+    position: 'COO - white duck',
     photo: NicoPhoto,
     url: 'https://www.linkedin.com/in/nicomeisenzahl/',
   },
