@@ -9,7 +9,7 @@ import Kubeevents from 'icons/kubeevents_2.svg';
 import liquid from 'icons/liquid.png';
 import MetalStack from 'icons/metalstackcloud.webp';
 import PlatformEngineeringLabs from 'icons/platformengineeringlabs.png';
-import QAware from 'icons/qaware.svg';
+import QAware from 'icons/QAware_p.png';
 import solarwinds from 'icons/solarwinds.webp';
 import SysEleven from 'icons/syseleven.png';
 import whiteduck from 'icons/whiteduck.png';
@@ -95,12 +95,6 @@ const sponsorsList = [
     tier: 'bronze',
   },
   /*
-  {
-    name: 'CSP',
-    icon: csp2,
-    url: 'https://geschaeftskunden.telekom.de/digitale-loesungen/software-as-a-service/microsoft/cloud-solution-partner',
-    tier: 'bronze',
-  },
   { name: 'Maiborn Wolff', icon: Maiborn, url: 'https://www.maibornwolff.de/', tier: 'bronze' },
   { name: 'DGi', icon: Dgi, url: 'https://www.dg-i.net/', tier: 'bronze' },
   */
