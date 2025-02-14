@@ -1,9 +1,9 @@
 import clsx from 'clsx';
-import PropTypes from 'prop-types';
 import React from 'react';
 
 import Adn from 'icons/adn_logo.png';
 import ApeFactory from 'icons/apefactory.svg';
+import Cncf from 'icons/cncf.svg';
 import Kubecareers from 'icons/kubecareers.svg';
 import Kubeevents from 'icons/kubeevents_2.svg';
 import liquid from 'icons/liquid.png';
@@ -34,6 +34,11 @@ const tierConfig = {
     title: 'Bronze',
     class: 'bg-white shadow-sm',
     badgeClass: 'bg-orange-50 text-orange-500',
+  },
+  evening: {
+    title: 'Evening Event',
+    class: 'bg-white shadow-sm',
+    badgeClass: 'bg-purple-50 text-purple-500',
   },
   organizer: {
     title: 'Organizers',
@@ -112,9 +117,15 @@ const sponsorsList = [
 
   { name: 'Kube Events', icon: Kubeevents, url: 'https://kube.events/', tier: 'partner' },
   { name: 'Kube Careers', icon: Kubecareers, url: 'https://kube.careers/', tier: 'partner' },
+
+  // Evening Event
+  { name: 'APE Factory', icon: ApeFactory, url: 'https://www.apefactory.com/de', tier: 'evening' },
+  { name: 'CNCF', icon: Cncf, url: 'https://www.cncf.io/', tier: 'evening' },
 ];
 
-const Sponsors = ({ contactEmail = 'team@cloudnativesummit.de' }) => {
+const contactEmail = 'team@cloudnativesummit.de';
+
+const Sponsors = () => {
   if (!SHOW_SPONSORS) {
     return (
       <section className="mx-auto max-w-7xl px-4 py-16">
@@ -162,9 +173,7 @@ const Sponsors = ({ contactEmail = 'team@cloudnativesummit.de' }) => {
         </p>
         <div className="flex flex-col items-center justify-center gap-4">
           <a
-            href={
-              'https://docs.google.com/presentation/d/1NhUXEXdfWjAt1DmFLjMPolwkuE6Y_BZiNQKWYvVmK5Q/edit?usp=sharing'
-            }
+            href="https://docs.google.com/presentation/d/1NhUXEXdfWjAt1DmFLjMPolwkuE6Y_BZiNQKWYvVmK5Q/edit?usp=sharing"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 rounded-lg bg-primary-1 px-6 py-3 text-white transition-all"
@@ -184,7 +193,7 @@ const Sponsors = ({ contactEmail = 'team@cloudnativesummit.de' }) => {
 
         return (
           <div key={tier} className="mb-12">
-            <div className="mb-16 text-center"></div>
+            <div className="mb-16 text-center" />
             <div className="mb-6 flex items-center justify-center gap-2">
               <h3 className="text-xl font-semibold text-gray-900">{config.title}</h3>
               <span
@@ -230,10 +239,6 @@ const Sponsors = ({ contactEmail = 'team@cloudnativesummit.de' }) => {
       })}
     </section>
   );
-};
-Sponsors.propTypes = {
-  becomeASponsorUrl: PropTypes.string,
-  contactEmail: PropTypes.string,
 };
 
 export default Sponsors;
