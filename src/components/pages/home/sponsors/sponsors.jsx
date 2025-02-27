@@ -11,6 +11,7 @@ import MetalStack from 'icons/metalstackcloud.webp';
 import PlatformEngineeringLabs from 'icons/platformengineeringlabs.png';
 import QAware from 'icons/QAware_p.png';
 import solarwinds from 'icons/solarwinds.webp';
+import Steadforce from 'icons/steadforce_logo.png';
 import SysEleven from 'icons/syseleven.png';
 import whiteduck from 'icons/whiteduck.png';
 import './sponsor.css';
@@ -66,6 +67,7 @@ const sponsorsList = [
   */
   { name: 'MetalStack', icon: MetalStack, url: 'https://metalstack.cloud/de', tier: 'silver' },
   { name: 'QAware', icon: QAware, url: 'https://www.qaware.de/', tier: 'silver' },
+  { name: 'Steadforce', icon: Steadforce, url: 'https://www.steadforce.com/', tier: 'silver' },
   /*
   { name: 'Akamai', icon: Akamai, url: 'https://www.akamai.com/', tier: 'silver' },
   { name: 'Camptocamp', icon: Camptocamp, url: 'https://www.camptocamp.com/en', tier: 'silver' },
