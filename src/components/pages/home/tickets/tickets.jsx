@@ -15,48 +15,84 @@ const Tickets = () => {
         name: 'All Days – Early Bird',
         price: 129,
         salesStartDate: null,
-        salesEndDate: new Date('2025-02-28'),
+        salesEndDate: new Date('2025-02-28T23:59:59'),
       },
       {
         id: 'all-days',
         name: 'All Days',
         price: 189,
         salesStartDate: new Date('2025-03-01'),
-        salesEndDate: new Date('2025-07-13'),
+        salesEndDate: new Date('2025-07-13T23:59:59'),
       },
       {
         id: 'monday',
         name: 'Monday Only',
         price: 129,
         salesStartDate: new Date('2025-03-01'),
-        salesEndDate: new Date('2025-07-13'),
+        salesEndDate: new Date('2025-07-13T23:59:59'),
       },
       {
         id: 'tuesday',
         name: 'Tuesday Only',
         price: 129,
         salesStartDate: new Date('2025-03-01'),
-        salesEndDate: new Date('2025-07-13'),
+        salesEndDate: new Date('2025-07-13T23:59:59'),
       },
       {
         id: 'late-mule',
         name: 'All Days - Late Mule',
         price: 209,
         salesStartDate: new Date('2025-07-14'),
-        salesEndDate: new Date('2025-07-22'),
+        salesEndDate: new Date('2025-07-22T23:59:59'),
       },
     ],
   };
 
   const isTicketAvailable = (ticket) => {
     const now = new Date();
-    return (
-      (!ticket.salesStartDate || new Date(ticket.salesStartDate) <= now) &&
-      (!ticket.salesEndDate || new Date(ticket.salesEndDate) >= now)
-    );
+
+    // Format the dates for proper comparison
+    const startDateIsValid =
+      !ticket.salesStartDate ||
+      new Date(ticket.salesStartDate).setHours(0, 0, 0, 0) <= now.setHours(0, 0, 0, 0);
+
+    // Reset 'now' because setHours modifies the original date object
+    now.setHours(0, 0, 0, 0);
+
+    const endDateIsValid =
+      !ticket.salesEndDate ||
+      new Date(ticket.salesEndDate).setHours(23, 59, 59, 999) >= now.setHours(0, 0, 0, 0);
+
+    return startDateIsValid && endDateIsValid;
   };
 
-  const availableTickets = event.tickets.filter(isTicketAvailable);
+  // Alternative simpler solution
+  const isTicketAvailableSimpler = (ticket) => {
+    const now = new Date();
+    const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+
+    const startDate = ticket.salesStartDate
+      ? new Date(
+          ticket.salesStartDate.getFullYear(),
+          ticket.salesStartDate.getMonth(),
+          ticket.salesStartDate.getDate()
+        )
+      : null;
+
+    const endDate = ticket.salesEndDate
+      ? new Date(
+          ticket.salesEndDate.getFullYear(),
+          ticket.salesEndDate.getMonth(),
+          ticket.salesEndDate.getDate()
+        )
+      : null;
+
+    return (!startDate || startDate <= today) && (!endDate || endDate >= today);
+  };
+
+  const availableTickets = event.tickets.filter(isTicketAvailableSimpler);
+
+  console.log('Available tickets:', availableTickets);
 
   const dateOptions = {
     year: 'numeric',
@@ -69,6 +105,7 @@ const Tickets = () => {
       <div className="space-y-6 p-6">
         <div className="space-y-2 rounded-lg bg-gray-50 p-4">
           <h3 className="font-semibold">Available Ticket Types:</h3>
+
           {availableTickets.length > 0 ? (
             <ul className="list-inside list-disc space-y-1">
               {availableTickets.map((ticket) => (
@@ -76,10 +113,12 @@ const Tickets = () => {
                   <div className="ticket-name">{ticket.name}</div>
                   <div className="ticket-price">€{ticket.price}</div>
                   <div className="ticket-end-date">
-                    Ends on: {ticket.salesEndDate.toLocaleDateString(undefined, dateOptions)}
+                    {ticket.salesEndDate &&
+                      `Ends on: ${ticket.salesEndDate.toLocaleDateString(undefined, dateOptions)}`}
                   </div>
                 </li>
               ))}
+              <h6>Refund possible until June 15, 2025.</h6>
             </ul>
           ) : (
             <p className="text-sm text-gray-500">No tickets are currently available for sale.</p>
