@@ -24,10 +24,7 @@ const Team = ({ data }) => {
                         {data.team.members
                             .sort((a, b) => a.name.localeCompare(b.name))
                             .map((member, index) => (
-                                <li
-                                    className="flex flex-col items-center text-center hover:-translate-y-1 transition-transform duration-300"
-                                    key={index}
-                                >
+                                <li className="flex flex-col items-center text-center hover:-translate-y-1 transition-transform duration-300" key={index}>
                                     <div className="h-48 w-48 overflow-hidden rounded-2xl shadow-md">
                                         <img
                                             className="h-full w-full object-cover hover:scale-105 transition-transform duration-500"
@@ -41,12 +38,13 @@ const Team = ({ data }) => {
                                     <h2 className="mt-4 text-base font-bold leading-normal text-[#004258]">{member.name}</h2>
 
                                     <h3 className="mt-2 text-xs text-gray-600">
-                    {member.position} {member.company !== "" ? "-" : ""} {member.company}
-                  </h3>
-
-                                    <h4 className="mt-2 text-xs text-gray-600">{member.communityRole}</h4>
-
-
+                                        {member.position} {member.company !== "" ? "-" : ""} {member.company}
+                                    </h3>
+                                    {
+                                        member.communityRole !== "" && (
+                                            <h4 className="mt-2 text-xs text-gray-600">{member.communityRole}</h4>
+                                        )
+                                    }
                                     <div className="mt-3 flex space-x-4 justify-center">
                                         {member.linkedin && (
                                         <a

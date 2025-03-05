@@ -109,7 +109,7 @@
   "info": {
     "title": "About Cloud Native Days Italy",
     "description": "Cloud Native Days (CNS) Italy is a local, community-organized event that gathers adopters and technologists from open source and cloud native communities.",
-    "longDescription": "This is the fourth edition in Italy, aiming to bring the community together. The event provides a platform for professionals and experts from all levels and backgrounds to learn, network, and share their knowledge about cloud-native technologies.",
+    "longDescription": "This is the fourth edition in Italy (formerly known as KCD Italy), aiming to bring the community together. The event provides a platform for professionals and experts from all levels and backgrounds to learn, network, and share their knowledge about cloud-native technologies.",
     "CTA": {
       "label": "Learn more",
       "url": "#"
@@ -218,12 +218,19 @@
     "highlighted": {
       "imageUrl": "/images/savoia-hotel-regency-1.jpg",
       "name": "Savoia Hotel Regency",
-      "description": "Descrizione hotel",
-      "rooms": "Descrizione Camere",
+      "description": "This historic villa offers elegant rooms, an Emilian restaurant, a pool, and free parking. Perfect for event attendees.",
+      "rooms": "Refined and comfortable, the rooms feature classic furnishings, parquet or carpeted floors, satellite TV and free Wi-Fi.",
       "website": "https://www.savoia.eu/",
-      "distance": "inside the venue"
+      "distance": "Inside the venue"
     },
-    "others": []
+    "others": [{
+        "imageUrl": "/images/savoia-country-house.jpg",
+        "name": "Savoia Country House",
+        "description": "A charming restored country house with elegant rooms, free Wi-Fi, and an Emilian restaurant. Guests enjoy access to the pool and fitness center at the nearby Savoia Regency.",
+        "rooms": "Refined and comfortable, the rooms feature classic furnishings, parquet or carpeted floors, satellite TV and free Wi-Fi.",
+        "website": "https://www.savoia.eu/",
+        "distance": "Near the venue"
+    }]
   },
   "sponsors": {
     "become": {
