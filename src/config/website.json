@@ -4,7 +4,7 @@
       "name": "Cloud Native Days Italy",
       "year": 2025,
       "website": "https://cloudnativedaysitaly.org",
-      "logo": "https://cloudnativedaysitaly.org/images/logo_xs.png",
+      "logo": "https://cloudnativedaysitaly.org/images/logo_xs.webp",
       "description": "Cloud Native Days (CNS) Italy is a local, community-organized event that gathers adopters and technologists from open source and cloud native communities."
     },
     "contact": {
@@ -12,7 +12,7 @@
     }
   },
   "navbar": {
-    "logo": "/images/logo_xs.png",
+    "logo": "/images/logo_xs.webp",
     "CTA": {
       "label": "Get your Ticket",
       "url": "#"
@@ -53,7 +53,7 @@
     }
   },
   "footer": {
-    "image": "/images/logo_xs.png",
+    "image": "/images/logo_xs.webp",
     "links": [
         {
             "label": "Code of Conduct",
@@ -191,11 +191,11 @@
     "mapLink": "https://maps.app.goo.gl/3vSwR95hrZBizahw6",
     "images": [
       {
-        "img": "/images/savoia-hotel-regency-1.jpg",
+        "img": "/images/savoia-hotel-regency-1.webp",
         "alt": "Savoia Hotel Regency"
       },
       {
-        "img": "/images/savoia-hotel-regency-2.jpg",
+        "img": "/images/savoia-hotel-regency-2.webp",
         "alt": "Savoia Hotel Regency"
       }
     ],
@@ -217,7 +217,7 @@
   "hotel": {
     "title": "Nearby hotels",
     "highlighted": {
-      "imageUrl": "/images/savoia-hotel-regency-1.jpg",
+      "imageUrl": "/images/savoia-hotel-regency-1.webp",
       "name": "Savoia Hotel Regency",
       "description": "This historic villa offers elegant rooms, an Emilian restaurant, a pool, and free parking. Perfect for event attendees.",
       "rooms": "Refined and comfortable, the rooms feature classic furnishings, parquet or carpeted floors, satellite TV and free Wi-Fi.",
@@ -225,7 +225,7 @@
       "distance": "Inside the venue"
     },
     "others": [{
-        "imageUrl": "/images/savoia-country-house.jpg",
+        "imageUrl": "/images/savoia-country-house.webp",
         "name": "Savoia Country House",
         "description": "A charming restored country house with elegant rooms, free Wi-Fi, and an Emilian restaurant. Guests enjoy access to the pool and fitness center at the nearby Savoia Regency.",
         "rooms": "Refined and comfortable, the rooms feature classic furnishings, parquet or carpeted floors, satellite TV and free Wi-Fi.",
@@ -328,7 +328,7 @@
             "company": "Mia-Platform",
             "companyWebsite": "https://www.mia-platform.eu/",
             "communityRole": "CNCF Ambassador",
-            "photo": "/images/team/michel-murabito.jpg",
+            "photo": "/images/team/michel-murabito.webp",
             "linkedin": "https://www.linkedin.com/in/mich-murabito",
             "github": "https://github.com/akelity",
             "website": "https://michelmurabito.com/"
@@ -338,7 +338,7 @@
             "position": "CTO",
             "company": "Sparkfabrik",
             "communityRole": "Linux Foundation Europe advisory board member",
-            "photo": "/images/team/paolo-mainardi.jpg",
+            "photo": "/images/team/paolo-mainardi.webp",
             "linkedin": "https://it.linkedin.com/in/paolomainardi",
             "github": "",
             "website": ""
@@ -348,7 +348,7 @@
             "position": "Delivery Manager",
             "company": "Desotech",
             "communityRole": "",
-            "photo": "/images/team/evangelista-tragni.jpg",
+            "photo": "/images/team/evangelista-tragni.webp",
             "linkedin": "https://linkedin.com/in/evangelista-tragni",
             "github": "",
             "website": ""
@@ -358,7 +358,7 @@
             "position": "CEO",
             "company": "Desotech",
             "communityRole": "CNCF Ambassador",
-            "photo": "/images/team/nicola-marco-decandia.jpg",
+            "photo": "/images/team/nicola-marco-decandia.webp",
             "linkedin": "https://www.linkedin.com/in/nicolamarcodecandia/",
             "github": "",
             "website": ""
@@ -368,7 +368,7 @@
             "position": "Product Marketing",
             "company": "ReeVo",
             "communityRole": "CNCF Ambassador",
-            "photo": "/images/team/sara-trappetti.jpg",
+            "photo": "/images/team/sara-trappetti.webp",
             "linkedin": "https://www.linkedin.com/in/sara-trappetti/",
             "github": "",
             "website": ""
@@ -378,7 +378,7 @@
             "position": "Head of Cloud Native Services & Open Source",
             "company": "ReeVo",
             "communityRole": "CNCF Ambassador & Linux Foundation Europe advisory board member",
-            "photo": "/images/team/jacopo-nardiello.jpg",
+            "photo": "/images/team/jacopo-nardiello.webp",
             "linkedin": "https://www.linkedin.com/in/jnardiello/",
             "github": "",
             "website": ""
@@ -388,7 +388,7 @@
             "position": "Co-Founder and Open Source Developer",
             "company": "CLASTIX",
             "communityRole": "",
-            "photo": "/images/team/dario-tranchitella.jpg",
+            "photo": "/images/team/dario-tranchitella.webp",
             "linkedin": "https://www.linkedin.com/in/dariotranchitella/",
             "github": "",
             "website": ""
@@ -398,7 +398,7 @@
             "position": "Marketing, SEO & Social",
             "company": "",
             "communityRole": "",
-            "photo": "/images/team/giovanni-johnny-d-anna.jpg",
+            "photo": "/images/team/giovanni-johnny-d-anna.webp",
             "linkedin": "https://www.linkedin.com/in/giovanni-danna-seo/",
             "github": "",
             "website": ""
