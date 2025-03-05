@@ -1,5 +1,5 @@
 const nextConfig = {
-    output: "standalone",
+    output: "export",
     distDir: 'out',
     basePath: "",
     images: {
