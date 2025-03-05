@@ -2,7 +2,10 @@
   "general": {
     "event": {
       "name": "Cloud Native Days Italy",
-      "year": 2025
+      "year": 2025,
+      "website": "https://cloudnativedaysitaly.org",
+      "logo": "https://cloudnativedaysitaly.org/images/logo.png",
+      "description": "Cloud Native Days (CNS) Italy is a local, community-organized event that gathers adopters and technologists from open source and cloud native communities."
     },
     "contact": {
       "email": "test@test.com"
@@ -177,11 +180,13 @@
     "url": "https://sessionize.com/cloud-native-days-italy-2025/"
   },
   "venue": {
+    "type": "Hotel",
     "title": "Venue Information",
     "name": "Savoia Hotel Regency",
     "city": "Bologna - Italy",
     "street": "Via del Pilastro, 2",
     "zip": "40127",
+    "countryCode": "IT",
     "mapLink": "https://maps.app.goo.gl/3vSwR95hrZBizahw6",
     "images": [
       {
@@ -215,7 +220,7 @@
       "name": "Savoia Hotel Regency",
       "description": "Descrizione hotel",
       "rooms": "Descrizione Camere",
-      "website": "mich.murabito@gmail.com",
+      "website": "https://www.savoia.eu/",
       "distance": "inside the venue"
     },
     "others": []

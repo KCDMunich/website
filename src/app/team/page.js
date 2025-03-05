@@ -4,7 +4,12 @@ import Footer from "@/components/footer/footer";
 import config from '@/config/website.json';
 
 
-export const generateMetadata = () => {
+export const metadata = {
+    title: "Cloud Native Days Italy Team",
+    description: "The Cloud Native Days Italy team is a group of passionate volunteers who work together to make the event possible. Come meet them, or apply to join the team!",
+}
+
+export default function TeamPage() {
     const schemaData = {
         "@context": "https://schema.org",
         "@type": "Organization",
@@ -19,19 +24,12 @@ export const generateMetadata = () => {
 
 
     };
-
-    return {
-        title: "Cloud Native Days Italy Team",
-        description: "The Cloud Native Days Italy team is a group of passionate volunteers who work together to make the event possible. Come meet them, or apply to join the team!",
-        other: {
-            "application/ld+json": JSON.stringify(schemaData)
-        }
-    };
-};
-
-export default function TeamPage() {
     return (
         <>
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{__html: JSON.stringify(schemaData)}}
+            />
             <Navbar
                 data={config}
                 additionalClassName="!bg-white"

@@ -1,3 +1,4 @@
+import head from "next/head";
 import Hero from "@/components/hero/hero";
 import Navbar from "@/components/navbar/navbar";
 import Info from "@/components/info/info";
@@ -8,17 +9,23 @@ import Sponsor from "@/components/sponsor/sponsor";
 import Footer from "@/components/footer/footer";
 import config from "@/config/website.json";
 
+
 function convertToISOWithTimezone(dateString) {
     const date = new Date(dateString);
     const offsetMinutes = date.getTimezoneOffset();
     const offsetHours = Math.abs(offsetMinutes / 60);
     const sign = offsetMinutes > 0 ? "-" : "+";
     const formattedOffset = `${sign}${String(Math.floor(offsetHours)).padStart(2, "0")}:00`;
-
     return `${date.toISOString().split("Z")[0]}${formattedOffset}`;
 }
 
-export const generateMetadata = () => {
+export const metadata = {
+    title: "Cloud Native Days Italy 2025",
+    description: "Cloud Native Days (CNS) Italy is a local, community-organized event that gathers adopters and technologists from open source and cloud native communities."
+}
+
+
+export default function HomePage() {
     const schemaData = {
         "@context": "https://schema.org",
         "@type": "Event",
@@ -55,29 +62,20 @@ export const generateMetadata = () => {
             "validFrom": convertToISOWithTimezone(ticket.salesStartDate)
         }))
     };
-
-    return {
-        title: "Cloud Native Days Italy 2025",
-        description: "Cloud Native Days (CNS) Italy is a local, community-organized event that gathers adopters and technologists from open source and cloud native communities.",
-        other: {
-            "application/ld+json": JSON.stringify(schemaData, null, 2)
-        }
-    };
-};
-
-
-export default function HomePage() {
-
     return (
         <>
-            <Navbar data={config} additionalClassName="!bg-white" homepage="/" />
-            <Hero data={config} />
-            <Info data={config} />
-            <Externals data={config} />
-            <Venue data={config} />
-            <Hotel data={config} />
-            <Sponsor data={config} />
-            <Footer data={config} />
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{__html: JSON.stringify(schemaData)}}
+            />
+            <Navbar data={config} additionalClassName="!bg-white" homepage="/"/>
+            <Hero data={config}/>
+            <Info data={config}/>
+            <Externals data={config}/>
+            <Venue data={config}/>
+            <Hotel data={config}/>
+            <Sponsor data={config}/>
+            <Footer data={config}/>
         </>
     )
 }
