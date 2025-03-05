@@ -306,17 +306,84 @@
         "members": [
           {
             "name": "Michel Murabito",
-            "position": "CNCF Ambassador & Developer Advocate",
+            "position": "Developer Advocate",
             "company": "Mia-Platform",
+            "companyWebsite": "https://www.mia-platform.eu/",
+            "communityRole": "CNCF Ambassador",
             "photo": "/images/team/michel-murabito.jpg",
-            "url": "https://www.linkedin.com/in/mich-murabito"
+            "linkedin": "https://www.linkedin.com/in/mich-murabito",
+            "github": "https://github.com/akelity",
+            "website": "https://michelmurabito.com/"
           },
           {
-            "name": "Michel Murabito",
-            "position": "",
-            "company": "Mia-Platform",
-            "photo": "/images/team/profile.png",
-            "url": "https://www.linkedin.com/in/mich-murabito"
+            "name": "Paolo Mainardi",
+            "position": "CTO",
+            "company": "Sparkfabrik",
+            "communityRole": "Linux Foundation Europe advisory board member",
+            "photo": "/images/team/paolo-mainardi.jpg",
+            "linkedin": "https://it.linkedin.com/in/paolomainardi",
+            "github": "",
+            "website": ""
+          },
+          {
+            "name": "Evangelista Tragni",
+            "position": "Delivery Manager",
+            "company": "Desotech",
+            "communityRole": "",
+            "photo": "/images/team/evangelista-tragni.jpg",
+            "linkedin": "https://linkedin.com/in/evangelista-tragni",
+            "github": "",
+            "website": ""
+          },
+          {
+            "name": "Nicola Marco Decandia",
+            "position": "CEO",
+            "company": "Desotech",
+            "communityRole": "CNCF Ambassador",
+            "photo": "/images/team/nicola-marco-decandia.jpg",
+            "linkedin": "https://www.linkedin.com/in/nicolamarcodecandia/",
+            "github": "",
+            "website": ""
+          },
+          {
+            "name": "Sara Trappetti",
+            "position": "Product Marketing",
+            "company": "ReeVo",
+            "communityRole": "CNCF Ambassador",
+            "photo": "/images/team/sara-trappetti.jpg",
+            "linkedin": "https://www.linkedin.com/in/sara-trappetti/",
+            "github": "",
+            "website": ""
+          },
+          {
+            "name": "Jacopo Nardiello",
+            "position": "Head of Cloud Native Services & Open Source",
+            "company": "ReeVo",
+            "communityRole": "CNCF Ambassador & Linux Foundation Europe advisory board member",
+            "photo": "/images/team/jacopo-nardiello.jpg",
+            "linkedin": "https://www.linkedin.com/in/jnardiello/",
+            "github": "",
+            "website": ""
+          },
+          {
+            "name": "Dario Tranchitella",
+            "position": "Co-Founder and Open Source Developer",
+            "company": "CLASTIX",
+            "communityRole": "",
+            "photo": "/images/team/dario-tranchitella.jpg",
+            "linkedin": "https://www.linkedin.com/in/dariotranchitella/",
+            "github": "",
+            "website": ""
+          },
+          {
+            "name": "Giovanni D’Anna",
+            "position": "Marketing, SEO & Social",
+            "company": "",
+            "communityRole": "",
+            "photo": "/images/team/giovanni-johnny-d-anna.jpg",
+            "linkedin": "https://www.linkedin.com/in/giovanni-danna-seo/",
+            "github": "",
+            "website": ""
           }
         ]
     }
