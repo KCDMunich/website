@@ -49,7 +49,7 @@
     }
   },
   "footer": {
-    "image": "/images/test.svg",
+    "image": "/images/logo.png",
     "links": [
         {
             "label": "Code of Conduct",
@@ -57,15 +57,10 @@
         },
         {
             "label": "Team",
-            "url": "#"
+            "url": "/team"
         }
     ],
     "icons": [
-      {
-        "iconName": "googlemaps",
-        "url": "#",
-        "alt": "Test"
-      },
       {
         "iconName": "twitter",
         "url": "#",
@@ -73,21 +68,11 @@
       },
       {
         "iconName": "linkedin",
-        "url": "#",
-        "alt": "Test"
+        "url": "https://www.linkedin.com/company/75019931/",
+        "alt": "Cloud Native Days Italy on LinkedIn"
       },
       {
         "iconName": "youtube",
-        "url": "#",
-        "alt": "Test"
-      },
-      {
-        "iconName": "discord",
-        "url": "#",
-        "alt": "Test"
-      },
-      {
-        "iconName": "bluesky",
         "url": "#",
         "alt": "Test"
       }
@@ -328,37 +313,9 @@
           },
           {
             "name": "Michel Murabito",
-            "position": "CNCF Ambassador & Developer Advocate",
+            "position": "",
             "company": "Mia-Platform",
-            "photo": "/images/team/michel-murabito.jpg",
-            "url": "https://www.linkedin.com/in/mich-murabito"
-          },
-          {
-            "name": "Michel Murabito",
-            "position": "CNCF Ambassador & Developer Advocate",
-            "company": "Mia-Platform",
-            "photo": "/images/team/michel-murabito.jpg",
-            "url": "https://www.linkedin.com/in/mich-murabito"
-          },
-          {
-            "name": "Michel Murabito",
-            "position": "CNCF Ambassador & Developer Advocate",
-            "company": "Mia-Platform",
-            "photo": "/images/team/michel-murabito.jpg",
-            "url": "https://www.linkedin.com/in/mich-murabito"
-          },
-          {
-            "name": "Michel Murabito",
-            "position": "CNCF Ambassador & Developer Advocate",
-            "company": "Mia-Platform",
-            "photo": "/images/team/michel-murabito.jpg",
-            "url": "https://www.linkedin.com/in/mich-murabito"
-          },
-          {
-            "name": "Michel Murabito",
-            "position": "CNCF Ambassador & Developer Advocate",
-            "company": "Mia-Platform",
-            "photo": "/images/team/michel-murabito.jpg",
+            "photo": "/images/team/profile.png",
             "url": "https://www.linkedin.com/in/mich-murabito"
           }
         ]

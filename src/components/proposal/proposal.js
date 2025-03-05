@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {CalendarDays, Info, Clock, ChevronRight} from 'lucide-react';
+import "@/components/proposal/proposal.css";
 
 const PLAYLIST_ID = 'PL54A_DPe8WtBuSp7sqpxeuy_UoTTlKB1O';
 

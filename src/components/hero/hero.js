@@ -1,8 +1,9 @@
-"use client";
-
 import React from 'react';
 import Image from "next/image";
 import { Calendar, MapPin, Users } from 'lucide-react';
+import "@/components/hero/hero.css";
+import "@/styles/globals.css";
+
 
 const Hero = ({data}) => {
     return (

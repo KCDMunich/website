@@ -1,5 +1,6 @@
 import { Users, Calendar, MapPin } from 'lucide-react';
 import React from 'react';
+import "@/components/info/info.css";
 
 const Info = ({data}) => (
     <section className="info-section">

@@ -1,38 +1,27 @@
-import fs from 'fs';
-import path from 'path';
+"use client";
+
 import {useState} from "react";
 import Navbar from "@/components/navbar/navbar";
 import Team from "@/components/team/team";
 import Footer from "@/components/footer/footer";
+import config from '@/config/website.json';
 
-export default function Home({ data }) {
+export default function TeamPage() {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const handleHeaderBurgerClick = () => setIsMobileMenuOpen(!isMobileMenuOpen);
 
     return (
         <>
             <Navbar
-                data={data}
+                data={config}
                 isMobileMenuOpen={isMobileMenuOpen}
                 additionalClassName="!bg-white"
                 homepage="/"
                 onBurgerClick={handleHeaderBurgerClick}
             />
 
-            <Team data={data} />
-
-            <Footer data={data} />
+            <Team data={config} />
+            <Footer data={config} />
         </>
     )
-}
-
-export async function getStaticProps() {
-    const filePath = path.join(process.cwd(), 'src/config/website.json');
-    const jsonData = fs.readFileSync(filePath, 'utf-8');
-    const data = JSON.parse(jsonData);
-    return {
-        props: {
-            data,
-        },
-    };
 }

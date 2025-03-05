@@ -1,4 +1,5 @@
 import React from "react";
+import "@/components/tickets/tickets.css";
 
 const Tickets = ({data}) => {
     const isTicketAvailable = (ticket) => {

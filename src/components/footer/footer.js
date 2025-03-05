@@ -1,6 +1,9 @@
 import React from 'react';
-import { FaDiscord, FaGoogle, FaTwitter, FaLinkedin, FaYoutube, FaMapPin } from 'react-icons/fa';
+import Link from 'next/link';
+import Image from 'next/image';
+import { FaDiscord, FaTwitter, FaLinkedin, FaYoutube, FaMapPin } from 'react-icons/fa';
 import { FaBluesky } from 'react-icons/fa6';
+import "@/components/footer/footer.css";
 
 
 const Footer = ({ data }) => {
@@ -19,19 +22,16 @@ const Footer = ({ data }) => {
     return (
         <footer className="safe-paddings border-t border-t-gray-200 bg-white py-6">
             <div className="container mx-auto flex flex-col items-center justify-between gap-6 sm:flex-row">
-                {/* Logo */}
-                <a href="/" className="flex items-center">
-                    <img src={logoSrc} alt="Logo" className="h-10" />
-                </a>
+                <Link href="/" className="flex items-center">
+                    <Image src={logoSrc} alt="Logo" width={155} height={100} />
+                </Link>
 
-                {/* Menu */}
                 <nav className="mt-4">
                     <ul className="flex flex-wrap justify-center gap-4">
                         {data.footer.links.map((link, index) => (
                             <li key={index}>
                                 <a
                                     href={link.url}
-                                    target="_blank"
                                     className="text-sm font-semibold text-gray-700 hover:text-gray-900"
                                 >
                                     {link.label}

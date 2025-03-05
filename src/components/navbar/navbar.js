@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { FaArrowRight } from 'react-icons/fa';
+import "@/components/navbar/navbar.css";
 
 const Header = ({ data, additionalClassName }) => {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -34,7 +35,7 @@ const Header = ({ data, additionalClassName }) => {
                 {/* Logo */}
                 <Link href="/" className="z-50 ml-2">
                     <Image
-                        src="/images/test.svg"
+                        src="/images/logo.png"
                         alt="logo"
                         width={120}
                         height={40}
