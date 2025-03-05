@@ -1,3 +1,4 @@
+"use client";
 import clsx from 'clsx';
 import { m, LazyMotion, domAnimation } from 'framer-motion';
 import React, { useState } from 'react';
@@ -8,6 +9,7 @@ import "@/components/navbar/navbar.css";
 
 const Header = ({ data, additionalClassName }) => {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const handleHeaderBurgerClick = () => setIsMobileMenuOpen(!isMobileMenuOpen);
 
     const toggleMenu = () => {
         setIsMobileMenuOpen((prev) => !prev);

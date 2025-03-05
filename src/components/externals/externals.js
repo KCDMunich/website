@@ -1,3 +1,4 @@
+"use client";
 import React from 'react';
 import Tickets from '@/components/tickets/tickets';
 import Proposal from '@/components/proposal/proposal';

@@ -1,3 +1,4 @@
+"use client";
 import clsx from 'clsx';
 import React from 'react';
 import "@/components/sponsor/sponsor.css";

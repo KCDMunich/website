@@ -1,3 +1,4 @@
+"use client";
 import { Users, Calendar, MapPin } from 'lucide-react';
 import React from 'react';
 import "@/components/info/info.css";

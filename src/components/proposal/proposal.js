@@ -1,3 +1,4 @@
+"use client";
 import React, {useState, useEffect} from 'react';
 import {CalendarDays, Info, Clock, ChevronRight} from 'lucide-react';
 import "@/components/proposal/proposal.css";
