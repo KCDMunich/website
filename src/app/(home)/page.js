@@ -60,7 +60,7 @@ export const generateMetadata = () => {
         title: "Cloud Native Days Italy 2025",
         description: "Cloud Native Days (CNS) Italy is a local, community-organized event that gathers adopters and technologists from open source and cloud native communities.",
         other: {
-            "application/ld+json": JSON.stringify(schemaData)
+            "application/ld+json": JSON.stringify(schemaData, null, 2)
         }
     };
 };
