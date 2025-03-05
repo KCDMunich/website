@@ -40,16 +40,29 @@ const Sponsors = ({data}) => {
             <section className="mx-auto max-w-7xl px-4 py-6">
                 <div className="text-center">
                     <h2 className="mb-8 text-3xl font-semibold text-gray-900 text-center">{data.sponsors.active.title}</h2>
+                    {
+                        sponsorsList.filter((s) => s.active).length > 0 && (
                     <p className="mb-6 text-lg text-gray-500">{data.sponsors.active.description}</p>
+                        )
+                    }
+
+                    {
+                        sponsorsList.filter((s) => s.active).length === 0 && (
+                            <div className="text-center">
+                                <p className="text-lg text-gray-500">The announcement of sponsors is coming soon! We already have great sponsors on board, and we will reveal them soon. Do not miss the opportunity to join them, showcase your brand and support the community.</p>
+                            </div>
+                        )
+                    }
                 </div>
+
+
                 {Object.entries(tierConfig).map(([tier, config]) => {
-                    const tierSponsors = sponsorsList.filter((s) => s.tier === tier);
+                    const tierSponsors = sponsorsList.filter((s) => s.tier === tier && s.active);
 
                     if (tierSponsors.length === 0) return null;
 
                     return (
                         <div key={tier} className="mb-12">
-                            {/* Titolo Tier */}
                             <div className="mb-6 flex items-center justify-center gap-2">
                                 <h3 className="text-xl font-semibold text-gray-900">{config.title}</h3>
                                 <span

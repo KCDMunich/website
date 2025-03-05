@@ -24,7 +24,7 @@
         },
         {
           "text": "Sponsors",
-          "to": "#sponsors"
+          "to": "/#sponsors"
         },
         {
           "text": "Team",
@@ -254,31 +254,36 @@
         "name": "Test Company",
         "icon": "/images/sponsors/test.svg",
         "url": "https://test.com",
-        "tier": "platinum"
+        "tier": "platinum",
+        "active": false
       },
       {
         "name": "Test Company",
         "icon": "/images/sponsors/test.svg",
         "url": "https://test.com",
-        "tier": "gold"
+        "tier": "gold",
+        "active": false
       },
       {
         "name": "Test Company",
         "icon": "/images/sponsors/test.svg",
         "url": "https://test.com",
-        "tier": "silver"
+        "tier": "silver",
+        "active": false
       },
       {
         "name": "Test Company",
         "icon": "/images/sponsors/test.svg",
         "url": "https://test.com",
-        "tier": "bronze"
+        "tier": "bronze",
+        "active": false
       },
       {
         "name": "Test Company",
         "icon": "/images/sponsors/test.svg",
         "url": "https://test.com",
-        "tier": "partner"
+        "tier": "partner",
+        "active": false
       }
     ],
     "tiers": {
