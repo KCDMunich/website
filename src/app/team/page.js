@@ -19,7 +19,7 @@ export default function TeamPage() {
             "@type": "Person",
             "name": member.name,
             "jobTitle": `${member.position} ${member.company} ${member.communityRole}`,
-            "sameAs": [member.linkedin]
+            "sameAs": [member.linkedin, member.github, member.website].filter(Boolean)
         }))
 
 
