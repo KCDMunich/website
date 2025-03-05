@@ -37,7 +37,7 @@ const Header = ({ data, additionalClassName }) => {
                 {/* Logo */}
                 <Link href="/" className="z-50 ml-2">
                     <Image
-                        src="/images/logo.png"
+                        src={data.navbar.logo}
                         alt="logo"
                         width={120}
                         height={40}

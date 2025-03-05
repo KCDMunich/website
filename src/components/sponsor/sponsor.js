@@ -1,6 +1,7 @@
 "use client";
 import clsx from 'clsx';
 import React from 'react';
+import Link from 'next/link';
 import "@/components/sponsor/sponsor.css";
 
 const CARD_STYLES = 'w-[200px] h-[100px]';
@@ -16,15 +17,13 @@ const Sponsors = ({data}) => {
                     <h2 className="mb-4 text-4xl font-bold text-gray-900">{data.sponsors.become.title}</h2>
                     <p className="mb-6 text-lg text-gray-500">{data.sponsors.become.description}</p>
                     <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                        <button
+                        <Link
                             type="button"
                             className="button bg-blue-500 text-white px-6 py-3 rounded-lg hover:bg-blue-600"
-                            onClick={() => {
-                                window.location.href = `mailto:${data.sponsors.contactEmail}`;
-                            }}
+                            href={`mailto:${data.sponsors.contactEmail}`}
                         >
                             Contact Us
-                        </button>
+                        </Link>
                         <a
                             href={data.sponsors.prospectus.url}
                             target="_blank"

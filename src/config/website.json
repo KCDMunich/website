@@ -4,7 +4,7 @@
       "name": "Cloud Native Days Italy",
       "year": 2025,
       "website": "https://cloudnativedaysitaly.org",
-      "logo": "https://cloudnativedaysitaly.org/images/logo.png",
+      "logo": "https://cloudnativedaysitaly.org/images/logo_xs.png",
       "description": "Cloud Native Days (CNS) Italy is a local, community-organized event that gathers adopters and technologists from open source and cloud native communities."
     },
     "contact": {
@@ -12,6 +12,7 @@
     }
   },
   "navbar": {
+    "logo": "/images/logo_xs.png",
     "CTA": {
       "label": "Get your Ticket",
       "url": "#"
@@ -52,7 +53,7 @@
     }
   },
   "footer": {
-    "image": "/images/logo.png",
+    "image": "/images/logo_xs.png",
     "links": [
         {
             "label": "Code of Conduct",
@@ -242,11 +243,11 @@
         "description": "Thank you to our amazing sponsors who make this event possible!"
     },
     "showSponsors": true,
-    "contactEmail": "",
+    "contactEmail": "cloudnativedaysitaly@gmail.com",
     "prospectus": {
       "title": "Sponsor Prospectus",
       "description": "Thank you to our amazing sponsors who make this event possible",
-      "url": "#",
+      "url": "/prospectus/cloudnativedays-italy-2025-sponsorship-prospectus.pdf",
       "label": "Download Sponsorship Prospectus"
     },
     "list": [
