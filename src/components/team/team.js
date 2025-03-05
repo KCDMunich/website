@@ -38,13 +38,13 @@ const Team = ({ data }) => {
                                     </div>
 
                                     {/* Nome */}
-                                    <p className="mt-4 text-base font-bold leading-normal text-[#004258]">{member.name}</p>
+                                    <h2 className="mt-4 text-base font-bold leading-normal text-[#004258]">{member.name}</h2>
 
-                                    <span className="mt-2 text-xs text-gray-600">
+                                    <h3 className="mt-2 text-xs text-gray-600">
                     {member.position} {member.company !== "" ? "-" : ""} {member.company}
-                  </span>
+                  </h3>
 
-                                    <span className="mt-2 text-xs text-gray-600">{member.communityRole}</span>
+                                    <h4 className="mt-2 text-xs text-gray-600">{member.communityRole}</h4>
 
 
                                     <div className="mt-3 flex space-x-4 justify-center">
