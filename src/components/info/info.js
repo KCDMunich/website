@@ -13,18 +13,20 @@ const Info = ({data}) => (
                 <div className="about-content">
                     <div className="about-text">
                         <p>{data.info.description}</p>
-                        <div className="text-start">
-                            <button
-                                type="button"
-                                className="button"
-                                style={{ cursor: 'pointer', marginTop: '2rem' }}
-                                onClick={() => {
-                                    window.location.href = data.info.CTA.url;
-                                }}
-                            >
-                                {data.info.CTA.label}
-                            </button>
-                        </div>
+                        {data.info.CTA.active ? (
+                            <div className="text-start">
+                                <button
+                                    type="button"
+                                    className="button"
+                                    style={{ cursor: 'pointer', marginTop: '2rem' }}
+                                    onClick={() => {
+                                        window.location.href = data.info.CTA.url;
+                                    }}
+                                >
+                                    {data.info.CTA.label}
+                                </button>
+                            </div>
+                        ) : <></>}
                     </div>
                     <div className="about-text">
                         <p>
