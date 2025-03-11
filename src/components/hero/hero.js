@@ -79,7 +79,7 @@ const Hero = ({data}) => {
                                     }}
                                 >
                                     <Image
-                                        src={"/images/test.svg"}
+                                        src={data.hero.image}
                                         alt={"Hero Image"}
                                         width={500}
                                         height={500}

@@ -29,7 +29,7 @@ const Footer = ({ data }) => {
 
                 <nav className="mt-4">
                     <ul className="flex flex-wrap justify-center gap-4">
-                        {data.footer.links.map((link, index) => (
+                        {data.footer.links.filter(l => l.active === true).map((link, index) => (
                             <li key={index}>
                                 <a
                                     href={link.url}
@@ -51,7 +51,7 @@ const Footer = ({ data }) => {
                         Contact us
                     </a>
                     <ul className="flex gap-4">
-                        {data.footer.icons.map(({iconName, url, alt}, index) => {
+                        {data.footer.icons.filter(i => i.active === true).map(({iconName, url, alt}, index) => {
                             const Icon = icons[iconName]?.icon;
 
                             return (

@@ -19,7 +19,7 @@ const Tickets = ({data}) => {
     };
 
     return (
-        <div className="overflow-hidden rounded-lg bg-white shadow-lg">
+        <div className="overflow-hidden rounded-lg bg-white shadow-lg" id="tickets">
             <div className="space-y-6 p-6">
                 <div className="space-y-2 rounded-lg bg-gray-50 p-4">
                     <h3 className="font-semibold">{data.tickets.title}</h3>
@@ -36,7 +36,7 @@ const Tickets = ({data}) => {
                             ))}
                         </ul>
                     ) : (
-                        <p className="text-sm text-gray-500">{data.tickets['no-available']}</p>
+                        <p className="text-xl text-gray-500">{data.tickets['no-available']}</p>
                     )}
                 </div>
 
@@ -57,22 +57,31 @@ const Tickets = ({data}) => {
                 */}
             </div>
 
+
             <div className="flex flex-col items-stretch gap-4 px-6 pb-6">
-                <p className="text-center text-sm text-gray-500">
-                    Tickets are purchased through our external ticketing partner.
-                </p>
-                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                    <button
-                        type="button"
-                        className="button"
-                        style={{ cursor: 'pointer' }}
-                        onClick={() =>
-                            window.open(data.general.ticket.link, '_blank')
-                        }
-                    >
-                        Buy your Ticket
-                    </button>
-                </div>
+                {availableTickets.length > 0 ? (
+                    <>
+                        <p className="text-center text-sm text-gray-500">
+                            Tickets are purchased through our external ticketing partner.
+                        </p>
+                        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                            <button
+                                type="button"
+                                className="button"
+                                style={{ cursor: 'pointer' }}
+                                onClick={() =>
+                                    window.open(data.general.ticket.link, '_blank')
+                                }
+                            >
+                                Buy your Ticket
+                            </button>
+                        </div>
+                    </>
+                ) : (<>
+                    <p className="text-center text-xl text-gray-500">
+                        Check back in a few days to secure your spot for the conference and workshops.
+                    </p>
+                </>)}
             </div>
         </div>
     );

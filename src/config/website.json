@@ -15,7 +15,7 @@
     "logo": "/images/logo_xs.webp",
     "CTA": {
       "label": "Get your Ticket",
-      "url": "#"
+      "url": "#tickets"
     },
     "links": {
       "header": [
@@ -57,34 +57,40 @@
     "links": [
         {
             "label": "Code of Conduct",
-            "url": "#"
+            "url": "#",
+            "active": false
         },
         {
             "label": "Team",
-            "url": "/team"
+            "url": "/team",
+            "active": true
         }
     ],
     "icons": [
       {
         "iconName": "twitter",
         "url": "#",
-        "alt": "Test"
+        "alt": "Test",
+        "active": false
       },
       {
         "iconName": "linkedin",
-        "url": "https://www.linkedin.com/company/75019931/",
-        "alt": "Cloud Native Days Italy on LinkedIn"
+        "url": "https://www.linkedin.com/company/cloudnativedaysitaly",
+        "alt": "Cloud Native Days Italy on LinkedIn",
+        "active": true
       },
       {
         "iconName": "youtube",
         "url": "#",
-        "alt": "Test"
+        "alt": "Test",
+        "active": false
       }
     ]
   },
   "hero": {
     "badgeDate": "Jun 23st (workshop) – 24nd (conference), 2025!",
     "title": "Cloud Native Days Italy 2025",
+    "image": "/images/cndteam.webp",
     "description": "In June 2025, the cloud native community will gather in Bologna. Come and join us!",
     "featureList": {
       "days": "Two-day technical event",
@@ -95,15 +101,15 @@
     "CTA": {
       "cfp": {
         "label": "Submit a Talk",
-        "url": "https://sessionize.com/cloud-native-days-italy-2025/"
+        "url": "#proposal"
       },
       "tickets": {
         "label": "Get your Ticket",
-        "url": "#"
+        "url": "#tickets"
       },
       "sponsor": {
         "label": "Become a Sponsor",
-        "url": "#"
+        "url": "#sponsors"
       }
     }
   },
@@ -140,35 +146,36 @@
   "tickets": {
     "title": "Available Ticket Types:",
     "no-available": "No tickets are currently available for sale.",
+    "no-available-description": "Check back in a few days to secure your spot for the conference and workshops.",
     "link": "#",
     "type": [
       {
         "id": "conference-early-bird",
         "name": "Conference – Early Bird",
         "price": 99,
-        "salesStartDate": "2025-01-15",
-        "salesEndDate": "2025-03-18"
+        "salesStartDate": "2025-03-31",
+        "salesEndDate": "2025-06-30"
       },
       {
         "id": "workshop-early-bird",
         "name": "Workshop Early Bird",
         "price": 150,
-        "salesStartDate": "2025-01-15",
-        "salesEndDate": "2025-03-18"
+        "salesStartDate": "2025-03-31",
+        "salesEndDate": "2025-06-30"
       },
       {
         "id": "conference",
         "name": "Conference",
         "price": 139,
-        "salesStartDate": "22025-03-19",
-        "salesEndDate": "2025-07-13"
+        "salesStartDate": "22025-03-31",
+        "salesEndDate": "2025-06-30"
       },
       {
         "id": "workshop",
         "name": "Workshop",
         "price": 175,
-        "salesStartDate": "2025-03-19",
-        "salesEndDate": "2025-07-13"
+        "salesStartDate": "2025-03-31",
+        "salesEndDate": "2025-06-30"
       }
     ]
   },
