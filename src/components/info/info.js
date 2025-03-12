@@ -36,16 +36,13 @@ const Info = ({data}) => (
                 </div>
 
                 <div className="video-section">
-                    <div style={{ aspectRatio: '16/9', width: '100%' }}>
+                    <div style={{aspectRatio: '16/9', width: '100%'}}>
                         <iframe
-                            style={{ width: '100%', height: '100%', borderRadius: '0.5rem' }}
-                            className="m:w-full m:h-full"
-                            src={data.info.video.url}
-                            title={data.info.video.title}
+                            style={{width: '100%', height: '100%', borderRadius: '0.5rem'}}
+                            src={`https://www.youtube.com/embed/${data.info.video.id}`}
                             frameBorder="0"
+                                allowFullScreen
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                            referrerPolicy="strict-origin-when-cross-origin"
-                            allowFullScreen
                         ></iframe>
                     </div>
                 </div>
