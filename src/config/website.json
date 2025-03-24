@@ -410,6 +410,26 @@
             "linkedin": "https://www.linkedin.com/in/giovanni-danna-seo/",
             "github": "",
             "website": ""
+          },
+          {
+            "name": "Alessandro De Vecchi",
+            "position": "Marketing Specialist",
+            "company": "SparkFabrik",
+            "communityRole": "",
+            "photo": "/images/team/alessandro-de-vecchi.webp",
+            "linkedin": "https://www.linkedin.com/in/devecchialessandro/",
+            "github": "",
+            "website": "https://alessandrodevecchi.com/"
+          },
+          {
+            "name": "Maria Pina Di Cataldo",
+            "position": "Community Manager",
+            "company": "Seacom",
+            "communityRole": "",
+            "photo": "/images/team/maria-pina-di-cataldo.webp",
+            "linkedin": "https://www.linkedin.com/in/maria-pina-di-cataldo/",
+            "github": "",
+            "website": ""
           }
         ]
     }
