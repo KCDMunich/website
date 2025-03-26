@@ -32,6 +32,7 @@ const Tickets = ({data}) => {
                                     <div className="ticket-end-date">
                                         Ends on: {formatDate(ticket.salesEndDate)}
                                     </div>
+                                    <div className="text-xs text-gray-500">{ticket.description ? ticket.description : ''}</div>
                                 </li>
                             ))}
                         </ul>
@@ -46,10 +47,10 @@ const Tickets = ({data}) => {
                     <p className="text-sm">
                         Contact us at{' '}
                         <a
-                            href="mailto:team@cloudnativesummit.de"
+                            href="mailto:team@mail.com"
                             className="text-primary font-bold hover:underline"
                         >
-                            team@cloudnativesummit.de
+                            team@mail.com
                         </a>{' '}
                         to apply for a diversity ticket - sponsored by ape factory.
                     </p>
