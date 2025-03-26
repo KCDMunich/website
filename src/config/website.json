@@ -163,7 +163,7 @@
         "name": "Conference",
         "price": "95€ (ex. VAT @22%)",
         "description": "",
-        "salesStartDate": "22025-04-18",
+        "salesStartDate": "2025-04-18",
         "salesEndDate": "2025-06-30"
       },
 
@@ -172,7 +172,7 @@
         "name": "Conference",
         "price": "85€ (ex. VAT @22%)",
         "description": "Bring your team! Get a 10% discount when you purchase 5 or more tickets. (Price is per individual ticket)",
-        "salesStartDate": "22025-04-18",
+        "salesStartDate": "2025-04-18",
         "salesEndDate": "2025-06-30"
       },
       {
