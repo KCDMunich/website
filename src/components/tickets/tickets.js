@@ -70,7 +70,7 @@ const Tickets = ({data}) => {
                                 className="button"
                                 style={{ cursor: 'pointer' }}
                                 onClick={() =>
-                                    window.open(data.general.ticket.link, '_blank')
+                                    window.open(data.tickets.link, '_blank')
                                 }
                             >
                                 Buy your Ticket

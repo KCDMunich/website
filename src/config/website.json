@@ -148,13 +148,13 @@
     "title": "Available Ticket Types:",
     "no-available": "No tickets are currently available for sale.",
     "no-available-description": "Check back in a few days to secure your spot for the conference and workshops.",
-    "link": "#",
+    "link": "https://ti.to/apropos/cloud-native-days-italy-2025/",
     "type": [
       {
         "id": "conference-early-bird",
         "name": "Conference – Early Bird",
-        "price": 99,
-        "salesStartDate": "2025-03-31",
+        "price": "75€ (ex. VAT @22%)",
+        "salesStartDate": "2025-03-26",
         "salesEndDate": "2025-06-30"
       },
       {
