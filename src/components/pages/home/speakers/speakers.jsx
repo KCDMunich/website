@@ -38,8 +38,9 @@ const Dialog = ({ isOpen, onClose, children }) => {
   );
 };
 
-const SpeakerCard = ({ speaker, onClick, showTalk = false }) => {
+const SpeakerCard = ({ speaker, onClick, showTalk = false, speakerSessionMap = {} }) => {
   const company = findCompanyInfo(speaker);
+  const speakerSessions = speakerSessionMap[speaker.id] || [];
 
   return (
     <div
@@ -56,7 +57,7 @@ const SpeakerCard = ({ speaker, onClick, showTalk = false }) => {
       <div className="p-4 text-center">
         <h3 className="truncate text-base font-semibold">{speaker.fullName}</h3>
         <p className="text-gray-600 truncate text-sm mt-1">{company}</p>
-        {showTalk && speaker.sessions && speaker.sessions[0] && (
+        {showTalk && speaker.sessions && speaker.sessions[0] && speakerSessions.includes(speaker.sessions[0].id) && (
           <p className="mt-2 text-sm text-[#283058] font-medium line-clamp-2">
             {speaker.sessions[0].name}
           </p>
@@ -66,8 +67,9 @@ const SpeakerCard = ({ speaker, onClick, showTalk = false }) => {
   );
 };
 
-const SpeakerDialog = ({ speaker }) => {
+const SpeakerDialog = ({ speaker, speakerSessionMap = {} }) => {
   const company = findCompanyInfo(speaker);
+  const speakerSessions = speakerSessionMap[speaker.id] || [];
 
   return (
     <div className="p-6">
@@ -86,12 +88,12 @@ const SpeakerDialog = ({ speaker }) => {
         <div className="max-h-48 overflow-y-auto rounded-md border p-4">
           <p className="text-gray-600 text-sm">{speaker.bio || 'No bio available.'}</p>
         </div>
-        {speaker.sessions && speaker.sessions[0] && (
-          <div className="rounded-md border p-4">
+        {speaker.sessions && speaker.sessions.filter(session => speakerSessions.includes(session.id)).map((session, index) => (
+          <div key={index} className="rounded-md border p-4">
             <h3 className="font-semibold mb-2">Talk</h3>
-            <p className="text-gray-600 text-sm">{speaker.sessions[0].name}</p>
+            <p className="text-gray-600 text-sm">{session.name}</p>
           </div>
-        )}
+        ))}
         <div className="flex justify-center space-x-4">
           {speaker.links.map((link, index) => (
             <a
@@ -118,15 +120,24 @@ const Speakers = () => {
   const [showOtherSpeakers, setShowOtherSpeakers] = useState(false);
   const speakersPerPage = 30;
 
-  // Pre-announced speakers (you can modify this list as needed)
   const preAnnouncedSpeakerIds = [
-    'a2665c2b-13c9-4337-9c78-db85bca70e60', // Abdel Sghiouar
-    '695b89c8-6abb-4155-a297-a705ad8ae979', // Abdel Sghiouar
-    'fa03252b-abf7-490a-b243-40d994706c95', // Abdel Sghiouar
-    'b4047d7c-94cf-4f5e-bbdb-7619ab241f06', // Abdel Sghiouar
-    'be3da75f-4550-4f7f-9d44-863076ed4e91', // Abdel Sghiouar
-    '647c84a5-1a13-4641-8d8f-49109cadf78b', // Abdel Sghiouar
+    'a2665c2b-13c9-4337-9c78-db85bca70e60',
+    'b4047d7c-94cf-4f5e-bbdb-7619ab241f06', 
+    'be3da75f-4550-4f7f-9d44-863076ed4e91', 
+    '647c84a5-1a13-4641-8d8f-49109cadf78b', 
+    '8f398417-82f0-467a-b234-08e82f7f9acd',
+    '38a4131f-b1ca-452a-aaba-f5bb472403ab'
   ];
+
+  const speakerSessionMap = {
+    'a2665c2b-13c9-4337-9c78-db85bca70e60': [882116],
+    'b4047d7c-94cf-4f5e-bbdb-7619ab241f06': [847107],
+    'be3da75f-4550-4f7f-9d44-863076ed4e91': [836276],
+    '647c84a5-1a13-4641-8d8f-49109cadf78b': [870316],
+    '8f398417-82f0-467a-b234-08e82f7f9acd': [867444],
+    '38a4131f-b1ca-452a-aaba-f5bb472403ab': [855080]
+
+  };
 
   useEffect(() => {
     fetch(scriptUrl)
@@ -173,13 +184,14 @@ const Speakers = () => {
           {/* Pre-announced Speakers Section */}
           {showPreAnnounced && preAnnouncedSpeakers.length > 0 && (
             <div className="mb-12">
-              <div className="grid grid-cols-1 gap-6 2xl:grid-cols-6 xl:grid-cols-5 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2">
+              <div className="grid grid-cols-1 gap-6 2xl:grid-cols-5 xl:grid-cols-5 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2">
                 {preAnnouncedSpeakers.map((speaker) => (
                   <SpeakerCard
                     key={speaker.id}
                     speaker={speaker}
                     onClick={() => setSelectedSpeaker(speaker)}
-                    showTalk={true}
+                    showTalk={false}
+                    speakerSessionMap={speakerSessionMap}
                   />
                 ))}
               </div>
@@ -195,6 +207,7 @@ const Speakers = () => {
                     key={speaker.id}
                     speaker={speaker}
                     onClick={() => setSelectedSpeaker(speaker)}
+                    speakerSessionMap={speakerSessionMap}
                   />
                 ))}
               </div>
@@ -221,7 +234,7 @@ const Speakers = () => {
           )}
 
           <Dialog isOpen={selectedSpeaker !== null} onClose={() => setSelectedSpeaker(null)}>
-            {selectedSpeaker && <SpeakerDialog speaker={selectedSpeaker} />}
+            {selectedSpeaker && <SpeakerDialog speaker={selectedSpeaker} speakerSessionMap={speakerSessionMap} />}
           </Dialog>
         </>
       )}
