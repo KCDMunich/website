@@ -172,8 +172,8 @@ const Speakers = () => {
   const totalPages = Math.ceil(otherSpeakers.length / speakersPerPage);
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <h1 className="mb-8 text-center text-3xl font-bold text-[#283058]">Speakers</h1>
+    <div className="mx-auto max-w-7xl p-4" id="speakers">
+      <h2 className="section-title">Featured Speakers</h2>
 
       {speakerData.length === 0 ? (
         <div className="flex h-32 items-center justify-center">

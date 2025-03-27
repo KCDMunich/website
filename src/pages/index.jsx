@@ -10,12 +10,13 @@ import Venue from 'components/pages/home/venue';
 import Layout from 'components/shared/layout';
 import SEO from 'components/shared/seo';
 import Speakers from 'components/pages/home/speakers';
+
 const HomePage = ({ location }) => (
   <Layout homepage>
     <Hero />
     <Info />
-    <Proposal />
     <Speakers location={location} />
+    <Proposal />
     <Venue />
     <HotelList />
     <Sponsors />
