@@ -273,42 +273,47 @@
     },
     "list": [
       {
-        "name": "Test Company",
-        "icon": "/images/sponsors/test.svg",
-        "url": "https://test.com",
-        "tier": "platinum",
-        "active": false
+        "name": "SparkFabrik",
+        "icon": "/images/sponsors/spark-fabrik.webp",
+        "url": "https://www.sparkfabrik.com/",
+        "tier": "main",
+        "active": true
       },
       {
-        "name": "Test Company",
-        "icon": "/images/sponsors/test.svg",
-        "url": "https://test.com",
-        "tier": "gold",
-        "active": false
+        "name": "Clastix",
+        "icon": "/images/sponsors/clastix.webp",
+        "url": "https://clastix.io/",
+        "tier": "main",
+        "active": true
       },
       {
-        "name": "Test Company",
-        "icon": "/images/sponsors/test.svg",
-        "url": "https://test.com",
-        "tier": "silver",
-        "active": false
+        "name": "Desotech",
+        "icon": "/images/sponsors/desotech.webp",
+        "url": "https://deso.tech/",
+        "tier": "main",
+        "active": true
       },
       {
-        "name": "Test Company",
-        "icon": "/images/sponsors/test.svg",
-        "url": "https://test.com",
-        "tier": "bronze",
-        "active": false
+        "name": "ReeVo",
+        "icon": "/images/sponsors/reevo.svg",
+        "url": "https://www.reevo.it/",
+        "tier": "main",
+        "active": true
       },
       {
-        "name": "Test Company",
-        "icon": "/images/sponsors/test.svg",
-        "url": "https://test.com",
-        "tier": "partner",
-        "active": false
+        "name": "Seacom",
+        "icon": "/images/sponsors/seacom.webp",
+        "url": "https://seacom.it/",
+        "tier": "main",
+        "active": true
       }
     ],
     "tiers": {
+      "main": {
+        "title": "MAIN SPONSORS",
+        "class": "bg-white shadow-sm",
+        "badgeClass": "bg-indigo-50 text-indigo-500"
+      },
       "platinum": {
         "title": "Platinum",
         "class": "bg-white shadow-sm",

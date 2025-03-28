@@ -72,7 +72,9 @@ const Sponsors = ({data}) => {
                             </div>
                             <div className={config.containerClass}>
                                 <div className="flex flex-wrap justify-center gap-4">
-                                    {tierSponsors.map((sponsor, index) => (
+                                    {tierSponsors
+                                        .sort((a, b) => a.name.localeCompare(b.name))
+                                        .map((sponsor, index) => (
                                         <a
                                             key={index}
                                             href={sponsor.url}
