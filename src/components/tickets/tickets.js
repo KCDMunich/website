@@ -1,7 +1,15 @@
+"use client";
 import React from "react";
+import dynamic from "next/dynamic";
+
 import "@/components/tickets/tickets.css";
 
+const TitoWidget = dynamic(() => import("./tito-widget"), {
+    ssr: false,
+});
+
 const Tickets = ({data}) => {
+
     const isTicketAvailable = (ticket) => {
         const now = new Date();
         return (
@@ -23,7 +31,9 @@ const Tickets = ({data}) => {
             <div className="space-y-6 p-6">
                 <div className="space-y-2 rounded-lg bg-gray-50 p-4">
                     <h3 className="font-semibold">{data.tickets.title}</h3>
-                    {availableTickets.length > 0 ? (
+                    {data.tickets.source === "tito" ? (
+                        <TitoWidget event="apropos/cloud-native-days-italy-2025" />
+                    ) : availableTickets.length > 0 ? (
                         <ul className="list-inside list-disc space-y-1">
                             {availableTickets.map((ticket) => (
                                 <li key={ticket.id} className="ticket-item">

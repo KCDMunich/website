@@ -145,6 +145,7 @@
     }
   },
   "tickets": {
+    "source": "tito",
     "title": "Available Ticket Types:",
     "no-available": "No tickets are currently available for sale.",
     "no-available-description": "Check back in a few days to secure your spot for the conference and workshops.",
