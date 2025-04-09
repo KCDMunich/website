@@ -1,5 +1,5 @@
+import { CalendarDays, Info, Clock } from 'lucide-react';
 import React, { useState, useEffect } from 'react';
-import { CalendarDays, Info, Clock, ChevronRight } from 'lucide-react';
 import './proposal.css';
 
 const PLAYLIST_ID = 'PL54A_DPe8WtBuSp7sqpxeuy_UoTTlKB1O';
@@ -222,11 +222,15 @@ const SAMPLE_VIDEOS = [
 const Proposal = () => {
   const [videos, setVideos] = useState(SAMPLE_VIDEOS);
 
+  // Termine
   const openDate = new Date('2025-01-12T00:00:00');
   const closeDate = new Date('2025-04-09T23:59:00');
   const now = new Date();
   const total = closeDate.getTime() - openDate.getTime();
   const progress = Math.max(0, Math.min(100, ((now.getTime() - openDate.getTime()) / total) * 100));
+
+  // Flag, ob die Proposal-Phase geschlossen ist
+  const isClosed = now > closeDate;
 
   const sessions = [
     { type: 'Presentation', duration: '30min' },
@@ -278,61 +282,72 @@ const Proposal = () => {
                 <Clock className="mr-1 h-3 w-3" />
                 W. Europe Daylight Time (UTC+02:00)
               </div>
+
+              {/* Anzeige für geschlossene Proposals */}
+              {isClosed && (
+                <div className="mt-4 rounded-md p-3 text-center text-sm font-medium">
+                  Submissions Closed thank you for your participation!
+                </div>
+              )}
             </div>
           </div>
         </div>
 
-        {/* Guidelines Card */}
-        <div className="rounded-lg border bg-white shadow-sm">
-          <div className="border-b p-6">
-            <h2 className="flex items-center gap-2 text-lg font-semibold">
-              <Info className="h-5 w-5 text-primary-1" />
-              information
-            </h2>
-          </div>
-          <div className="space-y-4 p-6">
-            <p className="text-lg font-medium">First time submitting? Don't feel intimidated.</p>
-            <p className="text-gray-600">
-              This CNS is an excellent way to get to know the community and share your ideas.
-            </p>
+        {/* Guidelines Card nur anzeigen, wenn Proposal-Phase aktiv ist */}
+        {!isClosed && (
+          <div className="rounded-lg border bg-white shadow-sm">
+            <div className="border-b p-6">
+              <h2 className="flex items-center gap-2 text-lg font-semibold">
+                <Info className="h-5 w-5 text-primary-1" />
+                Information
+              </h2>
+            </div>
+            <div className="space-y-4 p-6">
+              <p className="text-lg font-medium">First time submitting? Don't feel intimidated.</p>
+              <p className="text-gray-600">
+                This CNS is an excellent way to get to know the community and share your ideas.
+              </p>
 
-            <div className="pt-4">
-              <h3 className="mb-4 font-semibold">Session Types:</h3>
-              <div className="flex flex-wrap items-center gap-3">
-                {sessions.map((session, index) => (
-                  <div
-                    key={index}
-                    className="flex flex-shrink-0 items-center rounded-lg border p-3 transition-colors hover:bg-gray-50"
-                  >
-                    <div className="flex content-center items-center gap-3">
-                      <span className="rounded-md border bg-gray-50 px-2 py-1 text-sm">
-                        {session.duration}
-                      </span>
-                      <span className="font-medium">{session.type}</span>
+              <div className="pt-4">
+                <h3 className="mb-4 font-semibold">Session Types:</h3>
+                <div className="flex flex-wrap items-center gap-3">
+                  {sessions.map((session, index) => (
+                    <div
+                      key={index}
+                      className="flex flex-shrink-0 items-center rounded-lg border p-3 transition-colors hover:bg-gray-50"
+                    >
+                      <div className="flex content-center items-center gap-3">
+                        <span className="rounded-md border bg-gray-50 px-2 py-1 text-sm">
+                          {session.duration}
+                        </span>
+                        <span className="font-medium">{session.type}</span>
+                      </div>
                     </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
+              </div>
+
+              <div
+                style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  gap: '1rem',
+                }}
+              >
+                <button
+                  className="button"
+                  onClick={() =>
+                    window.open('https://sessionize.com/cloud-native-summit-munich-2025/', '_blank')
+                  }
+                >
+                  Submit a session
+                </button>
               </div>
             </div>
-            <div
-              style={{
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                gap: '1rem',
-              }}
-            >
-              <button
-                className="button"
-                onClick={() =>
-                  window.open('https://sessionize.com/cloud-native-summit-munich-2025/', '_blank')
-                }
-              >
-                Submit a session
-              </button>
-            </div>
           </div>
-        </div>
+        )}
+
         {/* Video Section */}
         <section>
           <div className="grid grid-cols-3 gap-4 md:grid-cols-3 sm:grid-cols-1">

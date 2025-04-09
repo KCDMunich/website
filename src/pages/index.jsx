@@ -33,9 +33,10 @@ const HomePage = ({ location }) => (
 <Partners />
 <Proposal />
 <Tickets />
-    <Speakers />
-    <Sponsors />
-    <Details />
+<Speakers />
+<Sponsors />
+<Details />
+<Proposal />
 */
 
 export default HomePage;
