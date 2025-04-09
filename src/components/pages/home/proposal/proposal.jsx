@@ -286,7 +286,7 @@ const Proposal = () => {
               {/* Anzeige für geschlossene Proposals */}
               {isClosed && (
                 <div className="mt-4 rounded-md p-3 text-center text-sm font-medium">
-                  Submissions Closed thank you for your participation!
+                  Submissions are closed. Thank you for your participation!
                 </div>
               )}
             </div>
