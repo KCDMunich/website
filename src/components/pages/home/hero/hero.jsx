@@ -62,15 +62,6 @@ const Hero = () => {
                     Become a Sponsor
                   </button>
                 }
-                {
-                  <button
-                    type="button"
-                    className="hero-cta-secondary"
-                    onClick={() => (window.location.href = '#proposal')}
-                  >
-                    Submit a Talk
-                  </button>
-                }
               </div>
             </div>
 
