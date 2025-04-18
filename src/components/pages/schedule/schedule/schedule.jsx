@@ -302,52 +302,55 @@ const Schedule = () => {
 
   return (
     <div className="schedule-container">
-      <div className="tab-buttons">
-        <button
-          className={`tab-button ${selectedDay === 'monday' ? 'active' : ''}`}
-          onClick={() => setSelectedDay('monday')}
-        >
-          Monday
-        </button>
-        <button
-          className={`tab-button ${selectedDay === 'tuesday' ? 'active' : ''}`}
-          onClick={() => setSelectedDay('tuesday')}
-        >
-          Tuesday
-        </button>
-      </div>
-
-      <div className="filter-buttons">
-        <button
-          className={`filter-button ${selectedType === 'all' ? 'active' : ''}`}
-          onClick={() => setSelectedType('all')}
-        >
-          All Sessions
-        </button>
-        <button
-          className={`filter-button ${selectedType === 'talk' ? 'active' : ''}`}
-          onClick={() => setSelectedType('talk')}
-        >
-          Talks
-        </button>
-        <button
-          className={`filter-button ${selectedType === 'workshop' ? 'active' : ''}`}
-          onClick={() => setSelectedType('workshop')}
-        >
-          Workshops
-        </button>
-        <button
-          className={`filter-button ${selectedType === 'sponsor' ? 'active' : ''}`}
-          onClick={() => setSelectedType('sponsor')}
-        >
-          Sponsor Talks
-        </button>
-        <button
-          className={`filter-button ${selectedType === 'favorites' ? 'active' : ''}`}
-          onClick={() => setSelectedType('favorites')}
-        >
-          Favorites
-        </button>
+      {/* --- Header: Tage nebeneinander, Filter daneben --- */}
+      <div className="schedule-header-row">
+        <div className="schedule-day-tabs">
+          <button
+            className={`schedule-day-btn ${selectedDay === 'monday' ? 'active' : ''}`}
+            onClick={() => setSelectedDay('monday')}
+          >
+            Monday
+          </button>
+          <button
+            className={`schedule-day-btn ${selectedDay === 'tuesday' ? 'active' : ''}`}
+            onClick={() => setSelectedDay('tuesday')}
+          >
+            Tuesday
+          </button>
+        </div>
+        <div className="schedule-filter-pills">
+          <button
+            className={`schedule-filter-pill ${selectedType === 'all' ? 'active' : ''}`}
+            onClick={() => setSelectedType('all')}
+          >
+            All Sessions
+          </button>
+          <button
+            className={`schedule-filter-pill ${selectedType === 'talk' ? 'active' : ''}`}
+            onClick={() => setSelectedType('talk')}
+          >
+            Talks
+          </button>
+          <button
+            className={`schedule-filter-pill ${selectedType === 'workshop' ? 'active' : ''}`}
+            onClick={() => setSelectedType('workshop')}
+          >
+            Workshops
+          </button>
+          <button
+            className={`schedule-filter-pill ${selectedType === 'sponsor' ? 'active' : ''}`}
+            onClick={() => setSelectedType('sponsor')}
+          >
+            Sponsor Talks
+          </button>
+          <div className="filter-divider"></div>
+          <button
+            className={`schedule-filter-pill ${selectedType === 'favorites' ? 'active' : ''}`}
+            onClick={() => setSelectedType('favorites')}
+          >
+            Favorites
+          </button>
+        </div>
       </div>
 
       <div className="schedule-grid">

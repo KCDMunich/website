@@ -3,73 +3,91 @@
   flex-direction: column;
   align-items: center;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 1rem;
+  max-width: 1200px;
 }
 
-/* --- Tabs oben --- */
-.tab-buttons {
+/* --- Header Row: Tage nebeneinander, Filter daneben --- */
+.schedule-header-row {
   display: flex;
-  justify-content: center;
-  align-items: flex-end;
-  gap: 0;
-  margin-bottom: 1.5rem;
-  border-bottom: 2px solid #e5e7eb;
-  background: transparent;
-}
-
-.tab-button {
-  background: none;
-  border: none;
-  outline: none;
-  padding: 0.75rem 2.5rem;
-  font-size: 1.1rem;
-  color: #555;
-  cursor: pointer;
-  border-bottom: 3px solid transparent;
-  transition: color 0.2s, border-bottom-color 0.2s, background 0.2s;
-  border-radius: 8px 8px 0 0;
-  margin-bottom: -2px;
-}
-
-.tab-button:not(.active):hover {
-  background: #f3f4f6;
-  color: #222;
-}
-
-.tab-button.active {
-  color: #004258;
-  border-bottom: 3px solid #004258;
-  background: #fff;
-  font-weight: 600;
-  z-index: 2;
-}
-
-/* --- Filter als Pill-Tabs --- */
-.filter-buttons {
-  display: flex;
-  gap: 0.5rem;
+  flex-direction: row;
   margin-bottom: 2rem;
+  width: 100%;
+  align-items: center;
   justify-content: center;
-  flex-wrap: wrap;
 }
 
-.filter-button {
-  padding: 0.5rem 1.2rem;
+.schedule-day-tabs {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+  padding-right: 1rem;
+  border-right: 1px solid #e5e7eb;
+}
+
+.schedule-day-btn {
+  background: #18181b;
+  color: #fff;
+  font-weight: 600;
+  border: none;
   border-radius: 8px;
-  background-color: #f3f4f6;
-  color: #555;
+  padding: 0.5rem 1.2rem;
   cursor: pointer;
-  font-size: 1rem;
   transition: background 0.2s, color 0.2s;
+  outline: none;
+  box-shadow: none;
+  font-size: 0.9rem;
 }
 
-.filter-button.active {
+.schedule-day-btn:not(.active) {
+  background: #f3f4f6;
+  color: #374151;
+  font-weight: 500;
+}
+
+.schedule-day-btn.active {
   background: #004258;
   color: #fff;
   font-weight: 600;
 }
 
-.filter-button:not(.active):hover {
+.schedule-day-btn:not(.active):hover {
+  background: #e5e7eb;
+  color: #222;
+}
+
+.schedule-filter-pills {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  flex-wrap: wrap;
+  padding-left: 1rem;
+}
+
+.schedule-filter-pill {
+  padding: 0.5rem 1.2rem;
+  border-radius: 8px;
+  background-color: #f3f4f6;
+  color: #374151;
+  cursor: pointer;
+  font-size: 0.9rem;
+  border: none;
+  font-weight: 500;
+  transition: background 0.2s, color 0.2s;
+  outline: none;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.schedule-filter-pill.active {
+  background: #004258;
+  color: #fff;
+  font-weight: 600;
+  box-shadow: none;
+}
+
+.schedule-filter-pill:not(.active):hover {
   background: #e5e7eb;
   color: #222;
 }
@@ -198,195 +216,34 @@
   z-index: 10 !important;
 }
 
-.speakers-names {
-  margin-left: 8px;
-  font-size: 0.9rem;
-  color: #333;
+.filter-divider {
+  width: 1px;
+  height: 24px;
+  background-color: #e5e7eb;
+  margin: 0 0.5rem;
 }
 
-.event-room {
-  margin-top: 0.5rem;
-  font-size: 0.9rem;
-  color: #666;
-}
-
-/* Modal */
-.modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-}
-
-.modal-content {
-  background-color: white;
-  padding: 2rem;
-  border-radius: 8px;
-  max-width: 90%;
-  max-height: 90vh;
-  overflow-y: auto;
-  position: relative;
-  width: 600px;
-}
-
-.modal-close {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  border: none;
-  background: none;
-  font-size: 1.5rem;
-  cursor: pointer;
-  color: #666;
-}
-
-/* Event Modal Content */
-.event-modal h2 {
-  margin: 0 0 0.5rem 0;
-  font-size: 1.5rem;
-}
-
-.confirmed-session-label {
-  margin-bottom: 1rem;
-  font-weight: bold;
-}
-
-/* New: modal main content grid */
-.modal-main-content {
-  display: flex;
-  gap: 2rem;
-  margin-bottom: 1rem;
-}
-
-/* Left column: description */
-.description-section {
-  flex: 1;
-}
-
-.description-section h3 {
-  margin-top: 0;
-  margin-bottom: 0.5rem;
-}
-
-.event-description {
-  line-height: 1.5;
-}
-
-/* Right column: session info and speakers */
-.info-speakers-section {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-}
-
-.session-info {
-  background-color: #f8f9fa;
-  padding: 1rem;
-  border-radius: 8px;
-}
-
-.session-info h3 {
-  margin-top: 0;
-  margin-bottom: 0.5rem;
-}
-
-.speakers-section h3 {
-  margin-top: 0;
-  margin-bottom: 0.5rem;
-}
-
-.speaker-detail {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  margin-bottom: 1rem;
-}
-
-.speaker-avatar-large {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  object-fit: cover;
-}
-
-.categories {
-  font-style: italic;
-  color: #666;
-  margin-bottom: 1rem;
-}
-
-.modal-favorite-button {
-  font-size: 1.5rem;
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 0;
-}
-
-/* Responsive Design */
 @media (max-width: 768px) {
-  .schedule-container {
-    padding: 1rem;
-  }
-
-  .schedule-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .modal-content {
-    width: 95%;
-    padding: 1rem;
-  }
-
-  /* Stack modal columns vertically on smaller screens */
-  .modal-main-content {
+  .schedule-header-row {
     flex-direction: column;
-  }
-}
-
-@media (max-width: 600px) {
-  .tab-buttons {
-    flex-direction: column;
-    align-items: stretch;
-    border-bottom: none;
-    gap: 0.5rem;
-  }
-  .tab-button {
-    border-radius: 8px;
-    border-bottom: none;
-    margin-bottom: 0;
-  }
-}
-
-@media (max-width: 480px) {
-  .event-header {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.5rem;
+    gap: 1rem;
   }
 
-  .tab-buttons,
-  .filter-buttons {
-    flex-direction: column;
+  .schedule-day-tabs {
+    padding-right: 0;
+    border-right: none;
+    padding-bottom: 1rem;
   }
-}
 
-.duration-badge {
-  background-color: #f0f0f0;
-  padding: 2px 8px;
-  border-radius: 12px;
-  font-size: 0.9em;
-  color: #666;
-  margin-left: 8px;
-}
+  .schedule-filter-pills {
+    padding-left: 0;
+    padding-top: 1rem;
+    justify-content: center;
+  }
 
-.event-time span:first-child {
-  white-space: nowrap;
+  .filter-divider {
+    width: 100%;
+    height: 1px;
+    margin: 0.5rem 0;
+  }
 }
