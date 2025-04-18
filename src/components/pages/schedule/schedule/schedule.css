@@ -127,6 +127,7 @@
 .event-title {
   margin: 0.5rem 0;
   font-size: 1.1rem;
+  font-weight: 600;
 }
 
 /* Speaker Avatars mit Überlappung */
@@ -193,7 +194,7 @@
   max-height: 90vh;
   overflow-y: auto;
   position: relative;
-  width: 500px;
+  width: 600px;
 }
 
 .modal-close {
@@ -209,24 +210,58 @@
 
 /* Event Modal Content */
 .event-modal h2 {
-  margin: 0 0 1rem 0;
+  margin: 0 0 0.5rem 0;
   font-size: 1.5rem;
 }
 
-.event-details {
-  display: flex;
-  justify-content: space-between;
+.confirmed-session-label {
   margin-bottom: 1rem;
-  color: #666;
+  font-weight: bold;
+}
+
+/* New: modal main content grid */
+.modal-main-content {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 1rem;
+}
+
+/* Left column: description */
+.description-section {
+  flex: 1;
+}
+
+.description-section h3 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
 }
 
 .event-description {
-  margin: 1rem 0;
   line-height: 1.5;
 }
 
-.speakers-list {
-  margin-top: 1rem;
+/* Right column: session info and speakers */
+.info-speakers-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.session-info {
+  background-color: #f8f9fa;
+  padding: 1rem;
+  border-radius: 8px;
+}
+
+.session-info h3 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+}
+
+.speakers-section h3 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
 }
 
 .speaker-detail {
@@ -243,6 +278,20 @@
   object-fit: cover;
 }
 
+.categories {
+  font-style: italic;
+  color: #666;
+  margin-bottom: 1rem;
+}
+
+.modal-favorite-button {
+  font-size: 1.5rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
   .schedule-container {
@@ -256,6 +305,11 @@
   .modal-content {
     width: 95%;
     padding: 1rem;
+  }
+
+  /* Stack modal columns vertically on smaller screens */
+  .modal-main-content {
+    flex-direction: column;
   }
 }
 

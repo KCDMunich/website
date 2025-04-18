@@ -201,8 +201,8 @@ const Schedule = () => {
     );
   };
 
-  const Modal = ({ isOpen, onClose, children }) => {
-    if (!isOpen) return null;
+  const Modal = ({ isOpen, onClose, event, favorites, toggleFavorite, findSpeakerProfile }) => {
+    if (!isOpen || !event) return null;
 
     return (
       <div className="modal-overlay" onClick={onClose}>
@@ -210,7 +210,83 @@ const Schedule = () => {
           <button className="modal-close" onClick={onClose}>
             ×
           </button>
-          {children}
+
+          <div className="event-modal">
+            <h2>{event.title}</h2>
+            <p className="confirmed-session-label">
+              <strong>Confirmed Session</strong>
+            </p>
+
+            <div className="modal-main-content">
+              <div className="description-section">
+                <h3>Description</h3>
+                <div className="event-description" style={{ whiteSpace: 'pre-line' }}>
+                  {event.description}
+                </div>
+              </div>
+
+              <div className="info-speakers-section">
+                <div className="session-info">
+                  <h3>Session Info</h3>
+                  <p>
+                    <strong>Time</strong>
+                    <br />
+                    {event.time} - {event.endTime}
+                  </p>
+                  <p>
+                    <strong>Room</strong>
+                    <br />
+                    {event.room}
+                  </p>
+                  <p>
+                    <strong>Session Type</strong>
+                    <br />
+                    {event.type.charAt(0).toUpperCase() + event.type.slice(1)} Session
+                  </p>
+                </div>
+
+                <div className="speakers-section">
+                  <h3>Speakers</h3>
+                  {event.speakers?.map((speaker) => {
+                    const speakerProfile = findSpeakerProfile(speaker.id);
+                    return (
+                      <div key={speaker.id} className="speaker-detail">
+                        {speakerProfile && (
+                          <img
+                            src={speakerProfile}
+                            alt={speaker.name}
+                            className="speaker-avatar-large"
+                          />
+                        )}
+                        <div>
+                          <h4>{speaker.name}</h4>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            </div>
+
+            <div className="categories">
+              <strong>Categories</strong>
+              <br />
+              <span>30min Presentation</span>
+            </div>
+
+            <button
+              className={`favorite-button modal-favorite-button ${
+                favorites.includes(event.id) ? 'favorited' : ''
+              }`}
+              onClick={() => toggleFavorite(event.id)}
+              aria-label={
+                favorites.includes(event.id) ? 'Remove from favorites' : 'Add to favorites'
+              }
+              title={favorites.includes(event.id) ? 'Remove from favorites' : 'Add to favorites'}
+            >
+              {favorites.includes(event.id) ? '❤️' : '🤍'}
+            </button>
+          </div>
         </div>
       </div>
     );
@@ -338,70 +414,14 @@ const Schedule = () => {
         ))}
       </div>
 
-      <Modal isOpen={!!selectedEvent} onClose={() => setSelectedEvent(null)}>
-        {selectedEvent && (
-          <div className="event-modal">
-            <div
-              className="modal-header"
-              style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}
-            >
-              <h2>{selectedEvent.title}</h2>
-              <button
-                className={`favorite-button modal-favorite-button ${
-                  favorites.includes(selectedEvent.id) ? 'favorited' : ''
-                }`}
-                onClick={() => toggleFavorite(selectedEvent.id)}
-                aria-label={
-                  favorites.includes(selectedEvent.id)
-                    ? 'Remove from favorites'
-                    : 'Add to favorites'
-                }
-                title={
-                  favorites.includes(selectedEvent.id)
-                    ? 'Remove from favorites'
-                    : 'Add to favorites'
-                }
-                style={{
-                  fontSize: '1.5rem',
-                  background: 'none',
-                  border: 'none',
-                  cursor: 'pointer',
-                  padding: 0,
-                  marginLeft: '1rem',
-                }}
-              >
-                {favorites.includes(selectedEvent.id) ? '❤️' : '🤍'}
-              </button>
-            </div>
-            <div className="event-details">
-              <div className="time-details">
-                <span>
-                  {selectedEvent.time} - {selectedEvent.endTime}
-                </span>
-                <span>({selectedEvent.duration} min)</span>
-              </div>
-              <div className="room-details">
-                <span>{selectedEvent.room}</span>
-              </div>
-            </div>
-            <p className="event-description">{selectedEvent.description}</p>
-            <div className="speakers-list">
-              {selectedEvent.speakers?.map((speaker) => (
-                <div key={speaker.id} className="speaker-detail">
-                  <img
-                    src={findSpeakerProfile(speaker.id)}
-                    alt={speaker.name}
-                    className="speaker-avatar-large"
-                  />
-                  <div className="speaker-info">
-                    <h4>{speaker.name}</h4>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
-      </Modal>
+      <Modal
+        isOpen={!!selectedEvent}
+        onClose={() => setSelectedEvent(null)}
+        event={selectedEvent}
+        favorites={favorites}
+        toggleFavorite={toggleFavorite}
+        findSpeakerProfile={findSpeakerProfile}
+      />
     </div>
   );
 };
