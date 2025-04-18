@@ -10,6 +10,7 @@ import Venue from 'components/pages/home/venue';
 import Layout from 'components/shared/layout';
 import SEO from 'components/shared/seo';
 import Speakers from 'components/pages/home/speakers';
+import Schedule from 'components/pages/home/schedule';
 
 const HomePage = ({ location }) => (
   <Layout homepage>
@@ -17,6 +18,7 @@ const HomePage = ({ location }) => (
     <Info />
     <Speakers location={location} />
     <Proposal />
+    <Schedule />
     <Venue />
     <HotelList />
     <Sponsors />
