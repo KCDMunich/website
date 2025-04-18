@@ -7,6 +7,7 @@ const MENUS = {
     // { text: 'Call for Speakers', ...LINKS.proposal },
     { text: 'Sponsors', ...LINKS.sponsors },
     { text: 'Image Gallery', ...LINKS.gallery },
+    { text: 'Schedule', ...LINKS.schedule },
   ],
   footer: [
     { text: 'Code of Conduct', ...LINKS.conduct },
