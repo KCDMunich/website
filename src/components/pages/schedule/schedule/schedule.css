@@ -6,6 +6,74 @@
   padding: 2rem;
 }
 
+/* --- Tabs oben --- */
+.tab-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 0;
+  margin-bottom: 1.5rem;
+  border-bottom: 2px solid #e5e7eb;
+  background: transparent;
+}
+
+.tab-button {
+  background: none;
+  border: none;
+  outline: none;
+  padding: 0.75rem 2.5rem;
+  font-size: 1.1rem;
+  color: #555;
+  cursor: pointer;
+  border-bottom: 3px solid transparent;
+  transition: color 0.2s, border-bottom-color 0.2s, background 0.2s;
+  border-radius: 8px 8px 0 0;
+  margin-bottom: -2px;
+}
+
+.tab-button:not(.active):hover {
+  background: #f3f4f6;
+  color: #222;
+}
+
+.tab-button.active {
+  color: #004258;
+  border-bottom: 3px solid #004258;
+  background: #fff;
+  font-weight: 600;
+  z-index: 2;
+}
+
+/* --- Filter als Pill-Tabs --- */
+.filter-buttons {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.filter-button {
+  padding: 0.5rem 1.2rem;
+  border-radius: 8px;
+  background-color: #f3f4f6;
+  color: #555;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background 0.2s, color 0.2s;
+}
+
+.filter-button.active {
+  background: #004258;
+  color: #fff;
+  font-weight: 600;
+}
+
+.filter-button:not(.active):hover {
+  background: #e5e7eb;
+  color: #222;
+}
+
 /* Loading Spinner */
 .loading-container {
   display: flex;
@@ -18,7 +86,7 @@
   width: 50px;
   height: 50px;
   border: 3px solid #f3f3f3;
-  border-top: 3px solid #3333ff;
+  border-top: 3px solid #004258;
   border-radius: 50%;
   animation: spin 1s linear infinite;
 }
@@ -32,42 +100,12 @@
   }
 }
 
-/* Tabs and Filters */
-.tab-buttons,
-.filter-buttons {
-  display: flex;
-  gap: 0.5rem;
-  margin-bottom: 1rem;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.tab-button,
-.filter-button {
-  padding: 0.5rem 1rem;
-  border: none;
-  border-radius: 4px;
-  background-color: #f0f0f0;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.tab-button:hover,
-.filter-button:hover {
-  background-color: #e0e0e0;
-}
-
-.tab-button.active,
-.filter-button.active {
-  background-color: #3333ff;
-  color: white;
-}
-
 /* Schedule Grid */
 .schedule-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(400px, 1fr));
   gap: 1rem;
+  margin-top: 2rem;
 }
 
 .room-section {
@@ -310,6 +348,20 @@
   /* Stack modal columns vertically on smaller screens */
   .modal-main-content {
     flex-direction: column;
+  }
+}
+
+@media (max-width: 600px) {
+  .tab-buttons {
+    flex-direction: column;
+    align-items: stretch;
+    border-bottom: none;
+    gap: 0.5rem;
+  }
+  .tab-button {
+    border-radius: 8px;
+    border-bottom: none;
+    margin-bottom: 0;
   }
 }
 
