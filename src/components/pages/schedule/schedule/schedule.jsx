@@ -12,6 +12,14 @@ const Schedule = () => {
   const [selectedEvent, setSelectedEvent] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [currentTime, setCurrentTime] = useState(new Date());
+  const [favorites, setFavorites] = useState(() => {
+    try {
+      const stored = localStorage.getItem('favorites');
+      return stored ? JSON.parse(stored) : [];
+    } catch {
+      return [];
+    }
+  });
 
   useEffect(() => {
     const fetchData = async () => {
@@ -39,10 +47,16 @@ const Schedule = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentTime(new Date());
-    }, 60000); // Update every minute
+    }, 60000);
 
     return () => clearInterval(interval);
   }, []);
+
+  useEffect(() => {
+    try {
+      localStorage.setItem('favorites', JSON.stringify(favorites));
+    } catch {}
+  }, [favorites]);
 
   const convertSessionsToEvents = (data) => {
     const events = [];
@@ -77,13 +91,6 @@ const Schedule = () => {
     const startDate = new Date(start);
     const endDate = new Date(end);
     const duration = (endDate - startDate) / 1000 / 60;
-
-    console.log({
-      start: startDate.toLocaleString(),
-      end: endDate.toLocaleString(),
-      duration: Math.round(duration),
-    });
-
     return Math.round(duration);
   };
 
@@ -95,6 +102,9 @@ const Schedule = () => {
 
   const filterEvents = (events) => {
     if (selectedType === 'all') return events;
+    if (selectedType === 'favorites') {
+      return events.filter((event) => favorites.includes(event.id));
+    }
     return events.filter((event) => event.type === selectedType);
   };
 
@@ -124,7 +134,17 @@ const Schedule = () => {
   const isLive = (start, end) => {
     const startTime = new Date(start);
     const endTime = new Date(end);
-    return true; // true für die demo sonst currentTime >= startTime && currentTime <= endTime;
+    return true; // Demo: immer true, sonst: currentTime >= startTime && currentTime <= endTime;
+  };
+
+  const toggleFavorite = (eventId) => {
+    setFavorites((prev) => {
+      if (prev.includes(eventId)) {
+        return prev.filter((id) => id !== eventId);
+      } else {
+        return [...prev, eventId];
+      }
+    });
   };
 
   const TimeProgress = ({ startTime, endTime }) => {
@@ -136,7 +156,7 @@ const Schedule = () => {
         const end = new Date(endTime);
 
         if (currentTime < start) return 100;
-        if (currentTime > end) return 50; // Event has ended already gerade am testen!!
+        if (currentTime > end) return 50;
 
         const total = end.getTime() - start.getTime();
         const elapsed = end.getTime() - currentTime.getTime();
@@ -246,6 +266,12 @@ const Schedule = () => {
         >
           Sponsor Talks
         </button>
+        <button
+          className={`filter-button ${selectedType === 'favorites' ? 'active' : ''}`}
+          onClick={() => setSelectedType('favorites')}
+        >
+          Favorites
+        </button>
       </div>
 
       <div className="schedule-grid">
@@ -256,40 +282,54 @@ const Schedule = () => {
             <div className="room-header">
               <h2>{room}</h2>
             </div>
-            {events.map((event) => (
-              <div
-                key={event.id}
-                className={`event-card ${isLive(event.start, event.end) ? 'live' : ''}`}
-                onClick={() => setSelectedEvent(event)}
-              >
-                <div className="event-header">
-                  <div className="event-time">
-                    <span>
-                      {event.time} - {event.endTime}
-                    </span>
-                    {isLive(event.start, event.end) && (
-                      <TimeProgress startTime={event.start} endTime={event.end} />
-                    )}
-                    <span className="duration-badge">{event.duration} min</span>
+            {events.map((event) => {
+              const isFavorite = favorites.includes(event.id);
+              return (
+                <div
+                  key={event.id}
+                  className={`event-card ${isLive(event.start, event.end) ? 'live' : ''}`}
+                  onClick={() => setSelectedEvent(event)}
+                >
+                  <div className="event-header">
+                    <div className="event-time">
+                      <span>
+                        {event.time} - {event.endTime}
+                      </span>
+                      {isLive(event.start, event.end) && (
+                        <TimeProgress startTime={event.start} endTime={event.end} />
+                      )}
+                      <span className="duration-badge">{event.duration} min</span>
+                    </div>
+                    <span className="event-type">{event.type}</span>
+                    <button
+                      className={`favorite-button ${isFavorite ? 'favorited' : ''}`}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        toggleFavorite(event.id);
+                      }}
+                      aria-label={isFavorite ? 'Remove from favorites' : 'Add to favorites'}
+                      title={isFavorite ? 'Remove from favorites' : 'Add to favorites'}
+                    >
+                      {isFavorite ? '❤️' : '🤍'}
+                    </button>
                   </div>
-                  <span className="event-type">{event.type}</span>
-                </div>
-                <h3 className="event-title">{event.title}</h3>
-                {event.speakers?.map((speaker) => (
-                  <div key={speaker.id} className="speaker-info">
-                    <img
-                      src={findSpeakerProfile(speaker.id)}
-                      alt={speaker.name}
-                      className="speaker-avatar"
-                    />
-                    <span>{speaker.name}</span>
+                  <h3 className="event-title">{event.title}</h3>
+                  {event.speakers?.map((speaker) => (
+                    <div key={speaker.id} className="speaker-info">
+                      <img
+                        src={findSpeakerProfile(speaker.id)}
+                        alt={speaker.name}
+                        className="speaker-avatar"
+                      />
+                      <span>{speaker.name}</span>
+                    </div>
+                  ))}
+                  <div className="event-room">
+                    <span>{event.room}</span>
                   </div>
-                ))}
-                <div className="event-room">
-                  <span>{event.room}</span>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         ))}
       </div>
@@ -297,7 +337,38 @@ const Schedule = () => {
       <Modal isOpen={!!selectedEvent} onClose={() => setSelectedEvent(null)}>
         {selectedEvent && (
           <div className="event-modal">
-            <h2>{selectedEvent.title}</h2>
+            <div
+              className="modal-header"
+              style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}
+            >
+              <h2>{selectedEvent.title}</h2>
+              <button
+                className={`favorite-button modal-favorite-button ${
+                  favorites.includes(selectedEvent.id) ? 'favorited' : ''
+                }`}
+                onClick={() => toggleFavorite(selectedEvent.id)}
+                aria-label={
+                  favorites.includes(selectedEvent.id)
+                    ? 'Remove from favorites'
+                    : 'Add to favorites'
+                }
+                title={
+                  favorites.includes(selectedEvent.id)
+                    ? 'Remove from favorites'
+                    : 'Add to favorites'
+                }
+                style={{
+                  fontSize: '1.5rem',
+                  background: 'none',
+                  border: 'none',
+                  cursor: 'pointer',
+                  padding: 0,
+                  marginLeft: '1rem',
+                }}
+              >
+                {favorites.includes(selectedEvent.id) ? '❤️' : '🤍'}
+              </button>
+            </div>
             <div className="event-details">
               <div className="time-details">
                 <span>
