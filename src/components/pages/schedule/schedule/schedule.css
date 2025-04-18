@@ -112,6 +112,9 @@
 .event-time {
   font-size: 0.9rem;
   color: #666;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .event-type {
@@ -126,18 +129,40 @@
   font-size: 1.1rem;
 }
 
-.speaker-info {
+/* Speaker Avatars mit Überlappung */
+.speakers-avatars {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0;
+  position: relative;
   margin-top: 0.5rem;
 }
 
-.speaker-avatar {
+.speaker-avatar-overlap {
   width: 30px;
   height: 30px;
   border-radius: 50%;
   object-fit: cover;
+  border: 2px solid white;
+  margin-left: -10px;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
+  cursor: pointer;
+}
+
+.speaker-avatar-overlap:first-child {
+  margin-left: 0;
+}
+
+.speaker-avatar-overlap:hover {
+  transform: scale(1.2);
+  z-index: 10 !important;
+}
+
+.speakers-names {
+  margin-left: 8px;
+  font-size: 0.9rem;
+  color: #333;
 }
 
 .event-room {
@@ -254,14 +279,6 @@
   font-size: 0.9em;
   color: #666;
   margin-left: 8px;
-}
-
-.event-time {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 0.9em;
-  color: #666;
 }
 
 .event-time span:first-child {

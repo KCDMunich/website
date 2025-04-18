@@ -314,16 +314,20 @@ const Schedule = () => {
                     </button>
                   </div>
                   <h3 className="event-title">{event.title}</h3>
-                  {event.speakers?.map((speaker) => (
-                    <div key={speaker.id} className="speaker-info">
+                  <div className="speakers-avatars">
+                    {event.speakers?.map((speaker, index) => (
                       <img
+                        key={speaker.id}
                         src={findSpeakerProfile(speaker.id)}
                         alt={speaker.name}
-                        className="speaker-avatar"
+                        className="speaker-avatar-overlap"
+                        style={{ zIndex: event.speakers.length - index }}
                       />
-                      <span>{speaker.name}</span>
-                    </div>
-                  ))}
+                    ))}
+                    <span className="speakers-names">
+                      {event.speakers?.map((s) => s.name).join(', ')}
+                    </span>
+                  </div>
                   <div className="event-room">
                     <span>{event.room}</span>
                   </div>
