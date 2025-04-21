@@ -25,14 +25,21 @@ const Dialog = ({ isOpen, onClose, children }) => {
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
-      <div className="relative w-full max-w-md rounded-lg bg-white">
+      <div className="relative w-full max-w-2xl bg-white rounded-2xl overflow-hidden">
         <button
+          className="absolute right-4 top-4 z-10 rounded-full bg-gray-100/80 p-2 text-gray-600 hover:bg-gray-200/80 hover:text-gray-900"
           onClick={onClose}
-          className="text-gray-500 hover:text-gray-700 absolute right-4 top-4"
         >
-          ×
+          <svg className="h-5 w-5" viewBox="0 0 24 24">
+            <path
+              fill="currentColor"
+              d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+            />
+          </svg>
         </button>
-        {children}
+        <div className="max-h-[80vh] overflow-y-auto">
+          {children}
+        </div>
       </div>
     </div>
   );
@@ -48,14 +55,14 @@ const SpeakerCard = ({ speaker, onClick, showTalk = false, speakerSessionMap = {
       onClick={onClick}
       className="bg-white rounded-xl overflow-hidden shadow-lg transform hover:-translate-y-2 transition-transform duration-300 group cursor-pointer h-full flex flex-col"
     >
-      <div className="relative overflow-hidden">
+      <div className="relative overflow-hidden aspect-square">
         <img
           src={speaker.profilePicture}
           alt={speaker.fullName}
-          className="w-full h-auto group-hover:scale-105 transition-transform duration-300"
+          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
-          <div className="p-4">
+          <div className="p-3 sm:p-4">
             <div className="flex gap-2 mb-2">
               {firstTwoLinks.map((link, index) => (
                 <a
@@ -63,7 +70,7 @@ const SpeakerCard = ({ speaker, onClick, showTalk = false, speakerSessionMap = {
                   href={link.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="bg-white/20 p-2 rounded-full hover:bg-white/40 transition-colors"
+                  className="bg-white/20 p-1.5 sm:p-2 rounded-full hover:bg-white/40 transition-colors"
                   onClick={(e) => e.stopPropagation()}
                 >
                   <SocialIcon url={link.url} isWhite={true} />
@@ -73,19 +80,19 @@ const SpeakerCard = ({ speaker, onClick, showTalk = false, speakerSessionMap = {
           </div>
         </div>
       </div>
-      <div className="p-4 text-center flex flex-col flex-grow">
-        <h3 className="font-bold text-lg text-gray-900">{speaker.fullName}</h3>
-        <p className="text-[#283058] text-sm font-medium">{company}</p>
+      <div className="p-3 sm:p-4 text-center flex flex-col flex-grow">
+        <h3 className="font-bold text-sm sm:text-lg text-gray-900">{speaker.fullName}</h3>
+        <p className="text-[#283058] text-xs sm:text-sm font-medium">{company}</p>
         <div className="mt-2 bg-gray-50 p-2 rounded-lg">
           {showTalk && speaker.sessions && speaker.sessions[0] && speakerSessions.includes(speaker.sessions[0].id) ? (
             <div>
               <p className="text-xs text-[#283058] font-medium mb-1">SESSION</p>
-              <p className="text-sm text-gray-800 line-clamp-2 font-medium">
+              <p className="text-xs sm:text-sm text-gray-800 line-clamp-2 font-medium">
                 {speaker.sessions[0].name}
               </p>
             </div>
           ) : (
-            <p className="text-sm text-gray-600">Sessions coming soon</p>
+            <p className="text-xs sm:text-sm text-gray-600">Sessions coming soon</p>
           )}
         </div>
       </div>
@@ -96,48 +103,71 @@ const SpeakerCard = ({ speaker, onClick, showTalk = false, speakerSessionMap = {
 const SpeakerDialog = ({ speaker, speakerSessionMap = {} }) => {
   const company = findCompanyInfo(speaker);
   const speakerSessions = speakerSessionMap[speaker.id] || [];
+  
+  const validSessions = Array.isArray(speaker.sessions) 
+    ? speaker.sessions.filter(session => 
+        typeof session === 'object' && 
+        typeof session.id === 'number' && 
+        typeof session.name === 'string' &&
+        speakerSessions.includes(session.id)
+      )
+    : [];
 
   return (
-    <div className="p-6">
-      <div className="grid md:grid-cols-3 gap-6">
-        <div className="md:col-span-1">
-          <div className="rounded-lg overflow-hidden mb-4">
+    <div className="p-4 sm:p-6">
+      {/* Header Section */}
+      <div className="flex flex-col items-start mb-6">
+        <p className="text-sm text-[#283058] font-medium mb-1">{company}</p>
+        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900">{speaker.fullName}</h2>
+      </div>
+
+      <div className="space-y-6">
+        {/* Profile Image & Social Links */}
+        <div className="bg-gray-50 rounded-xl p-4">
+          <div className="aspect-square rounded-lg overflow-hidden mb-4">
             <img
               src={speaker.profilePicture}
               alt={speaker.fullName}
-              className="w-full h-auto"
+              className="w-full h-full object-cover"
             />
           </div>
-          <div className="space-y-4">
-            <div className="flex items-center gap-2">
-              <span className="text-gray-700">{company}</span>
-            </div>
-            <div className="flex flex-wrap gap-2 mt-4">
-              {speaker.links?.map((link, index) => (
-                <a
-                  key={index}
-                  href={link.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2 bg-gray-100 hover:bg-gray-200 transition-colors px-3 py-2 rounded-full text-sm"
-                >
-                  <SocialIcon url={link.url} />
-                  {link.title}
-                </a>
-              ))}
-            </div>
+          <div className="flex flex-wrap gap-2">
+            {speaker.links?.map((link, index) => (
+              <a
+                key={index}
+                href={link.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 bg-gray-100 hover:bg-gray-200 transition-colors px-3 py-2 rounded-full text-sm"
+              >
+                <SocialIcon url={link.url} />
+                <span className="inline text-xs">{link.title}</span>
+              </a>
+            ))}
           </div>
         </div>
-        <div className="md:col-span-2">
-          <h3 className="text-xl font-bold mb-3">About</h3>
-          <p className="text-gray-700 mb-6 leading-relaxed">{speaker.bio || 'No bio available.'}</p>
-          <h3 className="text-xl font-bold mb-3">Sessions</h3>
+
+        {/* About Section */}
+        <div>
+          <h3 className="text-lg font-bold mb-3">About</h3>
+          <div className="text-gray-600 text-sm sm:text-base whitespace-pre-line">
+            {speaker.bio || 'No bio available.'}
+          </div>
+        </div>
+
+        {/* Sessions Section */}
+        <div>
+          <h3 className="text-lg font-bold mb-3">Sessions</h3>
           <div className="space-y-3">
-            {speaker.sessions && speaker.sessions.filter(session => speakerSessions.includes(session.id)).map((session, index) => (
-              <div key={index} className="bg-gray-50 p-4 rounded-lg">
-                <h4 className="font-bold text-gray-900">{session.name}</h4>
-              </div>
-            ))}
+            {validSessions.length > 0 ? (
+              validSessions.map((session) => (
+                <div key={session.id} className="bg-gray-50 p-4 rounded-lg">
+                  <h4 className="font-bold text-gray-900">{session.name}</h4>
+                </div>
+              ))
+            ) : (
+              <p className="text-gray-500">No sessions available.</p>
+            )}
           </div>
         </div>
       </div>
@@ -205,24 +235,24 @@ const Speakers = () => {
   const totalPages = Math.ceil(otherSpeakers.length / speakersPerPage);
 
   return (
-    <section id="speakers" className="py-20">
+    <section id="speakers" className="py-12 sm:py-20">
       <div className="container mx-auto px-4">
-        <div className="max-w-3xl mx-auto text-center mb-16">
-          <h2 className="text-4xl font-bold text-gray-900 mb-6">Meet Our Speakers</h2>
-          <div className="w-20 h-1 bg-[#283058] mx-auto mb-6 rounded-full"></div>
-          <p className="text-xl text-gray-600 leading-relaxed">Industry experts sharing knowledge and insights</p>
+        <div className="max-w-3xl mx-auto text-center mb-8 sm:mb-16">
+          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4 sm:mb-6">Meet Our Speakers</h2>
+          <div className="w-20 h-1 bg-[#283058] mx-auto mb-4 sm:mb-6 rounded-full"></div>
+          <p className="text-lg sm:text-xl text-gray-600 leading-relaxed">Industry experts sharing knowledge and insights</p>
         </div>
 
         {speakerData.length === 0 ? (
-          <div className="text-center py-12">
+          <div className="text-center py-8 sm:py-12">
             <p className="text-gray-600">No speakers found.</p>
           </div>
         ) : (
           <>
             {/* Pre-announced Speakers Section */}
             {showPreAnnounced && preAnnouncedSpeakers.length > 0 && (
-              <div className="mb-12">
-                <div className="grid grid-cols-5 gap-6">
+              <div className="mb-8 sm:mb-12">
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 sm:gap-6">
                   {preAnnouncedSpeakers.map((speaker) => (
                     <SpeakerCard
                       key={speaker.id}
@@ -239,7 +269,7 @@ const Speakers = () => {
             {/* Other Speakers Section */}
             {showOtherSpeakers && (
               <>
-                <div className="grid grid-cols-5 gap-6">
+                <div className="grid grid-cols-5 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4 sm:gap-6">
                   {currentSpeakers.map((speaker) => (
                     <SpeakerCard
                       key={speaker.id}
@@ -251,12 +281,12 @@ const Speakers = () => {
                 </div>
 
                 {otherSpeakers.length > speakersPerPage && (
-                  <div className="mt-8 flex flex-wrap justify-center gap-2">
+                  <div className="mt-6 sm:mt-8 flex flex-wrap justify-center gap-2">
                     {Array.from({ length: totalPages }, (_, i) => (
                       <button
                         key={i}
                         onClick={() => setCurrentPage(i + 1)}
-                        className={`rounded-md px-3 py-1 text-sm transition-colors duration-200 
+                        className={`rounded-md px-2 sm:px-3 py-1 text-xs sm:text-sm transition-colors duration-200 
                           ${
                             currentPage === i + 1
                               ? 'bg-[#283058] text-white'
