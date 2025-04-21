@@ -17,7 +17,6 @@ const HomePage = ({ location }) => (
     <Hero />
     <Info />
     <Speakers location={location} />
-    <Proposal />
     <Schedule />
     <Venue />
     <HotelList />
@@ -29,6 +28,7 @@ const HomePage = ({ location }) => (
 <Speakers location={location} />
 <FloorPlan />
 <GoldSponsor />
+<Proposal />
 <Schedule />
 <Venue />
 <Details />
