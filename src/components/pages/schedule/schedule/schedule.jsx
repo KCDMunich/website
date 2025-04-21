@@ -1,5 +1,7 @@
+import PropTypes from 'prop-types';
 import React, { useState, useEffect } from 'react';
 import './schedule.css';
+import ScheduleCard from './ScheduleCard';
 
 const scriptUrl = 'https://sessionize.com/api/v2/6dqtqpt2/view/GridSmart';
 const speakerURL = 'https://sessionize.com/api/v2/6dqtqpt2/view/Speakers';
@@ -20,43 +22,6 @@ const Schedule = () => {
       return [];
     }
   });
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const [speakersResponse, eventsResponse] = await Promise.all([
-          fetch(speakerURL),
-          fetch(scriptUrl),
-        ]);
-
-        const speakersData = await speakersResponse.json();
-        const eventsData = await eventsResponse.json();
-
-        setSpeakerData(speakersData);
-        setEvents(convertSessionsToEvents(eventsData));
-        setIsLoading(false);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-        setIsLoading(false);
-      }
-    };
-
-    fetchData();
-  }, []);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentTime(new Date());
-    }, 60000);
-
-    return () => clearInterval(interval);
-  }, []);
-
-  useEffect(() => {
-    try {
-      localStorage.setItem('favorites', JSON.stringify(favorites));
-    } catch {}
-  }, [favorites]);
 
   const convertSessionsToEvents = (data) => {
     const events = [];
@@ -86,6 +51,43 @@ const Schedule = () => {
     });
     return events;
   };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const [speakersResponse, eventsResponse] = await Promise.all([
+          fetch(speakerURL),
+          fetch(scriptUrl),
+        ]);
+
+        const speakersData = await speakersResponse.json();
+        const eventsData = await eventsResponse.json();
+
+        setSpeakerData(speakersData);
+        setEvents(convertSessionsToEvents(eventsData));
+        setIsLoading(false);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+        setIsLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentTime(new Date());
+    }, 60000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  useEffect(() => {
+    try {
+      localStorage.setItem('favorites', JSON.stringify(favorites));
+    } catch {}
+  }, [favorites]);
 
   const calculateDuration = (start, end) => {
     const startDate = new Date(start);
@@ -134,7 +136,8 @@ const Schedule = () => {
   const isLive = (start, end) => {
     const startTime = new Date(start);
     const endTime = new Date(end);
-    return true; // Demo: immer true, sonst: currentTime >= startTime && currentTime <= endTime;
+    //currentTime >= startTime && currentTime <= endTime;
+    return true;
   };
 
   const toggleFavorite = (eventId) => {
@@ -147,61 +150,14 @@ const Schedule = () => {
     });
   };
 
-  const TimeProgress = ({ startTime, endTime }) => {
-    const [progress, setProgress] = useState(100);
-
-    useEffect(() => {
-      const calculateProgress = () => {
-        const start = new Date(startTime);
-        const end = new Date(endTime);
-
-        if (currentTime < start) return 100;
-        if (currentTime > end) return 50;
-
-        const total = end.getTime() - start.getTime();
-        const elapsed = end.getTime() - currentTime.getTime();
-        return (elapsed / total) * 100;
-      };
-
-      const timer = setInterval(() => {
-        setProgress(calculateProgress());
-      }, 1000);
-
-      return () => clearInterval(timer);
-    }, [startTime, endTime, currentTime]);
-
-    return (
-      <div className="relative h-8 w-8">
-        <svg className="h-8 w-8">
-          <defs>
-            <linearGradient id="greenGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#4ade80" />
-              <stop offset="100%" stopColor="#22c55e" />
-            </linearGradient>
-          </defs>
-          <circle cx="16" cy="16" r="15" fill="none" stroke="#e2e8f0" strokeWidth="2" />
-          <circle
-            cx="16"
-            cy="16"
-            r="15"
-            fill="none"
-            stroke="url(#greenGradient)"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeDasharray={`${2 * Math.PI * 15}`}
-            strokeDashoffset={`${2 * Math.PI * 15 * (1 - progress / 100)}`}
-            className="transition-all duration-200 ease-in-out"
-            transform="rotate(-90 16 16)"
-          />
-        </svg>
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div className="h-2 w-2 animate-pulse rounded-full bg-green-500"></div>
-        </div>
-      </div>
-    );
+  const calculateRemainingMinutes = (endTime) => {
+    const end = new Date(endTime);
+    const now = new Date();
+    const diff = end - now;
+    return Math.max(0, Math.ceil(diff / (1000 * 60)));
   };
 
-  const Modal = ({ isOpen, onClose, event, favorites, toggleFavorite, findSpeakerProfile }) => {
+  const Modal = ({ isOpen, event, favorites, toggleFavorite, findSpeakerProfile, onClose }) => {
     if (!isOpen || !event) return null;
 
     return (
@@ -275,21 +231,34 @@ const Schedule = () => {
             </div>
 
             <button
-              className={`favorite-button modal-favorite-button ${
-                favorites.includes(event.id) ? 'favorited' : ''
-              }`}
-              onClick={() => toggleFavorite(event.id)}
-              aria-label={
-                favorites.includes(event.id) ? 'Remove from favorites' : 'Add to favorites'
-              }
+              className={`modal-favorite-button ${favorites.includes(event.id) ? 'favorited' : ''}`}
+              aria-label={favorites.includes(event.id) ? 'Remove from favorites' : 'Add to favorites'}
               title={favorites.includes(event.id) ? 'Remove from favorites' : 'Add to favorites'}
+              onClick={() => toggleFavorite(event.id)}
             >
-              {favorites.includes(event.id) ? '❤️' : '🤍'}
+              <svg 
+                className="schedule-card-favorite-icon" 
+                viewBox="0 0 24 24" 
+                fill={favorites.includes(event.id) ? "currentColor" : "none"} 
+                stroke="currentColor" 
+                strokeWidth="2"
+              >
+                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+              </svg>
             </button>
           </div>
         </div>
       </div>
     );
+  };
+
+  Modal.propTypes = {
+    isOpen: PropTypes.bool.isRequired,
+    event: PropTypes.object,
+    favorites: PropTypes.arrayOf(PropTypes.string).isRequired,
+    toggleFavorite: PropTypes.func.isRequired,
+    findSpeakerProfile: PropTypes.func.isRequired,
+    onClose: PropTypes.func.isRequired,
   };
 
   if (isLoading) {
@@ -363,54 +332,28 @@ const Schedule = () => {
             </div>
             {events.map((event) => {
               const isFavorite = favorites.includes(event.id);
+              const isLiveEvent = isLive(event.start, event.end);
+              const remainingMinutes = isLiveEvent ? calculateRemainingMinutes(event.end) : 0;
+
               return (
-                <div
+                <ScheduleCard
                   key={event.id}
-                  className={`event-card ${isLive(event.start, event.end) ? 'live' : ''}`}
+                  startTime={event.time}
+                  endTime={event.endTime}
+                  duration={`${event.duration} min`}
+                  title={event.title}
+                  speakers={event.speakers?.map(speaker => ({
+                    name: speaker.name,
+                    avatar: findSpeakerProfile(speaker.id)
+                  }))}
+                  location={event.room}
+                  type={event.type}
+                  isFavorite={isFavorite}
+                  remainingMinutes={remainingMinutes}
+                  isLive={isLiveEvent}
+                  onFavoriteClick={() => toggleFavorite(event.id)}
                   onClick={() => setSelectedEvent(event)}
-                >
-                  <div className="event-header">
-                    <div className="event-time">
-                      <span>
-                        {event.time} - {event.endTime}
-                      </span>
-                      {isLive(event.start, event.end) && (
-                        <TimeProgress startTime={event.start} endTime={event.end} />
-                      )}
-                      <span className="duration-badge">{event.duration} min</span>
-                    </div>
-                    <span className="event-type">{event.type}</span>
-                    <button
-                      className={`favorite-button ${isFavorite ? 'favorited' : ''}`}
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        toggleFavorite(event.id);
-                      }}
-                      aria-label={isFavorite ? 'Remove from favorites' : 'Add to favorites'}
-                      title={isFavorite ? 'Remove from favorites' : 'Add to favorites'}
-                    >
-                      {isFavorite ? '❤️' : '🤍'}
-                    </button>
-                  </div>
-                  <h3 className="event-title">{event.title}</h3>
-                  <div className="speakers-avatars">
-                    {event.speakers?.map((speaker, index) => (
-                      <img
-                        key={speaker.id}
-                        src={findSpeakerProfile(speaker.id)}
-                        alt={speaker.name}
-                        className="speaker-avatar-overlap"
-                        style={{ zIndex: event.speakers.length - index }}
-                      />
-                    ))}
-                    <span className="speakers-names">
-                      {event.speakers?.map((s) => s.name).join(', ')}
-                    </span>
-                  </div>
-                  <div className="event-room">
-                    <span>{event.room}</span>
-                  </div>
-                </div>
+                />
               );
             })}
           </div>
@@ -419,11 +362,11 @@ const Schedule = () => {
 
       <Modal
         isOpen={!!selectedEvent}
-        onClose={() => setSelectedEvent(null)}
         event={selectedEvent}
         favorites={favorites}
         toggleFavorite={toggleFavorite}
         findSpeakerProfile={findSpeakerProfile}
+        onClose={() => setSelectedEvent(null)}
       />
     </div>
   );
