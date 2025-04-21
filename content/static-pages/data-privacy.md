@@ -1,48 +1,48 @@
 ---
-title: Impressum & Data Privacy
+title: Imprint & Data Privacy
 slug: data-privacy
 ---
 
-# Impressum
+# Imprint
 
-## Angaben gemäß § 5 TMG
+## Information according to § 5 TMG
 
-*Förderverein Open Source, Cloud Native und Künstliche Intelligenz Bayern e.V.*
+*Förderverein Open Source, Cloud Native und Künstliche Intelligenz Bayern e.V.*  
 Adlzreiterstraße 8  
 83022 Rosenheim  
 
-*Eingetragen im Vereinsregister*
+*Registered in the Vereinsregister (Register of Associations)*
 
-Registergericht: Amtsgericht Traunstein
+Register Court: Amtsgericht Traunstein  
 
-Registernummer: VR 202755
+Registration Number: VR 202755
 
-## Vertretungsberechtigter Vorstand
+## Authorized Board Members
 
-**Vorsitzender**  
+**Chairman**  
 Max Körbächer  
 
-**Stellvertretender Vorsitzender**  
+**Deputy Chairman**  
 Nico Meisenzahl  
 
-**Schatzmeister**  
+**Treasurer**  
 Markus Sümmchen  
 
-## Kontakt
+## Contact
 
-E-Mail: [Bitte E-Mail-Adresse ergänzen]  
-Telefon: [Bitte Telefonnummer ergänzen]
+Email: [Please add email address]  
+Phone: [Please add phone number]
 
-## Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV
+## Responsible for content according to § 55 para. 2 RStV
 
-[Name des verantwortlichen Redakteurs]  
+[Name of responsible editor]  
 Adlzreiterstraße 8  
 83022 Rosenheim
 
-## Haftungsausschluss
+## Disclaimer
 
-Die Inhalte unserer Seiten wurden mit größter Sorgfalt erstellt. Für die Richtigkeit, Vollständigkeit und Aktualität der Inhalte können wir jedoch keine Gewähr übernehmen. Als Diensteanbieter sind wir gemäß § 7 Abs.1 TMG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 TMG sind wir als Diensteanbieter jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen oder nach Umständen zu forschen, die auf eine rechtswidrige Tätigkeit hinweisen.
+The contents of our pages have been created with the utmost care. However, we cannot guarantee the accuracy, completeness, or timeliness of the contents. As a service provider, we are responsible for our own content on these pages according to general laws pursuant to § 7 para.1 TMG. According to §§ 8 to 10 TMG, however, we are not obligated to monitor transmitted or stored external information or to investigate circumstances that indicate illegal activity.
 
-## Datenschutz
+## Data Privacy
 
-[Link zur Datenschutzerklärung](https://whiteduck.de/datenschutz/)
+[Link to Privacy Policy](https://whiteduck.de/datenschutz/)
