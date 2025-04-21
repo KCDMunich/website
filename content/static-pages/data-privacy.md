@@ -35,9 +35,7 @@ Phone: [Please add phone number]
 
 ## Responsible for content according to § 55 para. 2 RStV
 
-[Name of responsible editor]  
-Adlzreiterstraße 8  
-83022 Rosenheim
+[Name of responsible editor]
 
 ## Disclaimer
 
