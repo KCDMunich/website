@@ -203,11 +203,7 @@ const Speakers = () => {
   return (
     <section id="speakers" className="py-12 sm:py-20">
       <div className="container mx-auto px-4">
-        <div className="max-w-3xl mx-auto text-center mb-8 sm:mb-16">
-          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4 sm:mb-6">Meet Our Speakers</h2>
-          <div className="w-20 h-1 bg-[#283058] mx-auto mb-4 sm:mb-6 rounded-full"></div>
-          <p className="text-lg sm:text-xl text-gray-600 leading-relaxed">Industry experts sharing knowledge and insights</p>
-        </div>
+        <h2 className="section-title">Meet Our Speakers</h2>
 
         {speakerData.length === 0 ? (
           <div className="text-center py-8 sm:py-12">
