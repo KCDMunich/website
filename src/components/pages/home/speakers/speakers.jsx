@@ -116,8 +116,8 @@ const Speakers = () => {
   const [speakerData, setSpeakerData] = useState([]);
   const [selectedSpeaker, setSelectedSpeaker] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
-  const [showPreAnnounced, setShowPreAnnounced] = useState(true);
-  const [showOtherSpeakers, setShowOtherSpeakers] = useState(false);
+  const [showPreAnnounced, setShowPreAnnounced] = useState(false);
+  const [showOtherSpeakers, setShowOtherSpeakers] = useState(true);
   const speakersPerPage = 30;
 
   const preAnnouncedSpeakerIds = [
@@ -173,7 +173,7 @@ const Speakers = () => {
 
   return (
     <div className="mx-auto max-w-7xl p-4" id="speakers">
-      <h2 className="section-title">Featured Speakers</h2>
+      <h2 className="section-title mb-8">{showPreAnnounced ? "Featured Speakers" : "Speakers"}</h2>
 
       {speakerData.length === 0 ? (
         <div className="flex h-32 items-center justify-center">

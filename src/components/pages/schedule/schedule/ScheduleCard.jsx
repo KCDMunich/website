@@ -33,9 +33,18 @@ const ScheduleCard = ({
           <span className="schedule-card-time-text">
             {startTime} - {endTime}
           </span>
-          <span className="schedule-card-duration">
-            {duration}
-          </span>
+          {isLive ? (
+            <div className="schedule-card-live-indicator">
+              <div className="schedule-card-live-dot">
+                <div className="schedule-card-live-pulse"></div>
+              </div>
+              <span className="schedule-card-live-text">LIVE</span>
+            </div>
+          ) : (
+            <span className="schedule-card-duration">
+              {duration}
+            </span>
+          )}
         </div>
         <span className={`schedule-card-type schedule-card-type-${type}`}>
           {type}
@@ -43,15 +52,6 @@ const ScheduleCard = ({
       </div>
 
       <div className="schedule-card-content">
-        {isLive && (
-          <div className="schedule-card-live-indicator">
-            <div className="schedule-card-live-dot">
-              <div className="schedule-card-live-pulse"></div>
-            </div>
-            <span className="schedule-card-live-text">LIVE</span>
-          </div>
-        )}
-
         <h3 className="schedule-card-title">{title}</h3>
 
         <div className="schedule-card-speakers">
