@@ -45,11 +45,12 @@ const Dialog = ({ isOpen, onClose, children }) => {
   );
 };
 
-const SpeakerCard = ({ speaker, onClick, showTalk = false, speakerSessionMap = {} }) => {
+const SpeakerCard = ({ speaker, onClick, showTalk = true }) => {
   const company = findCompanyInfo(speaker);
-  const speakerSessions = speakerSessionMap[speaker.id] || [];
   const firstTwoLinks = speaker.links?.slice(0, 2) || [];
 
+  const hasSession = Array.isArray(speaker.sessions) && speaker.sessions.length > 0;
+  
   return (
     <div
       onClick={onClick}
@@ -84,7 +85,7 @@ const SpeakerCard = ({ speaker, onClick, showTalk = false, speakerSessionMap = {
         <h3 className="font-bold text-sm sm:text-lg text-gray-900">{speaker.fullName}</h3>
         <p className="text-[#283058] text-xs sm:text-sm font-medium">{company}</p>
         <div className="mt-2 bg-gray-50 p-2 rounded-lg">
-          {showTalk && speaker.sessions && speaker.sessions[0] && speakerSessions.includes(speaker.sessions[0].id) ? (
+          {showTalk && hasSession ? (
             <div>
               <p className="text-xs text-[#283058] font-medium mb-1">SESSION</p>
               <p className="text-xs sm:text-sm text-gray-800 line-clamp-2 font-medium">
@@ -100,29 +101,25 @@ const SpeakerCard = ({ speaker, onClick, showTalk = false, speakerSessionMap = {
   );
 };
 
-const SpeakerDialog = ({ speaker, speakerSessionMap = {} }) => {
+const SpeakerDialog = ({ speaker }) => {
   const company = findCompanyInfo(speaker);
-  const speakerSessions = speakerSessionMap[speaker.id] || [];
   
   const validSessions = Array.isArray(speaker.sessions) 
     ? speaker.sessions.filter(session => 
         typeof session === 'object' && 
         typeof session.id === 'number' && 
-        typeof session.name === 'string' &&
-        speakerSessions.includes(session.id)
+        typeof session.name === 'string'
       )
     : [];
 
   return (
     <div className="p-4 sm:p-6">
-      {/* Header Section */}
       <div className="flex flex-col items-start mb-6">
         <p className="text-sm text-[#283058] font-medium mb-1">{company}</p>
         <h2 className="text-2xl sm:text-3xl font-bold text-gray-900">{speaker.fullName}</h2>
       </div>
 
       <div className="space-y-6">
-        {/* Profile Image & Social Links */}
         <div className="bg-gray-50 rounded-xl p-4">
           <div className="aspect-square rounded-lg overflow-hidden mb-4">
             <img
@@ -147,7 +144,6 @@ const SpeakerDialog = ({ speaker, speakerSessionMap = {} }) => {
           </div>
         </div>
 
-        {/* About Section */}
         <div>
           <h3 className="text-lg font-bold mb-3">About</h3>
           <div className="text-gray-600 text-sm sm:text-base whitespace-pre-line">
@@ -155,7 +151,6 @@ const SpeakerDialog = ({ speaker, speakerSessionMap = {} }) => {
           </div>
         </div>
 
-        {/* Sessions Section */}
         <div>
           <h3 className="text-lg font-bold mb-3">Sessions</h3>
           <div className="space-y-3">
@@ -179,28 +174,7 @@ const Speakers = () => {
   const [speakerData, setSpeakerData] = useState([]);
   const [selectedSpeaker, setSelectedSpeaker] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
-  const [showPreAnnounced, setShowPreAnnounced] = useState(false);
-  const [showOtherSpeakers, setShowOtherSpeakers] = useState(true);
   const speakersPerPage = 30;
-
-  const preAnnouncedSpeakerIds = [
-    'a2665c2b-13c9-4337-9c78-db85bca70e60',
-    'b4047d7c-94cf-4f5e-bbdb-7619ab241f06', 
-    'be3da75f-4550-4f7f-9d44-863076ed4e91', 
-    '647c84a5-1a13-4641-8d8f-49109cadf78b', 
-    '8f398417-82f0-467a-b234-08e82f7f9acd',
-    '38a4131f-b1ca-452a-aaba-f5bb472403ab'
-  ];
-
-  const speakerSessionMap = {
-    'a2665c2b-13c9-4337-9c78-db85bca70e60': [882116],
-    'b4047d7c-94cf-4f5e-bbdb-7619ab241f06': [847107],
-    'be3da75f-4550-4f7f-9d44-863076ed4e91': [836276],
-    '647c84a5-1a13-4641-8d8f-49109cadf78b': [870316],
-    '8f398417-82f0-467a-b234-08e82f7f9acd': [867444],
-    '38a4131f-b1ca-452a-aaba-f5bb472403ab': [855080]
-
-  };
 
   useEffect(() => {
     fetch(scriptUrl)
@@ -221,18 +195,10 @@ const Speakers = () => {
     return shuffled;
   };
 
-  const preAnnouncedSpeakers = speakerData.filter(speaker => 
-    preAnnouncedSpeakerIds.includes(speaker.id)
-  );
-
-  const otherSpeakers = speakerData.filter(speaker => 
-    !preAnnouncedSpeakerIds.includes(speaker.id)
-  );
-
   const indexOfLastSpeaker = currentPage * speakersPerPage;
   const indexOfFirstSpeaker = indexOfLastSpeaker - speakersPerPage;
-  const currentSpeakers = otherSpeakers.slice(indexOfFirstSpeaker, indexOfLastSpeaker);
-  const totalPages = Math.ceil(otherSpeakers.length / speakersPerPage);
+  const currentSpeakers = speakerData.slice(indexOfFirstSpeaker, indexOfLastSpeaker);
+  const totalPages = Math.ceil(speakerData.length / speakersPerPage);
 
   return (
     <section id="speakers" className="py-12 sm:py-20">
@@ -249,60 +215,38 @@ const Speakers = () => {
           </div>
         ) : (
           <>
-            {/* Pre-announced Speakers Section */}
-            {showPreAnnounced && preAnnouncedSpeakers.length > 0 && (
-              <div className="mb-8 sm:mb-12">
-                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 sm:gap-6">
-                  {preAnnouncedSpeakers.map((speaker) => (
-                    <SpeakerCard
-                      key={speaker.id}
-                      speaker={speaker}
-                      onClick={() => setSelectedSpeaker(speaker)}
-                      showTalk={true}
-                      speakerSessionMap={speakerSessionMap}
-                    />
-                  ))}
-                </div>
+            <div className="grid grid-cols-5 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4 sm:gap-6">
+              {currentSpeakers.map((speaker) => (
+                <SpeakerCard
+                  key={speaker.id}
+                  speaker={speaker}
+                  onClick={() => setSelectedSpeaker(speaker)}
+                  showTalk={true}
+                />
+              ))}
+            </div>
+
+            {speakerData.length > speakersPerPage && (
+              <div className="mt-6 sm:mt-8 flex flex-wrap justify-center gap-2">
+                {Array.from({ length: totalPages }, (_, i) => (
+                  <button
+                    key={i}
+                    onClick={() => setCurrentPage(i + 1)}
+                    className={`rounded-md px-2 sm:px-3 py-1 text-xs sm:text-sm transition-colors duration-200 
+                      ${
+                        currentPage === i + 1
+                          ? 'bg-[#283058] text-white'
+                          : 'border border-[#283058] text-[#283058] hover:bg-[#283058] hover:text-white'
+                      }`}
+                  >
+                    {i + 1}
+                  </button>
+                ))}
               </div>
             )}
 
-            {/* Other Speakers Section */}
-            {showOtherSpeakers && (
-              <>
-                <div className="grid grid-cols-5 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4 sm:gap-6">
-                  {currentSpeakers.map((speaker) => (
-                    <SpeakerCard
-                      key={speaker.id}
-                      speaker={speaker}
-                      onClick={() => setSelectedSpeaker(speaker)}
-                      speakerSessionMap={speakerSessionMap}
-                    />
-                  ))}
-                </div>
-
-                {otherSpeakers.length > speakersPerPage && (
-                  <div className="mt-6 sm:mt-8 flex flex-wrap justify-center gap-2">
-                    {Array.from({ length: totalPages }, (_, i) => (
-                      <button
-                        key={i}
-                        onClick={() => setCurrentPage(i + 1)}
-                        className={`rounded-md px-2 sm:px-3 py-1 text-xs sm:text-sm transition-colors duration-200 
-                          ${
-                            currentPage === i + 1
-                              ? 'bg-[#283058] text-white'
-                              : 'border border-[#283058] text-[#283058] hover:bg-[#283058] hover:text-white'
-                          }`}
-                      >
-                        {i + 1}
-                      </button>
-                    ))}
-                  </div>
-                )}
-              </>
-            )}
-
             <Dialog isOpen={selectedSpeaker !== null} onClose={() => setSelectedSpeaker(null)}>
-              {selectedSpeaker && <SpeakerDialog speaker={selectedSpeaker} speakerSessionMap={speakerSessionMap} />}
+              {selectedSpeaker && <SpeakerDialog speaker={selectedSpeaker} />}
             </Dialog>
           </>
         )}
