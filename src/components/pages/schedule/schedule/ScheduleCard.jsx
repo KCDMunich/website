@@ -54,28 +54,30 @@ const ScheduleCard = ({
       <div className="schedule-card-content">
         <h3 className="schedule-card-title">{title}</h3>
 
-        <div className="schedule-card-speakers">
-          <div className="schedule-card-avatars">
-            {speakers.map((speaker, index) => (
-              <div key={index} className="schedule-card-avatar">
-                <img
-                  src={speaker.avatar}
-                  alt={speaker.name}
-                  className="schedule-card-avatar-image"
-                />
-              </div>
-            ))}
+        {Array.isArray(speakers) && speakers.length > 0 && (
+          <div className="schedule-card-speakers">
+            <div className="schedule-card-avatars">
+              {speakers.map((speaker, index) => (
+                <div key={index} className="schedule-card-avatar">
+                  <img
+                    src={speaker.avatar}
+                    alt={speaker.name}
+                    className="schedule-card-avatar-image"
+                  />
+                </div>
+              ))}
+            </div>
+            <div className="schedule-card-speaker-names">
+              <svg className="schedule-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                <circle cx="9" cy="7" r="4" />
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+              </svg>
+              <span>{speakers.map(s => s.name).join(", ")}</span>
+            </div>
           </div>
-          <div className="schedule-card-speaker-names">
-            <svg className="schedule-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
-              <circle cx="9" cy="7" r="4" />
-              <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
-              <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-            </svg>
-            <span>{speakers.map(s => s.name).join(", ")}</span>
-          </div>
-        </div>
+        )}
       </div>
 
       <div className="schedule-card-footer">
@@ -128,4 +130,4 @@ ScheduleCard.propTypes = {
   isLive: PropTypes.bool,
 };
 
-export default ScheduleCard; 
+export default ScheduleCard;
