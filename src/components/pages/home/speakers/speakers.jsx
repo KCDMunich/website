@@ -1,8 +1,28 @@
 import React, { useState, useEffect } from 'react';
 import { Github, Twitter, Linkedin, Globe, Youtube } from 'lucide-react';
 
-//const scriptUrl = 'https://sessionize.com/api/v2/6dqtqpt2/view/Speakers';
-const scriptUrl = 'https://sessionize.com/api/v2/px1o0jp3/view/Speakers'
+// === HIER FLAG SETZEN ===
+const SHOW_FEATURED_ONLY = true; // <--- true = nur Featured, false = alle Speaker
+
+const scriptUrl = 'https://sessionize.com/api/v2/px1o0jp3/view/Speakers';
+
+const preAnnouncedSpeakerIds = [
+  'a2665c2b-13c9-4337-9c78-db85bca70e60',
+  'b4047d7c-94cf-4f5e-bbdb-7619ab241f06', 
+  'be3da75f-4550-4f7f-9d44-863076ed4e91', 
+  '647c84a5-1a13-4641-8d8f-49109cadf78b', 
+  '8f398417-82f0-467a-b234-08e82f7f9acd',
+  '38a4131f-b1ca-452a-aaba-f5bb472403ab'
+];
+
+const speakerSessionMap = {
+  'a2665c2b-13c9-4337-9c78-db85bca70e60': [882116],
+  'b4047d7c-94cf-4f5e-bbdb-7619ab241f06': [847107],
+  'be3da75f-4550-4f7f-9d44-863076ed4e91': [836276],
+  '647c84a5-1a13-4641-8d8f-49109cadf78b': [870316],
+  '8f398417-82f0-467a-b234-08e82f7f9acd': [867444],
+  '38a4131f-b1ca-452a-aaba-f5bb472403ab': [855080]
+};
 
 const findCompanyInfo = (speaker) => {
   const company = speaker.questionAnswers.find((q) => q.question === 'Company');
@@ -170,6 +190,34 @@ const SpeakerDialog = ({ speaker }) => {
   );
 };
 
+const shuffleSpeaker = (array) => {
+  const shuffled = [...array];
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+  }
+  return shuffled;
+};
+
+const filterFeaturedSpeakers = (speakers) => {
+  // Nur Speaker mit ID in preAnnouncedSpeakerIds
+  return speakers
+    .filter((speaker) => preAnnouncedSpeakerIds.includes(speaker.id))
+    .map((speaker) => {
+      // Sessions ggf. filtern
+      const sessionIds = speakerSessionMap[speaker.id];
+      if (sessionIds && Array.isArray(speaker.sessions)) {
+        return {
+          ...speaker,
+          sessions: speaker.sessions.filter((session) =>
+            sessionIds.includes(session.id)
+          ),
+        };
+      }
+      return speaker;
+    });
+};
+
 const Speakers = () => {
   const [speakerData, setSpeakerData] = useState([]);
   const [selectedSpeaker, setSelectedSpeaker] = useState(null);
@@ -186,28 +234,32 @@ const Speakers = () => {
       .catch((error) => console.error('Error:', error));
   }, []);
 
-  const shuffleSpeaker = (array) => {
-    const shuffled = [...array];
-    for (let i = shuffled.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
-    }
-    return shuffled;
-  };
+  // Filtered Speaker List
+  const filteredSpeakers = SHOW_FEATURED_ONLY
+    ? filterFeaturedSpeakers(speakerData)
+    : speakerData;
 
   const indexOfLastSpeaker = currentPage * speakersPerPage;
   const indexOfFirstSpeaker = indexOfLastSpeaker - speakersPerPage;
-  const currentSpeakers = speakerData.slice(indexOfFirstSpeaker, indexOfLastSpeaker);
-  const totalPages = Math.ceil(speakerData.length / speakersPerPage);
+  const currentSpeakers = filteredSpeakers.slice(indexOfFirstSpeaker, indexOfLastSpeaker);
+  const totalPages = Math.ceil(filteredSpeakers.length / speakersPerPage);
+
+  // Wenn Filter umgeschaltet wird, Seite zurücksetzen
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [SHOW_FEATURED_ONLY]);
+
+  // Titel abhängig vom Flag
+  const sectionTitle = SHOW_FEATURED_ONLY ? "Featured Speakers" : "Meet Our Speakers";
 
   return (
     <section id="speakers" className="py-12 sm:py-20">
       <div className="container mx-auto px-4">
-        <h2 className="section-title">Meet Our Speakers</h2>
+        <h2 className="section-title">{sectionTitle}</h2>
 
-        {speakerData.length === 0 ? (
+        {filteredSpeakers.length === 0 ? (
           <div className="text-center py-8 sm:py-12">
-            <p className="text-gray-600">No speakers found.</p>
+            <p className="text-gray-600">Loading</p>
           </div>
         ) : (
           <>
@@ -222,7 +274,7 @@ const Speakers = () => {
               ))}
             </div>
 
-            {speakerData.length > speakersPerPage && (
+            {filteredSpeakers.length > speakersPerPage && (
               <div className="mt-6 sm:mt-8 flex flex-wrap justify-center gap-2">
                 {Array.from({ length: totalPages }, (_, i) => (
                   <button
