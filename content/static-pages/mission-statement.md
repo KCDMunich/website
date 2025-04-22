@@ -23,14 +23,12 @@ The decision to not take part in the KCD 2.0 program has come a long way, with d
 
 ### Double down on the community
 
-We would like to use this change to put ourselves on a solid base for the future. Therefore, we have decided to found a non-profit organization to host any future Cloud Native Summits starting with the 2025 edition.
+We would like to use this change to put ourselves on a solid base for the future. Therefore, we have decided to found a non-profit organization called "Förderverein Open Source, Cloud Native und Künstliche Intelligenz Bayern e.V." to host any future Cloud Native Summits starting with the 2025 edition.
 
 ### Onward and Upward
 
-Only those who dream big will reach something great. The next few months we will throw ourselves into the planning for CNS Munich 2025. Follow us on [LinkedIn](https://linkedin.com/company/cns-munich), [X/Twitter](https://x.com/cnsmunich), or Instagram to stay up to date.
+Follow us on [LinkedIn](https://linkedin.com/company/cns-munich), [X/Twitter](https://x.com/cnsmunich), or Instagram to stay up to date.
 
 If you are interested in sponsoring you will find all the details [here](https://cloudnativesummit.de/#sponsors).
-
-CfP and Early Bird tickets will be available soon!
 
 Feel free to contact us for any questions! We can't wait to welcome you again in 2025!
