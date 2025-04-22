@@ -26,7 +26,7 @@ const Info = () => (
                   window.location.href = '/mission-statement';
                 }}
               >
-                Mission Statement
+Our Vision
               </button>
             </div>
           </div>
