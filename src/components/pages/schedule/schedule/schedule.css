@@ -363,9 +363,8 @@
 .schedule-card-duration {
   font-size: 0.75rem;
   padding: 0.25rem 0.5rem;
-  border: 1px solid #a7f3d0;
   border-radius: 4px;
-  background-color: white;
+  background-color: #a9a9a930;
   color: #374151;
 }
 
@@ -387,6 +386,11 @@
 }
 
 .schedule-card-type-sponsor {
+  background-color: #fef3c7;
+  color: #92400e;
+}
+
+.schedule-card-type-service {
   background-color: #fef3c7;
   color: #92400e;
 }

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Github, Twitter, Linkedin, Globe, Youtube } from 'lucide-react';
 
 // === HIER FLAG SETZEN ===
-const SHOW_FEATURED_ONLY = true; // <--- true = nur Featured, false = alle Speaker
+const SHOW_FEATURED_ONLY = false; // <--- true = nur Featured, false = alle Speaker
 
 const scriptUrl = 'https://sessionize.com/api/v2/px1o0jp3/view/Speakers';
 

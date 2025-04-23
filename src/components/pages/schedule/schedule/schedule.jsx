@@ -1,14 +1,24 @@
 import PropTypes from 'prop-types';
 import React, { useState, useEffect } from 'react';
+
 import './schedule.css';
 import ScheduleCard from './ScheduleCard';
 
-const scriptUrl = 'https://sessionize.com/api/v2/6dqtqpt2/view/GridSmart';
-const speakerURL = 'https://sessionize.com/api/v2/6dqtqpt2/view/Speakers';
+const scriptUrl = 'https://sessionize.com/api/v2/px1o0jp3/view/GridSmart';
+const speakerURL = 'https://sessionize.com/api/v2/px1o0jp3/view/Speakers';
+
+const typeLabels = {
+  talk: 'Talks',
+  workshop: 'Workshops',
+  sponsor: 'Sponsor Talks',
+  service: 'Service Sessions'
+};
 
 const Schedule = () => {
   const [speakerData, setSpeakerData] = useState([]);
-  const [events, setEvents] = useState([]);
+  const [gridData, setGridData] = useState([]); // Raw grid data
+  const [events, setEvents] = useState([]); // Flat list of events
+  const [rooms, setRooms] = useState([]); // List of rooms for selected day
   const [selectedDay, setSelectedDay] = useState('monday');
   const [selectedType, setSelectedType] = useState('all');
   const [selectedEvent, setSelectedEvent] = useState(null);
@@ -23,11 +33,38 @@ const Schedule = () => {
     }
   });
 
-  const convertSessionsToEvents = (data) => {
+  const [sessionFilters, setSessionFilters] = useState({
+    showServiceSessions: true, 
+  });
+
+  const [sessionTypes, setSessionTypes] = useState([]);
+
+  // Helper: Get date for selectedDay
+  const getDateForSelectedDay = () => {
+    if (!gridData.length) return null;
+    if (selectedDay === 'monday') return gridData[0];
+    if (selectedDay === 'tuesday') return gridData[1];
+    return null;
+  };
+
+  // Helper: Convert sessions to flat events
+  const convertSessionsToEvents = (data, filters) => {
     const events = [];
     data.forEach((day) => {
       day.rooms.forEach((room) => {
-        const roomEvents = room.sessions.map((session) => ({
+        const filteredSessions = room.sessions.filter((session) => {
+          if (filters.showServiceSessions && session.isServiceSession) {
+            return true;
+          }
+          return (
+            session.status === "Accepted" &&
+            session.isInformed === true &&
+            session.isConfirmed === true &&
+            !session.isServiceSession 
+          );
+        });
+
+        const roomEvents = filteredSessions.map((session) => ({
           id: session.id,
           title: session.title,
           description: session.description || '',
@@ -40,11 +77,12 @@ const Schedule = () => {
             minute: '2-digit',
           }),
           duration: calculateDuration(session.startsAt, session.endsAt),
-          room: session.room,
-          type: determineEventType(session.room),
+          room: room.name,
+          type: determineEventType(room.name, session),
           speakers: session.speakers,
           start: session.startsAt,
           end: session.endsAt,
+          isServiceSession: session.isServiceSession || false,
         }));
         events.push(...roomEvents);
       });
@@ -52,43 +90,7 @@ const Schedule = () => {
     return events;
   };
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const [speakersResponse, eventsResponse] = await Promise.all([
-          fetch(speakerURL),
-          fetch(scriptUrl),
-        ]);
-
-        const speakersData = await speakersResponse.json();
-        const eventsData = await eventsResponse.json();
-
-        setSpeakerData(speakersData);
-        setEvents(convertSessionsToEvents(eventsData));
-        setIsLoading(false);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-        setIsLoading(false);
-      }
-    };
-
-    fetchData();
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentTime(new Date());
-    }, 60000);
-
-    return () => clearInterval(interval);
-  }, []);
-
-  useEffect(() => {
-    try {
-      localStorage.setItem('favorites', JSON.stringify(favorites));
-    } catch {}
-  }, [favorites]);
-
+  // Helper: Calculate duration in minutes
   const calculateDuration = (start, end) => {
     const startDate = new Date(start);
     const endDate = new Date(end);
@@ -96,12 +98,15 @@ const Schedule = () => {
     return Math.round(duration);
   };
 
-  const determineEventType = (room) => {
+  // Helper: Determine event type by room name or session
+  const determineEventType = (room, session) => {
+    if (session && session.isServiceSession) return 'service';
     if (room.toLowerCase().includes('workshop')) return 'workshop';
     if (room.toLowerCase().includes('sponsor')) return 'sponsor';
     return 'talk';
   };
 
+  // Helper: Filter events by type/favorites
   const filterEvents = (events) => {
     if (selectedType === 'all') return events;
     if (selectedType === 'favorites') {
@@ -110,6 +115,7 @@ const Schedule = () => {
     return events.filter((event) => event.type === selectedType);
   };
 
+  // Helper: Group events by room
   const groupEventsByRoom = (events) => {
     return events.reduce((acc, event) => {
       if (!acc[event.room]) {
@@ -120,26 +126,38 @@ const Schedule = () => {
     }, {});
   };
 
+  // Helper: Find speaker profile picture
   const findSpeakerProfile = (speakerId) => {
     const speaker = speakerData.find((s) => s.id === speakerId);
     return speaker ? speaker.profilePicture : null;
   };
 
+  // Helper: Filter events by selected day
   const filterEventsByDay = (events, day) => {
+    const gridDay = getDateForSelectedDay();
+    if (!gridDay) return [];
+    const gridDate = new Date(gridDay.date).getDate();
     return events.filter((event) => {
-      const eventDate = new Date(event.start);
-      if (day === 'monday') return eventDate.getDate() === 1;
-      return eventDate.getDate() === 2;
+      const eventDate = new Date(event.start).getDate();
+      return eventDate === gridDate;
     });
   };
 
+  // Helper: Get rooms for selected day from gridData
+  const getRoomsForSelectedDay = () => {
+    const gridDay = getDateForSelectedDay();
+    if (!gridDay) return [];
+    return gridDay.rooms.map((room) => room.name);
+  };
+
+  // Helper: Is event live?
   const isLive = (start, end) => {
     const startTime = new Date(start);
     const endTime = new Date(end);
-    //currentTime >= startTime && currentTime <= endTime;
-    return true;
+    return currentTime >= startTime && currentTime <= endTime;
   };
 
+  // Helper: Toggle favorite
   const toggleFavorite = (eventId) => {
     setFavorites((prev) => {
       if (prev.includes(eventId)) {
@@ -150,6 +168,7 @@ const Schedule = () => {
     });
   };
 
+  // Helper: Calculate remaining minutes
   const calculateRemainingMinutes = (endTime) => {
     const end = new Date(endTime);
     const now = new Date();
@@ -157,6 +176,7 @@ const Schedule = () => {
     return Math.max(0, Math.ceil(diff / (1000 * 60)));
   };
 
+  // Modal component (unverändert)
   const Modal = ({ isOpen, event, favorites, toggleFavorite, findSpeakerProfile, onClose }) => {
     if (!isOpen || !event) return null;
 
@@ -169,9 +189,15 @@ const Schedule = () => {
 
           <div className="event-modal">
             <h2>{event.title}</h2>
-            <p className="confirmed-session-label">
-              <strong>Confirmed Session</strong>
-            </p>
+            {event.isServiceSession ? (
+              <p className="confirmed-session-label">
+                <strong>Service Session</strong>
+              </p>
+            ) : (
+              <p className="confirmed-session-label">
+                <strong>Confirmed Session</strong>
+              </p>
+            )}
 
             <div className="modal-main-content">
               <div className="description-section">
@@ -223,13 +249,6 @@ const Schedule = () => {
                 </div>
               </div>
             </div>
-
-            <div className="categories">
-              <strong>Categories</strong>
-              <br />
-              <span>30min Presentation</span>
-            </div>
-
             <button
               className={`modal-favorite-button ${favorites.includes(event.id) ? 'favorited' : ''}`}
               aria-label={favorites.includes(event.id) ? 'Remove from favorites' : 'Add to favorites'}
@@ -261,6 +280,68 @@ const Schedule = () => {
     onClose: PropTypes.func.isRequired,
   };
 
+  // Fetch data
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const [speakersResponse, eventsResponse] = await Promise.all([
+          fetch(speakerURL),
+          fetch(scriptUrl),
+        ]);
+
+        const speakersData = await speakersResponse.json();
+        const eventsData = await eventsResponse.json();
+
+        setSpeakerData(speakersData);
+        setGridData(eventsData); // Save raw grid data
+        setEvents(convertSessionsToEvents(eventsData, sessionFilters));
+        setIsLoading(false);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+        setIsLoading(false);
+      }
+    };
+
+    fetchData();
+    // eslint-disable-next-line
+  }, []);
+
+  // NEU: Events neu berechnen, wenn Filter geändert werden
+  useEffect(() => {
+    if (gridData.length) {
+      setEvents(convertSessionsToEvents(gridData, sessionFilters));
+    }
+    // eslint-disable-next-line
+  }, [sessionFilters, gridData]);
+
+  // Update rooms when selectedDay or gridData changes
+  useEffect(() => {
+    setRooms(getRoomsForSelectedDay());
+    // eslint-disable-next-line
+  }, [selectedDay, gridData]);
+
+  // Update current time every minute
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentTime(new Date());
+    }, 60000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  // Save favorites to localStorage
+  useEffect(() => {
+    try {
+      localStorage.setItem('favorites', JSON.stringify(favorites));
+    } catch {}
+  }, [favorites]);
+
+  // Dynamisch Session-Typen aus Events extrahieren
+  useEffect(() => {
+    const types = Array.from(new Set(events.map(event => event.type)));
+    setSessionTypes(types);
+  }, [events]);
+
   if (isLoading) {
     return (
       <div className="loading-container">
@@ -268,6 +349,10 @@ const Schedule = () => {
       </div>
     );
   }
+
+  // Filter events for selected day and type
+  const filteredEvents = filterEvents(filterEventsByDay(events, selectedDay));
+  const eventsByRoom = groupEventsByRoom(filteredEvents);
 
   return (
     <div className="schedule-container">
@@ -294,24 +379,15 @@ const Schedule = () => {
           >
             All Sessions
           </button>
-          <button
-            className={`schedule-filter-pill ${selectedType === 'talk' ? 'active' : ''}`}
-            onClick={() => setSelectedType('talk')}
-          >
-            Talks
-          </button>
-          <button
-            className={`schedule-filter-pill ${selectedType === 'workshop' ? 'active' : ''}`}
-            onClick={() => setSelectedType('workshop')}
-          >
-            Workshops
-          </button>
-          <button
-            className={`schedule-filter-pill ${selectedType === 'sponsor' ? 'active' : ''}`}
-            onClick={() => setSelectedType('sponsor')}
-          >
-            Sponsor Talks
-          </button>
+          {sessionTypes.map(type => (
+            <button
+              key={type}
+              className={`schedule-filter-pill ${selectedType === type ? 'active' : ''}`}
+              onClick={() => setSelectedType(type)}
+            >
+              {typeLabels[type] || (type.charAt(0).toUpperCase() + type.slice(1) + 's')}
+            </button>
+          ))}
           <div className="filter-divider"></div>
           <button
             className={`schedule-filter-pill ${selectedType === 'favorites' ? 'active' : ''}`}
@@ -323,14 +399,12 @@ const Schedule = () => {
       </div>
 
       <div className="schedule-grid">
-        {Object.entries(
-          groupEventsByRoom(filterEvents(filterEventsByDay(events, selectedDay)))
-        ).map(([room, events]) => (
+        {rooms.map((room) => (
           <div key={room} className="room-section">
             <div className="room-header">
               <h2>{room}</h2>
             </div>
-            {events.map((event) => {
+            {(eventsByRoom[room] || []).map((event) => {
               const isFavorite = favorites.includes(event.id);
               const isLiveEvent = isLive(event.start, event.end);
               const remainingMinutes = isLiveEvent ? calculateRemainingMinutes(event.end) : 0;
