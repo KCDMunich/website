@@ -390,6 +390,11 @@
   color: #92400e;
 }
 
+.schedule-card-type-service {
+  background-color: #fef3c7;
+  color: #92400e;
+}
+
 .schedule-card-content {
   padding: 1rem;
 }

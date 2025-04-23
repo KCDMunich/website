@@ -7,6 +7,13 @@ import ScheduleCard from './ScheduleCard';
 const scriptUrl = 'https://sessionize.com/api/v2/px1o0jp3/view/GridSmart';
 const speakerURL = 'https://sessionize.com/api/v2/px1o0jp3/view/Speakers';
 
+const typeLabels = {
+  talk: 'Talks',
+  workshop: 'Workshops',
+  sponsor: 'Sponsor Talks',
+  service: 'Service Sessions'
+};
+
 const Schedule = () => {
   const [speakerData, setSpeakerData] = useState([]);
   const [gridData, setGridData] = useState([]); // Raw grid data
@@ -29,6 +36,8 @@ const Schedule = () => {
   const [sessionFilters, setSessionFilters] = useState({
     showServiceSessions: true, 
   });
+
+  const [sessionTypes, setSessionTypes] = useState([]);
 
   // Helper: Get date for selectedDay
   const getDateForSelectedDay = () => {
@@ -334,6 +343,12 @@ const Schedule = () => {
     } catch {}
   }, [favorites]);
 
+  // Dynamisch Session-Typen aus Events extrahieren
+  useEffect(() => {
+    const types = Array.from(new Set(events.map(event => event.type)));
+    setSessionTypes(types);
+  }, [events]);
+
   if (isLoading) {
     return (
       <div className="loading-container">
@@ -371,24 +386,15 @@ const Schedule = () => {
           >
             All Sessions
           </button>
-          <button
-            className={`schedule-filter-pill ${selectedType === 'talk' ? 'active' : ''}`}
-            onClick={() => setSelectedType('talk')}
-          >
-            Talks
-          </button>
-          <button
-            className={`schedule-filter-pill ${selectedType === 'workshop' ? 'active' : ''}`}
-            onClick={() => setSelectedType('workshop')}
-          >
-            Workshops
-          </button>
-          <button
-            className={`schedule-filter-pill ${selectedType === 'sponsor' ? 'active' : ''}`}
-            onClick={() => setSelectedType('sponsor')}
-          >
-            Sponsor Talks
-          </button>
+          {sessionTypes.map(type => (
+            <button
+              key={type}
+              className={`schedule-filter-pill ${selectedType === type ? 'active' : ''}`}
+              onClick={() => setSelectedType(type)}
+            >
+              {typeLabels[type] || (type.charAt(0).toUpperCase() + type.slice(1) + 's')}
+            </button>
+          ))}
           <div className="filter-divider"></div>
           <button
             className={`schedule-filter-pill ${selectedType === 'favorites' ? 'active' : ''}`}
