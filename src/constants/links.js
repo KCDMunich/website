@@ -35,8 +35,8 @@ export default {
     target: '_blank',
     external: true,
   },
-  mission: {
-    to: '/mission-statement',
+  vision: {
+    to: '/vision',
     target: '_blank',
     external: true,
   },

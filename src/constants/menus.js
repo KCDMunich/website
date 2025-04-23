@@ -13,7 +13,7 @@ const MENUS = {
     { text: 'Schedule', ...LINKS.schedule },
     { text: 'Code of Conduct', ...LINKS.conduct },
     { text: 'Team', ...LINKS.team },
-    { text: 'Our Vision', ...LINKS.mission },
+    { text: 'Our Vision', ...LINKS.vision },
     { text: 'Impressum & Data Privacy', ...LINKS.privacy },
   ],
   mobile: [

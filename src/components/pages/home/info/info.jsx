@@ -23,7 +23,7 @@ const Info = () => (
                 className="button"
                 style={{ cursor: 'pointer', marginTop: '2rem' }}
                 onClick={() => {
-                  window.location.href = '/mission-statement';
+                  window.location.href = '/vision';
                 }}
               >
 Our Vision

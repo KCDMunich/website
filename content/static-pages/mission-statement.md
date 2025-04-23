@@ -1,6 +1,6 @@
 ---
-title: Mission Statement
-slug: mission-statement
+title: Our vision
+slug: vision
 ---
 
 ## Cloud Native Summit Munich
