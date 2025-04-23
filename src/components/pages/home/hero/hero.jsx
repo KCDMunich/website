@@ -57,6 +57,15 @@ const Hero = () => {
                   <button
                     type="button"
                     className="hero-cta-secondary"
+                    onClick={() => (window.location.href = '#agenda')}
+                  >
+                    Our Agenda
+                  </button>
+                }
+                {
+                  <button
+                    type="button"
+                    className="hero-cta-secondary"
                     onClick={() => (window.location.href = '#sponsors')}
                   >
                     Become a Sponsor
