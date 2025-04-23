@@ -253,7 +253,7 @@ const Speakers = () => {
   const sectionTitle = SHOW_FEATURED_ONLY ? "Featured Speakers" : "Meet Our Speakers";
 
   return (
-    <section id="speakers" className="py-12 sm:py-20">
+    <section id="speakers" className="py-12 sm:py-20" style={{marginBottom: "2rem"}}>
       <div className="container mx-auto px-4">
         <h2 className="section-title">{sectionTitle}</h2>
 

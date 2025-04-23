@@ -111,7 +111,7 @@ const Schedule = () => {
   }, []);
 
   return (
-    <section className="safe-paddings relative bg-white pb-40 lg:pb-32 md:py-24 sm:py-16" id="agenda">
+    <section className="safe-paddings relative bg-white pb-20 pt-20 lg:pb-32 md:py-24 sm:py-16" id="agenda">
       <div className="container">
         <div className="mx-auto max-w-7xl">
           <div className="grid grid-cols-2 items-start gap-12 sm:grid-cols-1 xs:grid-cols-1">
