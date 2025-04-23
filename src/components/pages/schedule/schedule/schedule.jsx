@@ -249,13 +249,6 @@ const Schedule = () => {
                 </div>
               </div>
             </div>
-
-            <div className="categories">
-              <strong>Categories</strong>
-              <br />
-              <span>30min Presentation</span>
-            </div>
-
             <button
               className={`modal-favorite-button ${favorites.includes(event.id) ? 'favorited' : ''}`}
               aria-label={favorites.includes(event.id) ? 'Remove from favorites' : 'Add to favorites'}
