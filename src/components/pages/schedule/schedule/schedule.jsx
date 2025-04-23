@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { useState, useEffect } from 'react';
+
 import './schedule.css';
 import ScheduleCard from './ScheduleCard';
 
@@ -25,6 +26,10 @@ const Schedule = () => {
     }
   });
 
+  const [sessionFilters, setSessionFilters] = useState({
+    showServiceSessions: true, 
+  });
+
   // Helper: Get date for selectedDay
   const getDateForSelectedDay = () => {
     if (!gridData.length) return null;
@@ -34,11 +39,23 @@ const Schedule = () => {
   };
 
   // Helper: Convert sessions to flat events
-  const convertSessionsToEvents = (data) => {
+  const convertSessionsToEvents = (data, filters) => {
     const events = [];
     data.forEach((day) => {
       day.rooms.forEach((room) => {
-        const roomEvents = room.sessions.map((session) => ({
+        const filteredSessions = room.sessions.filter((session) => {
+          if (filters.showServiceSessions && session.isServiceSession) {
+            return true;
+          }
+          return (
+            session.status === "Accepted" &&
+            session.isInformed === true &&
+            session.isConfirmed === true &&
+            !session.isServiceSession 
+          );
+        });
+
+        const roomEvents = filteredSessions.map((session) => ({
           id: session.id,
           title: session.title,
           description: session.description || '',
@@ -51,11 +68,12 @@ const Schedule = () => {
             minute: '2-digit',
           }),
           duration: calculateDuration(session.startsAt, session.endsAt),
-          room: room.name, // Use room.name from grid, not session.room
-          type: determineEventType(room.name),
+          room: room.name,
+          type: determineEventType(room.name, session),
           speakers: session.speakers,
           start: session.startsAt,
           end: session.endsAt,
+          isServiceSession: session.isServiceSession || false,
         }));
         events.push(...roomEvents);
       });
@@ -71,8 +89,9 @@ const Schedule = () => {
     return Math.round(duration);
   };
 
-  // Helper: Determine event type by room name
-  const determineEventType = (room) => {
+  // Helper: Determine event type by room name or session
+  const determineEventType = (room, session) => {
+    if (session && session.isServiceSession) return 'service';
     if (room.toLowerCase().includes('workshop')) return 'workshop';
     if (room.toLowerCase().includes('sponsor')) return 'sponsor';
     return 'talk';
@@ -148,7 +167,7 @@ const Schedule = () => {
     return Math.max(0, Math.ceil(diff / (1000 * 60)));
   };
 
-  // Modal component
+  // Modal component (unverändert)
   const Modal = ({ isOpen, event, favorites, toggleFavorite, findSpeakerProfile, onClose }) => {
     if (!isOpen || !event) return null;
 
@@ -161,9 +180,15 @@ const Schedule = () => {
 
           <div className="event-modal">
             <h2>{event.title}</h2>
-            <p className="confirmed-session-label">
-              <strong>Confirmed Session</strong>
-            </p>
+            {event.isServiceSession ? (
+              <p className="confirmed-session-label">
+                <strong>Service Session</strong>
+              </p>
+            ) : (
+              <p className="confirmed-session-label">
+                <strong>Confirmed Session</strong>
+              </p>
+            )}
 
             <div className="modal-main-content">
               <div className="description-section">
@@ -267,7 +292,7 @@ const Schedule = () => {
 
         setSpeakerData(speakersData);
         setGridData(eventsData); // Save raw grid data
-        setEvents(convertSessionsToEvents(eventsData));
+        setEvents(convertSessionsToEvents(eventsData, sessionFilters));
         setIsLoading(false);
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -278,6 +303,14 @@ const Schedule = () => {
     fetchData();
     // eslint-disable-next-line
   }, []);
+
+  // NEU: Events neu berechnen, wenn Filter geändert werden
+  useEffect(() => {
+    if (gridData.length) {
+      setEvents(convertSessionsToEvents(gridData, sessionFilters));
+    }
+    // eslint-disable-next-line
+  }, [sessionFilters, gridData]);
 
   // Update rooms when selectedDay or gridData changes
   useEffect(() => {
@@ -363,6 +396,19 @@ const Schedule = () => {
           >
             Favorites
           </button>
+        </div>
+        {/* NEU: Service-Session-Filter */}
+        <div style={{ marginLeft: 16 }}>
+          <label>
+            <input
+              type="checkbox"
+              checked={sessionFilters.showServiceSessions}
+              onChange={e =>
+                setSessionFilters(f => ({ ...f, showServiceSessions: e.target.checked }))
+              }
+            />{' '}
+            Show Service Sessions (z.B. Pause, Lunch, Opening)
+          </label>
         </div>
       </div>
 
