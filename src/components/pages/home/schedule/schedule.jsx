@@ -22,6 +22,8 @@ const Schedule = () => {
       .then(([sessions, speakers]) => {
         setSpeakers(speakers);
 
+        console.log(sessions)
+
         // Beispiel: Nimm die ersten 3 Sessions als "Featured"
         // Alternativ: sessions.filter(s => s.tags && s.tags.includes('Featured'))
         const featured = sessions.slice(0, 3);
