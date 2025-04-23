@@ -397,19 +397,6 @@ const Schedule = () => {
             Favorites
           </button>
         </div>
-        {/* NEU: Service-Session-Filter */}
-        <div style={{ marginLeft: 16 }}>
-          <label>
-            <input
-              type="checkbox"
-              checked={sessionFilters.showServiceSessions}
-              onChange={e =>
-                setSessionFilters(f => ({ ...f, showServiceSessions: e.target.checked }))
-              }
-            />{' '}
-            Show Service Sessions (z.B. Pause, Lunch, Opening)
-          </label>
-        </div>
       </div>
 
       <div className="schedule-grid">
