@@ -35,8 +35,8 @@ export default {
     target: '_blank',
     external: true,
   },
-  vision: {
-    to: '/vision',
+  mission: {
+    to: '/mission-statement',
     target: '_blank',
     external: true,
   },
@@ -73,8 +73,8 @@ export default {
     external: true,
   },
   speakers: {
-    to: `/#${getAnchor('speakers')}`,
-    id: getAnchor('speakers'),
+    to: `/speakers`,
+    id: getAnchor('Speakers'),
     homeTo: '/speakers',
   },
 };

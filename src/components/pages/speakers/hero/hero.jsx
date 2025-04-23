@@ -15,18 +15,6 @@ const Hero = () => (
       <p className="mx-auto mt-9 max-w-[865px] text-2xl leading-normal md:mt-6 md:text-xl sm:text-lg">
         {DESCRIPTION}
       </p>
-      <Button
-        className="group  relative  mt-10 md:mt-8 xs:mt-7 xs:w-full"
-        size="lg"
-        theme="blue"
-        to="https://kcdmunich-2.ticketbutler.io/en/e/kcd-munich-2024/"
-        target="_blank"
-      >
-        <span className="absolute h-full w-full rounded bg-gradient-to-br from-[#3333ff] via-[#3333ff] to-[#3333ff] group-hover:from-[#ff00c6] group-hover:via-[#ff5478] group-hover:to-[#ff8a05]"></span>
-        <span className="duration-400 relative rounded-md bg-gray-900 px-6 py-3 transition-all ease-out group-hover:bg-opacity-0">
-          <span className="relative font-bold text-white">Get your ticket now</span>
-        </span>
-      </Button>
     </div>
   </section>
 );

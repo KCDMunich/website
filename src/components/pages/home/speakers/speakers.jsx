@@ -239,18 +239,13 @@ const Speakers = () => {
     ? filterFeaturedSpeakers(speakerData)
     : speakerData;
 
-  const indexOfLastSpeaker = currentPage * speakersPerPage;
-  const indexOfFirstSpeaker = indexOfLastSpeaker - speakersPerPage;
-  const currentSpeakers = filteredSpeakers.slice(indexOfFirstSpeaker, indexOfLastSpeaker);
-  const totalPages = Math.ceil(filteredSpeakers.length / speakersPerPage);
-
-  // Wenn Filter umgeschaltet wird, Seite zurücksetzen
-  useEffect(() => {
-    setCurrentPage(1);
-  }, [SHOW_FEATURED_ONLY]);
-
   // Titel abhängig vom Flag
   const sectionTitle = SHOW_FEATURED_ONLY ? "Featured Speakers" : "Meet Our Speakers";
+
+  // Wenn nicht featured, maximal 10 Speaker anzeigen
+  const displaySpeakers = SHOW_FEATURED_ONLY
+    ? filteredSpeakers
+    : filteredSpeakers.slice(0, 10);
 
   return (
     <section id="speakers" className="py-12 sm:py-20" style={{marginBottom: "2rem"}}>
@@ -264,7 +259,7 @@ const Speakers = () => {
         ) : (
           <>
             <div className="grid grid-cols-5 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4 sm:gap-6">
-              {currentSpeakers.map((speaker) => (
+              {displaySpeakers.map((speaker) => (
                 <SpeakerCard
                   key={speaker.id}
                   speaker={speaker}
@@ -274,9 +269,26 @@ const Speakers = () => {
               ))}
             </div>
 
-            {filteredSpeakers.length > speakersPerPage && (
+            {/* Wenn nicht featured, Button anzeigen */}
+            {!SHOW_FEATURED_ONLY && (
+              <div style={{marginTop: "3rem"}}>
+                 <button
+               type="button"
+               className="button"
+               style={{ cursor: 'pointer' }}
+               onClick={() => {
+                 window.location.href = '/speakers';
+               }}
+             >
+               All Speakers
+             </button>
+              </div>
+            )}
+
+            {/* Pagination nur für featured */}
+            {SHOW_FEATURED_ONLY && filteredSpeakers.length > speakersPerPage && (
               <div className="mt-6 sm:mt-8 flex flex-wrap justify-center gap-2">
-                {Array.from({ length: totalPages }, (_, i) => (
+                {Array.from({ length: Math.ceil(filteredSpeakers.length / speakersPerPage) }, (_, i) => (
                   <button
                     key={i}
                     onClick={() => setCurrentPage(i + 1)}
@@ -302,5 +314,6 @@ const Speakers = () => {
     </section>
   );
 };
+
 
 export default Speakers;
