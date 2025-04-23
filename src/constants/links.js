@@ -73,8 +73,8 @@ export default {
     external: true,
   },
   speakers: {
-    to: `/speakers`,
-    id: getAnchor('Speakers'),
+    to: `/#${getAnchor('speakers')}`,
+    id: getAnchor('speakers'),
     homeTo: '/speakers',
   },
 };
