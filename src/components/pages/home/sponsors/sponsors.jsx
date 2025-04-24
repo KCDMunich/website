@@ -57,37 +57,15 @@ const tierConfig = {
 };
 
 const sponsorsList = [
-  // Gold Sponsors
   { name: 'APE Factory', icon: ApeFactory, url: 'https://www.apefactory.com/de', tier: 'gold' },
   { name: 'solarwinds', icon: solarwinds, url: 'https://www.solarwinds.com/', tier: 'gold' },
-  /*
-  { name: 'Cisco', icon: cisco, url: 'https://www.cisco.com/', tier: 'gold' },
-  { name: 'Consol', icon: consol, url: 'https://www.consol.com/', tier: 'gold' },
-  { name: 'Palo Alto', icon: paloalto, url: 'https://www.paloaltonetworks.com/', tier: 'gold' },
-  { name: 'Veeam', icon: veeam, url: 'https://www.veeam.com/', tier: 'gold' },
 
-  // Silver Sponsors
-  */
+  { name: 'aws', icon: aws, url: 'https://aws.amazon.com/', tier: 'silver' },
   { name: 'MetalStack', icon: MetalStack, url: 'https://metalstack.cloud/de', tier: 'silver' },
   { name: 'QAware', icon: QAware, url: 'https://www.qaware.de/', tier: 'silver' },
-  { name: 'Steadforce', icon: Steadforce, url: 'https://www.steadforce.com/', tier: 'silver' },
   { name: 'RedHat', icon: ReadHat, url: 'https://www.redhat.com/', tier: 'silver' },
-  { name: 'aws', icon: aws, url: 'https://aws.amazon.com/', tier: 'silver' },
-  /*
-  { name: 'Akamai', icon: Akamai, url: 'https://www.akamai.com/', tier: 'silver' },
-  { name: 'Camptocamp', icon: Camptocamp, url: 'https://www.camptocamp.com/en', tier: 'silver' },
-  { name: 'Dynatrace', icon: dynatrace, url: 'https://www.dynatrace.com/', tier: 'silver' },
-  { name: 'Exoscale', icon: Exoscale, url: 'https://www.exoscale.com/', tier: 'silver' },
-  { name: 'Isovalent', icon: Isovalent, url: 'https://www.isovalent.com/', tier: 'silver' },
-  { name: 'Mindcurv', icon: MindcurvGmbH, url: 'https://www.mindcurv.com/', tier: 'silver' },
-  { name: 'Pulumi', icon: pulumi, url: 'https://www.pulumi.com/', tier: 'silver' },
-  { name: 'Spectro Cloud', icon: spectrocloud, url: 'https://spectrocloud.com/', tier: 'silver' },
-  { name: 'Splunk', icon: Splunk, url: 'https://www.splunk.com/', tier: 'silver' },
-  { name: 'StackState', icon: StackState, url: 'https://stackstate.com/', tier: 'silver' },
   { name: 'Steadforce', icon: Steadforce, url: 'https://www.steadforce.com/', tier: 'silver' },
-  { name: 'Tigera', icon: Tigera, url: 'https://www.tigera.io/', tier: 'silver' },
-  */
-  // Bronze Sponsors
+
   {
     name: 'ADN',
     icon: Adn,
@@ -106,12 +84,7 @@ const sponsorsList = [
     url: 'https://www.syseleven.de/',
     tier: 'bronze',
   },
-  /*
-  { name: 'Maiborn Wolff', icon: Maiborn, url: 'https://www.maibornwolff.de/', tier: 'bronze' },
-  { name: 'DGi', icon: Dgi, url: 'https://www.dg-i.net/', tier: 'bronze' },
-  */
 
-  // Organizers
   {
     name: 'Liquid Reply',
     icon: liquid,
@@ -120,15 +93,13 @@ const sponsorsList = [
   },
   { name: 'white duck', icon: whiteduck, url: 'https://whiteduck.de/', tier: 'organizer' },
 
-  // Community & Media Partners
-
-  { name: 'Kube Events', icon: Kubeevents, url: 'https://kube.events/', tier: 'partner' },
   { name: 'Kube Careers', icon: Kubecareers, url: 'https://kube.careers/', tier: 'partner' },
+  { name: 'Kube Events', icon: Kubeevents, url: 'https://kube.events/', tier: 'partner' },
 
-  // Evening Event
   { name: 'APE Factory', icon: ApeFactory, url: 'https://www.apefactory.com/de', tier: 'evening' },
   { name: 'CNCF', icon: Cncf, url: 'https://www.cncf.io/', tier: 'evening' },
 ];
+
 
 const contactEmail = 'team@cloudnativesummit.de';
 
