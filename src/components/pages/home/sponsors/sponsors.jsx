@@ -14,7 +14,10 @@ import solarwinds from 'icons/solarwinds.webp';
 import Steadforce from 'icons/steadforce_logo.png';
 import SysEleven from 'icons/syseleven.png';
 import whiteduck from 'icons/whiteduck.png';
+import ReadHat from 'icons/red-hat.svg';
+import aws from 'icons/aws.svg';
 import './sponsor.css';
+import { icon } from '@fortawesome/fontawesome-svg-core';
 
 const CARD_STYLES = 'w-[200px] h-[100px]';
 
@@ -68,6 +71,8 @@ const sponsorsList = [
   { name: 'MetalStack', icon: MetalStack, url: 'https://metalstack.cloud/de', tier: 'silver' },
   { name: 'QAware', icon: QAware, url: 'https://www.qaware.de/', tier: 'silver' },
   { name: 'Steadforce', icon: Steadforce, url: 'https://www.steadforce.com/', tier: 'silver' },
+  { name: 'RedHat', icon: ReadHat, url: 'https://www.redhat.com/', tier: 'silver' },
+  { name: 'aws', icon: aws, url: 'https://aws.amazon.com/', tier: 'silver' },
   /*
   { name: 'Akamai', icon: Akamai, url: 'https://www.akamai.com/', tier: 'silver' },
   { name: 'Camptocamp', icon: Camptocamp, url: 'https://www.camptocamp.com/en', tier: 'silver' },
@@ -225,11 +230,7 @@ const Sponsors = () => {
                         src={sponsor.icon}
                         alt={sponsor.name}
                         loading="lazy"
-                        style={{
-                          maxHeight: '100%',
-                          maxWidth: '80%',
-                          objectFit: 'contain',
-                        }}
+                        className="max-h-[70px] max-w-[150px] object-contain"
                       />
                     </div>
                   </a>
