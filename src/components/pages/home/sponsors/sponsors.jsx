@@ -17,7 +17,6 @@ import whiteduck from 'icons/whiteduck.png';
 import ReadHat from 'icons/red-hat.svg';
 import aws from 'icons/aws.svg';
 import './sponsor.css';
-import { icon } from '@fortawesome/fontawesome-svg-core';
 
 const CARD_STYLES = 'w-[200px] h-[100px]';
 
@@ -60,7 +59,14 @@ const sponsorsList = [
   { name: 'APE Factory', icon: ApeFactory, url: 'https://www.apefactory.com/de', tier: 'gold' },
   { name: 'solarwinds', icon: solarwinds, url: 'https://www.solarwinds.com/', tier: 'gold' },
 
-  { name: 'aws', icon: aws, url: 'https://aws.amazon.com/', tier: 'silver' },
+  { 
+    name: 'aws', 
+    icon: aws, 
+    url: 'https://aws.amazon.com/', 
+    tier: 'silver',
+    logoWidth: 90,  
+    logoHeight: 45,
+  },
   { name: 'MetalStack', icon: MetalStack, url: 'https://metalstack.cloud/de', tier: 'silver' },
   { name: 'QAware', icon: QAware, url: 'https://www.qaware.de/', tier: 'silver' },
   { name: 'RedHat', icon: ReadHat, url: 'https://www.redhat.com/', tier: 'silver' },
@@ -100,8 +106,10 @@ const sponsorsList = [
   { name: 'CNCF', icon: Cncf, url: 'https://www.cncf.io/', tier: 'evening' },
 ];
 
-
 const contactEmail = 'team@cloudnativesummit.de';
+
+const DEFAULT_LOGO_WIDTH = 150;
+const DEFAULT_LOGO_HEIGHT = 70;
 
 const Sponsors = () => {
   if (!SHOW_SPONSORS) {
@@ -201,7 +209,11 @@ const Sponsors = () => {
                         src={sponsor.icon}
                         alt={sponsor.name}
                         loading="lazy"
-                        className="max-h-[70px] max-w-[150px] object-contain"
+                        className="object-contain"
+                        style={{
+                          maxWidth: sponsor.logoWidth ? sponsor.logoWidth : DEFAULT_LOGO_WIDTH,
+                          maxHeight: sponsor.logoHeight ? sponsor.logoHeight : DEFAULT_LOGO_HEIGHT,
+                        }}
                       />
                     </div>
                   </a>
