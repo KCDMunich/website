@@ -274,6 +274,20 @@
     },
     "list": [
       {
+        "name": "EDB",
+        "icon": "/images/sponsors/edb.svg",
+        "url": "https://www.enterprisedb.com/",
+        "tier": "silver",
+        "active": true
+      },
+      {
+        "name": "Seeweb",
+        "icon": "/images/sponsors/seeweb.svg",
+        "url": "https://www.seeweb.it/",
+        "tier": "silver",
+        "active": true
+      },
+      {
         "name": "SparkFabrik",
         "icon": "/images/sponsors/spark-fabrik.webp",
         "url": "https://www.sparkfabrik.com/",
