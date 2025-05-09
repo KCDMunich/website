@@ -16,6 +16,7 @@ import SysEleven from 'icons/syseleven.png';
 import whiteduck from 'icons/whiteduck.png';
 import ReadHat from 'icons/red-hat.svg';
 import aws from 'icons/aws.svg';
+import PerfectScale from 'icons/PerfectScale.png';
 import './sponsor.css';
 
 const CARD_STYLES = 'w-[200px] h-[100px]';
@@ -95,6 +96,14 @@ const sponsorsList = [
     tier: 'silver',
     logoWidth: 100,
     logoHeight: 75,
+  },
+  {
+    name: 'PerfectScale',
+    icon: PerfectScale,
+    url: 'https://www.perfectscale.io/',
+    tier: 'silver',
+    logoWidth: 150,
+    logoHeight: 100,
   },
   {
     name: 'RedHat',
