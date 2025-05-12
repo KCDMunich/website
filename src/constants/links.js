@@ -41,7 +41,7 @@ export default {
     external: true,
   },
   privacy: {
-    to: '/data-privacy',
+    to: '/imprint-data-privacy',
     target: '_blank',
     external: true,
   },

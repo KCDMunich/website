@@ -1,6 +1,6 @@
 ---
 title: Imprint & Data Privacy
-slug: data-privacy
+slug: imprint-data-privacy
 ---
 
 ## Information according to § 5 TMG
