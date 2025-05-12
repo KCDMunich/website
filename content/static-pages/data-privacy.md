@@ -6,7 +6,9 @@ slug: imprint-data-privacy
 ## Information according to § 5 TMG
 
 *Förderverein Open Source, Cloud Native und Künstliche Intelligenz Bayern e.V.*
+
 Adlzreiterstraße 8
+
 83022 Rosenheim
 
 *Registered in the Vereinsregister (Register of Associations)*
