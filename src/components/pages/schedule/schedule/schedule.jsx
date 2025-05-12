@@ -11,7 +11,7 @@ const typeLabels = {
   talk: 'Talks',
   workshop: 'Workshops',
   sponsor: 'Sponsor Talks',
-  service: 'Service Sessions'
+  service: 'Service Sessions',
 };
 
 const Schedule = () => {
@@ -34,7 +34,7 @@ const Schedule = () => {
   });
 
   const [sessionFilters, setSessionFilters] = useState({
-    showServiceSessions: true, 
+    showServiceSessions: true,
   });
 
   const [sessionTypes, setSessionTypes] = useState([]);
@@ -57,10 +57,10 @@ const Schedule = () => {
             return true;
           }
           return (
-            session.status === "Accepted" &&
+            session.status === 'Accepted' &&
             session.isInformed === true &&
             session.isConfirmed === true &&
-            !session.isServiceSession 
+            !session.isServiceSession
           );
         });
 
@@ -251,15 +251,17 @@ const Schedule = () => {
             </div>
             <button
               className={`modal-favorite-button ${favorites.includes(event.id) ? 'favorited' : ''}`}
-              aria-label={favorites.includes(event.id) ? 'Remove from favorites' : 'Add to favorites'}
+              aria-label={
+                favorites.includes(event.id) ? 'Remove from favorites' : 'Add to favorites'
+              }
               title={favorites.includes(event.id) ? 'Remove from favorites' : 'Add to favorites'}
               onClick={() => toggleFavorite(event.id)}
             >
-              <svg 
-                className="schedule-card-favorite-icon" 
-                viewBox="0 0 24 24" 
-                fill={favorites.includes(event.id) ? "currentColor" : "none"} 
-                stroke="currentColor" 
+              <svg
+                className="schedule-card-favorite-icon"
+                viewBox="0 0 24 24"
+                fill={favorites.includes(event.id) ? 'currentColor' : 'none'}
+                stroke="currentColor"
                 strokeWidth="2"
               >
                 <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
@@ -338,7 +340,7 @@ const Schedule = () => {
 
   // Dynamisch Session-Typen aus Events extrahieren
   useEffect(() => {
-    const types = Array.from(new Set(events.map(event => event.type)));
+    const types = Array.from(new Set(events.map((event) => event.type)));
     setSessionTypes(types);
   }, [events]);
 
@@ -379,13 +381,13 @@ const Schedule = () => {
           >
             All Sessions
           </button>
-          {sessionTypes.map(type => (
+          {sessionTypes.map((type) => (
             <button
               key={type}
               className={`schedule-filter-pill ${selectedType === type ? 'active' : ''}`}
               onClick={() => setSelectedType(type)}
             >
-              {typeLabels[type] || (type.charAt(0).toUpperCase() + type.slice(1) + 's')}
+              {typeLabels[type] || type.charAt(0).toUpperCase() + type.slice(1) + 's'}
             </button>
           ))}
           <div className="filter-divider"></div>
@@ -416,9 +418,9 @@ const Schedule = () => {
                   endTime={event.endTime}
                   duration={`${event.duration} min`}
                   title={event.title}
-                  speakers={event.speakers?.map(speaker => ({
+                  speakers={event.speakers?.map((speaker) => ({
                     name: speaker.name,
-                    avatar: findSpeakerProfile(speaker.id)
+                    avatar: findSpeakerProfile(speaker.id),
                   }))}
                   location={event.room}
                   type={event.type}

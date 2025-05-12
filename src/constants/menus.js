@@ -15,7 +15,7 @@ const MENUS = {
     { text: 'Code of Conduct', ...LINKS.conduct },
     { text: 'Team', ...LINKS.team },
     { text: 'Our Vision', ...LINKS.vision },
-    { text: 'Impressum & Data Privacy', ...LINKS.privacy },
+    { text: 'Imprint & Data Privacy', ...LINKS.privacy },
   ],
   mobile: [
     // { text: 'Schedule', ...LINKS.schedule },
