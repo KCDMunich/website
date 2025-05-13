@@ -24,6 +24,14 @@
           "to": "/"
         },
         {
+          "text": "Agenda",
+          "to": "/agenda"
+        },
+        {
+          "text": "Speakers",
+          "to": "/speakers"
+        },
+        {
           "text": "Sponsors",
           "to": "/#sponsors"
         },
@@ -55,16 +63,26 @@
   "footer": {
     "image": "/images/logo_xs.webp",
     "links": [
-        {
-            "label": "Code of Conduct",
-            "url": "#",
-            "active": false
-        },
-        {
-            "label": "Team",
-            "url": "/team",
-            "active": true
-        }
+      {
+        "label": "Code of Conduct",
+        "url": "#",
+        "active": false
+      },
+      {
+        "label": "Team",
+        "url": "/team",
+        "active": true
+      },
+      {
+        "label": "Agenda",
+        "url": "/agenda",
+        "active": true
+      },
+      {
+        "label": "Speakers",
+        "url": "/speakers",
+        "active": true
+      }
     ],
     "icons": [
       {
@@ -246,14 +264,16 @@
       "website": "https://www.savoia.eu/",
       "distance": "Inside the venue"
     },
-    "others": [{
+    "others": [
+      {
         "imageUrl": "/images/savoia-country-house.webp",
         "name": "Savoia Country House",
         "description": "A charming restored country house with elegant rooms, free Wi-Fi, and an Emilian restaurant. Guests enjoy access to the pool and fitness center at the nearby Savoia Regency.",
         "rooms": "Refined and comfortable, the rooms feature classic furnishings, parquet or carpeted floors, satellite TV and free Wi-Fi.",
         "website": "https://www.savoia.eu/",
         "distance": "Near the venue"
-    }]
+      }
+    ]
   },
   "sponsors": {
     "become": {
@@ -261,8 +281,8 @@
       "description": "Cloud Native Days Italy is made possible by the support of our sponsors. We offer various sponsorship packages to fit your needs."
     },
     "active": {
-        "title": "Our Sponsors",
-        "description": "Thank you to our amazing sponsors who make this event possible!"
+      "title": "Our Sponsors",
+      "description": "Thank you to our amazing sponsors who make this event possible!"
     },
     "showSponsors": true,
     "contactEmail": "cloudnativedaysitaly@gmail.com",
@@ -360,110 +380,110 @@
     }
   },
   "team": {
-        "title": "Meet the Team",
-        "description": "The Cloud Native Days Italy team is a group of passionate volunteers who work together to make the event possible.",
-        "members": [
-          {
-            "name": "Michel Murabito",
-            "position": "Developer Advocate",
-            "company": "Mia-Platform",
-            "companyWebsite": "https://www.mia-platform.eu/",
-            "communityRole": "CNCF Ambassador",
-            "photo": "/images/team/michel-murabito.webp",
-            "linkedin": "https://www.linkedin.com/in/mich-murabito",
-            "github": "https://github.com/akelity",
-            "website": "https://michelmurabito.com/"
-          },
-          {
-            "name": "Paolo Mainardi",
-            "position": "CTO",
-            "company": "Sparkfabrik",
-            "communityRole": "Linux Foundation Europe advisory board member",
-            "photo": "/images/team/paolo-mainardi.webp",
-            "linkedin": "https://it.linkedin.com/in/paolomainardi",
-            "github": "https://github.com/paolomainardi",
-            "website": "https://www.paolomainardi.com"
-          },
-          {
-            "name": "Evangelista Tragni",
-            "position": "Delivery Manager",
-            "company": "Desotech",
-            "communityRole": "",
-            "photo": "/images/team/evangelista-tragni.webp",
-            "linkedin": "https://linkedin.com/in/evangelista-tragni",
-            "github": "",
-            "website": ""
-          },
-          {
-            "name": "Nicola Marco Decandia",
-            "position": "CEO",
-            "company": "Desotech",
-            "communityRole": "CNCF Ambassador",
-            "photo": "/images/team/nicola-marco-decandia.webp",
-            "linkedin": "https://www.linkedin.com/in/nicolamarcodecandia/",
-            "github": "",
-            "website": ""
-          },
-          {
-            "name": "Sara Trappetti",
-            "position": "Product Marketing",
-            "company": "ReeVo",
-            "communityRole": "CNCF Ambassador",
-            "photo": "/images/team/sara-trappetti.webp",
-            "linkedin": "https://www.linkedin.com/in/sara-trappetti/",
-            "github": "",
-            "website": ""
-          },
-          {
-            "name": "Jacopo Nardiello",
-            "position": "Head of Cloud Native Services & Open Source",
-            "company": "ReeVo",
-            "communityRole": "CNCF Ambassador & Linux Foundation Europe advisory board member",
-            "photo": "/images/team/jacopo-nardiello.webp",
-            "linkedin": "https://www.linkedin.com/in/jnardiello/",
-            "github": "",
-            "website": ""
-          },
-          {
-            "name": "Dario Tranchitella",
-            "position": "Co-Founder and Open Source Developer",
-            "company": "CLASTIX",
-            "communityRole": "",
-            "photo": "/images/team/dario-tranchitella.webp",
-            "linkedin": "https://www.linkedin.com/in/dariotranchitella/",
-            "github": "",
-            "website": ""
-          },
-          {
-            "name": "Giovanni D’Anna",
-            "position": "Marketing, SEO & Social",
-            "company": "",
-            "communityRole": "",
-            "photo": "/images/team/giovanni-johnny-d-anna.webp",
-            "linkedin": "https://www.linkedin.com/in/giovanni-danna-seo/",
-            "github": "",
-            "website": ""
-          },
-          {
-            "name": "Alessandro De Vecchi",
-            "position": "Marketing Specialist",
-            "company": "SparkFabrik",
-            "communityRole": "",
-            "photo": "/images/team/alessandro-de-vecchi.webp",
-            "linkedin": "https://www.linkedin.com/in/devecchialessandro/",
-            "github": "",
-            "website": "https://alessandrodevecchi.com/"
-          },
-          {
-            "name": "Maria Pina Di Cataldo",
-            "position": "Community Manager",
-            "company": "Seacom",
-            "communityRole": "",
-            "photo": "/images/team/maria-pina-di-cataldo.webp",
-            "linkedin": "https://www.linkedin.com/in/maria-pina-di-cataldo/",
-            "github": "",
-            "website": ""
-          }
-        ]
-    }
+    "title": "Meet the Team",
+    "description": "The Cloud Native Days Italy team is a group of passionate volunteers who work together to make the event possible.",
+    "members": [
+      {
+        "name": "Michel Murabito",
+        "position": "Developer Advocate",
+        "company": "Mia-Platform",
+        "companyWebsite": "https://www.mia-platform.eu/",
+        "communityRole": "CNCF Ambassador",
+        "photo": "/images/team/michel-murabito.webp",
+        "linkedin": "https://www.linkedin.com/in/mich-murabito",
+        "github": "https://github.com/akelity",
+        "website": "https://michelmurabito.com/"
+      },
+      {
+        "name": "Paolo Mainardi",
+        "position": "CTO",
+        "company": "Sparkfabrik",
+        "communityRole": "Linux Foundation Europe advisory board member",
+        "photo": "/images/team/paolo-mainardi.webp",
+        "linkedin": "https://it.linkedin.com/in/paolomainardi",
+        "github": "https://github.com/paolomainardi",
+        "website": "https://www.paolomainardi.com"
+      },
+      {
+        "name": "Evangelista Tragni",
+        "position": "Delivery Manager",
+        "company": "Desotech",
+        "communityRole": "",
+        "photo": "/images/team/evangelista-tragni.webp",
+        "linkedin": "https://linkedin.com/in/evangelista-tragni",
+        "github": "",
+        "website": ""
+      },
+      {
+        "name": "Nicola Marco Decandia",
+        "position": "CEO",
+        "company": "Desotech",
+        "communityRole": "CNCF Ambassador",
+        "photo": "/images/team/nicola-marco-decandia.webp",
+        "linkedin": "https://www.linkedin.com/in/nicolamarcodecandia/",
+        "github": "",
+        "website": ""
+      },
+      {
+        "name": "Sara Trappetti",
+        "position": "Product Marketing",
+        "company": "ReeVo",
+        "communityRole": "CNCF Ambassador",
+        "photo": "/images/team/sara-trappetti.webp",
+        "linkedin": "https://www.linkedin.com/in/sara-trappetti/",
+        "github": "",
+        "website": ""
+      },
+      {
+        "name": "Jacopo Nardiello",
+        "position": "Head of Cloud Native Services & Open Source",
+        "company": "ReeVo",
+        "communityRole": "CNCF Ambassador & Linux Foundation Europe advisory board member",
+        "photo": "/images/team/jacopo-nardiello.webp",
+        "linkedin": "https://www.linkedin.com/in/jnardiello/",
+        "github": "",
+        "website": ""
+      },
+      {
+        "name": "Dario Tranchitella",
+        "position": "Co-Founder and Open Source Developer",
+        "company": "CLASTIX",
+        "communityRole": "",
+        "photo": "/images/team/dario-tranchitella.webp",
+        "linkedin": "https://www.linkedin.com/in/dariotranchitella/",
+        "github": "",
+        "website": ""
+      },
+      {
+        "name": "Giovanni D'Anna",
+        "position": "Marketing, SEO & Social",
+        "company": "",
+        "communityRole": "",
+        "photo": "/images/team/giovanni-johnny-d-anna.webp",
+        "linkedin": "https://www.linkedin.com/in/giovanni-danna-seo/",
+        "github": "",
+        "website": ""
+      },
+      {
+        "name": "Alessandro De Vecchi",
+        "position": "Marketing Specialist",
+        "company": "SparkFabrik",
+        "communityRole": "",
+        "photo": "/images/team/alessandro-de-vecchi.webp",
+        "linkedin": "https://www.linkedin.com/in/devecchialessandro/",
+        "github": "",
+        "website": "https://alessandrodevecchi.com/"
+      },
+      {
+        "name": "Maria Pina Di Cataldo",
+        "position": "Community Manager",
+        "company": "Seacom",
+        "communityRole": "",
+        "photo": "/images/team/maria-pina-di-cataldo.webp",
+        "linkedin": "https://www.linkedin.com/in/maria-pina-di-cataldo/",
+        "github": "",
+        "website": ""
+      }
+    ]
+  }
 }

@@ -1,0 +1,180 @@
+{
+  "days": [
+    {
+      "id": "workshop-day",
+      "date": "2025-06-23",
+      "name": "Workshop Day"
+    },
+    {
+      "id": "conference-day",
+      "date": "2025-06-24",
+      "name": "Conference Day"
+    }
+  ],
+  "rooms": [
+    {
+      "id": "room1",
+      "name": "Room 1",
+      "capacity": 200
+    },
+    {
+      "id": "room2",
+      "name": "Room 2",
+      "capacity": 150
+    }
+  ],
+  "tracks": [
+    {
+      "id": "track1",
+      "name": "Track 1",
+      "roomId": "room1"
+    },
+    {
+      "id": "track2",
+      "name": "Track 2",
+      "roomId": "room2"
+    }
+  ],
+  "timeSlots": {
+    "workshop-day": [
+      {
+        "id": "ws-slot1",
+        "startTime": "2025-06-23T09:00:00",
+        "endTime": "2025-06-23T09:30:00",
+        "label": "09:00 - 09:30"
+      },
+      {
+        "id": "ws-slot2",
+        "startTime": "2025-06-23T09:30:00",
+        "endTime": "2025-06-23T13:00:00",
+        "label": "09:30 - 13:00"
+      },
+      {
+        "id": "ws-slot3",
+        "startTime": "2025-06-23T13:00:00",
+        "endTime": "2025-06-23T14:30:00",
+        "label": "13:00 - 14:30"
+      },
+      {
+        "id": "ws-slot4",
+        "startTime": "2025-06-23T14:30:00",
+        "endTime": "2025-06-23T18:00:00",
+        "label": "14:30 - 18:00"
+      },
+      {
+        "id": "ws-slot5",
+        "startTime": "2025-06-23T18:00:00",
+        "endTime": "2025-06-23T19:00:00",
+        "label": "18:00 - 19:00"
+      }
+    ],
+    "conference-day": [
+      {
+        "id": "conf-slot1",
+        "startTime": "2025-06-24T08:30:00",
+        "endTime": "2025-06-24T09:30:00",
+        "label": "08:30 - 09:30"
+      },
+      {
+        "id": "conf-slot2",
+        "startTime": "2025-06-24T09:30:00",
+        "endTime": "2025-06-24T10:15:00",
+        "label": "09:30 - 10:15"
+      },
+      {
+        "id": "conf-slot3",
+        "startTime": "2025-06-24T10:15:00",
+        "endTime": "2025-06-24T10:50:00",
+        "label": "10:15 - 10:50"
+      },
+      {
+        "id": "conf-slot4",
+        "startTime": "2025-06-24T10:50:00",
+        "endTime": "2025-06-24T11:25:00",
+        "label": "10:50 - 11:25"
+      },
+      {
+        "id": "conf-slot5",
+        "startTime": "2025-06-24T11:25:00",
+        "endTime": "2025-06-24T11:45:00",
+        "label": "11:25 - 11:45"
+      },
+      {
+        "id": "conf-slot6",
+        "startTime": "2025-06-24T11:45:00",
+        "endTime": "2025-06-24T12:20:00",
+        "label": "11:45 - 12:20"
+      },
+      {
+        "id": "conf-slot7",
+        "startTime": "2025-06-24T12:20:00",
+        "endTime": "2025-06-24T12:55:00",
+        "label": "12:20 - 12:55"
+      },
+      {
+        "id": "conf-slot8",
+        "startTime": "2025-06-24T12:55:00",
+        "endTime": "2025-06-24T13:30:00",
+        "label": "12:55 - 13:30"
+      },
+      {
+        "id": "conf-slot9",
+        "startTime": "2025-06-24T13:30:00",
+        "endTime": "2025-06-24T14:30:00",
+        "label": "13:30 - 14:30"
+      },
+      {
+        "id": "conf-slot10",
+        "startTime": "2025-06-24T14:30:00",
+        "endTime": "2025-06-24T15:05:00",
+        "label": "14:30 - 15:05"
+      },
+      {
+        "id": "conf-slot11",
+        "startTime": "2025-06-24T15:05:00",
+        "endTime": "2025-06-24T15:40:00",
+        "label": "15:05 - 15:40"
+      },
+      {
+        "id": "conf-slot12",
+        "startTime": "2025-06-24T15:40:00",
+        "endTime": "2025-06-24T16:00:00",
+        "label": "15:40 - 16:00"
+      },
+      {
+        "id": "conf-slot13",
+        "startTime": "2025-06-24T16:00:00",
+        "endTime": "2025-06-24T16:35:00",
+        "label": "16:00 - 16:35"
+      },
+      {
+        "id": "conf-slot14",
+        "startTime": "2025-06-24T16:35:00",
+        "endTime": "2025-06-24T17:10:00",
+        "label": "16:35 - 17:10"
+      },
+      {
+        "id": "conf-slot15",
+        "startTime": "2025-06-24T17:10:00",
+        "endTime": "2025-06-24T17:45:00",
+        "label": "17:10 - 17:45"
+      },
+      {
+        "id": "conf-slot16",
+        "startTime": "2025-06-24T17:45:00",
+        "endTime": "2025-06-24T18:15:00",
+        "label": "17:45 - 18:15"
+      },
+      {
+        "id": "conf-slot17",
+        "startTime": "2025-06-24T18:30:00",
+        "endTime": "2025-06-24T19:30:00",
+        "label": "18:30 - 19:30"
+      }
+    ]
+  },
+  "dayMCs": {
+    "workshop-day": [],
+    "conference-day": ["mc-conference-day-1", "mc-conference-day-2"]
+  }
+}

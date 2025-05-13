@@ -1,0 +1,34 @@
+{
+  "speakers": [
+    {
+      "id": "monica-colangelo",
+      "name": "Monica Colangelo",
+      "role": "AWS Hero & Head of Hyperscaler Operations",
+      "company": "ReeVo",
+      "companyUrl": "#",
+      "image": "/images/mc/monica.jpg",
+      "linkedin": "https://www.linkedin.com/in/monicacolangelo/",
+      "bio": "Monica is a cloud leader and active voice in the global tech community. As an AWS Hero, she brings deep expertise and a drive to empower others, adding inspiration and a cloud-native perspective to every moment of the event."
+    },
+    {
+      "id": "maurizio-argoneto",
+      "name": "Maurizio Argoneto",
+      "role": "CTO",
+      "company": "Publisys",
+      "companyUrl": "https://www.publisys.it/",
+      "image": "/images/mc/maurizio.png",
+      "linkedin": "https://www.linkedin.com/in/argomauro/",
+      "bio": "Maurizio brings a long track record as a speaker and tech advocate. Deeply rooted in developer communities and passionate about sharing knowledge, he’s ready to connect people and ideas on stage with energy and enthusiasm."
+    },
+    {
+      "id": "speaker-1",
+      "name": "Speaker TBA",
+      "role": "",
+      "company": "",
+      "companyUrl": "#",
+      "image": "/images/favicon.png",
+      "linkedin": "#",
+      "bio": "Speaker details will be announced soon."
+    }
+  ]
+}
