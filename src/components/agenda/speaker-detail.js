@@ -22,6 +22,7 @@ export default function SpeakerDetail({ speaker, sessions }) {
                             </div>
                         )}
                     </div>
+
                     <div className="speaker-info">
                         <h1 className="speaker-name">{speaker.name}</h1>
                         <p className="speaker-role">{speaker.role}</p>

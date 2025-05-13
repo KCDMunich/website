@@ -97,7 +97,7 @@
       "trackId": "track1",
       "roomId": "room1",
       "description": "Join us for the opening keynote where we'll explore the future of cloud native technologies and how they are shaping the industry.",
-      "speakerIds": ["monica-colangelo","maurizio-argoneto","speaker-1"],
+      "speakerIds": ["speaker-1"],
       "isFullWidth": true
     },
     {
