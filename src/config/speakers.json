@@ -29,6 +29,86 @@
       "image": "/images/favicon.png",
       "linkedin": "#",
       "bio": "Speaker details will be announced soon."
+    },
+    {
+      "id": "mauro-morales",
+      "name": "Mauro Morales",
+      "role": "Open Source Developer Specialist",
+      "company": "Spectro Cloud",
+      "companyUrl": "https://www.spectrocloud.com/",
+      "image": "/images/speakers/mauro-morales.jpg",
+      "linkedin": "https://www.linkedin.com/in/mauromorales/",
+      "bio": "Hi, I’m Mauro Morales! Born and raised in Guatemala, my tech journey has taken me across the globe—from the scenic Alps of Switzerland to the bustling streets of Berlin, and now to the charming cobblestone lanes of Ghent, Belgium. Since the mid-2000s, I’ve been coding, creating, and sharing my passion for technology. I work as an Open-Source Developer Specialist at Spectro Cloud, where I help shape Kairos, a groundbreaking operating system for edge computing. You’ll often find me at events like FOSDEM, KubeCon, and Open-Source Summit, geeking out about all things tech and connecting with fellow enthusiasts. I also serve as co-chair of the CNCF Special-Purpose Operating Systems Working Group, collaborating with brilliant minds to reimagine what’s possible in the OS space. When I’m not coding or presenting, you’ll most likely find me lacing up my running shoes and hitting the streets of Ghent."
+    },
+    {
+      "id": "ettore-di-giacinto",
+      "name": "Ettore Di Giacinto",
+      "role": "Head of Open source",
+      "company": "Spectro Cloud",
+      "companyUrl": "https://www.spectrocloud.com/",
+      "image": "/images/speakers/ettore-di-giacinto.jpg",
+      "linkedin": "https://www.linkedin.com/in/ettore-di-giacinto-211a4166/",
+      "bio": "Ettore is a long-time Open Source hacker and hacktivist.\nEttore has been in the Open Source community for more than 16 years.\nHe is now a retired Gentoo developer, Sabayon Linux Lead and contributor to several FOSS projects among openSUSE, Cloud Foundry, openQA, and more\nPreviously he also worked at SUSE where he was leading the Elemental team.\nHe is a Golang and Kubernetes enthusiast with a strong Linux background skillset. Ettore is the LocalAI creator and maintainer.\n\nCan find him as @mudler on Github and @mudler_it on Twitter"
+    },
+    {
+      "id": "dimitris-karakasilis",
+      "name": "Dimitris Karakasilis",
+      "role": "Open Source Principal Software Engineer",
+      "company": "Spectro Cloud",
+      "companyUrl": "https://www.spectrocloud.com/",
+      "image": "/images/speakers/dimitris-karakasilis.jpg",
+      "linkedin": "https://www.linkedin.com/in/jimmykarily/",
+      "bio": "With over 20 years of experience as a developer, I'm deeply passionate about open source technologies. I've worked with startups and enterprises alike, using open source solutions to tackle real-world problems. Currently, my focus is on edge computing and Kubernetes. I'm excited to share my knowledge with other people."
+    },
+    {
+      "id": "jonathan-battiato",
+      "name": "Jonathan Battiato",
+      "role": "EDB Senior SDE | DoKC Ambassador",
+      "company": "EDB",
+      "companyUrl": "https://www.enterprisedb.com/",
+      "image": "/images/speakers/jonathan-battiato.png",
+      "linkedin": "https://www.linkedin.com/in/jonathanbattiato/",
+      "bio": "Jonathan Battiato started as a Linux SysAdmin, and became a PostgreSQL administrator and benchmark specialist. Since 2019 he joined the CloudNative Team, working as a QA and automation engineer for CloudNativePG on K8S environments, having earned the CKA and CKS certifications. In 2024 he became a DoKC Ambassador, and organizer of DoKC Tuscany Meetups. In his private life he prefers spending time on DIY projects, playing music, video games, and watching science fiction movies."
+    },
+    {
+      "id": "jonathan-gonzalez-v",
+      "name": "Jonathan Gonzalez V.",
+      "role": "Senior Kubernetes Developer",
+      "company": "EDB",
+      "companyUrl": "https://www.enterprisedb.com/",
+      "image": "/images/speakers/jonathan-gonzalez-v.jpg",
+      "linkedin": "https://www.linkedin.com/in/jagonzalezv/",
+      "bio": "Maintainer of CloudNativePG and passionate for OpenSource and all the tools that has created to help a lot of people to build their dreams."
+    },
+    {
+      "id": "gianluca-mardente",
+      "name": "Gianluca Mardente",
+      "role": "Principal Engineer",
+      "company": "Cisco Systems",
+      "companyUrl": "https://github.com/projectsveltos",
+      "image": "/images/speakers/gianluca-mardente.jpg",
+      "linkedin": "https://www.linkedin.com/in/gianlucamardente/",
+      "bio": "A passionate advocate for automation in Kubernetes environments, Gianluca brings a lot of experience to his role as a Principal Engineer at Cisco Systems. Previously, he built his Kubernetes skills at Tigera, the company behind the open-source Project Calico. Now, he continues to contribute to the open-source community by actively maintaining Projectsveltos, a set of Kubernetes controllers that simplify add-on and application management across multiple clusters.\n\nHis dedication extends beyond Projectsveltos with k8s-cleaner, another Kubernetes controller he maintains. This tool streamlines cluster efficiency by automatically identifying and removing unused or unhealthy resources.\n\nIn his free time, Gianluca enjoys spending time with his family and participating in fantasy soccer, managing two leagues."
+    },
+    {
+      "id": "giulio-puri",
+      "name": "Giulio Puri",
+      "role": "Sr Solutions Engineer",
+      "company": "Sysdig",
+      "companyUrl": "https://sysdig.com/",
+      "image": "/images/speakers/giulio-puri.jpg",
+      "linkedin": "https://www.linkedin.com/in/giuliopuri/",
+      "bio": "Giulio Puri è un Solutions Engineer specializzato in sicurezza informatica e cloud security. Attualmente lavora presso Sysdig, società specializzata in cloud-native security che contribuisce attivamente a progetti open source, come Falco e Stratoshark. Giulio è fortemente impegnato nella diffusione delle best practices di sicurezza negli ambienti Kubernetes e cloud-native, supportando le aziende nell'implementazione e nell'ottimizzazione dei controlli di sicurezza del perimetro cloud-native."
+    },
+    {
+      "id": "andrea-vivaldi",
+      "name": "Andrea Vivaldi",
+      "role": "Sr Customer Solution Architect",
+      "company": "Sysdig",
+      "companyUrl": "https://sysdig.com/",
+      "image": "/images/speakers/andrea-vivaldi.png",
+      "linkedin": "https://www.linkedin.com/in/andreavivaldi/",
+      "bio": "Professionista in ambito Cloud Native con una solida esperienza nel settore. Attualmente lavoro presso Sysdig, un'azienda specializzata in soluzioni di sicurezza e monitoraggio per container e infrastrutture cloud-native. In precedenza, ho collaborato per diversi System Integrator sempre con ruoli relativi alle architetture Cloud Native e DevOps."
     }
   ]
 }

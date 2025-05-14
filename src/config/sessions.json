@@ -11,29 +11,29 @@
     },
     {
       "id": "workshop-morning-1",
-      "title": "Workshop TBA",
+      "title": "Scalable Kubernetes with Hosted Control Planes and Immutable Nodes",
       "type": "workshop",
       "dayId": "workshop-day",
       "timeSlotId": "ws-slot2",
       "trackId": "track1",
       "roomId": "room1",
-      "description": "Details for this workshop will be announced soon. Stay tuned for updates!",
-      "speakerIds": ["speaker-1"],
-      "tags": [],
-      "level": "all"
+      "description": "In this workshop, you'll learn how to deploy Kubernetes clusters using the Hosted Control Plane (HCP) architecture combined with immutable worker nodes, a powerful approach that enhances scalability, reduces control plane resource usage, and strengthens your platform's security posture.\n\nWe'll explore how to achieve this architecture using two CNCF projects:\n\n- Kamaji, to manage lightweight, multi-tenant hosted control planes.\n- Kairos, to build and manage secure, immutable nodes that are GitOps-ready by design.\n\nThrough hands-on work, you'll learn how to generate Kairos artifacts using a web-based UI, configure them to automatically join tenant clusters managed by Kamaji, and lay the foundation for scalable, reproducible Kubernetes infrastructure — from core to edge.",
+      "speakerIds": ["mauro-morales","ettore-di-giacinto","dimitris-karakasilis"],
+      "tags": ["ENG"],
+      "level": "Beginners"
     },
     {
       "id": "workshop-morning-2",
-      "title": "Workshop TBA",
+      "title": "PostgreSQL su Kubernetes con CloudNativePG",
       "type": "workshop",
       "dayId": "workshop-day",
       "timeSlotId": "ws-slot2",
       "trackId": "track2",
       "roomId": "room2",
-      "description": "Details for this workshop will be announced soon. Stay tuned for updates!",
-      "speakerIds": ["speaker-1"],
-      "tags": [],
-      "level": "all"
+      "description": "In questo workshop pratico di 4 ore, i partecipanti impareranno a fare il deploy di un cluster PostgreSQL e a gestirlo in Kubernetes utilizzando CloudNativePG, l’operatore open source nella Sandbox della CNCF. Il corso guiderà passo dopo passo dalla creazione del primo cluster CNPG fino alla configurazione di backup continui e all’implementazione dell’alta disponibilità su più cluster Kubernetes.\n\nI partecipanti impareranno l'utilizzo del plugin di Kubectl per CNPG che semplifica la gestione del cluster, dalla lettura aggregata dei log del cluster, all'esecuzione di comandi imperativi. Durante il corso configureranno il backup utilizzando il plugin di Barman Cloud, per l’archiviazione su object storage, e impareranno a ripristinare un cluster attraverso la Point In Time Recovery. Bonus: monitoraggio.\n\nIl worksho è rivolto a DevOps, SRE e sviluppatori che desiderano gestire PostgreSQL su tutte le distribuzioni Kubernete supportate.\n\nRequisiti: ogni partecipante dovrà seguire la guida all'installazione sul proprio laptop dei requisiti nel README del progetto cnpg-playground: https://github.com/cloudnative-pg/cnpg-playground/?tab=readme-ov-file#prerequisites",
+      "speakerIds": ["jonathan-battiato", "jonathan-gonzalez-v"],
+      "tags": ["ITA"],
+      "level": "Intermediate"
     },
     {
       "id": "workshop-lunch",
@@ -46,29 +46,29 @@
     },
     {
       "id": "workshop-afternoon-1",
-      "title": "Workshop TBA",
+      "title": "Orchestrating Add-ons and Applications Across Multi-Cluster Kubernetes Environments with Sveltos",
       "type": "workshop",
       "dayId": "workshop-day",
       "timeSlotId": "ws-slot4",
       "trackId": "track1",
       "roomId": "room1",
-      "description": "Details for this workshop will be announced soon. Stay tuned for updates!",
-      "speakerIds": ["speaker-1"],
-      "tags": [],
-      "level": "all"
+      "description": "Managing Kubernetes add-ons and applications across multiple clusters is complex and error-prone. As environments scale, ensuring consistency, automating deployments, and handling cluster-specific configurations becomes increasingly difficult.\nSveltos is a lightweight, Kubernetes-native solution that simplifies the management of add-ons and applications across any number of clusters. It lets you define desired configurations declaratively and automatically applies them to target clusters based on labels selectors. With Sveltos, platform teams can ensure consistent, policy-driven deployments while reducing manual effort and minimizing drift across environments.",
+      "speakerIds": ["gianluca-mardente"],
+      "tags": ["ENG"],
+      "level": "Intermediate"
     },
     {
       "id": "workshop-afternoon-2",
-      "title": "Workshop TBA",
+      "title": "Dagli Alert all’Azione: costruire una Cloud-Native Security efficace con Falco, Feeds & Talon",
       "type": "workshop",
       "dayId": "workshop-day",
       "timeSlotId": "ws-slot4",
       "trackId": "track2",
       "roomId": "room2",
-      "description": "Details for this workshop will be announced soon. Stay tuned for updates!",
-      "speakerIds": ["speaker-1"],
+      "description": "In questo workshop pratico esploreremo l’intero ecosistema Falco — dall’installazione via Helm all’orchestrazione della incident response con Talon — per dimostrare come creare una sicurezza cloud-native robusta usando soltanto strumenti open-source.\nAgenda:\n1) Introduzione e setup – installazione di Falco e degli altri componenti.\n2) Atomic Red Team in azione – tre simulazioni guidate (File Deletion, Container Escape, Boot/Logon Persistence) per osservare gli alert in tempo reale.\n3) Falco Feeds by Sysdig – gestione delle regole con falcoctl, aggiornamenti quotidiani e riduzione dei falsi positivi.\n4) Falco Talon – configurazione del motore di risposta automatizzata per reagire immediatamente agli eventi rilevati.\n\nUn laboratorio interamente hands-on, pensato per SRE, DevOps e Security Engineer che vogliono integrare la sicurezza nel cuore dei propri flussi cloud-native: dalla prima regola alla prima remediation automatica.",
+      "speakerIds": ["giulio-puri", "andrea-vivaldi"],
       "tags": [],
-      "level": "all"
+      "level": "Intermediate"
     },
     {
       "id": "workshop-networking",
