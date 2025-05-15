@@ -17,6 +17,7 @@ import whiteduck from 'icons/whiteduck.png';
 import ReadHat from 'icons/red-hat.svg';
 import aws from 'icons/aws.svg';
 import PerfectScale from 'icons/PerfectScale.png';
+import vCluster from 'icons/vcluster.svg';
 import './sponsor.css';
 
 const CARD_STYLES = 'w-[200px] h-[100px]';
@@ -117,6 +118,14 @@ const sponsorsList = [
     name: 'Steadforce',
     icon: Steadforce,
     url: 'https://www.steadforce.com/',
+    tier: 'silver',
+    logoWidth: 150,
+    logoHeight: 100,
+  },
+  {
+    name: 'vCluster',
+    icon: vCluster,
+    url: 'https://www.vcluster.com/',
     tier: 'silver',
     logoWidth: 150,
     logoHeight: 100,
