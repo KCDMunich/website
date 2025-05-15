@@ -341,6 +341,20 @@
         "url": "https://seacom.it/",
         "tier": "main",
         "active": true
+      },
+      {
+        "name": "Archeido",
+        "icon": "/images/sponsors/archeido.png",
+        "url": "https://archeido.com/",
+        "tier": "gold",
+        "active": true
+      },
+      {
+        "name": "Aruba Cloud",
+        "icon": "/images/sponsors/aruba-cloud.png",
+        "url": "https://www.aruba.it/",
+        "tier": "gold",
+        "active": true
       }
     ],
     "tiers": {
