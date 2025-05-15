@@ -1,7 +1,6 @@
 "use client"
 import { useState } from "react"
 import Link from "next/link"
-import "./agenda.css"
 
 export default function AgendaView({ eventStructure, sessions, speakers }) {
     // Default to conference day
@@ -37,10 +36,10 @@ export default function AgendaView({ eventStructure, sessions, speakers }) {
     })
 
     return (
-        <div className="agenda-container">
-            <div className="agenda-header">
-                <h1 className="agenda-title">Conference Agenda</h1>
-                <p className="agenda-description">Explore our schedule of talks, workshops, and networking opportunities.</p>
+        <div className="container">
+            <div className="page-header">
+                <h1 className="page-title">Conference Agenda</h1>
+                <p className="page-description">Explore our schedule of talks, workshops, and networking opportunities.</p>
 
                 {/* Day selector */}
                 <div className="day-selector">
@@ -65,34 +64,18 @@ export default function AgendaView({ eventStructure, sessions, speakers }) {
                 {/* Masters of Ceremony */}
                 {dayMCs.length > 0 && (
                     <div className="day-mcs">
-                        <h2 className="mcs-title">Masters of Ceremony</h2>
-                        <div className="mcs-list">
+                        <h2 className="section-title">Masters of Ceremony</h2>
+                        <div className="speakers-grid">
                             {dayMCs.map((mc) => (
-                                <Link href={`/speakers/${mc.id}`} key={mc.id} className="mc-card">
-                                    <div className="mc-image-container">
-                                        <img src={mc.image || "/images/team/profile.webp"} alt={mc.name} className="mc-image" />
-                                    </div>
-                                    <div className="mc-info">
-                                        <h3 className="mc-name">{mc.name}</h3>
-                                        <p className="mc-role">{mc.role}</p>
-                                        {mc.company && (
-                                            <p className="mc-company">
-                                                {mc.companyUrl ? (
-                                                    <span
-                                                        onClick={(e) => {
-                                                            e.stopPropagation()
-                                                            window.open(mc.companyUrl, "_blank", "noopener,noreferrer")
-                                                        }}
-                                                        className="company-link"
-                                                        style={{ cursor: "pointer" }}
-                                                    >
-                            {mc.company}
-                          </span>
-                                                ) : (
-                                                    mc.company
-                                                )}
-                                            </p>
-                                        )}
+                                <Link href={`/speakers/${mc.id}`} key={mc.id} className="card speaker-card">
+                                    <div className="card-body speaker-card-content">
+                                        <div className="speaker-image-wrapper">
+                                            <img src={mc.image || "/images/team/profile.webp"} alt={mc.name} className="speaker-image" />
+                                            <div className="mc-badge">MC</div>
+                                        </div>
+                                        <h3 className="speaker-name">{mc.name}</h3>
+                                        <p className="speaker-role">{mc.role}</p>
+                                        {mc.company && <p className="speaker-company">{mc.company}</p>}
                                     </div>
                                 </Link>
                             ))}
@@ -101,12 +84,31 @@ export default function AgendaView({ eventStructure, sessions, speakers }) {
                 )}
             </div>
 
-            <div className="agenda-tracks-header">
-                <div className="time-column">Time</div>
+            <div
+                className="agenda-tracks-header"
+                style={{
+                    display: "grid",
+                    gridTemplateColumns: "120px repeat(auto-fit, minmax(200px, 1fr))",
+                    gap: "1rem",
+                    marginBottom: "1rem",
+                }}
+            >
+                <div style={{ fontWeight: "600", color: "#2d3748", padding: "1rem 0" }}>Time</div>
                 {eventStructure.tracks.map((track) => (
-                    <div key={track.id} className="track-column">
-                        <h3 className="track-name">{track.name}</h3>
-                        <p className="track-room">{trackRoomMap[track.id]?.roomName}</p>
+                    <div
+                        key={track.id}
+                        style={{
+                            textAlign: "center",
+                            padding: "1rem",
+                            backgroundColor: "#f7fafc",
+                            borderRadius: "8px",
+                            border: "1px solid #e2e8f0",
+                        }}
+                    >
+                        <h3 style={{ fontSize: "1.1rem", fontWeight: "600", marginBottom: "0.5rem", color: "#2d3748" }}>
+                            {track.name}
+                        </h3>
+                        <p style={{ fontSize: "0.9rem", color: "#718096" }}>{trackRoomMap[track.id]?.roomName}</p>
                     </div>
                 ))}
             </div>
@@ -117,11 +119,11 @@ export default function AgendaView({ eventStructure, sessions, speakers }) {
                     const hasFullWidthSession = slotSessions.some((session) => session.isFullWidth)
 
                     return (
-                        <div key={timeSlot.id} className="time-slot">
+                        <div key={timeSlot.id} className="agenda-grid" style={{ marginBottom: "1.5rem" }}>
                             <div className="time-label">{timeSlot.label}</div>
 
                             {hasFullWidthSession ? (
-                                <div className="full-width-session">
+                                <div style={{ gridColumn: "2 / -1" }}>
                                     {slotSessions.map((session) => {
                                         // Find speakers for this session
                                         const sessionSpeakers = session.speakerIds
@@ -132,22 +134,28 @@ export default function AgendaView({ eventStructure, sessions, speakers }) {
                                             <Link
                                                 href={session.type === "break" ? "#" : `/agenda/${session.id}`}
                                                 key={session.id}
-                                                className={`session-card full-width ${session.type}`}
+                                                className={`session-card ${session.type}`}
                                                 onClick={(e) => session.type === "break" && e.preventDefault()}
                                             >
                                                 <h3 className="session-title">{session.title}</h3>
                                                 {session.description && <p className="session-description">{session.description}</p>}
 
                                                 {sessionSpeakers.length > 0 && (
-                                                    <div className="session-speakers">
+                                                    <div style={{ marginTop: "auto" }}>
                                                         {sessionSpeakers.map((speaker) => (
                                                             <div key={speaker.id} className="speaker-info">
-                                                                <div className="speaker-image">
-                                                                    <img src={speaker.image || "/placeholder.svg"} alt={speaker.name} />
-                                                                </div>
-                                                                <div className="speaker-details">
-                                                                    <p className="speaker-name">{speaker.name}</p>
-                                                                    <p className="speaker-role">{speaker.role}</p>
+                                                                <img
+                                                                    src={speaker.image || "/placeholder.svg"}
+                                                                    alt={speaker.name}
+                                                                    className="speaker-info-image"
+                                                                />
+                                                                <div>
+                                                                    <p className="speaker-name" style={{ fontSize: "0.85rem", margin: "0" }}>
+                                                                        {speaker.name}
+                                                                    </p>
+                                                                    <p className="speaker-role" style={{ fontSize: "0.75rem", margin: "0" }}>
+                                                                        {speaker.role}
+                                                                    </p>
                                                                 </div>
                                                             </div>
                                                         ))}
@@ -164,8 +172,15 @@ export default function AgendaView({ eventStructure, sessions, speakers }) {
 
                                         if (!trackSession) {
                                             return (
-                                                <div key={track.id} className="track-slot">
-                                                    <div className="empty-slot"></div>
+                                                <div key={track.id} style={{ minHeight: "150px" }}>
+                                                    <div
+                                                        style={{
+                                                            height: "100%",
+                                                            backgroundColor: "#f7fafc",
+                                                            borderRadius: "8px",
+                                                            border: "1px dashed #cbd5e0",
+                                                        }}
+                                                    ></div>
                                                 </div>
                                             )
                                         }
@@ -176,20 +191,26 @@ export default function AgendaView({ eventStructure, sessions, speakers }) {
                                             : []
 
                                         return (
-                                            <div key={track.id} className="track-slot">
+                                            <div key={track.id}>
                                                 <Link href={`/agenda/${trackSession.id}`} className={`session-card ${trackSession.type}`}>
                                                     <h3 className="session-title">{trackSession.title}</h3>
 
                                                     {sessionSpeakers.length > 0 && (
-                                                        <div className="session-speakers">
+                                                        <div style={{ marginTop: "auto" }}>
                                                             {sessionSpeakers.map((speaker) => (
                                                                 <div key={speaker.id} className="speaker-info">
-                                                                    <div className="speaker-image">
-                                                                        <img src={speaker.image || "/placeholder.svg"} alt={speaker.name} />
-                                                                    </div>
-                                                                    <div className="speaker-details">
-                                                                        <p className="speaker-name">{speaker.name}</p>
-                                                                        <p className="speaker-role">{speaker.role}</p>
+                                                                    <img
+                                                                        src={speaker.image || "/placeholder.svg"}
+                                                                        alt={speaker.name}
+                                                                        className="speaker-info-image"
+                                                                    />
+                                                                    <div>
+                                                                        <p className="speaker-name" style={{ fontSize: "0.85rem", margin: "0" }}>
+                                                                            {speaker.name}
+                                                                        </p>
+                                                                        <p className="speaker-role" style={{ fontSize: "0.75rem", margin: "0" }}>
+                                                                            {speaker.role}
+                                                                        </p>
                                                                     </div>
                                                                 </div>
                                                             ))}
@@ -197,9 +218,9 @@ export default function AgendaView({ eventStructure, sessions, speakers }) {
                                                     )}
 
                                                     {trackSession.tags && (
-                                                        <div className="session-tags">
+                                                        <div className="tags-list" style={{ marginTop: "1rem" }}>
                                                             {trackSession.tags.slice(0, 2).map((tag) => (
-                                                                <span key={tag} className="session-tag">
+                                                                <span key={tag} className="tag">
                                   {tag}
                                 </span>
                                                             ))}

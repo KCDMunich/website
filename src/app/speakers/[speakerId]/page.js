@@ -1,11 +1,11 @@
-import Navbar from "@/components/navbar/navbar"
-import Footer from "@/components/footer/footer"
 import SpeakerDetail from "@/components/agenda/speaker-detail"
-import config from "@/config/website.json"
 import eventStructure from "@/config/event-structure.json"
 import sessions from "@/config/sessions.json"
 import speakers from "@/config/speakers.json"
 import { notFound } from "next/navigation"
+import Navbar from "@/components/navbar/navbar";
+import Footer from "@/components/footer/footer";
+import config from "@/config/website.json"
 
 // This function is required for static site generation with dynamic routes
 export function generateStaticParams() {
@@ -109,8 +109,8 @@ export default async function SpeakerPage({ params }) {
 
     return (
         <>
-            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }} />
             <Navbar data={config} additionalClassName="!bg-white" homepage="/" />
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }} />
             <SpeakerDetail speaker={speakerWithMCInfo} sessions={enhancedSessions} />
             <Footer data={config} />
         </>

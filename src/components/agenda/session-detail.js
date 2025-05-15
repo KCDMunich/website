@@ -1,6 +1,5 @@
 import Link from "next/link"
 import { Calendar, Clock, MapPin, Tag } from "lucide-react"
-import "./session-detail.css"
 
 export default function SessionDetail({ session }) {
     // Format date
@@ -33,14 +32,14 @@ export default function SessionDetail({ session }) {
     const timeString = startTime && endTime ? `${startTime} - ${endTime}` : "Time TBA"
 
     return (
-        <div className="session-detail-container">
-            <div className="session-header">
-                <div className={`session-type ${session.type}`}>
+        <div className="container">
+            <div className="detail-header">
+                <div className={`session-type-badge ${session.type}`}>
                     {session.type.charAt(0).toUpperCase() + session.type.slice(1)}
                 </div>
-                <h1 className="session-title">{session.title}</h1>
+                <h1 className="detail-title">{session.title}</h1>
 
-                <div className="session-meta">
+                <div className="detail-meta">
                     <div className="meta-item">
                         <Calendar size={18} />
                         <span>{sessionDate}</span>
@@ -67,20 +66,20 @@ export default function SessionDetail({ session }) {
                 </div>
             </div>
 
-            <div className="session-content">
+            <div className="detail-content">
                 {session.description && (
-                    <div className="session-description">
+                    <div style={{ marginBottom: "2rem" }}>
                         <h2 className="section-title">Description</h2>
-                        <p>{session.description}</p>
+                        <p style={{ fontSize: "1.05rem", color: "#4a5568", lineHeight: "1.7" }}>{session.description}</p>
                     </div>
                 )}
 
                 {session.tags && session.tags.length > 0 && (
-                    <div className="session-tags">
+                    <div style={{ marginBottom: "2rem" }}>
                         <h2 className="section-title">Topics</h2>
                         <div className="tags-list">
                             {session.tags.map((tag) => (
-                                <span key={tag} className="session-tag">
+                                <span key={tag} className="tag" style={{ fontSize: "0.9rem", padding: "0.4rem 0.8rem" }}>
                   {tag}
                 </span>
                             ))}
@@ -89,24 +88,39 @@ export default function SessionDetail({ session }) {
                 )}
 
                 {session.speakers && session.speakers.length > 0 && (
-                    <div className="session-speakers">
+                    <div>
                         <h2 className="section-title">{session.speakers.length > 1 ? "Speakers" : "Speaker"}</h2>
 
-                        <div className="speakers-list">
+                        <div className="speakers-grid">
                             {session.speakers.map((speaker) => (
-                                <Link href={`/speakers/${speaker.id}`} key={speaker.id} className="speaker-card">
-                                    <div className="speaker-image-container">
-                                        <img
-                                            src={speaker.image || "/images/team/profile.webp"}
-                                            alt={speaker.name}
-                                            className="speaker-image"
-                                        />
-                                    </div>
+                                <Link href={`/speakers/${speaker.id}`} key={speaker.id} className="card">
+                                    <div className="card-body" style={{ display: "flex", alignItems: "center" }}>
+                                        <div
+                                            style={{
+                                                width: "60px",
+                                                height: "60px",
+                                                borderRadius: "50%",
+                                                overflow: "hidden",
+                                                marginRight: "1rem",
+                                                border: "2px solid white",
+                                                boxShadow: "0 2px 4px rgba(0,0,0,0.1)",
+                                                flexShrink: "0",
+                                            }}
+                                        >
+                                            <img
+                                                src={speaker.image || "/images/team/profile.webp"}
+                                                alt={speaker.name}
+                                                style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                                            />
+                                        </div>
 
-                                    <div className="speaker-info">
-                                        <h3 className="speaker-name">{speaker.name}</h3>
-                                        <p className="speaker-role">{speaker.role}</p>
-                                        {speaker.company && <p className="speaker-company">{speaker.company}</p>}
+                                        <div>
+                                            <h3 className="speaker-name" style={{ fontSize: "1.1rem" }}>
+                                                {speaker.name}
+                                            </h3>
+                                            <p className="speaker-role">{speaker.role}</p>
+                                            {speaker.company && <p className="speaker-company">{speaker.company}</p>}
+                                        </div>
                                     </div>
                                 </Link>
                             ))}

@@ -1,6 +1,5 @@
 import Link from "next/link"
 import { Calendar, Clock, MapPin, Linkedin } from "lucide-react"
-import "./speaker-detail.css"
 
 export default function SpeakerDetail({ speaker, sessions }) {
     // Sort sessions by start time
@@ -11,25 +10,42 @@ export default function SpeakerDetail({ speaker, sessions }) {
     })
 
     return (
-        <div className="speaker-detail-container">
-            <div className="speaker-profile">
-                <div className="speaker-header">
-                    <div className="speaker-image-container">
-                        <img src={speaker.image || "/images/team/profile.webp"} alt={speaker.name} className="speaker-image" />
+        <div className="container">
+            <div className="card">
+                <div className="card-header" style={{ display: "flex", alignItems: "center", padding: "2rem" }}>
+                    <div style={{ position: "relative", marginRight: "2rem" }}>
+                        <img
+                            src={speaker.image || "/images/team/profile.webp"}
+                            alt={speaker.name}
+                            style={{
+                                width: "100px",
+                                height: "100px",
+                                borderRadius: "50%",
+                                objectFit: "cover",
+                                border: "3px solid white",
+                                boxShadow: "0 2px 4px rgba(0,0,0,0.1)",
+                            }}
+                        />
                         {speaker.isMC && (
                             <div className="mc-badge" title={`Master of Ceremony for ${speaker.mcDay}`}>
                                 MC
                             </div>
                         )}
                     </div>
-
-                    <div className="speaker-info">
-                        <h1 className="speaker-name">{speaker.name}</h1>
+                    <div>
+                        <h1 className="detail-title" style={{ marginBottom: "0.5rem" }}>
+                            {speaker.name}
+                        </h1>
                         <p className="speaker-role">{speaker.role}</p>
                         {speaker.company && (
                             <p className="speaker-company">
                                 {speaker.companyUrl ? (
-                                    <a href={speaker.companyUrl} target="_blank" rel="noopener noreferrer" className="company-link">
+                                    <a
+                                        href={speaker.companyUrl}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        style={{ color: "#4299e1", textDecoration: "none" }}
+                                    >
                                         {speaker.company}
                                     </a>
                                 ) : (
@@ -38,16 +54,17 @@ export default function SpeakerDetail({ speaker, sessions }) {
                             </p>
                         )}
 
-                        <div className="speaker-social">
+                        <div style={{ display: "flex", gap: "0.75rem", marginTop: "1rem" }}>
                             {speaker.linkedin && (
                                 <a
                                     href={speaker.linkedin}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="social-link linkedin"
+                                    className="btn btn-secondary"
                                     aria-label={`${speaker.name}'s LinkedIn profile`}
+                                    style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}
                                 >
-                                    <Linkedin size={20} />
+                                    <Linkedin size={18} />
                                     <span>LinkedIn</span>
                                 </a>
                             )}
@@ -56,22 +73,24 @@ export default function SpeakerDetail({ speaker, sessions }) {
                 </div>
 
                 {speaker.bio && (
-                    <div className="speaker-bio">
-                        <h2 className="bio-title">About</h2>
-                        <p className="bio-text">{speaker.bio}</p>
+                    <div className="card-body">
+                        <h2 className="section-title">About</h2>
+                        <p style={{ fontSize: "1.05rem", color: "#4a5568", lineHeight: "1.7", whiteSpace: "pre-line" }}>
+                            {speaker.bio}
+                        </p>
                     </div>
                 )}
             </div>
 
             {sortedSessions.length > 0 && (
-                <div className="speaker-sessions">
-                    <h2 className="sessions-title">
+                <div style={{ marginTop: "3rem" }}>
+                    <h2 className="section-title">
                         {speaker.isMC
                             ? `${speaker.name} is a Master of Ceremony for ${speaker.mcDay}`
                             : `Sessions by ${speaker.name}`}
                     </h2>
 
-                    <div className="sessions-grid">
+                    <div className="speakers-grid">
                         {sortedSessions.map((session) => {
                             // Format date
                             const sessionDate = session.startTime
@@ -103,43 +122,45 @@ export default function SpeakerDetail({ speaker, sessions }) {
                             const timeString = startTime && endTime ? `${startTime} - ${endTime}` : "Time TBA"
 
                             return (
-                                <Link href={`/agenda/${session.id}`} key={session.id} className="session-card">
-                                    <div className={`session-type ${session.type}`}>
-                                        {session.type.charAt(0).toUpperCase() + session.type.slice(1)}
-                                    </div>
-
-                                    <h3 className="session-title">{session.title}</h3>
-
-                                    {session.description && <p className="session-description">{session.description}</p>}
-
-                                    <div className="session-details">
-                                        <div className="detail-item">
-                                            <Calendar size={16} />
-                                            <span>{sessionDate}</span>
+                                <Link href={`/agenda/${session.id}`} key={session.id} className="card">
+                                    <div className="card-body">
+                                        <div className="session-type-badge" className={`session-type-badge ${session.type}`}>
+                                            {session.type.charAt(0).toUpperCase() + session.type.slice(1)}
                                         </div>
 
-                                        <div className="detail-item">
-                                            <Clock size={16} />
-                                            <span>{timeString}</span>
+                                        <h3 className="session-title">{session.title}</h3>
+
+                                        {session.description && <p className="session-description">{session.description}</p>}
+
+                                        <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem", marginTop: "1.5rem" }}>
+                                            <div className="meta-item">
+                                                <Calendar size={16} />
+                                                <span>{sessionDate}</span>
+                                            </div>
+
+                                            <div className="meta-item">
+                                                <Clock size={16} />
+                                                <span>{timeString}</span>
+                                            </div>
+
+                                            {session.room && (
+                                                <div className="meta-item">
+                                                    <MapPin size={16} />
+                                                    <span>{session.room}</span>
+                                                </div>
+                                            )}
                                         </div>
 
-                                        {session.room && (
-                                            <div className="detail-item">
-                                                <MapPin size={16} />
-                                                <span>{session.room}</span>
+                                        {session.tags && session.tags.length > 0 && (
+                                            <div className="tags-list" style={{ marginTop: "1rem" }}>
+                                                {session.tags.map((tag) => (
+                                                    <span key={tag} className="tag">
+                            {tag}
+                          </span>
+                                                ))}
                                             </div>
                                         )}
                                     </div>
-
-                                    {session.tags && session.tags.length > 0 && (
-                                        <div className="session-tags">
-                                            {session.tags.map((tag) => (
-                                                <span key={tag} className="session-tag">
-                          {tag}
-                        </span>
-                                            ))}
-                                        </div>
-                                    )}
                                 </Link>
                             )
                         })}

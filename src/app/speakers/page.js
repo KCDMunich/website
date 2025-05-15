@@ -1,9 +1,9 @@
-import Navbar from "@/components/navbar/navbar"
-import Footer from "@/components/footer/footer"
 import SpeakersList from "@/components/speakers/speakers-list"
-import config from "@/config/website.json"
 import eventStructure from "@/config/event-structure.json"
 import speakers from "@/config/speakers.json"
+import Navbar from "@/components/navbar/navbar";
+import Footer from "@/components/footer/footer";
+import config from "@/config/website.json"
 
 export const metadata = {
     title: "Cloud Native Days Italy 2025 - Speakers",
@@ -65,8 +65,8 @@ export default function SpeakersPage() {
 
     return (
         <>
-            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }} />
             <Navbar data={config} additionalClassName="!bg-white" homepage="/" />
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }} />
             <SpeakersList speakers={speakersWithMCInfo} />
             <Footer data={config} />
         </>

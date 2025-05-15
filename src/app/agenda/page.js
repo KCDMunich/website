@@ -1,10 +1,10 @@
-import Navbar from "@/components/navbar/navbar"
-import Footer from "@/components/footer/footer"
 import AgendaView from "@/components/agenda/agenda-view"
 import config from "@/config/website.json"
 import eventStructure from "@/config/event-structure.json"
 import sessions from "@/config/sessions.json"
 import speakers from "@/config/speakers.json"
+import Navbar from "@/components/navbar/navbar";
+import Footer from "@/components/footer/footer";
 
 export const metadata = {
     title: "Cloud Native Days Italy 2025 - Agenda",
@@ -73,8 +73,8 @@ export default function AgendaPage() {
 
     return (
         <>
-            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }} />
             <Navbar data={config} additionalClassName="!bg-white" homepage="/" />
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }} />
             <AgendaView eventStructure={eventStructure} sessions={sessions.sessions} speakers={speakers.speakers} />
             <Footer data={config} />
         </>
