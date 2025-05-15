@@ -67,7 +67,7 @@
       "roomId": "room2",
       "description": "In questo workshop pratico esploreremo l’intero ecosistema Falco — dall’installazione via Helm all’orchestrazione della incident response con Talon — per dimostrare come creare una sicurezza cloud-native robusta usando soltanto strumenti open-source.\nAgenda:\n1) Introduzione e setup – installazione di Falco e degli altri componenti.\n2) Atomic Red Team in azione – tre simulazioni guidate (File Deletion, Container Escape, Boot/Logon Persistence) per osservare gli alert in tempo reale.\n3) Falco Feeds by Sysdig – gestione delle regole con falcoctl, aggiornamenti quotidiani e riduzione dei falsi positivi.\n4) Falco Talon – configurazione del motore di risposta automatizzata per reagire immediatamente agli eventi rilevati.\n\nUn laboratorio interamente hands-on, pensato per SRE, DevOps e Security Engineer che vogliono integrare la sicurezza nel cuore dei propri flussi cloud-native: dalla prima regola alla prima remediation automatica.",
       "speakerIds": ["giulio-puri", "andrea-vivaldi"],
-      "tags": [],
+      "tags": ["ITA"],
       "level": "Intermediate"
     },
     {
