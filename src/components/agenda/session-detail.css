@@ -151,13 +151,10 @@
     border-radius: 12px;
     text-decoration: none;
     color: inherit;
-    transition: all 0.3s ease;
     border: 1px solid #e2e8f0;
 }
 
 .speaker-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.05);
     background-color: white;
     border-color: #90cdf4;
 }
@@ -216,12 +213,10 @@
     font-size: 1rem;
     font-weight: 500;
     text-decoration: none;
-    transition: all 0.2s ease;
 }
 
 .back-link:hover {
     background-color: #e2e8f0;
-    transform: translateY(-2px);
 }
 
 @media (max-width: 768px) {

@@ -43,21 +43,19 @@
     margin-bottom: 3rem;
 }
 
+/* Semplificare le transizioni e gli effetti hover */
 .speaker-card {
     display: flex;
     flex-direction: column;
     border-radius: 12px;
     overflow: hidden;
     background-color: white;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
     border: 1px solid #e2e8f0;
     height: 100%;
 }
 
 .speaker-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
     border-color: #90cdf4;
 }
 
@@ -81,7 +79,7 @@
     border-radius: 50%;
     object-fit: cover;
     border: 3px solid white;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .mc-badge {
@@ -140,14 +138,12 @@
     border-radius: 50%;
     background-color: #f7fafc;
     color: #4a5568;
-    transition: all 0.2s ease;
     border: 1px solid #e2e8f0;
 }
 
 .social-icon:hover {
-    background-color: #4299e1;
-    color: white;
-    transform: translateY(-2px);
+    background-color: #edf2f7;
+    color: #4299e1;
 }
 
 .speaker-tags {
@@ -183,13 +179,11 @@
     font-size: 0.9rem;
     font-weight: 600;
     text-decoration: none;
-    transition: all 0.2s ease;
     width: 100%;
 }
 
 .view-profile:hover {
     background-color: #bee3f8;
-    transform: translateY(-2px);
 }
 
 .coming-soon-section {

@@ -50,8 +50,7 @@
     font-weight: 600;
     font-size: 0.7rem;
     box-shadow: 0 2px 4px rgba(66, 153, 225, 0.3);
-    z-index: 100;
-    overflow: visible;
+    z-index: 1;
 }
 
 .speaker-info {
@@ -71,7 +70,6 @@
     color: #718096;
     margin-bottom: 0.5rem;
 }
-
 
 .speaker-company {
     font-size: 1rem;
@@ -107,17 +105,14 @@
     padding: 0.4rem 0.8rem;
     border-radius: 6px;
     background-color: #edf2f7;
-    transition: all 0.2s ease;
 }
 
 .social-link:hover {
     background-color: #e2e8f0;
-    transform: translateY(-2px);
 }
 
 .linkedin:hover {
-    background-color: #0077b5;
-    color: white;
+    color: #0077b5;
 }
 
 .speaker-bio {
@@ -161,18 +156,15 @@
     padding: 1.5rem;
     background-color: white;
     border-radius: 12px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
     text-decoration: none;
     color: inherit;
-    transition: all 0.3s ease;
     border: 1px solid #e2e8f0;
     position: relative;
     overflow: hidden;
 }
 
 .session-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.1);
     border-color: #90cdf4;
 }
 
@@ -267,12 +259,10 @@
     font-size: 1rem;
     font-weight: 500;
     text-decoration: none;
-    transition: all 0.2s ease;
 }
 
 .back-link:hover {
     background-color: #e2e8f0;
-    transform: translateY(-2px);
 }
 
 @media (max-width: 768px) {
@@ -301,3 +291,4 @@
         grid-template-columns: 1fr;
     }
 }
+
