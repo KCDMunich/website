@@ -355,6 +355,69 @@
         "url": "https://www.cloud.it",
         "tier": "gold",
         "active": true
+      },
+      {
+        "name": "Codemotion",
+        "icon": "/images/sponsors/partner/codemotion.png",
+        "url": "#",
+        "tier": "partner",
+        "active": true
+      },
+      {
+        "name": "Firenze.DEV",
+        "icon": "/images/sponsors/partner/firenzedev.png",
+        "url": "#",
+        "tier": "partner",
+        "active": true
+      },
+      {
+        "name": "GDG Campobasso",
+        "icon": "/images/sponsors/partner/gdgcampobasso.jpg",
+        "url": "#",
+        "tier": "partner",
+        "active": true
+      },
+      {
+        "name": "Kube Events",
+        "icon": "/images/sponsors/partner/kubeevents.png",
+        "url": "#",
+        "tier": "partner",
+        "active": true
+      },
+      {
+        "name": "Italia OpenSource",
+        "icon": "/images/sponsors/partner/italia-opensource.png",
+        "url": "#",
+        "tier": "partner",
+        "active": true
+      },
+      {
+        "name": "PLUG",
+        "icon": "/images/sponsors/partner/plug.png",
+        "url": "#",
+        "tier": "partner",
+        "active": true
+      },
+      {
+        "name": "EventiTech",
+        "icon": "/images/sponsors/partner/eventitech.png",
+        "url": "#",
+        "tier": "partner",
+        "active": true
+      },
+      {
+        "name": "The Red Code",
+        "icon": "/images/sponsors/partner/theRedCode.png",
+        "url": "#",
+        "tier": "partner",
+        "active": true
+      },
+      {
+        "name": "Xstream DataLab",
+        "icon": "/images/sponsors/partner/XstreamDataLab.png",
+        "url": "#",
+        "tier": "partner",
+        "active": true
       }
     ],
     "tiers": {
