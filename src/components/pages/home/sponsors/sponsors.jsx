@@ -17,7 +17,7 @@ import whiteduck from 'icons/whiteduck.png';
 import ReadHat from 'icons/red-hat.svg';
 import aws from 'icons/aws.svg';
 import PerfectScale from 'icons/PerfectScale.png';
-import vCluster from 'icons/vcluster.svg';
+import vCluster from 'icons/vCluster.svg';
 import './sponsor.css';
 
 const CARD_STYLES = 'w-[200px] h-[100px]';
