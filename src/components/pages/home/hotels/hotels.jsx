@@ -7,7 +7,8 @@ const hotels = [
       'We are pleased to offer reserved rooms for your stay from 20.07.2025 to 22.07.2025. The rate is EUR 100.00 per double room for single use per night, excluding breakfast. Rooms can be booked using the code XXX until 20.06.2025. Cancellations are free until 30.06.2025. After this date, cancellations will incur a charge of 90% of the reservation cost, and non-arrivals will be charged 100%',
     distance: '2 min walk',
     amenities: ['Restaurant'],
-    imageUrl: 'https://hotel-arabellapark.de/wp-content/uploads/2021/09/bw-muc-7-scaled.jpg',
+    imageUrl:
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/319612311.jpg?k=c1a8b2e40962f6b49546a1295f4b9a5fd0d3350aa33d1da269de6cdcb6e86acd&o=&hp=1',
     websiteUrl: 'https://hotel-arabellapark.de/',
   },
   {
