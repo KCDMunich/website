@@ -418,6 +418,20 @@
         "url": "#",
         "tier": "partner",
         "active": true
+      },
+      {
+        "name": "SUSE",
+        "icon": "/images/sponsors/suse.png",
+        "url": "https://www.suse.com/",
+        "tier": "silver",
+        "active": true
+      },
+      {
+        "name": "Mia-Platform",
+        "icon": "/images/sponsors/mia-platform.png",
+        "url": "https://mia-platform.eu/",
+        "tier": "gold",
+        "active": true
       }
     ],
     "tiers": {
