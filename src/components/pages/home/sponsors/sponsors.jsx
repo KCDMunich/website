@@ -18,6 +18,7 @@ import ReadHat from 'icons/red-hat.svg';
 import aws from 'icons/aws.svg';
 import PerfectScale from 'icons/PerfectScale.png';
 import vCluster from 'icons/vCluster.svg';
+import ItSchulungenCom from 'icons/its_logo_2020_tt_2_raw.png';
 import './sponsor.css';
 
 const CARD_STYLES = 'w-[200px] h-[100px]';
@@ -183,7 +184,15 @@ const sponsorsList = [
     icon: Kubeevents,
     url: 'https://kube.events/',
     tier: 'partner',
-    logoWidth: 100,
+    logoWidth: 115,
+    logoHeight: 100,
+  },
+  {
+    name: 'IT-Schulungen.com',
+    icon: ItSchulungenCom,
+    url: 'https://www.it-schulungen.com/',
+    tier: 'partner',
+    logoWidth: 150,
     logoHeight: 100,
   },
   {
