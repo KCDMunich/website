@@ -467,6 +467,20 @@
         "url": "https://gdg.community.dev/gdg-bari/",
         "tier": "partner",
         "active": true
+      },
+      {
+        "name": "GDG Cosenza",
+        "icon": "/images/sponsors/partner/gdgcosenza.jpg",
+        "url": "https://gdg.community.dev/gdg-cosenza/",
+        "tier": "partner",
+        "active": true
+      },
+      {
+        "name": "GrUSP",
+        "icon": "/images/sponsors/partner/grusp.png",
+        "url": "https://www.grusp.org/",
+        "tier": "partner",
+        "active": true
       }
     ],
     "tiers": {
