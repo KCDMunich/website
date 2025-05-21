@@ -70,7 +70,15 @@ export default function SessionDetail({ session }) {
                 {session.description && (
                     <div style={{ marginBottom: "2rem" }}>
                         <h2 className="section-title">Description</h2>
-                        <p style={{ fontSize: "1.05rem", color: "#4a5568", lineHeight: "1.7" }}>{session.description}</p>
+                        <p style={{ fontSize: "1.05rem", color: "#4a5568", lineHeight: "1.7" }}>
+                            {session.description.split("\n").map((line, index) => (
+                                <span key={index}>
+                                    {line}
+                                    <br />
+                                </span>
+                            ))}
+                        </p>
+
                     </div>
                 )}
 

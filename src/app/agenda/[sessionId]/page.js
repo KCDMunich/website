@@ -19,7 +19,7 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }) {
     // Ensure params is awaited
-    const sessionId = params?.sessionId ? await params.sessionId : params.sessionId
+    const sessionId = await params.sessionId
 
     const session = sessions.sessions.find((s) => s.id === sessionId)
 
