@@ -96,8 +96,8 @@
       "timeSlotId": "conf-slot2",
       "trackId": "track1",
       "roomId": "room1",
-      "description": "Join us for the opening keynote where we'll explore the future of cloud native technologies and how they are shaping the industry.",
-      "speakerIds": ["speaker-1"],
+      "description": "Join us for the opening keynote. \n\nTopic and Details TBA",
+      "speakerIds": ["serena-sensini"],
       "isFullWidth": true
     },
     {

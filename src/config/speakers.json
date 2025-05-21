@@ -269,6 +269,16 @@
       "image": "/images/speakers/dimitris-karakasilis.jpg",
       "linkedin": "https://www.linkedin.com/in/jimmykarily/",
       "bio": "With over 20 years of experience as a developer, I'm deeply passionate about open source technologies. I've worked with startups and enterprises alike, using open source solutions to tackle real-world problems. Currently, my focus is on edge computing and Kubernetes. I'm excited to share my knowledge with other people."
+    },
+    {
+      "id": "serena-sensini",
+      "name": "Serena Sensini",
+      "role": "Innovation & Emerging Technologies Leader @Dedalus | Writer @Apogeo | Blogger @TheRedCode.it | Codemotion Ambassadorr",
+      "company": "Dedalus",
+      "companyUrl": "https://www.dedalus.com/global/en/",
+      "image": "/images/speakers/serena-sensini.jpeg",
+      "linkedin": "https://www.linkedin.com/in/serena-sensini",
+      "bio": ""
     }
   ]
 }
