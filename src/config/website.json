@@ -394,7 +394,7 @@
       {
         "name": "Kube Events",
         "icon": "/images/sponsors/partner/kubeevents.png",
-        "url": "#",
+        "url": "https://kube.events/",
         "tier": "partner",
         "active": true
       },
@@ -429,7 +429,7 @@
       {
         "name": "Xstream DataLab",
         "icon": "/images/sponsors/partner/XstreamDataLab.png",
-        "url": "https://www.meetup.com/it-IT/xstream-dat",
+        "url": "https://www.meetup.com/it-it/xstream-data/",
         "tier": "partner",
         "active": true
       },
