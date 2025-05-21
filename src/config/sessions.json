@@ -250,7 +250,7 @@
     },
     {
       "id": "session-6-track1",
-      "title": "A Cloud-Native Journey to Observability: come promuovere l'adozione di OpenTelemetry in un contesto Enterprise",
+      "title": "Securing the Container Wild West",
       "type": "talk",
       "dayId": "conference-day",
       "timeSlotId": "conf-slot10",
@@ -263,7 +263,7 @@
     },
     {
       "id": "session-6-track2",
-      "title": "Infrastructure From Code: A New Paradigm for Developer-First Platforms",
+      "title": "Composable Platforms: Modular Platform Engineering with Kratix and Backstage",
       "type": "talk",
       "dayId": "conference-day",
       "timeSlotId": "conf-slot10",
@@ -289,7 +289,7 @@
     },
     {
       "id": "session-7-track2",
-      "title": "GitOps at the Edge with Kubernetes: Managing 10,000 Clusters and Beyond",
+      "title": "Orchestrating Add-ons and Applications Across Multi-Cluster Kubernetes Environments with Sveltos",
       "type": "talk",
       "dayId": "conference-day",
       "timeSlotId": "conf-slot11",
@@ -324,7 +324,7 @@
     },
     {
       "id": "session-8-track2",
-      "title": "Data Base Continuity for Kubernetes Workloads: Ensuring Postgres Reliability at Scale",
+      "title": "The Past, Present, and Future of Postgres in Kubernetes",
       "type": "talk",
       "dayId": "conference-day",
       "timeSlotId": "conf-slot13",
