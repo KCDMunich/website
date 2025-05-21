@@ -249,6 +249,26 @@
       "image": "https://sessionize.com/image/7153-400o400o1-hyfh6VFqF98B7wGxp5wLLe.jpg",
       "linkedin": "https://www.linkedin.com/in/jagonzalezv/",
       "bio": "Maintainer of CloudNativePG and passionate for OpenSource and all the tools that has created to help a lot of people to build their dreams."
+    },
+    {
+      "id": "ettore-di-giacinto",
+      "name": "Ettore Di Giacinto",
+      "role": "Head of Open source",
+      "company": "Spectro Cloud",
+      "companyUrl": "https://www.spectrocloud.com/",
+      "image": "/images/speakers/ettore-di-giacinto.jpg",
+      "linkedin": "https://www.linkedin.com/in/ettore-di-giacinto-211a4166/",
+      "bio": "Ettore is a long-time Open Source hacker and hacktivist.\nEttore has been in the Open Source community for more than 16 years.\nHe is now a retired Gentoo developer, Sabayon Linux Lead and contributor to several FOSS projects among openSUSE, Cloud Foundry, openQA, and more\nPreviously he also worked at SUSE where he was leading the Elemental team.\nHe is a Golang and Kubernetes enthusiast with a strong Linux background skillset. Ettore is the LocalAI creator and maintainer.\n\nCan find him as @mudler on Github and @mudler_it on Twitter"
+    },
+    {
+      "id": "dimitris-karakasilis",
+      "name": "Dimitris Karakasilis",
+      "role": "Open Source Principal Software Engineer",
+      "company": "Spectro Cloud",
+      "companyUrl": "https://www.spectrocloud.com/",
+      "image": "/images/speakers/dimitris-karakasilis.jpg",
+      "linkedin": "https://www.linkedin.com/in/jimmykarily/",
+      "bio": "With over 20 years of experience as a developer, I'm deeply passionate about open source technologies. I've worked with startups and enterprises alike, using open source solutions to tackle real-world problems. Currently, my focus is on edge computing and Kubernetes. I'm excited to share my knowledge with other people."
     }
   ]
 }
