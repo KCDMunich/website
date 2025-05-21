@@ -460,6 +460,13 @@
         "url": "https://www.devdojo.it/",
         "tier": "partner",
         "active": true
+      },
+      {
+        "name": "GDG Bari",
+        "icon": "/images/sponsors/partner/gdgbari.png",
+        "url": "https://gdg.community.dev/gdg-bari/",
+        "tier": "partner",
+        "active": true
       }
     ],
     "tiers": {
