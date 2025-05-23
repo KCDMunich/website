@@ -470,7 +470,7 @@
       },
       {
         "name": "GDG Cosenza",
-        "icon": "/images/sponsors/partner/gdgcosenza.jpg",
+        "icon": "/images/sponsors/partner/gdgcosenza.png",
         "url": "https://gdg.community.dev/gdg-cosenza/",
         "tier": "partner",
         "active": true
@@ -479,6 +479,13 @@
         "name": "GrUSP",
         "icon": "/images/sponsors/partner/grusp.png",
         "url": "https://www.grusp.org/",
+        "tier": "partner",
+        "active": true
+      },
+      {
+        "name": "La Locanda del Tech",
+        "icon": "/images/sponsors/partner/la-locanda-del-tech.png",
+        "url": "https://t.me/+mqQJQ9BqKOViMmVk",
         "tier": "partner",
         "active": true
       }
