@@ -111,7 +111,7 @@
       "description": "In this talk, I’ll explore how the Kubernetes Communications Team serves as the vital link between the technical contributors driving Kubernetes innovation and the global community relying on it. \n\nYou’ll learn how we:\n\n- Coordinate across SIGs (Special Interest Groups) to capture and clarify key updates, to review changes and ensure the quality of the information provided is the highest possible.\n\n- Translate technical release notes and KEPs into actionable insights for end users in the form of release blogs.\n\n- Leverage tools and strategies to keep communication seamless, even in one of the most fast-paced open source projects in the world.\n\nWhether you’re planning to contribute to Kubernetes, navigating its releases or maintaining any open source project, this session will provide insights into how open source communication practices can amplify collaboration, transparency, and serve your users. \n\nJoin me to understand how communication drives the Kubernetes evolution!",
       "speakerIds": ["matteo-bianchi"],
       "tags": ["ITA"],
-      "level": "Any"
+      "level": "all"
     },
     {
       "id": "session-1-track2",
@@ -141,16 +141,16 @@
     },
     {
       "id": "session-2-track2",
-      "title": "A GitOps Journey: Continuous Deployment with FluxCD & Flagger",
+      "title": "Less is More (Even in Kubernetes): A Practical Guide to Sustainable Infra",
       "type": "talk",
       "dayId": "conference-day",
       "timeSlotId": "conf-slot4",
       "trackId": "track2",
       "roomId": "room2",
-      "description": "In this session we will learn how to use FluxCD and Flagger to implement advanced deployment strategies in Kubernetes. As a bonus, we will look into some highlights from Kubecon 2025, the Flux Operator, and a quick overview of the Headlamp Flux Plugin, the latest FluxCD UI.\n\nYou will leave this talk knowing more about GitOps, FluxCD, Flagger, and what you need to successfully implement different Deployment Strategies in Kubernetes using these tools (Blue/Green, Canary, A/B testing).",
-      "speakerIds": ["riccardo-capraro"],
+      "description": "It started with a simple question from my kid: “Why does your job need so many computers?” Oof. Turns out… she was right to ask. In this talk, we’ll unpack the sneaky ways Kubernetes clusters waste resources—and what we can do about it. You’ll walk away with a “sustainable K8s toolbox,” a better answer for your own curious kids and friends, and a solid case for why “less is more” isn’t just good engineering—it’s good ethics.",
+      "speakerIds": ["flavia-paganelli"],
       "tags": ["ENG"],
-      "level": "Intermediate"
+      "level": "all"
     },
     {
       "id": "coffee-break-1",
@@ -185,7 +185,7 @@
       "description": "Traditionally, observability has lived in the world of DevOps—focused on monitoring production systems and detecting failures after the fact. But in modern, distributed architectures, that’s too little, too late. As systems grow in complexity, teams are realizing that observability needs to shift left—integrated earlier in the development cycle to support debugging, testing, and faster feedback loops.\n\nIn this talk we’ll cover the common challenges teams face when trying to implement observability during development and how developers, QA, and platform engineers can all benefit from implementing it before code reaches production. \n\nBy the end of this session, you’ll walk away with a clear roadmap to make observability a first-class part of your development workflow—accelerating issue resolution, improving collaboration across teams, and delivering more reliable software faster.",
       "speakerIds": ["vladi-stevanovic"],
       "tags": ["ENG"],
-      "level": "Any"
+      "level": "all"
     },
     {
       "id": "session-4-track1",
@@ -363,16 +363,16 @@
     },
     {
       "id": "session-10-track1",
-      "title": "Session TBA",
+      "title": "A GitOps Journey: Continuous Deployment with FluxCD & Flagger",
       "type": "talk",
       "dayId": "conference-day",
       "timeSlotId": "conf-slot15",
       "trackId": "track1",
       "roomId": "room1",
-      "description": "Details for this session will be announced soon. Stay tuned for updates!",
-      "speakerIds": ["speaker-1"],
-      "tags": [],
-      "level": "all"
+      "description": "In this session we will learn how to use FluxCD and Flagger to implement advanced deployment strategies in Kubernetes. As a bonus, we will look into some highlights from Kubecon 2025, the Flux Operator, and a quick overview of the Headlamp Flux Plugin, the latest FluxCD UI.\n\nYou will leave this talk knowing more about GitOps, FluxCD, Flagger, and what you need to successfully implement different Deployment Strategies in Kubernetes using these tools (Blue/Green, Canary, A/B testing).",
+      "speakerIds": ["riccardo-capraro"],
+      "tags": ["ITA"],
+      "level": "Intermediate"
     },
     {
       "id": "session-10-track2",
