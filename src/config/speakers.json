@@ -289,6 +289,46 @@
       "image": "/images/speakers/flavia-paganelli.png",
       "linkedin": "https://www.linkedin.com/in/flaviapaganelli/",
       "bio": "I'm a software engineer, entrepreneur, and co-founder on a mission to leave the world a little better than I found it. With a couple of decades of experience building software and teams, I’m currently the CTO at Aknostic and a Tech Lead in the CNCF TAG Sustainability’s Green Reviews working group.\n\nIn the early days, I co-authored several O’Reilly books on AWS and built an IoT platform for agricultural growers. Now, my focus is on figuring out how we can leverage technology to make the world more sustainable.\n\nOriginally from Argentina, love brought me to the Netherlands, where I live with my family—two kids, two cats, and my partner in both life and business."
+    },
+    {
+      "id": "luca-spagnoli",
+      "name": "Luca Spagnoli",
+      "role": "Filed CTO",
+      "company": "Aruba",
+      "companyUrl": "https://www.aruba.it/",
+      "image": "/images/speakers/luca-spagnoli.jpg",
+      "linkedin": "https://www.linkedin.com/in/luca-spagnoli-72128919/",
+      "bio": "Luca Spagnoli è un appassionato di tecnologia con una profonda conoscenza delle soluzioni Cloud e delle tecnologie infrastrutturali, maturata in oltre 25 anni di esperienza nel settore, durante i quali ha ricoperto diversi ruoli di consulenza. Al momento ricopre il ruolo di Field CTO Aruba. Precedentemente è stato solution architect, consulente, system engineering EMC, Dell, AWS e altre multinazionali. In qualità di direttore tecnico, Luca ha guidato lo sviluppo di piattaforme di gestione del cloud all'avanguardia, ottenendo miglioramenti significativi in termini di agilità e customer experience."
+    },
+    {
+      "id": "amedeo-palopoli",
+      "name": "Amedeo Palopoli",
+      "role": "Cloud Architect",
+      "company": "Aruba",
+      "companyUrl": "https://www.aruba.it/",
+      "image": "/images/speakers/amedeo-palopoli.png",
+      "linkedin": "https://www.linkedin.com/in/amedeo-palopoli-491b2a75/",
+      "bio": "Cloud Architect at Aruba Cloud, passionate about technological innovation and expert in containerization and cloud computing.\n\nI embraced Kubernetes in 2016 during my Master’s thesis in Computer Engineering at the University of Bologna. During this time, I deepened my interest in containerization and the deployment of cloud-native applications on Kubernetes through research studies that led to publications in scientific journals such as ACM and IEEE. The cloud-native ecosystem and its related technologies have been an integral part of my professional journey, supported by continuous learning and various certifications, including AWS Solutions Architect and Elasticsearch Certified Engineer."
+    },
+    {
+      "id": "tommaso-dri",
+      "name": "Tommaso Dri",
+      "role": "Founder & CTO",
+      "company": "Archeido",
+      "companyUrl": "https://archeido.com/en",
+      "image": "/images/speakers/tommaso-dri.jpg",
+      "linkedin": "https://www.linkedin.com/in/tommaso-dri/",
+      "bio": "CTO e socio fondatore di Archeido Srl, software house altamente specializzata nel cloud computing. Nasce come sviluppatore backend (background tecnico) e con il tempo ha acquisito competenze più trasversali anche manageriali e imprenditoriali. Negli anni si è specializzato sempre più in ambito cloud. Ad oggi il “titolo” che più lo rappresenta affiancato a CTO è quello di Cloud Architect."
+    },
+    {
+      "id": "graziano-casto",
+      "name": "Graziano Casto",
+      "role": "Developer Relations Engineer",
+      "company": "Mia-Platform",
+      "companyUrl": "https://mia-platform.eu",
+      "image": "/images/speakers/graziano-casto.jpg",
+      "linkedin": "https://www.linkedin.com/in/castograziano/",
+      "bio": "Graziano is a software engineer and passionate about agile development and product management. Formerly a developer of distributed systems in enterprise environments and a product manager, he focuses on sharing the myriad beauties of the cloud-native world. Active in international communities with talks and articles, he mainly deals with architectures, AI, platform engineering, and environmental sustainability in the software realm. \n\nMore on: https://www.castograziano.com/"
     }
   ]
 }

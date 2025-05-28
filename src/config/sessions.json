@@ -90,15 +90,17 @@
     },
     {
       "id": "opening-keynote",
-      "title": "🗝️ Opening Keynote",
+      "title": "🗝️ Opening Keynote: The New Digital Nervous System",
       "type": "keynote",
       "dayId": "conference-day",
       "timeSlotId": "conf-slot2",
       "trackId": "track1",
       "roomId": "room1",
-      "description": "Join us for the opening keynote. \n\nTopic and Details TBA",
+      "description": "Synapses and the nervous system form the intricate network enabling the human body to sense, process, and respond to information, as the cloud computing serves as the digital nervous system of the modern era. In the human body, synapses transmit signals between neurons, allowing for rapid communication and complex decision-making that keeps the organism agile and responsive... Does it sound familiar? Let's talk about how human body, software architecture and community make us connected, as humans, and as professionals.",
       "speakerIds": ["serena-sensini"],
-      "isFullWidth": true
+      "isFullWidth": true,
+      "tags": ["ENG"],
+      "level": "all"
     },
     {
       "id": "session-1-track1",
@@ -189,29 +191,29 @@
     },
     {
       "id": "session-4-track1",
-      "title": "Sponsored Session TBA",
+      "title": "Kubernetes come un Lego nella costruzione del nuovo standard di API cloud europee",
       "type": "talk",
       "dayId": "conference-day",
       "timeSlotId": "conf-sponsored-slot1",
       "trackId": "track1",
       "roomId": "room1",
-      "description": "Details for this session will be announced soon. Stay tuned for updates!",
-      "speakerIds": ["speaker-sponsor-1"],
-      "tags": [],
-      "level": "all"
+      "description": "Nel panorama tecnologico attuale, Kubernetes si è affermato come uno strumento fondamentale per l'orchestrazione di container, trasformandosi in una piattaforma di riferimento per l'innovazione cloud. In questo intervento, esploreremo come l'approccio basato su Kubernetes sia stato impiegato nella progettazione e realizzazione delle API cloud avanzate SECA potenziando l’infrastruttura digitale per il futuro\nPresenteremo casi d'uso pratici che dimostrano i benefici di questa architettura, sottolineando l'importanza della comunità open source nell'evoluzione del progetto. Unitevi a noi per questa esplorazione di come Kubernetes non sia solo un'implementazione tecnica, ma l’approccio su cui costruire il prossimo livello di innovazione cloud.",
+      "speakerIds": ["luca-spagnoli", "amedeo-palopoli"],
+      "tags": ["SPONSORED"],
+      "level": "Intermediate"
     },
     {
       "id": "session-4-track2",
-      "title": "Sponsored Session TBA",
+      "title": "Ottimizzazione dei Costi con IAAC: Come Automazione e Cloud Nativo Possono Fare la Differenza",
       "type": "talk",
       "dayId": "conference-day",
       "timeSlotId": "conf-sponsored-slot1",
       "trackId": "track2",
       "roomId": "room2",
-      "description": "Details for this session will be announced soon. Stay tuned for updates!",
-      "speakerIds": ["speaker-sponsor-1"],
-      "tags": [],
-      "level": "all"
+      "description": "Esploreremo come l'approccio Infrastructure as Code (IaC) possa ottimizzare i costi nel cloud automatizzando la creazione e la distruzione dinamica delle risorse con AWS Lambda e CloudFormation. Inoltre, capiremo come ridurre significativamente le spese operative e, allo stesso tempo, migliorare l'efficienza senza compromettere né performance né sicurezza grazie a soluzioni serverless e gestione delle risorse su richiesta.",
+      "speakerIds": ["tommaso-dri"],
+      "tags": ["SPONSORED"],
+      "level": "Intermediate"
     },
     {
       "id": "session-5-track1",
@@ -337,16 +339,16 @@
     },
     {
       "id": "session-9-track1",
-      "title": "Sponsored Session TBA",
+      "title": "Accelerate Cloud-Native Development with Orchestrated AI",
       "type": "talk",
       "dayId": "conference-day",
       "timeSlotId": "conf-sponsored-slot2",
       "trackId": "track1",
       "roomId": "room1",
-      "description": "Details for this session will be announced soon. Stay tuned for updates!",
-      "speakerIds": ["speaker-sponsor-1"],
-      "tags": [],
-      "level": "all"
+      "description": "Witness the development of a cloud-native application powered by orchestrated AI agents. From idea generation to rapid prototyping, engineering, and scaling, see how coordinated AI can transform days of work into just hours. Discover new ways to supercharge your development workflows for your entire IT factory.",
+      "speakerIds": ["graziano-casto"],
+      "tags": ["SPONSORED"],
+      "level": "Intermediate"
     },
     {
       "id": "session-9-track2",
