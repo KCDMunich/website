@@ -31,6 +31,53 @@
   transform: translateY(-8px) scale(1.05);
 }
 
+/* Premium Platinum Effects */
+.platinum-premium {
+  position: relative;
+}
+
+.platinum-premium::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  padding: 2px;
+  background: linear-gradient(135deg, #004258, #0066cc, #004258);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.platinum-premium:hover::before {
+  opacity: 1;
+}
+
+.platinum-premium::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.1),
+    transparent,
+    rgba(255, 255, 255, 0.1)
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.platinum-premium:hover::after {
+  opacity: 1;
+}
+
+/* Shadow utilities for Tailwind */
+.shadow-3xl {
+  box-shadow: 0 35px 60px -12px rgba(0, 0, 0, 0.25);
+}
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .sponsor-card {

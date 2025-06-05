@@ -27,11 +27,13 @@ const tierConfig = {
   platinum: {
     title: 'Platinum',
     class:
-      'bg-white shadow-lg border-2 border-primary-1/20 hover:shadow-xl hover:border-primary-1/40',
-    badgeClass: 'bg-primary-1 text-white font-semibold',
-    cardSize: 'w-[280px] h-[140px]',
+      'bg-gradient-to-br from-white via-slate-50/30 to-white shadow-2xl border-2 border-primary-1/30 hover:shadow-3xl hover:border-primary-1/50 hover:scale-[1.02] transition-all duration-500',
+    badgeClass: 'bg-gradient-to-r from-primary-1 to-primary-1/80 text-white font-bold shadow-lg',
+    cardSize: 'w-[320px] h-[160px]',
     special: true,
     subtitle: 'Premium Partners',
+    premium: true,
+    noBackground: true,
   },
   gold: {
     title: 'Gold',
@@ -76,6 +78,7 @@ const tierConfig = {
     cardSize: 'w-[180px] h-[90px]',
     special: false,
     subtitle: 'Event Organization',
+    noBackground: true,
   },
 };
 
@@ -197,16 +200,16 @@ const sponsorsList = [
     icon: liquid,
     url: 'https://www.reply.com/liquid-reply/en/',
     tier: 'organizer-platinum',
-    logoWidth: 170,
-    logoHeight: 130,
+    logoWidth: 130,
+    logoHeight: 80,
   },
   {
     name: 'white duck',
     icon: whiteduck,
     url: 'https://whiteduck.de/',
     tier: 'organizer-platinum',
-    logoWidth: 180,
-    logoHeight: 130,
+    logoWidth: 140,
+    logoHeight: 80,
   },
   {
     name: 'Kube Careers',
@@ -324,33 +327,91 @@ const Sponsors = () => {
         if (tierSponsors.length === 0) return null;
 
         return (
-          <div key={tier} className="container mb-20">
-            <div className="mx-auto max-w-7xl">
-              <div className="mb-12 text-center">
-                <div className="mb-4 flex items-center justify-center gap-3">
+          <div
+            key={tier}
+            className={clsx(
+              'container mb-20',
+              config.premium && 'relative mb-32',
+              config.noBackground && 'mb-16'
+            )}
+          >
+            {config.premium && !config.noBackground && (
+              <div className="absolute inset-0 -mx-8 -my-8 rounded-3xl bg-gradient-to-r from-primary-1/5 via-primary-1/10 to-primary-1/5"></div>
+            )}
+            <div className="relative mx-auto max-w-7xl">
+              <div
+                className={clsx(config.noBackground ? 'mb-12 text-center' : 'mb-16 text-center')}
+              >
+                <div
+                  className={clsx(
+                    'flex items-center justify-center gap-4',
+                    config.noBackground ? 'mb-4' : 'mb-6'
+                  )}
+                >
+                  {config.premium && !config.noBackground && (
+                    <div className="flex items-center gap-2">
+                      <div className="flex h-6 w-6 items-center justify-center rounded-full bg-gradient-to-r from-amber-400 to-yellow-500">
+                        <div className="h-3 w-3 rounded-full bg-white"></div>
+                      </div>
+                      <div className="h-1 w-8 bg-gradient-to-r from-amber-400 to-transparent"></div>
+                    </div>
+                  )}
                   <h3
                     className={clsx(
-                      'text-3xl font-bold',
-                      config.special ? 'text-primary-1' : 'text-gray-900'
+                      'font-bold',
+                      config.special && !config.noBackground
+                        ? 'text-4xl text-primary-1'
+                        : 'text-3xl text-gray-900',
+                      config.premium &&
+                        !config.noBackground &&
+                        'bg-gradient-to-r from-primary-1 to-primary-1/80 bg-clip-text text-5xl text-transparent'
                     )}
                   >
                     {config.title}
                   </h3>
+                  {config.premium && !config.noBackground && (
+                    <div className="flex items-center gap-2">
+                      <div className="h-1 w-8 bg-gradient-to-l from-amber-400 to-transparent"></div>
+                      <div className="flex h-6 w-6 items-center justify-center rounded-full bg-gradient-to-r from-amber-400 to-yellow-500">
+                        <div className="h-3 w-3 rounded-full bg-white"></div>
+                      </div>
+                    </div>
+                  )}
                   <span
                     className={clsx(
-                      'rounded-full px-3 py-1 text-sm font-medium',
+                      'rounded-full text-sm font-medium',
+                      config.noBackground ? 'px-3 py-1' : 'px-4 py-2',
                       config.badgeClass
                     )}
                   >
                     {tierSponsors.length}
                   </span>
                 </div>
-                {config.special && config.subtitle && (
-                  <p className="text-lg text-slate-600">{config.subtitle}</p>
+                {config.subtitle && (
+                  <p
+                    className={clsx(
+                      'text-lg text-slate-600',
+                      config.premium &&
+                        !config.noBackground &&
+                        'text-xl font-medium text-primary-1/80'
+                    )}
+                  >
+                    {config.subtitle}
+                  </p>
+                )}
+                {config.premium && !config.noBackground && (
+                  <div className="mt-4 flex justify-center">
+                    <div className="h-1 w-24 rounded-full bg-gradient-to-r from-transparent via-amber-400 to-transparent"></div>
+                  </div>
                 )}
               </div>
 
-              <div className="flex flex-wrap justify-center gap-8">
+              <div
+                className={clsx(
+                  'flex flex-wrap justify-center',
+                  config.premium ? 'gap-12' : 'gap-8'
+                )}
+              >
                 {tierSponsors.map((sponsor, index) => (
                   <a
                     key={index}
