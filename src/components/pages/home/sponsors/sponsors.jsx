@@ -24,15 +24,6 @@ import './sponsor.css';
 const SHOW_SPONSORS = true;
 
 const tierConfig = {
-  'organizer-platinum': {
-    title: 'Organizers',
-    class:
-      'bg-white shadow-lg border-2 border-primary-1/20 hover:shadow-xl hover:border-primary-1/40',
-    badgeClass: 'bg-primary-1 text-white font-semibold',
-    cardSize: 'w-[280px] h-[140px]',
-    special: true,
-    subtitle: 'Event Organization',
-  },
   platinum: {
     title: 'Platinum',
     class:
@@ -77,6 +68,14 @@ const tierConfig = {
     class: 'bg-white shadow-md border border-gray-100 hover:shadow-lg hover:border-green-200/50',
     badgeClass: 'bg-green-100 text-green-800 border border-green-200',
     cardSize: 'w-[180px] h-[90px]',
+  },
+  'organizer-platinum': {
+    title: 'Organizers',
+    class: 'bg-white shadow-md border border-gray-100 hover:shadow-lg hover:border-primary-1/20',
+    badgeClass: 'bg-primary-1 text-white font-semibold',
+    cardSize: 'w-[180px] h-[90px]',
+    special: false,
+    subtitle: 'Event Organization',
   },
 };
 
@@ -176,6 +175,22 @@ const sponsorsList = [
     tier: 'bronze',
     logoWidth: 150,
     logoHeight: 100,
+  },
+  {
+    name: 'Liquid Reply',
+    icon: liquid,
+    url: 'https://www.reply.com/liquid-reply/en/',
+    tier: 'platinum',
+    logoWidth: 170,
+    logoHeight: 130,
+  },
+  {
+    name: 'white duck',
+    icon: whiteduck,
+    url: 'https://whiteduck.de/',
+    tier: 'platinum',
+    logoWidth: 180,
+    logoHeight: 130,
   },
   {
     name: 'Liquid Reply',
