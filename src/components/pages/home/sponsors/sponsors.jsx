@@ -3,58 +3,80 @@ import React from 'react';
 
 import Adn from 'icons/adn_logo.png';
 import ApeFactory from 'icons/apefactory.svg';
+import aws from 'icons/aws.svg';
 import Cncf from 'icons/cncf.svg';
+import ItSchulungenCom from 'icons/its_logo_2020_tt_2_raw.png';
 import Kubecareers from 'icons/kubecareers.svg';
 import Kubeevents from 'icons/kubeevents_2.svg';
 import liquid from 'icons/liquid.png';
 import MetalStack from 'icons/metalstackcloud.webp';
+import PerfectScale from 'icons/PerfectScale.png';
 import PlatformEngineeringLabs from 'icons/platformengineeringlabs.png';
 import QAware from 'icons/QAware_p.png';
+import ReadHat from 'icons/red-hat.svg';
 import solarwinds from 'icons/solarwinds.webp';
 import Steadforce from 'icons/steadforce_logo.png';
 import SysEleven from 'icons/syseleven.png';
-import whiteduck from 'icons/whiteduck.png';
-import ReadHat from 'icons/red-hat.svg';
-import aws from 'icons/aws.svg';
-import PerfectScale from 'icons/PerfectScale.png';
 import vCluster from 'icons/vCluster.svg';
-import ItSchulungenCom from 'icons/its_logo_2020_tt_2_raw.png';
+import whiteduck from 'icons/whiteduck.png';
 import './sponsor.css';
-
-const CARD_STYLES = 'w-[200px] h-[100px]';
 
 const SHOW_SPONSORS = true;
 
 const tierConfig = {
+  'organizer-platinum': {
+    title: 'Organizers',
+    class:
+      'bg-white shadow-lg border-2 border-primary-1/20 hover:shadow-xl hover:border-primary-1/40',
+    badgeClass: 'bg-primary-1 text-white font-semibold',
+    cardSize: 'w-[280px] h-[140px]',
+    special: true,
+    subtitle: 'Event Organization',
+  },
+  platinum: {
+    title: 'Platinum',
+    class:
+      'bg-white shadow-lg border-2 border-primary-1/20 hover:shadow-xl hover:border-primary-1/40',
+    badgeClass: 'bg-primary-1 text-white font-semibold',
+    cardSize: 'w-[280px] h-[140px]',
+    special: true,
+    subtitle: 'Premium Partners',
+  },
   gold: {
     title: 'Gold',
-    class: 'bg-white shadow-sm',
-    badgeClass: 'bg-yellow-50 text-yellow-500',
+    class: 'bg-white shadow-md border border-gray-100 hover:shadow-lg hover:border-amber-200/50',
+    badgeClass: 'bg-amber-100 text-amber-800 border border-amber-200',
+    cardSize: 'w-[240px] h-[120px]',
   },
   silver: {
     title: 'Silver',
-    class: 'bg-white shadow-sm',
-    badgeClass: 'bg-gray-50 text-gray-500',
+    class: 'bg-white shadow-md border border-gray-100 hover:shadow-lg hover:border-gray-200/50',
+    badgeClass: 'bg-gray-100 text-gray-700 border border-gray-200',
+    cardSize: 'w-[200px] h-[100px]',
   },
   bronze: {
     title: 'Bronze',
-    class: 'bg-white shadow-sm',
-    badgeClass: 'bg-orange-50 text-orange-500',
+    class: 'bg-white shadow-md border border-gray-100 hover:shadow-lg hover:border-orange-200/50',
+    badgeClass: 'bg-orange-100 text-orange-800 border border-orange-200',
+    cardSize: 'w-[180px] h-[90px]',
   },
   evening: {
     title: 'Evening Event',
-    class: 'bg-white shadow-sm',
-    badgeClass: 'bg-purple-50 text-purple-500',
+    class: 'bg-white shadow-md border border-gray-100 hover:shadow-lg hover:border-purple-200/50',
+    badgeClass: 'bg-purple-100 text-purple-800 border border-purple-200',
+    cardSize: 'w-[200px] h-[100px]',
   },
   organizer: {
     title: 'Organizers',
-    class: 'bg-white shadow-sm',
-    badgeClass: 'bg-blue-50 text-blue-500',
+    class: 'bg-white shadow-md border border-gray-100 hover:shadow-lg hover:border-blue-200/50',
+    badgeClass: 'bg-blue-100 text-blue-800 border border-blue-200',
+    cardSize: 'w-[200px] h-[100px]',
   },
   partner: {
     title: 'Community & Media Partners',
-    class: 'bg-white shadow-sm',
-    badgeClass: 'bg-green-50 text-green-500',
+    class: 'bg-white shadow-md border border-gray-100 hover:shadow-lg hover:border-green-200/50',
+    badgeClass: 'bg-green-100 text-green-800 border border-green-200',
+    cardSize: 'w-[180px] h-[90px]',
   },
 };
 
@@ -64,16 +86,16 @@ const sponsorsList = [
     icon: ApeFactory,
     url: 'https://www.apefactory.com/de',
     tier: 'gold',
-    logoWidth: 100,
-    logoHeight: 90,
+    logoWidth: 120,
+    logoHeight: 100,
   },
   {
     name: 'solarwinds',
     icon: solarwinds,
     url: 'https://www.solarwinds.com/',
     tier: 'gold',
-    logoWidth: 120,
-    logoHeight: 100,
+    logoWidth: 140,
+    logoHeight: 110,
   },
   {
     name: 'aws',
@@ -159,17 +181,17 @@ const sponsorsList = [
     name: 'Liquid Reply',
     icon: liquid,
     url: 'https://www.reply.com/liquid-reply/en/',
-    tier: 'organizer',
-    logoWidth: 135,
-    logoHeight: 100,
+    tier: 'organizer-platinum',
+    logoWidth: 170,
+    logoHeight: 130,
   },
   {
     name: 'white duck',
     icon: whiteduck,
     url: 'https://whiteduck.de/',
-    tier: 'organizer',
-    logoWidth: 150,
-    logoHeight: 100,
+    tier: 'organizer-platinum',
+    logoWidth: 180,
+    logoHeight: 130,
   },
   {
     name: 'Kube Careers',
@@ -258,24 +280,26 @@ const Sponsors = () => {
 
   // Show the full sponsors section when SHOW_SPONSORS is true
   return (
-    <section className="mx-auto max-w-7xl px-4 py-16">
-      <h2 className="section-title">Our sponsors</h2>
-      <div className="mb-16 text-center">
-        <p className="mb-8 text-lg text-gray-500">
-          Support our local cloud native community by sponsoring CNS Munich
-        </p>
-        <div className="flex flex-col items-center justify-center gap-4">
-          <a
-            href="https://docs.google.com/presentation/d/1NhUXEXdfWjAt1DmFLjMPolwkuE6Y_BZiNQKWYvVmK5Q/edit?usp=sharing"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 rounded-lg bg-primary-1 px-6 py-3 text-white transition-all"
-          >
-            Sponsor Prospectus
-          </a>
-          <p className="mb-8 text-lg text-gray-500" style={{ textAlign: 'center' }}>
-            Thank you to our amazing sponsors who make this event possible
-          </p>
+    <section className="safe-paddings relative bg-white pb-20 pt-20 lg:pb-32 md:py-24 sm:py-16">
+      <div className="container">
+        <div className="mx-auto max-w-7xl">
+          <div className="text-center">
+            <h2 className="section-title">Our sponsors</h2>
+            <p className="mx-auto mb-12 max-w-3xl text-xl leading-relaxed text-slate-600">
+              Thank you to our amazing sponsors who make this event possible. Support our local
+              cloud native community by sponsoring CNS Munich.
+            </p>
+            <div className="mb-16">
+              <a
+                href="https://docs.google.com/presentation/d/1NhUXEXdfWjAt1DmFLjMPolwkuE6Y_BZiNQKWYvVmK5Q/edit?usp=sharing"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="button inline-block"
+              >
+                Sponsor Prospectus
+              </a>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -285,19 +309,33 @@ const Sponsors = () => {
         if (tierSponsors.length === 0) return null;
 
         return (
-          <div key={tier} className="mb-12">
-            <div className="mb-16 text-center" />
-            <div className="mb-6 flex items-center justify-center gap-2">
-              <h3 className="text-xl font-semibold text-gray-900">{config.title}</h3>
-              <span
-                className={clsx('rounded-full px-2 py-0.5 text-xs font-medium', config.badgeClass)}
-              >
-                {tierSponsors.length}
-              </span>
-            </div>
+          <div key={tier} className="container mb-20">
+            <div className="mx-auto max-w-7xl">
+              <div className="mb-12 text-center">
+                <div className="mb-4 flex items-center justify-center gap-3">
+                  <h3
+                    className={clsx(
+                      'text-3xl font-bold',
+                      config.special ? 'text-primary-1' : 'text-gray-900'
+                    )}
+                  >
+                    {config.title}
+                  </h3>
+                  <span
+                    className={clsx(
+                      'rounded-full px-3 py-1 text-sm font-medium',
+                      config.badgeClass
+                    )}
+                  >
+                    {tierSponsors.length}
+                  </span>
+                </div>
+                {config.special && config.subtitle && (
+                  <p className="text-lg text-slate-600">{config.subtitle}</p>
+                )}
+              </div>
 
-            <div className={config.containerClass}>
-              <div className="flex flex-wrap justify-center gap-4">
+              <div className="flex flex-wrap justify-center gap-8">
                 {tierSponsors.map((sponsor, index) => (
                   <a
                     key={index}
@@ -305,18 +343,18 @@ const Sponsors = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                     className={clsx(
-                      'flex items-center justify-center rounded-lg transition-all duration-200',
-                      'hover:scale-[1.02] hover:shadow-md',
-                      CARD_STYLES,
+                      'sponsor-card group flex items-center justify-center rounded-lg transition-all duration-300',
+                      'hover:-translate-y-2 hover:scale-105',
+                      config.cardSize,
                       config.class
                     )}
                   >
-                    <div className="relative flex h-full w-full items-center justify-center">
+                    <div className="relative flex h-full w-full items-center justify-center p-6">
                       <img
                         src={sponsor.icon}
                         alt={sponsor.name}
                         loading="lazy"
-                        className="object-contain"
+                        className="object-contain transition-all duration-300 group-hover:scale-110"
                         style={{
                           maxWidth: sponsor.logoWidth ? sponsor.logoWidth : DEFAULT_LOGO_WIDTH,
                           maxHeight: sponsor.logoHeight ? sponsor.logoHeight : DEFAULT_LOGO_HEIGHT,
