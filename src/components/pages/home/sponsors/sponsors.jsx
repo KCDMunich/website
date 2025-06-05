@@ -26,15 +26,9 @@ const SHOW_SPONSORS = true;
 const tierConfig = {
   platinum: {
     title: 'Platinum',
-    class:
-      'bg-gradient-to-br from-slate-100 via-gray-50 to-slate-200/80 shadow-2xl border-2 border-slate-300/50 hover:shadow-3xl hover:border-slate-400/70 hover:scale-[1.02] transition-all duration-500 backdrop-blur-sm',
-    badgeClass:
-      'bg-gradient-to-r from-slate-600 to-slate-700 text-white font-bold shadow-lg border border-slate-500/30',
-    cardSize: 'w-[320px] h-[160px] md:w-[280px] md:h-[140px] sm:w-[240px] sm:h-[120px]',
-    special: true,
-    subtitle: 'Premium Partners',
-    premium: true,
-    noBackground: true,
+    class: 'bg-white shadow-md border border-gray-100 hover:shadow-lg hover:border-gray-200/50',
+    badgeClass: 'bg-gray-100 text-gray-700 border border-gray-200',
+    cardSize: 'w-[240px] h-[120px] md:w-[200px] md:h-[100px] sm:w-[180px] sm:h-[90px]',
   },
   gold: {
     title: 'Gold',
@@ -60,26 +54,12 @@ const tierConfig = {
     badgeClass: 'bg-purple-100 text-purple-800 border border-purple-200',
     cardSize: 'w-[200px] h-[100px] md:w-[180px] md:h-[90px] sm:w-[160px] sm:h-[80px]',
   },
-  organizer: {
-    title: 'Organizers',
-    class: 'bg-white shadow-md border border-gray-100 hover:shadow-lg hover:border-blue-200/50',
-    badgeClass: 'bg-blue-100 text-blue-800 border border-blue-200',
-    cardSize: 'w-[200px] h-[100px] md:w-[180px] md:h-[90px] sm:w-[160px] sm:h-[80px]',
-  },
+
   partner: {
     title: 'Community & Media Partners',
     class: 'bg-white shadow-md border border-gray-100 hover:shadow-lg hover:border-green-200/50',
     badgeClass: 'bg-green-100 text-green-800 border border-green-200',
     cardSize: 'w-[180px] h-[90px] md:w-[160px] md:h-[80px] sm:w-[140px] sm:h-[70px]',
-  },
-  'organizer-platinum': {
-    title: 'Organizers',
-    class: 'bg-white shadow-md border border-gray-100 hover:shadow-lg hover:border-primary-1/20',
-    badgeClass: 'bg-primary-1 text-white font-semibold',
-    cardSize: 'w-[180px] h-[90px] md:w-[160px] md:h-[80px] sm:w-[140px] sm:h-[70px]',
-    special: false,
-    subtitle: 'Event Organization',
-    noBackground: true,
   },
 };
 
@@ -89,7 +69,7 @@ const sponsorsList = [
     icon: ApeFactory,
     url: 'https://www.apefactory.com/de',
     tier: 'gold',
-    logoWidth: 120,
+    logoWidth: 150,
     logoHeight: 100,
   },
   {
@@ -197,22 +177,6 @@ const sponsorsList = [
     logoHeight: 130,
   },
   {
-    name: 'Liquid Reply',
-    icon: liquid,
-    url: 'https://www.reply.com/liquid-reply/en/',
-    tier: 'organizer-platinum',
-    logoWidth: 130,
-    logoHeight: 80,
-  },
-  {
-    name: 'white duck',
-    icon: whiteduck,
-    url: 'https://whiteduck.de/',
-    tier: 'organizer-platinum',
-    logoWidth: 140,
-    logoHeight: 80,
-  },
-  {
     name: 'Kube Careers',
     icon: Kubecareers,
     url: 'https://kube.careers/',
@@ -241,8 +205,8 @@ const sponsorsList = [
     icon: ApeFactory,
     url: 'https://www.apefactory.com/de',
     tier: 'evening',
-    logoWidth: 90,
-    logoHeight: 90,
+    logoWidth: 150,
+    logoHeight: 100,
   },
   {
     name: 'CNCF',
@@ -250,7 +214,7 @@ const sponsorsList = [
     url: 'https://www.cncf.io/',
     tier: 'evening',
     logoWidth: 160,
-    logoHeight: 90,
+    logoHeight: 100,
   },
 ];
 
@@ -389,17 +353,6 @@ const Sponsors = () => {
                       </div>
                     </div>
                   )}
-                  <span
-                    className={clsx(
-                      'rounded-full text-sm font-medium md:text-xs sm:text-xs',
-                      config.noBackground
-                        ? 'px-3 py-1 md:px-2 sm:px-2'
-                        : 'px-4 py-2 md:px-3 md:py-1 sm:px-2 sm:py-1',
-                      config.badgeClass
-                    )}
-                  >
-                    {tierSponsors.length}
-                  </span>
                 </div>
                 {config.subtitle && (
                   <p
@@ -445,14 +398,10 @@ const Sponsors = () => {
                         src={sponsor.icon}
                         alt={sponsor.name}
                         loading="lazy"
-                        className="h-full max-h-full w-full max-w-full object-contain transition-all duration-300 group-hover:scale-110"
+                        className="object-contain transition-all duration-300 group-hover:scale-110"
                         style={{
-                          maxWidth: `min(${
-                            sponsor.logoWidth ? sponsor.logoWidth : DEFAULT_LOGO_WIDTH
-                          }px, 90%)`,
-                          maxHeight: `min(${
-                            sponsor.logoHeight ? sponsor.logoHeight : DEFAULT_LOGO_HEIGHT
-                          }px, 90%)`,
+                          maxWidth: `${sponsor.logoWidth || DEFAULT_LOGO_WIDTH}px`,
+                          maxHeight: `${sponsor.logoHeight || DEFAULT_LOGO_HEIGHT}px`,
                         }}
                       />
                     </div>
