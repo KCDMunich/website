@@ -31,6 +31,11 @@
   transform: translateY(-8px) scale(1.05);
 }
 
+/* Responsive logo scaling */
+.sponsor-logo {
+  transition: all 0.3s ease;
+}
+
 /* Premium Platinum Effects */
 .platinum-premium {
   position: relative;
@@ -83,6 +88,10 @@
   .sponsor-card:hover {
     transform: translateY(-4px) scale(1.02);
   }
+
+  .sponsor-logo {
+    transform: scale(0.9);
+  }
 }
 
 @media (max-width: 768px) {
@@ -99,6 +108,10 @@
   .platinum-premium::after {
     display: none;
   }
+
+  .sponsor-logo {
+    transform: scale(0.75);
+  }
 }
 
 @media (max-width: 640px) {
@@ -112,6 +125,16 @@
 
   .glow-pulse {
     animation: none;
+  }
+
+  .sponsor-logo {
+    transform: scale(0.6);
+  }
+}
+
+@media (max-width: 480px) {
+  .sponsor-logo {
+    transform: scale(0.5);
   }
 }
 

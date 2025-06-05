@@ -26,38 +26,38 @@ const SHOW_SPONSORS = true;
 const tierConfig = {
   platinum: {
     title: 'Platinum',
-    class: 'bg-white shadow-md border border-gray-100 hover:shadow-lg hover:border-gray-200/50',
+    class: 'bg-white border border-gray-100 hover:border-gray-200/50',
     badgeClass: 'bg-gray-100 text-gray-700 border border-gray-200',
     cardSize: 'w-[240px] h-[120px] md:w-[200px] md:h-[100px] sm:w-[180px] sm:h-[90px]',
   },
   gold: {
     title: 'Gold',
-    class: 'bg-white shadow-md border border-gray-100 hover:shadow-lg hover:border-amber-200/50',
+    class: 'bg-white border border-gray-100 hover:border-amber-200/50',
     badgeClass: 'bg-amber-100 text-amber-800 border border-amber-200',
     cardSize: 'w-[240px] h-[120px] md:w-[200px] md:h-[100px] sm:w-[180px] sm:h-[90px]',
   },
   silver: {
     title: 'Silver',
-    class: 'bg-white shadow-md border border-gray-100 hover:shadow-lg hover:border-gray-200/50',
+    class: 'bg-white border border-gray-100 hover:border-gray-200/50',
     badgeClass: 'bg-gray-100 text-gray-700 border border-gray-200',
     cardSize: 'w-[200px] h-[100px] md:w-[180px] md:h-[90px] sm:w-[160px] sm:h-[80px]',
   },
   bronze: {
     title: 'Bronze',
-    class: 'bg-white shadow-md border border-gray-100 hover:shadow-lg hover:border-orange-200/50',
+    class: 'bg-white border border-gray-100 hover:border-orange-200/50',
     badgeClass: 'bg-orange-100 text-orange-800 border border-orange-200',
     cardSize: 'w-[180px] h-[90px] md:w-[160px] md:h-[80px] sm:w-[140px] sm:h-[70px]',
   },
   evening: {
     title: 'Evening Event',
-    class: 'bg-white shadow-md border border-gray-100 hover:shadow-lg hover:border-purple-200/50',
+    class: 'bg-white border border-gray-100 hover:border-purple-200/50',
     badgeClass: 'bg-purple-100 text-purple-800 border border-purple-200',
     cardSize: 'w-[200px] h-[100px] md:w-[180px] md:h-[90px] sm:w-[160px] sm:h-[80px]',
   },
 
   partner: {
     title: 'Community & Media Partners',
-    class: 'bg-white shadow-md border border-gray-100 hover:shadow-lg hover:border-green-200/50',
+    class: 'bg-white border border-gray-100 hover:border-green-200/50',
     badgeClass: 'bg-green-100 text-green-800 border border-green-200',
     cardSize: 'w-[180px] h-[90px] md:w-[160px] md:h-[80px] sm:w-[140px] sm:h-[70px]',
   },
@@ -326,7 +326,7 @@ const Sponsors = () => {
                 >
                   {config.premium && !config.noBackground && (
                     <div className="flex items-center gap-2 md:hidden">
-                      <div className="flex h-6 w-6 items-center justify-center rounded-full bg-gradient-to-r from-slate-400 to-slate-500 shadow-lg">
+                      <div className="flex h-6 w-6 items-center justify-center rounded-full bg-gradient-to-r from-slate-400 to-slate-500 ">
                         <div className="h-3 w-3 rounded-full bg-white shadow-inner"></div>
                       </div>
                       <div className="h-1 w-8 bg-gradient-to-r from-slate-400 to-transparent"></div>
@@ -348,7 +348,7 @@ const Sponsors = () => {
                   {config.premium && !config.noBackground && (
                     <div className="flex items-center gap-2 md:hidden">
                       <div className="h-1 w-8 bg-gradient-to-l from-slate-400 to-transparent"></div>
-                      <div className="flex h-6 w-6 items-center justify-center rounded-full bg-gradient-to-r from-slate-400 to-slate-500 shadow-lg">
+                      <div className="flex h-6 w-6 items-center justify-center rounded-full bg-gradient-to-r from-slate-400 to-slate-500 ">
                         <div className="h-3 w-3 rounded-full bg-white shadow-inner"></div>
                       </div>
                     </div>
@@ -398,7 +398,7 @@ const Sponsors = () => {
                         src={sponsor.icon}
                         alt={sponsor.name}
                         loading="lazy"
-                        className="object-contain transition-all duration-300 group-hover:scale-110"
+                        className="sponsor-logo object-contain transition-all duration-300 group-hover:scale-110"
                         style={{
                           maxWidth: `${sponsor.logoWidth || DEFAULT_LOGO_WIDTH}px`,
                           maxHeight: `${sponsor.logoHeight || DEFAULT_LOGO_HEIGHT}px`,
