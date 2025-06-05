@@ -27,8 +27,9 @@ const tierConfig = {
   platinum: {
     title: 'Platinum',
     class:
-      'bg-gradient-to-br from-white via-slate-50/30 to-white shadow-2xl border-2 border-primary-1/30 hover:shadow-3xl hover:border-primary-1/50 hover:scale-[1.02] transition-all duration-500',
-    badgeClass: 'bg-gradient-to-r from-primary-1 to-primary-1/80 text-white font-bold shadow-lg',
+      'bg-gradient-to-br from-slate-100 via-gray-50 to-slate-200/80 shadow-2xl border-2 border-slate-300/50 hover:shadow-3xl hover:border-slate-400/70 hover:scale-[1.02] transition-all duration-500 backdrop-blur-sm',
+    badgeClass:
+      'bg-gradient-to-r from-slate-600 to-slate-700 text-white font-bold shadow-lg border border-slate-500/30',
     cardSize: 'w-[320px] h-[160px]',
     special: true,
     subtitle: 'Premium Partners',
@@ -422,7 +423,8 @@ const Sponsors = () => {
                       'sponsor-card group flex items-center justify-center rounded-lg transition-all duration-300',
                       'hover:-translate-y-2 hover:scale-105',
                       config.cardSize,
-                      config.class
+                      config.class,
+                      config.premium && 'platinum-premium'
                     )}
                   >
                     <div className="relative flex h-full w-full items-center justify-center p-6">
