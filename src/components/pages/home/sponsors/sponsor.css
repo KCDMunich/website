@@ -1,4 +1,192 @@
+/* Button inherits from main site styles */
 .button {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 500;
+  color: white;
+  background: #004258;
+  border-radius: 0.375rem;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.button:hover {
+  background: #003147;
+  transform: translateY(-1px);
+}
+
+/* Clean sponsor card styling */
+.sponsor-card {
+  position: relative;
   display: flex;
+  align-items: center;
   justify-content: center;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+}
+
+.sponsor-card:hover {
+  transform: translateY(-8px) scale(1.05);
+}
+
+/* Responsive logo scaling */
+.sponsor-logo {
+  transition: all 0.3s ease;
+}
+
+/* Premium Platinum Effects */
+.platinum-premium {
+  position: relative;
+}
+
+.platinum-premium::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  padding: 2px;
+  background: linear-gradient(135deg, #004258, #0066cc, #004258);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.platinum-premium:hover::before {
+  opacity: 1;
+}
+
+.platinum-premium::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.1),
+    transparent,
+    rgba(255, 255, 255, 0.1)
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.platinum-premium:hover::after {
+  opacity: 1;
+}
+
+/* Shadow utilities for Tailwind */
+.shadow-3xl {
+  box-shadow: 0 35px 60px -12px rgba(0, 0, 0, 0.25);
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .sponsor-card:hover {
+    transform: translateY(-4px) scale(1.02);
+  }
+
+  .sponsor-logo {
+    transform: scale(0.9);
+  }
+}
+
+@media (max-width: 768px) {
+  .sponsor-card:hover {
+    transform: translateY(-2px) scale(1.01);
+  }
+
+  .button {
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+  }
+
+  .platinum-premium::before,
+  .platinum-premium::after {
+    display: none;
+  }
+
+  .sponsor-logo {
+    transform: scale(0.75);
+  }
+}
+
+@media (max-width: 640px) {
+  .sponsor-card:hover {
+    transform: translateY(-1px) scale(1.005);
+  }
+
+  .floating {
+    animation: none;
+  }
+
+  .glow-pulse {
+    animation: none;
+  }
+
+  .sponsor-logo {
+    transform: scale(0.6);
+  }
+}
+
+@media (max-width: 480px) {
+  .sponsor-logo {
+    transform: scale(0.5);
+  }
+}
+
+/* Moderne Sponsor-Animationen */
+.sponsor-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.1));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+
+.platinum-glow {
+  box-shadow: 0 0 30px rgba(148, 163, 184, 0.3), 0 10px 40px rgba(148, 163, 184, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+
+.platinum-glow:hover {
+  box-shadow: 0 0 50px rgba(148, 163, 184, 0.4), 0 20px 60px rgba(148, 163, 184, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+/* Smooth animations */
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+.floating {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Glowing pulse animation */
+@keyframes glow-pulse {
+  0%,
+  100% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.glow-pulse {
+  animation: glow-pulse 2s ease-in-out infinite;
 }
