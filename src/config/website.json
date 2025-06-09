@@ -511,13 +511,6 @@
         "active": true
       },
       {
-        "name": "SheTech",
-        "icon": "/images/sponsors/partner/SheTech.png",
-        "url": "https://shetechitaly.org/",
-        "tier": "partner",
-        "active": true
-      },
-      {
         "name": "SCHRODINGER HAT",
         "icon": "/images/sponsors/partner/SCHRODINGER_HAT.png",
         "url": "#",
