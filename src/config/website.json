@@ -488,6 +488,41 @@
         "url": "https://t.me/+mqQJQ9BqKOViMmVk",
         "tier": "partner",
         "active": true
+      },
+      {
+        "name": "Codeful",
+        "icon": "/images/sponsors/partner/coderful.png",
+        "url": "http://www.coderful.io",
+        "tier": "partner",
+        "active": true
+      },
+      {
+        "name": "GDG Pisa",
+        "icon": "/images/sponsors/partner/gdgpisa.png",
+        "url": "https://devfest.gdgpisa.it/",
+        "tier": "partner",
+        "active": true
+      },
+      {
+        "name": "SheTech",
+        "icon": "/images/sponsors/partner/SheTech.png",
+        "url": "https://shetechitaly.org/",
+        "tier": "partner",
+        "active": true
+      },
+      {
+        "name": "SheTech",
+        "icon": "/images/sponsors/partner/SheTech.png",
+        "url": "https://shetechitaly.org/",
+        "tier": "partner",
+        "active": true
+      },
+      {
+        "name": "SCHRODINGER HAT",
+        "icon": "/images/sponsors/partner/SCHRODINGER_HAT.png",
+        "url": "#",
+        "tier": "partner",
+        "active": true
       }
     ],
     "tiers": {
