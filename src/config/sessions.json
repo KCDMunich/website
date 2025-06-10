@@ -346,7 +346,7 @@
       "trackId": "track1",
       "roomId": "room1",
       "description": "Witness the development of a cloud-native application powered by orchestrated AI agents. From idea generation to rapid prototyping, engineering, and scaling, see how coordinated AI can transform days of work into just hours. Discover new ways to supercharge your development workflows for your entire IT factory.",
-      "speakerIds": ["graziano-casto"],
+      "speakerIds": ["davide-calabro"],
       "tags": ["SPONSORED"],
       "level": "Intermediate"
     },

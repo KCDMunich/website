@@ -321,14 +321,14 @@
       "bio": "CTO e socio fondatore di Archeido Srl, software house altamente specializzata nel cloud computing. Nasce come sviluppatore backend (background tecnico) e con il tempo ha acquisito competenze più trasversali anche manageriali e imprenditoriali. Negli anni si è specializzato sempre più in ambito cloud. Ad oggi il “titolo” che più lo rappresenta affiancato a CTO è quello di Cloud Architect."
     },
     {
-      "id": "graziano-casto",
-      "name": "Graziano Casto",
-      "role": "Developer Relations Engineer",
+      "id": "davide-calabro",
+      "name": "Davide Calabrò",
+      "role": "Senior Tech Leader",
       "company": "Mia-Platform",
       "companyUrl": "https://mia-platform.eu",
-      "image": "/images/speakers/graziano-casto.jpg",
-      "linkedin": "https://www.linkedin.com/in/castograziano/",
-      "bio": "Graziano is a software engineer and passionate about agile development and product management. Formerly a developer of distributed systems in enterprise environments and a product manager, he focuses on sharing the myriad beauties of the cloud-native world. Active in international communities with talks and articles, he mainly deals with architectures, AI, platform engineering, and environmental sustainability in the software realm. \n\nMore on: https://www.castograziano.com/"
+      "image": "/images/speakers/davide-calabro.jpg",
+      "linkedin": "https://www.linkedin.com/in/davidecalabro/",
+      "bio": "My name is Davide Calabrò, 27 years old, from Italy. After some years as a software engineer, in September 2021 I landed in Mia-Care. I am involved in the development of the Mia-Platform IDP, following the requirements and features needed for the development of Software as a Medical Device (SaMD). In my spare time, I ride my motorbike and go hiking."
     }
   ]
 }
