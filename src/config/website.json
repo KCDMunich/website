@@ -511,9 +511,16 @@
         "active": true
       },
       {
-        "name": "SCHRODINGER HAT",
+        "name": "Schrödinger Hat",
         "icon": "/images/sponsors/partner/SCHRODINGER_HAT.png",
         "url": "#",
+        "tier": "partner",
+        "active": true
+      },
+      {
+        "name": "OpenSearch Project Milan",
+        "icon": "/images/sponsors/partner/OpenSearch-Milan-User-Group.png",
+        "url": "https://www.meetup.com/it-IT/opensearch-project-milan/",
         "tier": "partner",
         "active": true
       }
