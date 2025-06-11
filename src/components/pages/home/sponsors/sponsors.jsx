@@ -220,7 +220,7 @@ const sponsorsList = [
   {
     name: 'Renao',
     icon: Renao,
-    url: 'https://renao.de/',
+    url: 'https://renao.io/',
     tier: 'partner',
     logoWidth: 150,
     logoHeight: 100,
