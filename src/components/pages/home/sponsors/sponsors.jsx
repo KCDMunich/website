@@ -14,6 +14,7 @@ import PerfectScale from 'icons/PerfectScale.png';
 import PlatformEngineeringLabs from 'icons/platformengineeringlabs.png';
 import QAware from 'icons/QAware_p.png';
 import ReadHat from 'icons/red-hat.svg';
+import Renao from 'icons/renao.webp';
 import solarwinds from 'icons/solarwinds.webp';
 import Steadforce from 'icons/steadforce_logo.png';
 import SysEleven from 'icons/syseleven.png';
@@ -214,6 +215,14 @@ const sponsorsList = [
     url: 'https://www.cncf.io/',
     tier: 'evening',
     logoWidth: 160,
+    logoHeight: 100,
+  },
+  {
+    name: 'Renao',
+    icon: Renao,
+    url: 'https://renao.de/',
+    tier: 'partner',
+    logoWidth: 150,
     logoHeight: 100,
   },
 ];
