@@ -523,6 +523,13 @@
         "url": "https://www.meetup.com/it-IT/opensearch-project-milan/",
         "tier": "partner",
         "active": true
+      },
+      {
+        "name": "GDG Cloud Modena",
+        "icon": "/images/sponsors/partner/GDG-Cloud-Modena.png",
+        "url": "#",
+        "tier": "partner",
+        "active": true
       }
     ],
     "tiers": {
