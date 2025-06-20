@@ -265,11 +265,11 @@
       "isFullWidth": true
     },
     {
-      "id": "session-6-track1",
+      "id": "session-7-track1",
       "title": "Securing the Container Wild West",
       "type": "talk",
       "dayId": "conference-day",
-      "timeSlotId": "conf-slot10",
+      "timeSlotId": "conf-slot11",
       "trackId": "track1",
       "roomId": "room1",
       "description": "Le nuove normative europee come NIS2 e il Cyber Resilience Act alzano l'asticella per la sicurezza della supply chain software. Gli ecosistemi di container, spesso gestiti in modo informale (\"Wild West\"), rappresentano un'area di rischio critico per le organizzazioni. Questo talk illustra come mettere in sicurezza la supply chain dei container attraverso strategie concrete: riduzione della superficie d'attacco, aggiornamento costante delle immagini, scansione continua delle vulnerabilità, verifica delle firme crittografiche e adozione del framework SLSA, per garantire la conformità normativa e la resilienza operativa.",
@@ -291,11 +291,11 @@
       "level": "Intermediate"
     },
     {
-      "id": "session-7-track1",
+      "id": "session-6-track1",
       "title": "Cluster API and Proxmox: The odd couple for your Kubernetes on-prem",
       "type": "talk",
       "dayId": "conference-day",
-      "timeSlotId": "conf-slot11",
+      "timeSlotId": "conf-slot10",
       "trackId": "track1",
       "roomId": "room1",
       "description": "Kubernetes on premises, comporta l'affrontare una serie di sfide dal provisioning alla network, dallo storage sino alla gestione quotidiana. Cluster API è un progetto Kubernetes che mira a semplificare la gestione del ciclo di vita dei cluster attraverso API dichiarative. L'accoppiamento con Proxmox, una piattaforma di virtualizzazione open-source, rappresenta un'interessante proposta per chi cerca una solida soluzione on-premises , aperta e in grado di offrire un provisioning flessibile dell'infrastruttura.In questo talk discuteremo i concetti chiave, vantaggi e svantaggi , di Cluster API, la sua architettura e il modo in cui astrae la complessità del provisioning e della gestione dei cluster Kubernetes, dimostreremo come Proxmox possa fungere ottimamente da fornitore di infrastruttura per Cluster API, sfruttando il suo ricco set di funzionalità e soluzioni per l'iperconvergenza.",
