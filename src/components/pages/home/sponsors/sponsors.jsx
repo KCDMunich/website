@@ -20,6 +20,7 @@ import Steadforce from 'icons/steadforce_logo.png';
 import SysEleven from 'icons/syseleven.png';
 import vCluster from 'icons/vCluster.svg';
 import whiteduck from 'icons/whiteduck.png';
+import cnz from 'icons/cnz_logo.webp';
 import './sponsor.css';
 
 const SHOW_SPONSORS = true;
@@ -221,6 +222,14 @@ const sponsorsList = [
     name: 'Renao',
     icon: Renao,
     url: 'https://renao.io/',
+    tier: 'partner',
+    logoWidth: 150,
+    logoHeight: 100,
+  },
+  {
+    name: 'CNZ',
+    icon: cnz,
+    url: 'https://cloudnativezurich.ch/',
     tier: 'partner',
     logoWidth: 150,
     logoHeight: 100,
