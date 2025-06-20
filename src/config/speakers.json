@@ -339,6 +339,26 @@
       "image": "/images/speakers/AlbertoPMarti.jpg",
       "linkedin": "https://www.linkedin.com/in/albertomarti/",
       "bio": "Alberto has spent most of his career in Spain and in the UK, both in Tech and in Higher Education. As VP of Open Source Innovation at OpenNebula Systems, he deals with strategic collaborations with cloud and edge providers, other open source initiatives, and CIOs from relevant vendors. He is one of the initial promoters of the SovereignEdge.EU initiative, coordinating involvement in the Horizon Europe programme and in other joint R&D activities based on European open source technologies for the cloud-edge continuum. In March 2024, Alberto was elected Chair of the Industry Facilitation Group of the new €3B IPCEI Cloud."
+    },
+    {
+      "id": "jacopo-nardiello",
+      "name": "Jacopo Nardiello",
+      "role": "Chief Cloud Native Officer",
+      "company": "ReeVo Cloud & Cyber Security",
+      "companyUrl": "https://www.reevo.it/",
+      "image": "/images/speakers/jacopo-nardiello.jpeg",
+      "linkedin": "https://www.linkedin.com/in/jnardiello/",
+      "bio": "Jacopo Nardiello is a DevOps and Kubernetes Engineer passionate about infrastructure automation, orchestration, and distributed systems. Focused on architecture and engineering of distributed systems based on Containers and Kubernetes, he founded SIGHUP in 2016. Currently Chief Cloud Native Officer at ReeVo Cloud & Cyber Security, he is also a CNCF Ambassador and a member of the Linux Foundation Europe Advisory Board."
+    },
+    {
+      "id": "evangelista-tragni",
+      "name": "Evangelista Tragni",
+      "role": "Senior Delivery Manager",
+      "company": "DesoTech",
+      "companyUrl": "https://deso.tech/",
+      "image": "/images/speakers/evangelista-tragni.jpeg",
+      "linkedin": "https://www.linkedin.com/in/evangelista-tragni/",
+      "bio": ""
     }
   ]
 }

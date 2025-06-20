@@ -97,7 +97,7 @@
       "trackId": "track1",
       "roomId": "room1",
       "description": "Welcome to Cloud Native Days 2025! Join us for the opening remarks and introduction to the event. We'll set the stage for an exciting day of talks, workshops, and networking opportunities.",
-      "speakerIds": ["monica-colangelo", "maurizio-argoneto"],
+      "speakerIds": ["monica-colangelo", "maurizio-argoneto", "jacopo-nardiello", "evangelista-tragni"],
       "isFullWidth": true,
       "tags": ["ENG"],
       "level": "all"
