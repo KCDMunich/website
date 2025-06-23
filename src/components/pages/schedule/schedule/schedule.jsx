@@ -354,6 +354,12 @@ const Schedule = () => {
     setSessionTypes(types);
   }, [events]);
 
+  // Mapping für die Anzeige der Raum-Header
+  const roomHeaderLabels = {
+    Workshops: 'Workshops & Sponsor Talks',
+    // Falls weitere Räume umbenannt werden sollen, hier ergänzen
+  };
+
   if (isLoading) {
     return (
       <div className="loading-container">
@@ -414,7 +420,7 @@ const Schedule = () => {
         {rooms.map((room) => (
           <div key={room} className="room-section">
             <div className="room-header">
-              <h2>{room}</h2>
+              <h2>{roomHeaderLabels[room] || room}</h2>
             </div>
             {(eventsByRoom[room] || []).map((event) => {
               const isFavorite = favorites.includes(event.id);
