@@ -14,6 +14,8 @@ const typeLabels = {
   service: 'Service Sessions',
 };
 
+const sponsorSessionIds = ['954600', '948247', '935770', '935766'];
+
 const Schedule = () => {
   const [speakerData, setSpeakerData] = useState([]);
   const [gridData, setGridData] = useState([]); // Raw grid data
@@ -56,6 +58,13 @@ const Schedule = () => {
           if (filters.showServiceSessions && session.isServiceSession) {
             return true;
           }
+          if (sponsorSessionIds.includes(String(session.id))) {
+            return (
+              session.status === 'Accepted' &&
+              session.isInformed === true &&
+              !session.isServiceSession
+            );
+          }
           return (
             session.status === 'Accepted' &&
             session.isInformed === true &&
@@ -64,33 +73,44 @@ const Schedule = () => {
           );
         });
 
-        const roomEvents = filteredSessions.map((session) => ({
-          id: session.id,
-          title: session.title,
-          description: session.description || '',
-          time: new Date(session.startsAt).toLocaleTimeString([], {
-            hour: '2-digit',
-            minute: '2-digit',
-          }),
-          endTime: new Date(session.endsAt).toLocaleTimeString([], {
-            hour: '2-digit',
-            minute: '2-digit',
-          }),
-          duration: calculateDuration(session.startsAt, session.endsAt),
-          room: room.name,
-          type: determineEventType(room.name, session),
-          speakers: session.speakers,
-          start: session.startsAt,
-          end: session.endsAt,
-          isServiceSession: session.isServiceSession || false,
-        }));
-        events.push(...roomEvents);
+        const roomEvents = filteredSessions.map((session) => {
+          const baseEvent = {
+            id: session.id,
+            title: session.title,
+            description: session.description || '',
+            time: new Date(session.startsAt).toLocaleTimeString([], {
+              hour: '2-digit',
+              minute: '2-digit',
+            }),
+            endTime: new Date(session.endsAt).toLocaleTimeString([], {
+              hour: '2-digit',
+              minute: '2-digit',
+            }),
+            duration: calculateDuration(session.startsAt, session.endsAt),
+            room: room.name,
+            type: determineEventType(room.name, session),
+            speakers: session.speakers,
+            start: session.startsAt,
+            end: session.endsAt,
+            isServiceSession: session.isServiceSession || false,
+          };
+          const eventsArr = [baseEvent];
+          // Falls Session in sponsorSessionIds, zusätzlich als Sponsor Talk im Raum 'Workshops' einfügen
+          if (sponsorSessionIds.includes(String(session.id))) {
+            eventsArr.push({
+              ...baseEvent,
+              room: 'Workshops',
+              type: 'sponsor',
+            });
+          }
+          return eventsArr;
+        });
+        events.push(...roomEvents.flat());
       });
     });
-    return events;
+    return events.sort((a, b) => new Date(a.start) - new Date(b.start));
   };
 
-  // Helper: Calculate duration in minutes
   const calculateDuration = (start, end) => {
     const startDate = new Date(start);
     const endDate = new Date(end);
@@ -98,7 +118,6 @@ const Schedule = () => {
     return Math.round(duration);
   };
 
-  // Helper: Determine event type by room name or session
   const determineEventType = (room, session) => {
     if (session && session.isServiceSession) return 'service';
     if (room.toLowerCase().includes('workshop')) return 'workshop';
@@ -106,7 +125,6 @@ const Schedule = () => {
     return 'talk';
   };
 
-  // Helper: Filter events by type/favorites
   const filterEvents = (events) => {
     if (selectedType === 'all') return events;
     if (selectedType === 'favorites') {
@@ -115,7 +133,6 @@ const Schedule = () => {
     return events.filter((event) => event.type === selectedType);
   };
 
-  // Helper: Group events by room
   const groupEventsByRoom = (events) => {
     return events.reduce((acc, event) => {
       if (!acc[event.room]) {
@@ -126,13 +143,11 @@ const Schedule = () => {
     }, {});
   };
 
-  // Helper: Find speaker profile picture
   const findSpeakerProfile = (speakerId) => {
     const speaker = speakerData.find((s) => s.id === speakerId);
     return speaker ? speaker.profilePicture : null;
   };
 
-  // Helper: Filter events by selected day
   const filterEventsByDay = (events, day) => {
     const gridDay = getDateForSelectedDay();
     if (!gridDay) return [];
@@ -143,21 +158,18 @@ const Schedule = () => {
     });
   };
 
-  // Helper: Get rooms for selected day from gridData
   const getRoomsForSelectedDay = () => {
     const gridDay = getDateForSelectedDay();
     if (!gridDay) return [];
     return gridDay.rooms.map((room) => room.name);
   };
 
-  // Helper: Is event live?
   const isLive = (start, end) => {
     const startTime = new Date(start);
     const endTime = new Date(end);
     return currentTime >= startTime && currentTime <= endTime;
   };
 
-  // Helper: Toggle favorite
   const toggleFavorite = (eventId) => {
     setFavorites((prev) => {
       if (prev.includes(eventId)) {
@@ -168,7 +180,6 @@ const Schedule = () => {
     });
   };
 
-  // Helper: Calculate remaining minutes
   const calculateRemainingMinutes = (endTime) => {
     const end = new Date(endTime);
     const now = new Date();
@@ -176,7 +187,6 @@ const Schedule = () => {
     return Math.max(0, Math.ceil(diff / (1000 * 60)));
   };
 
-  // Modal component (unverändert)
   const Modal = ({ isOpen, event, favorites, toggleFavorite, findSpeakerProfile, onClose }) => {
     if (!isOpen || !event) return null;
 
