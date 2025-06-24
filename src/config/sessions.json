@@ -366,15 +366,15 @@
     },
     {
       "id": "session-9-track2",
-      "title": "Sponsored Session TBA",
+      "title": "AI e Sicurezza Cloud-Native: Potenziare la Gestione della Sicurezza con gli Assistenti AI",
       "type": "talk",
       "dayId": "conference-day",
       "timeSlotId": "conf-sponsored-slot2",
       "trackId": "track2",
       "roomId": "room2",
-      "description": "Details for this session will be announced soon. Stay tuned for updates!",
-      "speakerIds": ["speaker-sponsor-1"],
-      "tags": [],
+      "description": "La transizione verso architetture cloud-native ha ampliato la superficie d’attacco e aumentato la complessità nella gestione della sicurezza. In un contesto in cui le competenze scarseggiano e il rumore operativo cresce, l’intelligenza artificiale può rappresentare un valido alleato. In questo intervento esploreremo come gli assistenti AI possano supportare i team di sicurezza nel triage, nell’analisi e nella risposta agli incidenti, riducendo i tempi di intervento e migliorando la qualità delle decisioni. Un caso d’uso concreto mostrerà i benefici reali di questo approccio, anche in ambienti complessi e dinamici.",
+      "speakerIds": ["giulio-puri", "andrea-vivaldi"],
+      "tags": ["ITA"],
       "level": "all"
     },
     {
