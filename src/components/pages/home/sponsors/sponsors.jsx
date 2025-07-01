@@ -17,6 +17,7 @@ import PlatformEngineeringLabs from 'icons/platformengineeringlabs.png';
 import QAware from 'icons/QAware_p.png';
 import ReadHat from 'icons/red-hat.svg';
 import Renao from 'icons/renao.webp';
+import Sidero from 'icons/Sidero_Black.svg';
 import solarwinds from 'icons/solarwinds.webp';
 import Steadforce from 'icons/steadforce_logo.png';
 import SysEleven from 'icons/syseleven.png';
@@ -243,7 +244,18 @@ const sponsorsList = [
     logoWidth: 180,
     logoHeight: 130,
   },
+  {
+    name: 'Sidero',
+    icon: Sidero,
+    url: 'https://sidero.com/',
+    tier: 'silver',
+    logoWidth: 180,
+    logoHeight: 130,
+  },
 ];
+
+// Sort sponsorsList alphabetically by name (case-insensitive)
+sponsorsList.sort((a, b) => a.name.toLowerCase().localeCompare(b.name.toLowerCase()));
 
 const contactEmail = 'team@cloudnativesummit.de';
 
