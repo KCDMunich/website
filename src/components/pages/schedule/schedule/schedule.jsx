@@ -35,7 +35,7 @@ const Schedule = () => {
     }
   });
 
-  const [sessionFilters, setSessionFilters] = useState({
+  const [sessionFilters] = useState({
     showServiceSessions: true,
   });
 
@@ -94,16 +94,20 @@ const Schedule = () => {
             end: session.endsAt,
             isServiceSession: session.isServiceSession || false,
           };
-          const eventsArr = [baseEvent];
-          // Falls Session in sponsorSessionIds, zusätzlich als Sponsor Talk im Raum 'Workshops' einfügen
+
+          // Für Sponsor Sessions: Nur im Workshops Raum anzeigen, nicht im ursprünglichen Raum
           if (sponsorSessionIds.includes(String(session.id))) {
-            eventsArr.push({
-              ...baseEvent,
-              room: 'Workshops',
-              type: 'sponsor',
-            });
+            return [
+              {
+                ...baseEvent,
+                room: 'Workshops',
+                type: 'sponsor',
+              },
+            ];
           }
-          return eventsArr;
+
+          // Für alle anderen Sessions: Im ursprünglichen Raum anzeigen
+          return [baseEvent];
         });
         events.push(...roomEvents.flat());
       });
@@ -148,7 +152,7 @@ const Schedule = () => {
     return speaker ? speaker.profilePicture : null;
   };
 
-  const filterEventsByDay = (events, day) => {
+  const filterEventsByDay = (events) => {
     const gridDay = getDateForSelectedDay();
     if (!gridDay) return [];
     const gridDate = new Date(gridDay.date).getDate();
@@ -369,7 +373,7 @@ const Schedule = () => {
   }
 
   // Filter events for selected day and type
-  const filteredEvents = filterEvents(filterEventsByDay(events, selectedDay));
+  const filteredEvents = filterEvents(filterEventsByDay(events));
   const eventsByRoom = groupEventsByRoom(filteredEvents);
 
   return (
