@@ -247,7 +247,7 @@ const sponsorsList = [
   {
     name: 'Sidero',
     icon: Sidero,
-    url: 'https://sidero.com/',
+    url: 'https://www.siderolabs.com/',
     tier: 'silver',
     logoWidth: 180,
     logoHeight: 130,
