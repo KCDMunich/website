@@ -24,13 +24,13 @@ const sponsorSessionIds = [
   '972819',
   '971893',
   '969373',
-  '835091',
-  '857417',
-  '858404',
-  '862527',
-  '881898',
-  '898401',
+  '954600',
+  '948247',
+  '935770',
+  '935766',
 ];
+
+const workshopSessionIds = ['835091', '857417', '858404', '862527', '881898', '898401'];
 
 const Schedule = () => {
   const [speakerData, setSpeakerData] = useState([]);
@@ -131,6 +131,8 @@ const Schedule = () => {
 
   const determineEventType = (room, session) => {
     if (session && session.isServiceSession) return 'service';
+    if (sponsorSessionIds.includes(String(session.id))) return 'sponsor';
+    if (workshopSessionIds.includes(String(session.id))) return 'workshop';
     if (room.toLowerCase().includes('workshop')) return 'workshop';
     if (room.toLowerCase().includes('sponsor')) return 'sponsor';
     return 'talk';
