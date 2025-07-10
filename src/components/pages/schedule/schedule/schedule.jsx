@@ -59,18 +59,9 @@ const Schedule = () => {
             return true;
           }
           if (sponsorSessionIds.includes(String(session.id))) {
-            return (
-              session.status === 'Accepted' &&
-              session.isInformed === true &&
-              !session.isServiceSession
-            );
+            return session.status === 'Accepted' && !session.isServiceSession;
           }
-          return (
-            session.status === 'Accepted' &&
-            session.isInformed === true &&
-            session.isConfirmed === true &&
-            !session.isServiceSession
-          );
+          return session.status === 'Accepted' && !session.isServiceSession;
         });
 
         const roomEvents = filteredSessions.map((session) => {
