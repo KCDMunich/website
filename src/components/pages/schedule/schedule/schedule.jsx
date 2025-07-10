@@ -14,7 +14,27 @@ const typeLabels = {
   service: 'Service Sessions',
 };
 
-const sponsorSessionIds = ['954600', '948247', '935770', '935766'];
+const sponsorSessionIds = [
+  '954600',
+  '948247',
+  '935770',
+  '935766',
+  '973494',
+  '973258',
+  '972819',
+  '971893',
+  '969373',
+  '954600',
+  '948247',
+  '935770',
+  '935766',
+  '835091',
+  '857417',
+  '858404',
+  '862527',
+  '881898',
+  '898401',
+];
 
 const Schedule = () => {
   const [speakerData, setSpeakerData] = useState([]);
