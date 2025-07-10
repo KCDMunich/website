@@ -95,6 +95,7 @@ const Schedule = () => {
             }),
             duration: calculateDuration(session.startsAt, session.endsAt),
             room: room.name,
+            originalRoom: room.name, // Ursprünglicher Raum
             type: determineEventType(room.name, session),
             speakers: session.speakers,
             start: session.startsAt,
@@ -108,6 +109,7 @@ const Schedule = () => {
               {
                 ...baseEvent,
                 room: 'Workshops',
+                originalRoom: room.name, // Ursprünglicher Raum bleibt erhalten
                 type: 'sponsor',
               },
             ];
@@ -241,7 +243,7 @@ const Schedule = () => {
                   <p>
                     <strong>Room</strong>
                     <br />
-                    {event.room}
+                    {event.originalRoom || event.room}
                   </p>
                   <p>
                     <strong>Session Type</strong>
@@ -452,6 +454,7 @@ const Schedule = () => {
                     avatar: findSpeakerProfile(speaker.id),
                   }))}
                   location={event.room}
+                  originalRoom={event.originalRoom}
                   type={event.type}
                   isFavorite={isFavorite}
                   remainingMinutes={remainingMinutes}
