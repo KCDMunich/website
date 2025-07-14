@@ -1,5 +1,5 @@
-import React from 'react';
 import PropTypes from 'prop-types';
+import React from 'react';
 import './schedule.css';
 
 const ScheduleCard = ({
@@ -12,10 +12,8 @@ const ScheduleCard = ({
     { name: 'Chay Te', avatar: '/placeholder.svg?height=40&width=40' },
   ],
   location = 'Top Stage',
-  originalRoom = null,
   type = 'talk',
   isFavorite = false,
-  remainingMinutes = 12,
   onFavoriteClick,
   onClick,
   isLive = false,
@@ -48,7 +46,9 @@ const ScheduleCard = ({
             <span className="schedule-card-duration">{duration}</span>
           )}
         </div>
-        <span className={`schedule-card-type schedule-card-type-${type}`}>{type}</span>
+        <span className={`schedule-card-type schedule-card-type-${type}`}>
+          {type === 'sponsor' ? 'Sponsor Talk' : type.charAt(0).toUpperCase() + type.slice(1)}
+        </span>
       </div>
 
       <div className="schedule-card-content">
@@ -98,7 +98,7 @@ const ScheduleCard = ({
             <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
             <circle cx="12" cy="10" r="3" />
           </svg>
-          <span>{originalRoom || location}</span>
+          <span>{location}</span>
         </div>
         <button
           className="schedule-card-favorite-button"
@@ -134,10 +134,8 @@ ScheduleCard.propTypes = {
     })
   ),
   location: PropTypes.string,
-  originalRoom: PropTypes.string,
   type: PropTypes.string,
   isFavorite: PropTypes.bool,
-  remainingMinutes: PropTypes.number,
   onFavoriteClick: PropTypes.func,
   onClick: PropTypes.func,
   isLive: PropTypes.bool,

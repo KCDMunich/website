@@ -95,7 +95,7 @@ const Schedule = () => {
             }),
             duration: calculateDuration(session.startsAt, session.endsAt),
             room: room.name,
-            originalRoom: room.name, // Ursprünglicher Raum
+            originalRoom: room.name,
             type: determineEventType(room.name, session),
             speakers: session.speakers,
             start: session.startsAt,
@@ -103,19 +103,7 @@ const Schedule = () => {
             isServiceSession: session.isServiceSession || false,
           };
 
-          // Für Sponsor Sessions: Nur im Workshops Raum anzeigen, nicht im ursprünglichen Raum
-          if (sponsorSessionIds.includes(String(session.id))) {
-            return [
-              {
-                ...baseEvent,
-                room: 'Workshops',
-                originalRoom: room.name, // Ursprünglicher Raum bleibt erhalten
-                type: 'sponsor',
-              },
-            ];
-          }
-
-          // Für alle anderen Sessions: Im ursprünglichen Raum anzeigen
+          // Alle Sessions bleiben in ihrem ursprünglichen Raum
           return [baseEvent];
         });
         events.push(...roomEvents.flat());
@@ -195,14 +183,15 @@ const Schedule = () => {
     });
   };
 
-  const calculateRemainingMinutes = (endTime) => {
-    const end = new Date(endTime);
-    const now = new Date();
-    const diff = end - now;
-    return Math.max(0, Math.ceil(diff / (1000 * 60)));
-  };
-
-  const Modal = ({ isOpen, event, favorites, toggleFavorite, findSpeakerProfile, onClose }) => {
+  const Modal = ({
+    isOpen,
+    event,
+    favorites,
+    toggleFavorite,
+    findSpeakerProfile,
+    onClose,
+    displayRoom,
+  }) => {
     if (!isOpen || !event) return null;
 
     return (
@@ -243,7 +232,7 @@ const Schedule = () => {
                   <p>
                     <strong>Room</strong>
                     <br />
-                    {event.originalRoom || event.room}
+                    {displayRoom}
                   </p>
                   <p>
                     <strong>Session Type</strong>
@@ -305,6 +294,7 @@ const Schedule = () => {
     toggleFavorite: PropTypes.func.isRequired,
     findSpeakerProfile: PropTypes.func.isRequired,
     onClose: PropTypes.func.isRequired,
+    displayRoom: PropTypes.string.isRequired,
   };
 
   // Fetch data
@@ -371,8 +361,11 @@ const Schedule = () => {
 
   // Mapping für die Anzeige der Raum-Header
   const roomHeaderLabels = {
-    Workshops: 'Workshops & Sponsor Talks',
-    // Falls weitere Räume umbenannt werden sollen, hier ergänzen
+    Main: 'Main Stage - Wien/Versailles',
+    Side: 'Side Stage - Italien',
+    Workshops: 'Workshop - Danzig',
+    'Main Stage': 'Main Stage - Wien/Versailles',
+    'Side Stage': 'Side Stage - Italien',
   };
 
   if (isLoading) {
@@ -440,7 +433,6 @@ const Schedule = () => {
             {(eventsByRoom[room] || []).map((event) => {
               const isFavorite = favorites.includes(event.id);
               const isLiveEvent = isLive(event.start, event.end);
-              const remainingMinutes = isLiveEvent ? calculateRemainingMinutes(event.end) : 0;
 
               return (
                 <ScheduleCard
@@ -453,11 +445,10 @@ const Schedule = () => {
                     name: speaker.name,
                     avatar: findSpeakerProfile(speaker.id),
                   }))}
-                  location={event.room}
+                  location={roomHeaderLabels[event.room] || event.room}
                   originalRoom={event.originalRoom}
                   type={event.type}
                   isFavorite={isFavorite}
-                  remainingMinutes={remainingMinutes}
                   isLive={isLiveEvent}
                   onFavoriteClick={() => toggleFavorite(event.id)}
                   onClick={() => setSelectedEvent(event)}
@@ -474,6 +465,9 @@ const Schedule = () => {
         favorites={favorites}
         toggleFavorite={toggleFavorite}
         findSpeakerProfile={findSpeakerProfile}
+        displayRoom={
+          selectedEvent ? roomHeaderLabels[selectedEvent.room] || selectedEvent.room : ''
+        }
         onClose={() => setSelectedEvent(null)}
       />
     </div>
