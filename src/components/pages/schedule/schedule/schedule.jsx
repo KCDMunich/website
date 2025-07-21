@@ -506,13 +506,16 @@ const Schedule = () => {
               background: selectedType === 'favorites' ? '#004258' : '#f3f4f6',
               color: selectedType === 'favorites' ? '#fff' : '#374151',
               border: 'none',
-              borderRadius: 8,
-              padding: '0.5rem 1rem',
+              borderRadius: '8px',
+              padding: '0.5rem 1.2rem',
               cursor: 'pointer',
               display: 'flex',
               alignItems: 'center',
               transition: 'background 0.2s, color 0.2s',
               fontWeight: selectedType === 'favorites' ? 600 : 500,
+              fontSize: '0.9rem',
+              whiteSpace: 'nowrap',
+              height: '100%',
             }}
             title="Nur Favoriten anzeigen"
             aria-label="Nur Favoriten anzeigen"
