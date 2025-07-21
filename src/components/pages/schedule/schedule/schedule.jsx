@@ -7,13 +7,6 @@ import ScheduleCard from './ScheduleCard';
 const scriptUrl = 'https://sessionize.com/api/v2/px1o0jp3/view/GridSmart';
 const speakerURL = 'https://sessionize.com/api/v2/px1o0jp3/view/Speakers';
 
-const typeLabels = {
-  talk: 'Talks',
-  workshop: 'Workshops',
-  sponsor: 'Sponsor Talks',
-  service: 'Service Sessions',
-};
-
 const sponsorSessionIds = [
   '954600',
   '948247',
@@ -45,7 +38,7 @@ const Schedule = () => {
   const [favorites, setFavorites] = useState(() => {
     try {
       const stored = localStorage.getItem('favorites');
-      return stored ? JSON.parse(stored) : [];
+      return stored ? JSON.parse(stored).map(String) : [];
     } catch {
       return [];
     }
@@ -55,7 +48,7 @@ const Schedule = () => {
     showServiceSessions: true,
   });
 
-  const [sessionTypes, setSessionTypes] = useState([]);
+  const [isMobile, setIsMobile] = useState(false);
 
   // Helper: Get date for selectedDay
   const getDateForSelectedDay = () => {
@@ -128,14 +121,6 @@ const Schedule = () => {
     return 'talk';
   };
 
-  const filterEvents = (events) => {
-    if (selectedType === 'all') return events;
-    if (selectedType === 'favorites') {
-      return events.filter((event) => favorites.includes(event.id));
-    }
-    return events.filter((event) => event.type === selectedType);
-  };
-
   const groupEventsByRoom = (events) => {
     return events.reduce((acc, event) => {
       if (!acc[event.room]) {
@@ -174,11 +159,12 @@ const Schedule = () => {
   };
 
   const toggleFavorite = (eventId) => {
+    const idStr = String(eventId);
     setFavorites((prev) => {
-      if (prev.includes(eventId)) {
-        return prev.filter((id) => id !== eventId);
+      if (prev.includes(idStr)) {
+        return prev.filter((id) => id !== idStr);
       } else {
-        return [...prev, eventId];
+        return [...prev, idStr];
       }
     });
   };
@@ -264,17 +250,21 @@ const Schedule = () => {
               </div>
             </div>
             <button
-              className={`modal-favorite-button ${favorites.includes(event.id) ? 'favorited' : ''}`}
+              className={`modal-favorite-button ${
+                favorites.includes(String(event.id)) ? 'favorited' : ''
+              }`}
               aria-label={
-                favorites.includes(event.id) ? 'Remove from favorites' : 'Add to favorites'
+                favorites.includes(String(event.id)) ? 'Remove from favorites' : 'Add to favorites'
               }
-              title={favorites.includes(event.id) ? 'Remove from favorites' : 'Add to favorites'}
+              title={
+                favorites.includes(String(event.id)) ? 'Remove from favorites' : 'Add to favorites'
+              }
               onClick={() => toggleFavorite(event.id)}
             >
               <svg
                 className="schedule-card-favorite-icon"
                 viewBox="0 0 24 24"
-                fill={favorites.includes(event.id) ? 'currentColor' : 'none'}
+                fill={favorites.includes(String(event.id)) ? 'currentColor' : 'none'}
                 stroke="currentColor"
                 strokeWidth="2"
               >
@@ -427,15 +417,11 @@ const Schedule = () => {
   // Save favorites to localStorage
   useEffect(() => {
     try {
-      localStorage.setItem('favorites', JSON.stringify(favorites));
+      localStorage.setItem('favorites', JSON.stringify(favorites.map(String)));
     } catch {}
   }, [favorites]);
 
-  // Dynamisch Session-Typen aus Events extrahieren
-  useEffect(() => {
-    const types = Array.from(new Set(events.map((event) => event.type)));
-    setSessionTypes(types);
-  }, [events]);
+  // Entfernt: useEffect für types, da nicht mehr benötigt
 
   // Automatisches Öffnen des Modals bei Deep Link
   useEffect(() => {
@@ -459,6 +445,15 @@ const Schedule = () => {
     'Side Stage': 'Side Stage - Italien',
   };
 
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.matchMedia('(max-width: 768px)').matches);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
   if (isLoading) {
     return (
       <div className="loading-container">
@@ -468,7 +463,14 @@ const Schedule = () => {
   }
 
   // Filter events for selected day and type
-  const filteredEvents = filterEvents(filterEventsByDay(events));
+  let filteredEvents = filterEventsByDay(events);
+  if (selectedType === 'favorites') {
+    filteredEvents = filteredEvents.filter((event) => favorites.includes(String(event.id)));
+  } else if (selectedType === 'all') {
+    // keine weitere Filterung
+  } else {
+    filteredEvents = filteredEvents.filter((event) => event.room === selectedType);
+  }
 
   // NEU: Vergangene Events ausblenden
   const now = new Date();
@@ -480,7 +482,10 @@ const Schedule = () => {
     <div className="schedule-container">
       {/* --- Header: Tage nebeneinander, Filter daneben --- */}
       <div className="schedule-header-row">
-        <div className="schedule-day-tabs">
+        <div
+          className="schedule-day-tabs"
+          style={{ display: 'flex', alignItems: 'center', gap: 8 }}
+        >
           <button
             className={`schedule-day-btn ${selectedDay === 'monday' ? 'active' : ''}`}
             onClick={() => setSelectedDay('monday')}
@@ -493,66 +498,123 @@ const Schedule = () => {
           >
             Tuesday
           </button>
+          {/* Favoriten-Button mit Herz-Icon */}
+          <button
+            className="schedule-favorite-tab-btn"
+            style={{
+              marginLeft: 12,
+              background: selectedType === 'favorites' ? '#004258' : '#f3f4f6',
+              color: selectedType === 'favorites' ? '#fff' : '#374151',
+              border: 'none',
+              borderRadius: 8,
+              padding: '0.5rem 1rem',
+              cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              transition: 'background 0.2s, color 0.2s',
+              fontWeight: selectedType === 'favorites' ? 600 : 500,
+            }}
+            title="Nur Favoriten anzeigen"
+            aria-label="Nur Favoriten anzeigen"
+            onClick={() => setSelectedType(selectedType === 'favorites' ? 'all' : 'favorites')}
+          >
+            <svg
+              className="schedule-card-favorite-icon"
+              viewBox="0 0 24 24"
+              width="20"
+              height="20"
+              fill={selectedType === 'favorites' ? 'currentColor' : 'none'}
+              stroke="currentColor"
+              strokeWidth="2"
+              style={{ marginRight: 6 }}
+            >
+              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+            </svg>
+            Favoriten
+          </button>
         </div>
         <div className="schedule-filter-pills">
           <button
             className={`schedule-filter-pill ${selectedType === 'all' ? 'active' : ''}`}
             onClick={() => setSelectedType('all')}
           >
-            All Sessions
+            Alle Räume
           </button>
-          {sessionTypes.map((type) => (
+          {rooms.map((room) => (
             <button
-              key={type}
-              className={`schedule-filter-pill ${selectedType === type ? 'active' : ''}`}
-              onClick={() => setSelectedType(type)}
+              key={room}
+              className={`schedule-filter-pill ${selectedType === room ? 'active' : ''}`}
+              onClick={() => setSelectedType(room)}
             >
-              {typeLabels[type] || type.charAt(0).toUpperCase() + type.slice(1) + 's'}
+              {roomHeaderLabels[room] || room}
             </button>
           ))}
           <div className="filter-divider"></div>
-          <button
-            className={`schedule-filter-pill ${selectedType === 'favorites' ? 'active' : ''}`}
-            onClick={() => setSelectedType('favorites')}
-          >
-            Favorites
-          </button>
         </div>
       </div>
 
       <div className="schedule-grid">
-        {rooms.map((room) => (
-          <div key={room} className="room-section">
-            <div className="room-header">
-              <h2>{roomHeaderLabels[room] || room}</h2>
-            </div>
-            {(eventsByRoom[room] || []).map((event) => {
-              const isFavorite = favorites.includes(event.id);
-              const isLiveEvent = isLive(event.start, event.end);
+        {isMobile
+          ? // Mobile: Flache Liste nach Zeit
+            upcomingEvents
+              .sort((a, b) => new Date(a.start) - new Date(b.start))
+              .map((event) => {
+                const isFavorite = favorites.includes(String(event.id));
+                const isLiveEvent = isLive(event.start, event.end);
+                return (
+                  <ScheduleCard
+                    key={event.id}
+                    startTime={event.time}
+                    endTime={event.endTime}
+                    duration={`${event.duration} min`}
+                    title={event.title}
+                    speakers={event.speakers?.map((speaker) => ({
+                      name: speaker.name,
+                      avatar: findSpeakerProfile(speaker.id),
+                    }))}
+                    location={roomHeaderLabels[event.room] || event.room}
+                    originalRoom={event.originalRoom}
+                    type={event.type}
+                    isFavorite={isFavorite}
+                    isLive={isLiveEvent}
+                    onFavoriteClick={() => toggleFavorite(event.id)}
+                    onClick={() => setSelectedEvent(event)}
+                  />
+                );
+              })
+          : // Desktop: Nach Räumen gruppiert
+            rooms.map((room) => (
+              <div key={room} className="room-section">
+                <div className="room-header">
+                  <h2>{roomHeaderLabels[room] || room}</h2>
+                </div>
+                {(eventsByRoom[room] || []).map((event) => {
+                  const isFavorite = favorites.includes(String(event.id));
+                  const isLiveEvent = isLive(event.start, event.end);
 
-              return (
-                <ScheduleCard
-                  key={event.id}
-                  startTime={event.time}
-                  endTime={event.endTime}
-                  duration={`${event.duration} min`}
-                  title={event.title}
-                  speakers={event.speakers?.map((speaker) => ({
-                    name: speaker.name,
-                    avatar: findSpeakerProfile(speaker.id),
-                  }))}
-                  location={roomHeaderLabels[event.room] || event.room}
-                  originalRoom={event.originalRoom}
-                  type={event.type}
-                  isFavorite={isFavorite}
-                  isLive={isLiveEvent}
-                  onFavoriteClick={() => toggleFavorite(event.id)}
-                  onClick={() => setSelectedEvent(event)}
-                />
-              );
-            })}
-          </div>
-        ))}
+                  return (
+                    <ScheduleCard
+                      key={event.id}
+                      startTime={event.time}
+                      endTime={event.endTime}
+                      duration={`${event.duration} min`}
+                      title={event.title}
+                      speakers={event.speakers?.map((speaker) => ({
+                        name: speaker.name,
+                        avatar: findSpeakerProfile(speaker.id),
+                      }))}
+                      location={roomHeaderLabels[event.room] || event.room}
+                      originalRoom={event.originalRoom}
+                      type={event.type}
+                      isFavorite={isFavorite}
+                      isLive={isLiveEvent}
+                      onFavoriteClick={() => toggleFavorite(event.id)}
+                      onClick={() => setSelectedEvent(event)}
+                    />
+                  );
+                })}
+              </div>
+            ))}
       </div>
 
       <Modal
