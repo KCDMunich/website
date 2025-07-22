@@ -30,7 +30,7 @@ const Schedule = () => {
   const [gridData, setGridData] = useState([]); // Raw grid data
   const [events, setEvents] = useState([]); // Flat list of events
   const [rooms, setRooms] = useState([]); // List of rooms for selected day
-  const [selectedDay, setSelectedDay] = useState('monday');
+  const [selectedDay, setSelectedDay] = useState('tuesday');
   const [selectedType, setSelectedType] = useState('all');
   const [selectedEvent, setSelectedEvent] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -472,9 +472,8 @@ const Schedule = () => {
     filteredEvents = filteredEvents.filter((event) => event.room === selectedType);
   }
 
-  // NEU: Vergangene Events ausblenden
-  const now = new Date();
-  const upcomingEvents = filteredEvents.filter((event) => new Date(event.end) > now);
+  // Zeige alle Sessions des Tages, auch vergangene
+  const upcomingEvents = filteredEvents;
 
   const eventsByRoom = groupEventsByRoom(upcomingEvents);
 
@@ -580,6 +579,7 @@ const Schedule = () => {
                     type={event.type}
                     isFavorite={isFavorite}
                     isLive={isLiveEvent}
+                    isPast={new Date(event.end) < new Date()}
                     onFavoriteClick={() => toggleFavorite(event.id)}
                     onClick={() => setSelectedEvent(event)}
                   />
@@ -611,6 +611,7 @@ const Schedule = () => {
                       type={event.type}
                       isFavorite={isFavorite}
                       isLive={isLiveEvent}
+                      isPast={new Date(event.end) < new Date()}
                       onFavoriteClick={() => toggleFavorite(event.id)}
                       onClick={() => setSelectedEvent(event)}
                     />

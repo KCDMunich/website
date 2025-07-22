@@ -17,9 +17,10 @@ const ScheduleCard = ({
   onFavoriteClick,
   onClick,
   isLive = false,
+  isPast = false,
 }) => {
   return (
-    <div className="schedule-card" onClick={onClick}>
+    <div className={`schedule-card${isPast ? ' schedule-card--past' : ''}`} onClick={onClick}>
       <div className="schedule-card-header">
         <div className="schedule-card-time">
           <svg
@@ -139,6 +140,7 @@ ScheduleCard.propTypes = {
   onFavoriteClick: PropTypes.func,
   onClick: PropTypes.func,
   isLive: PropTypes.bool,
+  isPast: PropTypes.bool,
 };
 
 export default ScheduleCard;
