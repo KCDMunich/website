@@ -3,8 +3,7 @@ import { useStaticQuery, graphql } from 'gatsby';
 import React from 'react';
 
 const defaultTitle = 'CNS Munich';
-const defaultDescription =
-  'Experience the power of community at the Cloud Native Summit Munich!';
+const defaultDescription = 'Experience the power of community at the Cloud Native Summit Munich!';
 
 const SEO = ({ title, description, pathname }) => {
   const {
@@ -33,6 +32,7 @@ const SEO = ({ title, description, pathname }) => {
       <title key={currentTitle}>{currentTitle}</title>
       {/* General */}
       <meta name="description" content={currentDescription} />
+      <meta name="robots" content="index,follow" />
       {/* Open Graph */}
       <meta property="og:title" content={currentTitle} />
       <meta property="og:description" content={currentDescription} />
