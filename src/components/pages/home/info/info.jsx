@@ -1,7 +1,6 @@
-import { Users, Calendar, MapPin } from 'lucide-react';
-import Tickets from 'components/pages/home/tickets/tickets';
-
 import React from 'react';
+import { Users, Calendar, MapPin } from 'lucide-react';
+
 import './info.css';
 
 const Info = () => (
@@ -26,7 +25,7 @@ const Info = () => (
                   window.location.href = '/vision';
                 }}
               >
-Our Vision
+                Our Vision
               </button>
             </div>
           </div>
@@ -88,14 +87,14 @@ Our Vision
           </div>
         </div>
       </div>
-      {/* What to Expect Section */}
+      {/* What to Expect Section
       <div className="expect-section" id="tickets">
         <h2 className="section-title">Get your Ticket now!</h2>
         <div className="expect-section">
-          {/* Ticket Section */}
-          <Tickets />
+           <Tickets />
         </div>
       </div>
+      */}
     </div>
   </section>
 );

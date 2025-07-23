@@ -43,7 +43,7 @@ const Hero = () => {
               <p className="hero-description">
                 New name. Same mission! CNS Munich is run by the community for the community!
               </p>
-              {/* CTA Buttons */}
+              {/* CTA Buttons 
               <div className="hero-cta-container">
                 <button
                   type="button"
@@ -72,6 +72,7 @@ const Hero = () => {
                   </button>
                 }
               </div>
+              */}
             </div>
 
             <div className="hero-right-column fade-in-scale">

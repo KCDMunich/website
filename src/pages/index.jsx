@@ -17,8 +17,6 @@ const HomePage = ({ location }) => (
     <Info />
     <Speakers location={location} />
     <Schedule />
-    <Venue />
-    <HotelList />
     <Sponsors />
   </Layout>
 );
@@ -30,13 +28,11 @@ const HomePage = ({ location }) => (
 <Proposal />
 <Schedule />
 <Venue />
-<Details />
 <Partners />
 <Proposal />
 <Tickets />
 <Speakers />
 <Sponsors />
-<Details />
 <Proposal />
 */
 
