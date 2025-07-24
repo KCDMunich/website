@@ -1,12 +1,13 @@
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
-import React, { useState } from 'react';
+import React from 'react';
+import { StaticImage } from 'gatsby-plugin-image';
+import { FaDiscord } from 'react-icons/fa';
 import slugify from 'slugify';
+
 import MENUS from 'constants/menus';
 import Burger from '../burger';
 import Link from '../link';
-import { StaticImage } from 'gatsby-plugin-image';
-import { FaDiscord } from 'react-icons/fa';
 
 import './header.css';
 
@@ -56,19 +57,42 @@ const Header = ({ isMobileMenuOpen, onBurgerClick, additionalClassName }) => {
 
         <nav>
           <ul className=" flex space-x-8 text-white lg:space-x-6 md:hidden">
-            {MENUS.header.map(({ text, to, homeTo }, index) => (
+            {MENUS.header.map((item, index) => (
               <li
-                className="text-[15px] font-semibold"
+                className="group relative text-[15px] font-semibold"
                 key={index}
                 style={{ color: '#004258', cursor: 'pointer' }}
               >
-                <Link
-                  to={to || `/#${homeTo}`}
-                  className="text-primary hover:text-primary-dark cursor-pointer transition-colors duration-200"
-                  onClick={handleAnchorClick}
-                >
-                  {text}
-                </Link>
+                {item.children ? (
+                  <span className="text-primary cursor-default select-none">
+                    {item.text}
+                    <a
+                      href={item.children[1].to}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-primary ml-2 transition-colors duration-200 hover:text-blue-1"
+                    >
+                      2024
+                    </a>
+                    <span className="mx-1 text-gray-400">|</span>
+                    <a
+                      href={item.children[0].to}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-primary transition-colors duration-200 hover:text-blue-1"
+                    >
+                      2025
+                    </a>
+                  </span>
+                ) : (
+                  <Link
+                    to={item.to || `/#${item.homeTo}`}
+                    className="text-primary hover:text-primary-dark cursor-pointer transition-colors duration-200"
+                    onClick={handleAnchorClick}
+                  >
+                    {item.text}
+                  </Link>
+                )}
               </li>
             ))}
           </ul>

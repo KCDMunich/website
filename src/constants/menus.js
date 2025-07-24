@@ -2,12 +2,16 @@ import LINKS from 'constants/links.js';
 
 const MENUS = {
   header: [
-    // { text: 'Speakers', ...LINKS.speakers },
-    // { text: 'Call for Speakers', ...LINKS.proposal },
     { text: 'Schedule', ...LINKS.schedule },
     { text: 'Speakers', ...LINKS.speakers },
     { text: 'Sponsors', ...LINKS.sponsors },
-    { text: 'Image Gallery', ...LINKS.gallery },
+    {
+      text: 'Gallery',
+      children: [
+        { text: '2024', ...LINKS.gallery2024 },
+        { text: '2025', ...LINKS.gallery2025 },
+      ],
+    },
     // { text: 'Schedule', ...LINKS.schedule },
   ],
   footer: [
@@ -24,7 +28,8 @@ const MENUS = {
     { text: 'Schedule', ...LINKS.schedule },
     { text: 'Speakers', ...LINKS.speakers },
     { text: 'Sponsors', ...LINKS.sponsors },
-    { text: 'Image Gallery', ...LINKS.gallery },
+    { text: 'Gallery 2024', ...LINKS.gallery2024 },
+    { text: 'Gallery 2025', ...LINKS.gallery2025 },
   ],
 };
 
