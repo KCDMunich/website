@@ -8,8 +8,8 @@ const MENUS = {
     {
       text: 'Gallery',
       children: [
-        { text: '2024', ...LINKS.gallery2024 },
         { text: '2025', ...LINKS.gallery2025 },
+        { text: '2024', ...LINKS.gallery2024 },
       ],
     },
     // { text: 'Schedule', ...LINKS.schedule },

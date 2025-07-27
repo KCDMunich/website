@@ -4,13 +4,13 @@ const getAnchor = (str) => slugify(str).toLocaleLowerCase();
 
 export default {
   // Pages and sections
-  gallery2024: {
+  gallery2025: {
     to:
       'https://lightroom.adobe.com/shares/7bb86e822460423fbd84753f93862cd2',
     target: '_blank',
     external: true,
   },
-  gallery2025: {
+  gallery2024: {
     to: 'https://lightroom.adobe.com/shares/42d27333b09147bba84e9ed1fb859739',
     target: '_blank',
     external: true,
