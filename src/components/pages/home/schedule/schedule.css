@@ -1,10 +1,240 @@
-.button {
-  display: inline-block;
-  padding: 0.75rem 1.5rem;
+/* Schedule Section */
+.schedule-section {
+  padding: 6rem 1rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.schedule-container {
+  max-width: 80rem;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+/* Schedule Header */
+.schedule-header {
+  text-align: left;
+  margin-bottom: 4rem;
+}
+
+.schedule-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  background: rgba(0, 66, 88, 0.1);
+  color: #004258;
+  border-radius: 9999px;
+  margin-bottom: 1rem;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(0, 66, 88, 0.2);
+}
+
+.schedule-badge-icon {
+  width: 0.875rem;
+  height: 0.875rem;
+}
+
+.schedule-title {
+  font-size: 3rem;
+  font-weight: 800;
+  color: #004258;
+  margin: 0;
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  text-align: left;
+}
+
+.schedule-title-accent {
+  background: linear-gradient(135deg, #004258, #0066cc);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+@media (min-width: 640px) {
+  .schedule-title {
+    font-size: 3.5rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .schedule-title {
+    font-size: 4rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .schedule-title {
+    font-size: 4.5rem;
+  }
+}
+
+/* Schedule Content */
+.schedule-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: start;
+}
+
+/* Schedule Info */
+.schedule-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.schedule-description {
+  font-size: 1.125rem;
+  color: #374151;
+  line-height: 1.7;
+  margin: 0;
+}
+
+.schedule-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.schedule-stat-item {
+  display: flex;
+  align-items: center;
+}
+
+.schedule-stat-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  background: rgba(255, 255, 255, 0.8);
+  color: #004258;
+  border-radius: 12px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.schedule-stat-icon {
+  width: 1rem;
+  height: 1rem;
+}
+
+.schedule-cta {
+  margin-top: 1rem;
+}
+
+.schedule-cta-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem 2rem;
   font-size: 1rem;
-  font-weight: 500;
+  font-weight: 600;
   color: white;
   background: #004258;
-  border-radius: 0.375rem;
+  border: none;
+  border-radius: 12px;
   cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 66, 88, 0.3);
+}
+
+.schedule-cta-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 66, 88, 0.4);
+  background: #005a7a;
+}
+
+.schedule-cta-icon {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+/* Schedule Events */
+.schedule-events {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.schedule-events-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.schedule-event-card {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.schedule-event-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
+  background: rgba(255, 255, 255, 0.9);
+}
+
+/* Schedule Loading */
+.schedule-loading {
+  text-align: center;
+  padding: 4rem 0;
+}
+
+.schedule-loading-text {
+  color: #6b7280;
+  font-size: 1.125rem;
+}
+
+/* Schedule Empty */
+.schedule-empty {
+  text-align: center;
+  padding: 4rem 0;
+}
+
+.schedule-empty-text {
+  color: #6b7280;
+  font-size: 1.125rem;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .schedule-content {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .schedule-section {
+    padding: 4rem 1rem;
+  }
+
+  .schedule-title {
+    font-size: 2.5rem;
+  }
+
+  .schedule-description {
+    font-size: 1rem;
+  }
+
+  .schedule-stats {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .schedule-event-card {
+    padding: 0.75rem;
+  }
 }

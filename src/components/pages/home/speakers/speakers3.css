@@ -1,0 +1,213 @@
+/* Speakers Section */
+.speakers-section {
+  padding: 6rem 1rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.speakers-container {
+  max-width: 80rem;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+/* Speakers Header */
+.speakers-header {
+  text-align: left;
+  margin-bottom: 4rem;
+}
+
+.speakers-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  background: rgba(0, 66, 88, 0.1);
+  color: #004258;
+  border-radius: 9999px;
+  margin-bottom: 1rem;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(0, 66, 88, 0.2);
+}
+
+.speakers-badge-icon {
+  width: 0.875rem;
+  height: 0.875rem;
+}
+
+.speakers-title {
+  font-size: 3rem;
+  font-weight: 800;
+  color: #004258;
+  margin: 0;
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+}
+
+.speakers-title-accent {
+  background: linear-gradient(135deg, #004258, #0066cc);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+@media (min-width: 640px) {
+  .speakers-title {
+    font-size: 3.5rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .speakers-title {
+    font-size: 4rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .speakers-title {
+    font-size: 4.5rem;
+  }
+}
+
+/* Speakers Grid */
+.speakers-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+}
+
+@media (max-width: 1024px) {
+  .speakers-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .speakers-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .speakers-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Speaker Cards */
+.speaker-card {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.speaker-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
+  background: rgba(255, 255, 255, 0.9);
+}
+
+/* Speakers CTA */
+.speakers-cta {
+  display: flex;
+  justify-content: center;
+  margin-top: 3rem;
+}
+
+.speakers-cta-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: white;
+  background: #004258;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 66, 88, 0.3);
+}
+
+.speakers-cta-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 66, 88, 0.4);
+  background: #005a7a;
+}
+
+.speakers-cta-icon {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+/* Speakers Loading */
+.speakers-loading {
+  text-align: center;
+  padding: 4rem 0;
+}
+
+.speakers-loading-text {
+  color: #6b7280;
+  font-size: 1.125rem;
+}
+
+/* Speakers Pagination */
+.speakers-pagination {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 2rem;
+}
+
+.speakers-pagination-button {
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.speakers-pagination-active {
+  background: #004258;
+  color: white;
+  border: 1px solid #004258;
+}
+
+.speakers-pagination-inactive {
+  background: transparent;
+  color: #004258;
+  border: 1px solid #004258;
+}
+
+.speakers-pagination-inactive:hover {
+  background: #004258;
+  color: white;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .speakers-section {
+    padding: 4rem 1rem;
+  }
+
+  .speakers-title {
+    font-size: 2.5rem;
+  }
+
+  .speakers-grid {
+    gap: 1rem;
+  }
+
+  .speaker-card {
+    padding: 0.75rem;
+  }
+}

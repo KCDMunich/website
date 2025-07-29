@@ -1,95 +1,167 @@
 import { StaticImage } from 'gatsby-plugin-image';
-import { Calendar, MapPin, Users } from 'lucide-react';
-import React from 'react';
+import { Calendar, MapPin, Users, Play, ArrowRight } from 'lucide-react';
+import React, { useState, useEffect, useMemo } from 'react';
 import './hero.css';
 
 const Hero = () => {
+  const [selectedVideo, setSelectedVideo] = useState('');
+
+  // YouTube Playlist videos
+  const playlistVideos = useMemo(
+    () => [
+      'g-sZwa52DNE',
+      'tWHHmb-v6Y0',
+      'o3MYeUWhETo',
+      'oCFNrXWN-HE',
+      'Ty4B7VPdWDs',
+      'oYtguGxGeUw',
+      'oohD1uXGqj8',
+      'pxpBlLpt-BQ',
+      'r7euuyxcjhA',
+      'w8-46FhmxEQ',
+      'xsl86VcsCNA',
+      'xtAZdRVdc3U',
+      'ykHlvBW564I',
+      'lgQ-qhPaalU',
+      'mH7B-17zSmM',
+      'cCFYrZpwS7s',
+      // Add more video IDs from the playlist as needed
+    ],
+    []
+  );
+
+  useEffect(() => {
+    // Randomly select a video from the playlist
+    const randomVideo = playlistVideos[Math.floor(Math.random() * playlistVideos.length)];
+    setSelectedVideo(randomVideo);
+  }, [playlistVideos]);
+
   return (
     <div className="hero-container">
       <section className="hero-section">
-        <div className="hero-background-grid" />
+        {/* Background Video */}
+        <div className="hero-video-background">
+          {selectedVideo && (
+            <iframe
+              src={`https://www.youtube.com/embed/${selectedVideo}?autoplay=1&mute=1&loop=1&playlist=${selectedVideo}&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&start=10`}
+              title="Background Video"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              className="hero-video"
+              allowFullScreen
+            />
+          )}
+          <div className="hero-video-overlay" />
+        </div>
 
         <div className="hero-content-container">
           <div className="hero-grid">
             {/* Left column - Content */}
             <div className="hero-left-column fade-in-up">
               {/* Date Badge */}
-              <span className="hero-badge">July 21st – 22nd, 2025</span>
+              <div className="hero-badge-container">
+                <span className="hero-badge">
+                  <Calendar className="hero-badge-icon" />
+                  July 21st – 22nd, 2025
+                </span>
+              </div>
 
               {/* Title */}
-              <h1 className="hero-title">Cloud Native Summit Munich</h1>
+              <h1 className="hero-title">
+                Cloud Native Summit
+                <span className="hero-title-accent"> Munich</span>
+              </h1>
 
               {/* Description */}
               <p className="hero-description">
-                In July 2025, the cloud native community will gather in Munich. Come and join us!
+                Experience the future of cloud native technology in the heart of Bavaria. Join
+                developers, platform engineers, and IT professionals for two days of cutting-edge
+                insights and networking.
               </p>
 
               {/* Feature List */}
-              <ul className="hero-feature-list">
-                <li className="hero-feature-item">
-                  <Calendar className="hero-icon" />
-                  <span>Two-day technical event</span>
-                </li>
-                <li className="hero-feature-item">
-                  <MapPin className="hero-icon" />
-                  <span>Munich, Germany</span>
-                </li>
-                <li className="hero-feature-item">
-                  <Users className="hero-icon" />
-                  <span>Developers, Platform Engineers, and IT Professionals</span>
-                </li>
-              </ul>
+              <div className="hero-feature-grid">
+                <div className="hero-feature-card">
+                  <div className="hero-feature-icon">
+                    <Calendar className="hero-icon" />
+                  </div>
+                  <div className="hero-feature-content">
+                    <h3>Two-day Event</h3>
+                    <p>Comprehensive technical sessions</p>
+                  </div>
+                </div>
+                <div className="hero-feature-card">
+                  <div className="hero-feature-icon">
+                    <MapPin className="hero-icon" />
+                  </div>
+                  <div className="hero-feature-content">
+                    <h3>Munich, Germany</h3>
+                    <p>Central European tech hub</p>
+                  </div>
+                </div>
+                <div className="hero-feature-card">
+                  <div className="hero-feature-icon">
+                    <Users className="hero-icon" />
+                  </div>
+                  <div className="hero-feature-content">
+                    <h3>Community Driven</h3>
+                    <p>By developers, for developers</p>
+                  </div>
+                </div>
+              </div>
 
-              <p className="hero-description">
-                New name. Same mission! CNS Munich is run by the community for the community!
-              </p>
-              {/* CTA Buttons 
+              {/* CTA Buttons */}
               <div className="hero-cta-container">
                 <button
                   type="button"
-                  className="button"
-                  style={{ cursor: 'pointer' }}
+                  className="hero-cta-primary"
                   onClick={() => (window.location.href = '#tickets')}
                 >
-                  Get your Ticket
+                  <span>Get Your Ticket</span>
+                  <ArrowRight className="hero-cta-icon" />
                 </button>
-                {
-                  <button
-                    type="button"
-                    className="hero-cta-secondary"
-                    onClick={() => (window.location.href = '#agenda')}
-                  >
-                    Our Agenda
-                  </button>
-                }
-                {
-                  <button
-                    type="button"
-                    className="hero-cta-secondary"
-                    onClick={() => (window.location.href = '#sponsors')}
-                  >
-                    Become a Sponsor
-                  </button>
-                }
+                <button
+                  type="button"
+                  className="hero-cta-secondary"
+                  onClick={() => (window.location.href = '#agenda')}
+                >
+                  <Play className="hero-cta-icon" />
+                  <span>View Agenda</span>
+                </button>
               </div>
-              */}
+
+              {/* Trust Indicators */}
+              <div className="hero-trust-indicators">
+                <div className="hero-trust-item">
+                  <span className="hero-trust-number">500+</span>
+                  <span className="hero-trust-label">Attendees</span>
+                </div>
+                <div className="hero-trust-item">
+                  <span className="hero-trust-number">50+</span>
+                  <span className="hero-trust-label">Sessions</span>
+                </div>
+                <div className="hero-trust-item">
+                  <span className="hero-trust-number">100%</span>
+                  <span className="hero-trust-label">Community</span>
+                </div>
+              </div>
             </div>
 
+            {/* Right Column - Enhanced Illustration */}
             <div className="hero-right-column fade-in-scale">
               <div className="hero-illustration-container">
-                <div
-                  style={{
-                    position: 'relative',
-                    aspectRatio: '1',
-                    borderRadius: '0.75rem',
-                    overflow: 'hidden',
-                  }}
-                >
-                  <StaticImage
-                    src="./images/hero.svg"
-                    alt="Hero"
-                    formats={['auto', 'webp', 'avif']}
-                  />
+                <div className="hero-illustration-wrapper">
+                  {/* Logo removed */}
+                  {/* Floating Elements */}
+                  <div className="hero-floating-element hero-floating-1">
+                    <div className="hero-floating-dot" />
+                  </div>
+                  <div className="hero-floating-element hero-floating-2">
+                    <div className="hero-floating-dot" />
+                  </div>
+                  <div className="hero-floating-element hero-floating-3">
+                    <div className="hero-floating-dot" />
+                  </div>
                 </div>
               </div>
             </div>

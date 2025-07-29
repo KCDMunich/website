@@ -43,7 +43,7 @@ const Header = ({ isMobileMenuOpen, onBurgerClick, additionalClassName }) => {
           padding: '1rem 1rem',
         }}
       >
-        <Link className="z-50 ml-2" to="/">
+        <Link className="z-50 ml-2 flex items-center gap-3" to="/">
           <StaticImage
             src="./images/logo.svg"
             alt="logo"
@@ -53,6 +53,7 @@ const Header = ({ isMobileMenuOpen, onBurgerClick, additionalClassName }) => {
               window.location.href = `/`;
             }}
           />
+          <span className="hidden text-xl font-bold text-white sm:block">Cloud Native Summit</span>
         </Link>
 
         <nav>
