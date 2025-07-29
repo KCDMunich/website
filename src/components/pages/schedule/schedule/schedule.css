@@ -336,8 +336,6 @@
 }
 
 .schedule-card--past {
-  opacity: 0.5;
-  filter: grayscale(0.7);
   pointer-events: auto;
 }
 
