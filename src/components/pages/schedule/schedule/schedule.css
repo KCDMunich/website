@@ -562,6 +562,30 @@
   color: #ef4444;
 }
 
+/* Recording indicator on schedule cards */
+.schedule-card-recording-indicator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  background: #dc2626;
+  border-radius: 50%;
+  margin-right: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.schedule-card-recording-indicator:hover {
+  background: #b91c1c;
+}
+
+.schedule-card-recording-indicator svg {
+  color: white;
+  width: 12px;
+  height: 12px;
+}
+
 @media (max-width: 768px) {
   .schedule-card {
     margin: 0.5rem;
@@ -584,6 +608,17 @@
 
   .schedule-card-live-text {
     font-size: 0.75rem;
+  }
+
+  .schedule-card-recording-indicator {
+    width: 20px;
+    height: 20px;
+    margin-right: 6px;
+  }
+
+  .schedule-card-recording-indicator svg {
+    width: 10px;
+    height: 10px;
   }
 }
 
@@ -774,6 +809,103 @@
   margin-top: 0.5rem;
 }
 
+/* Recording section styles */
+.recording-section {
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  background: #f8fafc;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+}
+
+.recording-section h3 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: #374151;
+}
+
+.recording-content {
+  display: flex;
+  gap: 1.5rem;
+  align-items: flex-start;
+}
+
+.recording-thumbnail {
+  position: relative;
+  flex-shrink: 0;
+  width: 200px;
+  height: 112px;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #000;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.recording-thumbnail:hover {
+  transform: scale(1.02);
+}
+
+.recording-thumbnail-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.recording-play-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  background: rgba(0, 0, 0, 0.7);
+  border-radius: 50%;
+  width: 64px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s;
+}
+
+.recording-play-overlay:hover {
+  background: rgba(220, 38, 38, 0.9);
+}
+
+.recording-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.recording-description {
+  color: #4b5563;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.recording-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #dc2626;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: background-color 0.2s;
+  width: fit-content;
+}
+
+.recording-link:hover {
+  background: #b91c1c;
+  color: white;
+  text-decoration: none;
+}
+
 .modal-favorite-button {
   position: absolute;
   top: 1rem;
@@ -809,6 +941,26 @@
   .modal-favorite-button {
     right: 3.5rem;
   }
+
+  .recording-content {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .recording-thumbnail {
+    width: 100%;
+    height: 180px;
+  }
+
+  .recording-play-overlay {
+    width: 56px;
+    height: 56px;
+  }
+
+  .recording-play-overlay svg {
+    width: 32px;
+    height: 32px;
+  }
 }
 
 @media (max-width: 480px) {
@@ -822,5 +974,24 @@
 
   .modal-favorite-button {
     right: 3rem;
+  }
+
+  .recording-thumbnail {
+    height: 140px;
+  }
+
+  .recording-play-overlay {
+    width: 48px;
+    height: 48px;
+  }
+
+  .recording-play-overlay svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  .recording-link {
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
   }
 }

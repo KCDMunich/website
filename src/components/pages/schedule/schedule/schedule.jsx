@@ -94,6 +94,7 @@ const Schedule = () => {
             start: session.startsAt,
             end: session.endsAt,
             isServiceSession: session.isServiceSession || false,
+            recordingUrl: session.recordingUrl || null,
           };
 
           // Alle Sessions bleiben in ihrem ursprünglichen Raum
@@ -134,6 +135,21 @@ const Schedule = () => {
   const findSpeakerProfile = (speakerId) => {
     const speaker = speakerData.find((s) => s.id === speakerId);
     return speaker ? speaker.profilePicture : null;
+  };
+
+  // Helper: Extract YouTube video ID from URL
+  const extractYouTubeVideoId = (url) => {
+    if (!url) return null;
+    const regex =
+      /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/;
+    const match = url.match(regex);
+    return match ? match[1] : null;
+  };
+
+  // Helper: Generate YouTube thumbnail URL
+  const getYouTubeThumbnail = (videoId, quality = 'maxresdefault') => {
+    if (!videoId) return null;
+    return `https://img.youtube.com/vi/${videoId}/${quality}.jpg`;
   };
 
   const filterEventsByDay = (events) => {
@@ -180,6 +196,9 @@ const Schedule = () => {
   }) => {
     if (!isOpen || !event) return null;
 
+    const videoId = extractYouTubeVideoId(event.recordingUrl);
+    const thumbnailUrl = getYouTubeThumbnail(videoId);
+
     return (
       <div className="modal-overlay" onClick={onClose}>
         <div className="modal-content" onClick={(e) => e.stopPropagation()}>
@@ -197,6 +216,43 @@ const Schedule = () => {
               <p className="confirmed-session-label">
                 <strong>Confirmed Session</strong>
               </p>
+            )}
+
+            {/* Recording Section */}
+            {event.recordingUrl && (
+              <div className="recording-section">
+                <h3>Recording</h3>
+                <div className="recording-content">
+                  {thumbnailUrl && (
+                    <div className="recording-thumbnail">
+                      <img
+                        src={thumbnailUrl}
+                        alt="Video thumbnail"
+                        className="recording-thumbnail-image"
+                      />
+                      <div className="recording-play-overlay">
+                        <svg viewBox="0 0 24 24" fill="currentColor" width="48" height="48">
+                          <path d="M8 5v14l11-7z" />
+                        </svg>
+                      </div>
+                    </div>
+                  )}
+                  <div className="recording-info">
+                    <p className="recording-description">Watch the recorded session on YouTube</p>
+                    <a
+                      href={event.recordingUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="recording-link"
+                    >
+                      <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+                        <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" />
+                      </svg>
+                      Watch on YouTube
+                    </a>
+                  </div>
+                </div>
+              </div>
             )}
 
             <div className="modal-main-content">
@@ -580,6 +636,7 @@ const Schedule = () => {
                     isFavorite={isFavorite}
                     isLive={isLiveEvent}
                     isPast={new Date(event.end) < new Date()}
+                    hasRecording={!!event.recordingUrl}
                     onFavoriteClick={() => toggleFavorite(event.id)}
                     onClick={() => setSelectedEvent(event)}
                   />
@@ -612,6 +669,7 @@ const Schedule = () => {
                       isFavorite={isFavorite}
                       isLive={isLiveEvent}
                       isPast={new Date(event.end) < new Date()}
+                      hasRecording={!!event.recordingUrl}
                       onFavoriteClick={() => toggleFavorite(event.id)}
                       onClick={() => setSelectedEvent(event)}
                     />

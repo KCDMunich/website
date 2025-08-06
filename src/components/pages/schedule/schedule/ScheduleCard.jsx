@@ -18,6 +18,7 @@ const ScheduleCard = ({
   onClick,
   isLive = false,
   isPast = false,
+  hasRecording = false,
 }) => {
   return (
     <div className={`schedule-card${isPast ? ' schedule-card--past' : ''}`} onClick={onClick}>
@@ -101,6 +102,20 @@ const ScheduleCard = ({
           </svg>
           <span>{location}</span>
         </div>
+        {isPast && hasRecording && (
+          <div className="schedule-card-recording-indicator" title="Recording available">
+            <svg
+              className="schedule-card-icon"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              stroke="none"
+              width="16"
+              height="16"
+            >
+              <path d="M8 5v14l11-7z"/>
+            </svg>
+          </div>
+        )}
         <button
           className="schedule-card-favorite-button"
           onClick={(e) => {
@@ -141,6 +156,7 @@ ScheduleCard.propTypes = {
   onClick: PropTypes.func,
   isLive: PropTypes.bool,
   isPast: PropTypes.bool,
+  hasRecording: PropTypes.bool,
 };
 
 export default ScheduleCard;
