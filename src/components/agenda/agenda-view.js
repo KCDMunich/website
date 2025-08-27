@@ -1,241 +1,156 @@
-"use client"
-import { useState } from "react"
-import Link from "next/link"
+'use client';
 
-export default function AgendaView({ eventStructure, sessions, speakers }) {
-    // Default to conference day
-    const [selectedDayId, setSelectedDayId] = useState(eventStructure.days[1].id)
+import { useState } from 'react';
+import { format, parseISO } from 'date-fns';
+import { enUS } from 'date-fns/locale';
+import Link from 'next/link';
+import clsx from 'clsx';
+import { Clock, MapPin, Coffee, Utensils, Mic, Users, Wrench } from 'lucide-react';
 
-    // Get the selected day object
-    const currentDay = eventStructure.days.find((day) => day.id === selectedDayId)
+const PlaceholderCard = () => (
+    <div className="bg-gray-50/50 rounded-lg min-h-[150px] border border-dashed border-gray-200 h-full" />
+);
 
-    // Get time slots for the selected day
-    const timeSlots = eventStructure.timeSlots[selectedDayId] || []
+const SessionCard = ({ session, tracks }) => {
+    if (session.type === 'break') {
+        const Icon = { coffee: Coffee, lunch: Utensils, networking: Users }[session.title?.toLowerCase().match(/coffee|lunch|networking/)?.[0]] || Clock;
+        return (
+            <div className="bg-gray-100 rounded-lg p-6 text-center h-full flex items-center justify-center">
+                <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+                    <Icon className="h-6 w-6 text-gray-500" />
+                    <h3 className="text-xl font-bold text-gray-800">{session.title}</h3>
+                </div>
+            </div>
+        );
+    }
+    if (!session.details) return null;
+    const track = tracks.find(t => t.id === session.trackId);
+    const TypeIcon = session.details.type === 'workshop' ? Wrench : Mic;
+    return (
+        <Link href={`/talk/${session.details.id}`} className="block bg-slate-50 md:bg-white p-4 sm:p-6 rounded-lg shadow-sm hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 h-full flex flex-col">
+            <div className="flex items-center justify-between gap-2 flex-wrap mb-3">
+                <span className={clsx("inline-flex items-center gap-1.5 text-xs font-semibold px-2 py-1 rounded-full", session.details.type === 'workshop' ? 'bg-purple-100 text-purple-800' : 'bg-green-100 text-green-800')}>
+                    <TypeIcon size={12}/> {session.details.type || 'talk'}
+                </span>
+                <div className="flex items-center gap-2">
+                    {session.details.tags?.map(tag => <span key={tag} className="text-xs font-semibold px-2 py-1 rounded-full bg-blue-100 text-blue-800">{tag}</span>)}
+                </div>
+            </div>
+            <h3 className="font-bold text-gray-900 flex-grow">{session.details.title}</h3>
+            <div className="block md:hidden text-sm text-gray-500 mt-2 flex items-center gap-2"><MapPin size={14}/> {track?.room || 'Main Stage'}</div>
+            <div className="mt-4 pt-4 border-t border-gray-100 flex flex-col gap-3">
+                {session.details.speakers.map(speaker => (
+                    <div key={speaker.id} className="flex items-center gap-3 group">
+                        <img src={speaker.image} alt={speaker.name} className="w-8 h-8 rounded-full object-cover" />
+                        <div>
+                            <p className="font-semibold text-sm text-gray-800 group-hover:text-blue-600">{speaker.name}</p>
+                            <p className="text-xs text-gray-500">{speaker.role.split('@')[0]}</p>
+                        </div>
+                    </div>
+                ))}
+            </div>
+        </Link>
+    );
+};
 
-    // Filter sessions for the selected day
-    const daySessions = sessions.filter((session) => session.dayId === selectedDayId)
+export default function AgendaView({ agenda }) {
+    const [selectedDayId, setSelectedDayId] = useState(agenda.days[0].id);
 
-    // Get MCs for the selected day
-    const dayMCIds = eventStructure.dayMCs[selectedDayId] || []
-    const dayMCs = dayMCIds.map((mcId) => speakers.find((speaker) => speaker.id === mcId)).filter(Boolean)
+    const schedule = agenda.schedule[selectedDayId] || [];
+    const allTracks = agenda.tracks || [];
 
-    // Group sessions by time slot
-    const sessionsByTimeSlot = {}
-    timeSlots.forEach((timeSlot) => {
-        sessionsByTimeSlot[timeSlot.id] = daySessions.filter((session) => session.timeSlotId === timeSlot.id)
-    })
+    const usedTrackIds = new Set(schedule.flatMap(slot => slot.sessions.map(s => s.trackId)).filter(Boolean));
+    const dayTracks = allTracks.filter(t => usedTrackIds.has(t.id));
+    const numDayTracks = dayTracks.length;
 
-    // Get room info for each track
-    const trackRoomMap = {}
-    eventStructure.tracks.forEach((track) => {
-        const room = eventStructure.rooms.find((room) => room.id === track.roomId)
-        trackRoomMap[track.id] = {
-            trackName: track.name,
-            roomName: room ? room.name : "TBA",
-        }
-    })
+    const getGridColsClass = (count) => {
+        const classMap = {
+            1: 'grid-cols-[100px_1fr]',
+            2: 'grid-cols-[100px_1fr_1fr]',
+            3: 'grid-cols-[100px_1fr_1fr_1fr]',
+            4: 'grid-cols-[100px_1fr_1fr_1fr_1fr]',
+        };
+        return classMap[count] || `grid-cols-[100px_repeat(${count},_1fr)]`;
+    };
+
+    const gridClass = getGridColsClass(numDayTracks);
 
     return (
-        <div className="container">
-            <div className="page-header">
-                <h1 className="page-title">Conference Agenda</h1>
-                <p className="page-description">Explore our schedule of talks, workshops, and networking opportunities.</p>
+        <div className="bg-white">
+            <div className="container mx-auto max-w-7xl px-4 py-16 lg:py-24">
+                <div className="text-center max-w-3xl mx-auto">
+                    <h1 className="text-4xl sm:text-5xl font-extrabold text-gray-900 tracking-tighter">Agenda</h1>
+                    <p className="mt-4 text-lg text-gray-600">
+                        Explore our schedule of talks, workshops, and networking opportunities. Select a day to view the detailed timeline.
+                    </p>
+                </div>
 
-                {/* Day selector */}
-                <div className="day-selector">
-                    {eventStructure.days.map((day) => (
-                        <button
-                            key={day.id}
-                            className={`day-button ${selectedDayId === day.id ? "day-button-active" : ""}`}
-                            onClick={() => setSelectedDayId(day.id)}
-                        >
-                            {day.name}
-                            <span className="day-date">
-                {new Date(day.date).toLocaleDateString("en-US", {
-                    month: "short",
-                    day: "numeric",
-                    year: "numeric",
-                })}
-              </span>
+                <div className="mt-12 flex justify-center gap-2 sm:gap-4 bg-gray-100 p-2 rounded-full max-w-md mx-auto sticky top-20 z-20">
+                    {agenda.days.map(day => (
+                        <button key={day.id} onClick={() => setSelectedDayId(day.id)} className={clsx("w-full text-center px-4 py-2.5 rounded-full font-semibold transition-colors duration-300", selectedDayId === day.id ? 'bg-white text-blue-600 shadow' : 'bg-transparent text-gray-600 hover:bg-white/60')}>
+                            <span className="block text-base">{day.name}</span>
+                            <span className="block text-xs font-normal">{format(parseISO(day.date), 'MMMM do', { locale: enUS })}</span>
                         </button>
                     ))}
                 </div>
 
-                {/* Masters of Ceremony */}
-                {dayMCs.length > 0 && (
-                    <div className="day-mcs">
-                        <h2 className="section-title">Masters of Ceremony</h2>
-                        <div className="speakers-grid">
-                            {dayMCs.map((mc) => (
-                                <Link href={`/speakers/${mc.id}`} key={mc.id} className="card speaker-card">
-                                    <div className="card-body speaker-card-content">
-                                        <div className="speaker-image-wrapper">
-                                            <img src={mc.image || "/images/team/profile.webp"} alt={mc.name} className="speaker-image" />
-                                            <div className="mc-badge">MC</div>
-                                        </div>
-                                        <h3 className="speaker-name">{mc.name}</h3>
-                                        <p className="speaker-role">{mc.role}</p>
-                                        {mc.company && <p className="speaker-company">{mc.company}</p>}
-                                    </div>
-                                </Link>
+                <div className="mt-16">
+                    {numDayTracks > 1 && (
+                        <div className={clsx("hidden md:grid gap-6 mb-4 sticky top-40 z-10 bg-white/80 backdrop-blur-sm py-4", gridClass)}>
+                            <div/>
+                            {dayTracks.map(track => (
+                                <div key={track.id} className="text-center">
+                                    <h3 className="font-bold text-lg text-gray-800">{track.name}</h3>
+                                    <p className="text-sm text-gray-500 flex items-center justify-center gap-2"><MapPin size={14}/> {track.room}</p>
+                                </div>
                             ))}
                         </div>
-                    </div>
-                )}
-            </div>
+                    )}
 
-            <div
-                className="agenda-tracks-header"
-                style={{
-                    display: "grid",
-                    gridTemplateColumns: "120px repeat(auto-fit, minmax(200px, 1fr))",
-                    gap: "1rem",
-                    marginBottom: "1rem",
-                }}
-            >
-                <div style={{ fontWeight: "600", color: "#2d3748", padding: "1rem 0" }}>Time</div>
-                {eventStructure.tracks.map((track) => (
-                    <div
-                        key={track.id}
-                        style={{
-                            textAlign: "center",
-                            padding: "1rem",
-                            backgroundColor: "#f7fafc",
-                            borderRadius: "8px",
-                            border: "1px solid #e2e8f0",
-                        }}
-                    >
-                        <h3 style={{ fontSize: "1.1rem", fontWeight: "600", marginBottom: "0.5rem", color: "#2d3748" }}>
-                            {track.name}
-                        </h3>
-                        <p style={{ fontSize: "0.9rem", color: "#718096" }}>{trackRoomMap[track.id]?.roomName}</p>
-                    </div>
-                ))}
-            </div>
+                    <div className="space-y-8">
+                        {schedule.map(slot => {
+                            const session = slot.sessions[0];
+                            const isFullSpan = slot.sessions.length === 1 && (session.type === 'break' || !session.trackId || session.details?.isPlenary === true);
+                            const alignedSessions = dayTracks.map(track => slot.sessions.find(s => s.trackId === track.id) || null);
 
-            <div className="agenda-timeline">
-                {timeSlots.map((timeSlot) => {
-                    const slotSessions = sessionsByTimeSlot[timeSlot.id] || []
-                    const hasFullWidthSession = slotSessions.some((session) => session.isFullWidth)
+                            return (
+                                <div key={slot.time}>
+                                    <div className="md:hidden">
+                                        <div className="flex items-center font-bold text-gray-800 mb-4">
+                                            <Clock size={16} className="mr-2 text-gray-400" />
+                                            {slot.time}
+                                        </div>
+                                        <div className="space-y-4">
+                                            {slot.sessions.map(s => <SessionCard key={s.talkId || s.title} session={s} tracks={allTracks} />)}
+                                        </div>
+                                    </div>
 
-                    return (
-                        <div key={timeSlot.id} className="agenda-grid" style={{ marginBottom: "1.5rem" }}>
-                            <div className="time-label">{timeSlot.label}</div>
+                                    <div className={clsx("hidden md:grid items-stretch gap-6", isFullSpan || numDayTracks <= 1 ? 'grid-cols-[100px_1fr]' : gridClass)}>
+                                        <div className="pt-6 font-bold text-gray-800 flex items-start">
+                                            <Clock size={16} className="mr-2 text-gray-400 mt-1" />
+                                            {slot.time}
+                                        </div>
 
-                            {hasFullWidthSession ? (
-                                <div style={{ gridColumn: "2 / -1" }}>
-                                    {slotSessions.map((session) => {
-                                        // Find speakers for this session
-                                        const sessionSpeakers = session.speakerIds
-                                            ? session.speakerIds.map((id) => speakers.find((s) => s.id === id)).filter(Boolean)
-                                            : []
-
-                                        return (
-                                            <Link
-                                                href={session.type === "break" ? "#" : `/agenda/${session.id}`}
-                                                key={session.id}
-                                                className={`session-card ${session.type}`}
-                                                onClick={(e) => session.type === "break" && e.preventDefault()}
-                                            >
-                                                <h3 className="session-title">{session.title}</h3>
-                                                {session.description && <p className="session-description">{session.description}</p>}
-
-                                                {sessionSpeakers.length > 0 && (
-                                                    <div style={{ marginTop: "auto" }}>
-                                                        {sessionSpeakers.map((speaker) => (
-                                                            <div key={speaker.id} className="speaker-info">
-                                                                <img
-                                                                    src={speaker.image || "/placeholder.svg"}
-                                                                    alt={speaker.name}
-                                                                    className="speaker-info-image"
-                                                                />
-                                                                <div>
-                                                                    <p className="speaker-name" style={{ fontSize: "0.85rem", margin: "0" }}>
-                                                                        {speaker.name}
-                                                                    </p>
-                                                                    <p className="speaker-role" style={{ fontSize: "0.75rem", margin: "0" }}>
-                                                                        {speaker.role}
-                                                                    </p>
-                                                                </div>
-                                                            </div>
-                                                        ))}
-                                                    </div>
-                                                )}
-                                            </Link>
-                                        )
-                                    })}
-                                </div>
-                            ) : (
-                                <div className="track-sessions">
-                                    {eventStructure.tracks.map((track) => {
-                                        const trackSession = slotSessions.find((session) => session.trackId === track.id)
-
-                                        if (!trackSession) {
-                                            return (
-                                                <div key={track.id} style={{ minHeight: "150px" }}>
-                                                    <div
-                                                        style={{
-                                                            height: "100%",
-                                                            backgroundColor: "#f7fafc",
-                                                            borderRadius: "8px",
-                                                            border: "1px dashed #cbd5e0",
-                                                        }}
-                                                    ></div>
-                                                </div>
-                                            )
-                                        }
-
-                                        // Find speakers for this session
-                                        const sessionSpeakers = trackSession.speakerIds
-                                            ? trackSession.speakerIds.map((id) => speakers.find((s) => s.id === id)).filter(Boolean)
-                                            : []
-
-                                        return (
-                                            <div key={track.id}>
-                                                <Link href={`/agenda/${trackSession.id}`} className={`session-card ${trackSession.type}`}>
-                                                    <h3 className="session-title">{trackSession.title}</h3>
-
-                                                    {sessionSpeakers.length > 0 && (
-                                                        <div style={{ marginTop: "auto" }}>
-                                                            {sessionSpeakers.map((speaker) => (
-                                                                <div key={speaker.id} className="speaker-info">
-                                                                    <img
-                                                                        src={speaker.image || "/placeholder.svg"}
-                                                                        alt={speaker.name}
-                                                                        className="speaker-info-image"
-                                                                    />
-                                                                    <div>
-                                                                        <p className="speaker-name" style={{ fontSize: "0.85rem", margin: "0" }}>
-                                                                            {speaker.name}
-                                                                        </p>
-                                                                        <p className="speaker-role" style={{ fontSize: "0.75rem", margin: "0" }}>
-                                                                            {speaker.role}
-                                                                        </p>
-                                                                    </div>
-                                                                </div>
-                                                            ))}
-                                                        </div>
-                                                    )}
-
-                                                    {trackSession.tags && (
-                                                        <div className="tags-list" style={{ marginTop: "1rem" }}>
-                                                            {trackSession.tags.slice(0, 2).map((tag) => (
-                                                                <span key={tag} className="tag">
-                                  {tag}
-                                </span>
-                                                            ))}
-                                                        </div>
-                                                    )}
-                                                </Link>
+                                        {isFullSpan || numDayTracks <= 1 ? (
+                                            <div className="space-y-4">
+                                                {slot.sessions.map(s => <SessionCard key={s.talkId || s.title} session={s} tracks={allTracks}/>)}
                                             </div>
-                                        )
-                                    })}
+                                        ) : (
+                                            <>
+                                                {alignedSessions.map((s, index) =>
+                                                    s
+                                                        ? <SessionCard key={s.talkId} session={s} tracks={allTracks} />
+                                                        : <PlaceholderCard key={`placeholder-${index}`} />
+                                                )}
+                                            </>
+                                        )}
+                                    </div>
                                 </div>
-                            )}
-                        </div>
-                    )
-                })}
+                            );
+                        })}
+                    </div>
+                </div>
             </div>
         </div>
-    )
+    );
 }

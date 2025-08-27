@@ -1,81 +1,149 @@
-import head from "next/head";
+import { promises as fs } from 'fs';
+import path from 'path';
+import matter from 'gray-matter';
 import Hero from "@/components/hero/hero";
-import Navbar from "@/components/navbar/navbar";
 import Info from "@/components/info/info";
-import Externals from "@/components/externals/externals";
-import Venue from "@/components/venue/venue";
-import Hotel from "@/components/hotel/hotel";
-import Sponsor from "@/components/sponsor/sponsor";
-import Footer from "@/components/footer/footer";
+import ActionsSection from "@/components/actions/ActionsSection";
+import Sponsors from "@/components/sponsor/sponsor";
 import config from "@/config/website.json";
+import Venue from "@/components/venue/venue";
 
+async function getSponsorsData() {
+    try {
+        const currentEdition = config.general.edition.toString();
+        const editionConfigPath = path.join(process.cwd(), 'src', 'config', 'editions', `${currentEdition}.json`);
+        const editionConfig = JSON.parse(await fs.readFile(editionConfigPath, 'utf8'));
 
-function convertToISOWithTimezone(dateString) {
-    const date = new Date(dateString);
-    const offsetMinutes = date.getTimezoneOffset();
-    const offsetHours = Math.abs(offsetMinutes / 60);
-    const sign = offsetMinutes > 0 ? "-" : "+";
-    const formattedOffset = `${sign}${String(Math.floor(offsetHours)).padStart(2, "0")}:00`;
-    return `${date.toISOString().split("Z")[0]}${formattedOffset}`;
+        const sponsorsByIds = editionConfig.sponsors || {};
+        const hydratedSponsors = {};
+
+        for (const tier in sponsorsByIds) {
+            const sponsorIds = sponsorsByIds[tier];
+            hydratedSponsors[tier] = await Promise.all(
+                sponsorIds.map(async (sponsorId) => {
+                    const sponsorPath = path.join(process.cwd(), 'src', 'config', 'sponsors', `${sponsorId}.md`);
+                    try {
+                        const fileContents = await fs.readFile(sponsorPath, 'utf8');
+                        return matter(fileContents).data;
+                    } catch (error) {
+                        console.error(`Error reading sponsor file: ${sponsorId}.md`, error);
+                        return null;
+                    }
+                })
+            );
+            hydratedSponsors[tier] = hydratedSponsors[tier].filter(Boolean);
+        }
+        return hydratedSponsors;
+    } catch (error) {
+        console.error("Failed to load sponsors data:", error);
+        return {};
+    }
 }
 
-export const metadata = {
-    title: "Cloud Native Days Italy 2025",
-    description: "Cloud Native Days (CNS) Italy is a local, community-organized event that gathers adopters and technologists from open source and cloud native communities."
+async function getCurrentEdition(){
+    const currentEdition = config.general.edition.toString();
+    const editionConfigPath = path.join(process.cwd(), 'src', 'config', 'editions', `${currentEdition}.json`);
+    const editionConfig = JSON.parse(await fs.readFile(editionConfigPath, 'utf8'));
+    return editionConfig;
 }
 
+export async function generateMetadata() {
+    const siteUrl = config.general.event.website;
+    const eventName = `${config.general.event.name} ${config.general.edition}`;
+    const description = config.general.event.description;
+    const imageUrl = `${siteUrl}${config.hero.image}`;
 
-export default function HomePage() {
+    return {
+        title: eventName,
+        description: description,
+        alternates: {
+            canonical: siteUrl,
+        },
+        openGraph: {
+            title: eventName,
+            description: description,
+            url: siteUrl,
+            images: [{ url: imageUrl, alt: eventName }],
+            type: 'website',
+        },
+        twitter: {
+            card: 'summary_large_image',
+            title: eventName,
+            description: description,
+            images: [imageUrl],
+        },
+    };
+}
+
+export default async function HomePage() {
+    const sponsorsData = await getSponsorsData();
+    const currentEdition = await getCurrentEdition();
+    const siteUrl = config.general.event.website;
+
+    const convertToISOWithTimezone = (dateString) => {
+        const date = new Date(dateString);
+        const offsetMinutes = date.getTimezoneOffset();
+        const offsetHours = Math.abs(offsetMinutes / 60);
+        const sign = offsetMinutes > 0 ? "-" : "+";
+        const formattedOffset = `${sign}${String(Math.floor(offsetHours)).padStart(2, "0")}:00`;
+        return `${date.toISOString().split("Z")[0]}${formattedOffset}`;
+    };
+
     const schemaData = {
         "@context": "https://schema.org",
         "@type": "Event",
-        "name": `${config.general.event.name} - ${config.general.event.year}`,
-        "startDate": "2025-06-24T09:00:00+02:00",
-        "endDate": "2025-06-24T18:00:00+02:00",
+        "name": currentEdition.name || `${config.general.event.name} ${config.general.edition}`,
+        "startDate": currentEdition.date,
+        "endDate": currentEdition.endDate || currentEdition.date,
         "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
         "eventStatus": "https://schema.org/EventScheduled",
         "location": {
-            "@type": `${config.venue.type}`,
-            "name": `${config.venue.name}`,
+            "@type": "Place",
+            "name": currentEdition.location?.name,
             "address": {
                 "@type": "PostalAddress",
-                "streetAddress": `${config.venue.street}`,
-                "addressLocality": `${config.venue.city}`,
-                "postalCode": `${config.venue.zip}`,
-                "addressCountry": `${config.venue.countryCode}`
+                "streetAddress": currentEdition.location?.street,
+                "addressLocality": currentEdition.location?.city.split(',')[0],
+                "addressCountry": "IT"
             }
         },
-        "description": `${config.general.event.description}`,
-        "image": `${config.general.event.logo}`,
+        "image": [`${siteUrl}${config.hero.image}`],
+        "description": config.general.event.description,
         "organizer": {
             "@type": "Organization",
-            "name": `${config.general.event.name}`,
-            "url": `${config.general.event.website}`
+            "name": config.general.event.name,
+            "url": siteUrl
         },
         "offers": config.tickets.type.map(ticket => ({
             "@type": "Offer",
-            "name": ticket.name,
-            "url": ticket.url,
-            "price": `${ticket.price}.00`,
+            "url": config.tickets.link,
+            "price": ticket.price.split('€')[0].trim(),
             "priceCurrency": "EUR",
             "availability": "https://schema.org/InStock",
-            "validFrom": convertToISOWithTimezone(ticket.salesStartDate)
+            "validFrom": convertToISOWithTimezone(ticket.salesStartDate),
+            "validThrough": convertToISOWithTimezone(ticket.salesEndDate)
         }))
     };
+
     return (
         <>
             <script
                 type="application/ld+json"
-                dangerouslySetInnerHTML={{__html: JSON.stringify(schemaData)}}
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
             />
-            <Navbar data={config} additionalClassName="!bg-white" homepage="/"/>
-            <Hero data={config}/>
-            <Info data={config}/>
-            <Externals data={config}/>
-            <Venue data={config}/>
-            <Hotel data={config}/>
-            <Sponsor data={config}/>
-            <Footer data={config}/>
+            <Hero data={config.hero} />
+            <Info data={config.info} />
+            <ActionsSection data={{ c4p: config.proposal, tickets: config.tickets }} />
+
+            <Sponsors
+                sponsorsByTier={sponsorsData}
+                tiersConfig={config.sponsors.tiers}
+                sectionsContent={config.sponsors}
+                order={['main', 'gold', 'silver', 'partner']}
+                isCurrent={true}
+            />
+
+            <Venue data={currentEdition.location} />
         </>
-    )
+    );
 }

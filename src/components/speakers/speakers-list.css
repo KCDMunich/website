@@ -43,7 +43,6 @@
     margin-bottom: 3rem;
 }
 
-/* Semplificare le transizioni e gli effetti hover */
 .speaker-card {
     display: flex;
     flex-direction: column;

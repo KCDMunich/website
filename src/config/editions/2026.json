@@ -1,0 +1,42 @@
+{
+  "name": "Cloud Native Days Italy 2026",
+  "date": "2026-05-18",
+  "description": "Cloud Native Days (CND) Italy is a local, community-organized event that brings together adopters and technologists from open source and cloud native communities. This is the fourth edition in Italy (formerly known as KCD Italy), aiming to bring the community together. The event provides a platform for professionals and experts from all levels and backgrounds to learn, network, and share their knowledge about cloud-native technologies.",
+  "headerVideo": "https://www.youtube.com/embed/RFf1GNm7qJQ",
+  "thankyou":"Thank you for joining us at Cloud Native Days Italy 2025! We hope you enjoyed the event and gained valuable insights into the cloud native ecosystem. Stay tuned for updates on future events and community activities.",
+  "metrics": {
+    "attendees": 210
+  },
+  "speakers": [],
+  "team": [
+    "michel-murabito",
+    "paolo-mainardi",
+    "evangelista-tragni",
+    "nicola-marco-decandia",
+    "sara-trappetti",
+    "jacopo-nardiello",
+    "dario-tranchitella",
+    "alessandro-de-vecchi",
+    "maria-pina-di-cataldo"
+  ],
+  "sponsors": {
+    "silver": [],
+    "main": [
+      "sparkfabrik",
+      "clastix",
+      "desotech",
+      "reevo",
+      "seacom"
+    ],
+    "gold": [
+    ],
+    "partner": []
+  },
+  "location": {
+    "name": "Savoia Hotel Regency",
+    "street": "Via del Pilastro, 2",
+    "city": "Bologna, Italy",
+    "mapLink": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2844.759235472138!2d11.38138931552579!3d44.51627997910027!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x477fd2b2fe2d32c9%3A0x192cf32729118d1!2sSavoia%20Hotel%20Regency!5e0!3m2!1sen!2sit!4v1620308804332!5m2!1sen!2sit",
+    "image": "/images/savoia-hotel-regency-1.webp"
+  }
+}

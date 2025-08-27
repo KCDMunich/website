@@ -1,0 +1,61 @@
+{
+  "isPublished": false,
+  "days": [
+    {
+      "id": "workshop-day",
+      "name": "Workshop Day",
+      "date": "2025-06-23"
+    },
+    {
+      "id": "conference-day",
+      "name": "Conference Day",
+      "date": "2025-06-24"
+    }
+  ],
+  "tracks": [
+    { "id": "track1", "name": "Track 1", "room": "Main Room" },
+    { "id": "track2", "name": "Track 2", "room": "Community Room" }
+  ],
+  "schedule": {
+    "workshop-day": [
+      {
+        "time": "09:00 - 09:30",
+        "sessions": [ { "title": "Registration & Breakfast", "type": "break" } ]
+      },
+      {
+        "time": "09:30 - 13:00",
+        "sessions": [
+          { "talkId": "dagli-alert-allazione-costruire-una-cloud-native-security-efficace-con-falco-feeds-and-talon", "trackId": "track1" },
+          { "talkId": "orchestrating-add-ons-and-applications-across-multi-cluster-kubernetes-environments-with-sveltos", "trackId": "track2" }
+        ]
+      },
+      {
+        "time": "13:00 - 14:30",
+        "sessions": [ { "title": "Lunch Break", "type": "break" } ]
+      }
+    ],
+    "conference-day": [
+      {
+        "time": "08:30 - 09:30",
+        "sessions": [ { "title": "Registration & Networking", "type": "break" } ]
+      },
+      {
+        "time": "09:30 - 09:45",
+        "sessions": [
+          { "talkId": "dagli-alert-allazione-costruire-una-cloud-native-security-efficace-con-falco-feeds-and-talon", "trackId": "track1", "isPlenary": true }
+        ]
+      },
+      {
+        "time": "09:45 - 10:15",
+        "sessions": [ { "talkId": "opening-keynote-the-new-digital-nervous-system" } ]
+      },
+      {
+        "time": "10:15 - 10:50",
+        "sessions": [
+          { "talkId": "bridging-the-gaps-communication-strategies-for-kubernetes-releases", "trackId": "track1" },
+          { "talkId": "bringing-cloud-native-agility-to-bare-metal-kubernetes-with-cluster-api-and-metal", "trackId": "track2" }
+        ]
+      }
+    ]
+  }
+}

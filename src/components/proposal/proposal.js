@@ -9,7 +9,7 @@ const formatDate = (dateString) => {
     const date = new Date(dateString);
     const options = {
         day: '2-digit',
-        month: 'long', // Usa il nome completo del mese
+        month: 'long',
         year: 'numeric',
         hour: '2-digit',
         minute: '2-digit',
@@ -33,12 +33,10 @@ const Proposal = ({data}) => {
     const total = closeDate.getTime() - openDate.getTime();
     const progress = Math.max(0, Math.min(100, Math.ceil(((now.getTime() - openDate.getTime()) / total) * 100)));
 
-    console.log(progress);
     return (
         <div className="mx-auto max-w-7xl p-4" id="proposal">
             <div className="mx-auto max-w-7xl space-y-8">
                 <h3 className="font-semibold">{data.proposal.title}</h3>
-                {/* Timeline Card */}
                 <div className="rounded-lg border bg-white shadow-sm">
                     <div className="border-b p-6">
                         <h2 className="flex items-center gap-2 text-lg font-semibold">
@@ -59,7 +57,6 @@ const Proposal = ({data}) => {
                                 </div>
                             </div>
 
-                            {/* Progress Bar */}
                             <div className="h-2 w-full rounded-full bg-gray-200">
                                 <div className="h-2 rounded-full bg-blue-500" style={{width: `${progress}%`}}/>
                             </div>

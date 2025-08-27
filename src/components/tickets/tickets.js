@@ -23,7 +23,7 @@ const Tickets = ({data}) => {
     const formatDate = (dateString) => {
         const options = { year: 'numeric', month: 'long', day: 'numeric' };
         const date = new Date(dateString);
-        return date.toLocaleDateString('en-US', options); // Usa una localizzazione fissa
+        return date.toLocaleDateString('en-US', options);
     };
 
     return (
@@ -51,21 +51,6 @@ const Tickets = ({data}) => {
                     )}
                 </div>
 
-                {/*
-                <div className="rounded-lg bg-blue-50 p-4">
-                    <h4 className="mb-2 font-semibold">Diversity Tickets</h4>
-                    <p className="text-sm">
-                        Contact us at{' '}
-                        <a
-                            href="mailto:team@mail.com"
-                            className="text-primary font-bold hover:underline"
-                        >
-                            team@mail.com
-                        </a>{' '}
-                        to apply for a diversity ticket - sponsored by ape factory.
-                    </p>
-                </div>
-                */}
             </div>
 
 

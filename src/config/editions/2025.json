@@ -1,0 +1,108 @@
+{
+  "name": "Cloud Native Days Italy 2025",
+  "date": "2025-06-24",
+  "description": "Cloud Native Days (CND) Italy is a local, community-organized event that brings together adopters and technologists from open source and cloud native communities. This is the fourth edition in Italy (formerly known as KCD Italy), aiming to bring the community together. The event provides a platform for professionals and experts from all levels and backgrounds to learn, network, and share their knowledge about cloud-native technologies.",
+  "headerVideo": "https://www.youtube.com/embed/RFf1GNm7qJQ",
+  "headerImage": "/images/cndteam-2024.webp",
+  "thankyou":"Thank you for joining us at Cloud Native Days Italy 2025! We hope you enjoyed the event and gained valuable insights into the cloud native ecosystem. Stay tuned for updates on future events and community activities.",
+  "metrics": {
+    "attendees": 210
+  },
+  "speakers": [
+    "monica-colangelo",
+    "maurizio-argoneto",
+    "matteo-bianchi",
+    "claudio-masolo",
+    "gianluca-mardente",
+    "xavier-avrillier",
+    "mauro-morales",
+    "paolo-carta",
+    "luca-barze",
+    "vladi-stevanovic",
+    "nic-vermande",
+    "gabriele-bartolini",
+    "marco-ferraioli",
+    "massimo-groppelli",
+    "luca-carini",
+    "hossein-salahi",
+    "fabian-brundke",
+    "riccardo-capraro",
+    "giuseppe-arancio",
+    "giulio-puri",
+    "andrea-vivaldi",
+    "jonathan-battiato",
+    "jonathan-gonzalez-v",
+    "ettore-di-giacinto",
+    "dimitris-karakasilis",
+    "serena-sensini",
+    "flavia-paganelli",
+    "luca-spagnoli",
+    "amedeo-palopoli",
+    "tommaso-dri",
+    "davide-calabro",
+    "alberto-p-marti",
+    "jacopo-nardiello",
+    "evangelista-tragni"
+  ],
+  "team": [
+    "michel-murabito",
+    "paolo-mainardi",
+    "evangelista-tragni",
+    "nicola-marco-decandia",
+    "sara-trappetti",
+    "jacopo-nardiello",
+    "dario-tranchitella",
+    "giovanni-d-anna",
+    "alessandro-de-vecchi",
+    "maria-pina-di-cataldo"
+  ],
+  "sponsors": {
+    "silver": [
+      "edb",
+      "seeweb",
+      "suse"
+    ],
+    "main": [
+      "sparkfabrik",
+      "clastix",
+      "desotech",
+      "reevo",
+      "seacom"
+    ],
+    "gold": [
+      "mia-platform",
+      "archeido",
+      "aruba-cloud"
+    ],
+    "partner": [
+      "codemotion",
+      "firenze-dev",
+      "gdg-campobasso",
+      "kube-events",
+      "italia-opensource",
+      "plug",
+      "eventitech",
+      "the-red-code",
+      "xstream-datalab",
+      "angular-rome",
+      "bolognajs",
+      "come-to-code",
+      "dev-dojo",
+      "gdg-bari",
+      "gdg-cosenza",
+      "grusp",
+      "la-locanda-del-tech",
+      "codeful",
+      "gdg-pisa",
+      "shetech",
+      "schrodinger-hat",
+      "opensearch-project-milan",
+      "gdg-cloud-modena"
+    ]
+  },
+  "location": {
+    "name": "Savoia Hotel Regency",
+    "city": "Bologna",
+    "image": "/images/savoia-hotel-regency-1.webp"
+  }
+}

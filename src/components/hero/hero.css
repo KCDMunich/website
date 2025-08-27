@@ -4,7 +4,17 @@
     overflow: hidden;
 }
 
-/* Background Grid */
+.fluidTitle {
+    font-size: clamp(2.25rem, 1.5rem + 3vw, 2.75rem);
+    line-height: 1.1;
+}
+
+.fluidDescription {
+    font-size: clamp(1rem, 0.9rem + 0.5vw, 1.125rem);
+    line-height: 1.7;
+}
+
+
 .hero-background-grid {
     position: absolute;
     inset: 0;
@@ -13,7 +23,7 @@
     -webkit-mask-image: radial-gradient(ellipse at center, transparent 20%, black);
 }
 
-/* Content Container */
+
 .hero-content-container {
     position: relative;
     padding: 4rem 1rem;
@@ -21,7 +31,6 @@
     max-width: 80rem;
 }
 
-/* Grid Layout */
 .hero-grid {
     display: grid;
     gap: 2rem;
@@ -34,7 +43,6 @@
     }
 }
 
-/* Left Column */
 .hero-left-column {
     display: flex;
     flex-direction: column;
@@ -42,7 +50,6 @@
     gap: 1.5rem;
 }
 
-/* Badge */
 .hero-badge {
     display: inline-flex;
     padding: 0.5rem 1rem;

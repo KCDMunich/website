@@ -56,7 +56,6 @@ export default function Hotel({data}) {
                 </div>
             </div>
 
-            {/* Other Hotels */}
             {otherHotels.length > 0 && (
                 <div style={{ marginTop: '32px' }}>
                 <h3 style={{ fontSize: '18px', fontWeight: 'bold', marginBottom: '16px' }}>

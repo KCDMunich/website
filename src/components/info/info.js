@@ -1,84 +1,101 @@
-"use client";
-import { Users, Calendar, MapPin } from 'lucide-react';
-import React from 'react';
-import "@/components/info/info.css";
+'use client';
 
-const Info = ({data}) => (
-    <section className="info-section">
-        <div className="info-container">
-            {/* About CNS Section */}
-            <div className="about-section">
-                <h2 className="section-title">{data.info.title}</h2>
+import { ArrowRight, Mic, Users, Wrench } from 'lucide-react';
+import Link from 'next/link';
 
-                <div className="about-content">
-                    <div className="about-text">
-                        <p>{data.info.description}</p>
-                        {data.info.CTA.active ? (
-                            <div className="text-start">
-                                <button
-                                    type="button"
-                                    className="button"
-                                    style={{ cursor: 'pointer', marginTop: '2rem' }}
-                                    onClick={() => {
-                                        window.location.href = data.info.CTA.url;
-                                    }}
-                                >
-                                    {data.info.CTA.label}
-                                </button>
-                            </div>
-                        ) : <></>}
-                    </div>
-                    <div className="about-text">
-                        <p>
-                            {data.info.longDescription}
-                        </p>
-                    </div>
-                </div>
+const getYouTubeEmbedUrl = (videoId) => {
+    return videoId ? `https://www.youtube.com/embed/${videoId}` : null;
+};
 
-                <div className="video-section">
-                    <div style={{aspectRatio: '16/9', width: '100%'}}>
-                        <iframe
-                            style={{width: '100%', height: '100%', borderRadius: '0.5rem'}}
-                            src={`https://www.youtube.com/embed/${data.info.video.id}`}
-                            frameBorder="0"
-                                allowFullScreen
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                        ></iframe>
-                    </div>
-                </div>
-            </div>
-
-            {/* What to Expect Section */}
-            <div className="expect-section">
-                <h2 className="section-title">{data.info.extra.title}</h2>
-                <div className="features-grid">
-                    <div className="feature-item">
-                        <Users className="feature-icon" />
-                        <div className="feature-content">
-                            <h3 className="feature-title">{data.info.extra.boxes.networking.title}</h3>
-                            <p className="feature-text">{data.info.extra.boxes.networking.description}</p>
-                        </div>
-                    </div>
-
-                    <div className="feature-item">
-                        <Calendar className="feature-icon" />
-                        <div className="feature-content">
-                            <h3 className="feature-title">{data.info.extra.boxes.talks.title}</h3>
-                            <p className="feature-text">{data.info.extra.boxes.talks.description}</p>
-                        </div>
-                    </div>
-
-                    <div className="feature-item">
-                        <MapPin className="feature-icon" />
-                        <div className="feature-content">
-                            <h3 className="feature-title">{data.info.extra.boxes.workshop.title}</h3>
-                            <p className="feature-text">{data.info.extra.boxes.workshop.description}</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+const FeatureCard = ({ icon, title, children }) => (
+    <div className="text-center bg-white p-8 rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+        <div className="inline-flex items-center justify-center h-20 w-20 bg-gradient-to-br from-blue-500 to-purple-600 text-white rounded-full mb-6 shadow-lg">
+            {icon}
         </div>
-    </section>
+        <h3 className="text-xl font-bold text-gray-900 mb-2">{title}</h3>
+        <p className="text-gray-600">{children}</p>
+    </div>
 );
+
+const Info = ({ data }) => {
+    if (!data) return null;
+
+    const videoEmbedUrl = getYouTubeEmbedUrl(data.video?.id);
+
+    return (
+        <section className="relative bg-gray-50 py-20 lg:py-32 overflow-hidden">
+            <div className="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2">
+                <div className="w-[40rem] h-[40rem] bg-gradient-to-tr from-blue-50 to-purple-50 rounded-full filter blur-3xl opacity-50"></div>
+            </div>
+            <div className="absolute bottom-0 right-0 translate-x-1/2 translate-y-1/2">
+                <div className="w-[40rem] h-[40rem] bg-gradient-to-bl from-green-50 to-cyan-50 rounded-full filter blur-3xl opacity-50"></div>
+            </div>
+
+            <div className="container mx-auto max-w-7xl px-4 relative z-10">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center">
+                    <div>
+                        <span className="text-sm font-bold text-blue-600 uppercase tracking-wider">
+                            The Event
+                        </span>
+                        <h2 className="mt-4 text-4xl sm:text-5xl font-extrabold text-gray-900 tracking-tighter leading-tight">
+                            {data.title}
+                        </h2>
+                        <p className="mt-8 text-xl text-gray-600">
+                            {data.description}
+                        </p>
+                        <p className="mt-5 text-gray-600">
+                            {data.longDescription}
+                        </p>
+                        {data.CTA?.active && (
+                            <div className="mt-12">
+                                <Link href={data.CTA.url} className="inline-flex items-center gap-2 text-lg font-semibold text-blue-600 hover:text-blue-800 transition-colors">
+                                    {data.CTA.label} <ArrowRight className="h-5 w-5" />
+                                </Link>
+                            </div>
+                        )}
+                    </div>
+
+                    {videoEmbedUrl && (
+                        <div className="transform transition-transform duration-500 hover:scale-105">
+                            <div className="bg-gray-800 rounded-2xl p-2 shadow-2xl shadow-gray-400/30">
+                                <div className="bg-gray-900 rounded-lg p-1.5">
+                                    <div className="aspect-video w-full">
+                                        <iframe
+                                            className="w-full h-full rounded-md"
+                                            src={videoEmbedUrl}
+                                            title={data.video.title}
+                                            frameBorder="0"
+                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                            allowFullScreen
+                                        ></iframe>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    )}
+                </div>
+
+                {data.extra && (
+                    <div className="mt-20 lg:mt-28">
+                        <div className="text-center">
+                            <h2 className="text-3xl sm:text-4xl font-bold text-gray-800">{data.extra.title}</h2>
+                        </div>
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
+                            <FeatureCard icon={<Mic size={36} />} title={data.extra.boxes.talks.title}>
+                                {data.extra.boxes.talks.description}
+                            </FeatureCard>
+                            <FeatureCard icon={<Users size={36} />} title={data.extra.boxes.networking.title}>
+                                {data.extra.boxes.networking.description}
+                            </FeatureCard>
+                            <FeatureCard icon={<Wrench size={36} />} title={data.extra.boxes.workshop.title}>
+                                {data.extra.boxes.workshop.description}
+                            </FeatureCard>
+                        </div>
+                    </div>
+                )}
+            </div>
+        </section>
+    );
+};
 
 export default Info;

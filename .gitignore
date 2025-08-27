@@ -53,3 +53,4 @@ coverage/
 *.cache
 *.history
 .next/cache/
+/public/sitemap.xml
