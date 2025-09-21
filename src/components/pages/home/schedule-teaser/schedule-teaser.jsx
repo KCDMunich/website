@@ -53,7 +53,7 @@ const FALLBACK_VIDEO_IDS = [
 
 const FALLBACK_VIDEOS = FALLBACK_VIDEO_IDS.map((id, index) => ({
   id,
-  title: `Cloud Native Summit Munich 2023 – Session ${index + 1}`,
+  title: `Cloud Native Summit Munich – Sessions ${index + 1}`,
   thumbnail: `https://img.youtube.com/vi/${id}/hqdefault.jpg`,
 }));
 
@@ -134,26 +134,6 @@ const ScheduleTeaser = () => {
     });
   }, []);
 
-  useEffect(() => {
-    if (videos.length <= 1) return undefined;
-
-    const rotation = setInterval(() => {
-      setActiveVideo((currentVideo) => {
-        let candidate = currentVideo;
-        let attempts = 0;
-
-        while (candidate?.id === currentVideo?.id && attempts < 5) {
-          candidate = videos[Math.floor(Math.random() * videos.length)];
-          attempts += 1;
-        }
-
-        return candidate || videos[0] || getRandomFallbackVideo();
-      });
-    }, 45000);
-
-    return () => clearInterval(rotation);
-  }, [videos]);
-
   return (
     <section
       id="schedule-teaser"
@@ -163,15 +143,16 @@ const ScheduleTeaser = () => {
         <div className="flex items-stretch justify-between gap-20 lg:gap-16 md:flex-col md:items-stretch md:gap-12">
           <div className="max-w-[480px] flex-1 text-left md:w-full md:max-w-none">
             <h2 className="text-5xl font-bold leading-tight text-primary-1 md:text-4xl sm:text-3xl">
-              Take a look back while we plan what’s next
+              Watch every past Cloud Native Summit session
             </h2>
             <p className="mt-5 text-lg leading-relaxed text-slate-600 md:text-base sm:text-sm">
-              Last year’s edition brought these talks, workshops, and community spotlights to life.
-              Explore the past schedule while we fine-tune the programme for the upcoming event.
+              Revisit every talk, workshop, and community spotlight from last year’s program while
+              we prepare for the next gathering. The full schedule remains live, so you can catch
+              anything you missed or replay standout sessions with your team.
             </p>
             <div className="mt-10 flex justify-start md:justify-center">
               <a href="/schedule" className="button px-6 py-3 text-base sm:px-4 sm:py-2 sm:text-sm">
-                Explore last year’s schedule
+                View the schedule
               </a>
             </div>
           </div>

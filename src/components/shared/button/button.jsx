@@ -18,7 +18,7 @@ const styles = {
     primary:
       'bg-none text-primary-1 border-2 border-primary-1 hover:bg-primary-1 hover:bg-opacity-10',
     'link-primary':
-      'font-semibold inline-flex items-baseline leading-none transition-colors text-primary-1 hover:text-blue-1',
+      'font-semibold inline-flex items-baseline leading-none transition-colors text-primary-1 hover:text-primary-1',
   },
 };
 

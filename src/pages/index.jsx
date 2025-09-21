@@ -17,6 +17,7 @@ const HomePage = () => (
     <ScheduleTeaser />
     <Sponsors />
     <Venue />
+    <HotelList />
   </Layout>
 );
 
