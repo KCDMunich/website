@@ -3,13 +3,68 @@ import React, { useEffect, useState } from 'react';
 const PLAYLIST_ID = 'PL54A_DPe8WtDLSA_EA7ETfprpRWzd2yqV';
 const PLAYLIST_URL = `https://www.youtube.com/playlist?list=${PLAYLIST_ID}`;
 
-const FALLBACK_VIDEOS = [
-  {
-    id: 'g-sZwa52DNE',
-    title: 'Cloud Native Summit Munich 2023 – Opening Keynote',
-    thumbnail: 'https://img.youtube.com/vi/g-sZwa52DNE/hqdefault.jpg',
-  },
+const FALLBACK_VIDEO_IDS = [
+  'g-sZwa52DNE',
+  'CHb3TLEV8ZU',
+  'vmKlVABhdwc',
+  'mHDBsS9c9MM',
+  'n5LsBJwARbU',
+  'WJzMyA47lfo',
+  'SDelo4VdPUk',
+  'SPPJHwavM0c',
+  'lkK4ACNg22g',
+  'aLdgVrnMxcs',
+  'XETuwndd_mw',
+  'cIZ90x7aNJE',
+  'L2d_busMOJA',
+  'PwqyYbGXYG8',
+  'xWSEGsB7uFI',
+  '0inKO9yA950',
+  'PF2diWKfjWo',
+  'GiZzkSnDc-E',
+  'LwYqFrLnBeM',
+  'n_o4dxHrNDM',
+  'NfqV0Lb00Zc',
+  'E_r56x92KZw',
+  'HV9KsLz-odw',
+  'pg2DKYc9n_o',
+  'iiGRMPMBKVQ',
+  'Rh6cjzEB1-4',
+  'EztpUoi0hgU',
+  'X9U0b7RVafM',
+  'QMhkueuHnpE',
+  '3N_XBNAycqw',
+  'mr83OyjqaCQ',
+  'KkjQI20IFtE',
+  'kFyRUae2hV4',
+  '46-cPZz8VH0',
+  'tWHHmb-v6Y0',
+  'RLyO18tG8GI',
+  'RYdsuTD8Wjs',
+  'eLGBAd7fHdM',
+  'iSMk7a62wUc',
+  'aEqj_Ok5B58',
+  'fDBNJ2N9fqw',
+  '4CcNPHT_-nA',
+  'nMlmUFKN7Bo',
+  'MpU-vo4K7BQ',
+  'sgYc8Vt6eaU',
 ];
+
+const FALLBACK_VIDEOS = FALLBACK_VIDEO_IDS.map((id, index) => ({
+  id,
+  title: `Cloud Native Summit Munich 2023 – Session ${index + 1}`,
+  thumbnail: `https://img.youtube.com/vi/${id}/hqdefault.jpg`,
+}));
+
+const getRandomFallbackVideo = () => {
+  if (FALLBACK_VIDEOS.length === 0) {
+    return undefined;
+  }
+
+  const randomIndex = Math.floor(Math.random() * FALLBACK_VIDEOS.length);
+  return FALLBACK_VIDEOS[randomIndex];
+};
 
 const ScheduleTeaser = () => {
   const [videos, setVideos] = useState(FALLBACK_VIDEOS);
@@ -65,14 +120,25 @@ const ScheduleTeaser = () => {
   }, []);
 
   useEffect(() => {
+    if (typeof window === 'undefined') return;
+
+    setActiveVideo((currentVideo) => {
+      const initialFallbackId = FALLBACK_VIDEOS[0]?.id;
+      const shouldSelectRandom = !currentVideo || currentVideo.id === initialFallbackId;
+
+      if (!shouldSelectRandom) {
+        return currentVideo;
+      }
+
+      return getRandomFallbackVideo() || currentVideo || FALLBACK_VIDEOS[0];
+    });
+  }, []);
+
+  useEffect(() => {
     if (videos.length <= 1) return undefined;
 
     const rotation = setInterval(() => {
       setActiveVideo((currentVideo) => {
-        if (videos.length <= 1) {
-          return videos[0];
-        }
-
         let candidate = currentVideo;
         let attempts = 0;
 
@@ -81,7 +147,7 @@ const ScheduleTeaser = () => {
           attempts += 1;
         }
 
-        return candidate || videos[0];
+        return candidate || videos[0] || getRandomFallbackVideo();
       });
     }, 45000);
 
@@ -97,16 +163,15 @@ const ScheduleTeaser = () => {
         <div className="flex items-stretch justify-between gap-20 lg:gap-16 md:flex-col md:items-stretch md:gap-12">
           <div className="max-w-[480px] flex-1 text-left md:w-full md:max-w-none">
             <h2 className="text-5xl font-bold leading-tight text-primary-1 md:text-4xl sm:text-3xl">
-              Take a look back while we build what’s next
+              Take a look back while we plan what’s next
             </h2>
             <p className="mt-5 text-lg leading-relaxed text-slate-600 md:text-base sm:text-sm">
-              Last year’s edition is where these talks, workshops, and community spotlights first
-              came to life. Browse the past schedule while we polish the programme for the upcoming
-              event.
+              Last year’s edition brought these talks, workshops, and community spotlights to life.
+              Explore the past schedule while we fine-tune the programme for the upcoming event.
             </p>
             <div className="mt-10 flex justify-start md:justify-center">
               <a href="/schedule" className="button px-6 py-3 text-base sm:px-4 sm:py-2 sm:text-sm">
-                Revisit last year’s schedule
+                Explore last year’s schedule
               </a>
             </div>
           </div>
