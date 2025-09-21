@@ -91,8 +91,8 @@ const Info = () => (
       <div className="tracks-section">
         <h2 className="section-title">Call for Proposals</h2>
         <p className="section-subtitle">
-          Share your idea and help shape the Cloud Native Summit Munich 2025 program. We welcome
-          stories, lessons learned, and hands-on insights from practitioners across the community.
+          We welcome stories, lessons learned, and hands-on insights from practitioners across the
+          community.
         </p>
         <div className="features-grid tracks-grid">
           <div className="feature-item tracks-feature">
