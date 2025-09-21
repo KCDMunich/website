@@ -25,7 +25,7 @@ import vCluster from 'icons/vCluster.svg';
 import whiteduck from 'icons/whiteduck.png';
 import './sponsor.css';
 
-const SHOW_SPONSORS = true;
+const SHOW_CURRENT_SPONSORS = false;
 
 const tierConfig = {
   platinum: {
@@ -258,51 +258,100 @@ const sponsorsList = [
 sponsorsList.sort((a, b) => a.name.toLowerCase().localeCompare(b.name.toLowerCase()));
 
 const contactEmail = 'team@cloudnativesummit.de';
+const sponsorProspectusUrl =
+  'https://docs.google.com/presentation/d/1QVKEiKgR_Q-grdpZ7QR85-xlvoydq3P6ijvpvKF4KmY/edit?slide=id.g3146e190d7b_0_63#slide=id.g3146e190d7b_0_63';
+
+const uniqueSponsorsByName = (() => {
+  const seen = new Set();
+  return sponsorsList.filter((sponsor) => {
+    if (seen.has(sponsor.name)) {
+      return false;
+    }
+    seen.add(sponsor.name);
+    return true;
+  });
+})();
+
+const marqueeSponsors = [...uniqueSponsorsByName, ...uniqueSponsorsByName];
 
 const DEFAULT_LOGO_WIDTH = 150;
 const DEFAULT_LOGO_HEIGHT = 70;
 
 const Sponsors = () => {
-  if (!SHOW_SPONSORS) {
+  if (!SHOW_CURRENT_SPONSORS) {
     return (
       <section id="sponsors" className="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-12">
-        <div className="mb-16 text-center md:mb-12 sm:mb-8">
-          <h2 className="mb-4 text-4xl font-bold text-gray-900 md:mb-3 md:text-3xl sm:mb-2 sm:text-2xl">
+        <div className="text-center">
+          <h2 className="mb-4 text-4xl font-bold text-gray-900 md:text-3xl sm:text-2xl">
             Become a Sponsor
           </h2>
-          <p className="mb-8 text-lg text-gray-500 md:mb-6 md:text-base sm:mb-4 sm:text-sm">
-            Support our local cloud native community by sponsoring CNS Munich
+          <p className="mx-auto mb-8 max-w-2xl text-lg text-gray-500 md:mb-6 md:text-base sm:mb-4 sm:text-sm">
+            We are finalising the next edition of CNS Munich. Support the community and join our
+            roster of partners.
           </p>
 
-          <div className="flex flex-col items-center justify-center gap-4 md:gap-3 sm:gap-2">
-            <button
-              type="button"
+          <div className="flex flex-wrap items-center justify-center gap-4 md:gap-3 sm:gap-2">
+            <a
               className="button px-6 py-3 text-base sm:px-4 sm:py-2 sm:text-sm"
-              style={{ cursor: 'pointer' }}
-              onClick={() => {
-                window.location.href = `mailto:${contactEmail}`;
-              }}
+              href={sponsorProspectusUrl}
+              target="_blank"
+              rel="noopener noreferrer"
             >
-              Contact Us
-            </button>
-            <p className="text-sm text-gray-600 sm:text-xs">
-              Contact us at{' '}
-              <a
-                href={`mailto:${contactEmail}`}
-                className=" hover:underline"
-                style={{ color: '#004258', fontWeight: 'bold' }}
-              >
-                {contactEmail}
-              </a>{' '}
-              to learn more about sponsorship opportunities
+              Sponsor Prospectus
+            </a>
+          </div>
+
+          <p className="mt-4 text-sm text-gray-600 sm:text-xs">
+            Or email us directly at{' '}
+            <a
+              href={`mailto:${contactEmail}`}
+              className="font-semibold text-primary-1 hover:underline"
+            >
+              {contactEmail}
+            </a>
+            .
+          </p>
+        </div>
+
+        <div className="mt-16 md:mt-12 sm:mt-10">
+          <div className="mb-6 text-center md:mb-4 sm:mb-3">
+            <h3 className="text-2xl font-semibold text-gray-900 md:text-xl sm:text-lg">
+              Our Past Sponsors
+            </h3>
+            <p className="mx-auto mt-2 max-w-2xl text-base text-gray-500 md:text-sm sm:text-xs">
+              A glimpse at the organisations that helped us make previous editions happen.
             </p>
+          </div>
+
+          <div className="sponsor-slider">
+            <div className="sponsor-slider-track" aria-label="Past sponsors carousel">
+              {marqueeSponsors.map((sponsor, index) => (
+                <a
+                  key={`${sponsor.name}-${index}`}
+                  href={sponsor.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="sponsor-slider-item"
+                >
+                  <img
+                    src={sponsor.icon}
+                    alt={sponsor.name}
+                    loading="lazy"
+                    style={{
+                      maxWidth: `${sponsor.logoWidth || DEFAULT_LOGO_WIDTH}px`,
+                      maxHeight: `${sponsor.logoHeight || DEFAULT_LOGO_HEIGHT}px`,
+                    }}
+                  />
+                </a>
+              ))}
+            </div>
           </div>
         </div>
       </section>
     );
   }
 
-  // Show the full sponsors section when SHOW_SPONSORS is true
+  // Show the full sponsors section when current sponsors are ready
   return (
     <section
       id="sponsors"
@@ -320,7 +369,7 @@ const Sponsors = () => {
             </p>
             <div className="mb-16 md:mb-12 sm:mb-8">
               <a
-                href="https://docs.google.com/presentation/d/1NhUXEXdfWjAt1DmFLjMPolwkuE6Y_BZiNQKWYvVmK5Q/edit?usp=sharing"
+                href={sponsorProspectusUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="button inline-block px-6 py-3 text-base sm:px-4 sm:py-2 sm:text-sm"

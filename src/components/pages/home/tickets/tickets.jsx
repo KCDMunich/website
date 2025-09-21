@@ -3,47 +3,47 @@ import './tickets.css';
 
 const Tickets = () => {
   const event = {
-    title: 'Cloud Native Summit Munich 2025',
-    date: '21-22 July 2025',
+    title: 'Cloud Native Summit Munich 2026',
+    date: '29-30 June 2026',
     time: '09:00 - 17:00',
     venue: 'smartvillage Bogenhausen, Rosenkavalierplatz 13, 81925 Munich',
     description:
-      'In July 2025, the cloud native community will gather in Munich. Come and join us! Cloud Native Summit (CNS) Munich is a local, community-organized event that gathers adopters and technologists from open source and cloud native communities.',
+      'In June 2026, the cloud native community will gather in Munich. Come and join us! Cloud Native Summit (CNS) Munich is a local, community-organized event that gathers adopters and technologists from open source and cloud native communities.',
     tickets: [
       {
         id: 'early-bird',
         name: 'All Days – Early Bird',
         price: 129,
         salesStartDate: null,
-        salesEndDate: new Date('2025-02-28T23:59:59'),
+        salesEndDate: new Date('2026-02-28T23:59:59'),
       },
       {
         id: 'all-days',
         name: 'All Days',
         price: 189,
-        salesStartDate: new Date('2025-03-01'),
-        salesEndDate: new Date('2025-07-13T23:59:59'),
+        salesStartDate: new Date('2026-03-01'),
+        salesEndDate: new Date('2026-06-21T23:59:59'),
       },
       {
         id: 'monday',
         name: 'Monday Only',
         price: 129,
-        salesStartDate: new Date('2025-03-01'),
-        salesEndDate: new Date('2025-07-13T23:59:59'),
+        salesStartDate: new Date('2026-03-01'),
+        salesEndDate: new Date('2026-06-21T23:59:59'),
       },
       {
         id: 'tuesday',
         name: 'Tuesday Only',
         price: 129,
-        salesStartDate: new Date('2025-03-01'),
-        salesEndDate: new Date('2025-07-13T23:59:59'),
+        salesStartDate: new Date('2026-03-01'),
+        salesEndDate: new Date('2026-06-21T23:59:59'),
       },
       {
         id: 'late-mule',
         name: 'All Days - Late Mule',
         price: 209,
-        salesStartDate: new Date('2025-07-14'),
-        salesEndDate: new Date('2025-07-22T23:59:59'),
+        salesStartDate: new Date('2026-06-22'),
+        salesEndDate: new Date('2026-06-30T23:59:59'),
       },
     ],
   };
@@ -118,7 +118,7 @@ const Tickets = () => {
                   </div>
                 </li>
               ))}
-              <h6>Refund possible until June 15, 2025.</h6>
+              <h6>Refund possible until June 15, 2026.</h6>
             </ul>
           ) : (
             <p className="text-sm text-gray-500">No tickets are currently available for sale.</p>
@@ -150,7 +150,7 @@ const Tickets = () => {
             className="button"
             style={{ cursor: 'pointer' }}
             onClick={() =>
-              window.open('https://cnsmunich.ticketbutler.io/en/e/cnsmunich-2025/', '_blank')
+              window.open('https://cnsmunich.ticketbutler.io/en/e/cnsmunich-2026/', '_blank')
             }
           >
             Buy your Ticket

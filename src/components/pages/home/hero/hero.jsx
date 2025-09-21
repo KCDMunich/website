@@ -14,14 +14,14 @@ const Hero = () => {
             {/* Left column - Content */}
             <div className="hero-left-column fade-in-up">
               {/* Date Badge */}
-              <span className="hero-badge">July 21st – 22nd, 2025</span>
+              <span className="hero-badge">June 29th – 30th, 2026</span>
 
               {/* Title */}
               <h1 className="hero-title">Cloud Native Summit Munich</h1>
 
               {/* Description */}
               <p className="hero-description">
-                In July 2025, the cloud native community will gather in Munich. Come and join us!
+                In June 2026, the cloud native community will gather in Munich. Come and join us!
               </p>
 
               {/* Feature List */}

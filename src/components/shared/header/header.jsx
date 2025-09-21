@@ -45,7 +45,7 @@ const Header = ({ isMobileMenuOpen, onBurgerClick, additionalClassName }) => {
       >
         <Link className="z-50 ml-2" to="/">
           <StaticImage
-            src="./images/logo.svg"
+            src="./images/CNS_logo.png"
             alt="logo"
             formats={['auto', 'webp', 'avif']}
             className="navbar-logo"

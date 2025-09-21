@@ -4,7 +4,7 @@ const hotels = [
   {
     name: 'Best Western Hotel Arabellapark München',
     description:
-      'We are pleased to offer reserved rooms for your stay from 20.07.2025 to 22.07.2025. The rate is EUR 100.00 per double room for single use per night, excluding breakfast. Rooms can be booked using the code XXX until 20.06.2025. Cancellations are free until 30.06.2025. After this date, cancellations will incur a charge of 90% of the reservation cost, and non-arrivals will be charged 100%',
+      'We are pleased to offer reserved rooms for your stay from 28.06.2026 to 01.07.2026. The rate is EUR 100.00 per double room for single use per night, excluding breakfast. Rooms can be booked using the code XXX until 29.05.2026. Cancellations are free until 10.06.2026. After this date, cancellations will incur a charge of 90% of the reservation cost, and non-arrivals will be charged 100%',
     distance: '2 min walk',
     amenities: ['Restaurant'],
     imageUrl:
@@ -50,12 +50,12 @@ export default function HotelList() {
           </h2>
           <p style={{ fontSize: '14px', color: '#555', marginBottom: '16px', lineHeight: '1.6' }}>
             We are pleased to offer reserved rooms for your stay from{' '}
-            <strong>20.07.2025 to 22.07.2025</strong>. The rate is <strong>EUR 100.00</strong> per
+            <strong>28.06.2026 to 01.07.2026</strong>. The rate is <strong>EUR 100.00</strong> per
             double room for single use per night, excluding breakfast.
           </p>
           <p style={{ fontSize: '14px', color: '#555', marginBottom: '16px', lineHeight: '1.6' }}>
             Rooms can be booked using the code <strong>Cloud Native Summit Munich</strong> until{' '}
-            <strong>20.06.2025</strong>. Cancellations are free until <strong>30.06.2025</strong>.
+            <strong>29.05.2026</strong>. Cancellations are free until <strong>10.06.2026</strong>.
             After this date, cancellations will incur a charge of <strong>90%</strong> of the
             reservation cost, and non-arrivals will be charged <strong>100%</strong>.
           </p>

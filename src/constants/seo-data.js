@@ -1,8 +1,8 @@
 export default {
   schedule: {
-    title: 'CNS Munich - Event Schedule for July 21th and 22th, 2025',
+    title: 'CNS Munich - Event Schedule for June 29th and 30th, 2026',
     description:
-      'Explore the detailed agenda for CNS Munich in Munich on July 21th and 22th, 2025. Listen to expert talks, and connect with Kubernetes and Cloud Native professionals. Plan your day now!',
+      'Explore the detailed agenda for CNS Munich in Munich on June 29th and 30th, 2026. Listen to expert talks, and connect with Kubernetes and Cloud Native professionals. Plan your day now!',
   },
   /* workshops: {
     title: 'Workshops — Kubernetes Community Days',

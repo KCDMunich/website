@@ -10,6 +10,7 @@ import Layout from 'components/shared/layout';
 import SEO from 'components/shared/seo';
 import Speakers from 'components/pages/home/speakers';
 import Schedule from 'components/pages/home/schedule';
+import Proposal from 'components/pages/home/proposal';
 
 const HomePage = ({ location }) => (
   <Layout homepage>
@@ -18,6 +19,7 @@ const HomePage = ({ location }) => (
     <Speakers location={location} />
     <Schedule />
     <Sponsors />
+    <Venue />
   </Layout>
 );
 
@@ -29,11 +31,9 @@ const HomePage = ({ location }) => (
 <Schedule />
 <Venue />
 <Partners />
-<Proposal />
 <Tickets />
 <Speakers />
 <Sponsors />
-<Proposal />
 */
 
 export default HomePage;
