@@ -1,5 +1,5 @@
 import React from 'react';
-import { Users, Calendar, MapPin } from 'lucide-react';
+import { Users, Calendar, MapPin, Layers, Sparkles } from 'lucide-react';
 
 import './info.css';
 
@@ -83,6 +83,35 @@ const Info = () => (
               <p className="feature-text">
                 An exceptional 2-floor venue with ample space for activities
               </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="tracks-section">
+        <h2 className="section-title">Sessions at a Glance</h2>
+        <div className="features-grid tracks-grid">
+          <div className="feature-item tracks-feature">
+            <Layers className="feature-icon" />
+            <div className="feature-content">
+              <h3 className="feature-title">Topics we dive into</h3>
+              <ul className="feature-list">
+                <li>Cloud Native &amp; Open Source</li>
+                <li>AI Engineering</li>
+                <li>Platform Engineering &amp; more</li>
+              </ul>
+            </div>
+          </div>
+
+          <div className="feature-item tracks-feature">
+            <Sparkles className="feature-icon" />
+            <div className="feature-content">
+              <h3 className="feature-title">Designed for every level</h3>
+              <ul className="feature-list">
+                <li>Introduction</li>
+                <li>Tech Talk</li>
+                <li>Methods &amp; Frameworks</li>
+              </ul>
             </div>
           </div>
         </div>

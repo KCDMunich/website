@@ -18,6 +18,7 @@ const ScheduleCard = ({
   onClick,
   isLive = false,
   isPast = false,
+  recordingUrl,
 }) => {
   return (
     <div className={`schedule-card${isPast ? ' schedule-card--past' : ''}`} onClick={onClick}>
@@ -101,6 +102,26 @@ const ScheduleCard = ({
           </svg>
           <span>{location}</span>
         </div>
+        {recordingUrl && (
+          <a
+            href={recordingUrl}
+            className="schedule-card-recording"
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={(e) => e.stopPropagation()}
+            aria-label="Watch recording"
+          >
+            <svg
+              className="schedule-card-recording-icon"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              aria-hidden="true"
+            >
+              <path d="M21.8 8.001a3 3 0 0 0-2.103-2.103C17.992 5.5 12 5.5 12 5.5s-5.992 0-7.697.398A3 3 0 0 0 2.2 8.001C1.8 9.706 1.8 12 1.8 12s0 2.294.4 3.999a3 3 0 0 0 2.103 2.103C6.008 18.5 12 18.5 12 18.5s5.992 0 7.697-.398a3 3 0 0 0 2.103-2.103C22.2 14.294 22.2 12 22.2 12s0-2.294-.4-3.999Z" />
+              <path d="M10 15.5V8.5L16 12l-6 3.5Z" fill="#fff" />
+            </svg>
+          </a>
+        )}
         <button
           className="schedule-card-favorite-button"
           onClick={(e) => {
@@ -141,6 +162,7 @@ ScheduleCard.propTypes = {
   onClick: PropTypes.func,
   isLive: PropTypes.bool,
   isPast: PropTypes.bool,
+  recordingUrl: PropTypes.string,
 };
 
 export default ScheduleCard;

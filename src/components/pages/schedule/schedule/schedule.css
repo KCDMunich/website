@@ -536,6 +536,8 @@
   padding: 0.5rem 1rem;
   background-color: #f9fafb;
   border-top: 1px solid #e5e7eb;
+  gap: 0.75rem;
+  flex-wrap: wrap;
 }
 
 .schedule-card-location {
@@ -544,6 +546,32 @@
   gap: 0.5rem;
   font-size: 0.875rem;
   color: #4b5563;
+}
+
+.schedule-card-recording {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #ff1d1d;
+  text-decoration: none;
+  padding: 0.45rem 0.6rem;
+  border-radius: 9999px;
+  transition: background-color 0.2s ease, color 0.2s ease;
+  position: relative;
+  margin-left: auto;
+}
+
+.schedule-card-recording:hover {
+  background-color: rgba(255, 29, 29, 0.2);
+  color: #e60000;
+}
+
+.schedule-card-recording-icon {
+  width: 1.35rem;
+  height: 1.35rem;
+  color: currentColor;
 }
 
 .schedule-card-favorite-button {
@@ -694,6 +722,55 @@
   padding-right: 2rem;
 }
 
+.modal-recording-preview {
+  position: relative;
+  display: block;
+  border-radius: 1rem;
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 16px 32px rgba(15, 23, 42, 0.22);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.modal-recording-preview:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 20px 36px rgba(15, 23, 42, 0.25);
+}
+
+.modal-recording-image {
+  width: 100%;
+  display: block;
+  object-fit: cover;
+  max-height: 220px;
+}
+
+.modal-recording-overlay {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.15) 0%, rgba(0, 0, 0, 0.6) 100%);
+  color: #ffffff;
+}
+
+.modal-recording-overlay svg {
+  width: 54px;
+  height: 54px;
+  filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.35));
+}
+
+.modal-recording-caption {
+  position: absolute;
+  left: 1.25rem;
+  bottom: 1rem;
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
+  background: rgba(0, 0, 0, 0.65);
+  color: #ffffff;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
 .confirmed-session-label {
   display: inline-block;
   background-color: #f0fdf4;
@@ -797,6 +874,48 @@
   fill: #ef4444;
 }
 
+.modal-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}
+
+.modal-action-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.55rem 1.1rem;
+  border-radius: 9999px;
+  border: none;
+  background-color: #f3f4f6;
+  color: #1f2937;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.modal-action-button:hover {
+  background-color: #e5e7eb;
+}
+
+.modal-action-button svg {
+  width: 18px;
+  height: 18px;
+}
+
+.modal-action-recording {
+  background-color: #004258;
+  color: #ffffff;
+}
+
+.modal-action-recording:hover {
+  background-color: #003247;
+  color: #ffffff;
+}
+
 @media (max-width: 768px) {
   .modal-content {
     padding: 1.5rem;
@@ -808,6 +927,21 @@
 
   .modal-favorite-button {
     right: 3.5rem;
+  }
+
+  .modal-actions {
+    justify-content: center;
+  }
+
+  .modal-recording-overlay svg {
+    width: 44px;
+    height: 44px;
+  }
+
+  .modal-recording-caption {
+    left: 1rem;
+    bottom: 0.75rem;
+    font-size: 0.9rem;
   }
 }
 
@@ -822,5 +956,16 @@
 
   .modal-favorite-button {
     right: 3rem;
+  }
+
+  .modal-recording-overlay svg {
+    width: 40px;
+    height: 40px;
+  }
+
+  .modal-recording-caption {
+    left: 0.75rem;
+    bottom: 0.6rem;
+    font-size: 0.85rem;
   }
 }
