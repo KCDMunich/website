@@ -64,15 +64,39 @@ const ScheduleTeaser = () => {
     };
   }, []);
 
+  useEffect(() => {
+    if (videos.length <= 1) return undefined;
+
+    const rotation = setInterval(() => {
+      setActiveVideo((currentVideo) => {
+        if (videos.length <= 1) {
+          return videos[0];
+        }
+
+        let candidate = currentVideo;
+        let attempts = 0;
+
+        while (candidate?.id === currentVideo?.id && attempts < 5) {
+          candidate = videos[Math.floor(Math.random() * videos.length)];
+          attempts += 1;
+        }
+
+        return candidate || videos[0];
+      });
+    }, 45000);
+
+    return () => clearInterval(rotation);
+  }, [videos]);
+
   return (
     <section
       id="schedule-teaser"
-      className="safe-paddings bg-slate-50 py-24 text-slate-900 lg:py-20 md:py-16 sm:py-12"
+      className="safe-paddings py-24 text-slate-900 lg:py-20 md:py-16 sm:py-12"
     >
       <div className="mx-auto w-full max-w-[1248px] md:px-6">
         <div className="flex items-stretch justify-between gap-20 lg:gap-16 md:flex-col md:items-stretch md:gap-12">
           <div className="max-w-[480px] flex-1 text-left md:w-full md:max-w-none">
-            <h2 className="text-4xl font-bold leading-tight text-slate-900 md:text-3xl sm:text-2xl">
+            <h2 className="text-5xl font-bold leading-tight text-primary-1 md:text-4xl sm:text-3xl">
               Take a look back while we build what’s next
             </h2>
             <p className="mt-5 text-lg leading-relaxed text-slate-600 md:text-base sm:text-sm">
@@ -88,7 +112,7 @@ const ScheduleTeaser = () => {
           </div>
 
           <div className="flex-1 md:w-full md:max-w-none">
-            <div className="h-full rounded-2xl border border-slate-200 bg-white p-8 shadow-lg lg:p-6">
+            <div className="h-full rounded-2xl border border-slate-200 bg-white p-8 lg:p-6">
               <div className="flex flex-wrap items-center justify-between gap-3">
                 <div>
                   <p className="text-sm font-semibold uppercase tracking-wide text-primary-1/90">
@@ -119,7 +143,7 @@ const ScheduleTeaser = () => {
                 </a>
               </div>
 
-              <div className="mt-4 overflow-hidden rounded-xl bg-slate-900/5 shadow-inner">
+              <div className="mt-4 overflow-hidden rounded-xl bg-slate-900/5">
                 {activeVideo ? (
                   <iframe
                     title={activeVideo.title}
