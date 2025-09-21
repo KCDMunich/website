@@ -89,16 +89,20 @@ const Info = () => (
       </div>
 
       <div className="tracks-section">
-        <h2 className="section-title">Sessions at a Glance</h2>
+        <h2 className="section-title">Call for Proposals</h2>
+        <p className="section-subtitle">
+          Share your idea and help shape the Cloud Native Summit Munich 2025 program. We welcome
+          stories, lessons learned, and hands-on insights from practitioners across the community.
+        </p>
         <div className="features-grid tracks-grid">
           <div className="feature-item tracks-feature">
             <Layers className="feature-icon" />
             <div className="feature-content">
-              <h3 className="feature-title">Topics we dive into</h3>
+              <h3 className="feature-title">Topics we are looking for</h3>
               <ul className="feature-list">
-                <li>Cloud Native &amp; Open Source</li>
-                <li>AI Engineering</li>
-                <li>Platform Engineering &amp; more</li>
+                <li>Cloud Native &amp; Open Source journeys</li>
+                <li>AI, Platform, and Developer Experience</li>
+                <li>Security, Observability, and Operations</li>
               </ul>
             </div>
           </div>
@@ -106,11 +110,11 @@ const Info = () => (
           <div className="feature-item tracks-feature">
             <Sparkles className="feature-icon" />
             <div className="feature-content">
-              <h3 className="feature-title">Designed for every level</h3>
+              <h3 className="feature-title">What makes a strong proposal</h3>
               <ul className="feature-list">
-                <li>Introduction</li>
-                <li>Tech Talk</li>
-                <li>Methods &amp; Frameworks</li>
+                <li>Clear takeaways for beginner to advanced attendees</li>
+                <li>Real-world experiences, demos, or live coding</li>
+                <li>Inclusive storytelling and diverse perspectives</li>
               </ul>
             </div>
           </div>

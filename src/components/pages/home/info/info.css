@@ -17,6 +17,14 @@
   color: #004258;
 }
 
+.section-subtitle {
+  font-size: 1.125rem;
+  color: #4b5563;
+  line-height: 1.6;
+  max-width: 720px;
+  margin-bottom: 2rem;
+}
+
 /* About Section */
 .about-content {
   display: grid;

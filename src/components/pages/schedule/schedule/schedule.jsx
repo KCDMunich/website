@@ -133,7 +133,7 @@ const Schedule = () => {
             recordingThumbnail: recordingMeta.thumbnail,
           };
 
-          // Alle Sessions bleiben in ihrem ursprünglichen Raum
+          // Keep sessions in their original room
           return [baseEvent];
         });
         events.push(...roomEvents.flat());
@@ -359,7 +359,7 @@ const Schedule = () => {
               <button
                 type="button"
                 className="modal-action-button"
-                title="Session-Link teilen oder kopieren"
+                title="Share or copy session link"
                 onClick={async () => {
                   const shareUrl = `${window.location.origin}/schedule?event=${event.id}`;
                   if (navigator.share) {
@@ -373,9 +373,9 @@ const Schedule = () => {
                     }
                   } else if (navigator.clipboard) {
                     await navigator.clipboard.writeText(shareUrl);
-                    alert('Link kopiert!');
+                    alert('Link copied!');
                   } else {
-                    window.prompt('Kopiere diesen Link:', shareUrl);
+                    window.prompt('Copy this link:', shareUrl);
                   }
                 }}
               >
@@ -402,14 +402,14 @@ const Schedule = () => {
               <button
                 type="button"
                 className="modal-action-button"
-                title="Session-Link kopieren"
+                title="Copy session link"
                 onClick={async () => {
                   const shareUrl = `${window.location.origin}/schedule?event=${event.id}`;
                   if (navigator.clipboard) {
                     await navigator.clipboard.writeText(shareUrl);
-                    alert('Link kopiert!');
+                    alert('Link copied!');
                   } else {
-                    window.prompt('Kopiere diesen Link:', shareUrl);
+                    window.prompt('Copy this link:', shareUrl);
                   }
                 }}
               >
@@ -472,7 +472,7 @@ const Schedule = () => {
     // eslint-disable-next-line
   }, []);
 
-  // NEU: Events neu berechnen, wenn Filter geändert werden
+  // Recalculate events whenever filters change
   useEffect(() => {
     if (gridData.length) {
       setEvents(convertSessionsToEvents(gridData, sessionFilters));
@@ -502,9 +502,9 @@ const Schedule = () => {
     } catch {}
   }, [favorites]);
 
-  // Entfernt: useEffect für types, da nicht mehr benötigt
+  // Removed: type-specific useEffect no longer needed
 
-  // Automatisches Öffnen des Modals bei Deep Link
+  // Automatically open modal when a deep link is provided
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const eventId = params.get('event');
@@ -517,7 +517,7 @@ const Schedule = () => {
     // eslint-disable-next-line
   }, [events]);
 
-  // Mapping für die Anzeige der Raum-Header
+  // Mapping used to display room headers
   const roomHeaderLabels = {
     Main: 'Main Stage - Wien/Versailles',
     Side: 'Side Stage - Italien',
@@ -548,19 +548,19 @@ const Schedule = () => {
   if (selectedType === 'favorites') {
     filteredEvents = filteredEvents.filter((event) => favorites.includes(String(event.id)));
   } else if (selectedType === 'all') {
-    // keine weitere Filterung
+    // no additional filtering needed
   } else {
     filteredEvents = filteredEvents.filter((event) => event.room === selectedType);
   }
 
-  // Zeige alle Sessions des Tages, auch vergangene
+  // Show all sessions of the day, including past ones
   const upcomingEvents = filteredEvents;
 
   const eventsByRoom = groupEventsByRoom(upcomingEvents);
 
   return (
     <div className="schedule-container">
-      {/* --- Header: Tage nebeneinander, Filter daneben --- */}
+      {/* --- Header: day tabs and filters --- */}
       <div className="schedule-header-row">
         <div
           className="schedule-day-tabs"
@@ -578,7 +578,7 @@ const Schedule = () => {
           >
             Tuesday
           </button>
-          {/* Favoriten-Button mit Herz-Icon */}
+          {/* Favorites button with heart icon */}
           <button
             className="schedule-favorite-tab-btn"
             style={{
@@ -597,8 +597,8 @@ const Schedule = () => {
               whiteSpace: 'nowrap',
               height: '100%',
             }}
-            title="Nur Favoriten anzeigen"
-            aria-label="Nur Favoriten anzeigen"
+            title="Show favorites only"
+            aria-label="Show favorites only"
             onClick={() => setSelectedType(selectedType === 'favorites' ? 'all' : 'favorites')}
           >
             <svg
@@ -613,7 +613,7 @@ const Schedule = () => {
             >
               <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
             </svg>
-            Favoriten
+            Favorites
           </button>
         </div>
         <div className="schedule-filter-pills">
@@ -621,7 +621,7 @@ const Schedule = () => {
             className={`schedule-filter-pill ${selectedType === 'all' ? 'active' : ''}`}
             onClick={() => setSelectedType('all')}
           >
-            Alle Räume
+            All rooms
           </button>
           {rooms.map((room) => (
             <button
@@ -638,7 +638,7 @@ const Schedule = () => {
 
       <div className="schedule-grid">
         {isMobile
-          ? // Mobile: Flache Liste nach Zeit
+          ? // Mobile: Flat list sorted by time
             upcomingEvents
               .sort((a, b) => new Date(a.start) - new Date(b.start))
               .map((event) => {
@@ -667,7 +667,7 @@ const Schedule = () => {
                   />
                 );
               })
-          : // Desktop: Nach Räumen gruppiert
+          : // Desktop: Grouped by room
             rooms.map((room) => (
               <div key={room} className="room-section">
                 <div className="room-header">
