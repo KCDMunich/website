@@ -45,7 +45,7 @@ const Header = ({ isMobileMenuOpen, onBurgerClick, additionalClassName }) => {
       >
         <Link className="z-50 ml-2" to="/">
           <StaticImage
-            src="./images/logo.svg"
+            src="./images/CNS_logo.png"
             alt="logo"
             formats={['auto', 'webp', 'avif']}
             className="navbar-logo"
@@ -70,7 +70,7 @@ const Header = ({ isMobileMenuOpen, onBurgerClick, additionalClassName }) => {
                       href={item.children[1].to}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-primary ml-2 transition-colors duration-200 hover:text-blue-1"
+                      className="text-primary ml-2 transition-colors duration-200 hover:text-primary-1"
                     >
                       2024
                     </a>
@@ -79,7 +79,7 @@ const Header = ({ isMobileMenuOpen, onBurgerClick, additionalClassName }) => {
                       href={item.children[0].to}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-primary transition-colors duration-200 hover:text-blue-1"
+                      className="text-primary transition-colors duration-200 hover:text-primary-1"
                     >
                       2025
                     </a>

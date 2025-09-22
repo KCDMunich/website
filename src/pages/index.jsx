@@ -5,19 +5,19 @@ import Hero from 'components/pages/home/hero';
 import HotelList from 'components/pages/home/hotels';
 import Info from 'components/pages/home/info';
 import Sponsors from 'components/pages/home/sponsors';
+import ScheduleTeaser from 'components/pages/home/schedule-teaser';
 import Venue from 'components/pages/home/venue';
 import Layout from 'components/shared/layout';
 import SEO from 'components/shared/seo';
-import Speakers from 'components/pages/home/speakers';
-import Schedule from 'components/pages/home/schedule';
 
-const HomePage = ({ location }) => (
+const HomePage = () => (
   <Layout homepage>
     <Hero />
     <Info />
-    <Speakers location={location} />
-    <Schedule />
+    <ScheduleTeaser />
     <Sponsors />
+    <Venue />
+    <HotelList />
   </Layout>
 );
 
@@ -29,11 +29,9 @@ const HomePage = ({ location }) => (
 <Schedule />
 <Venue />
 <Partners />
-<Proposal />
 <Tickets />
 <Speakers />
 <Sponsors />
-<Proposal />
 */
 
 export default HomePage;

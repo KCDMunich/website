@@ -1,5 +1,5 @@
 import React from 'react';
-import { Users, Calendar, MapPin } from 'lucide-react';
+import { Users, Calendar, Layers, Sparkles } from 'lucide-react';
 
 import './info.css';
 
@@ -31,7 +31,7 @@ const Info = () => (
           </div>
           <div className="about-text">
             <p>
-              This is the fourth edition in Munich, aiming to bring the community together. The
+              This is the fifth edition in Munich, aiming to bring the community together. The
               event provides a platform for professionals and experts from all levels and
               backgrounds to learn, network, and share their knowledge about cloud-native
               technologies.
@@ -77,11 +77,53 @@ const Info = () => (
           </div>
 
           <div className="feature-item">
-            <MapPin className="feature-icon" />
+            <Sparkles className="feature-icon" />
             <div className="feature-content">
-              <h3 className="feature-title">Unique Venue</h3>
+              <h3 className="feature-title">Innovation in Focus</h3>
               <p className="feature-text">
-                An exceptional 2-floor venue with ample space for activities
+                Cloud Native, Open Source, AI Engineering, Platform Engineering & more
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="tracks-section">
+        <h2 className="section-title">Call for Proposals</h2>
+        <p className="section-subtitle">
+          We welcome stories, lessons learned, and hands-on insights from practitioners across the
+          community.
+        </p>
+        <p className="section-subtitle">
+          Our Call for Proposals opens soon! Stay tuned.
+        </p>
+        <div className="features-grid">
+          <div className="feature-item">
+            <Sparkles className="feature-icon" />
+            <div className="feature-content">
+              <h3 className="feature-title">Categorize</h3>
+              <p className="feature-text">
+                Cloud Native &amp; Open Source, AI Engineering, Platform Engineering &amp; more
+              </p>
+            </div>
+          </div>
+
+          <div className="feature-item">
+            <Layers className="feature-icon" />
+            <div className="feature-content">
+              <h3 className="feature-title">Levels</h3>
+              <p className="feature-text">
+                Introduction, Tech Talk, Method &amp; Frameworks
+              </p>
+            </div>
+          </div>
+
+          <div className="feature-item">
+            <Calendar className="feature-icon" />
+            <div className="feature-content">
+              <h3 className="feature-title">Types</h3>
+              <p className="feature-text">
+                Talks, Lightning Talks, Panel Discussions & Workshops
               </p>
             </div>
           </div>

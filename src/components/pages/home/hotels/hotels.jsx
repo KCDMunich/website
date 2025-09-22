@@ -4,7 +4,7 @@ const hotels = [
   {
     name: 'Best Western Hotel Arabellapark München',
     description:
-      'We are pleased to offer reserved rooms for your stay from 20.07.2025 to 22.07.2025. The rate is EUR 100.00 per double room for single use per night, excluding breakfast. Rooms can be booked using the code XXX until 20.06.2025. Cancellations are free until 30.06.2025. After this date, cancellations will incur a charge of 90% of the reservation cost, and non-arrivals will be charged 100%',
+      'We are currently arranging room contingents for Cloud Native Summit Munich attendees. A dedicated booking code will be shared soon.',
     distance: '2 min walk',
     amenities: ['Restaurant'],
     imageUrl:
@@ -49,19 +49,11 @@ export default function HotelList() {
             {highlightedHotel.name}
           </h2>
           <p style={{ fontSize: '14px', color: '#555', marginBottom: '16px', lineHeight: '1.6' }}>
-            We are pleased to offer reserved rooms for your stay from{' '}
-            <strong>20.07.2025 to 22.07.2025</strong>. The rate is <strong>EUR 100.00</strong> per
-            double room for single use per night, excluding breakfast.
-          </p>
-          <p style={{ fontSize: '14px', color: '#555', marginBottom: '16px', lineHeight: '1.6' }}>
-            Rooms can be booked using the code <strong>Cloud Native Summit Munich</strong> until{' '}
-            <strong>20.06.2025</strong>. Cancellations are free until <strong>30.06.2025</strong>.
-            After this date, cancellations will incur a charge of <strong>90%</strong> of the
-            reservation cost, and non-arrivals will be charged <strong>100%</strong>.
+            We are currently arranging room contingents for attendees. A dedicated booking code will be announced soon.
           </p>
           <p style={{ fontSize: '14px', color: '#777' }}>📍 {highlightedHotel.distance}</p>
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-            <a
+            {/* <a
               href="mailto:info@hotel-arabellapark.de"
               style={{
                 display: 'block',
@@ -76,7 +68,7 @@ export default function HotelList() {
               }}
             >
               Book now
-            </a>
+            </a> */}
           </div>
         </div>
       </div>

@@ -189,9 +189,10 @@ const ImageSlider = ({ images }) => {
 
 const Venue = ({
   images = [
-    'https://lightroom.adobe.com/v2c/spaces/42d27333b09147bba84e9ed1fb859739/assets/200c0e80e3ce4d879e13914be9b8893f/revisions/7fb60a50c4c24304b09e46c1865ad139/renditions/cf803484d4c9185bb7e3bef1890e610f',
-    'https://lightroom.adobe.com/v2c/spaces/42d27333b09147bba84e9ed1fb859739/assets/7f5815893db1972ef9ae44f387e14ab6/revisions/94992f627ab828172e0f33b01788f0b6/renditions/1a8eb83f682f28bfb4255d92e7a86eea',
+    'https://lightroom.adobe.com/v2c/spaces/7bb86e822460423fbd84753f93862cd2/assets/7781f1970ae2a3ed45cc0060ed0420b3/revisions/29cc1068b96c4e186dfe55a3bef3acfb/renditions/20a0d6e854fafb948cdf61aa1ac392bc',
+    'https://lightroom.adobe.com/v2c/spaces/7bb86e822460423fbd84753f93862cd2/assets/1a6eec40f1ea824f28455623b0c07313/revisions/bedef5be622d1168c191519d90ad132e/renditions/fa8c1dddb30794a300a9045d7e7d992d',
     'https://lightroom.adobe.com/v2c/spaces/42d27333b09147bba84e9ed1fb859739/assets/d967558d7c374ca29db41b309e113594/revisions/1ee9249d967b4d4c984bde2153b77079/renditions/b89705cd93eaa91a943682ca8948bdae',
+    'https://lightroom.adobe.com/v2c/spaces/7bb86e822460423fbd84753f93862cd2/assets/9323ebdeb4f904cc6440f72d50a73827/revisions/00395c8b62b0428d44d05fa53d8cb4d6/renditions/daaf80383dcfd6431ae1862f21865c63',
   ],
 }) => {
   return (

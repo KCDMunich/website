@@ -25,6 +25,40 @@ const sponsorSessionIds = [
 
 const workshopSessionIds = ['835091', '857417', '858404', '862527', '881898', '898401'];
 
+const getRecordingMeta = (url) => {
+  if (!url) {
+    return { url: null, thumbnail: null };
+  }
+
+  try {
+    const parsed = new URL(url);
+    let videoId = '';
+    const hostname = parsed.hostname.toLowerCase();
+
+    if (hostname.includes('youtu.be')) {
+      videoId = parsed.pathname.replace('/', '');
+    } else if (hostname.includes('youtube.com')) {
+      videoId = parsed.searchParams.get('v') || '';
+      if (!videoId && parsed.pathname.startsWith('/embed/')) {
+        videoId = parsed.pathname.replace('/embed/', '');
+      }
+    }
+
+    videoId = videoId.split('?')[0].split('&')[0];
+
+    if (!videoId) {
+      return { url, thumbnail: null };
+    }
+
+    return {
+      url,
+      thumbnail: `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`,
+    };
+  } catch (error) {
+    return { url, thumbnail: null };
+  }
+};
+
 const Schedule = () => {
   const [speakerData, setSpeakerData] = useState([]);
   const [gridData, setGridData] = useState([]); // Raw grid data
@@ -74,6 +108,7 @@ const Schedule = () => {
         });
 
         const roomEvents = filteredSessions.map((session) => {
+          const recordingMeta = getRecordingMeta(session.recordingUrl);
           const baseEvent = {
             id: session.id,
             title: session.title,
@@ -94,9 +129,11 @@ const Schedule = () => {
             start: session.startsAt,
             end: session.endsAt,
             isServiceSession: session.isServiceSession || false,
+            recordingUrl: recordingMeta.url,
+            recordingThumbnail: recordingMeta.thumbnail,
           };
 
-          // Alle Sessions bleiben in ihrem ursprünglichen Raum
+          // Keep sessions in their original room
           return [baseEvent];
         });
         events.push(...roomEvents.flat());
@@ -199,6 +236,27 @@ const Schedule = () => {
               </p>
             )}
 
+            {event.recordingThumbnail && event.recordingUrl && (
+              <a
+                href={event.recordingUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="modal-recording-preview"
+              >
+                <img
+                  src={event.recordingThumbnail}
+                  alt={`Watch recording of ${event.title}`}
+                  className="modal-recording-image"
+                />
+                <span className="modal-recording-overlay" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M8 5v14l11-7z" />
+                  </svg>
+                </span>
+                <span className="modal-recording-caption">Watch recording</span>
+              </a>
+            )}
+
             <div className="modal-main-content">
               <div className="description-section">
                 <h3>Description</h3>
@@ -250,6 +308,7 @@ const Schedule = () => {
               </div>
             </div>
             <button
+              type="button"
               className={`modal-favorite-button ${
                 favorites.includes(String(event.id)) ? 'favorited' : ''
               }`}
@@ -272,83 +331,105 @@ const Schedule = () => {
               </svg>
             </button>
 
-            {/* Share Button */}
-            <button
-              title="Session-Link teilen oder kopieren"
-              style={{ marginLeft: 12, display: 'inline-flex', alignItems: 'center', gap: 6 }}
-              onClick={async () => {
-                const shareUrl = `${window.location.origin}/schedule?event=${event.id}`;
-                if (navigator.share) {
-                  try {
-                    await navigator.share({
-                      title: event.title,
-                      url: shareUrl,
-                    });
-                  } catch (e) {
-                    // User cancelled share
-                  }
-                } else if (navigator.clipboard) {
-                  await navigator.clipboard.writeText(shareUrl);
-                  alert('Link kopiert!');
-                } else {
-                  window.prompt('Kopiere diesen Link:', shareUrl);
-                }
-              }}
-            >
-              {/* Share Icon */}
-              <svg
-                width="18"
-                height="18"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                style={{ marginRight: 4 }}
-                aria-hidden="true"
-              >
-                <circle cx="18" cy="5" r="3" />
-                <circle cx="6" cy="12" r="3" />
-                <circle cx="18" cy="19" r="3" />
-                <line x1="8.59" y1="13.51" x2="15.42" y2="17.49" />
-                <line x1="15.41" y1="6.51" x2="8.59" y2="10.49" />
-              </svg>
-              Share
-            </button>
+            <div className="modal-actions">
+              {event.recordingUrl && (
+                <a
+                  className="modal-action-button modal-action-recording"
+                  href={event.recordingUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <svg
+                    width="18"
+                    height="18"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    aria-hidden="true"
+                  >
+                    <polygon points="5 3 19 12 5 21 5 3" />
+                  </svg>
+                  Watch recording
+                </a>
+              )}
 
-            {/* Kopieren-Button */}
-            <button
-              title="Session-Link kopieren"
-              style={{ marginLeft: 12, display: 'inline-flex', alignItems: 'center', gap: 6 }}
-              onClick={async () => {
-                const shareUrl = `${window.location.origin}/schedule?event=${event.id}`;
-                if (navigator.clipboard) {
-                  await navigator.clipboard.writeText(shareUrl);
-                  alert('Link kopiert!');
-                } else {
-                  window.prompt('Kopiere diesen Link:', shareUrl);
-                }
-              }}
-            >
-              {/* Copy Icon */}
-              <svg
-                width="18"
-                height="18"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                style={{ marginRight: 4 }}
-                aria-hidden="true"
+              <button
+                type="button"
+                className="modal-action-button"
+                title="Share or copy session link"
+                onClick={async () => {
+                  const shareUrl = `${window.location.origin}/schedule?event=${event.id}`;
+                  if (navigator.share) {
+                    try {
+                      await navigator.share({
+                        title: event.title,
+                        url: shareUrl,
+                      });
+                    } catch (e) {
+                      // User cancelled share
+                    }
+                  } else if (navigator.clipboard) {
+                    await navigator.clipboard.writeText(shareUrl);
+                    alert('Link copied!');
+                  } else {
+                    window.prompt('Copy this link:', shareUrl);
+                  }
+                }}
               >
-                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
-              </svg>
-              Copy
-            </button>
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  aria-hidden="true"
+                >
+                  <circle cx="18" cy="5" r="3" />
+                  <circle cx="6" cy="12" r="3" />
+                  <circle cx="18" cy="19" r="3" />
+                  <line x1="8.59" y1="13.51" x2="15.42" y2="17.49" />
+                  <line x1="15.41" y1="6.51" x2="8.59" y2="10.49" />
+                </svg>
+                Share
+              </button>
+
+              <button
+                type="button"
+                className="modal-action-button"
+                title="Copy session link"
+                onClick={async () => {
+                  const shareUrl = `${window.location.origin}/schedule?event=${event.id}`;
+                  if (navigator.clipboard) {
+                    await navigator.clipboard.writeText(shareUrl);
+                    alert('Link copied!');
+                  } else {
+                    window.prompt('Copy this link:', shareUrl);
+                  }
+                }}
+              >
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  aria-hidden="true"
+                >
+                  <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                  <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+                </svg>
+                Copy
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -391,7 +472,7 @@ const Schedule = () => {
     // eslint-disable-next-line
   }, []);
 
-  // NEU: Events neu berechnen, wenn Filter geändert werden
+  // Recalculate events whenever filters change
   useEffect(() => {
     if (gridData.length) {
       setEvents(convertSessionsToEvents(gridData, sessionFilters));
@@ -421,9 +502,9 @@ const Schedule = () => {
     } catch {}
   }, [favorites]);
 
-  // Entfernt: useEffect für types, da nicht mehr benötigt
+  // Removed: type-specific useEffect no longer needed
 
-  // Automatisches Öffnen des Modals bei Deep Link
+  // Automatically open modal when a deep link is provided
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const eventId = params.get('event');
@@ -436,7 +517,7 @@ const Schedule = () => {
     // eslint-disable-next-line
   }, [events]);
 
-  // Mapping für die Anzeige der Raum-Header
+  // Mapping used to display room headers
   const roomHeaderLabels = {
     Main: 'Main Stage - Wien/Versailles',
     Side: 'Side Stage - Italien',
@@ -467,19 +548,19 @@ const Schedule = () => {
   if (selectedType === 'favorites') {
     filteredEvents = filteredEvents.filter((event) => favorites.includes(String(event.id)));
   } else if (selectedType === 'all') {
-    // keine weitere Filterung
+    // no additional filtering needed
   } else {
     filteredEvents = filteredEvents.filter((event) => event.room === selectedType);
   }
 
-  // Zeige alle Sessions des Tages, auch vergangene
+  // Show all sessions of the day, including past ones
   const upcomingEvents = filteredEvents;
 
   const eventsByRoom = groupEventsByRoom(upcomingEvents);
 
   return (
     <div className="schedule-container">
-      {/* --- Header: Tage nebeneinander, Filter daneben --- */}
+      {/* --- Header: day tabs and filters --- */}
       <div className="schedule-header-row">
         <div
           className="schedule-day-tabs"
@@ -497,7 +578,7 @@ const Schedule = () => {
           >
             Tuesday
           </button>
-          {/* Favoriten-Button mit Herz-Icon */}
+          {/* Favorites button with heart icon */}
           <button
             className="schedule-favorite-tab-btn"
             style={{
@@ -516,8 +597,8 @@ const Schedule = () => {
               whiteSpace: 'nowrap',
               height: '100%',
             }}
-            title="Nur Favoriten anzeigen"
-            aria-label="Nur Favoriten anzeigen"
+            title="Show favorites only"
+            aria-label="Show favorites only"
             onClick={() => setSelectedType(selectedType === 'favorites' ? 'all' : 'favorites')}
           >
             <svg
@@ -532,7 +613,7 @@ const Schedule = () => {
             >
               <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
             </svg>
-            Favoriten
+            Favorites
           </button>
         </div>
         <div className="schedule-filter-pills">
@@ -540,7 +621,7 @@ const Schedule = () => {
             className={`schedule-filter-pill ${selectedType === 'all' ? 'active' : ''}`}
             onClick={() => setSelectedType('all')}
           >
-            Alle Räume
+            All rooms
           </button>
           {rooms.map((room) => (
             <button
@@ -557,7 +638,7 @@ const Schedule = () => {
 
       <div className="schedule-grid">
         {isMobile
-          ? // Mobile: Flache Liste nach Zeit
+          ? // Mobile: Flat list sorted by time
             upcomingEvents
               .sort((a, b) => new Date(a.start) - new Date(b.start))
               .map((event) => {
@@ -580,12 +661,13 @@ const Schedule = () => {
                     isFavorite={isFavorite}
                     isLive={isLiveEvent}
                     isPast={new Date(event.end) < new Date()}
+                    recordingUrl={event.recordingUrl}
                     onFavoriteClick={() => toggleFavorite(event.id)}
                     onClick={() => setSelectedEvent(event)}
                   />
                 );
               })
-          : // Desktop: Nach Räumen gruppiert
+          : // Desktop: Grouped by room
             rooms.map((room) => (
               <div key={room} className="room-section">
                 <div className="room-header">
@@ -612,6 +694,7 @@ const Schedule = () => {
                       isFavorite={isFavorite}
                       isLive={isLiveEvent}
                       isPast={new Date(event.end) < new Date()}
+                      recordingUrl={event.recordingUrl}
                       onFavoriteClick={() => toggleFavorite(event.id)}
                       onClick={() => setSelectedEvent(event)}
                     />

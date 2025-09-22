@@ -36,6 +36,9 @@ export default {
   team: {
     to: '/team',
   },
+  vision: {
+    to: '/vision',
+  },
   tickets: {
     to: '',
     target: '_blank',
@@ -52,7 +55,7 @@ export default {
     external: true,
   },
   conduct: {
-    to: 'https://events.linuxfoundation.org/about/code-of-conduct/',
+    to: 'https://github.com/KCDMunich/code-of-conduct/blob/main/code-of-conduct.md',
     target: '_blank',
     external: true,
   },
