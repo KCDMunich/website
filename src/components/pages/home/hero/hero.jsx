@@ -36,15 +36,16 @@ const Hero = () => {
                 </li>
                 <li className="hero-feature-item">
                   <Users className="hero-icon" />
-                  <span>Developers, Platform Engineers, and IT Professionals</span>
+                  <span>Developers, Platform Engineers, AI Engineers, and IT Professionals</span>
                 </li>
               </ul>
 
               <p className="hero-description">
-                New name. Same mission! CNS Munich is run by the community for the community!
+                CNS Munich is run by the community for the community!
               </p>
-              {/* CTA Buttons 
+              {/* CTA Buttons */}
               <div className="hero-cta-container">
+                {/*
                 <button
                   type="button"
                   className="button"
@@ -53,7 +54,8 @@ const Hero = () => {
                 >
                   Get your Ticket
                 </button>
-                {
+                */}
+                {/*
                   <button
                     type="button"
                     className="hero-cta-secondary"
@@ -61,18 +63,15 @@ const Hero = () => {
                   >
                     Our Agenda
                   </button>
-                }
-                {
-                  <button
-                    type="button"
-                    className="hero-cta-secondary"
-                    onClick={() => (window.location.href = '#sponsors')}
-                  >
-                    Become a Sponsor
-                  </button>
-                }
+                */}
+                <button
+                  type="button"
+                  className="hero-cta-secondary"
+                  onClick={() => (window.location.href = '#sponsors')}
+                >
+                  Become a Sponsor
+                </button>
               </div>
-              */}
             </div>
 
             <div className="hero-right-column fade-in-scale">

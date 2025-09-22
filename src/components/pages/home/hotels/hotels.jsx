@@ -4,7 +4,7 @@ const hotels = [
   {
     name: 'Best Western Hotel Arabellapark München',
     description:
-      'We are arranging a room block for Cloud Native Summit Munich attendees. A dedicated booking code will be shared soon.',
+      'We are currently arranging room contingents for Cloud Native Summit Munich attendees. A dedicated booking code will be shared soon.',
     distance: '2 min walk',
     amenities: ['Restaurant'],
     imageUrl:
@@ -49,12 +49,11 @@ export default function HotelList() {
             {highlightedHotel.name}
           </h2>
           <p style={{ fontSize: '14px', color: '#555', marginBottom: '16px', lineHeight: '1.6' }}>
-            We are arranging a room block for Cloud Native Summit Munich guests at Best Western Hotel
-            Arabellapark. A dedicated booking code will be announced soon.
+            We are currently arranging room contingents for attendees. A dedicated booking code will be announced soon.
           </p>
           <p style={{ fontSize: '14px', color: '#777' }}>📍 {highlightedHotel.distance}</p>
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-            <a
+            {/* <a
               href="mailto:info@hotel-arabellapark.de"
               style={{
                 display: 'block',
@@ -69,7 +68,7 @@ export default function HotelList() {
               }}
             >
               Book now
-            </a>
+            </a> */}
           </div>
         </div>
       </div>

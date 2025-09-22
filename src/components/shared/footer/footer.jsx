@@ -54,10 +54,13 @@ const Footer = () => {
       <div className="container flex items-center justify-between gap-4 pb-5 pt-5 sm:flex-col sm:justify-around">
         <Link className="z-50 ml-2" to="/">
           <StaticImage
-            src="./images/logo.svg"
+            src="./images/CNS_logo.png"
             alt="logo"
             formats={['auto', 'webp', 'avif']}
             className="navbar-logo"
+            onClick={() => {
+              window.location.href = `/`;
+            }}
           />
         </Link>
 

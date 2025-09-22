@@ -259,7 +259,7 @@ sponsorsList.sort((a, b) => a.name.toLowerCase().localeCompare(b.name.toLowerCas
 
 const contactEmail = 'team@cloudnativesummit.de';
 const sponsorProspectusUrl =
-  'https://docs.google.com/presentation/d/1QVKEiKgR_Q-grdpZ7QR85-xlvoydq3P6ijvpvKF4KmY/edit?slide=id.g3146e190d7b_0_63#slide=id.g3146e190d7b_0_63';
+  'https://docs.google.com/presentation/d/1QVKEiKgR_Q-grdpZ7QR85-xlvoydq3P6ijvpvKF4KmY/edit?usp=sharing';
 
 const uniqueSponsorsByName = (() => {
   const seen = new Set();
@@ -280,17 +280,16 @@ const DEFAULT_LOGO_HEIGHT = 70;
 const Sponsors = () => {
   if (!SHOW_CURRENT_SPONSORS) {
     return (
-      <section id="sponsors" className="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-12">
-        <div className="text-center">
-          <h2 className="mb-4 text-4xl font-bold text-gray-900 md:text-3xl sm:text-2xl">
+            <section id="sponsors" className="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-12">
+        <div className="mb-16 md:mb-12 sm:mb-8">
+          <h2 className="text-left text-5xl font-bold leading-tight text-primary-1 md:text-4xl sm:text-3xl">
             Become a Sponsor
           </h2>
-          <p className="mx-auto mb-8 max-w-2xl text-lg text-gray-500 md:mb-6 md:text-base sm:mb-4 sm:text-sm">
-            We are finalising the next edition of CNS Munich. Support the community and join our
-            roster of partners.
+          <p className="text-center mx-auto mt-6 max-w-3xl text-xl leading-relaxed text-slate-600 md:mt-4 md:text-lg sm:mt-3 sm:text-base">
+            Support our local cloud native community by sponsoring CNS Munich!
           </p>
 
-          <div className="flex flex-wrap items-center justify-center gap-4 md:gap-3 sm:gap-2">
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-4 md:mt-6 md:gap-3 sm:mt-4 sm:gap-2">
             <a
               className="button px-6 py-3 text-base sm:px-4 sm:py-2 sm:text-sm"
               href={sponsorProspectusUrl}
@@ -301,7 +300,7 @@ const Sponsors = () => {
             </a>
           </div>
 
-          <p className="mt-4 text-sm text-gray-600 sm:text-xs">
+          <p className="text-center mt-4 text-sm text-gray-600 sm:text-xs">
             Or email us directly at{' '}
             <a
               href={`mailto:${contactEmail}`}

@@ -143,7 +143,7 @@ const ScheduleTeaser = () => {
         <div className="flex items-stretch justify-between gap-20 lg:gap-16 md:flex-col md:items-stretch md:gap-12">
           <div className="max-w-[480px] flex-1 text-left md:w-full md:max-w-none">
             <h2 className="text-5xl font-bold leading-tight text-primary-1 md:text-4xl sm:text-3xl">
-              Watch every past Cloud Native Summit session
+              Replay past Sessions
             </h2>
             <p className="mt-5 text-lg leading-relaxed text-slate-600 md:text-base sm:text-sm">
               Revisit every talk, workshop, and community spotlight from last year’s program while
@@ -162,7 +162,7 @@ const ScheduleTeaser = () => {
               <div className="flex flex-wrap items-center justify-between gap-3">
                 <div>
                   <p className="text-sm font-semibold uppercase tracking-wide text-primary-1/90">
-                    Watch last year’s talks
+                    Watch last year's talks
                   </p>
                 </div>
                 <a
