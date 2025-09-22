@@ -101,7 +101,7 @@ const Info = () => (
           <div className="feature-item">
             <Sparkles className="feature-icon" />
             <div className="feature-content">
-              <h3 className="feature-title">Kategorisierung</h3>
+              <h3 className="feature-title">Categorize</h3>
               <p className="feature-text">
                 Cloud Native &amp; Open Source, AI Engineering, Platform Engineering &amp; more
               </p>
@@ -111,7 +111,7 @@ const Info = () => (
           <div className="feature-item">
             <Layers className="feature-icon" />
             <div className="feature-content">
-              <h3 className="feature-title">Levelizing</h3>
+              <h3 className="feature-title">Levels</h3>
               <p className="feature-text">
                 Introduction, Tech Talk, Method &amp; Frameworks
               </p>
