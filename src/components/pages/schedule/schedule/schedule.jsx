@@ -64,7 +64,7 @@ const Schedule = () => {
   const [gridData, setGridData] = useState([]); // Raw grid data
   const [events, setEvents] = useState([]); // Flat list of events
   const [rooms, setRooms] = useState([]); // List of rooms for selected day
-  const [selectedDay, setSelectedDay] = useState('tuesday');
+  const [selectedDay, setSelectedDay] = useState('monday');
   const [selectedType, setSelectedType] = useState('all');
   const [selectedEvent, setSelectedEvent] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
