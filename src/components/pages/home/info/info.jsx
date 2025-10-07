@@ -31,10 +31,9 @@ const Info = () => (
           </div>
           <div className="about-text">
             <p>
-              This is the fifth edition in Munich, aiming to bring the community together. The
-              event provides a platform for professionals and experts from all levels and
-              backgrounds to learn, network, and share their knowledge about cloud-native
-              technologies.
+              This is the fifth edition in Munich, aiming to bring the community together. The event
+              provides a platform for professionals and experts from all levels and backgrounds to
+              learn, network, and share their knowledge about cloud-native technologies.
             </p>
           </div>
         </div>
@@ -45,7 +44,7 @@ const Info = () => (
             <iframe
               style={{ width: '100%', height: '100%', borderRadius: '0.5rem' }}
               className="m:w-full m:h-full"
-              src="https://www.youtube.com/embed/Ty4B7VPdWDs?si=vzN9-vrqYSNDA3Gc&mute=1&autoplay=1&loop=1&playlist=Ty4B7VPdWDs&cc_load_policy=0&iv_load_policy=3"
+              src="https://www.youtube.com/embed/R1dcUSnTmn8?si=731vIyVq8cFDLvmh&mute=1&autoplay=1&loop=1&playlist=R1dcUSnTmn8&cc_load_policy=0&iv_load_policy=3"
               title="YouTube video player"
               frameborder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -94,9 +93,7 @@ const Info = () => (
           We welcome stories, lessons learned, and hands-on insights from practitioners across the
           community.
         </p>
-        <p className="section-subtitle">
-          Our Call for Proposals opens soon! Stay tuned.
-        </p>
+        <p className="section-subtitle">Our Call for Proposals opens soon! Stay tuned.</p>
         <div className="features-grid">
           <div className="feature-item">
             <Sparkles className="feature-icon" />
@@ -112,9 +109,7 @@ const Info = () => (
             <Layers className="feature-icon" />
             <div className="feature-content">
               <h3 className="feature-title">Levels</h3>
-              <p className="feature-text">
-                Introduction, Tech Talk, Method &amp; Frameworks
-              </p>
+              <p className="feature-text">Introduction, Tech Talk, Method &amp; Frameworks</p>
             </div>
           </div>
 
@@ -122,9 +117,7 @@ const Info = () => (
             <Calendar className="feature-icon" />
             <div className="feature-content">
               <h3 className="feature-title">Types</h3>
-              <p className="feature-text">
-                Talks, Lightning Talks, Panel Discussions & Workshops
-              </p>
+              <p className="feature-text">Talks, Lightning Talks, Panel Discussions & Workshops</p>
             </div>
           </div>
         </div>
