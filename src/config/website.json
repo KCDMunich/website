@@ -43,6 +43,36 @@
         "url": "https://www.linkedin.com/company/cloudnativedaysitaly",
         "alt": "Cloud Native Days Italy on LinkedIn",
         "active": true
+      },
+      {
+        "iconName": "youtube",
+        "url": "https://www.youtube.com/@CloudNativeDaysItaly/",
+        "alt": "Cloud Native Days Italy on YouTube",
+        "active": true
+      },
+      {
+        "iconName": "instagram",
+        "url": "https://www.instagram.com/cloudnativedaysitaly/",
+        "alt": "Cloud Native Days Italy on Instagram",
+        "active": true
+      },
+      {
+        "iconName": "threads",
+        "url": "https://www.threads.com/@cloudnativedaysitaly/",
+        "alt": "Cloud Native Days Italy on Threads",
+        "active": true
+      },
+      {
+        "iconName": "bluesky",
+        "url": "https://bsky.app/profile/cloudnativedaysitaly.org",
+        "alt": "Cloud Native Days Italy on Bluesky",
+        "active": true
+      },
+      {
+        "iconName": "x",
+        "url": "https://x.com/CNDItaly",
+        "alt": "Cloud Native Days Italy on X",
+        "active": true
       }
     ]
   },
