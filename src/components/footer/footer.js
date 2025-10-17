@@ -3,11 +3,16 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Linkedin, Youtube } from 'lucide-react';
+import { Linkedin, Youtube, Instagram, Twitter } from 'lucide-react';
+import { FaBluesky, FaThreads } from 'react-icons/fa6';
 
 const iconMap = {
     linkedin: Linkedin,
     youtube: Youtube,
+    instagram: Instagram,
+    x: Twitter,
+    threads: FaThreads,
+    bluesky: FaBluesky
 };
 
 export default function Footer({ data, editions = [] }) {
