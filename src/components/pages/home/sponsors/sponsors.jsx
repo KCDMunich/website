@@ -6,13 +6,13 @@ import ApeFactory from 'icons/apefactory.svg';
 import aws from 'icons/aws.svg';
 import Cncf from 'icons/cncf.svg';
 import cnz from 'icons/cnz_logo.webp';
-import Dash0Logo from 'icons/dash0-small.png';
+import Dash0Logo from 'icons/dash0.png';
 import ESolutionsLogo from 'icons/e-solutions.png';
 import GermanTechJobs from 'icons/germantech.svg';
 import ItSchulungenCom from 'icons/its_logo_2020_tt_2_raw.png';
 import Kubecareers from 'icons/kubecareers.svg';
 import Kubeevents from 'icons/kubeevents_2.svg';
-import liquid from 'icons/liquid.png';
+import Liquid from 'icons/liquid.png';
 import MetalStack from 'icons/metalstackcloud.webp';
 import PerfectScale from 'icons/PerfectScale.png';
 import PlatformEngineeringLabs from 'icons/platformengineeringlabs.png';
@@ -24,7 +24,7 @@ import solarwinds from 'icons/solarwinds.webp';
 import Steadforce from 'icons/steadforce_logo.png';
 import SysEleven from 'icons/syseleven.png';
 import vCluster from 'icons/vCluster.svg';
-import whiteduck from 'icons/whiteduck.png';
+import Whiteduck from 'icons/whiteduck.png';
 import Tcslabs from 'icons/tsclabs-dark-large.webp';
 
 import './sponsor.css';
@@ -69,6 +69,13 @@ const tierConfig = {
     badgeClass: 'bg-green-100 text-green-800 border border-green-200',
     cardSize: 'w-[180px] h-[90px] md:w-[160px] md:h-[80px] sm:w-[140px] sm:h-[70px]',
   },
+
+  organizer: {
+    title: 'Organizers',
+    class: 'bg-white',
+    badgeClass: 'bg-blue-100 text-blue-800 border border-blue-200',
+    cardSize: 'w-[180px] h-[90px] md:w-[160px] md:h-[80px] sm:w-[140px] sm:h-[70px]',
+  },
 };
 
 const sponsorsList = [
@@ -85,24 +92,40 @@ const sponsorsList = [
     icon: Dash0Logo,
     url: 'https://www.dash0.com/',
     tier: 'gold',
-    logoWidth: 100,
-    logoHeight: 80,
+    logoWidth: 150,
+    logoHeight: 100,
   },
   {
     name: 'e.solutions GmbH',
     icon: ESolutionsLogo,
     url: 'https://www.esolutions.de/',
     tier: 'silver',
-    logoWidth: 195,
+    logoWidth: 200,
     logoHeight: 100,
   },
   {
     name: 'tsc labs',
     icon: Tcslabs,
-    url: 'https://www.example.com/',
+    url: 'https://www.tsc-labs.eu/',
     tier: 'partner',
-    logoWidth: 120,
-    logoHeight: 90,
+    logoWidth: 125,
+    logoHeight: 100,
+  },
+  {
+    name: 'white duck GmbH',
+    icon: Whiteduck,
+    url: 'https://www.whiteduck.de/',
+    tier: 'organizer',
+    logoWidth: 180,
+    logoHeight: 100,
+  },
+  {
+    name: 'Liquid Reply',
+    icon: Liquid,
+    url: 'https://www.reply.com/liquid-reply/en/',
+    tier: 'organizer',
+    logoWidth: 150,
+    logoHeight: 100,
   },
 ];
 
