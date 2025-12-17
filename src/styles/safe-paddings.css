@@ -1,13 +1,14 @@
 @layer base {
   .safe-paddings {
-    @apply px-safe;
+    padding-left: max(env(safe-area-inset-left), 2rem);
+    padding-right: max(env(safe-area-inset-right), 2rem);
 
     header& {
-      @apply pt-safe;
+      padding-top: env(safe-area-inset-top);
     }
 
     footer& {
-      @apply pb-safe;
+      padding-bottom: env(safe-area-inset-bottom);
     }
   }
 }

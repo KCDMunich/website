@@ -87,7 +87,7 @@ module.exports = {
         lime: '#32CD32',
         sage: '#9DC183',
         olive: '#808000',
-        emerald: '#50C878'
+        emerald: '#50C878',
       },
       emerald: colors.emerald,
       teal: colors.teal,
@@ -165,10 +165,5 @@ module.exports = {
       },
     },
   },
-  plugins: [
-    require('tailwindcss-safe-area'),
-    require('tailwind-scrollbar-hide'),
-    require('tailwindcss'),
-    require('autoprefixer'),
-  ],
+  plugins: [require('tailwindcss'), require('autoprefixer')],
 };
