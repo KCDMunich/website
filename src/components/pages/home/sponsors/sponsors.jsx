@@ -25,6 +25,7 @@ import Steadforce from 'icons/steadforce_logo.png';
 import SysEleven from 'icons/syseleven.png';
 import vCluster from 'icons/vCluster.svg';
 import whiteduck from 'icons/whiteduck.png';
+import Tcslabs from 'icons/tsclabs-dark-large.webp';
 
 import './sponsor.css';
 
@@ -76,7 +77,7 @@ const sponsorsList = [
     icon: ApeFactory,
     url: 'https://www.apefactory.com/de',
     tier: 'gold',
-    logoWidth: 180,
+    logoWidth: 100,
     logoHeight: 120,
   },
   {
@@ -84,15 +85,23 @@ const sponsorsList = [
     icon: Dash0Logo,
     url: 'https://www.dash0.com/',
     tier: 'gold',
-    logoWidth: 120,
-    logoHeight: 100,
+    logoWidth: 100,
+    logoHeight: 80,
   },
   {
     name: 'e.solutions GmbH',
     icon: ESolutionsLogo,
     url: 'https://www.esolutions.de/',
     tier: 'silver',
-    logoWidth: 190,
+    logoWidth: 195,
+    logoHeight: 100,
+  },
+  {
+    name: 'tsc labs',
+    icon: Tcslabs,
+    url: 'https://www.example.com/',
+    tier: 'partner',
+    logoWidth: 120,
     logoHeight: 90,
   },
 ];
