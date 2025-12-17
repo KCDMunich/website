@@ -6,6 +6,8 @@ import ApeFactory from 'icons/apefactory.svg';
 import aws from 'icons/aws.svg';
 import Cncf from 'icons/cncf.svg';
 import cnz from 'icons/cnz_logo.webp';
+import Dash0Logo from 'icons/dash0-small.png';
+import ESolutionsLogo from 'icons/e-solutions.png';
 import GermanTechJobs from 'icons/germantech.svg';
 import ItSchulungenCom from 'icons/its_logo_2020_tt_2_raw.png';
 import Kubecareers from 'icons/kubecareers.svg';
@@ -23,45 +25,46 @@ import Steadforce from 'icons/steadforce_logo.png';
 import SysEleven from 'icons/syseleven.png';
 import vCluster from 'icons/vCluster.svg';
 import whiteduck from 'icons/whiteduck.png';
+
 import './sponsor.css';
 
-const SHOW_CURRENT_SPONSORS = false;
+const SHOW_CURRENT_SPONSORS = true;
 
 const tierConfig = {
   platinum: {
     title: 'Platinum',
-    class: 'bg-white border border-gray-100 hover:border-gray-200/50',
+    class: 'bg-white',
     badgeClass: 'bg-gray-100 text-gray-700 border border-gray-200',
     cardSize: 'w-[240px] h-[120px] md:w-[200px] md:h-[100px] sm:w-[180px] sm:h-[90px]',
   },
   gold: {
     title: 'Gold',
-    class: 'bg-white border border-gray-100 hover:border-amber-200/50',
+    class: 'bg-white',
     badgeClass: 'bg-amber-100 text-amber-800 border border-amber-200',
     cardSize: 'w-[240px] h-[120px] md:w-[200px] md:h-[100px] sm:w-[180px] sm:h-[90px]',
   },
   silver: {
     title: 'Silver',
-    class: 'bg-white border border-gray-100 hover:border-gray-200/50',
+    class: 'bg-white',
     badgeClass: 'bg-gray-100 text-gray-700 border border-gray-200',
     cardSize: 'w-[200px] h-[100px] md:w-[180px] md:h-[90px] sm:w-[160px] sm:h-[80px]',
   },
   bronze: {
     title: 'Bronze',
-    class: 'bg-white border border-gray-100 hover:border-orange-200/50',
+    class: 'bg-white',
     badgeClass: 'bg-orange-100 text-orange-800 border border-orange-200',
     cardSize: 'w-[180px] h-[90px] md:w-[160px] md:h-[80px] sm:w-[140px] sm:h-[70px]',
   },
   evening: {
     title: 'Evening Event',
-    class: 'bg-white border border-gray-100 hover:border-purple-200/50',
+    class: 'bg-white',
     badgeClass: 'bg-purple-100 text-purple-800 border border-purple-200',
     cardSize: 'w-[200px] h-[100px] md:w-[180px] md:h-[90px] sm:w-[160px] sm:h-[80px]',
   },
 
   partner: {
     title: 'Community & Media Partners',
-    class: 'bg-white border border-gray-100 hover:border-green-200/50',
+    class: 'bg-white',
     badgeClass: 'bg-green-100 text-green-800 border border-green-200',
     cardSize: 'w-[180px] h-[90px] md:w-[160px] md:h-[80px] sm:w-[140px] sm:h-[70px]',
   },
@@ -69,188 +72,28 @@ const tierConfig = {
 
 const sponsorsList = [
   {
-    name: 'ADN',
-    icon: Adn,
-    url: 'https://www.adn.de/',
-    tier: 'bronze',
-    logoWidth: 130,
-    logoHeight: 100,
-  },
-  {
     name: 'APE Factory',
     icon: ApeFactory,
     url: 'https://www.apefactory.com/de',
     tier: 'gold',
-    logoWidth: 150,
-    logoHeight: 100,
-  },
-  {
-    name: 'APE Factory',
-    icon: ApeFactory,
-    url: 'https://www.apefactory.com/de',
-    tier: 'evening',
-    logoWidth: 150,
-    logoHeight: 100,
-  },
-  {
-    name: 'aws',
-    icon: aws,
-    url: 'https://aws.amazon.com/',
-    tier: 'silver',
-    logoWidth: 90,
-    logoHeight: 45,
-  },
-  {
-    name: 'CNCF',
-    icon: Cncf,
-    url: 'https://www.cncf.io/',
-    tier: 'evening',
     logoWidth: 180,
-    logoHeight: 100,
+    logoHeight: 120,
   },
   {
-    name: 'CNZ',
-    icon: cnz,
-    url: 'https://cloudnativezurich.ch/',
-    tier: 'partner',
-    logoWidth: 140,
-    logoHeight: 100,
-  },
-  {
-    name: 'German Tech Jobs',
-    icon: GermanTechJobs,
-    url: 'https://germantechjobs.de/en',
-    tier: 'partner',
-    logoWidth: 100,
-    logoHeight: 100,
-  },
-  {
-    name: 'IT-Schulungen.com',
-    icon: ItSchulungenCom,
-    url: 'https://www.it-schulungen.com/',
-    tier: 'partner',
-    logoWidth: 155,
-    logoHeight: 100,
-  },
-  {
-    name: 'Kube Careers',
-    icon: Kubecareers,
-    url: 'https://kube.careers/',
-    tier: 'partner',
-    logoWidth: 110,
-    logoHeight: 100,
-  },
-  {
-    name: 'Kube Events',
-    icon: Kubeevents,
-    url: 'https://kube.events/',
-    tier: 'partner',
-    logoWidth: 115,
-    logoHeight: 100,
-  },
-  {
-    name: 'Liquid Reply',
-    icon: liquid,
-    url: 'https://www.reply.com/liquid-reply/en/',
-    tier: 'platinum',
-    logoWidth: 170,
-    logoHeight: 130,
-  },
-  {
-    name: 'MetalStack',
-    icon: MetalStack,
-    url: 'https://metalstack.cloud/de',
-    tier: 'silver',
-    logoWidth: 150,
-    logoHeight: 100,
-  },
-  {
-    name: 'PerfectScale',
-    icon: PerfectScale,
-    url: 'https://www.perfectscale.io/',
-    tier: 'silver',
-    logoWidth: 150,
-    logoHeight: 100,
-  },
-  {
-    name: 'Platform Engineering Labs',
-    icon: PlatformEngineeringLabs,
-    url: 'https://platform.engineering/',
-    tier: 'bronze',
-    logoWidth: 100,
-    logoHeight: 100,
-  },
-  {
-    name: 'QAware',
-    icon: QAware,
-    url: 'https://www.qaware.de/',
-    tier: 'silver',
-    logoWidth: 100,
-    logoHeight: 75,
-  },
-  {
-    name: 'RedHat',
-    icon: ReadHat,
-    url: 'https://www.redhat.com/',
-    tier: 'silver',
-    logoWidth: 150,
-    logoHeight: 100,
-  },
-  {
-    name: 'Renao',
-    icon: Renao,
-    url: 'https://renao.io/',
-    tier: 'partner',
-    logoWidth: 150,
-    logoHeight: 100,
-  },
-  {
-    name: 'solarwinds',
-    icon: solarwinds,
-    url: 'https://www.solarwinds.com/',
+    name: 'Dash0',
+    icon: Dash0Logo,
+    url: 'https://www.dash0.com/',
     tier: 'gold',
-    logoWidth: 140,
-    logoHeight: 110,
-  },
-  {
-    name: 'Steadforce',
-    icon: Steadforce,
-    url: 'https://www.steadforce.com/',
-    tier: 'silver',
-    logoWidth: 150,
+    logoWidth: 120,
     logoHeight: 100,
   },
   {
-    name: 'SysEleven',
-    icon: SysEleven,
-    url: 'https://www.syseleven.de/',
-    tier: 'bronze',
-    logoWidth: 150,
-    logoHeight: 100,
-  },
-  {
-    name: 'vCluster',
-    icon: vCluster,
-    url: 'https://www.vcluster.com/',
+    name: 'e.solutions GmbH',
+    icon: ESolutionsLogo,
+    url: 'https://www.esolutions.de/',
     tier: 'silver',
-    logoWidth: 150,
-    logoHeight: 100,
-  },
-  {
-    name: 'white duck',
-    icon: whiteduck,
-    url: 'https://whiteduck.de/',
-    tier: 'platinum',
-    logoWidth: 180,
-    logoHeight: 130,
-  },
-  {
-    name: 'Sidero',
-    icon: Sidero,
-    url: 'https://www.siderolabs.com/',
-    tier: 'silver',
-    logoWidth: 180,
-    logoHeight: 130,
+    logoWidth: 190,
+    logoHeight: 90,
   },
 ];
 
@@ -280,12 +123,12 @@ const DEFAULT_LOGO_HEIGHT = 70;
 const Sponsors = () => {
   if (!SHOW_CURRENT_SPONSORS) {
     return (
-            <section id="sponsors" className="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-12">
+      <section id="sponsors" className="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-12">
         <div className="mb-16 md:mb-12 sm:mb-8">
           <h2 className="text-left text-5xl font-bold leading-tight text-primary-1 md:text-4xl sm:text-3xl">
             Become a Sponsor
           </h2>
-          <p className="text-center mx-auto mt-6 max-w-3xl text-xl leading-relaxed text-slate-600 md:mt-4 md:text-lg sm:mt-3 sm:text-base">
+          <p className="mx-auto mt-6 max-w-3xl text-center text-xl leading-relaxed text-slate-600 md:mt-4 md:text-lg sm:mt-3 sm:text-base">
             Support our local cloud native community by sponsoring CNS Munich!
           </p>
 
@@ -300,7 +143,7 @@ const Sponsors = () => {
             </a>
           </div>
 
-          <p className="text-center mt-4 text-sm text-gray-600 sm:text-xs">
+          <p className="mt-4 text-center text-sm text-gray-600 sm:text-xs">
             Or email us directly at{' '}
             <a
               href={`mailto:${contactEmail}`}
@@ -315,7 +158,7 @@ const Sponsors = () => {
         <div className="mt-16 md:mt-12 sm:mt-10">
           <div className="mb-6 text-center md:mb-4 sm:mb-3">
             <h3 className="text-2xl font-semibold text-gray-900 md:text-xl sm:text-lg">
-              Our Past Sponsors
+              Previous Sponsors
             </h3>
             <p className="mx-auto mt-2 max-w-2xl text-base text-gray-500 md:text-sm sm:text-xs">
               A glimpse at the organisations that helped us make previous editions happen.
@@ -323,7 +166,7 @@ const Sponsors = () => {
           </div>
 
           <div className="sponsor-slider">
-            <div className="sponsor-slider-track" aria-label="Past sponsors carousel">
+            <div className="sponsor-slider-track" aria-label="Previous sponsors carousel">
               {marqueeSponsors.map((sponsor, index) => (
                 <a
                   key={`${sponsor.name}-${index}`}
@@ -455,7 +298,7 @@ const Sponsors = () => {
                 )}
                 {config.premium && !config.noBackground && (
                   <div className="mt-4 flex justify-center md:mt-3 sm:mt-2">
-                    <div className="h-1 w-24 rounded-full bg-gradient-to-r from-transparent via-slate-400 to-transparent shadow-sm md:w-16 sm:w-12"></div>
+                    <div className="h-1 w-24 rounded-full bg-gradient-to-r from-transparent via-slate-400 to-transparent md:w-16 sm:w-12"></div>
                   </div>
                 )}
               </div>
