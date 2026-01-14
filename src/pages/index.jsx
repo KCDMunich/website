@@ -7,6 +7,7 @@ import Info from 'components/pages/home/info';
 import Sponsors from 'components/pages/home/sponsors';
 import ScheduleTeaser from 'components/pages/home/schedule-teaser';
 import Venue from 'components/pages/home/venue';
+import Proposal from 'components/pages/home/proposal';
 import Layout from 'components/shared/layout';
 import SEO from 'components/shared/seo';
 
@@ -15,6 +16,7 @@ const HomePage = () => (
     <Hero />
     <Info />
     <ScheduleTeaser />
+    <Proposal />
     <Sponsors />
     <Venue />
     <HotelList />

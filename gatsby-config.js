@@ -46,7 +46,6 @@ module.exports = {
         short_name: 'starter',
         start_url: '/',
         display: 'minimal-ui',
-        icon: 'src/images/favicon.png',
       },
     },
     {
