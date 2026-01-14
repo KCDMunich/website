@@ -1,5 +1,5 @@
+import { Calendar, Layers, Sparkles, Users } from 'lucide-react';
 import React from 'react';
-import { Users, Calendar, Layers, Sparkles } from 'lucide-react';
 
 import './info.css';
 
@@ -46,11 +46,11 @@ const Info = () => (
               className="m:w-full m:h-full"
               src="https://www.youtube.com/embed/R1dcUSnTmn8?si=731vIyVq8cFDLvmh&mute=1&autoplay=1&loop=1&playlist=R1dcUSnTmn8&cc_load_policy=0&iv_load_policy=3"
               title="YouTube video player"
-              frameborder="0"
+              frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              referrerpolicy="strict-origin-when-cross-origin"
-              allowfullscreen
-            ></iframe>
+              referrerPolicy="strict-origin-when-cross-origin"
+              allowFullScreen
+            />
           </div>
         </div>
       </div>

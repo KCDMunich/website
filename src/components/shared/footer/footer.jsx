@@ -6,12 +6,11 @@ import MENUS from 'constants/menus';
 import GoogleMaps from 'icons/google-maps-icon.inline.svg';
 
 import LinkedIn from 'icons/linkedin-logo.inline.svg';
+import logo from './images/CNS_logo.png';
 import Twitter from 'icons/twitter-logo.inline.svg';
 import Youtube from 'icons/youtube.inline.svg';
 import { FaDiscord } from 'react-icons/fa';
 import { FaBluesky } from 'react-icons/fa6';
-
-import { StaticImage } from 'gatsby-plugin-image';
 
 import Button from '../button';
 import Link from '../link';
@@ -53,10 +52,9 @@ const Footer = () => {
     <footer id="sponsors" className="safe-paddings border-t border-t-gray-10 bg-white">
       <div className="container flex items-center justify-between gap-4 pb-5 pt-5 sm:flex-col sm:justify-around">
         <Link className="z-50 ml-2" to="/">
-          <StaticImage
-            src="./images/CNS_logo.png"
+          <img
+            src={logo}
             alt="logo"
-            formats={['auto', 'webp', 'avif']}
             className="navbar-logo"
             onClick={() => {
               window.location.href = `/`;

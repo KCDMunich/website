@@ -5,7 +5,7 @@ import Footer from 'components/shared/footer';
 import Header from 'components/shared/header';
 import MobileMenu from 'components/shared/mobile-menu';
 
-const Layout = ({ children, headerClassnames, homepage }) => {
+const Layout = ({ children, headerClassnames = null, homepage = false }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const handleHeaderBurgerClick = () => setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -29,11 +29,6 @@ Layout.propTypes = {
   children: PropTypes.node.isRequired,
   headerClassnames: PropTypes.string,
   homepage: PropTypes.bool,
-};
-
-Layout.defaultProps = {
-  headerClassnames: null,
-  homepage: false,
 };
 
 export default Layout;

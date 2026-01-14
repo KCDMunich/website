@@ -189,10 +189,10 @@ const ImageSlider = ({ images }) => {
 
 const Venue = ({
   images = [
-    'https://lightroom.adobe.com/v2c/spaces/7bb86e822460423fbd84753f93862cd2/assets/dc554e374b622187dd008752dc9617d1/revisions/6aef9465167b4d37aaba9c88c1695209/renditions/c23889a2f2b88310132cd51da75650f1',
-    'https://lightroom.adobe.com/v2c/spaces/0f932ef66a3f45009390fa6cda9b665c/assets/cb82b677700c40109a3a9ac409c9af49/revisions/10c701ad3063443680530485b26da698/renditions/00300164ac49a65fe5b7e7109e042eea',
-    'https://lightroom.adobe.com/v2c/spaces/7bb86e822460423fbd84753f93862cd2/assets/6f84fd6b4ca7f2b998cebbb9f90c50d0/revisions/5b3ccf518d894c50b0baafed435a0eab/renditions/4f1c2bf4b21d76830b23fe6b8e1dd9fd',
-    'https://lightroom.adobe.com/v2c/spaces/7bb86e822460423fbd84753f93862cd2/assets/312d1ea17462931c213253b176898e01/revisions/d1a3341038739b966ce09fd2c4e4f1df/renditions/bf95d14b4d0a574df35f27872930b3f5',
+    '/images/venue/venue-1.jpg',
+    '/images/venue/venue-2.jpg',
+    '/images/venue/venue-3.jpg',
+    '/images/venue/venue-4.jpg',
   ],
 }) => {
   return (

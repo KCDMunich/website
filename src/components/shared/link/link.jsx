@@ -21,6 +21,18 @@ const Link = ({ className: additionalClassName, size, theme, to, children, ...pr
     additionalClassName
   );
 
+  const isExternal = /^(https?:\/\/|mailto:|tel:)/.test(to);
+
+  if (isExternal) {
+    const rel = props.rel || (props.target === '_blank' ? 'noopener noreferrer' : undefined);
+
+    return (
+      <a href={to} className={className} {...props} rel={rel}>
+        {children}
+      </a>
+    );
+  }
+
   return (
     <GatsbyLink to={to} className={className} {...props}>
       {children}

@@ -223,8 +223,8 @@ const Proposal = () => {
   const [videos, setVideos] = useState(SAMPLE_VIDEOS);
 
   // Termine
-  const openDate = new Date('2025-01-12T00:00:00');
-  const closeDate = new Date('2025-04-09T23:59:00');
+  const openDate = new Date('2026-01-13T00:00:00');
+  const closeDate = new Date('2026-03-31T12:00:00');
   const now = new Date();
   const total = closeDate.getTime() - openDate.getTime();
   const progress = Math.max(0, Math.min(100, ((now.getTime() - openDate.getTime()) / total) * 100));
@@ -249,7 +249,7 @@ const Proposal = () => {
   }, []);
 
   return (
-    <div className="mx-auto max-w-7xl p-4" id="proposal">
+    <div className="mx-auto max-w-7xl p-4" id="call-for-speakers">
       <div className="mx-auto max-w-7xl space-y-8">
         <h2 className="section-title">Submit a Talk</h2>
         {/* Timeline Card */}
@@ -265,11 +265,11 @@ const Proposal = () => {
               <div className="flex justify-between text-sm">
                 <div>
                   <div className="text-gray-500">Opens</div>
-                  <div className="font-medium">12 Jan 2025 12:00 AM</div>
+                  <div className="font-medium">13 Jan 2026 12:00 AM</div>
                 </div>
                 <div className="text-right">
                   <div className="text-gray-500">Closes</div>
-                  <div className="font-medium">09 Apr 2025 11:59 PM</div>
+                  <div className="font-medium">31 Mar 2026 12:00 PM</div>
                 </div>
               </div>
 
@@ -338,7 +338,7 @@ const Proposal = () => {
                 <button
                   className="button"
                   onClick={() =>
-                    window.open('https://sessionize.com/cloud-native-summit-munich-2025/', '_blank')
+                    window.open('https://sessionize.com/cloud-native-summit-2026/', '_blank')
                   }
                 >
                   Submit a session

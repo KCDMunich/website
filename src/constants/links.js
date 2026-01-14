@@ -27,6 +27,11 @@ export default {
     id: getAnchor('sponsors'),
     homeTo: null,
   },
+  proposal: {
+    to: `/#${getAnchor('Call for Speakers')}`,
+    id: getAnchor('Call for Speakers'),
+    homeTo: null,
+  },
   workshops: {
     to: '/workshops',
     id: getAnchor('Workshops'),

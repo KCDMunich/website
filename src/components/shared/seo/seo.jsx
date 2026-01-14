@@ -29,18 +29,18 @@ const SEO = ({ title, description, pathname }) => {
 
   return (
     <>
-      <title key={currentTitle}>{currentTitle}</title>
+      <title key="title">{currentTitle}</title>
       {/* General */}
-      <meta name="description" content={currentDescription} />
-      <meta name="robots" content="index,follow" />
+      <meta key="description" name="description" content={currentDescription} />
+      <meta key="robots" name="robots" content="index,follow" />
       {/* Open Graph */}
-      <meta property="og:title" content={currentTitle} />
-      <meta property="og:description" content={currentDescription} />
-      <meta property="og:url" content={currentUrl} />
-      <meta property="og:image" content={siteUrl + siteImage} />
-      <meta property="og:type" content="website" />
+      <meta key="og:title" property="og:title" content={currentTitle} />
+      <meta key="og:description" property="og:description" content={currentDescription} />
+      <meta key="og:url" property="og:url" content={currentUrl} />
+      <meta key="og:image" property="og:image" content={siteUrl + siteImage} />
+      <meta key="og:type" property="og:type" content="website" />
       {/* Twitter */}
-      <meta name="twitter:card" content="summary_large_image" />
+      <meta key="twitter:card" name="twitter:card" content="summary_large_image" />
     </>
   );
 };
