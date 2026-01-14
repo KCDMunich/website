@@ -249,7 +249,7 @@ const Proposal = () => {
   }, []);
 
   return (
-    <div className="mx-auto max-w-7xl p-4" id="proposal">
+    <div className="mx-auto max-w-7xl p-4" id="call-for-speakers">
       <div className="mx-auto max-w-7xl space-y-8">
         <h2 className="section-title">Submit a Talk</h2>
         {/* Timeline Card */}
