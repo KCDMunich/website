@@ -5,7 +5,7 @@ import React from 'react';
 
 const ANIMATION_DURATION = 0.2;
 
-const Burger = ({ className, isToggled, onClick }) => (
+const Burger = ({ className = null, isToggled = false, onClick = () => {} }) => (
   <LazyMotion features={domAnimation}>
     <m.button
       className={clsx('relative h-[22px] w-7', className)}
@@ -95,12 +95,6 @@ Burger.propTypes = {
   className: PropTypes.string,
   isToggled: PropTypes.bool,
   onClick: PropTypes.func,
-};
-
-Burger.defaultProps = {
-  className: null,
-  isToggled: false,
-  onClick: null,
 };
 
 export default Burger;

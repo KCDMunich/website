@@ -1,17 +1,17 @@
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { StaticImage } from 'gatsby-plugin-image';
 import { FaDiscord } from 'react-icons/fa';
 import slugify from 'slugify';
 
 import MENUS from 'constants/menus';
+import logo from './images/CNS_logo.png';
 import Burger from '../burger';
 import Link from '../link';
 
 import './header.css';
 
-const Header = ({ isMobileMenuOpen, onBurgerClick, additionalClassName }) => {
+const Header = ({ isMobileMenuOpen = false, onBurgerClick, additionalClassName = null }) => {
   const getAnchor = (str) => slugify(str).toLocaleLowerCase();
 
   const handleAnchorClick = (e) => {
@@ -44,10 +44,9 @@ const Header = ({ isMobileMenuOpen, onBurgerClick, additionalClassName }) => {
         }}
       >
         <Link className="z-50 ml-2" to="/">
-          <StaticImage
-            src="./images/CNS_logo.png"
+          <img
+            src={logo}
             alt="logo"
-            formats={['auto', 'webp', 'avif']}
             className="navbar-logo"
             onClick={() => {
               window.location.href = `/`;
@@ -131,12 +130,6 @@ Header.propTypes = {
   onBurgerClick: PropTypes.func.isRequired,
   additionalClassName: PropTypes.string,
   homepage: PropTypes.bool,
-};
-
-Header.defaultProps = {
-  isMobileMenuOpen: false,
-  additionalClassName: null,
-  homepage: false,
 };
 
 export default Header;
