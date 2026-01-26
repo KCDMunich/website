@@ -1,32 +1,14 @@
 import clsx from 'clsx';
 import React from 'react';
 
-import Adn from 'icons/adn_logo.png';
 import ApeFactory from 'icons/apefactory.svg';
-import aws from 'icons/aws.svg';
-import Cncf from 'icons/cncf.svg';
-import cnz from 'icons/cnz_logo.webp';
 import Dash0Logo from 'icons/dash0.png';
 import ESolutionsLogo from 'icons/e-solutions.png';
 import GermanTechJobs from 'icons/germantech.svg';
-import ItSchulungenCom from 'icons/its_logo_2020_tt_2_raw.png';
-import Kubecareers from 'icons/kubecareers.svg';
-import Kubeevents from 'icons/kubeevents_2.svg';
-import Liquid from 'icons/liquid.png';
-import MetalStack from 'icons/metalstackcloud.webp';
-import PerfectScale from 'icons/PerfectScale.png';
-import PlatformEngineeringLabs from 'icons/platformengineeringlabs.png';
-import QAware from 'icons/QAware_p.png';
-import ReadHat from 'icons/red-hat.svg';
-import Renao from 'icons/renao.webp';
-import Sidero from 'icons/Sidero_Black.svg';
-import solarwinds from 'icons/solarwinds.webp';
-import Steadforce from 'icons/steadforce_logo.png';
-import SysEleven from 'icons/syseleven.png';
-import vCluster from 'icons/vCluster.svg';
-import Whiteduck from 'icons/whiteduck.png';
-import Tcslabs from 'icons/tsclabs-dark-large.webp';
 import LearnCubeLogo from 'icons/learncube.webp';
+import Liquid from 'icons/liquid.png';
+import Tcslabs from 'icons/tsclabs-dark-large.webp';
+import Whiteduck from 'icons/whiteduck.png';
 
 import './sponsor.css';
 
@@ -99,7 +81,7 @@ const sponsorsList = [
   {
     name: 'GermanTechJobs',
     icon: GermanTechJobs,
-    url: 'https://www.germantechjobs.com/',
+    url: 'https://germantechjobs.de/',
     tier: 'partner',
     logoWidth: 150,
     logoHeight: 100,
@@ -287,7 +269,7 @@ const Sponsors = () => {
             )}
           >
             {config.premium && !config.noBackground && (
-              <div className="absolute inset-0 -mx-8 -my-8 rounded-3xl bg-gradient-to-r from-primary-1/5 via-primary-1/10 to-primary-1/5 md:-mx-4 md:-my-4 sm:-mx-2 sm:-my-2"></div>
+              <div className="absolute inset-0 -mx-8 -my-8 rounded-3xl bg-gradient-to-r from-primary-1/5 via-primary-1/10 to-primary-1/5 md:-mx-4 md:-my-4 sm:-mx-2 sm:-my-2" />
             )}
             <div className="relative mx-auto max-w-7xl">
               <div
@@ -306,9 +288,9 @@ const Sponsors = () => {
                   {config.premium && !config.noBackground && (
                     <div className="flex items-center gap-2 md:hidden">
                       <div className="flex h-6 w-6 items-center justify-center rounded-full bg-gradient-to-r from-slate-400 to-slate-500 ">
-                        <div className="h-3 w-3 rounded-full bg-white shadow-inner"></div>
+                        <div className="h-3 w-3 rounded-full bg-white shadow-inner" />
                       </div>
-                      <div className="h-1 w-8 bg-gradient-to-r from-slate-400 to-transparent"></div>
+                      <div className="h-1 w-8 bg-gradient-to-r from-slate-400 to-transparent" />
                     </div>
                   )}
                   <h3
@@ -326,9 +308,9 @@ const Sponsors = () => {
                   </h3>
                   {config.premium && !config.noBackground && (
                     <div className="flex items-center gap-2 md:hidden">
-                      <div className="h-1 w-8 bg-gradient-to-l from-slate-400 to-transparent"></div>
+                      <div className="h-1 w-8 bg-gradient-to-l from-slate-400 to-transparent" />
                       <div className="flex h-6 w-6 items-center justify-center rounded-full bg-gradient-to-r from-slate-400 to-slate-500 ">
-                        <div className="h-3 w-3 rounded-full bg-white shadow-inner"></div>
+                        <div className="h-3 w-3 rounded-full bg-white shadow-inner" />
                       </div>
                     </div>
                   )}
@@ -347,7 +329,7 @@ const Sponsors = () => {
                 )}
                 {config.premium && !config.noBackground && (
                   <div className="mt-4 flex justify-center md:mt-3 sm:mt-2">
-                    <div className="h-1 w-24 rounded-full bg-gradient-to-r from-transparent via-slate-400 to-transparent md:w-16 sm:w-12"></div>
+                    <div className="h-1 w-24 rounded-full bg-gradient-to-r from-transparent via-slate-400 to-transparent md:w-16 sm:w-12" />
                   </div>
                 )}
               </div>
