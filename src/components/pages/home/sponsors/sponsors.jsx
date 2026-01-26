@@ -26,6 +26,7 @@ import SysEleven from 'icons/syseleven.png';
 import vCluster from 'icons/vCluster.svg';
 import Whiteduck from 'icons/whiteduck.png';
 import Tcslabs from 'icons/tsclabs-dark-large.webp';
+import LearnCubeLogo from 'icons/learncube.webp';
 
 import './sponsor.css';
 
@@ -96,6 +97,30 @@ const sponsorsList = [
     logoHeight: 100,
   },
   {
+    name: 'GermanTechJobs',
+    icon: GermanTechJobs,
+    url: 'https://www.germantechjobs.com/',
+    tier: 'partner',
+    logoWidth: 150,
+    logoHeight: 100,
+  },
+  {
+    name: 'Liquid Reply',
+    icon: Liquid,
+    url: 'https://www.reply.com/liquid-reply/en/',
+    tier: 'organizer',
+    logoWidth: 150,
+    logoHeight: 100,
+  },
+  {
+    name: 'learncube.com',
+    icon: LearnCubeLogo,
+    url: 'https://learncube.com/',
+    tier: 'partner',
+    logoWidth: 150,
+    logoHeight: 100,
+  },
+  {
     name: 'e.solutions GmbH',
     icon: ESolutionsLogo,
     url: 'https://www.esolutions.de/',
@@ -117,14 +142,6 @@ const sponsorsList = [
     url: 'https://www.whiteduck.de/',
     tier: 'organizer',
     logoWidth: 180,
-    logoHeight: 100,
-  },
-  {
-    name: 'Liquid Reply',
-    icon: Liquid,
-    url: 'https://www.reply.com/liquid-reply/en/',
-    tier: 'organizer',
-    logoWidth: 150,
     logoHeight: 100,
   },
 ];
