@@ -48,10 +48,4 @@ Button.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
-Button.defaultProps = {
-  className: null,
-  to: null,
-  size: null,
-};
-
 export default Button;
