@@ -3,6 +3,8 @@ import React from 'react';
 
 import ApeFactory from 'icons/apefactory.svg';
 import Dash0Logo from 'icons/dash0.png';
+import Broadcom from 'icons/broadcom.png';
+import NutanixLogo from 'icons/NutanixLogo.svg';
 import ESolutionsLogo from 'icons/e-solutions.png';
 import GermanTechJobs from 'icons/germantech.svg';
 import KubeEventsLogo from 'icons/kubeevents_logo.svg';
@@ -10,6 +12,9 @@ import LearnCubeLogo from 'icons/learncube.webp';
 import Liquid from 'icons/liquid.png';
 import Tcslabs from 'icons/tsclabs-dark-large.webp';
 import Whiteduck from 'icons/whiteduck.png';
+import xcellentLogo from 'icons/x-cellent.png';
+import EonLogo from 'icons/eon.jpg';
+import Steadforce from 'icons/steadforce_logo.png';
 
 import './sponsor.css';
 
@@ -72,11 +77,27 @@ const sponsorsList = [
     logoHeight: 120,
   },
   {
+    name: 'Broadcom',
+    icon: Broadcom,
+    url: 'https://www.broadcom.com/',
+    tier: 'platinum',
+    logoWidth: 185,
+    logoHeight: 150,
+  },
+  {
     name: 'Dash0',
     icon: Dash0Logo,
     url: 'https://www.dash0.com/',
     tier: 'gold',
     logoWidth: 150,
+    logoHeight: 100,
+  },
+  {
+    name: 'Eon',
+    icon: EonLogo,
+    url: 'https://www.eon.de/',
+    tier: 'gold',
+    logoWidth: 180,
     logoHeight: 100,
   },
   {
@@ -104,11 +125,27 @@ const sponsorsList = [
     logoHeight: 100,
   },
   {
+    name: 'Nutanix',
+    icon: NutanixLogo,
+    url: 'https://www.nutanix.com/',
+    tier: 'platinum',
+    logoWidth: 185,
+    logoHeight: 150,
+  },
+  {
     name: 'e.solutions GmbH',
     icon: ESolutionsLogo,
     url: 'https://www.esolutions.de/',
     tier: 'silver',
     logoWidth: 200,
+    logoHeight: 100,
+  },
+  {
+    name: 'Steadforce',
+    icon: Steadforce,
+    url: 'https://www.steadforce.com/',
+    tier: 'silver',
+    logoWidth: 180,
     logoHeight: 100,
   },
   {
@@ -132,6 +169,14 @@ const sponsorsList = [
     icon: KubeEventsLogo,
     url: 'https://kube.events/',
     tier: 'partner',
+    logoWidth: 180,
+    logoHeight: 100,
+  },
+  {
+    name: 'x-cellent',
+    icon: xcellentLogo,
+    url: 'https://x-cellent.com/',
+    tier: 'gold',
     logoWidth: 180,
     logoHeight: 100,
   },
