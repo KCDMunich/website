@@ -305,10 +305,10 @@ const Ticketing = () => {
             </div>
             <div className="mt-auto pt-8">
               <div className="flex flex-wrap gap-6 text-sm">
-                <div className="rounded-full border border-slate-300 bg-slate-100/90 px-4 py-2 text-slate-700 shadow-sm">
+                <div className="rounded-full border border-slate-300 bg-[#f8fafc] px-4 py-2 text-slate-700 shadow-sm">
                   {eventData.dateRange}
                 </div>
-                <div className="rounded-full border border-slate-300 bg-slate-100/90 px-4 py-2 text-slate-700 shadow-sm">
+                <div className="rounded-full border border-slate-300 bg-[#f8fafc] px-4 py-2 text-slate-700 shadow-sm">
                   {eventData.location}
                 </div>
               </div>
@@ -325,7 +325,7 @@ const Ticketing = () => {
             </div>
           </div>
 
-          <div className="rounded-2xl border border-slate-200 bg-slate-50/80 p-8 shadow-lg shadow-slate-200/40">
+          <div className="rounded-2xl border border-slate-200 bg-[#f8fafc]/80 p-8">
             <div className="flex items-center justify-between gap-4">
               <div>
                 <p className="text-sm font-semibold uppercase tracking-wide text-primary-1/80">
@@ -344,19 +344,19 @@ const Ticketing = () => {
 
             <div className="mt-6 space-y-4">
               {status === 'loading' && (
-                <div className="rounded-xl border border-dashed border-slate-300 bg-white px-4 py-6 text-center text-sm text-slate-500">
+                <div className="rounded-xl border border-dashed border-slate-300 bg-[#f8fafc] px-4 py-6 text-center text-sm text-slate-500">
                   Syncing ticket data from Fienta...
                 </div>
               )}
 
               {status === 'error' && (
-                <div className="rounded-xl border border-dashed border-rose-200 bg-white px-4 py-6 text-center text-sm text-rose-500">
+                <div className="rounded-xl border border-dashed border-rose-200 bg-[#f8fafc] px-4 py-6 text-center text-sm text-rose-500">
                   Tickets are temporarily unavailable. Please check back soon.
                 </div>
               )}
 
               {status !== 'loading' && status !== 'error' && visibleTickets.length === 0 && (
-                <div className="rounded-xl border border-dashed border-slate-300 bg-white px-4 py-6 text-center text-sm text-slate-500">
+                <div className="rounded-xl border border-dashed border-slate-300 bg-[#f8fafc] px-4 py-6 text-center text-sm text-slate-500">
                   Ticket sales will open soon. Stay tuned!
                 </div>
               )}
@@ -364,7 +364,7 @@ const Ticketing = () => {
               {visibleTickets.map((ticket) => (
                 <div
                   key={ticket.id}
-                  className="flex flex-wrap items-center justify-between gap-4 rounded-xl border border-slate-200 bg-white px-5 py-4"
+                  className="flex flex-wrap items-center justify-between gap-4 rounded-xl border border-slate-200 bg-[#f8fafc] px-5 py-4"
                 >
                   <div>
                     <p className="text-base font-semibold text-slate-900">{ticket.title}</p>

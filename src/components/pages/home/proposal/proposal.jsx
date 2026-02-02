@@ -252,7 +252,7 @@ const Proposal = () => {
       <div className="mx-auto max-w-7xl space-y-8">
         <h2 className="section-title">Submit a Talk</h2>
         {/* Timeline Card */}
-        <div className="rounded-lg border bg-white shadow-sm">
+        <div className="rounded-lg border bg-[#f8fafc]/80 shadow-sm">
           <div className="border-b p-6">
             <h2 className="flex items-center gap-2 text-lg font-semibold">
               <CalendarDays className="h-5 w-5 text-primary-1" />
@@ -294,7 +294,7 @@ const Proposal = () => {
 
         {/* Guidelines Card nur anzeigen, wenn Proposal-Phase aktiv ist */}
         {!isClosed && (
-          <div className="rounded-lg border bg-white shadow-sm">
+          <div className="rounded-lg border bg-[#f8fafc]/80 shadow-sm">
             <div className="border-b p-6">
               <h2 className="flex items-center gap-2 text-lg font-semibold">
                 <Info className="h-5 w-5 text-primary-1" />
@@ -313,7 +313,7 @@ const Proposal = () => {
                   {sessions.map((session, index) => (
                     <div
                       key={index}
-                      className="flex flex-shrink-0 items-center rounded-lg border p-3 transition-colors hover:bg-gray-50"
+                      className="flex flex-shrink-0 items-center rounded-lg border p-3 transition-colors hover:bg-[#f1f5f9]"
                     >
                       <div className="flex content-center items-center gap-3">
                         <span className="font-medium">{session.type}</span>
@@ -348,7 +348,7 @@ const Proposal = () => {
         <section>
           <div className="grid grid-cols-3 gap-4 md:grid-cols-3 sm:grid-cols-1">
             {videos.slice(0, 3).map((video) => (
-              <div key={video.id} className="overflow-hidden rounded-xl bg-white shadow-md">
+              <div key={video.id} className="overflow-hidden rounded-xl bg-[#f8fafc] shadow-md">
                 <div className="relative w-full bg-black pt-[56.25%]">
                   <button
                     className="absolute inset-0 flex h-full w-full items-center justify-center"
@@ -388,7 +388,7 @@ const Proposal = () => {
               href={`https://www.youtube.com/playlist?list=${PLAYLIST_ID}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-md border border-gray-200 bg-white px-4 py-2 text-gray-600 hover:bg-gray-50"
+              className="inline-flex items-center gap-2 rounded-md border border-gray-200 bg-[#f8fafc] px-4 py-2 text-gray-600 hover:bg-[#f1f5f9]"
             >
               <svg
                 className="h-4 w-4"
@@ -404,7 +404,7 @@ const Proposal = () => {
             </a>
             <button
               onClick={shuffleVideos}
-              className="inline-flex items-center gap-2 rounded-md border border-gray-200 bg-white px-4 py-2 text-gray-600 hover:bg-gray-50"
+              className="inline-flex items-center gap-2 rounded-md border border-gray-200 bg-[#f8fafc] px-4 py-2 text-gray-600 hover:bg-[#f1f5f9]"
             >
               <svg
                 className="h-4 w-4"

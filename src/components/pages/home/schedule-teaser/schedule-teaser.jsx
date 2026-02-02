@@ -158,7 +158,7 @@ const ScheduleTeaser = () => {
           </div>
 
           <div className="flex-1 md:w-full md:max-w-none">
-            <div className="h-full rounded-2xl border border-slate-200 bg-white p-8 lg:p-6">
+            <div className="h-full rounded-2xl border border-slate-200 bg-[#f8fafc]/80 p-8 lg:p-6">
               <div className="flex flex-wrap items-center justify-between gap-3">
                 <div>
                   <p className="text-sm font-semibold uppercase tracking-wide text-primary-1/90">
