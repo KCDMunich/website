@@ -7,14 +7,46 @@ const DEFAULT_EVENT = {
   currency: 'EUR',
 };
 
-const getEventFromPayload = (payload) => {
+const getEventsFromPayload = (payload) => {
   if (!payload) return null;
 
-  if (payload.event) return payload.event;
-  if (payload.data?.event) return payload.data.event;
-  if (payload.data && !Array.isArray(payload.data)) return payload.data;
+  if (Array.isArray(payload)) return payload;
+  if (payload?.id || payload?.event_id) return [payload];
+  if (Array.isArray(payload.events)) return payload.events;
+  if (Array.isArray(payload.data)) return payload.data;
+  if (payload.data?.id || payload.data?.event_id) return [payload.data];
+  if (Array.isArray(payload.data?.events)) return payload.data.events;
 
-  return payload;
+  return [];
+};
+
+const getEventFromList = (events, { id, slug, url }) => {
+  if (!events || events.length === 0) return null;
+
+  if (id) {
+    const match = events.find(
+      (event) => String(event?.id || event?.event_id || event?.pk) === String(id)
+    );
+    if (match) return match;
+  }
+
+  if (slug) {
+    const match = events.find((event) => {
+      const eventSlug = event?.slug || event?.title_url || event?.url_slug;
+      if (eventSlug && eventSlug === slug) return true;
+      return event?.url?.includes(`/${slug}`) || event?.public_url?.includes(`/${slug}`);
+    });
+    if (match) return match;
+  }
+
+  if (url) {
+    const match = events.find(
+      (event) => event?.url === url || event?.public_url === url || event?.event_url === url
+    );
+    if (match) return match;
+  }
+
+  return events[0];
 };
 
 const getTicketsFromEvent = (event) =>
@@ -27,39 +59,6 @@ const resolvePrice = (ticket) => {
 
   return ticket?.price ?? ticket?.amount ?? ticket?.unit_price ?? null;
 };
-
-const normalizeTickets = (rawTickets, currency) =>
-  rawTickets
-    .map((ticket, index) => {
-      const salesStart = ticket?.sales_start_date || ticket?.salesStart || ticket?.start_date;
-      const salesEnd = ticket?.sales_end_date || ticket?.salesEnd || ticket?.end_date;
-      const startDate = salesStart ? new Date(salesStart) : null;
-      const endDate = salesEnd ? new Date(salesEnd) : null;
-      const now = new Date();
-      const withinSalesWindow =
-        (!startDate || startDate <= now) && (!endDate || endDate >= now);
-      const isSoldOut =
-        ticket?.sold_out ||
-        ticket?.is_sold_out ||
-        ticket?.is_temporarily_sold_out ||
-        ticket?.amount_left === 0 ||
-        ticket?.remaining === 0;
-      const isOnSale =
-        ticket?.is_on_sale ?? ticket?.on_sale ?? ticket?.available ?? withinSalesWindow;
-
-      return {
-        id: ticket?.uuid || ticket?.id || ticket?.pk || `ticket-${index}`,
-        title: ticket?.title || ticket?.name || ticket?.label,
-        description: ticket?.description || ticket?.details || '',
-        price: resolvePrice(ticket),
-        currency: ticket?.currency || currency,
-        isSoldOut,
-        isOnSale,
-        amountLeft: ticket?.amount_left ?? ticket?.remaining ?? null,
-        salesEnd: endDate,
-      };
-    })
-    .filter((ticket) => ticket.title);
 
 const formatCurrency = (value, currency) => {
   if (value === null || value === undefined) return 'On request';
@@ -84,42 +83,135 @@ const formatDate = (value) => {
   }).format(parsed);
 };
 
-const Ticketing = () => {
-  const apiUrl = process.env.GATSBY_FIENTA_API_URL;
-  const apiToken = process.env.GATSBY_FIENTA_API_TOKEN;
-  const fallbackCheckoutUrl = process.env.GATSBY_FIENTA_EVENT_URL;
+const resolveEventDateRange = (event) => {
+  const start = event?.start_time || event?.start_date || event?.start;
+  const end = event?.end_time || event?.end_date || event?.end;
+  const startLabel = formatDate(start);
+  const endLabel = formatDate(end);
 
-  const [status, setStatus] = useState(apiUrl ? 'loading' : 'idle');
+  if (startLabel && endLabel) {
+    return `${startLabel} - ${endLabel}`;
+  }
+
+  return startLabel || endLabel || DEFAULT_EVENT.dateRange;
+};
+
+const normalizeTickets = (rawTickets, currency) =>
+  rawTickets
+    .map((ticket, index) => {
+      const salesStart = ticket?.sales_start_date || ticket?.salesStart || ticket?.start_date;
+      const salesEnd = ticket?.sales_end_date || ticket?.salesEnd || ticket?.end_date;
+      const startDate = salesStart ? new Date(salesStart) : null;
+      const endDate = salesEnd ? new Date(salesEnd) : null;
+      const now = new Date();
+      const withinSalesWindow = (!startDate || startDate <= now) && (!endDate || endDate >= now);
+      const isSoldOut =
+        ticket?.sold_out ||
+        ticket?.is_sold_out ||
+        ticket?.is_temporarily_sold_out ||
+        ticket?.amount_left === 0 ||
+        ticket?.remaining === 0;
+      const isOnSale =
+        ticket?.is_on_sale ?? ticket?.on_sale ?? ticket?.available ?? withinSalesWindow;
+
+      return {
+        id: ticket?.uuid || ticket?.id || ticket?.pk || `ticket-${index}`,
+        title: ticket?.title || ticket?.name || ticket?.label,
+        description: ticket?.description || ticket?.details || '',
+        price: resolvePrice(ticket),
+        currency: ticket?.currency || currency,
+        isSoldOut,
+        isOnSale,
+        amountLeft: ticket?.amount_left ?? ticket?.remaining ?? null,
+        salesEnd: endDate,
+      };
+    })
+    .filter((ticket) => ticket.title);
+
+const getSlugFromUrl = (url) => {
+  if (!url) return '';
+  try {
+    return new URL(url).pathname.split('/').filter(Boolean).pop() || '';
+  } catch (error) {
+    return '';
+  }
+};
+
+const Ticketing = () => {
+  const baseUrl = process.env.GATSBY_FIENTA_BASE_URL || 'https://fienta.com/api/v1';
+  const eventSlug =
+    process.env.GATSBY_FIENTA_EVENT_SLUG || getSlugFromUrl(process.env.GATSBY_FIENTA_EVENT_URL);
+  const eventId = process.env.GATSBY_FIENTA_EVENT_ID;
+  const organizerId = process.env.GATSBY_FIENTA_ORGANIZER_ID;
+  const seriesId = process.env.GATSBY_FIENTA_SERIES_ID;
+  const locale = process.env.GATSBY_FIENTA_LOCALE || 'de';
+  const fallbackCheckoutUrl = process.env.GATSBY_FIENTA_EVENT_URL;
+  const eventsUrl = `${baseUrl}/public/events`;
+  const searchParams = new URLSearchParams();
+
+  if (locale) searchParams.set('locale', locale);
+  if (organizerId) searchParams.set('organizer', organizerId);
+  if (seriesId) searchParams.set('series_id', seriesId);
+
+  const queryString = searchParams.toString();
+  const listUrl = `${eventsUrl}${queryString ? `?${queryString}` : ''}`;
+  const detailUrl = eventId ? `${eventsUrl}/${eventId}${queryString ? `?${queryString}` : ''}` : '';
+  const proxyUrl = process.env.GATSBY_FIENTA_PROXY_URL || '/api/fienta-event';
+  const apiUrl = proxyUrl;
+
+  const [status, setStatus] = useState(
+    organizerId || seriesId || eventSlug || eventId ? 'loading' : 'idle'
+  );
   const [eventData, setEventData] = useState(DEFAULT_EVENT);
   const [tickets, setTickets] = useState([]);
   const [checkoutUrl, setCheckoutUrl] = useState(fallbackCheckoutUrl || '');
 
   useEffect(() => {
-    if (!apiUrl || typeof window === 'undefined') return;
+    if (typeof window === 'undefined') return;
+    if (!organizerId && !seriesId && !eventSlug && !eventId) return;
 
     let isMounted = true;
 
     const fetchTickets = async () => {
       try {
-        const response = await fetch(apiUrl, {
-          headers: apiToken ? { Authorization: `Bearer ${apiToken}` } : undefined,
-        });
+        const fetchJson = async (url) => {
+          const response = await fetch(url);
+          if (!response.ok) return null;
+          return response.json();
+        };
 
-        if (!response.ok) {
-          throw new Error('Fienta request failed');
+        let payload = await fetchJson(apiUrl);
+        if (!payload && detailUrl) {
+          payload = await fetchJson(detailUrl);
+        }
+        if (!payload && listUrl) {
+          payload = await fetchJson(listUrl);
         }
 
-        const payload = await response.json();
-        const event = getEventFromPayload(payload);
+        if (!payload) {
+          throw new Error('Fienta request failed');
+        }
+        const events = getEventsFromPayload(payload);
+        const event = getEventFromList(events, {
+          id: eventId,
+          slug: eventSlug,
+          url: fallbackCheckoutUrl,
+        });
         const normalizedEvent = {
-          title: event?.title || DEFAULT_EVENT.title,
-          dateRange: event?.date_range || DEFAULT_EVENT.dateRange,
-          location: event?.location || event?.venue || DEFAULT_EVENT.location,
-          currency: event?.currency || DEFAULT_EVENT.currency,
+          title: event?.title || event?.name || DEFAULT_EVENT.title,
+          dateRange: resolveEventDateRange(event),
+          location:
+            event?.city ||
+            event?.location ||
+            event?.venue ||
+            event?.address?.city ||
+            DEFAULT_EVENT.location,
+          currency: event?.currency || event?.ticket_currency || DEFAULT_EVENT.currency,
         };
         const ticketList = normalizeTickets(getTicketsFromEvent(event), normalizedEvent.currency);
         const eventCheckoutUrl =
           event?.url ||
+          event?.public_url ||
           event?.event_full_url ||
           event?.checkout_url ||
           event?.checkoutUrl ||
@@ -144,12 +236,9 @@ const Ticketing = () => {
     return () => {
       isMounted = false;
     };
-  }, [apiUrl, apiToken, fallbackCheckoutUrl]);
+  }, [apiUrl, eventId, eventSlug, fallbackCheckoutUrl, organizerId, seriesId]);
 
-  const availableTickets = useMemo(
-    () => tickets.filter((ticket) => ticket.isOnSale && !ticket.isSoldOut),
-    [tickets]
-  );
+  const visibleTickets = useMemo(() => tickets, [tickets]);
 
   return (
     <section id="tickets" className="safe-paddings relative bg-white py-24 lg:py-20 md:py-16">
@@ -192,9 +281,7 @@ const Ticketing = () => {
                 <p className="text-sm font-semibold uppercase tracking-wide text-primary-1/80">
                   Live ticket status
                 </p>
-                <h3 className="mt-2 text-2xl font-semibold text-slate-900">
-                  {eventData.title}
-                </h3>
+                <h3 className="mt-2 text-2xl font-semibold text-slate-900">{eventData.title}</h3>
               </div>
               <span className="rounded-full bg-lightYellow px-3 py-1 text-xs font-semibold text-slate-700">
                 Live sync
@@ -214,13 +301,13 @@ const Ticketing = () => {
                 </div>
               )}
 
-              {status !== 'loading' && status !== 'error' && availableTickets.length === 0 && (
+              {status !== 'loading' && status !== 'error' && visibleTickets.length === 0 && (
                 <div className="rounded-xl border border-dashed border-slate-300 bg-white px-4 py-6 text-center text-sm text-slate-500">
                   Ticket sales will open soon. Stay tuned!
                 </div>
               )}
 
-              {availableTickets.map((ticket) => (
+              {visibleTickets.map((ticket) => (
                 <div
                   key={ticket.id}
                   className="flex flex-wrap items-center justify-between gap-4 rounded-xl border border-slate-200 bg-white px-5 py-4"
@@ -229,6 +316,16 @@ const Ticketing = () => {
                     <p className="text-base font-semibold text-slate-900">{ticket.title}</p>
                     {ticket.description && (
                       <p className="mt-1 text-sm text-slate-500">{ticket.description}</p>
+                    )}
+                    {!ticket.isOnSale && !ticket.isSoldOut && (
+                      <p className="mt-2 text-xs font-medium uppercase tracking-wide text-amber-500">
+                        Sales opening soon
+                      </p>
+                    )}
+                    {ticket.isSoldOut && (
+                      <p className="mt-2 text-xs font-medium uppercase tracking-wide text-rose-500">
+                        Sold out
+                      </p>
                     )}
                     {ticket.salesEnd && (
                       <p className="mt-2 text-xs font-medium uppercase tracking-wide text-slate-400">
@@ -241,9 +338,7 @@ const Ticketing = () => {
                       {formatCurrency(ticket.price, ticket.currency)}
                     </p>
                     {ticket.amountLeft !== null && (
-                      <p className="mt-1 text-xs text-slate-500">
-                        {ticket.amountLeft} left
-                      </p>
+                      <p className="mt-1 text-xs text-slate-500">{ticket.amountLeft} left</p>
                     )}
                   </div>
                 </div>
