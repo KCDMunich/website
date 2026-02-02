@@ -55,6 +55,9 @@ export default async function handler(req, res) {
     ? `${privateEventsUrl}/${eventId}${queryString ? `?${queryString}` : ''}`
     : '';
 
+  // Ticket-types endpoint (requires API key)
+  const ticketTypesUrl = eventId ? `${baseUrl}/events/${eventId}/ticket-types` : '';
+
   const headersList = apiKey
     ? [
         buildAuthHeaders(apiKey, 'bearer'),
@@ -69,13 +72,36 @@ export default async function handler(req, res) {
   if (publicDetailUrl) candidates.push({ url: publicDetailUrl, headersList: [{}] });
   candidates.push({ url: publicListUrl, headersList: [{}] });
 
+  let eventPayload = null;
   for (const candidate of candidates) {
     const payload = await fetchJson(candidate.url, candidate.headersList);
     if (payload && !payload.error) {
-      res.status(200).json(payload);
-      return;
+      eventPayload = payload;
+      break;
     }
   }
 
-  res.status(502).json({ error: 'Fienta request failed' });
+  if (!eventPayload) {
+    res.status(502).json({ error: 'Fienta request failed' });
+    return;
+  }
+
+  // Fetch ticket types separately if we have an API key and event ID
+  if (apiKey && ticketTypesUrl) {
+    const ticketTypesPayload = await fetchJson(ticketTypesUrl, headersList);
+    if (ticketTypesPayload && !ticketTypesPayload.error && ticketTypesPayload.data) {
+      // Merge ticket types into event data
+      if (eventPayload.data) {
+        eventPayload.data.ticket_types = ticketTypesPayload.data;
+      } else if (Array.isArray(eventPayload.events)) {
+        // If it's a list, add to the matching event
+        const matchingEvent = eventPayload.events.find((e) => String(e.id) === String(eventId));
+        if (matchingEvent) {
+          matchingEvent.ticket_types = ticketTypesPayload.data;
+        }
+      }
+    }
+  }
+
+  res.status(200).json(eventPayload);
 }
