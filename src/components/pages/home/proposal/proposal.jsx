@@ -233,11 +233,10 @@ const Proposal = () => {
   const isClosed = now > closeDate;
 
   const sessions = [
-    { type: 'Presentation', duration: '30min' },
-    { type: 'Lightning Talk', duration: '5min' },
-    { type: 'Workshop', duration: '60min' },
-    { type: 'Workshop', duration: '90min' },
-    { type: 'Panel Discussion', duration: '45min' },
+    { type: 'Introduction' },
+    { type: 'Technical Deepdive' },
+    { type: 'Method & Frameworks' },
+    { type: 'People, Processes and Operation' },
   ];
 
   const shuffleVideos = () => {
@@ -317,9 +316,6 @@ const Proposal = () => {
                       className="flex flex-shrink-0 items-center rounded-lg border p-3 transition-colors hover:bg-gray-50"
                     >
                       <div className="flex content-center items-center gap-3">
-                        <span className="rounded-md border bg-gray-50 px-2 py-1 text-sm">
-                          {session.duration}
-                        </span>
                         <span className="font-medium">{session.type}</span>
                       </div>
                     </div>
