@@ -366,7 +366,7 @@ const Ticketing = () => {
               {visibleTickets.map((ticket) => (
                 <div
                   key={ticket.id}
-                  className="flex h-full flex-col gap-4 rounded-xl border border-slate-200 bg-[#f8fafc] px-5 py-4"
+                  className="flex h-full flex-col gap-4 rounded-xl border border-slate-200 bg-white px-5 py-4"
                 >
                   <div className="flex-1">
                     <p className="text-base font-semibold text-slate-900">{ticket.title}</p>
