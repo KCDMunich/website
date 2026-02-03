@@ -843,13 +843,17 @@
   font-size: 1.5rem;
   cursor: pointer;
   color: #0b2530;
-  width: 2.4rem;
-  height: 2.4rem;
+  width: 2.6rem;
+  height: 2.6rem;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   transition: background-color 0.2s;
+}
+
+.modal-close span {
+  line-height: 1;
 }
 
 .modal-close:hover {
@@ -864,7 +868,7 @@
   font-size: 1.6rem;
   font-weight: 700;
   margin-bottom: 1rem;
-  padding-right: 2.5rem;
+  padding-right: 6.5rem;
 }
 
 .modal-recording-preview {
@@ -1004,7 +1008,7 @@
 .modal-favorite-button {
   position: absolute;
   top: 1.25rem;
-  right: 4.2rem;
+  right: 4.4rem;
   background: rgba(0, 66, 88, 0.08);
   border: none;
   padding: 0.5rem;
@@ -1079,7 +1083,7 @@
   }
 
   .modal-favorite-button {
-    right: 3.6rem;
+    right: 4rem;
   }
 
   .modal-actions {
@@ -1105,10 +1109,11 @@
 
   .event-modal h2 {
     font-size: 1.25rem;
+    padding-right: 6rem;
   }
 
   .modal-favorite-button {
-    right: 3.1rem;
+    right: 3.8rem;
   }
 
   .modal-recording-overlay svg {

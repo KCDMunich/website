@@ -95,6 +95,7 @@ const Schedule = ({ variant = 'default' }) => {
     return null;
   };
 
+
   const getReadableDate = (dateValue) => {
     if (!dateValue) return '';
     return new Date(dateValue).toLocaleDateString(undefined, {
@@ -579,6 +580,13 @@ const Schedule = ({ variant = 'default' }) => {
   const favoriteCount = upcomingEvents.filter((event) => favorites.includes(String(event.id)))
     .length;
 
+  const getHeaderLabel = () => {
+    if (showLiveOnly) return 'Live Now';
+    if (selectedType === 'favorites') return 'Favorites';
+    if (selectedType === 'all') return 'All Sessions';
+    return roomHeaderLabels[selectedType] || selectedType;
+  };
+
 
   return (
     <div className={`schedule-container${isApp ? ' schedule-container--app' : ''}`}>
@@ -623,7 +631,7 @@ const Schedule = ({ variant = 'default' }) => {
             <div className="schedule-app-header-top">
               <div>
                 <span className="schedule-app-pill">Schedule</span>
-                <h1>Conference Agenda</h1>
+                <h1>{getHeaderLabel()}</h1>
                 <p>{displayDate}</p>
               </div>
             </div>
@@ -726,7 +734,12 @@ const Schedule = ({ variant = 'default' }) => {
                           <span className={`schedule-app-type schedule-app-type-${event.type}`}>
                             {event.type}
                           </span>
-                          {isLiveEvent && <span className="schedule-app-live">Live</span>}
+                          {isLiveEvent && (
+                            <span className="schedule-app-live">
+                              <span className="schedule-app-live-dot" aria-hidden="true"></span>
+                              Live
+                            </span>
+                          )}
                           <button
                             type="button"
                             className={`schedule-app-favorite ${
