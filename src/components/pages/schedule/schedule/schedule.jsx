@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React, { useState, useEffect } from 'react';
 
 import './schedule.css';
+import './schedule-app.css';
 import ScheduleCard from './ScheduleCard';
 
 const scriptUrl = 'https://sessionize.com/api/v2/px1o0jp3/view/GridSmart';
@@ -59,7 +60,7 @@ const getRecordingMeta = (url) => {
   }
 };
 
-const Schedule = () => {
+const Schedule = ({ variant = 'default' }) => {
   const [speakerData, setSpeakerData] = useState([]);
   const [gridData, setGridData] = useState([]); // Raw grid data
   const [events, setEvents] = useState([]); // Flat list of events
@@ -69,6 +70,8 @@ const Schedule = () => {
   const [selectedEvent, setSelectedEvent] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [currentTime, setCurrentTime] = useState(new Date());
+  const [isRoomSheetOpen, setIsRoomSheetOpen] = useState(false);
+  const [showLiveOnly, setShowLiveOnly] = useState(false);
   const [favorites, setFavorites] = useState(() => {
     try {
       const stored = localStorage.getItem('favorites');
@@ -90,6 +93,15 @@ const Schedule = () => {
     if (selectedDay === 'monday') return gridData[0];
     if (selectedDay === 'tuesday') return gridData[1];
     return null;
+  };
+
+  const getReadableDate = (dateValue) => {
+    if (!dateValue) return '';
+    return new Date(dateValue).toLocaleDateString(undefined, {
+      weekday: 'long',
+      month: 'short',
+      day: 'numeric',
+    });
   };
 
   // Helper: Convert sessions to flat events
@@ -543,6 +555,8 @@ const Schedule = () => {
     );
   }
 
+  const isApp = variant === 'app';
+
   // Filter events for selected day and type
   let filteredEvents = filterEventsByDay(events);
   if (selectedType === 'favorites') {
@@ -552,157 +566,398 @@ const Schedule = () => {
   } else {
     filteredEvents = filteredEvents.filter((event) => event.room === selectedType);
   }
+  if (isApp && showLiveOnly) {
+    filteredEvents = filteredEvents.filter((event) => isLive(event.start, event.end));
+  }
 
   // Show all sessions of the day, including past ones
   const upcomingEvents = filteredEvents;
 
   const eventsByRoom = groupEventsByRoom(upcomingEvents);
+  const selectedGridDay = getDateForSelectedDay();
+  const displayDate = getReadableDate(selectedGridDay?.date);
+  const favoriteCount = upcomingEvents.filter((event) => favorites.includes(String(event.id)))
+    .length;
+
 
   return (
-    <div className="schedule-container">
-      {/* --- Header: day tabs and filters --- */}
-      <div className="schedule-header-row">
-        <div
-          className="schedule-day-tabs"
-          style={{ display: 'flex', alignItems: 'center', gap: 8 }}
-        >
-          <button
-            className={`schedule-day-btn ${selectedDay === 'monday' ? 'active' : ''}`}
-            onClick={() => setSelectedDay('monday')}
-          >
-            Monday
-          </button>
-          <button
-            className={`schedule-day-btn ${selectedDay === 'tuesday' ? 'active' : ''}`}
-            onClick={() => setSelectedDay('tuesday')}
-          >
-            Tuesday
-          </button>
-          {/* Favorites button with heart icon */}
-          <button
-            className="schedule-favorite-tab-btn"
-            style={{
-              marginLeft: 12,
-              background: selectedType === 'favorites' ? '#004258' : '#f3f4f6',
-              color: selectedType === 'favorites' ? '#fff' : '#374151',
-              border: 'none',
-              borderRadius: '8px',
-              padding: '0.5rem 1.2rem',
-              cursor: 'pointer',
-              display: 'flex',
-              alignItems: 'center',
-              transition: 'background 0.2s, color 0.2s',
-              fontWeight: selectedType === 'favorites' ? 600 : 500,
-              fontSize: '0.9rem',
-              whiteSpace: 'nowrap',
-              height: '100%',
-            }}
-            title="Show favorites only"
-            aria-label="Show favorites only"
-            onClick={() => setSelectedType(selectedType === 'favorites' ? 'all' : 'favorites')}
-          >
-            <svg
-              className="schedule-card-favorite-icon"
-              viewBox="0 0 24 24"
-              width="20"
-              height="20"
-              fill={selectedType === 'favorites' ? 'currentColor' : 'none'}
-              stroke="currentColor"
-              strokeWidth="2"
-              style={{ marginRight: 6 }}
-            >
-              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
-            </svg>
-            Favorites
-          </button>
+    <div className={`schedule-container${isApp ? ' schedule-container--app' : ''}`}>
+      {!isApp && (
+        <div className="schedule-app-cta">
+          <div className="schedule-app-cta-content">
+            <div>
+              <p className="schedule-app-cta-title">Open the schedule app</p>
+              <p className="schedule-app-cta-subtitle">Mobile-focused view with sticky filters.</p>
+            </div>
+            <a className="schedule-app-cta-button" href="/app/schedule">
+              Open app
+            </a>
+          </div>
         </div>
-        <div className="schedule-filter-pills">
-          <button
-            className={`schedule-filter-pill ${selectedType === 'all' ? 'active' : ''}`}
-            onClick={() => setSelectedType('all')}
-          >
-            All rooms
-          </button>
-          {rooms.map((room) => (
-            <button
-              key={room}
-              className={`schedule-filter-pill ${selectedType === room ? 'active' : ''}`}
-              onClick={() => setSelectedType(room)}
-            >
-              {roomHeaderLabels[room] || room}
-            </button>
-          ))}
-          <div className="filter-divider"></div>
-        </div>
-      </div>
+      )}
 
-      <div className="schedule-grid">
-        {isMobile
-          ? // Mobile: Flat list sorted by time
-            upcomingEvents
-              .sort((a, b) => new Date(a.start) - new Date(b.start))
-              .map((event) => {
-                const isFavorite = favorites.includes(String(event.id));
-                const isLiveEvent = isLive(event.start, event.end);
-                return (
-                  <ScheduleCard
-                    key={event.id}
-                    startTime={event.time}
-                    endTime={event.endTime}
-                    duration={`${event.duration} min`}
-                    title={event.title}
-                    speakers={event.speakers?.map((speaker) => ({
-                      name: speaker.name,
-                      avatar: findSpeakerProfile(speaker.id),
-                    }))}
-                    location={roomHeaderLabels[event.room] || event.room}
-                    originalRoom={event.originalRoom}
-                    type={event.type}
-                    isFavorite={isFavorite}
-                    isLive={isLiveEvent}
-                    isPast={new Date(event.end) < new Date()}
-                    recordingUrl={event.recordingUrl}
-                    onFavoriteClick={() => toggleFavorite(event.id)}
-                    onClick={() => setSelectedEvent(event)}
-                  />
-                );
-              })
-          : // Desktop: Grouped by room
-            rooms.map((room) => (
-              <div key={room} className="room-section">
-                <div className="room-header">
-                  <h2>{roomHeaderLabels[room] || room}</h2>
-                </div>
-                {(eventsByRoom[room] || []).map((event) => {
+      {!isApp && (
+        <section className="schedule-hero">
+          <div className="schedule-hero-content">
+            <div className="schedule-hero-text">
+              <span className="schedule-hero-eyebrow">Schedule</span>
+              <h1 className="schedule-hero-title">Plan your conference days</h1>
+              <p className="schedule-hero-subtitle">
+                Browse talks, workshops, and service sessions. Filter by room and keep the sessions
+                you care about in one place.
+              </p>
+              <div className="schedule-hero-tags">
+                <span>Talks</span>
+                <span>Workshops</span>
+                <span>Service Sessions</span>
+                <span>Recordings</span>
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {isApp && (
+        <section className="schedule-app-header">
+          <div className="schedule-app-header-inner">
+            <div className="schedule-app-header-top">
+              <div>
+                <span className="schedule-app-pill">Schedule</span>
+                <h1>Conference Agenda</h1>
+                <p>{displayDate}</p>
+              </div>
+            </div>
+            <div className="schedule-app-desktop-hint">
+              Best on mobile. Resize to under 900px for the full app view.
+            </div>
+          </div>
+        </section>
+      )}
+
+      <div className={`schedule-shell${isApp ? ' schedule-shell--app' : ''}`}>
+        {/* --- Header: day tabs and filters --- */}
+        {!isApp && (
+        <div className="schedule-header-row">
+          <div className="schedule-day-tabs">
+            <button
+              className={`schedule-day-btn ${selectedDay === 'monday' ? 'active' : ''}`}
+              onClick={() => setSelectedDay('monday')}
+            >
+              Monday
+            </button>
+            <button
+              className={`schedule-day-btn ${selectedDay === 'tuesday' ? 'active' : ''}`}
+              onClick={() => setSelectedDay('tuesday')}
+            >
+              Tuesday
+            </button>
+            {/* Favorites button with heart icon */}
+            <button
+              className={`schedule-favorite-tab-btn ${
+                selectedType === 'favorites' ? 'active' : ''
+              }`}
+              title="Show favorites only"
+              aria-label="Show favorites only"
+              onClick={() => setSelectedType(selectedType === 'favorites' ? 'all' : 'favorites')}
+            >
+              <svg
+                className="schedule-card-favorite-icon"
+                viewBox="0 0 24 24"
+                width="20"
+                height="20"
+                fill={selectedType === 'favorites' ? 'currentColor' : 'none'}
+                stroke="currentColor"
+                strokeWidth="2"
+                style={{ marginRight: 6 }}
+              >
+                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+              </svg>
+              Favorites
+            </button>
+          </div>
+          <div className="schedule-filter-pills">
+            <button
+              className={`schedule-filter-pill ${selectedType === 'all' ? 'active' : ''}`}
+              onClick={() => setSelectedType('all')}
+            >
+              All rooms
+            </button>
+            {rooms.map((room) => (
+              <button
+                key={room}
+                className={`schedule-filter-pill ${selectedType === room ? 'active' : ''}`}
+                onClick={() => setSelectedType(room)}
+              >
+                {roomHeaderLabels[room] || room}
+              </button>
+            ))}
+            <div className="filter-divider"></div>
+          </div>
+        </div>
+        )}
+
+        <div className="schedule-grid">
+          {isApp
+            ? upcomingEvents
+                .sort((a, b) => new Date(a.start) - new Date(b.start))
+                .map((event) => {
                   const isFavorite = favorites.includes(String(event.id));
                   const isLiveEvent = isLive(event.start, event.end);
-
                   return (
-                    <ScheduleCard
-                      key={event.id}
-                      startTime={event.time}
-                      endTime={event.endTime}
-                      duration={`${event.duration} min`}
-                      title={event.title}
-                      speakers={event.speakers?.map((speaker) => ({
-                        name: speaker.name,
-                        avatar: findSpeakerProfile(speaker.id),
-                      }))}
-                      location={roomHeaderLabels[event.room] || event.room}
-                      originalRoom={event.originalRoom}
-                      type={event.type}
-                      isFavorite={isFavorite}
-                      isLive={isLiveEvent}
-                      isPast={new Date(event.end) < new Date()}
-                      recordingUrl={event.recordingUrl}
-                      onFavoriteClick={() => toggleFavorite(event.id)}
-                      onClick={() => setSelectedEvent(event)}
-                    />
+                    <div key={event.id} className="schedule-app-event">
+                      <div className="schedule-app-time">
+                        <span>{event.time}</span>
+                        <small>{event.duration}m</small>
+                      </div>
+                      <div
+                        className={`schedule-app-card ${
+                          isLiveEvent ? 'schedule-app-card--live' : ''
+                        }`}
+                        onClick={() => setSelectedEvent(event)}
+                        role="button"
+                        tabIndex={0}
+                        onKeyDown={(e) => {
+                          if (e.key === 'Enter' || e.key === ' ') {
+                            setSelectedEvent(event);
+                          }
+                        }}
+                      >
+                        <div className="schedule-app-card-header">
+                          <span className={`schedule-app-type schedule-app-type-${event.type}`}>
+                            {event.type}
+                          </span>
+                          {isLiveEvent && <span className="schedule-app-live">Live</span>}
+                          <button
+                            type="button"
+                            className={`schedule-app-favorite ${
+                              isFavorite ? 'schedule-app-favorite--active' : ''
+                            }`}
+                            aria-label={
+                              isFavorite ? 'Remove from favorites' : 'Add to favorites'
+                            }
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              toggleFavorite(event.id);
+                            }}
+                          >
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+                            </svg>
+                          </button>
+                        </div>
+                        <h3 className="schedule-app-title">{event.title}</h3>
+                        <div className="schedule-app-meta">
+                          <span>{roomHeaderLabels[event.room] || event.room}</span>
+                          <span>
+                            {event.time} – {event.endTime}
+                          </span>
+                        </div>
+                        <div className="schedule-app-speakers">
+                          {event.speakers?.slice(0, 3).map((speaker) => (
+                            <div key={speaker.id} className="schedule-app-speaker">
+                              {findSpeakerProfile(speaker.id) && (
+                                <img
+                                  src={findSpeakerProfile(speaker.id)}
+                                  alt={speaker.name}
+                                />
+                              )}
+                              <span>{speaker.name}</span>
+                            </div>
+                          ))}
+                        </div>
+                        <div className="schedule-app-actions">
+                          {event.recordingUrl && (
+                            <button
+                              type="button"
+                              className="schedule-app-action"
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                window.open(event.recordingUrl, '_blank', 'noopener,noreferrer');
+                              }}
+                            >
+                              Watch recording
+                            </button>
+                          )}
+                          <button
+                            type="button"
+                            className="schedule-app-action schedule-app-action--ghost"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              setSelectedEvent(event);
+                            }}
+                          >
+                            Details
+                          </button>
+                        </div>
+                      </div>
+                    </div>
                   );
-                })}
-              </div>
-            ))}
+                })
+            : isMobile
+              ? // Mobile: Flat list sorted by time
+                upcomingEvents
+                  .sort((a, b) => new Date(a.start) - new Date(b.start))
+                  .map((event) => {
+                    const isFavorite = favorites.includes(String(event.id));
+                    const isLiveEvent = isLive(event.start, event.end);
+                    return (
+                      <ScheduleCard
+                        key={event.id}
+                        startTime={event.time}
+                        endTime={event.endTime}
+                        duration={`${event.duration} min`}
+                        title={event.title}
+                        speakers={event.speakers?.map((speaker) => ({
+                          name: speaker.name,
+                          avatar: findSpeakerProfile(speaker.id),
+                        }))}
+                        location={roomHeaderLabels[event.room] || event.room}
+                        originalRoom={event.originalRoom}
+                        type={event.type}
+                        isFavorite={isFavorite}
+                        isLive={isLiveEvent}
+                        isPast={new Date(event.end) < new Date()}
+                        recordingUrl={event.recordingUrl}
+                        onFavoriteClick={() => toggleFavorite(event.id)}
+                        onClick={() => setSelectedEvent(event)}
+                      />
+                    );
+                  })
+              : // Desktop: Grouped by room
+                rooms.map((room) => (
+                  <div key={room} className="room-section">
+                    <div className="room-header">
+                      <h2>{roomHeaderLabels[room] || room}</h2>
+                    </div>
+                    {(eventsByRoom[room] || []).map((event) => {
+                      const isFavorite = favorites.includes(String(event.id));
+                      const isLiveEvent = isLive(event.start, event.end);
+
+                      return (
+                        <ScheduleCard
+                          key={event.id}
+                          startTime={event.time}
+                          endTime={event.endTime}
+                          duration={`${event.duration} min`}
+                          title={event.title}
+                          speakers={event.speakers?.map((speaker) => ({
+                            name: speaker.name,
+                            avatar: findSpeakerProfile(speaker.id),
+                          }))}
+                          location={roomHeaderLabels[event.room] || event.room}
+                          originalRoom={event.originalRoom}
+                          type={event.type}
+                          isFavorite={isFavorite}
+                          isLive={isLiveEvent}
+                          isPast={new Date(event.end) < new Date()}
+                          recordingUrl={event.recordingUrl}
+                          onFavoriteClick={() => toggleFavorite(event.id)}
+                          onClick={() => setSelectedEvent(event)}
+                        />
+                      );
+                    })}
+                  </div>
+                ))}
+        </div>
       </div>
+
+      {isApp && (
+        <>
+          <div
+            className={`schedule-app-room-sheet ${isRoomSheetOpen ? 'is-open' : ''}`}
+            role="dialog"
+            aria-modal="true"
+            aria-hidden={!isRoomSheetOpen}
+          >
+            <button
+              type="button"
+              className="schedule-app-room-sheet__backdrop"
+              onClick={() => setIsRoomSheetOpen(false)}
+              aria-label="Close room filter"
+            ></button>
+            <div className="schedule-app-room-sheet__panel">
+              <div className="schedule-app-room-sheet__header">
+                <p>Filter</p>
+                <button
+                  type="button"
+                  onClick={() => setIsRoomSheetOpen(false)}
+                  aria-label="Close room filter"
+                >
+                  Close
+                </button>
+              </div>
+              <div className="schedule-app-room-sheet__list">
+                <button
+                  type="button"
+                  className={`schedule-app-room-sheet__live ${
+                    showLiveOnly ? 'is-active' : ''
+                  }`}
+                  onClick={() => {
+                    setShowLiveOnly((prev) => !prev);
+                    setIsRoomSheetOpen(false);
+                  }}
+                >
+                  <span className="schedule-app-live-dot" aria-hidden="true"></span>
+                  Live now
+                </button>
+                {rooms.map((room) => (
+                  <button
+                    key={room}
+                    type="button"
+                    className={selectedType === room ? 'is-active' : ''}
+                    onClick={() => {
+                      setSelectedType(room);
+                      setShowLiveOnly(false);
+                      setIsRoomSheetOpen(false);
+                    }}
+                  >
+                    {roomHeaderLabels[room] || room}
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <div className="schedule-app-bottom-bar">
+            <div className="schedule-app-bottom-bar__inner">
+              <button
+                type="button"
+                className={`schedule-app-bottom-btn ${
+                  selectedDay === 'monday' ? 'is-active' : ''
+                }`}
+                onClick={() => setSelectedDay('monday')}
+              >
+                Mon
+              </button>
+              <button
+                type="button"
+                className={`schedule-app-bottom-btn ${
+                  selectedDay === 'tuesday' ? 'is-active' : ''
+                }`}
+                onClick={() => setSelectedDay('tuesday')}
+              >
+                Tue
+              </button>
+              <button
+                type="button"
+                className={`schedule-app-bottom-btn ${
+                  selectedType === 'favorites' ? 'is-active' : ''
+                }`}
+                onClick={() => setSelectedType(selectedType === 'favorites' ? 'all' : 'favorites')}
+              >
+                Favorites
+              </button>
+              <button
+                type="button"
+                className="schedule-app-bottom-btn schedule-app-bottom-btn--room"
+                onClick={() => setIsRoomSheetOpen(true)}
+              >
+                Change room
+              </button>
+            </div>
+          </div>
+        </>
+      )}
 
       <Modal
         isOpen={!!selectedEvent}
@@ -720,3 +975,7 @@ const Schedule = () => {
 };
 
 export default Schedule;
+
+Schedule.propTypes = {
+  variant: PropTypes.oneOf(['default', 'app']),
+};
