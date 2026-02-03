@@ -1,7 +1,7 @@
 import { Calendar, MapPin, Users } from 'lucide-react';
 import React from 'react';
 
-import heroIllustration from './images/hero.svg';
+import heroIllustration from './images/cns_hero_image.png';
 import './hero.css';
 
 const Hero = () => (
@@ -82,6 +82,9 @@ const Hero = () => (
                   aspectRatio: '1',
                   borderRadius: '0.75rem',
                   overflow: 'hidden',
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
                 }}
               >
                 <img src={heroIllustration} alt="Hero" />

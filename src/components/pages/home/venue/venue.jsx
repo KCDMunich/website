@@ -96,7 +96,11 @@ const IconExternal = () => (
   </svg>
 );
 
-const Card = ({ children, className = '' }) => <div className={` ${className}`}>{children}</div>;
+const Card = ({ children, className = '' }) => (
+  <div className={`rounded-xl border border-slate-200 bg-[#f8fafc]/80 shadow-sm ${className}`}>
+    {children}
+  </div>
+);
 
 const ImageSlider = ({ images }) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -200,7 +204,7 @@ const Venue = ({
       <h2 className="section-title">Venue Information</h2>
       <div className="gap-8 ">
         <div className="flex flex-col gap-6">
-          <div className="relative aspect-video overflow-hidden rounded-xl bg-gray-100">
+          <div className="relative aspect-video overflow-hidden rounded-xl bg-[#f8fafc]">
             <ImageSlider images={images} />
           </div>
           <Card>

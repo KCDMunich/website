@@ -36,6 +36,7 @@ export default function HotelList() {
           marginBottom: '32px',
           border: '1px solid #ddd',
           borderRadius: '8px',
+          backgroundColor: '#f8fafc',
           overflow: 'hidden',
         }}
       >
@@ -49,7 +50,8 @@ export default function HotelList() {
             {highlightedHotel.name}
           </h2>
           <p style={{ fontSize: '14px', color: '#555', marginBottom: '16px', lineHeight: '1.6' }}>
-            We are currently arranging room contingents for attendees. A dedicated booking code will be announced soon.
+            We are currently arranging room contingents for attendees. A dedicated booking code will
+            be announced soon.
           </p>
           <p style={{ fontSize: '14px', color: '#777' }}>📍 {highlightedHotel.distance}</p>
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
@@ -84,8 +86,10 @@ export default function HotelList() {
               key={index}
               style={{
                 marginBottom: '16px',
-                padding: '8px',
-                borderBottom: '1px solid #ddd',
+                padding: '12px',
+                border: '1px solid #e2e8f0',
+                borderRadius: '8px',
+                backgroundColor: '#f8fafc',
               }}
             >
               <h4 style={{ fontSize: '16px', fontWeight: 'bold', marginBottom: '4px' }}>
