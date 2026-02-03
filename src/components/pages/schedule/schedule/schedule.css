@@ -6,8 +6,8 @@
   --schedule-surface: #ffffff;
   --schedule-surface-muted: #f4f7f8;
   --schedule-border: rgba(9, 25, 34, 0.12);
-  --schedule-shadow: 0 24px 48px rgba(4, 29, 40, 0.12);
-  --schedule-glow: 0 0 0 1px rgba(255, 255, 255, 0.6), 0 24px 60px rgba(3, 22, 32, 0.15);
+  --schedule-shadow: none;
+  --schedule-glow: none;
 
   position: relative;
   width: 100%;
@@ -96,7 +96,7 @@
   color: var(--schedule-accent);
   font-size: 0.85rem;
   font-weight: 600;
-  box-shadow: 0 6px 16px rgba(0, 66, 88, 0.12);
+  box-shadow: none;
 }
 
 .schedule-shell {
@@ -118,7 +118,7 @@
   border-radius: 16px;
   padding: 1rem;
   border: 1px solid var(--schedule-border);
-  box-shadow: var(--schedule-glow);
+  box-shadow: none;
 }
 
 .schedule-day-tabs {
@@ -155,7 +155,7 @@
   background: linear-gradient(135deg, #004258, #00627f);
   color: #ffffff;
   border-color: transparent;
-  box-shadow: 0 10px 20px rgba(0, 66, 88, 0.22);
+  box-shadow: none;
 }
 
 .schedule-day-btn:not(.active):hover {
@@ -188,7 +188,7 @@
   background: #0b2f3f;
   color: #ffffff;
   border-color: transparent;
-  box-shadow: 0 10px 18px rgba(11, 47, 63, 0.26);
+  box-shadow: none;
 }
 
 .schedule-favorite-tab-btn:hover {
@@ -226,7 +226,7 @@
   color: #ffffff;
   font-weight: 600;
   border-color: transparent;
-  box-shadow: 0 10px 18px rgba(0, 66, 88, 0.2);
+  box-shadow: none;
 }
 
 .schedule-filter-pill:not(.active):hover {
@@ -275,7 +275,7 @@
   overflow: hidden;
   width: 100%;
   border: 1px solid rgba(0, 66, 88, 0.12);
-  box-shadow: 0 20px 45px rgba(10, 35, 46, 0.08);
+  box-shadow: none;
 }
 
 .room-header {
@@ -297,7 +297,7 @@
   margin: 0.75rem;
   padding: 0.75rem;
   border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: none;
   cursor: pointer;
   transition: transform 0.2s ease;
   width: calc(100% - 1.5rem);
@@ -305,7 +305,7 @@
 
 .event-card:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: none;
 }
 
 .event-header {
@@ -355,7 +355,7 @@
   object-fit: cover;
   border: 2px solid white;
   margin-left: -10px;
-  box-shadow: 0 0 2px rgba(0, 0, 0, 0.1);
+  box-shadow: none;
   transition: transform 0.2s ease;
   cursor: pointer;
 }
@@ -454,7 +454,7 @@
 .schedule-card {
   background: linear-gradient(145deg, #ffffff, #f6fafb);
   border-radius: 16px;
-  box-shadow: 0 14px 30px rgba(4, 29, 40, 0.12);
+  box-shadow: none;
   overflow: hidden;
   transition:
     transform 0.2s ease,
@@ -467,7 +467,7 @@
 
 .schedule-card:hover {
   transform: translateY(-3px);
-  box-shadow: 0 24px 40px rgba(4, 29, 40, 0.18);
+  box-shadow: none;
 }
 
 .schedule-card--past {
@@ -551,12 +551,12 @@
   background: linear-gradient(135deg, rgba(239, 68, 68, 0.12), rgba(239, 68, 68, 0.02));
   border-radius: 14px;
   border: 1px solid rgba(239, 68, 68, 0.22);
-  box-shadow: 0 1px 4px rgba(239, 68, 68, 0.1);
+  box-shadow: none;
   transition: all 0.3s ease;
 }
 
 .schedule-card-live-indicator:hover {
-  box-shadow: 0 2px 8px rgba(239, 68, 68, 0.18);
+  box-shadow: none;
   border-color: rgba(239, 68, 68, 0.28);
 }
 
@@ -575,7 +575,7 @@
   height: 6px;
   background-color: #ef4444;
   border-radius: 50%;
-  box-shadow: 0 0 2px rgba(239, 68, 68, 0.4);
+  box-shadow: none;
 }
 
 .schedule-card-live-pulse::before {
@@ -652,7 +652,7 @@
   border-radius: 50%;
   border: 2px solid white;
   overflow: hidden;
-  box-shadow: 0 0 2px rgba(0, 0, 0, 0.1);
+  box-shadow: none;
 }
 
 .schedule-card-avatar-image {
@@ -830,7 +830,7 @@
   max-width: 860px;
   max-height: 90vh;
   overflow-y: auto;
-  box-shadow: 0 30px 60px rgba(3, 16, 23, 0.28);
+  box-shadow: none;
   border: 1px solid rgba(0, 66, 88, 0.12);
 }
 
@@ -877,7 +877,7 @@
   border-radius: 1.2rem;
   overflow: hidden;
   margin-bottom: 1.5rem;
-  box-shadow: 0 20px 35px rgba(15, 23, 42, 0.22);
+  box-shadow: none;
   transition:
     transform 0.25s ease,
     box-shadow 0.25s ease;
@@ -885,7 +885,7 @@
 
 .modal-recording-preview:hover {
   transform: translateY(-2px);
-  box-shadow: 0 24px 42px rgba(15, 23, 42, 0.25);
+  box-shadow: none;
 }
 
 .modal-recording-image {
@@ -907,7 +907,7 @@
 .modal-recording-overlay svg {
   width: 54px;
   height: 54px;
-  filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.35));
+  filter: none;
 }
 
 .modal-recording-caption {
@@ -979,7 +979,7 @@
   border-radius: 50%;
   object-fit: cover;
   border: 2px solid #ffffff;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12);
+  box-shadow: none;
 }
 
 .speaker-detail h4 {
