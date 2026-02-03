@@ -411,7 +411,7 @@ const Ticketing = () => {
                 </a>
               ) : (
                 <span className="text-xs text-slate-400">
-                  Add `GATSBY_FIENTA_EVENT_URL` to enable checkout.
+                  Ticket sales open soon. Please check back later.
                 </span>
               )}
             </div>
