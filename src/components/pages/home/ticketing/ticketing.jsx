@@ -366,9 +366,9 @@ const Ticketing = () => {
               {visibleTickets.map((ticket) => (
                 <div
                   key={ticket.id}
-                  className="flex flex-wrap items-center justify-between gap-4 rounded-xl border border-slate-200 bg-[#f8fafc] px-5 py-4"
+                  className="flex h-full flex-col gap-4 rounded-xl border border-slate-200 bg-[#f8fafc] px-5 py-4"
                 >
-                  <div>
+                  <div className="flex-1">
                     <p className="text-base font-semibold text-slate-900">{ticket.title}</p>
                     {ticket.description && (
                       <p className="mt-1 text-sm text-slate-500">{ticket.description}</p>
@@ -389,7 +389,7 @@ const Ticketing = () => {
                       </p>
                     )}
                   </div>
-                  <div className="text-right">
+                  <div className="mt-auto self-end text-right">
                     <p className="text-lg font-semibold text-primary-1">
                       {formatCurrency(ticket.price, ticket.currency)}
                     </p>
