@@ -1,7 +1,7 @@
 import { Calendar, MapPin, Users } from 'lucide-react';
 import React from 'react';
 
-import heroIllustration from './images/cns_hero_image_real_w.png';
+import heroIllustration from './images/cns_hero_image.png';
 import './hero.css';
 
 const Hero = () => (
