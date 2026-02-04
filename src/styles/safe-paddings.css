@@ -1,7 +1,7 @@
 @layer base {
   .safe-paddings {
-    padding-left: max(env(safe-area-inset-left), 2rem);
-    padding-right: max(env(safe-area-inset-right), 2rem);
+    padding-left: max(env(safe-area-inset-left), 1rem);
+    padding-right: max(env(safe-area-inset-right), 1rem);
 
     header& {
       padding-top: env(safe-area-inset-top);
@@ -9,6 +9,13 @@
 
     footer& {
       padding-bottom: env(safe-area-inset-bottom);
+    }
+  }
+
+  @media (min-width: 768px) {
+    .safe-paddings {
+      padding-left: max(env(safe-area-inset-left), 2rem);
+      padding-right: max(env(safe-area-inset-right), 2rem);
     }
   }
 }

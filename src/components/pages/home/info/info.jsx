@@ -4,8 +4,8 @@ import React from 'react';
 import './info.css';
 
 const Info = () => (
-  <section className="info-section">
-    <div className="info-container">
+  <section className="info-section safe-paddings">
+    <div className="container">
       {/* About CNS Section */}
       <div className="about-section">
         <h2 className="section-title">About Cloud Native Summit Munich</h2>

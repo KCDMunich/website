@@ -137,9 +137,9 @@ const ScheduleTeaser = () => {
   return (
     <section
       id="schedule-teaser"
-      className="px-4 py-24 text-slate-900 sm:px-6 lg:px-8 lg:py-20 md:py-16 sm:py-12"
+      className="safe-paddings py-24 text-slate-900 lg:py-20 md:py-16 sm:py-12"
     >
-      <div className="mx-auto w-full max-w-[1248px]">
+      <div className="container">
         <div className="flex items-stretch justify-between gap-20 lg:gap-16 md:flex-col md:items-stretch md:gap-12">
           <div className="max-w-[480px] flex-1 text-left md:w-full md:max-w-none">
             <h2 className="text-5xl font-bold leading-tight text-primary-1 md:text-4xl sm:text-3xl">

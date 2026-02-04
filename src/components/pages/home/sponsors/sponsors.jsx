@@ -292,13 +292,13 @@ const Sponsors = () => {
       id="sponsors"
       className="safe-paddings relative bg-white pb-20 pt-20 lg:pb-32 md:py-16 sm:py-12"
     >
-      <div className="container px-4 lg:px-8 sm:px-6">
+      <div className="container">
         <div className="mx-auto max-w-7xl">
-          <div className="text-center">
+          <div className="text-left">
             <h2 className="section-title text-4xl font-bold text-gray-900 lg:text-5xl md:text-3xl sm:text-2xl">
               Our sponsors
             </h2>
-            <p className="mx-auto mb-12 max-w-3xl text-xl leading-relaxed text-slate-600 md:mb-8 md:text-lg sm:mb-6 sm:max-w-lg sm:text-base">
+            <p className="mb-12 max-w-3xl text-xl leading-relaxed text-slate-600 md:mb-8 md:text-lg sm:mb-6 sm:max-w-lg sm:text-base">
               Thank you to our amazing sponsors who make this event possible. Support our local
               cloud native community by sponsoring CNS Munich.
             </p>
@@ -325,7 +325,7 @@ const Sponsors = () => {
           <div
             key={tier}
             className={clsx(
-              'container mb-20 px-4 lg:px-8 sm:px-6',
+              'container mb-20',
               config.premium && 'relative mb-32 md:mb-24 sm:mb-16',
               config.noBackground && 'mb-16 md:mb-12 sm:mb-8'
             )}

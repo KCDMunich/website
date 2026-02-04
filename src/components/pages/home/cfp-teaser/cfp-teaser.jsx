@@ -4,8 +4,8 @@ import React from 'react';
 import './cfp-teaser.css';
 
 const CfpTeaser = () => (
-  <section className="info-section">
-    <div className="info-container">
+  <section className="info-section safe-paddings">
+    <div className="container">
       <div className="tracks-section">
         <h2 className="section-title">Call for Proposals</h2>
         <p className="section-subtitle">

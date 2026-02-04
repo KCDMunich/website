@@ -248,8 +248,8 @@ const Speakers = () => {
     : filteredSpeakers.slice(0, 10);
 
   return (
-    <section id="speakers" className="py-12 sm:py-20" style={{marginBottom: "2rem"}}>
-      <div className="container mx-auto px-4">
+    <section id="speakers" className="safe-paddings py-12 sm:py-20" style={{marginBottom: "2rem"}}>
+      <div className="container">
         <h2 className="section-title">{sectionTitle}</h2>
 
         {filteredSpeakers.length === 0 ? (

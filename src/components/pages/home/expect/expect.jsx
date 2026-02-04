@@ -4,8 +4,8 @@ import React from 'react';
 import './expect.css';
 
 const Expect = () => (
-  <section className="info-section">
-    <div className="info-container">
+  <section className="info-section safe-paddings">
+    <div className="container">
       {/* What to Expect Section */}
       <div className="expect-section">
         <h2 className="section-title">What to Expect?</h2>

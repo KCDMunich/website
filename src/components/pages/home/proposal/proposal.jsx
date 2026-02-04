@@ -248,8 +248,8 @@ const Proposal = () => {
   }, []);
 
   return (
-    <div className="mx-auto max-w-7xl p-4" id="call-for-speakers">
-      <div className="mx-auto max-w-7xl space-y-8">
+    <section className="safe-paddings bg-white" id="call-for-speakers">
+      <div className="container space-y-8">
         <h2 className="section-title">Submit a Talk</h2>
         {/* Timeline Card */}
         <div className="rounded-lg border bg-[#f8fafc]/80 shadow-sm">
@@ -420,7 +420,7 @@ const Proposal = () => {
           </div>
         </section>
       </div>
-    </div>
+    </section>
   );
 };
 
