@@ -230,15 +230,17 @@
   padding: 0.75rem 1.5rem;
   font-size: 1rem;
   font-weight: 500;
-  color: white;
-  background: #004258;
-  border: none;
+  color: #004258;
+  background: transparent;
+  border: 1px solid #004258;
   border-radius: 0.375rem;
   cursor: pointer;
   text-decoration: none;
-  transition: background-color 0.2s ease;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
 }
 
 .hero-cta-secondary:hover {
-  background: #003344;
+  background: #004258;
+  color: #ffffff;
+  border-color: #004258;
 }

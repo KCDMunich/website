@@ -25,45 +25,45 @@ const tierConfig = {
     title: 'Platinum',
     class: 'bg-white',
     badgeClass: 'bg-gray-100 text-gray-700 border border-gray-200',
-    cardSize: 'w-[240px] h-[120px] md:w-[200px] md:h-[100px] sm:w-[180px] sm:h-[90px]',
+    cardSize: 'w-[240px] h-[120px] md:w-[200px] md:h-[100px] sm:w-[200px] sm:h-[100px]',
   },
   gold: {
     title: 'Gold',
     class: 'bg-white',
     badgeClass: 'bg-amber-100 text-amber-800 border border-amber-200',
-    cardSize: 'w-[240px] h-[120px] md:w-[200px] md:h-[100px] sm:w-[180px] sm:h-[90px]',
+    cardSize: 'w-[240px] h-[120px] md:w-[200px] md:h-[100px] sm:w-[200px] sm:h-[100px]',
   },
   silver: {
     title: 'Silver',
     class: 'bg-white',
     badgeClass: 'bg-gray-100 text-gray-700 border border-gray-200',
-    cardSize: 'w-[200px] h-[100px] md:w-[180px] md:h-[90px] sm:w-[160px] sm:h-[80px]',
+    cardSize: 'w-[200px] h-[100px] md:w-[180px] md:h-[90px] sm:w-[180px] sm:h-[90px]',
   },
   bronze: {
     title: 'Bronze',
     class: 'bg-white',
     badgeClass: 'bg-orange-100 text-orange-800 border border-orange-200',
-    cardSize: 'w-[180px] h-[90px] md:w-[160px] md:h-[80px] sm:w-[140px] sm:h-[70px]',
+    cardSize: 'w-[180px] h-[90px] md:w-[160px] md:h-[80px] sm:w-[160px] sm:h-[80px]',
   },
   evening: {
     title: 'Evening Event',
     class: 'bg-white',
     badgeClass: 'bg-purple-100 text-purple-800 border border-purple-200',
-    cardSize: 'w-[200px] h-[100px] md:w-[180px] md:h-[90px] sm:w-[160px] sm:h-[80px]',
+    cardSize: 'w-[200px] h-[100px] md:w-[180px] md:h-[90px] sm:w-[180px] sm:h-[90px]',
   },
 
   partner: {
     title: 'Community & Media Partners',
     class: 'bg-white',
     badgeClass: 'bg-green-100 text-green-800 border border-green-200',
-    cardSize: 'w-[180px] h-[90px] md:w-[160px] md:h-[80px] sm:w-[140px] sm:h-[70px]',
+    cardSize: 'w-[180px] h-[90px] md:w-[160px] md:h-[80px] sm:w-[160px] sm:h-[80px]',
   },
 
   organizer: {
     title: 'Organizers',
     class: 'bg-white',
     badgeClass: 'bg-blue-100 text-blue-800 border border-blue-200',
-    cardSize: 'w-[180px] h-[90px] md:w-[160px] md:h-[80px] sm:w-[140px] sm:h-[70px]',
+    cardSize: 'w-[180px] h-[90px] md:w-[160px] md:h-[80px] sm:w-[160px] sm:h-[80px]',
   },
 };
 

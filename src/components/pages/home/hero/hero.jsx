@@ -45,25 +45,16 @@ const Hero = () => (
             </p>
             {/* CTA Buttons */}
             <div className="hero-cta-container">
-              {/*
-                <button
-                  type="button"
-                  className="button"
-                  style={{ cursor: 'pointer' }}
-                  onClick={() => (window.location.href = '#tickets')}
-                >
-                  Get your Ticket
-                </button>
-                */}
-              {/*
-                  <button
-                    type="button"
-                    className="hero-cta-secondary"
-                    onClick={() => (window.location.href = '#agenda')}
-                  >
-                    Our Agenda
-                  </button>
-                */}
+              <button
+                type="button"
+                className="button"
+                style={{ cursor: 'pointer' }}
+                onClick={() =>
+                  window.open('https://fienta.com/de/cloud-native-summit-2026', '_blank')
+                }
+              >
+                Get your Ticket
+              </button>
               <button
                 type="button"
                 className="hero-cta-secondary"

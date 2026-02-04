@@ -112,7 +112,7 @@
   }
 
   .sponsor-logo {
-    transform: scale(0.75);
+    transform: scale(0.9);
   }
 }
 
@@ -130,13 +130,13 @@
   }
 
   .sponsor-logo {
-    transform: scale(0.6);
+    transform: scale(0.85);
   }
 }
 
 @media (max-width: 480px) {
   .sponsor-logo {
-    transform: scale(0.5);
+    transform: scale(0.8);
   }
 }
 
@@ -285,8 +285,8 @@
   }
 
   .sponsor-slider-item {
-    min-width: 140px;
-    height: 90px;
+    min-width: 160px;
+    height: 100px;
     padding: 1rem;
   }
 }
@@ -307,8 +307,16 @@
   }
 
   .sponsor-slider-item {
-    min-width: 120px;
-    height: 80px;
+    min-width: 150px;
+    height: 95px;
+    padding: 0.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .sponsor-slider-item {
+    min-width: 140px;
+    height: 90px;
     padding: 0.75rem;
   }
 }

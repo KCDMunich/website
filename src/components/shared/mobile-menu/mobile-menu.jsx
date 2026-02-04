@@ -69,7 +69,7 @@ const MobileMenu = ({ isOpen, onButtonClick }) => {
               alignItems: 'center',
             }}
             onClick={() =>
-              window.open('https://cnsmunich.ticketbutler.io/en/e/cnsmunich-2026/', '_blank')
+              window.open('https://fienta.com/de/cloud-native-summit-2026', '_blank')
             }
           >
             Get your Ticket
