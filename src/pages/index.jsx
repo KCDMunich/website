@@ -20,7 +20,6 @@ const HomePage = () => (
     <Hero />
     <About />
     <Ticketing />
-    <Speakers />
     <Expect />
     <ScheduleTeaser />
     <CfpTeaser />
@@ -30,6 +29,11 @@ const HomePage = () => (
     <HotelList />
   </Layout>
 );
+
+/*  
+<Speakers />
+<Schedule />
+*/
 
 export default HomePage;
 
