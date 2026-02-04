@@ -200,77 +200,79 @@ const Venue = ({
   ],
 }) => {
   return (
-    <div className="mx-auto max-w-7xl p-4">
-      <h2 className="section-title">Venue Information</h2>
-      <div className="gap-8 ">
-        <div className="flex flex-col gap-6">
-          <div className="relative aspect-video overflow-hidden rounded-xl bg-[#f8fafc]">
-            <ImageSlider images={images} />
-          </div>
-          <Card>
-            <div
-              className="p-6"
-              style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}
-            >
+    <section className="safe-paddings bg-white">
+      <div className="container">
+        <h2 className="section-title">Venue Information</h2>
+        <div className="gap-8 ">
+          <div className="flex flex-col gap-6">
+            <div className="relative aspect-video overflow-hidden rounded-xl bg-[#f8fafc]">
+              <ImageSlider images={images} />
+            </div>
+            <Card>
               <div
-                className="mb-4"
-                style={{ display: 'flex', alignItems: 'center', flexDirection: 'column' }}
+                className="p-6"
+                style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}
               >
-                <h2 className="text-2xl font-bold text-[#004258]">smartvillage Bogenhausen</h2>
-                <h3 className="text-xl text-gray-600">at Munich Arabellapark</h3>
-              </div>
+                <div
+                  className="mb-4"
+                  style={{ display: 'flex', alignItems: 'center', flexDirection: 'column' }}
+                >
+                  <h2 className="text-2xl font-bold text-[#004258]">smartvillage Bogenhausen</h2>
+                  <h3 className="text-xl text-gray-600">at Munich Arabellapark</h3>
+                </div>
 
-              <div className="mb-4 flex gap-2 text-gray-600">
-                <IconMapPin />
-                <div>
-                  <p>Rosenkavalierpl. 13</p>
-                  <p>81925 Munich</p>
+                <div className="mb-4 flex gap-2 text-gray-600">
+                  <IconMapPin />
+                  <div>
+                    <p>Rosenkavalierpl. 13</p>
+                    <p>81925 Munich</p>
+                  </div>
+                </div>
+
+                <a
+                  href="https://maps.google.com/?q=smartvillage+Bogenhausen+Rosenkavalierpl.+13+81925+Munich"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 rounded-lg px-6 py-3 text-white transition-all"
+                  style={{ backgroundColor: '#004258' }}
+                >
+                  Open in Google Maps
+                </a>
+              </div>
+            </Card>
+          </div>
+
+          {/* What to Expect Section */}
+          <div className="expect-section">
+            <div className="features-grid justify-items-center md:justify-items-start">
+              <div className="feature-item">
+                <Users className="feature-icon" />
+                <div className="feature-content">
+                  <h3 className="feature-title">Catering</h3>
+                  <p className="feature-text">Vegetarian & Vegan options</p>
                 </div>
               </div>
 
-              <a
-                href="https://maps.google.com/?q=smartvillage+Bogenhausen+Rosenkavalierpl.+13+81925+Munich"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-lg px-6 py-3 text-white transition-all"
-                style={{ backgroundColor: '#004258' }}
-              >
-                Open in Google Maps
-              </a>
-            </div>
-          </Card>
-        </div>
-
-        {/* What to Expect Section */}
-        <div className="expect-section">
-          <div className="features-grid justify-items-center md:justify-items-start">
-            <div className="feature-item">
-              <Users className="feature-icon" />
-              <div className="feature-content">
-                <h3 className="feature-title">Catering</h3>
-                <p className="feature-text">Vegetarian & Vegan options</p>
+              <div className="feature-item">
+                <Calendar className="feature-icon" />
+                <div className="feature-content">
+                  <h3 className="feature-title">2-Day Event</h3>
+                  <p className="feature-text">With many activities</p>
+                </div>
               </div>
-            </div>
 
-            <div className="feature-item">
-              <Calendar className="feature-icon" />
-              <div className="feature-content">
-                <h3 className="feature-title">2-Day Event</h3>
-                <p className="feature-text">With many activities</p>
-              </div>
-            </div>
-
-            <div className="feature-item">
-              <MapPin className="feature-icon" />
-              <div className="feature-content">
-                <h3 className="feature-title">Networking Event</h3>
-                <p className="feature-text">Connect with your peers</p>
+              <div className="feature-item">
+                <MapPin className="feature-icon" />
+                <div className="feature-content">
+                  <h3 className="feature-title">Networking Event</h3>
+                  <p className="feature-text">Connect with your peers</p>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 
