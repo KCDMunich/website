@@ -313,7 +313,7 @@ const Proposal = () => {
                   {sessions.map((session, index) => (
                     <div
                       key={index}
-                      className="flex flex-shrink-0 items-center rounded-lg border p-3 transition-colors hover:bg-[#f1f5f9]"
+                      className="flex flex-shrink-0 items-center rounded-lg border bg-white p-3 hover:bg-[#f1f5f9]"
                     >
                       <div className="flex content-center items-center gap-3">
                         <span className="font-medium">{session.type}</span>

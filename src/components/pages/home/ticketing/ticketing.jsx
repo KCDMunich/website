@@ -297,7 +297,7 @@ const Ticketing = () => {
   );
 
   return (
-    <section id="tickets" className="safe-paddings relative bg-white py-24 lg:py-20 md:py-16">
+    <section id="tickets" className="relative bg-white px-4 py-24 sm:px-6 lg:px-8 lg:py-20 md:py-16">
       <div className="mx-auto w-full max-w-[1248px]">
         <div className="grid grid-cols-2 items-stretch gap-16 lg:grid-cols-1 lg:gap-12">
           <div className="flex h-full flex-col">
