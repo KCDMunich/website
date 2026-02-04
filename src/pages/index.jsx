@@ -3,7 +3,9 @@ import React from 'react';
 
 import Hero from 'components/pages/home/hero';
 import HotelList from 'components/pages/home/hotels';
-import Info from 'components/pages/home/info';
+import About from 'components/pages/home/about';
+import CfpTeaser from 'components/pages/home/cfp-teaser';
+import Expect from 'components/pages/home/expect';
 import Sponsors from 'components/pages/home/sponsors';
 import ScheduleTeaser from 'components/pages/home/schedule-teaser';
 import Venue from 'components/pages/home/venue';
@@ -15,9 +17,11 @@ import SEO from 'components/shared/seo';
 const HomePage = () => (
   <Layout homepage>
     <Hero />
-    <Info />
-    <ScheduleTeaser />
+    <About />
     <Ticketing />
+    <Expect />
+    <ScheduleTeaser />
+    <CfpTeaser />
     <Proposal />
     <Sponsors />
     <Venue />

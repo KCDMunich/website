@@ -78,6 +78,12 @@ const formatCurrency = (value, currency) => {
   }).format(value);
 };
 
+const toNetPrice = (grossValue, vatRate = 0.19) => {
+  if (grossValue === null || grossValue === undefined) return grossValue;
+  if (!Number.isFinite(grossValue)) return grossValue;
+  return grossValue / (1 + vatRate);
+};
+
 const formatDate = (value) => {
   if (!value) return null;
   const parsed = new Date(value);
@@ -306,14 +312,6 @@ const Ticketing = () => {
               </p>
             </div>
             <div className="mt-auto pt-8">
-              <div className="flex flex-wrap gap-6 text-sm">
-                <div className="rounded-full border border-slate-300 bg-[#f8fafc] px-4 py-2 text-slate-700 shadow-sm">
-                  {eventData.dateRange}
-                </div>
-                <div className="rounded-full border border-slate-300 bg-[#f8fafc] px-4 py-2 text-slate-700 shadow-sm">
-                  {eventData.location}
-                </div>
-              </div>
               <p className="mt-8 text-sm text-slate-500">
                 Need a diversity ticket? Contact{' '}
                 <a
@@ -330,18 +328,8 @@ const Ticketing = () => {
           <div className="rounded-2xl border border-slate-200 bg-[#f8fafc]/80 p-8">
             <div className="flex items-center justify-between gap-4">
               <div>
-                <p className="text-sm font-semibold uppercase tracking-wide text-primary-1/80">
-                  Live ticket status
-                </p>
                 <h3 className="mt-2 text-2xl font-semibold text-slate-900">{eventData.title}</h3>
               </div>
-              <span className="flex items-center gap-2 rounded-full bg-emerald-50 px-3 py-1 text-xs font-semibold text-emerald-700">
-                <span className="relative flex h-2.5 w-2.5">
-                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-500 opacity-60"></span>
-                  <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-emerald-500"></span>
-                </span>
-                Live
-              </span>
             </div>
 
             <div className="mt-6 space-y-4">
@@ -391,8 +379,9 @@ const Ticketing = () => {
                   </div>
                   <div className="mt-auto self-end text-right">
                     <p className="text-lg font-semibold text-primary-1">
-                      {formatCurrency(ticket.price, ticket.currency)}
+                      {formatCurrency(toNetPrice(ticket.price), ticket.currency)}
                     </p>
+                    <p className="mt-1 text-xs text-slate-500">Net + 19% VAT</p>
                     {ticket.amountLeft !== null && (
                       <p className="mt-1 text-xs text-slate-500">{ticket.amountLeft} left</p>
                     )}
