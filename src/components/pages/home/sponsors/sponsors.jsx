@@ -216,16 +216,17 @@ const DEFAULT_LOGO_HEIGHT = 70;
 const Sponsors = () => {
   if (!SHOW_CURRENT_SPONSORS) {
     return (
-      <section id="sponsors" className="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-12">
-        <div className="mb-16 md:mb-12 sm:mb-8">
+      <section id="sponsors" className="safe-paddings bg-white py-16 sm:py-12">
+        <div className="container">
+          <div className="mb-16 md:mb-12 sm:mb-8">
           <h2 className="text-left text-5xl font-bold leading-tight text-primary-1 md:text-4xl sm:text-3xl">
             Become a Sponsor
           </h2>
-          <p className="mx-auto mt-6 max-w-3xl text-center text-xl leading-relaxed text-slate-600 md:mt-4 md:text-lg sm:mt-3 sm:text-base">
+          <p className="mt-6 max-w-3xl text-left text-xl leading-relaxed text-slate-600 md:mt-4 md:text-lg sm:mt-3 sm:text-base">
             Support our local cloud native community by sponsoring CNS Munich!
           </p>
 
-          <div className="mt-8 flex flex-wrap items-center justify-center gap-4 md:mt-6 md:gap-3 sm:mt-4 sm:gap-2">
+          <div className="mt-8 flex flex-wrap items-center justify-start gap-4 md:mt-6 md:gap-3 sm:mt-4 sm:gap-2">
             <a
               className="button px-6 py-3 text-base sm:px-4 sm:py-2 sm:text-sm"
               href={sponsorProspectusUrl}
@@ -236,7 +237,7 @@ const Sponsors = () => {
             </a>
           </div>
 
-          <p className="mt-4 text-center text-sm text-gray-600 sm:text-xs">
+          <p className="mt-4 text-left text-sm text-gray-600 sm:text-xs">
             Or email us directly at{' '}
             <a
               href={`mailto:${contactEmail}`}
@@ -248,37 +249,38 @@ const Sponsors = () => {
           </p>
         </div>
 
-        <div className="mt-16 md:mt-12 sm:mt-10">
-          <div className="mb-6 text-center md:mb-4 sm:mb-3">
-            <h3 className="text-2xl font-semibold text-gray-900 md:text-xl sm:text-lg">
-              Previous Sponsors
-            </h3>
-            <p className="mx-auto mt-2 max-w-2xl text-base text-gray-500 md:text-sm sm:text-xs">
-              A glimpse at the organisations that helped us make previous editions happen.
-            </p>
-          </div>
+          <div className="mt-16 md:mt-12 sm:mt-10">
+            <div className="mb-6 text-left md:mb-4 sm:mb-3">
+              <h3 className="text-2xl font-semibold text-gray-900 md:text-xl sm:text-lg">
+                Previous Sponsors
+              </h3>
+              <p className="mt-2 max-w-2xl text-base text-gray-500 md:text-sm sm:text-xs">
+                A glimpse at the organisations that helped us make previous editions happen.
+              </p>
+            </div>
 
-          <div className="sponsor-slider">
-            <div className="sponsor-slider-track" aria-label="Previous sponsors carousel">
-              {marqueeSponsors.map((sponsor, index) => (
-                <a
-                  key={`${sponsor.name}-${index}`}
-                  href={sponsor.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="sponsor-slider-item"
-                >
-                  <img
-                    src={sponsor.icon}
-                    alt={sponsor.name}
-                    loading="lazy"
-                    style={{
-                      maxWidth: `${sponsor.logoWidth || DEFAULT_LOGO_WIDTH}px`,
-                      maxHeight: `${sponsor.logoHeight || DEFAULT_LOGO_HEIGHT}px`,
-                    }}
-                  />
-                </a>
-              ))}
+            <div className="sponsor-slider">
+              <div className="sponsor-slider-track" aria-label="Previous sponsors carousel">
+                {marqueeSponsors.map((sponsor, index) => (
+                  <a
+                    key={`${sponsor.name}-${index}`}
+                    href={sponsor.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="sponsor-slider-item"
+                  >
+                    <img
+                      src={sponsor.icon}
+                      alt={sponsor.name}
+                      loading="lazy"
+                      style={{
+                        maxWidth: `${sponsor.logoWidth || DEFAULT_LOGO_WIDTH}px`,
+                        maxHeight: `${sponsor.logoHeight || DEFAULT_LOGO_HEIGHT}px`,
+                      }}
+                    />
+                  </a>
+                ))}
+              </div>
             </div>
           </div>
         </div>
@@ -292,13 +294,13 @@ const Sponsors = () => {
       id="sponsors"
       className="safe-paddings relative bg-white pb-20 pt-20 lg:pb-32 md:py-16 sm:py-12"
     >
-      <div className="container px-4 lg:px-8 sm:px-6">
+      <div className="container">
         <div className="mx-auto max-w-7xl">
-          <div className="text-center">
+          <div className="text-left">
             <h2 className="section-title text-4xl font-bold text-gray-900 lg:text-5xl md:text-3xl sm:text-2xl">
               Our sponsors
             </h2>
-            <p className="mx-auto mb-12 max-w-3xl text-xl leading-relaxed text-slate-600 md:mb-8 md:text-lg sm:mb-6 sm:max-w-lg sm:text-base">
+            <p className="mb-12 max-w-3xl text-xl leading-relaxed text-slate-600 md:mb-8 md:text-lg sm:mb-6 sm:max-w-lg sm:text-base">
               Thank you to our amazing sponsors who make this event possible. Support our local
               cloud native community by sponsoring CNS Munich.
             </p>
@@ -325,7 +327,7 @@ const Sponsors = () => {
           <div
             key={tier}
             className={clsx(
-              'container mb-20 px-4 lg:px-8 sm:px-6',
+              'container mb-20',
               config.premium && 'relative mb-32 md:mb-24 sm:mb-16',
               config.noBackground && 'mb-16 md:mb-12 sm:mb-8'
             )}

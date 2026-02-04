@@ -8,11 +8,11 @@ const scriptUrl = 'https://sessionize.com/api/v2/px1o0jp3/view/Speakers';
 
 const preAnnouncedSpeakerIds = [
   'a2665c2b-13c9-4337-9c78-db85bca70e60',
-  'b4047d7c-94cf-4f5e-bbdb-7619ab241f06', 
-  'be3da75f-4550-4f7f-9d44-863076ed4e91', 
-  '647c84a5-1a13-4641-8d8f-49109cadf78b', 
+  'b4047d7c-94cf-4f5e-bbdb-7619ab241f06',
+  'be3da75f-4550-4f7f-9d44-863076ed4e91',
+  '647c84a5-1a13-4641-8d8f-49109cadf78b',
   '8f398417-82f0-467a-b234-08e82f7f9acd',
-  '38a4131f-b1ca-452a-aaba-f5bb472403ab'
+  '38a4131f-b1ca-452a-aaba-f5bb472403ab',
 ];
 
 const speakerSessionMap = {
@@ -21,7 +21,7 @@ const speakerSessionMap = {
   'be3da75f-4550-4f7f-9d44-863076ed4e91': [836276],
   '647c84a5-1a13-4641-8d8f-49109cadf78b': [870316],
   '8f398417-82f0-467a-b234-08e82f7f9acd': [867444],
-  '38a4131f-b1ca-452a-aaba-f5bb472403ab': [855080]
+  '38a4131f-b1ca-452a-aaba-f5bb472403ab': [855080],
 };
 
 const findCompanyInfo = (speaker) => {
@@ -57,9 +57,7 @@ const Dialog = ({ isOpen, onClose, children }) => {
             />
           </svg>
         </button>
-        <div className="max-h-[80vh] overflow-y-auto">
-          {children}
-        </div>
+        <div className="max-h-[80vh] overflow-y-auto">{children}</div>
       </div>
     </div>
   );
@@ -70,7 +68,7 @@ const SpeakerCard = ({ speaker, onClick, showTalk = true }) => {
   const firstTwoLinks = speaker.links?.slice(0, 2) || [];
 
   const hasSession = Array.isArray(speaker.sessions) && speaker.sessions.length > 0;
-  
+
   return (
     <div
       onClick={onClick}
@@ -123,12 +121,13 @@ const SpeakerCard = ({ speaker, onClick, showTalk = true }) => {
 
 const SpeakerDialog = ({ speaker }) => {
   const company = findCompanyInfo(speaker);
-  
-  const validSessions = Array.isArray(speaker.sessions) 
-    ? speaker.sessions.filter(session => 
-        typeof session === 'object' && 
-        typeof session.id === 'number' && 
-        typeof session.name === 'string'
+
+  const validSessions = Array.isArray(speaker.sessions)
+    ? speaker.sessions.filter(
+        (session) =>
+          typeof session === 'object' &&
+          typeof session.id === 'number' &&
+          typeof session.name === 'string'
       )
     : [];
 
@@ -209,9 +208,7 @@ const filterFeaturedSpeakers = (speakers) => {
       if (sessionIds && Array.isArray(speaker.sessions)) {
         return {
           ...speaker,
-          sessions: speaker.sessions.filter((session) =>
-            sessionIds.includes(session.id)
-          ),
+          sessions: speaker.sessions.filter((session) => sessionIds.includes(session.id)),
         };
       }
       return speaker;
@@ -235,21 +232,21 @@ const Speakers = () => {
   }, []);
 
   // Filtered Speaker List
-  const filteredSpeakers = SHOW_FEATURED_ONLY
-    ? filterFeaturedSpeakers(speakerData)
-    : speakerData;
+  const filteredSpeakers = SHOW_FEATURED_ONLY ? filterFeaturedSpeakers(speakerData) : speakerData;
 
   // Titel abhängig vom Flag
-  const sectionTitle = SHOW_FEATURED_ONLY ? "Featured Speakers" : "Meet Our Speakers";
+  const sectionTitle = SHOW_FEATURED_ONLY ? 'Featured Speakers' : 'Meet Our Speakers';
 
   // Wenn nicht featured, maximal 10 Speaker anzeigen
-  const displaySpeakers = SHOW_FEATURED_ONLY
-    ? filteredSpeakers
-    : filteredSpeakers.slice(0, 10);
+  const displaySpeakers = SHOW_FEATURED_ONLY ? filteredSpeakers : filteredSpeakers.slice(0, 10);
 
   return (
-    <section id="speakers" className="py-12 sm:py-20" style={{marginBottom: "2rem"}}>
-      <div className="container mx-auto px-4">
+    <section
+      id="speakers"
+      className="safe-paddings py-12 sm:py-20"
+      style={{ marginBottom: '2rem' }}
+    >
+      <div className="container">
         <h2 className="section-title">{sectionTitle}</h2>
 
         {filteredSpeakers.length === 0 ? (
@@ -271,37 +268,40 @@ const Speakers = () => {
 
             {/* Wenn nicht featured, Button anzeigen */}
             {!SHOW_FEATURED_ONLY && (
-              <div style={{marginTop: "3rem"}}>
-                 <button
-               type="button"
-               className="button"
-               style={{ cursor: 'pointer' }}
-               onClick={() => {
-                 window.location.href = '/speakers';
-               }}
-             >
-               All Speakers
-             </button>
+              <div style={{ marginTop: '3rem' }}>
+                <button
+                  type="button"
+                  className="button"
+                  style={{ cursor: 'pointer' }}
+                  onClick={() => {
+                    window.location.href = '/speakers';
+                  }}
+                >
+                  All Speakers
+                </button>
               </div>
             )}
 
             {/* Pagination nur für featured */}
             {SHOW_FEATURED_ONLY && filteredSpeakers.length > speakersPerPage && (
               <div className="mt-6 sm:mt-8 flex flex-wrap justify-center gap-2">
-                {Array.from({ length: Math.ceil(filteredSpeakers.length / speakersPerPage) }, (_, i) => (
-                  <button
-                    key={i}
-                    onClick={() => setCurrentPage(i + 1)}
-                    className={`rounded-md px-2 sm:px-3 py-1 text-xs sm:text-sm transition-colors duration-200 
+                {Array.from(
+                  { length: Math.ceil(filteredSpeakers.length / speakersPerPage) },
+                  (_, i) => (
+                    <button
+                      key={i}
+                      onClick={() => setCurrentPage(i + 1)}
+                      className={`rounded-md px-2 sm:px-3 py-1 text-xs sm:text-sm transition-colors duration-200 
                       ${
                         currentPage === i + 1
                           ? 'bg-[#283058] text-white'
                           : 'border border-[#283058] text-[#283058] hover:bg-[#283058] hover:text-white'
                       }`}
-                  >
-                    {i + 1}
-                  </button>
-                ))}
+                    >
+                      {i + 1}
+                    </button>
+                  )
+                )}
               </div>
             )}
 
@@ -314,6 +314,5 @@ const Speakers = () => {
     </section>
   );
 };
-
 
 export default Speakers;

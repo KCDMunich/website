@@ -13,6 +13,7 @@ import Proposal from 'components/pages/home/proposal';
 import Ticketing from 'components/pages/home/ticketing';
 import Layout from 'components/shared/layout';
 import SEO from 'components/shared/seo';
+import Speakers from 'components/pages/home/speakers';
 
 const HomePage = () => (
   <Layout homepage>
@@ -28,6 +29,11 @@ const HomePage = () => (
     <HotelList />
   </Layout>
 );
+
+/*  
+<Speakers />
+<Schedule />
+*/
 
 export default HomePage;
 

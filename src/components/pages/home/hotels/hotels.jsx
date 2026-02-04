@@ -27,8 +27,9 @@ export default function HotelList() {
   const [highlightedHotel, ...otherHotels] = hotels;
 
   return (
-    <div style={{ maxWidth: '1284px', margin: '0 auto', padding: '16px' }}>
-      <h2 className="section-title">Nearby hotels</h2>
+    <section className="safe-paddings bg-white">
+      <div className="container">
+        <h2 className="section-title">Nearby hotels</h2>
 
       {/* Highlighted Hotel */}
       <div
@@ -75,44 +76,45 @@ export default function HotelList() {
         </div>
       </div>
 
-      {/* Other Hotels */}
-      <div style={{ marginTop: '32px' }}>
-        <h3 style={{ fontSize: '18px', fontWeight: 'bold', marginBottom: '16px' }}>
-          More hotels nearby
-        </h3>
-        <ul style={{ listStyleType: 'none', padding: 0, margin: 0 }}>
-          {otherHotels.map((hotel, index) => (
-            <li
-              key={index}
-              style={{
-                marginBottom: '16px',
-                padding: '12px',
-                border: '1px solid #e2e8f0',
-                borderRadius: '8px',
-                backgroundColor: '#f8fafc',
-              }}
-            >
-              <h4 style={{ fontSize: '16px', fontWeight: 'bold', marginBottom: '4px' }}>
-                {hotel.name}
-              </h4>
-              <p style={{ fontSize: '14px', color: '#555', marginBottom: '4px' }}>
-                {hotel.description}
-              </p>
-              <p style={{ fontSize: '14px', color: '#777', marginBottom: '8px' }} />
-              <a
-                href="mailto:info@hotel-arabellapark.de"
-                target="_blank"
-                rel="noopener noreferrer"
+        {/* Other Hotels */}
+        <div style={{ marginTop: '32px' }}>
+          <h3 style={{ fontSize: '18px', fontWeight: 'bold', marginBottom: '16px' }}>
+            More hotels nearby
+          </h3>
+          <ul style={{ listStyleType: 'none', padding: 0, margin: 0 }}>
+            {otherHotels.map((hotel, index) => (
+              <li
+                key={index}
                 style={{
-                  color: '#004257',
-                  textDecoration: 'none',
-                  fontWeight: 'normal',
+                  marginBottom: '16px',
+                  padding: '12px',
+                  border: '1px solid #e2e8f0',
+                  borderRadius: '8px',
+                  backgroundColor: '#f8fafc',
                 }}
-              />
-            </li>
-          ))}
-        </ul>
+              >
+                <h4 style={{ fontSize: '16px', fontWeight: 'bold', marginBottom: '4px' }}>
+                  {hotel.name}
+                </h4>
+                <p style={{ fontSize: '14px', color: '#555', marginBottom: '4px' }}>
+                  {hotel.description}
+                </p>
+                <p style={{ fontSize: '14px', color: '#777', marginBottom: '8px' }} />
+                <a
+                  href="mailto:info@hotel-arabellapark.de"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    color: '#004257',
+                    textDecoration: 'none',
+                    fontWeight: 'normal',
+                  }}
+                />
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
-    </div>
+    </section>
   );
 }

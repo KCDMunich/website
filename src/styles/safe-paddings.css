@@ -1,7 +1,7 @@
 @layer base {
   .safe-paddings {
-    padding-left: max(env(safe-area-inset-left), 2rem);
-    padding-right: max(env(safe-area-inset-right), 2rem);
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
 
     header& {
       padding-top: env(safe-area-inset-top);
@@ -11,4 +11,5 @@
       padding-bottom: env(safe-area-inset-bottom);
     }
   }
+
 }
