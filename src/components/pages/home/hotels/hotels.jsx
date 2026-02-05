@@ -87,9 +87,12 @@ export default function HotelList() {
             <p style={{ fontSize: '14px', color: '#777' }}>📍 {highlightedHotel.distance}</p>
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
               <a
-                href="mailto:info@hotel-arabellapark.de?subject=Cloud%20Native%20Summit%20Munich%202026%20Hotel%20Booking"
-                target="_blank"
-                rel="noopener noreferrer"
+                href="mailto:info@hotel-arabellapark.de"
+                onClick={(event) => {
+                  if (typeof window === 'undefined') return;
+                  event.preventDefault();
+                  window.location.href = 'mailto:info@hotel-arabellapark.de';
+                }}
                 style={{
                   display: 'block',
                   textAlign: 'center',
