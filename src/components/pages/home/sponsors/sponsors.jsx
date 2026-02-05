@@ -15,6 +15,7 @@ import Whiteduck from 'icons/whiteduck.png';
 import xcellentLogo from 'icons/x-cellent.png';
 import EonLogo from 'icons/eon.jpg';
 import Steadforce from 'icons/steadforce_logo.png';
+import Metalstack from 'icons/metalstack.svg';
 
 import './sponsor.css';
 
@@ -25,45 +26,45 @@ const tierConfig = {
     title: 'Platinum',
     class: 'bg-white',
     badgeClass: 'bg-gray-100 text-gray-700 border border-gray-200',
-    cardSize: 'w-[240px] h-[120px] md:w-[200px] md:h-[100px] sm:w-[200px] sm:h-[100px]',
+    cardSize: 'w-[250px] h-[120px] md:w-[200px] md:h-[100px] sm:w-[220px] sm:h-[100px]',
   },
   gold: {
     title: 'Gold',
     class: 'bg-white',
     badgeClass: 'bg-amber-100 text-amber-800 border border-amber-200',
-    cardSize: 'w-[240px] h-[120px] md:w-[200px] md:h-[100px] sm:w-[200px] sm:h-[100px]',
+    cardSize: 'w-[250px] h-[120px] md:w-[200px] md:h-[100px] sm:w-[200px] sm:h-[100px]',
   },
   silver: {
     title: 'Silver',
     class: 'bg-white',
     badgeClass: 'bg-gray-100 text-gray-700 border border-gray-200',
-    cardSize: 'w-[200px] h-[100px] md:w-[180px] md:h-[90px] sm:w-[180px] sm:h-[90px]',
+    cardSize: 'w-[300px] h-[120px] md:w-[200px] md:h-[100px] sm:w-[260px] sm:h-[100px]',
   },
   bronze: {
     title: 'Bronze',
     class: 'bg-white',
     badgeClass: 'bg-orange-100 text-orange-800 border border-orange-200',
-    cardSize: 'w-[180px] h-[90px] md:w-[160px] md:h-[80px] sm:w-[160px] sm:h-[80px]',
+    cardSize: 'w-[250px] h-[120px] md:w-[160px] md:h-[80px] sm:w-[160px] sm:h-[80px]',
   },
   evening: {
     title: 'Evening Event',
     class: 'bg-white',
     badgeClass: 'bg-purple-100 text-purple-800 border border-purple-200',
-    cardSize: 'w-[200px] h-[100px] md:w-[180px] md:h-[90px] sm:w-[180px] sm:h-[90px]',
+    cardSize: 'w-[250px] h-[120px] md:w-[180px] md:h-[90px] sm:w-[190px] sm:h-[90px]',
   },
 
   partner: {
     title: 'Community & Media Partners',
     class: 'bg-white',
     badgeClass: 'bg-green-100 text-green-800 border border-green-200',
-    cardSize: 'w-[180px] h-[90px] md:w-[160px] md:h-[80px] sm:w-[160px] sm:h-[80px]',
+    cardSize: 'w-[250px] h-[90px] md:w-[160px] md:h-[80px] sm:w-[133px] sm:h-[90px]',
   },
 
   organizer: {
     title: 'Organizers',
     class: 'bg-white',
     badgeClass: 'bg-blue-100 text-blue-800 border border-blue-200',
-    cardSize: 'w-[180px] h-[90px] md:w-[160px] md:h-[80px] sm:w-[160px] sm:h-[80px]',
+    cardSize: 'w-[250px] h-[120px] md:w-[160px] md:h-[80px] sm:w-[160px] sm:h-[80px]',
   },
 };
 
@@ -73,120 +74,113 @@ const sponsorsList = [
     icon: ApeFactory,
     url: 'https://www.apefactory.com/de',
     tier: 'gold',
-    logoWidth: 100,
-    logoHeight: 120,
+    logoRatio: 1,
   },
   {
     name: 'Broadcom',
     icon: Broadcom,
     url: 'https://www.broadcom.com/',
     tier: 'platinum',
-    logoWidth: 185,
-    logoHeight: 150,
+    logoRatio: 4,
+    logoHeight: 95,
+    logoMaxWidth: 290,
   },
   {
     name: 'Dash0',
     icon: Dash0Logo,
     url: 'https://www.dash0.com/',
     tier: 'gold',
-    logoWidth: 150,
-    logoHeight: 100,
+    logoRatio: 5.26,
   },
   {
     name: 'e.solutions GmbH',
     icon: ESolutionsLogo,
     url: 'https://www.esolutions.de/',
     tier: 'silver',
-    logoWidth: 200,
-    logoHeight: 100,
+    logoRatio: 5.26,
+    logoHeight: 95,
+    logoMaxWidth: 260,
   },
   {
     name: 'Eon',
     icon: EonLogo,
     url: 'https://www.eon.de/',
     tier: 'gold',
-    logoWidth: 180,
-    logoHeight: 100,
+    logoRatio: 1.9,
   },
   {
     name: 'Eon',
     icon: EonLogo,
     url: 'https://www.eon.de/',
     tier: 'partner',
-    logoWidth: 180,
-    logoHeight: 100,
+    logoRatio: 1.9,
   },
   {
     name: 'GermanTechJobs',
     icon: GermanTechJobs,
     url: 'https://germantechjobs.de/',
     tier: 'partner',
-    logoWidth: 150,
-    logoHeight: 100,
+    logoRatio: 1.6,
   },
   {
     name: 'kube Events',
     icon: KubeEventsLogo,
     url: 'https://kube.events/',
     tier: 'partner',
-    logoWidth: 180,
-    logoHeight: 100,
+    logoRatio: 3,
   },
   {
     name: 'learncube.com',
     icon: LearnCubeLogo,
     url: 'https://learncube.com/',
     tier: 'partner',
-    logoWidth: 150,
-    logoHeight: 100,
+    logoRatio: 5,
+    logoHeight: 95,
+    logoMaxWidth: 260,
   },
   {
     name: 'Liquid Reply',
     icon: Liquid,
     url: 'https://www.reply.com/liquid-reply/en/',
     tier: 'organizer',
-    logoWidth: 150,
-    logoHeight: 100,
+    logoRatio: 2.3,
   },
   {
     name: 'Nutanix',
     icon: NutanixLogo,
     url: 'https://www.nutanix.com/',
     tier: 'platinum',
-    logoWidth: 185,
-    logoHeight: 150,
+    logoRatio: 7.77,
   },
   {
     name: 'Steadforce',
     icon: Steadforce,
     url: 'https://www.steadforce.com/',
     tier: 'silver',
-    logoWidth: 180,
-    logoHeight: 100,
+    logoRatio: 8.93,
+    logoHeight: 95,
+    logoMaxWidth: 260,
   },
   {
     name: 'tsc labs',
     icon: Tcslabs,
     url: 'https://www.tsc-labs.eu/',
     tier: 'partner',
-    logoWidth: 125,
-    logoHeight: 100,
+    logoRatio: 2.11,
   },
   {
     name: 'white duck GmbH',
     icon: Whiteduck,
     url: 'https://www.whiteduck.de/',
     tier: 'organizer',
-    logoWidth: 180,
-    logoHeight: 100,
+    logoRatio: 3.75,
   },
   {
-    name: 'x-cellent',
-    icon: xcellentLogo,
-    url: 'https://x-cellent.com/',
+    name: 'Metalstack',
+    icon: Metalstack,
+    url: 'https://metalstack.cloud/',
     tier: 'gold',
-    logoWidth: 180,
-    logoHeight: 100,
+    logoRatio: 3.54,
   },
 ];
 
@@ -210,8 +204,24 @@ const uniqueSponsorsByName = (() => {
 
 const marqueeSponsors = [...uniqueSponsorsByName, ...uniqueSponsorsByName];
 
-const DEFAULT_LOGO_WIDTH = 150;
-const DEFAULT_LOGO_HEIGHT = 70;
+const LOGO_BASE = {
+  platinum: { height: 90, maxWidth: 220 },
+  gold: { height: 80, maxWidth: 200 },
+  silver: { height: 85, maxWidth: 210 },
+  bronze: { height: 70, maxWidth: 180 },
+  evening: { height: 75, maxWidth: 190 },
+  partner: { height: 80, maxWidth: 200 },
+  organizer: { height: 80, maxWidth: 200 },
+};
+
+const getLogoSize = (sponsor) => {
+  const ratio = sponsor.logoRatio || 2;
+  const base = LOGO_BASE[sponsor.tier] || LOGO_BASE.gold;
+  const height = sponsor.logoHeight || base.height;
+  const maxWidth = sponsor.logoMaxWidth || base.maxWidth;
+  const width = Math.min(Math.round(height * ratio), maxWidth);
+  return { width, height };
+};
 
 const Sponsors = () => {
   if (!SHOW_CURRENT_SPONSORS) {
@@ -219,35 +229,35 @@ const Sponsors = () => {
       <section id="sponsors" className="safe-paddings bg-white py-16 sm:py-12">
         <div className="container">
           <div className="mb-16 md:mb-12 sm:mb-8">
-          <h2 className="text-left text-5xl font-bold leading-tight text-primary-1 md:text-4xl sm:text-3xl">
-            Become a Sponsor
-          </h2>
-          <p className="mt-6 max-w-3xl text-left text-xl leading-relaxed text-slate-600 md:mt-4 md:text-lg sm:mt-3 sm:text-base">
-            Support our local cloud native community by sponsoring CNS Munich!
-          </p>
+            <h2 className="text-left text-5xl font-bold leading-tight text-primary-1 md:text-4xl sm:text-3xl">
+              Become a Sponsor
+            </h2>
+            <p className="mt-6 max-w-3xl text-left text-xl leading-relaxed text-slate-600 md:mt-4 md:text-lg sm:mt-3 sm:text-base">
+              Support our local cloud native community by sponsoring CNS Munich!
+            </p>
 
-          <div className="mt-8 flex flex-wrap items-center justify-start gap-4 md:mt-6 md:gap-3 sm:mt-4 sm:gap-2">
-            <a
-              className="button px-6 py-3 text-base sm:px-4 sm:py-2 sm:text-sm"
-              href={sponsorProspectusUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Sponsor Prospectus
-            </a>
+            <div className="mt-8 flex flex-wrap items-center justify-start gap-4 md:mt-6 md:gap-3 sm:mt-4 sm:gap-2">
+              <a
+                className="button px-6 py-3 text-base sm:px-4 sm:py-2 sm:text-sm"
+                href={sponsorProspectusUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Sponsor Prospectus
+              </a>
+            </div>
+
+            <p className="mt-4 text-left text-sm text-gray-600 sm:text-xs">
+              Or email us directly at{' '}
+              <a
+                href={`mailto:${contactEmail}`}
+                className="font-semibold text-primary-1 hover:underline"
+              >
+                {contactEmail}
+              </a>
+              .
+            </p>
           </div>
-
-          <p className="mt-4 text-left text-sm text-gray-600 sm:text-xs">
-            Or email us directly at{' '}
-            <a
-              href={`mailto:${contactEmail}`}
-              className="font-semibold text-primary-1 hover:underline"
-            >
-              {contactEmail}
-            </a>
-            .
-          </p>
-        </div>
 
           <div className="mt-16 md:mt-12 sm:mt-10">
             <div className="mb-6 text-left md:mb-4 sm:mb-3">
@@ -273,9 +283,10 @@ const Sponsors = () => {
                       src={sponsor.icon}
                       alt={sponsor.name}
                       loading="lazy"
+                      className="sponsor-logo"
                       style={{
-                        maxWidth: `${sponsor.logoWidth || DEFAULT_LOGO_WIDTH}px`,
-                        maxHeight: `${sponsor.logoHeight || DEFAULT_LOGO_HEIGHT}px`,
+                        '--logo-width': `${getLogoSize(sponsor).width}px`,
+                        '--logo-height': `${getLogoSize(sponsor).height}px`,
                       }}
                     />
                   </a>
@@ -415,7 +426,8 @@ const Sponsors = () => {
                       'md:hover:scale-102 hover:-translate-y-2 hover:scale-105 md:hover:-translate-y-1',
                       config.cardSize,
                       config.class,
-                      config.premium && 'platinum-premium'
+                      config.premium && 'platinum-premium',
+                      `sponsor-card--${tier}`
                     )}
                   >
                     <div className="relative flex h-full w-full items-center justify-center p-6 md:p-4 sm:p-3">
@@ -425,8 +437,8 @@ const Sponsors = () => {
                         loading="lazy"
                         className="sponsor-logo object-contain transition-all duration-300 group-hover:scale-110"
                         style={{
-                          maxWidth: `${sponsor.logoWidth || DEFAULT_LOGO_WIDTH}px`,
-                          maxHeight: `${sponsor.logoHeight || DEFAULT_LOGO_HEIGHT}px`,
+                          '--logo-width': `${getLogoSize(sponsor).width}px`,
+                          '--logo-height': `${getLogoSize(sponsor).height}px`,
                         }}
                       />
                     </div>
