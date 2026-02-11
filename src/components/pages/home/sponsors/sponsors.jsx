@@ -104,14 +104,14 @@ const sponsorsList = [
   {
     name: 'Eon',
     icon: EonLogo,
-    url: 'https://www.eon.de/',
+    url: 'https://www.eon.com/en/about-us/careers/our-companies/digital-technology.html',
     tier: 'gold',
     logoRatio: 1.9,
   },
   {
     name: 'Eon',
     icon: EonLogo,
-    url: 'https://www.eon.de/',
+    url: 'https://www.eon.com/en/about-us/careers/our-companies/digital-technology.html',
     tier: 'partner',
     logoRatio: 1.9,
   },
