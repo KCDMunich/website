@@ -5,32 +5,26 @@ slug: imprint-data-privacy
 
 ## Information according to § 5 TMG
 
-*Förderverein Open Source, Cloud Native und Künstliche Intelligenz Bayern e.V.*  
+_Förderverein Open Source, Cloud Native und Künstliche Intelligenz Bayern e.V._  
 Adlzreiterstraße 8  
-83022 Rosenheim  
+83022 Rosenheim
 
-*Registered in the Vereinsregister (Register of Associations)*
+_Registered in the Vereinsregister (Register of Associations)_
 
-Register Court: 
+Register Court: Amtsgericht Traunstein
 
-Amtsgericht Traunstein  
-
-Registration Number:
-
-VR 202755
-
-VAT-ID: DE459826064
+Registration Number: VR 202755, VAT-ID: DE459826064
 
 ## Authorized Board Members
 
 **Chairman**  
-Max Körbächer  
+Max Körbächer
 
 **Deputy Chairman**  
-Nico Meisenzahl  
+Nico Meisenzahl
 
 **Treasurer**  
-Markus Sümmchen  
+Markus Sümmchen
 
 ## Contact
 
@@ -44,7 +38,7 @@ Nico Meisenzahl
 
 Markus Sümmchen
 
-Suad Wolgram 
+Suad Wolgram
 
 ## Disclaimer
 
