@@ -55,8 +55,9 @@ export default {
   },
   privacy: {
     to: '/imprint-data-privacy',
-    target: '_blank',
-    external: true,
+  },
+  privacyPolicy: {
+    to: '/privacy-policy',
   },
   conduct: {
     to: 'https://github.com/KCDMunich/code-of-conduct/blob/main/code-of-conduct.md',

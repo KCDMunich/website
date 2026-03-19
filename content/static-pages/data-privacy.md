@@ -1,5 +1,5 @@
 ---
-title: Imprint & Data Privacy
+title: Imprint
 slug: imprint-data-privacy
 ---
 
@@ -9,7 +9,7 @@ _Förderverein Open Source, Cloud Native und Künstliche Intelligenz Bayern e.V.
 Adlzreiterstraße 8  
 83022 Rosenheim
 
-_Registered in the Vereinsregister (Register of Associations)_
+Registered in the Vereinsregister (Register of Associations)
 
 Register Court: Amtsgericht Traunstein
 
@@ -28,7 +28,7 @@ Markus Sümmchen
 
 ## Contact
 
-Email: team@cloudnativesummit.de
+Email: [team@cloudnativesummit.de](mailto:team@cloudnativesummit.de)
 
 ## Responsible for content according to § 55 para. 2 RStV
 
@@ -46,4 +46,4 @@ The contents of our pages have been created with the utmost care. However, we ca
 
 ## Data Privacy
 
-[Link to Privacy Policy](https://whiteduck.de/datenschutz/)
+[Read our Privacy Policy](/privacy-policy/)
