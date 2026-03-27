@@ -11,8 +11,8 @@ This privacy policy provides information on the nature, scope and purposes of th
 
 ## 2. Data Controller
 
-Förderverein Open Source, Cloud Native and Artificial Intelligence Bavaria e.V. (registered association under German law)
-Adlzreiterstr. 8
+Förderverein Open Source, Cloud Native and Artificial Intelligence Bavaria e.V. (registered association under German law)  
+Adlzreiterstr. 8  
 83022 Rosenheim
 
 Represented by the Executive Board within the meaning of Section 26 of the German Civil Code (BGB):
@@ -140,6 +140,25 @@ Purposes of processing:
 
 You may withdraw your consent at any time with effect for the future.
 
+#### 6.1.5. Community & Event Communication via Discord
+
+We provide participants with an optional community and communication space on Discord. When using the Discord server, the following data may be processed:
+
+- Name or username
+- Profile information
+- Message content (e.g., chat messages, shared files)
+- Technical usage data such as IP address, device information, and log data
+
+Purposes of processing:
+
+- Exchange between participants before, during, and after the event
+- Provision of information, announcements, and support
+- Community building around the association and the event
+
+Participation is completely voluntary and not a requirement for attending the event.
+
+We inform data subjects that Discord is an external provider and may transfer data to third countries. Processing is carried out according to Discord's privacy policies.
+
 ### 6.2. Sponsors
 
 #### 6.2.1. Google Workspace (Docs, Sheets, Drive, Forms)
@@ -203,6 +222,27 @@ Purposes of processing:
 - Creating receipts and statements
 
 No data is transferred to third countries.
+
+#### 6.2.5. Communication via Discord
+
+For optional organizational coordination with sponsors, we use the communication service Discord. The following personal data may be processed:
+
+- Name or username
+- Profile information (e.g., avatar, status)
+- Communication content (messages, potentially files)
+- Technical usage data (IP address, device information, timestamps)
+
+Purposes of processing:
+
+- Exchange of organizational information
+- Provision of a central communication channel during the preparation phase
+- Clarification of questions regarding sponsorship, tickets, logistics, and event details
+
+Discord is an external service provider based in the United States.
+
+A transfer of data to third countries cannot be excluded. Such transfer only takes place on the basis of appropriate safeguards, such as the EU-US Data Privacy Framework or Standard Contractual Clauses (SCCs).
+
+The use of Discord is voluntary. Sponsors may choose alternative communication channels at any time.
 
 ### 6.3. Speakers
 
@@ -311,10 +351,10 @@ You have the following rights under the GDPR at any time:
 
 You have the right to lodge a complaint with a competent supervisory authority, in particular in the Member State of your habitual residence, your place of work, or the place of the alleged infringement.
 
-Bayerisches Landesamt für Datenschutzaufsicht (BayLDA)
-Promenade 18
-91522 Ansbach
-[poststelle@lda.bayern.de](mailto:poststelle@lda.bayern.de)
+Bayerisches Landesamt für Datenschutzaufsicht (BayLDA)  
+Promenade 18  
+91522 Ansbach  
+[poststelle@lda.bayern.de](mailto:poststelle@lda.bayern.de)  
 [www.lda.bayern.de](https://www.lda.bayern.de)
 
 ## 10. Validity & Changes
