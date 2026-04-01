@@ -224,7 +224,7 @@ const Proposal = () => {
 
   // Termine
   const openDate = new Date('2026-01-13T00:00:00');
-  const closeDate = new Date('2026-03-31T12:00:00');
+  const closeDate = new Date('2026-04-10T12:00:00');
   const now = new Date();
   const total = closeDate.getTime() - openDate.getTime();
   const progress = Math.max(0, Math.min(100, ((now.getTime() - openDate.getTime()) / total) * 100));
@@ -268,7 +268,7 @@ const Proposal = () => {
                 </div>
                 <div className="text-right">
                   <div className="text-gray-500">Closes</div>
-                  <div className="font-medium">31 Mar 2026 12:00 PM</div>
+                  <div className="font-medium">10 Apr 2026 12:00 PM</div>
                 </div>
               </div>
 
