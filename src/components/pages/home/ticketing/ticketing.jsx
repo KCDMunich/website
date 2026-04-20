@@ -211,9 +211,7 @@ const Ticketing = () => {
     const fetchTickets = async () => {
       try {
         const fetchJson = async (url) => {
-          const proxyToken = process.env.GATSBY_FIENTA_PROXY_TOKEN;
-          const headers = proxyToken ? { 'X-Fienta-Proxy-Token': proxyToken } : undefined;
-          const response = await fetch(url, { headers });
+          const response = await fetch(url);
           if (!response.ok) return null;
           return response.json();
         };

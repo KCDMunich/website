@@ -137,20 +137,29 @@ const sanitizePayload = (payload) => {
 };
 
 export default async function handler(req, res) {
-  if (req.method !== 'GET') {
-    res.status(405).json({ error: 'Method not allowed' });
+  // --- CORS: browsers enforce this, other sites cannot call our proxy via JS ---
+  const allowedOrigins = [
+    process.env.GATSBY_SITE_URL,
+    process.env.URL,
+    'http://localhost:8000',
+    'http://localhost:9000',
+  ].filter(Boolean);
+
+  const requestOrigin = req.headers.origin || '';
+  const matchedOrigin = allowedOrigins.find((o) => requestOrigin === o);
+  res.setHeader('Access-Control-Allow-Origin', matchedOrigin || allowedOrigins[0] || '');
+  res.setHeader('Access-Control-Allow-Methods', 'GET');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+  res.setHeader('Access-Control-Max-Age', '86400');
+
+  if (req.method === 'OPTIONS') {
+    res.status(204).end();
     return;
   }
 
-  const proxyToken = process.env.FIENTA_PROXY_TOKEN;
-  if (proxyToken) {
-    const headerToken = req.headers['x-fienta-proxy-token'];
-    const authHeader = req.headers.authorization || '';
-    const bearerToken = authHeader.startsWith('Bearer ') ? authHeader.slice(7) : '';
-    if (headerToken !== proxyToken && bearerToken !== proxyToken) {
-      res.status(401).json({ error: 'Unauthorized' });
-      return;
-    }
+  if (req.method !== 'GET') {
+    res.status(405).json({ error: 'Method not allowed' });
+    return;
   }
 
   const baseUrl = process.env.GATSBY_FIENTA_BASE_URL || 'https://fienta.com/api/v1';
@@ -227,6 +236,7 @@ export default async function handler(req, res) {
   }
 
   res.setHeader('Cache-Control', 's-maxage=60, stale-while-revalidate=300');
-  res.setHeader('Vary', 'Authorization, X-Fienta-Proxy-Token');
+  res.setHeader('X-Content-Type-Options', 'nosniff');
+  res.setHeader('X-Frame-Options', 'DENY');
   res.status(200).json(sanitizePayload(eventPayload));
 }
