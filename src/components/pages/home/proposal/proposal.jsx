@@ -240,11 +240,12 @@ const Proposal = () => {
   ];
 
   const shuffleVideos = () => {
-    setVideos([...videos].sort(() => Math.random() - 0.5));
+    setVideos((prev) => [...prev].sort(() => Math.random() - 0.5));
   };
 
   useEffect(() => {
     shuffleVideos();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

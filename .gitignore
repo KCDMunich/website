@@ -76,3 +76,10 @@ yarn-error.log
 
 .vscode/snipsnap.code-snippets
 .codex/
+
+# Old ESLint config backup
+.eslintrc.js.bak
+
+# Grype
+.grype.yaml
+/tmp/grype-*.json

@@ -67,7 +67,7 @@ const getRandomFallbackVideo = () => {
 };
 
 const ScheduleTeaser = () => {
-  const [videos, setVideos] = useState(FALLBACK_VIDEOS);
+  const [, setVideos] = useState(FALLBACK_VIDEOS);
   const [activeVideo, setActiveVideo] = useState(() => FALLBACK_VIDEOS[0]);
 
   useEffect(() => {

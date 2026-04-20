@@ -289,7 +289,7 @@ const Ticketing = () => {
     return () => {
       isMounted = false;
     };
-  }, [apiUrl, eventId, eventSlug, fallbackCheckoutUrl, locale, organizerId, seriesId]);
+  }, [apiUrl, detailUrl, eventId, eventSlug, fallbackCheckoutUrl, listUrl, locale, organizerId, seriesId]);
 
   const visibleTickets = useMemo(
     () => tickets.filter((t) => !t.isSoldOut && t.isOnSale),

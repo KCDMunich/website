@@ -231,8 +231,8 @@ const Schedule = ({ variant = 'default' }) => {
     if (!isOpen || !event) return null;
 
     return (
-      <div className="modal-overlay" onClick={onClose}>
-        <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+      <div className="modal-overlay" role="presentation" onClick={onClose} onKeyDown={(e) => { if (e.key === 'Escape') onClose(); }}>
+        <div className="modal-content" role="dialog" aria-modal="true" onClick={(e) => e.stopPropagation()}>
           <button className="modal-close" onClick={onClose}>
             ×
           </button>
@@ -577,8 +577,6 @@ const Schedule = ({ variant = 'default' }) => {
   const eventsByRoom = groupEventsByRoom(upcomingEvents);
   const selectedGridDay = getDateForSelectedDay();
   const displayDate = getReadableDate(selectedGridDay?.date);
-  const favoriteCount = upcomingEvents.filter((event) => favorites.includes(String(event.id)))
-    .length;
 
   const getHeaderLabel = () => {
     if (showLiveOnly) return 'Live Now';

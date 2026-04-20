@@ -1,7 +1,5 @@
 import React from 'react';
 
-import Button from 'components/shared/button';
-
 const TITLE = 'Speaker Lineup';
 const DESCRIPTION = 'Meet our fantastic speakers and learn from their experience.';
 

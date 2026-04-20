@@ -1,4 +1,4 @@
-export default {
+const seoData = {
   schedule: {
     title: 'CNS Munich - Event Schedule for June 29th and 30th, 2026',
     description:
@@ -42,3 +42,4 @@ export default {
     description: 'Sorry, we couldn’t find the page you’re looking for',
   },
 };
+export default seoData;

@@ -56,9 +56,6 @@ const Footer = () => {
             src={logo}
             alt="logo"
             className="navbar-logo"
-            onClick={() => {
-              window.location.href = `/`;
-            }}
           />
         </Link>
 

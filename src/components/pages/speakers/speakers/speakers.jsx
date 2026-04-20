@@ -31,6 +31,7 @@ const Dialog = ({ isOpen, onClose, children }) => {
       <div className="relative w-full max-w-2xl bg-white rounded-2xl overflow-hidden">
         <button
           className="absolute right-4 top-4 z-10 rounded-full bg-gray-100/80 p-2 text-gray-600 hover:bg-gray-200/80 hover:text-gray-900"
+          aria-label="Close dialog"
           onClick={onClose}
         >
           <svg className="h-5 w-5" viewBox="0 0 24 24">
@@ -57,6 +58,9 @@ const SpeakerCard = ({ speaker, onClick }) => {
   return (
     <div
       onClick={onClick}
+      onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onClick?.(); } }}
+      role="button"
+      tabIndex={0}
       className="bg-white rounded-xl overflow-hidden shadow-lg transform hover:-translate-y-2 transition-transform duration-300 group cursor-pointer h-full flex flex-col"
     >
       <div className="relative overflow-hidden aspect-square">
