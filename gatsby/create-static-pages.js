@@ -1,7 +1,5 @@
 const path = require('path');
 
-const get = require('lodash.get');
-
 const { STATIC_PAGE_REQUIRED_FIELDS } = require('./constants');
 // const createRedirects = require('./create-redirects');
 
@@ -33,7 +31,7 @@ module.exports = async ({ graphql, actions }) => {
   result.data.allMdx.nodes.forEach(({ id, internal: { contentFilePath }, frontmatter }) => {
     // Required fields validation
     STATIC_PAGE_REQUIRED_FIELDS.forEach((fieldName) => {
-      if (!get(frontmatter, fieldName)) {
+      if (!frontmatter?.[fieldName]) {
         throw new Error(`Static page "${contentFilePath}" does not have field "${fieldName}"!`);
       }
     });
