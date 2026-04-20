@@ -7,66 +7,6 @@ const DEFAULT_EVENT = {
   currency: 'EUR',
 };
 
-const getEventsFromPayload = (payload) => {
-  if (!payload) return null;
-
-  if (Array.isArray(payload)) return payload;
-  if (payload?.id || payload?.event_id) return [payload];
-  if (Array.isArray(payload.events)) return payload.events;
-  if (Array.isArray(payload.data)) return payload.data;
-  if (payload.data?.id || payload.data?.event_id) return [payload.data];
-  if (Array.isArray(payload.data?.events)) return payload.data.events;
-
-  return [];
-};
-
-const getEventFromList = (events, { id, slug, url }) => {
-  if (!events || events.length === 0) return null;
-
-  if (id) {
-    const match = events.find(
-      (event) => String(event?.id || event?.event_id || event?.pk) === String(id)
-    );
-    if (match) return match;
-  }
-
-  if (slug) {
-    const match = events.find((event) => {
-      const eventSlug = event?.slug || event?.title_url || event?.url_slug;
-      if (eventSlug && eventSlug === slug) return true;
-      return event?.url?.includes(`/${slug}`) || event?.public_url?.includes(`/${slug}`);
-    });
-    if (match) return match;
-  }
-
-  if (url) {
-    const match = events.find(
-      (event) => event?.url === url || event?.public_url === url || event?.event_url === url
-    );
-    if (match) return match;
-  }
-
-  return events[0];
-};
-
-const getTicketsFromEvent = (event) =>
-  event?.ticket_types || event?.ticketTypes || event?.tickets || event?.ticket_types_summary || [];
-
-const resolvePrice = (ticket) => {
-  if (ticket?.price_cents || ticket?.price_in_cents) {
-    return (ticket.price_cents || ticket.price_in_cents) / 100;
-  }
-
-  // Handle string prices (e.g., "149.00" from Fienta)
-  const priceValue = ticket?.price ?? ticket?.amount ?? ticket?.unit_price ?? null;
-  if (typeof priceValue === 'string') {
-    const parsed = parseFloat(priceValue);
-    return Number.isNaN(parsed) ? null : parsed;
-  }
-
-  return priceValue;
-};
-
 const formatCurrency = (value, currency) => {
   if (value === null || value === undefined) return 'On request';
   if (!Number.isFinite(value)) return `${value}`;
@@ -96,180 +36,33 @@ const formatDate = (value) => {
   }).format(parsed);
 };
 
-const resolveEventDateRange = (event) => {
-  const start = event?.starts_at || event?.start_time || event?.start_date || event?.start;
-  const end = event?.ends_at || event?.end_time || event?.end_date || event?.end;
-  const startLabel = formatDate(start);
-  const endLabel = formatDate(end);
-
-  if (startLabel && endLabel) {
-    return `${startLabel} - ${endLabel}`;
-  }
-
-  return startLabel || endLabel || DEFAULT_EVENT.dateRange;
-};
-
-const normalizeTickets = (rawTickets, currency, locale = 'de') =>
-  rawTickets
-    .map((ticket, index) => {
-      // Handle Fienta's visible_start/visible_end fields
-      const salesStart =
-        ticket?.visible_start ||
-        ticket?.sales_start_date ||
-        ticket?.salesStart ||
-        ticket?.start_date;
-      const salesEnd =
-        ticket?.visible_end || ticket?.sales_end_date || ticket?.salesEnd || ticket?.end_date;
-      const startDate = salesStart ? new Date(salesStart) : null;
-      const endDate = salesEnd ? new Date(salesEnd) : null;
-      const now = new Date();
-      const withinSalesWindow = (!startDate || startDate <= now) && (!endDate || endDate >= now);
-      const isSoldOut =
-        ticket?.sold_out ||
-        ticket?.is_sold_out ||
-        ticket?.is_temporarily_sold_out ||
-        ticket?.amount_left === 0 ||
-        ticket?.remaining === 0 ||
-        (ticket?.ticket_limit !== null &&
-          ticket?.tickets_sold !== undefined &&
-          ticket?.tickets_sold >= ticket?.ticket_limit);
-      const isOnSale =
-        ticket?.is_on_sale ?? ticket?.on_sale ?? ticket?.available ?? withinSalesWindow;
-
-      // Handle Fienta's translations structure
-      const translations = ticket?.translations;
-      const localizedData = translations?.[locale] || translations?.en || translations?.de || {};
-      const title = localizedData?.title || ticket?.title || ticket?.name || ticket?.label;
-      const description = localizedData?.body || ticket?.description || ticket?.details || '';
-
-      // Calculate remaining tickets if limit is set
-      const ticketLimit = ticket?.ticket_limit;
-      const ticketsSold = ticket?.tickets_sold ?? 0;
-      const amountLeft =
-        ticket?.amount_left ??
-        ticket?.remaining ??
-        (ticketLimit !== null && ticketLimit !== undefined ? ticketLimit - ticketsSold : null);
-
-      return {
-        id: ticket?.uuid || ticket?.id || ticket?.pk || `ticket-${index}`,
-        title,
-        description,
-        price: resolvePrice(ticket),
-        currency: ticket?.currency || currency,
-        isSoldOut,
-        isOnSale,
-        amountLeft,
-        salesEnd: endDate,
-      };
-    })
-    .filter((ticket) => ticket.title);
-
-const getSlugFromUrl = (url) => {
-  if (!url) return '';
-  try {
-    return new URL(url).pathname.split('/').filter(Boolean).pop() || '';
-  } catch (error) {
-    return '';
-  }
-};
-
 const Ticketing = () => {
-  const baseUrl = process.env.GATSBY_FIENTA_BASE_URL || 'https://fienta.com/api/v1';
-  const eventSlug =
-    process.env.GATSBY_FIENTA_EVENT_SLUG || getSlugFromUrl(process.env.GATSBY_FIENTA_EVENT_URL);
-  const eventId = process.env.GATSBY_FIENTA_EVENT_ID;
-  const organizerId = process.env.GATSBY_FIENTA_ORGANIZER_ID;
-  const seriesId = process.env.GATSBY_FIENTA_SERIES_ID;
-  const locale = process.env.GATSBY_FIENTA_LOCALE || 'de';
   const fallbackCheckoutUrl = process.env.GATSBY_FIENTA_EVENT_URL;
-  const eventsUrl = `${baseUrl}/public/events`;
-  const searchParams = new URLSearchParams();
-
-  if (locale) searchParams.set('locale', locale);
-  if (organizerId) searchParams.set('organizer', organizerId);
-  if (seriesId) searchParams.set('series_id', seriesId);
-
-  const queryString = searchParams.toString();
-  const listUrl = `${eventsUrl}${queryString ? `?${queryString}` : ''}`;
-  const detailUrl = eventId ? `${eventsUrl}/${eventId}${queryString ? `?${queryString}` : ''}` : '';
   const proxyUrl = process.env.GATSBY_FIENTA_PROXY_URL || '/api/fienta-event';
-  const apiUrl = proxyUrl;
 
-  const [status, setStatus] = useState(
-    organizerId || seriesId || eventSlug || eventId ? 'loading' : 'idle'
-  );
+  const [status, setStatus] = useState('loading');
   const [eventData, setEventData] = useState(DEFAULT_EVENT);
   const [tickets, setTickets] = useState([]);
   const [checkoutUrl, setCheckoutUrl] = useState(fallbackCheckoutUrl || '');
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
-    if (!organizerId && !seriesId && !eventSlug && !eventId) return;
 
     let isMounted = true;
 
     const fetchTickets = async () => {
       try {
-        const fetchJson = async (url) => {
-          const proxyToken = process.env.GATSBY_FIENTA_PROXY_TOKEN;
-          const headers = proxyToken ? { 'X-Fienta-Proxy-Token': proxyToken } : undefined;
-          const response = await fetch(url, { headers });
-          if (!response.ok) return null;
-          return response.json();
-        };
-
-        let payload = await fetchJson(apiUrl);
-        if (!payload && detailUrl) {
-          payload = await fetchJson(detailUrl);
-        }
-        if (!payload && listUrl) {
-          payload = await fetchJson(listUrl);
-        }
-
-        if (!payload) {
+        const response = await fetch(proxyUrl);
+        if (!response.ok) {
           throw new Error('Fienta request failed');
         }
-        const events = getEventsFromPayload(payload);
-        const event = getEventFromList(events, {
-          id: eventId,
-          slug: eventSlug,
-          url: fallbackCheckoutUrl,
-        });
-
-        // Handle Fienta's translations structure for event data
-        const eventTranslations = event?.translations;
-        const eventLocalizedData =
-          eventTranslations?.[locale] || eventTranslations?.en || eventTranslations?.de || {};
-        const eventTitle =
-          eventLocalizedData?.title || event?.title || event?.name || DEFAULT_EVENT.title;
-        const eventVenue =
-          eventLocalizedData?.venue ||
-          event?.city ||
-          event?.location ||
-          event?.venue ||
-          eventLocalizedData?.address?.city ||
-          event?.address?.city ||
-          DEFAULT_EVENT.location;
-
+        const payload = await response.json();
         const normalizedEvent = {
-          title: eventTitle,
-          dateRange: resolveEventDateRange(event),
-          location: eventVenue,
-          currency: event?.currency || event?.ticket_currency || DEFAULT_EVENT.currency,
+          ...DEFAULT_EVENT,
+          ...(payload?.event || {}),
         };
-        const ticketList = normalizeTickets(
-          getTicketsFromEvent(event),
-          normalizedEvent.currency,
-          locale
-        );
-        const eventCheckoutUrl =
-          event?.url ||
-          event?.public_url ||
-          event?.event_full_url ||
-          event?.checkout_url ||
-          event?.checkoutUrl ||
-          fallbackCheckoutUrl ||
-          '';
+        const ticketList = Array.isArray(payload?.tickets) ? payload.tickets : [];
+        const eventCheckoutUrl = payload?.event?.checkoutUrl || fallbackCheckoutUrl || '';
 
         if (isMounted) {
           setEventData(normalizedEvent);
@@ -277,9 +70,11 @@ const Ticketing = () => {
           setCheckoutUrl(eventCheckoutUrl);
           setStatus('ready');
         }
-      } catch (error) {
+      } catch {
         if (isMounted) {
-          setStatus('error');
+          setTickets([]);
+          setCheckoutUrl(fallbackCheckoutUrl || '');
+          setStatus(fallbackCheckoutUrl ? 'ready' : 'error');
         }
       }
     };
@@ -289,7 +84,7 @@ const Ticketing = () => {
     return () => {
       isMounted = false;
     };
-  }, [apiUrl, detailUrl, eventId, eventSlug, fallbackCheckoutUrl, listUrl, locale, organizerId, seriesId]);
+  }, [fallbackCheckoutUrl, proxyUrl]);
 
   const visibleTickets = useMemo(
     () => tickets.filter((t) => !t.isSoldOut && t.isOnSale),
