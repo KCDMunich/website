@@ -21,7 +21,13 @@ const ScheduleCard = ({
   recordingUrl,
 }) => {
   return (
-    <div className={`schedule-card${isPast ? ' schedule-card--past' : ''}`} onClick={onClick}>
+    <div
+      className={`schedule-card${isPast ? ' schedule-card--past' : ''}`}
+      role="button"
+      tabIndex={0}
+      onClick={onClick}
+      onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onClick?.(); } }}
+    >
       <div className="schedule-card-header">
         <div className="schedule-card-time">
           <svg
@@ -124,6 +130,7 @@ const ScheduleCard = ({
         )}
         <button
           className="schedule-card-favorite-button"
+          aria-label={isFavorite ? 'Remove from favorites' : 'Add to favorites'}
           onClick={(e) => {
             e.stopPropagation();
             onFavoriteClick?.();

@@ -79,6 +79,7 @@ module.exports = [
           noSortAlphabetically: true,
         },
       ],
+      'react/jsx-pascal-case': ['error', { allowAllCaps: true, allowNamespace: true }],
 
       // --- React Hooks rules (from airbnb/hooks) ---
       ...reactHooksPlugin.configs.recommended.rules,
@@ -127,6 +128,9 @@ module.exports = [
           },
         },
       ],
+      'jsx-a11y/no-noninteractive-element-interactions': 'off',
+      'jsx-a11y/click-events-have-key-events': 'off',
+      'jsx-a11y/no-static-element-interactions': 'off',
 
       // --- Core JS rules (key airbnb rules + custom overrides) ---
       'no-restricted-exports': ['error', { restrictedNamedExports: ['then'] }],

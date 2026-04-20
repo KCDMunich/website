@@ -2,7 +2,7 @@ import slugify from 'slugify';
 
 const getAnchor = (str) => slugify(str).toLocaleLowerCase();
 
-export default {
+const links = {
   // Pages and sections
   gallery2025: {
     to: 'https://lightroom.adobe.com/shares/7bb86e822460423fbd84753f93862cd2',
@@ -92,3 +92,5 @@ export default {
     homeTo: '/speakers',
   },
 };
+
+export default links;

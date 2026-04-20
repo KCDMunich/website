@@ -12,7 +12,6 @@ import LearnCubeLogo from 'icons/learncube.webp';
 import Liquid from 'icons/liquid.png';
 import Tcslabs from 'icons/tsclabs-dark-large.webp';
 import Whiteduck from 'icons/whiteduck.png';
-import xcellentLogo from 'icons/x-cellent.png';
 import EonLogo from 'icons/eon.jpg';
 import Steadforce from 'icons/steadforce_logo.png';
 import Metalstack from 'icons/metalstack.svg';

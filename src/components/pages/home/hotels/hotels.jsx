@@ -140,6 +140,7 @@ export default function HotelList() {
                   href="mailto:info@hotel-arabellapark.de"
                   target="_blank"
                   rel="noopener noreferrer"
+                  aria-label="Email hotel"
                   style={{
                     color: '#004257',
                     textDecoration: 'none',

@@ -48,9 +48,6 @@ const Header = ({ isMobileMenuOpen = false, onBurgerClick, additionalClassName =
             src={logo}
             alt="logo"
             className="navbar-logo"
-            onClick={() => {
-              window.location.href = `/`;
-            }}
           />
         </Link>
 
