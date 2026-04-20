@@ -6,8 +6,12 @@ exports.createSchemaCustomization = require('./gatsby/create-schema-customizatio
 // Linting is handled by `npm run lint:js` using eslint.config.js instead.
 exports.onCreateWebpackConfig = ({ actions, getConfig }) => {
   const config = getConfig();
-  config.plugins = config.plugins.filter(
-    (plugin) => plugin.constructor.name !== 'ESLintWebpackPlugin'
-  );
+
+  if (Array.isArray(config.plugins)) {
+    config.plugins = config.plugins.filter(
+      (plugin) => plugin?.constructor?.name !== 'ESLintWebpackPlugin'
+    );
+  }
+
   actions.replaceWebpackConfig(config);
 };

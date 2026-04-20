@@ -47,11 +47,11 @@ const getEventFromPayload = (payload, eventId) => {
   const events = getEventsFromPayload(payload);
 
   if (events.length === 0) return null;
-  if (!eventId) return events[0];
+  if (!eventId) return null;
 
   return (
     events.find((event) => String(event?.id || event?.event_id || event?.pk) === String(eventId)) ||
-    events[0]
+    null
   );
 };
 
@@ -78,23 +78,23 @@ const resolvePrice = (ticket) => {
   return priceValue;
 };
 
-const formatDate = (value) => {
+const formatDate = (value, locale = 'de') => {
   if (!value) return null;
   const parsed = new Date(value);
   if (Number.isNaN(parsed.getTime())) return null;
 
-  return new Intl.DateTimeFormat('de-DE', {
+  return new Intl.DateTimeFormat(locale || 'de', {
     day: 'numeric',
     month: 'short',
     year: 'numeric',
   }).format(parsed);
 };
 
-const resolveEventDateRange = (event) => {
+const resolveEventDateRange = (event, locale = 'de') => {
   const start = event?.starts_at || event?.start_time || event?.start_date || event?.start;
   const end = event?.ends_at || event?.end_time || event?.end_date || event?.end;
-  const startLabel = formatDate(start);
-  const endLabel = formatDate(end);
+  const startLabel = formatDate(start, locale);
+  const endLabel = formatDate(end, locale);
 
   if (startLabel && endLabel) {
     return `${startLabel} - ${endLabel}`;
@@ -190,7 +190,7 @@ const buildSnapshot = (event, locale, fallbackCheckoutUrl) => {
   return {
     event: {
       title: eventTitle,
-      dateRange: resolveEventDateRange(event),
+      dateRange: resolveEventDateRange(event, locale),
       location: eventLocation,
       currency: eventCurrency,
       checkoutUrl,
@@ -213,6 +213,11 @@ export default async function handler(req, res) {
   const locale = process.env.GATSBY_FIENTA_LOCALE || 'de';
   const apiKey = process.env.FIENTA_API_KEY;
   const fallbackCheckoutUrl = process.env.GATSBY_FIENTA_EVENT_URL || '';
+
+  if (!eventId) {
+    res.status(500).json({ error: 'Fienta configuration error: GATSBY_FIENTA_EVENT_ID is required' });
+    return;
+  }
 
   const searchParams = new URLSearchParams();
   if (locale) searchParams.set('locale', locale);

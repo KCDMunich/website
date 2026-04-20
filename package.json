@@ -10,7 +10,7 @@
   "scripts": {
     "start": "NODE_NO_WARNINGS=1 npm run develop",
     "develop": "gatsby develop -H 0.0.0.0",
-    "build": "NODE_NO_WARNINGS=1 gatsby build",
+    "build": "NODE_NO_WARNINGS=1 npm run lint:js && gatsby build",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
     "format": "prettier --write --ignore-path .gitignore .",
