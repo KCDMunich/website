@@ -1,3 +1,10 @@
+const DEFAULT_EVENT = {
+  title: 'Cloud Native Summit Munich 2026',
+  dateRange: '29-30 June 2026',
+  location: 'Munich',
+  currency: 'EUR',
+};
+
 const buildAuthHeaders = (apiKey, mode) => {
   if (!apiKey) return {};
 
@@ -24,139 +31,176 @@ const fetchJson = async (url, headersList) => {
   return { error: true, status: lastStatus };
 };
 
-const sanitizeTicketType = (ticket) => ({
-  id: ticket?.id,
-  uuid: ticket?.uuid,
-  pk: ticket?.pk,
-  title: ticket?.title,
-  name: ticket?.name,
-  label: ticket?.label,
-  description: ticket?.description,
-  details: ticket?.details,
-  translations: ticket?.translations,
-  price: ticket?.price,
-  amount: ticket?.amount,
-  unit_price: ticket?.unit_price,
-  price_cents: ticket?.price_cents,
-  price_in_cents: ticket?.price_in_cents,
-  currency: ticket?.currency,
-  sold_out: ticket?.sold_out,
-  is_sold_out: ticket?.is_sold_out,
-  is_temporarily_sold_out: ticket?.is_temporarily_sold_out,
-  amount_left: ticket?.amount_left,
-  remaining: ticket?.remaining,
-  ticket_limit: ticket?.ticket_limit,
-  tickets_sold: ticket?.tickets_sold,
-  visible_start: ticket?.visible_start,
-  visible_end: ticket?.visible_end,
-  sales_start_date: ticket?.sales_start_date,
-  sales_end_date: ticket?.sales_end_date,
-  salesStart: ticket?.salesStart,
-  salesEnd: ticket?.salesEnd,
-  start_date: ticket?.start_date,
-  end_date: ticket?.end_date,
-  is_on_sale: ticket?.is_on_sale,
-  on_sale: ticket?.on_sale,
-  available: ticket?.available,
-});
+const getEventsFromPayload = (payload) => {
+  if (!payload) return [];
+  if (Array.isArray(payload)) return payload;
+  if (payload?.id || payload?.event_id) return [payload];
+  if (Array.isArray(payload?.events)) return payload.events;
+  if (Array.isArray(payload?.data)) return payload.data;
+  if (payload?.data?.id || payload?.data?.event_id) return [payload.data];
+  if (Array.isArray(payload?.data?.events)) return payload.data.events;
 
-const sanitizeEvent = (event) => ({
-  id: event?.id,
-  event_id: event?.event_id,
-  pk: event?.pk,
-  slug: event?.slug,
-  title_url: event?.title_url,
-  url_slug: event?.url_slug,
-  title: event?.title,
-  name: event?.name,
-  translations: event?.translations,
-  url: event?.url,
-  public_url: event?.public_url,
-  event_url: event?.event_url,
-  event_full_url: event?.event_full_url,
-  checkout_url: event?.checkout_url,
-  checkoutUrl: event?.checkoutUrl,
-  starts_at: event?.starts_at,
-  start_time: event?.start_time,
-  start_date: event?.start_date,
-  start: event?.start,
-  ends_at: event?.ends_at,
-  end_time: event?.end_time,
-  end_date: event?.end_date,
-  end: event?.end,
-  city: event?.city,
-  location: event?.location,
-  venue: event?.venue,
-  address: event?.address
-    ? {
-        city: event.address?.city,
-        line1: event.address?.line1,
-        line2: event.address?.line2,
-        postal_code: event.address?.postal_code,
-        country: event.address?.country,
-      }
-    : null,
-  currency: event?.currency,
-  ticket_currency: event?.ticket_currency,
-  ticket_types: Array.isArray(event?.ticket_types)
-    ? event.ticket_types.map(sanitizeTicketType)
-    : event?.ticket_types,
-  ticketTypes: Array.isArray(event?.ticketTypes)
-    ? event.ticketTypes.map(sanitizeTicketType)
-    : event?.ticketTypes,
-  ticket_types_summary: Array.isArray(event?.ticket_types_summary)
-    ? event.ticket_types_summary.map(sanitizeTicketType)
-    : event?.ticket_types_summary,
-});
+  return [];
+};
 
-const sanitizePayload = (payload) => {
-  if (!payload) return payload;
+const getEventFromPayload = (payload, eventId) => {
+  const events = getEventsFromPayload(payload);
 
-  if (Array.isArray(payload)) {
-    return payload.map(sanitizeEvent);
+  if (events.length === 0) return null;
+  if (!eventId) return events[0];
+
+  return (
+    events.find((event) => String(event?.id || event?.event_id || event?.pk) === String(eventId)) ||
+    events[0]
+  );
+};
+
+const getTicketsFromEvent = (event) =>
+  event?.ticket_types || event?.ticketTypes || event?.tickets || event?.ticket_types_summary || [];
+
+const getLocalizedValue = (translations, locale, key) => {
+  const localizedData = translations?.[locale] || translations?.en || translations?.de || {};
+
+  return localizedData?.[key];
+};
+
+const resolvePrice = (ticket) => {
+  if (ticket?.price_cents || ticket?.price_in_cents) {
+    return (ticket.price_cents || ticket.price_in_cents) / 100;
   }
 
-  if (payload.data) {
-    if (Array.isArray(payload.data)) {
-      return { data: payload.data.map(sanitizeEvent) };
-    }
-    if (payload.data?.id || payload.data?.event_id) {
-      return { data: sanitizeEvent(payload.data) };
-    }
+  const priceValue = ticket?.price ?? ticket?.amount ?? ticket?.unit_price ?? null;
+  if (typeof priceValue === 'string') {
+    const parsed = parseFloat(priceValue);
+    return Number.isNaN(parsed) ? null : parsed;
   }
 
-  if (Array.isArray(payload.events)) {
-    return { events: payload.events.map(sanitizeEvent) };
+  return priceValue;
+};
+
+const formatDate = (value) => {
+  if (!value) return null;
+  const parsed = new Date(value);
+  if (Number.isNaN(parsed.getTime())) return null;
+
+  return new Intl.DateTimeFormat('de-DE', {
+    day: 'numeric',
+    month: 'short',
+    year: 'numeric',
+  }).format(parsed);
+};
+
+const resolveEventDateRange = (event) => {
+  const start = event?.starts_at || event?.start_time || event?.start_date || event?.start;
+  const end = event?.ends_at || event?.end_time || event?.end_date || event?.end;
+  const startLabel = formatDate(start);
+  const endLabel = formatDate(end);
+
+  if (startLabel && endLabel) {
+    return `${startLabel} - ${endLabel}`;
   }
 
-  if (payload.id || payload.event_id) {
-    return sanitizeEvent(payload);
-  }
+  return startLabel || endLabel || DEFAULT_EVENT.dateRange;
+};
 
-  return payload;
+const normalizeTickets = (rawTickets, currency, locale = 'de') =>
+  rawTickets
+    .map((ticket, index) => {
+      const salesStart =
+        ticket?.visible_start ||
+        ticket?.sales_start_date ||
+        ticket?.salesStart ||
+        ticket?.start_date;
+      const salesEnd =
+        ticket?.visible_end || ticket?.sales_end_date || ticket?.salesEnd || ticket?.end_date;
+      const startDate = salesStart ? new Date(salesStart) : null;
+      const endDate = salesEnd ? new Date(salesEnd) : null;
+      const now = new Date();
+      const withinSalesWindow = (!startDate || startDate <= now) && (!endDate || endDate >= now);
+      const ticketLimit = ticket?.ticket_limit;
+      const ticketsSold = ticket?.tickets_sold ?? 0;
+      const isSoldOut =
+        ticket?.sold_out ||
+        ticket?.is_sold_out ||
+        ticket?.is_temporarily_sold_out ||
+        ticket?.amount_left === 0 ||
+        ticket?.remaining === 0 ||
+        (ticketLimit !== null &&
+          ticketLimit !== undefined &&
+          ticket?.tickets_sold !== undefined &&
+          ticketsSold >= ticketLimit);
+      const isOnSale =
+        ticket?.is_on_sale ?? ticket?.on_sale ?? ticket?.available ?? withinSalesWindow;
+      const title =
+        getLocalizedValue(ticket?.translations, locale, 'title') ||
+        ticket?.title ||
+        ticket?.name ||
+        ticket?.label;
+      const description =
+        getLocalizedValue(ticket?.translations, locale, 'body') ||
+        ticket?.description ||
+        ticket?.details ||
+        '';
+      const remainingCount =
+        ticket?.amount_left ??
+        ticket?.remaining ??
+        (ticketLimit !== null && ticketLimit !== undefined ? ticketLimit - ticketsSold : null);
+
+      return {
+        id: ticket?.uuid || ticket?.id || ticket?.pk || `ticket-${index}`,
+        title,
+        description,
+        price: resolvePrice(ticket),
+        currency: ticket?.currency || currency || DEFAULT_EVENT.currency,
+        isSoldOut: Boolean(isSoldOut),
+        isOnSale: Boolean(isOnSale),
+        amountLeft:
+          remainingCount === null || remainingCount === undefined
+            ? null
+            : Math.max(0, remainingCount),
+        salesEnd: salesEnd || null,
+      };
+    })
+    .filter((ticket) => ticket.title);
+
+const buildSnapshot = (event, locale, fallbackCheckoutUrl) => {
+  const eventTitle =
+    getLocalizedValue(event?.translations, locale, 'title') ||
+    event?.title ||
+    event?.name ||
+    DEFAULT_EVENT.title;
+  const eventLocation =
+    getLocalizedValue(event?.translations, locale, 'venue') ||
+    event?.venue ||
+    event?.location ||
+    event?.city ||
+    event?.address?.city ||
+    DEFAULT_EVENT.location;
+  const eventCurrency = event?.currency || event?.ticket_currency || DEFAULT_EVENT.currency;
+  const checkoutUrl =
+    event?.buy_tickets_url ||
+    event?.url ||
+    event?.public_url ||
+    event?.event_full_url ||
+    event?.checkout_url ||
+    event?.checkoutUrl ||
+    fallbackCheckoutUrl ||
+    '';
+
+  return {
+    event: {
+      title: eventTitle,
+      dateRange: resolveEventDateRange(event),
+      location: eventLocation,
+      currency: eventCurrency,
+      checkoutUrl,
+    },
+    tickets: normalizeTickets(getTicketsFromEvent(event), eventCurrency, locale),
+    updatedAt: new Date().toISOString(),
+  };
 };
 
 export default async function handler(req, res) {
-  // --- CORS: browsers enforce this, other sites cannot call our proxy via JS ---
-  const allowedOrigins = [
-    process.env.GATSBY_SITE_URL,
-    process.env.URL,
-    'http://localhost:8000',
-    'http://localhost:9000',
-  ].filter(Boolean);
-
-  const requestOrigin = req.headers.origin || '';
-  const matchedOrigin = allowedOrigins.find((o) => requestOrigin === o);
-  res.setHeader('Access-Control-Allow-Origin', matchedOrigin || allowedOrigins[0] || '');
-  res.setHeader('Access-Control-Allow-Methods', 'GET');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-  res.setHeader('Access-Control-Max-Age', '86400');
-
-  if (req.method === 'OPTIONS') {
-    res.status(204).end();
-    return;
-  }
-
   if (req.method !== 'GET') {
     res.status(405).json({ error: 'Method not allowed' });
     return;
@@ -168,6 +212,7 @@ export default async function handler(req, res) {
   const seriesId = process.env.GATSBY_FIENTA_SERIES_ID;
   const locale = process.env.GATSBY_FIENTA_LOCALE || 'de';
   const apiKey = process.env.FIENTA_API_KEY;
+  const fallbackCheckoutUrl = process.env.GATSBY_FIENTA_EVENT_URL || '';
 
   const searchParams = new URLSearchParams();
   if (locale) searchParams.set('locale', locale);
@@ -186,8 +231,6 @@ export default async function handler(req, res) {
   const privateDetailUrl = eventId
     ? `${privateEventsUrl}/${eventId}${queryString ? `?${queryString}` : ''}`
     : '';
-
-  // Ticket-types endpoint (requires API key)
   const ticketTypesUrl = eventId ? `${baseUrl}/events/${eventId}/ticket-types` : '';
 
   const headersList = apiKey
@@ -218,25 +261,21 @@ export default async function handler(req, res) {
     return;
   }
 
-  // Fetch ticket types separately if we have an API key and event ID
+  const event = getEventFromPayload(eventPayload, eventId);
+  if (!event) {
+    res.status(502).json({ error: 'Fienta event not found' });
+    return;
+  }
+
   if (apiKey && ticketTypesUrl) {
     const ticketTypesPayload = await fetchJson(ticketTypesUrl, headersList);
-    if (ticketTypesPayload && !ticketTypesPayload.error && ticketTypesPayload.data) {
-      // Merge ticket types into event data
-      if (eventPayload.data) {
-        eventPayload.data.ticket_types = ticketTypesPayload.data;
-      } else if (Array.isArray(eventPayload.events)) {
-        // If it's a list, add to the matching event
-        const matchingEvent = eventPayload.events.find((e) => String(e.id) === String(eventId));
-        if (matchingEvent) {
-          matchingEvent.ticket_types = ticketTypesPayload.data;
-        }
-      }
+    if (ticketTypesPayload && !ticketTypesPayload.error && Array.isArray(ticketTypesPayload.data)) {
+      event.ticket_types = ticketTypesPayload.data;
     }
   }
 
-  res.setHeader('Cache-Control', 's-maxage=60, stale-while-revalidate=300');
+  res.setHeader('Cache-Control', 's-maxage=300, stale-while-revalidate=3600');
   res.setHeader('X-Content-Type-Options', 'nosniff');
   res.setHeader('X-Frame-Options', 'DENY');
-  res.status(200).json(sanitizePayload(eventPayload));
+  res.status(200).json(buildSnapshot(event, locale, fallbackCheckoutUrl));
 }
