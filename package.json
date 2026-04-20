@@ -35,7 +35,7 @@
     "@mui/material": "^7.3.6",
     "axios": "1.15.1",
     "clsx": "^2.1.1",
-    "dompurify": "^3.3.1",
+    "dompurify": "3.4.0",
     "framer-motion": "^12.23.26",
     "gatsby-plugin-image": "^3.15.0",
     "jsdom": "^27.3.0",
@@ -89,12 +89,27 @@
     "prettier-plugin-tailwindcss": "^0.7.2"
   },
   "overrides": {
+    "@parcel/reporter-dev-server": "2.16.4",
+    "ajv@6": "6.14.0",
+    "ajv@8": "8.18.0",
+    "brace-expansion": "1.1.13",
     "cookie": "0.7.2",
     "flatted": "3.4.2",
+    "follow-redirects": "1.16.0",
     "immutable": "3.8.3",
     "lodash": "4.18.1",
     "minimatch@3": "3.1.4",
-    "tmp": "0.2.5"
+    "multer": "2.1.1",
+    "path-to-regexp@0": "0.1.13",
+    "picomatch@2": "2.3.2",
+    "picomatch@4": "4.0.4",
+    "qs": "6.14.2",
+    "socket.io-parser": "4.2.6",
+    "svgo": "2.8.1",
+    "tmp": "0.2.5",
+    "webpack": "5.104.1",
+    "yaml@1": "1.10.3",
+    "yaml@2": "2.8.3"
   },
   "keywords": [
     "react",
