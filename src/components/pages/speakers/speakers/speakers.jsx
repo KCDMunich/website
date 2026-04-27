@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Github, Twitter, Linkedin, Globe, Youtube } from 'lucide-react';
 
 // === API-URL für die Speaker Page ===
-const scriptUrl = 'https://sessionize.com/api/v2/px1o0jp3/view/Speakers';
+const scriptUrl = 'https://sessionize.com/api/v2/1yvxke5i/view/Speakers';
 
 // Hilfsfunktion für Company
 const findCompanyInfo = (speaker) => {
@@ -41,9 +41,7 @@ const Dialog = ({ isOpen, onClose, children }) => {
             />
           </svg>
         </button>
-        <div className="max-h-[80vh] overflow-y-auto">
-          {children}
-        </div>
+        <div className="max-h-[80vh] overflow-y-auto">{children}</div>
       </div>
     </div>
   );
@@ -58,7 +56,12 @@ const SpeakerCard = ({ speaker, onClick }) => {
   return (
     <div
       onClick={onClick}
-      onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onClick?.(); } }}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          onClick?.();
+        }
+      }}
       role="button"
       tabIndex={0}
       className="bg-white rounded-xl overflow-hidden shadow-lg transform hover:-translate-y-2 transition-transform duration-300 group cursor-pointer h-full flex flex-col"
@@ -113,10 +116,11 @@ const SpeakerDialog = ({ speaker }) => {
   const company = findCompanyInfo(speaker);
 
   const validSessions = Array.isArray(speaker.sessions)
-    ? speaker.sessions.filter(session =>
-        typeof session === 'object' &&
-        typeof session.id === 'number' &&
-        typeof session.name === 'string'
+    ? speaker.sessions.filter(
+        (session) =>
+          typeof session === 'object' &&
+          typeof session.id === 'number' &&
+          typeof session.name === 'string'
       )
     : [];
 
@@ -210,8 +214,7 @@ const Speakers = () => {
   const totalPages = Math.ceil(speakerData.length / speakersPerPage);
 
   return (
-    <div className="container mx-auto px-4 py-12 sm:py-20" style={{marginBottom: "2rem"}}>
-
+    <div className="container mx-auto px-4 py-12 sm:py-20" style={{ marginBottom: '2rem' }}>
       {speakerData.length === 0 ? (
         <div className="flex h-32 items-center justify-center">
           <p className="text-gray-600 text-lg">Loading...</p>
@@ -234,7 +237,7 @@ const Speakers = () => {
                 <button
                   key={i}
                   onClick={() => setCurrentPage(i + 1)}
-                  className={`rounded-md px-2 sm:px-3 py-1 text-xs sm:text-sm transition-colors duration-200 
+                  className={`rounded-md px-2 sm:px-3 py-1 text-xs sm:text-sm transition-colors duration-200
                     ${
                       currentPage === i + 1
                         ? 'bg-[#283058] text-white'

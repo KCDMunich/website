@@ -56,13 +56,7 @@ const ITEMS = [
     position: 'Product Manager & Software Engineer - white duck',
     photo: Suad,
     url: 'https://www.linkedin.com/in/suadwolgram/',
-  },
-  {
-    name: 'Tom Uhlig',
-    position: 'Consultant - Liquid Reply',
-    photo: TomPhoto,
-    url: 'https://www.linkedin.com/in/tom-uhlig/',
-  },
+  }
 ];
 
 const LOGOS = [

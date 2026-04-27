@@ -140,8 +140,8 @@ const ScheduleTeaser = () => {
       className="safe-paddings py-24 text-slate-900 lg:py-20 md:py-16 sm:py-12"
     >
       <div className="container">
-        <div className="flex items-stretch justify-between gap-20 lg:gap-16 md:flex-col md:items-stretch md:gap-12">
-          <div className="max-w-[480px] flex-1 text-left md:w-full md:max-w-none">
+        <div className="flex items-stretch justify-between gap-14 xl:gap-12 lg:gap-10 md:flex-col md:items-stretch md:gap-12">
+          <div className="max-w-[560px] flex-[0.9] text-left md:w-full md:max-w-none md:flex-auto">
             <h2 className="text-5xl font-bold leading-tight text-primary-1 md:text-4xl sm:text-3xl">
               Replay past Sessions
             </h2>
@@ -157,7 +157,7 @@ const ScheduleTeaser = () => {
             </div>
           </div>
 
-          <div className="flex-1 md:w-full md:max-w-none">
+          <div className="min-w-0 flex-[1.1] md:w-full md:max-w-none md:flex-auto">
             <div className="h-full rounded-2xl border border-slate-200 bg-[#f8fafc]/80 p-8 lg:p-6">
               <div className="flex flex-wrap items-center justify-between gap-3">
                 <div>

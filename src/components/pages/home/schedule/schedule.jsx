@@ -3,8 +3,8 @@ import ScheduleCard from '../../schedule/schedule/ScheduleCard';
 
 import './schedule.css';
 
-const scriptUrl = 'https://sessionize.com/api/v2/px1o0jp3/view/GridSmart';
-const speakerURL = 'https://sessionize.com/api/v2/px1o0jp3/view/Speakers';
+const scriptUrl = 'https://sessionize.com/api/v2/1yvxke5i/view/GridSmart';
+const speakerURL = 'https://sessionize.com/api/v2/1yvxke5i/view/Speakers';
 
 const TITLE = 'Schedule';
 const DESCRIPTION =
@@ -32,7 +32,7 @@ const convertSessionsToEvents = (data) => {
     day.rooms.forEach((room) => {
       const filteredSessions = room.sessions.filter((session) => {
         return (
-          session.status === "Accepted" &&
+          session.status === 'Accepted' &&
           session.isInformed === true &&
           session.isConfirmed === true &&
           !session.isServiceSession
@@ -92,7 +92,7 @@ const Schedule = () => {
         const allEvents = convertSessionsToEvents(eventsData);
 
         // Filtere nach gewünschten Typen
-        const filteredEvents = allEvents.filter(event =>
+        const filteredEvents = allEvents.filter((event) =>
           VISIBLE_EVENT_TYPES.includes(event.type)
         );
 
@@ -111,7 +111,10 @@ const Schedule = () => {
   }, []);
 
   return (
-    <section className="safe-paddings relative bg-white pb-20 pt-20 lg:pb-32 md:py-24 sm:py-16" id="agenda">
+    <section
+      className="safe-paddings relative bg-white pb-20 pt-20 lg:pb-32 md:py-24 sm:py-16"
+      id="agenda"
+    >
       <div className="container">
         <div className="mx-auto max-w-7xl">
           <div className="grid grid-cols-2 items-start gap-12 sm:grid-cols-1 xs:grid-cols-1">
@@ -119,7 +122,7 @@ const Schedule = () => {
               <h2 className="section-title">{TITLE}</h2>
               <p className="mb-8 text-lg leading-relaxed text-slate-600">{DESCRIPTION}</p>
               <div className="mb-8 flex flex-col gap-4 sm:flex-row">
-              {/*
+                {/*
   <div className="flex items-center gap-2">
     <span className="inline-flex items-center rounded-full border border-slate-300 px-3 py-1 text-sm">
       <svg
@@ -190,16 +193,16 @@ const Schedule = () => {
                     endTime={event.endTime}
                     duration={`${event.duration} min`}
                     title={event.title}
-                    speakers={event.speakers?.map(speaker => ({
+                    speakers={event.speakers?.map((speaker) => ({
                       name: speaker.name,
-                      avatar: findSpeakerProfile(speaker.id)
+                      avatar: findSpeakerProfile(speaker.id),
                     }))}
                     location={event.room}
                     type={event.type}
                     isFavorite={true}
                     isLive={false}
                     onFavoriteClick={() => {}}
-                    onClick={() => window.location.href = '/schedule'}
+                    onClick={() => (window.location.href = '/schedule')}
                   />
                 ))
               )}
