@@ -3,7 +3,7 @@ import LINKS from 'constants/links.js';
 const MENUS = {
   header: [
     { text: 'Schedule', ...LINKS.schedule },
-    // { text: 'Speakers', ...LINKS.speakers },
+    { text: 'Speakers', ...LINKS.speakers },
     { text: 'Sponsors', ...LINKS.sponsors },
     {
       text: 'Gallery',
@@ -23,7 +23,7 @@ const MENUS = {
   mobile: [
     { text: 'Schedule', ...LINKS.schedule },
     // { text: 'Workshops', ...LINKS.workshops },
-    // { text: 'Speakers', ...LINKS.speakers },
+    { text: 'Speakers', ...LINKS.speakers },
     { text: 'Sponsors', ...LINKS.sponsors },
     { text: 'Gallery 2024', ...LINKS.gallery2024 },
     { text: 'Gallery 2025', ...LINKS.gallery2025 },

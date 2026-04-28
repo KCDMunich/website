@@ -1,14 +1,15 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 
-import Hero from 'components/pages/home/hero';
-import HotelList from 'components/pages/home/hotels';
 import About from 'components/pages/home/about';
 import Expect from 'components/pages/home/expect';
-import Sponsors from 'components/pages/home/sponsors';
+import Hero from 'components/pages/home/hero';
+import HotelList from 'components/pages/home/hotels';
 import ScheduleTeaser from 'components/pages/home/schedule-teaser';
-import Venue from 'components/pages/home/venue';
+import Speakers from 'components/pages/home/speakers';
+import Sponsors from 'components/pages/home/sponsors';
 import Ticketing from 'components/pages/home/ticketing';
+import Venue from 'components/pages/home/venue';
 import Layout from 'components/shared/layout';
 import SEO from 'components/shared/seo';
 
@@ -19,16 +20,12 @@ const HomePage = () => (
     <Ticketing />
     <Expect />
     <ScheduleTeaser />
+    <Speakers />
     <Sponsors />
     <Venue />
     <HotelList />
   </Layout>
 );
-
-/*  
-<Speakers />
-<Schedule />
-*/
 
 export default HomePage;
 
