@@ -545,7 +545,7 @@ const Schedule = ({ variant = 'default' }) => {
   const roomHeaderLabels = {
     Main: 'Main Stage - Wien/Versailles',
     Side: 'Side Stage - Italien',
-    Workshops: 'Workshop - Danzig',
+    Workshops: 'Workshop',
     'Main Stage': 'Main Stage - Wien/Versailles',
     'Side Stage': 'Side Stage - Italien',
   };

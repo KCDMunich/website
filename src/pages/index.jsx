@@ -19,8 +19,8 @@ const HomePage = () => (
     <About />
     <Ticketing />
     <Expect />
-    <ScheduleTeaser />
     <Speakers />
+    <ScheduleTeaser />
     <Sponsors />
     <Venue />
     <HotelList />
