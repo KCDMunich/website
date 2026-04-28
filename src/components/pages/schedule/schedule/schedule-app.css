@@ -313,6 +313,11 @@
   color: #0f766e;
 }
 
+.schedule-app-type-keynote {
+  background: rgba(139, 92, 246, 0.15);
+  color: #6d28d9;
+}
+
 .schedule-app-type-sponsor {
   background: rgba(234, 179, 8, 0.2);
   color: #92400e;

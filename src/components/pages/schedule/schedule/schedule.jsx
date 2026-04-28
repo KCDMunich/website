@@ -26,6 +26,29 @@ const sponsorSessionIds = [
 
 const workshopSessionIds = ['835091', '857417', '858404', '862527', '881898', '898401'];
 
+const sessionFormatCategoryNames = ['session format', 'session type'];
+
+const hasSessionFormat = (session, formatName) => {
+  if (!session?.categories?.length) {
+    return false;
+  }
+
+  return session.categories.some((category) => {
+    if (!sessionFormatCategoryNames.includes(category.name?.toLowerCase())) {
+      return false;
+    }
+
+    return category.categoryItems?.some(
+      (item) => item.name?.toLowerCase() === formatName.toLowerCase()
+    );
+  });
+};
+
+const getEventTypeLabel = (type) => {
+  if (type === 'sponsor') return 'Sponsor Talk';
+  return type.charAt(0).toUpperCase() + type.slice(1);
+};
+
 const getRecordingMeta = (url) => {
   if (!url) {
     return { url: null, thumbnail: null };
@@ -163,6 +186,7 @@ const Schedule = ({ variant = 'default' }) => {
 
   const determineEventType = (room, session) => {
     if (session && session.isServiceSession) return 'service';
+    if (hasSessionFormat(session, 'Keynote')) return 'keynote';
     if (sponsorSessionIds.includes(String(session.id))) return 'sponsor';
     if (workshopSessionIds.includes(String(session.id))) return 'workshop';
     if (room.toLowerCase().includes('workshop')) return 'workshop';
@@ -305,7 +329,7 @@ const Schedule = ({ variant = 'default' }) => {
                   <p>
                     <strong>Session Type</strong>
                     <br />
-                    {event.type.charAt(0).toUpperCase() + event.type.slice(1)} Session
+                    {getEventTypeLabel(event.type)}
                   </p>
                 </div>
 
@@ -740,7 +764,7 @@ const Schedule = ({ variant = 'default' }) => {
                       >
                         <div className="schedule-app-card-header">
                           <span className={`schedule-app-type schedule-app-type-${event.type}`}>
-                            {event.type}
+                            {getEventTypeLabel(event.type)}
                           </span>
                           {isLiveEvent && (
                             <span className="schedule-app-live">

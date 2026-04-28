@@ -531,6 +531,11 @@
   color: #0f766e;
 }
 
+.schedule-card-type-keynote {
+  background-color: rgba(139, 92, 246, 0.15);
+  color: #6d28d9;
+}
+
 .schedule-card-type-sponsor {
   background-color: rgba(234, 179, 8, 0.2);
   color: #92400e;
