@@ -4,7 +4,7 @@ import { Github, Twitter, Linkedin, Globe, Youtube } from 'lucide-react';
 // === HIER FLAG SETZEN ===
 const SHOW_FEATURED_ONLY = false; // <--- true = nur Featured, false = alle Speaker
 
-const scriptUrl = 'https://sessionize.com/api/v2/px1o0jp3/view/Speakers';
+const scriptUrl = 'https://sessionize.com/api/v2/1yvxke5i/view/Speakers';
 
 const preAnnouncedSpeakerIds = [
   'a2665c2b-13c9-4337-9c78-db85bca70e60',
@@ -291,7 +291,7 @@ const Speakers = () => {
                     <button
                       key={i}
                       onClick={() => setCurrentPage(i + 1)}
-                      className={`rounded-md px-2 sm:px-3 py-1 text-xs sm:text-sm transition-colors duration-200 
+                      className={`rounded-md px-2 sm:px-3 py-1 text-xs sm:text-sm transition-colors duration-200
                       ${
                         currentPage === i + 1
                           ? 'bg-[#283058] text-white'

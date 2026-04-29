@@ -8,6 +8,8 @@
   --schedule-border: rgba(9, 25, 34, 0.12);
   --schedule-shadow: none;
   --schedule-glow: none;
+  --schedule-hero-max-width: 1200px;
+  --schedule-content-max-width: 1480px;
 
   position: relative;
   width: 100%;
@@ -33,7 +35,7 @@
 
 .schedule-hero-content {
   position: relative;
-  max-width: 1200px;
+  max-width: var(--schedule-hero-max-width);
   margin: 0 auto;
   display: grid;
   gap: 2rem;
@@ -102,7 +104,7 @@
 .schedule-shell {
   position: relative;
   z-index: 1;
-  max-width: 1200px;
+  max-width: var(--schedule-content-max-width);
   margin: 0 auto;
 }
 
@@ -263,7 +265,7 @@
 /* Schedule Grid */
 .schedule-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(295px, 1fr));
   gap: 1.25rem;
   margin-top: 1.5rem;
   width: 100%;
@@ -527,6 +529,11 @@
 .schedule-card-type-workshop {
   background-color: rgba(5, 150, 105, 0.15);
   color: #0f766e;
+}
+
+.schedule-card-type-keynote {
+  background-color: rgba(139, 92, 246, 0.15);
+  color: #6d28d9;
 }
 
 .schedule-card-type-sponsor {

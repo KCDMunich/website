@@ -5,8 +5,8 @@ import './schedule.css';
 import './schedule-app.css';
 import ScheduleCard from './ScheduleCard';
 
-const scriptUrl = 'https://sessionize.com/api/v2/px1o0jp3/view/GridSmart';
-const speakerURL = 'https://sessionize.com/api/v2/px1o0jp3/view/Speakers';
+const scriptUrl = 'https://sessionize.com/api/v2/1yvxke5i/view/GridSmart';
+const speakerURL = 'https://sessionize.com/api/v2/1yvxke5i/view/Speakers';
 
 const sponsorSessionIds = [
   '954600',
@@ -25,6 +25,29 @@ const sponsorSessionIds = [
 ];
 
 const workshopSessionIds = ['835091', '857417', '858404', '862527', '881898', '898401'];
+
+const sessionFormatCategoryNames = ['session format', 'session type'];
+
+const hasSessionFormat = (session, formatName) => {
+  if (!session?.categories?.length) {
+    return false;
+  }
+
+  return session.categories.some((category) => {
+    if (!sessionFormatCategoryNames.includes(category.name?.toLowerCase())) {
+      return false;
+    }
+
+    return category.categoryItems?.some(
+      (item) => item.name?.toLowerCase() === formatName.toLowerCase()
+    );
+  });
+};
+
+const getEventTypeLabel = (type) => {
+  if (type === 'sponsor') return 'Sponsor Talk';
+  return type.charAt(0).toUpperCase() + type.slice(1);
+};
 
 const getRecordingMeta = (url) => {
   if (!url) {
@@ -95,7 +118,6 @@ const Schedule = ({ variant = 'default' }) => {
     return null;
   };
 
-
   const getReadableDate = (dateValue) => {
     if (!dateValue) return '';
     return new Date(dateValue).toLocaleDateString(undefined, {
@@ -164,6 +186,7 @@ const Schedule = ({ variant = 'default' }) => {
 
   const determineEventType = (room, session) => {
     if (session && session.isServiceSession) return 'service';
+    if (hasSessionFormat(session, 'Keynote')) return 'keynote';
     if (sponsorSessionIds.includes(String(session.id))) return 'sponsor';
     if (workshopSessionIds.includes(String(session.id))) return 'workshop';
     if (room.toLowerCase().includes('workshop')) return 'workshop';
@@ -231,8 +254,20 @@ const Schedule = ({ variant = 'default' }) => {
     if (!isOpen || !event) return null;
 
     return (
-      <div className="modal-overlay" role="presentation" onClick={onClose} onKeyDown={(e) => { if (e.key === 'Escape') onClose(); }}>
-        <div className="modal-content" role="dialog" aria-modal="true" onClick={(e) => e.stopPropagation()}>
+      <div
+        className="modal-overlay"
+        role="presentation"
+        onClick={onClose}
+        onKeyDown={(e) => {
+          if (e.key === 'Escape') onClose();
+        }}
+      >
+        <div
+          className="modal-content"
+          role="dialog"
+          aria-modal="true"
+          onClick={(e) => e.stopPropagation()}
+        >
           <button className="modal-close" onClick={onClose}>
             ×
           </button>
@@ -294,7 +329,7 @@ const Schedule = ({ variant = 'default' }) => {
                   <p>
                     <strong>Session Type</strong>
                     <br />
-                    {event.type.charAt(0).toUpperCase() + event.type.slice(1)} Session
+                    {getEventTypeLabel(event.type)}
                   </p>
                 </div>
 
@@ -534,7 +569,7 @@ const Schedule = ({ variant = 'default' }) => {
   const roomHeaderLabels = {
     Main: 'Main Stage - Wien/Versailles',
     Side: 'Side Stage - Italien',
-    Workshops: 'Workshop - Danzig',
+    Workshops: 'Workshop',
     'Main Stage': 'Main Stage - Wien/Versailles',
     'Side Stage': 'Side Stage - Italien',
   };
@@ -584,7 +619,6 @@ const Schedule = ({ variant = 'default' }) => {
     if (selectedType === 'all') return 'All Sessions';
     return roomHeaderLabels[selectedType] || selectedType;
   };
-
 
   return (
     <div className={`schedule-container${isApp ? ' schedule-container--app' : ''}`}>
@@ -643,63 +677,63 @@ const Schedule = ({ variant = 'default' }) => {
       <div className={`schedule-shell${isApp ? ' schedule-shell--app' : ''}`}>
         {/* --- Header: day tabs and filters --- */}
         {!isApp && (
-        <div className="schedule-header-row">
-          <div className="schedule-day-tabs">
-            <button
-              className={`schedule-day-btn ${selectedDay === 'monday' ? 'active' : ''}`}
-              onClick={() => setSelectedDay('monday')}
-            >
-              Monday
-            </button>
-            <button
-              className={`schedule-day-btn ${selectedDay === 'tuesday' ? 'active' : ''}`}
-              onClick={() => setSelectedDay('tuesday')}
-            >
-              Tuesday
-            </button>
-            {/* Favorites button with heart icon */}
-            <button
-              className={`schedule-favorite-tab-btn ${
-                selectedType === 'favorites' ? 'active' : ''
-              }`}
-              title="Show favorites only"
-              aria-label="Show favorites only"
-              onClick={() => setSelectedType(selectedType === 'favorites' ? 'all' : 'favorites')}
-            >
-              <svg
-                className="schedule-card-favorite-icon"
-                viewBox="0 0 24 24"
-                width="20"
-                height="20"
-                fill={selectedType === 'favorites' ? 'currentColor' : 'none'}
-                stroke="currentColor"
-                strokeWidth="2"
-                style={{ marginRight: 6 }}
-              >
-                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
-              </svg>
-              Favorites
-            </button>
-          </div>
-          <div className="schedule-filter-pills">
-            <button
-              className={`schedule-filter-pill ${selectedType === 'all' ? 'active' : ''}`}
-              onClick={() => setSelectedType('all')}
-            >
-              All rooms
-            </button>
-            {rooms.map((room) => (
+          <div className="schedule-header-row">
+            <div className="schedule-day-tabs">
               <button
-                key={room}
-                className={`schedule-filter-pill ${selectedType === room ? 'active' : ''}`}
-                onClick={() => setSelectedType(room)}
+                className={`schedule-day-btn ${selectedDay === 'monday' ? 'active' : ''}`}
+                onClick={() => setSelectedDay('monday')}
               >
-                {roomHeaderLabels[room] || room}
+                Monday
               </button>
-            ))}
-            <div className="filter-divider"></div>
+              <button
+                className={`schedule-day-btn ${selectedDay === 'tuesday' ? 'active' : ''}`}
+                onClick={() => setSelectedDay('tuesday')}
+              >
+                Tuesday
+              </button>
+              {/* Favorites button with heart icon */}
+              <button
+                className={`schedule-favorite-tab-btn ${
+                  selectedType === 'favorites' ? 'active' : ''
+                }`}
+                title="Show favorites only"
+                aria-label="Show favorites only"
+                onClick={() => setSelectedType(selectedType === 'favorites' ? 'all' : 'favorites')}
+              >
+                <svg
+                  className="schedule-card-favorite-icon"
+                  viewBox="0 0 24 24"
+                  width="20"
+                  height="20"
+                  fill={selectedType === 'favorites' ? 'currentColor' : 'none'}
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  style={{ marginRight: 6 }}
+                >
+                  <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+                </svg>
+                Favorites
+              </button>
+            </div>
+            <div className="schedule-filter-pills">
+              <button
+                className={`schedule-filter-pill ${selectedType === 'all' ? 'active' : ''}`}
+                onClick={() => setSelectedType('all')}
+              >
+                All rooms
+              </button>
+              {rooms.map((room) => (
+                <button
+                  key={room}
+                  className={`schedule-filter-pill ${selectedType === room ? 'active' : ''}`}
+                  onClick={() => setSelectedType(room)}
+                >
+                  {roomHeaderLabels[room] || room}
+                </button>
+              ))}
+              <div className="filter-divider"></div>
+            </div>
           </div>
-        </div>
         )}
 
         <div className="schedule-grid">
@@ -730,7 +764,7 @@ const Schedule = ({ variant = 'default' }) => {
                       >
                         <div className="schedule-app-card-header">
                           <span className={`schedule-app-type schedule-app-type-${event.type}`}>
-                            {event.type}
+                            {getEventTypeLabel(event.type)}
                           </span>
                           {isLiveEvent && (
                             <span className="schedule-app-live">
@@ -743,9 +777,7 @@ const Schedule = ({ variant = 'default' }) => {
                             className={`schedule-app-favorite ${
                               isFavorite ? 'schedule-app-favorite--active' : ''
                             }`}
-                            aria-label={
-                              isFavorite ? 'Remove from favorites' : 'Add to favorites'
-                            }
+                            aria-label={isFavorite ? 'Remove from favorites' : 'Add to favorites'}
                             onClick={(e) => {
                               e.stopPropagation();
                               toggleFavorite(event.id);
@@ -767,10 +799,7 @@ const Schedule = ({ variant = 'default' }) => {
                           {event.speakers?.slice(0, 3).map((speaker) => (
                             <div key={speaker.id} className="schedule-app-speaker">
                               {findSpeakerProfile(speaker.id) && (
-                                <img
-                                  src={findSpeakerProfile(speaker.id)}
-                                  alt={speaker.name}
-                                />
+                                <img src={findSpeakerProfile(speaker.id)} alt={speaker.name} />
                               )}
                               <span>{speaker.name}</span>
                             </div>
@@ -900,9 +929,7 @@ const Schedule = ({ variant = 'default' }) => {
               <div className="schedule-app-room-sheet__list">
                 <button
                   type="button"
-                  className={`schedule-app-room-sheet__live ${
-                    showLiveOnly ? 'is-active' : ''
-                  }`}
+                  className={`schedule-app-room-sheet__live ${showLiveOnly ? 'is-active' : ''}`}
                   onClick={() => {
                     setShowLiveOnly((prev) => !prev);
                     setIsRoomSheetOpen(false);
@@ -933,9 +960,7 @@ const Schedule = ({ variant = 'default' }) => {
             <div className="schedule-app-bottom-bar__inner">
               <button
                 type="button"
-                className={`schedule-app-bottom-btn ${
-                  selectedDay === 'monday' ? 'is-active' : ''
-                }`}
+                className={`schedule-app-bottom-btn ${selectedDay === 'monday' ? 'is-active' : ''}`}
                 onClick={() => setSelectedDay('monday')}
               >
                 Mon
