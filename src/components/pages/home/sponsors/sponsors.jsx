@@ -9,6 +9,7 @@ import ESolutionsLogo from 'icons/e-solutions.png';
 import GermanTechJobs from 'icons/germantech.svg';
 import KubeEventsLogo from 'icons/kubeevents_logo.svg';
 import LearnCubeLogo from 'icons/learncube.webp';
+import itSchulungen from 'icons/it_Schulungen.png';
 import Liquid from 'icons/liquid.png';
 import Tcslabs from 'icons/tsclabs-dark-large.webp';
 import Whiteduck from 'icons/whiteduck.png';
@@ -17,6 +18,7 @@ import Steadforce from 'icons/steadforce_logo.png';
 import Metalstack from 'icons/metalstack.svg';
 
 import './sponsor.css';
+import { iteratee } from 'lodash';
 
 const SHOW_CURRENT_SPONSORS = true;
 
@@ -120,6 +122,13 @@ const sponsorsList = [
     url: 'https://germantechjobs.de/',
     tier: 'partner',
     logoRatio: 1.6,
+  },
+  {
+    name: 'IT-Schulungen',
+    icon: itSchulungen,
+    url: 'https://www.it-schulungen.com/',
+    tier: 'partner',
+    logoRatio: 4,
   },
   {
     name: 'kube Events',
