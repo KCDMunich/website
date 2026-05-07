@@ -81,9 +81,9 @@ const sponsorsList = [
     icon: Broadcom,
     url: 'https://www.broadcom.com/',
     tier: 'platinum',
-    logoRatio: 4,
+    logoRatio: 2,
     logoHeight: 95,
-    logoMaxWidth: 290,
+    logoMaxWidth: 160,
   },
   {
     name: 'Dash0',
