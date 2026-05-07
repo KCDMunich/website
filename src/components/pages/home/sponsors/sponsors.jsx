@@ -18,7 +18,6 @@ import Steadforce from 'icons/steadforce_logo.png';
 import Metalstack from 'icons/metalstack.svg';
 
 import './sponsor.css';
-import { iteratee } from 'lodash';
 
 const SHOW_CURRENT_SPONSORS = true;
 

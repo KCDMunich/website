@@ -209,6 +209,15 @@ const Schedule = ({ variant = 'default' }) => {
     return speaker ? speaker.profilePicture : null;
   };
 
+  const findSpeakerCompany = (speakerId) => {
+    const speaker = speakerData.find((entry) => entry.id === speakerId);
+    const companyAnswer = speaker?.questionAnswers?.find(
+      (questionAnswer) => questionAnswer.question?.toLowerCase() === 'company'
+    );
+
+    return companyAnswer?.answer || '';
+  };
+
   const filterEventsByDay = (events) => {
     const gridDay = getDateForSelectedDay();
     if (!gridDay) return [];
@@ -248,6 +257,7 @@ const Schedule = ({ variant = 'default' }) => {
     favorites,
     toggleFavorite,
     findSpeakerProfile,
+    findSpeakerCompany,
     onClose,
     displayRoom,
   }) => {
@@ -337,6 +347,8 @@ const Schedule = ({ variant = 'default' }) => {
                   <h3>Speakers</h3>
                   {event.speakers?.map((speaker) => {
                     const speakerProfile = findSpeakerProfile(speaker.id);
+                    const speakerCompany = findSpeakerCompany(speaker.id);
+
                     return (
                       <div key={speaker.id} className="speaker-detail">
                         {speakerProfile && (
@@ -346,8 +358,9 @@ const Schedule = ({ variant = 'default' }) => {
                             className="speaker-avatar-large"
                           />
                         )}
-                        <div>
+                        <div className="speaker-copy">
                           <h4>{speaker.name}</h4>
+                          {speakerCompany && <p className="speaker-company">{speakerCompany}</p>}
                         </div>
                       </div>
                     );
@@ -490,6 +503,7 @@ const Schedule = ({ variant = 'default' }) => {
     favorites: PropTypes.arrayOf(PropTypes.string).isRequired,
     toggleFavorite: PropTypes.func.isRequired,
     findSpeakerProfile: PropTypes.func.isRequired,
+    findSpeakerCompany: PropTypes.func.isRequired,
     onClose: PropTypes.func.isRequired,
     displayRoom: PropTypes.string.isRequired,
   };
@@ -1001,6 +1015,7 @@ const Schedule = ({ variant = 'default' }) => {
         favorites={favorites}
         toggleFavorite={toggleFavorite}
         findSpeakerProfile={findSpeakerProfile}
+        findSpeakerCompany={findSpeakerCompany}
         displayRoom={
           selectedEvent ? roomHeaderLabels[selectedEvent.room] || selectedEvent.room : ''
         }
