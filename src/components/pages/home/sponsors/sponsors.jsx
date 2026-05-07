@@ -18,7 +18,6 @@ import Steadforce from 'icons/steadforce_logo.png';
 import Metalstack from 'icons/metalstack.svg';
 
 import './sponsor.css';
-import { iteratee } from 'lodash';
 
 const SHOW_CURRENT_SPONSORS = true;
 
@@ -82,9 +81,9 @@ const sponsorsList = [
     icon: Broadcom,
     url: 'https://www.broadcom.com/',
     tier: 'platinum',
-    logoRatio: 4,
+    logoRatio: 2,
     logoHeight: 95,
-    logoMaxWidth: 290,
+    logoMaxWidth: 160,
   },
   {
     name: 'Dash0',

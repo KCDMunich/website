@@ -989,6 +989,19 @@
   box-shadow: none;
 }
 
+.speaker-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.speaker-company {
+  margin: 0;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #5f6b73;
+}
+
 .speaker-detail h4 {
   font-size: 1rem;
   font-weight: 600;
