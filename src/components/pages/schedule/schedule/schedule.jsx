@@ -44,6 +44,20 @@ const hasSessionFormat = (session, formatName) => {
   });
 };
 
+const isSponsorSession = (session) => sponsorSessionIds.includes(String(session?.id));
+
+const isWorkshopSession = (room, session) => {
+  const normalizedRoomName = room?.toLowerCase() || '';
+
+  return (
+    hasSessionFormat(session, 'Workshop') ||
+    workshopSessionIds.includes(String(session?.id)) ||
+    normalizedRoomName.includes('workshop')
+  );
+};
+
+const getEventRoom = (room, session) => (isWorkshopSession(room, session) ? 'Workshops' : room);
+
 const getEventTypeLabel = (type) => {
   if (type === 'sponsor') return 'Sponsor Talk';
   return type.charAt(0).toUpperCase() + type.slice(1);
@@ -144,6 +158,7 @@ const Schedule = ({ variant = 'default' }) => {
 
         const roomEvents = filteredSessions.map((session) => {
           const recordingMeta = getRecordingMeta(session.recordingUrl);
+          const eventRoom = getEventRoom(room.name, session);
           const baseEvent = {
             id: session.id,
             title: session.title,
@@ -157,9 +172,9 @@ const Schedule = ({ variant = 'default' }) => {
               minute: '2-digit',
             }),
             duration: calculateDuration(session.startsAt, session.endsAt),
-            room: room.name,
+            room: eventRoom,
             originalRoom: room.name,
-            type: determineEventType(room.name, session),
+            type: determineEventType(eventRoom, session),
             speakers: session.speakers,
             start: session.startsAt,
             end: session.endsAt,
@@ -168,7 +183,6 @@ const Schedule = ({ variant = 'default' }) => {
             recordingThumbnail: recordingMeta.thumbnail,
           };
 
-          // Keep sessions in their original room
           return [baseEvent];
         });
         events.push(...roomEvents.flat());
@@ -187,9 +201,8 @@ const Schedule = ({ variant = 'default' }) => {
   const determineEventType = (room, session) => {
     if (session && session.isServiceSession) return 'service';
     if (hasSessionFormat(session, 'Keynote')) return 'keynote';
-    if (sponsorSessionIds.includes(String(session.id))) return 'sponsor';
-    if (workshopSessionIds.includes(String(session.id))) return 'workshop';
-    if (room.toLowerCase().includes('workshop')) return 'workshop';
+    if (isWorkshopSession(room, session)) return 'workshop';
+    if (isSponsorSession(session)) return 'sponsor';
     if (room.toLowerCase().includes('sponsor')) return 'sponsor';
     return 'talk';
   };
@@ -229,9 +242,8 @@ const Schedule = ({ variant = 'default' }) => {
   };
 
   const getRoomsForSelectedDay = () => {
-    const gridDay = getDateForSelectedDay();
-    if (!gridDay) return [];
-    return gridDay.rooms.map((room) => room.name);
+    const dayEvents = filterEventsByDay(events);
+    return [...new Set(dayEvents.map((event) => event.room))];
   };
 
   const isLive = (start, end) => {
@@ -546,7 +558,7 @@ const Schedule = ({ variant = 'default' }) => {
   useEffect(() => {
     setRooms(getRoomsForSelectedDay());
     // eslint-disable-next-line
-  }, [selectedDay, gridData]);
+  }, [selectedDay, events]);
 
   // Update current time every minute
   useEffect(() => {
@@ -606,15 +618,18 @@ const Schedule = ({ variant = 'default' }) => {
   }
 
   const isApp = variant === 'app';
+  const isDesktopSchedulePage = !isApp && !isMobile;
+  const activeSelectedType =
+    isDesktopSchedulePage && selectedType !== 'favorites' ? 'all' : selectedType;
 
   // Filter events for selected day and type
   let filteredEvents = filterEventsByDay(events);
-  if (selectedType === 'favorites') {
+  if (activeSelectedType === 'favorites') {
     filteredEvents = filteredEvents.filter((event) => favorites.includes(String(event.id)));
-  } else if (selectedType === 'all') {
+  } else if (activeSelectedType === 'all') {
     // no additional filtering needed
   } else {
-    filteredEvents = filteredEvents.filter((event) => event.room === selectedType);
+    filteredEvents = filteredEvents.filter((event) => event.room === activeSelectedType);
   }
   if (isApp && showLiveOnly) {
     filteredEvents = filteredEvents.filter((event) => isLive(event.start, event.end));
@@ -629,9 +644,9 @@ const Schedule = ({ variant = 'default' }) => {
 
   const getHeaderLabel = () => {
     if (showLiveOnly) return 'Live Now';
-    if (selectedType === 'favorites') return 'Favorites';
-    if (selectedType === 'all') return 'All Sessions';
-    return roomHeaderLabels[selectedType] || selectedType;
+    if (activeSelectedType === 'favorites') return 'Favorites';
+    if (activeSelectedType === 'all') return 'All Sessions';
+    return roomHeaderLabels[activeSelectedType] || activeSelectedType;
   };
 
   return (
@@ -657,8 +672,8 @@ const Schedule = ({ variant = 'default' }) => {
               <span className="schedule-hero-eyebrow">Schedule</span>
               <h1 className="schedule-hero-title">Plan your conference days</h1>
               <p className="schedule-hero-subtitle">
-                Browse talks, workshops, and service sessions. Filter by room and keep the sessions
-                you care about in one place.
+                Browse talks, workshops, and service sessions across all rooms, and keep the
+                sessions you care about in one place.
               </p>
               <div className="schedule-hero-tags">
                 <span>Talks</span>
@@ -708,18 +723,20 @@ const Schedule = ({ variant = 'default' }) => {
               {/* Favorites button with heart icon */}
               <button
                 className={`schedule-favorite-tab-btn ${
-                  selectedType === 'favorites' ? 'active' : ''
+                  activeSelectedType === 'favorites' ? 'active' : ''
                 }`}
                 title="Show favorites only"
                 aria-label="Show favorites only"
-                onClick={() => setSelectedType(selectedType === 'favorites' ? 'all' : 'favorites')}
+                onClick={() =>
+                  setSelectedType(activeSelectedType === 'favorites' ? 'all' : 'favorites')
+                }
               >
                 <svg
                   className="schedule-card-favorite-icon"
                   viewBox="0 0 24 24"
                   width="20"
                   height="20"
-                  fill={selectedType === 'favorites' ? 'currentColor' : 'none'}
+                  fill={activeSelectedType === 'favorites' ? 'currentColor' : 'none'}
                   stroke="currentColor"
                   strokeWidth="2"
                   style={{ marginRight: 6 }}
@@ -729,24 +746,26 @@ const Schedule = ({ variant = 'default' }) => {
                 Favorites
               </button>
             </div>
-            <div className="schedule-filter-pills">
-              <button
-                className={`schedule-filter-pill ${selectedType === 'all' ? 'active' : ''}`}
-                onClick={() => setSelectedType('all')}
-              >
-                All rooms
-              </button>
-              {rooms.map((room) => (
+            {isMobile && (
+              <div className="schedule-filter-pills">
                 <button
-                  key={room}
-                  className={`schedule-filter-pill ${selectedType === room ? 'active' : ''}`}
-                  onClick={() => setSelectedType(room)}
+                  className={`schedule-filter-pill ${selectedType === 'all' ? 'active' : ''}`}
+                  onClick={() => setSelectedType('all')}
                 >
-                  {roomHeaderLabels[room] || room}
+                  All rooms
                 </button>
-              ))}
-              <div className="filter-divider"></div>
-            </div>
+                {rooms.map((room) => (
+                  <button
+                    key={room}
+                    className={`schedule-filter-pill ${selectedType === room ? 'active' : ''}`}
+                    onClick={() => setSelectedType(room)}
+                  >
+                    {roomHeaderLabels[room] || room}
+                  </button>
+                ))}
+                <div className="filter-divider"></div>
+              </div>
+            )}
           </div>
         )}
 

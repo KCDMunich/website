@@ -1,364 +1,417 @@
----
-title: Privacy Policy
-slug: privacy-policy
----
+# Privacy Policy
 
 ## 1. Introduction
 
-The protection of your personal data is important to us. We process personal data solely in accordance with the EU General Data Protection Regulation (GDPR), the German Federal Data Protection Act (BDSG), and any other applicable data protection laws.
+The protection of your personal data is very important to us. We process personal data exclusively in accordance with the EU General Data Protection Regulation (GDPR), the German Federal Data Protection Act (BDSG), and other applicable legal provisions.
 
-This privacy policy provides information on the nature, scope and purposes of the processing of personal data on our website and in connection with our registered association's activities.
+In the following, we inform you about the nature, scope, and purpose of the processing of personal data on our website and within the context of our association’s activities.
 
-## 2. Data Controller
+---
 
-Förderverein Open Source, Cloud Native and Artificial Intelligence Bavaria e.V. (registered association under German law)  
+## 2. Controller
+
+**Förderverein Open Source, Cloud Native und Künstliche Intelligenz Bayern e.V.**  
 Adlzreiterstr. 8  
-83022 Rosenheim
+83022 Rosenheim  
+Germany  
 
-Represented by the Executive Board within the meaning of Section 26 of the German Civil Code (BGB):
+Represented by the Board in accordance with § 26 German Civil Code (BGB):
 
-- First Chair: Max Körbächer
-- Second Chair: Nico Meisenzahl
-- Treasurer: Markus Sümmchen
+- **Chairman:** Max Körbächer
+- **Vice Chairman:** Nico Meisenzahl
+- **Treasurer:** Markus Sümmchen
 
-Contact: [team@cloudnativesummit.de](mailto:team@cloudnativesummit.de)
+**Contact:** team@cloudnativesummit.de
+
+---
 
 ## 3. Data Protection Officer
 
-We have appointed a Data Protection Officer (DPO).
+We have appointed a Data Protection Officer.
 
-Contact: [team@cloudnativesummit.de](mailto:team@cloudnativesummit.de)
+**Contact:** team@cloudnativesummit.de
 
-## 4. Legal Bases for Data Processing
+---
 
-We process personal data, in particular, on the following legal bases:
+## 4. Legal Bases for Processing
 
-- Art. 6(1)(a) GDPR - consent
-- Art. 6(1)(b) GDPR - contract or pre-contractual measures
-- Art. 6(1)(c) GDPR - legal obligations
-- Art. 6(1)(f) GDPR - legitimate interests
+The processing of personal data is based in particular on:
 
-Where special categories of personal data within the meaning of Art. 9 GDPR are processed, the additional requirements of Art. 9 GDPR apply.
+- **Art. 6(1)(a) GDPR** – Consent
+- **Art. 6(1)(b) GDPR** – Contract or pre-contractual measures
+- **Art. 6(1)(c) GDPR** – Legal obligations
+- **Art. 6(1)(f) GDPR** – Legitimate interests
+
+For special categories of personal data, **Art. 9 GDPR** applies.
+
+---
 
 ## 5. Visiting Our Website
 
-### 5.1. Automatically Processed Technical Data
+### Hosting via Vercel
 
-When you merely visit our website, the following data is processed:
+Our website is hosted by:
+
+**Vercel Inc.**  
+440 N Barranca Ave #4133  
+Covina, CA 91723  
+USA  
+
+When you access our website, technically necessary data is automatically processed by Vercel’s servers, including:
 
 - IP address
-- Date and time of access
+- Date and time of the request
 - Browser type and version
 - Operating system
 - Referrer URL
+- Accessed pages/files
 
-This processing is technically necessary in order to ensure the security and stability of the website.
+This data is required to:
 
-### 5.2. Cookies
+- Provide the website
+- Deliver content, for example via Content Delivery Networks
+- Ensure system stability and security
+
+Processing is carried out within server log files and serves exclusively to ensure the secure and stable operation of the website.
+
+### Legal Basis
+
+Processing is based on our legitimate interest pursuant to **Art. 6(1)(f) GDPR** to provide a secure, high-performance and reliable website.
+
+### Data Processing Agreement
+
+Vercel may act as a data processor within the meaning of **Art. 28 GDPR**. Where required, appropriate contractual agreements have been concluded.
+
+### Third Country Transfers
+
+As Vercel is a US-based provider, data processing may take place outside the EU, particularly in the United States.
+
+Data transfers are carried out exclusively on the basis of appropriate safeguards, including:
+
+- EU Standard Contractual Clauses (SCCs)
+- Other legally permitted transfer mechanisms
+
+Access by US authorities cannot be completely excluded.
+
+### Data Retention
+
+Server log data is stored only as long as necessary for secure operation and is then automatically deleted.
+
+### Cookies
 
 We do not use cookies.
 
-### 5.3. Encryption
+### No Tracking or Analytics Tools
 
-This website uses SSL/TLS encryption to protect the transmission of data.
+We do not use any tracking or analytics tools, including:
 
-## 6. Processing of Personal Data by Target Group
+- Google Analytics
+- Web tracking services
+- User tracking or profiling
 
-### 6.1. Ticket Buyers / Event Participants
+No personal data is collected, stored or analysed for marketing or analytical purposes.
 
-#### 6.1.1. Ticket Sales via Fienta
+### Encryption
 
-Personal data processed:
+Our website uses SSL/TLS encryption to protect data transmission.
+
+---
+
+## 6. Processing of Personal Data by Data Subject Groups
+
+### 6.1 Ticket Buyers / Event Participants
+
+#### 6.1.1 Ticket Sales via Fienta
+
+**Processed data:**
 
 - Name
 - Email address
 - Phone number
-- Ticket type, price, time of purchase
+- Ticket type, price, purchase time
 - Payment status
 - IP address and technical metadata
 
-Purposes of processing:
+**Purposes:**
 
-- Processing the ticket purchase
-- Sending the tickets
-- Access control for the event
+- Processing ticket purchases
+- Sending tickets
+- Access control at the event
 
-Fienta acts as a processor pursuant to Art. 28 GDPR.
+Fienta acts as a processor pursuant to **Art. 28 GDPR**.
 
-#### 6.1.2. Payment Processing via Stripe
+#### 6.1.2 Payment Processing via Stripe
 
-Personal data processed by Stripe may include:
+**Stripe processes:**
 
 - Cardholder name
 - Email address
 - Billing address
-- Credit card or bank account details
+- Payment information
 - Transaction data
-- Stripe-specific cookies, where applicable
+- Potential Stripe cookies
 
-Purposes of processing:
+**Purposes:**
 
-- Processing the payment
+- Payment processing
 - Fraud prevention
-- Compliance requirements of the payment service provider
+- Compliance requirements
 
-Stripe may process and store certain personal data in the United States, subject to the applicable legal safeguards for third-country transfers.
+Data may be stored in the USA.
 
-#### 6.1.3. Conference Badges via Fredo (Ticketbutler)
+#### 6.1.3 Conference Badges via Fredo (Ticketbutler)
 
-For the creation and production of conference badges, we use the third-party provider Fredo (Ticketbutler).
-
-Personal data processed:
+**Processed data:**
 
 - Name
-- Company/organization (if provided)
+- Company/organization, if provided
 - Ticket category / participant type
-- Badge identifier (e.g., order or ticket number)
+- Badge identifier, for example ticket number
 
-Purposes of processing:
+**Purposes:**
 
-- Creating and printing conference badges
-- Organizing badge distribution at the event
+- Creating and printing badges
+- Managing badge distribution
 
-Fredo (Ticketbutler) acts as a processor pursuant to Art. 28 GDPR.
+Fredo (Ticketbutler) acts as a processor pursuant to **Art. 28 GDPR**.
 
-#### 6.1.4. Newsletter Subscription via Mailchimp
+#### 6.1.4 Newsletter Registration via Mailchimp
 
-When purchasing a ticket, participants may be automatically added to our newsletter.
+Participants may be automatically subscribed to our newsletter.
 
-Personal data processed:
+**Processed data:**
 
 - Email address
-- Name (optional)
-- IP address and time of subscription
+- Optional name
+- IP address and registration timestamp
 - Technical usage data
 
-Purposes of processing:
+**Purposes:**
 
-- Sending event-related information
-- Newsletter communication via Mailchimp
+- Event-related communication
+- Newsletter distribution
 
-You may withdraw your consent at any time with effect for the future.
+Consent can be withdrawn at any time.
 
-#### 6.1.5. Community & Event Communication via Discord
+#### 6.1.5 Community & Event Communication via Discord
 
-We provide participants with an optional community and communication space on Discord. When using the Discord server, the following data may be processed:
+Optional use of Discord.
 
-- Name or username
+**Processed data:**
+
+- Username
 - Profile information
-- Message content (e.g., chat messages, shared files)
-- Technical usage data such as IP address, device information, and log data
+- Messages and files
+- IP address and technical data
 
-Purposes of processing:
+**Purposes:**
 
-- Exchange between participants before, during, and after the event
-- Provision of information, announcements, and support
-- Community building around the association and the event
+- Participant interaction
+- Event communication and support
+- Community building
 
-Participation is completely voluntary and not a requirement for attending the event.
+Use is voluntary. Discord may transfer data to third countries.
 
-We inform data subjects that Discord is an external provider and may transfer data to third countries. Processing is carried out according to Discord's privacy policies.
+---
 
-### 6.2. Sponsors
+### 6.2 Sponsors
 
-#### 6.2.1. Google Workspace (Docs, Sheets, Drive, Forms)
+#### 6.2.1 Google Workspace
 
-Personal data processed:
+**Processed data:**
 
-- Contact information
+- Contact details
 - Contract and sponsorship data
 - Uploaded files
-- Form entries
+- Form inputs
 - Technical metadata
 
-Purposes of processing:
+**Purposes:**
 
-- Managing sponsor relationships
+- Sponsor management
 - Document management
-- Data sharing within the registered association
+- Internal collaboration
 
-#### 6.2.2. Adobe Acrobat / Adobe Sign
+#### 6.2.2 Adobe Acrobat / Adobe Sign
 
-Personal data processed:
+**Processed data:**
 
 - Names
 - Email addresses
 - Digital signatures
-- Contract contents
+- Contract content
 - Technical usage data
 
-Purposes of processing:
+**Purposes:**
 
-- Creating and digitally signing sponsorship agreements
-- Legally verifiable electronic signatures
+- Contract creation and signing
+- Legal documentation
 
-#### 6.2.3. Mailchimp for Sponsor Communication
+#### 6.2.3 Mailchimp — Sponsor Communication
 
-Personal data processed:
+**Processed data:**
 
 - Email address
 - Name
 - Technical usage data
 
-Purposes of processing:
+**Purpose:**
 
-- Sending information, updates, and organizational communications
+- Sending updates and information
 
-You may withdraw your consent at any time with effect for the future.
+#### 6.2.4 sevDesk — Accounting
 
-#### 6.2.4. sevDesk for Accounting
+**Processed data:**
 
-Personal data processed:
-
-- Invoice data
+- Billing data
 - Payment information
-- Name, address
+- Name and address
 - Communication data
 
-Purposes of processing:
+**Purposes:**
 
 - Accounting
-- Compliance with statutory retention obligations
-- Creating receipts and statements
+- Legal obligations
+- Invoice management
 
-No data is transferred to third countries.
+No third country transfer.
 
-#### 6.2.5. Communication via Discord
+#### 6.2.5 Communication via Discord
 
-For optional organizational coordination with sponsors, we use the communication service Discord. The following personal data may be processed:
+Optional communication channel.
 
-- Name or username
-- Profile information (e.g., avatar, status)
-- Communication content (messages, potentially files)
-- Technical usage data (IP address, device information, timestamps)
+**Processed data:**
 
-Purposes of processing:
+- Username
+- Profile data
+- Messages
+- IP and technical data
 
-- Exchange of organizational information
-- Provision of a central communication channel during the preparation phase
-- Clarification of questions regarding sponsorship, tickets, logistics, and event details
+**Purposes:**
 
-Discord is an external service provider based in the United States.
+- Coordination
+- Event organization
 
-A transfer of data to third countries cannot be excluded. Such transfer only takes place on the basis of appropriate safeguards, such as the EU-US Data Privacy Framework or Standard Contractual Clauses (SCCs).
+Transfers to third countries may occur.
 
-The use of Discord is voluntary. Sponsors may choose alternative communication channels at any time.
+---
 
-### 6.3. Speakers
+### 6.3 Speakers
 
-#### 6.3.1. Management via Sessionize
+#### 6.3.1 Sessionize
 
-Personal data processed:
+**Processed data:**
 
 - Name
 - Email address
-- Short biography
-- Talk title, descriptions
-- Profile pictures
+- Biography
+- Session details
+- Profile images
 - Technical metadata
 
-Purposes of processing:
+**Purposes:**
 
 - Call for Speakers
 - Program planning
-- Communication and selection processes
+- Communication
 
-#### 6.3.2. Mailchimp for Speaker Communication
+#### 6.3.2 Mailchimp — Speaker Communication
 
-Personal data processed:
+**Processed data:**
 
 - Name
 - Email address
 - Double opt-in data
-- Newsletter interactions
+- Interaction data
 
-Purposes of processing:
+**Purpose:**
 
 - Organizational communication
-- Timely information before and during the event
 
-### 6.4. Newsletter Subscribers (General)
+---
 
-Personal data processed:
+### 6.4 Newsletter Subscribers
+
+**Processed data:**
 
 - Email address
-- Name (optional)
-- Technical usage data
-- Confirmation and registration timestamps
-
-Purposes of processing:
-
-- Sending association information
-- Managing newsletter subscriptions
-
-You may withdraw your consent at any time with effect for the future.
-
-### 6.5. Embedded Content & External Platforms
-
-#### 6.5.1. YouTube
-
-By embedding videos, when playback starts, data such as your IP address, device information, and (where applicable) location data may be transmitted to YouTube/Google.
-
-Where possible, Enhanced Privacy Mode is used.
-
-#### 6.5.2. Google Maps
-
-Personal data processed:
-
-- IP address
+- Optional name
 - Technical data
+- Registration timestamps
 
-Purposes of processing: Providing directions.
+**Purpose:**
 
-#### 6.5.3. Social Media Links
+- Sending newsletters
 
-We link to:
+---
+
+### 6.5 Embedded Content & External Platforms
+
+#### YouTube
+
+Data such as IP address and device information may be transferred to YouTube/Google.
+
+#### Google Maps
+
+Google Maps processes IP address and technical data.
+
+#### Social Media Links
+
+The following social media links may be used:
 
 - LinkedIn
 - Discord
-- X (formerly Twitter)
+- X
 - Bluesky
 
-When you access these links, the privacy policies of the respective provider apply. We do not process any personal data in this context.
+Responsibility lies with the respective providers.
 
-## 7. Transfers to Third Parties & Third Countries
+---
 
-We disclose personal data to recipients only if:
+## 7. Data Transfers to Third Parties & Third Countries
 
-- this is necessary for the performance of a contract
-- you have given your consent
-- we are subject to a legal obligation
-- processing is carried out by a processor under a data processing agreement (Art. 28 GDPR)
+Data is only transferred when:
 
-Where personal data is transferred to recipients in third countries (e.g., the USA), this takes place only if the requirements of Art. 44 et seq. GDPR are met, in particular on the basis of appropriate safeguards such as:
+- Required for contract performance
+- Consent is given
+- Legal obligations apply
+- A processing agreement exists
+
+Transfers to third countries are based on:
 
 - EU-US Data Privacy Framework
 - Standard Contractual Clauses
 
+---
+
 ## 8. Data Subject Rights
 
-You have the following rights under the GDPR at any time:
+You have the right to:
 
 - Access
 - Rectification
 - Erasure
-- Restriction of processing
+- Restriction
 - Data portability
-- Withdrawal of consent
-- Right to object to processing
+- Withdraw consent
+- Object to processing
+
+---
 
 ## 9. Right to Lodge a Complaint
 
-You have the right to lodge a complaint with a competent supervisory authority, in particular in the Member State of your habitual residence, your place of work, or the place of the alleged infringement.
-
-Bayerisches Landesamt für Datenschutzaufsicht (BayLDA)  
+**Bavarian Data Protection Authority (BayLDA)**  
 Promenade 18  
 91522 Ansbach  
-[poststelle@lda.bayern.de](mailto:poststelle@lda.bayern.de)  
-[www.lda.bayern.de](https://www.lda.bayern.de)
+Germany  
 
-## 10. Validity & Changes
+**Email:** poststelle@lda.bayern.de  
+**Website:** www.lda.bayern.de
 
-We reserve the right to amend this privacy policy as necessary.
+---
 
-The version published on our website at the time of your visit is the applicable version.
+## 10. Validity & Updates
+
+We reserve the right to update this privacy policy.
+
+The current version published on our website always applies.
