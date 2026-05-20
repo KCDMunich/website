@@ -44,7 +44,16 @@ const hasSessionFormat = (session, formatName) => {
   });
 };
 
-const isSponsorSession = (session) => sponsorSessionIds.includes(String(session?.id));
+const isSponsorSession = (session, room) => {
+  if (sponsorSessionIds.includes(String(session?.id))) return true;
+  if (room?.toLowerCase().includes('sponsor')) return true;
+  if (!session?.categories?.length) return false;
+  return session.categories.some(
+    (category) =>
+      category.name?.toLowerCase() === 'sponsor talk' &&
+      category.categoryItems?.some((item) => item.name?.toLowerCase() === 'yes')
+  );
+};
 
 const isWorkshopSession = (room, session) => {
   const normalizedRoomName = room?.toLowerCase() || '';
@@ -59,7 +68,7 @@ const isWorkshopSession = (room, session) => {
 const getEventRoom = (room, session) => (isWorkshopSession(room, session) ? 'Workshops' : room);
 
 const getEventTypeLabel = (type) => {
-  if (type === 'sponsor') return 'Sponsor Talk';
+  if (type === 'sponsor') return 'Sponsored';
   return type.charAt(0).toUpperCase() + type.slice(1);
 };
 
@@ -174,7 +183,7 @@ const Schedule = ({ variant = 'default' }) => {
             duration: calculateDuration(session.startsAt, session.endsAt),
             room: eventRoom,
             originalRoom: room.name,
-            type: determineEventType(eventRoom, session),
+            type: determineEventType(eventRoom, session, room.name),
             speakers: session.speakers,
             start: session.startsAt,
             end: session.endsAt,
@@ -198,12 +207,11 @@ const Schedule = ({ variant = 'default' }) => {
     return Math.round(duration);
   };
 
-  const determineEventType = (room, session) => {
+  const determineEventType = (room, session, originalRoom) => {
     if (session && session.isServiceSession) return 'service';
     if (hasSessionFormat(session, 'Keynote')) return 'keynote';
+    if (isSponsorSession(session, originalRoom)) return 'sponsor';
     if (isWorkshopSession(room, session)) return 'workshop';
-    if (isSponsorSession(session)) return 'sponsor';
-    if (room.toLowerCase().includes('sponsor')) return 'sponsor';
     return 'talk';
   };
 

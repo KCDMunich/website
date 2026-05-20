@@ -3,8 +3,7 @@ import React from 'react';
 const hotels = [
   {
     name: 'Best Western Hotel Arabellapark München',
-    description:
-      'The hotel offers reserved rooms from 28.06.2026 to 01.07.2026. The rate is EUR 109.00 per room per night, excluding breakfast. Rooms can be booked with the code Cloud Native Summit Munich 2026 until 28.04.2026 Unused rooms return to general sale after the deadline.',
+
     distance: '2 min walk',
     amenities: ['Restaurant'],
     imageUrl:
@@ -50,40 +49,6 @@ export default function HotelList() {
             <h2 style={{ fontSize: '20px', fontWeight: 'bold', marginBottom: '8px' }}>
               {highlightedHotel.name}
             </h2>
-            <p style={{ fontSize: '14px', color: '#555', marginBottom: '16px', lineHeight: '1.6' }}>
-              The hotel offers reserved rooms for your stay from <strong>28.06.2026</strong> to{' '}
-              <strong>01.07.2026</strong>. The rate is <strong>EUR 109.00</strong> per room per
-              night, excluding breakfast.
-            </p>
-            <p style={{ fontSize: '14px', color: '#555', marginBottom: '16px', lineHeight: '1.6' }}>
-              <strong>Booking code:</strong> <strong>Cloud Native Summit Munich 2026</strong>.
-              <br />
-              <br />
-              Rooms can be booked until <strong>28.04.2026</strong>. After the deadline, all
-              unclaimed rooms return to general sale.
-            </p>
-            <p style={{ fontSize: '14px', color: '#555', marginBottom: '16px', lineHeight: '1.6' }}>
-              <strong>Cancellation policy:</strong>
-            </p>
-            <ul
-              style={{ fontSize: '14px', color: '#555', marginBottom: '16px', lineHeight: '1.6' }}
-            >
-              <li>
-                Free cancellation until <strong>28.04.2026</strong>.
-              </li>
-              <li>
-                From <strong>29.04.2026</strong> to <strong>28.05.2026</strong>:{' '}
-                <strong>50%</strong> of the reservation.
-              </li>
-              <li>
-                After <strong>28.05.2026</strong>: cancellations <strong>90%</strong>, no-shows{' '}
-                <strong>100%</strong>.
-              </li>
-            </ul>
-            <p style={{ fontSize: '14px', color: '#555', marginBottom: '16px', lineHeight: '1.6' }}>
-              <strong>Payment:</strong> All guests pay on arrival. Cancellation and no-show costs
-              are paid by the guests. A credit card is required as a guarantee.
-            </p>
             <p style={{ fontSize: '14px', color: '#777' }}>📍 {highlightedHotel.distance}</p>
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
               <a

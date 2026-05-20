@@ -55,7 +55,7 @@ const ScheduleCard = ({
           )}
         </div>
         <span className={`schedule-card-type schedule-card-type-${type}`}>
-          {type === 'sponsor' ? 'Sponsor Talk' : type.charAt(0).toUpperCase() + type.slice(1)}
+          {type === 'sponsor' ? 'Sponsored' : type.charAt(0).toUpperCase() + type.slice(1)}
         </span>
       </div>
 
