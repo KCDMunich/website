@@ -11,6 +11,7 @@ import KubeEventsLogo from 'icons/kubeevents_logo.svg';
 import LearnCubeLogo from 'icons/learncube.webp';
 import itSchulungen from 'icons/it_Schulungen.png';
 import Liquid from 'icons/liquid.png';
+import PerfectScale from 'icons/PerfectScale.png';
 import Tcslabs from 'icons/tsclabs-dark-large.webp';
 import Whiteduck from 'icons/whiteduck.png';
 import EonLogo from 'icons/eon.jpg';
@@ -91,6 +92,15 @@ const sponsorsList = [
     url: 'https://www.dash0.com/',
     tier: 'gold',
     logoRatio: 5.26,
+  },
+  {
+    name: 'PerfectScale',
+    icon: PerfectScale,
+    url: 'https://www.perfectscale.io/',
+    tier: 'gold',
+    logoRatio: 4,
+    logoHeight: 100,
+    logoMaxWidth: 260,
   },
   {
     name: 'e.solutions GmbH',
