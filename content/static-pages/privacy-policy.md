@@ -1,3 +1,9 @@
+---
+title: Privacy Policy
+slug: privacy-policy
+---
+
+
 # Privacy Policy
 
 ## 1. Introduction
