@@ -58,6 +58,45 @@ const isWorkshopSession = (room, session) => {
 
 const getEventRoom = (room, session) => (isWorkshopSession(room, session) ? 'Workshops' : room);
 
+const getTimeSlotKey = (value) => new Date(value).toISOString();
+
+const getSpeakerNames = (speakers = []) => speakers.map((speaker) => speaker.name).join(', ');
+
+const getDesktopTimeSlots = (events) => {
+  const slots = new Map();
+
+  events.forEach((event) => {
+    const slotKey = getTimeSlotKey(event.start);
+
+    if (!slots.has(slotKey)) {
+      slots.set(slotKey, {
+        key: slotKey,
+        label: event.time,
+        start: new Date(event.start),
+      });
+    }
+  });
+
+  return Array.from(slots.values()).sort((a, b) => a.start - b.start);
+};
+
+const groupEventsBySlotAndRoom = (events) => {
+  return events.reduce((acc, event) => {
+    const slotKey = getTimeSlotKey(event.start);
+
+    if (!acc[slotKey]) {
+      acc[slotKey] = {};
+    }
+
+    if (!acc[slotKey][event.room]) {
+      acc[slotKey][event.room] = [];
+    }
+
+    acc[slotKey][event.room].push(event);
+    return acc;
+  }, {});
+};
+
 const getEventTypeLabel = (type) => {
   if (type === 'sponsor') return 'Sponsor Talk';
   return type.charAt(0).toUpperCase() + type.slice(1);
@@ -205,16 +244,6 @@ const Schedule = ({ variant = 'default' }) => {
     if (isSponsorSession(session)) return 'sponsor';
     if (room.toLowerCase().includes('sponsor')) return 'sponsor';
     return 'talk';
-  };
-
-  const groupEventsByRoom = (events) => {
-    return events.reduce((acc, event) => {
-      if (!acc[event.room]) {
-        acc[event.room] = [];
-      }
-      acc[event.room].push(event);
-      return acc;
-    }, {});
   };
 
   const findSpeakerProfile = (speakerId) => {
@@ -638,7 +667,11 @@ const Schedule = ({ variant = 'default' }) => {
   // Show all sessions of the day, including past ones
   const upcomingEvents = filteredEvents;
 
-  const eventsByRoom = groupEventsByRoom(upcomingEvents);
+  const desktopTimeSlots = getDesktopTimeSlots(upcomingEvents);
+  const desktopEventsBySlotAndRoom = groupEventsBySlotAndRoom(upcomingEvents);
+  const desktopBoardColumns = {
+    gridTemplateColumns: `112px repeat(${Math.max(rooms.length, 1)}, minmax(240px, 1fr))`,
+  };
   const selectedGridDay = getDateForSelectedDay();
   const displayDate = getReadableDate(selectedGridDay?.date);
 
@@ -896,41 +929,138 @@ const Schedule = ({ variant = 'default' }) => {
                       />
                     );
                   })
-              : // Desktop: Grouped by room
-                rooms.map((room) => (
-                  <div key={room} className="room-section">
-                    <div className="room-header">
-                      <h2>{roomHeaderLabels[room] || room}</h2>
-                    </div>
-                    {(eventsByRoom[room] || []).map((event) => {
-                      const isFavorite = favorites.includes(String(event.id));
-                      const isLiveEvent = isLive(event.start, event.end);
+              : // Desktop: Time-first board
+                <div className="schedule-board-shell">
+                  {desktopTimeSlots.length > 0 ? (
+                    <div className="schedule-board" style={desktopBoardColumns}>
+                      <div className="schedule-board-corner">Time</div>
+                      {rooms.map((room) => (
+                        <div key={room} className="schedule-board-room">
+                          <span>{roomHeaderLabels[room] || room}</span>
+                        </div>
+                      ))}
+                      {desktopTimeSlots.map((slot) => {
+                        const slotEntries = desktopEventsBySlotAndRoom[slot.key] || {};
+                        const slotHasLiveEvent = Object.values(slotEntries).some((slotEvents) =>
+                          slotEvents.some((event) => isLive(event.start, event.end))
+                        );
 
-                      return (
-                        <ScheduleCard
-                          key={event.id}
-                          startTime={event.time}
-                          endTime={event.endTime}
-                          duration={`${event.duration} min`}
-                          title={event.title}
-                          speakers={event.speakers?.map((speaker) => ({
-                            name: speaker.name,
-                            avatar: findSpeakerProfile(speaker.id),
-                          }))}
-                          location={roomHeaderLabels[event.room] || event.room}
-                          originalRoom={event.originalRoom}
-                          type={event.type}
-                          isFavorite={isFavorite}
-                          isLive={isLiveEvent}
-                          isPast={new Date(event.end) < new Date()}
-                          recordingUrl={event.recordingUrl}
-                          onFavoriteClick={() => toggleFavorite(event.id)}
-                          onClick={() => setSelectedEvent(event)}
-                        />
-                      );
-                    })}
-                  </div>
-                ))}
+                        return (
+                          <React.Fragment key={slot.key}>
+                            <div
+                              className={`schedule-board-time${slotHasLiveEvent ? ' is-current' : ''}`}
+                            >
+                              <span>{slot.label}</span>
+                            </div>
+                            {rooms.map((room) => {
+                              const slotEvents = slotEntries[room] || [];
+
+                              return (
+                                <div
+                                  key={`${slot.key}-${room}`}
+                                  className={`schedule-board-slot${slotHasLiveEvent ? ' is-current' : ''}`}
+                                >
+                                  {slotEvents.length > 0 ? (
+                                    slotEvents.map((event) => {
+                                      const isFavorite = favorites.includes(String(event.id));
+                                      const isLiveEvent = isLive(event.start, event.end);
+                                      const isPastEvent = new Date(event.end) < currentTime;
+                                      const speakerNames = getSpeakerNames(event.speakers);
+
+                                      return (
+                                        <div
+                                          key={event.id}
+                                          className={`schedule-board-event${
+                                            isLiveEvent ? ' schedule-board-event--live' : ''
+                                          }${isPastEvent ? ' schedule-board-event--past' : ''}`}
+                                          role="button"
+                                          tabIndex={0}
+                                          onClick={() => setSelectedEvent(event)}
+                                          onKeyDown={(e) => {
+                                            if (e.key === 'Enter' || e.key === ' ') {
+                                              e.preventDefault();
+                                              setSelectedEvent(event);
+                                            }
+                                          }}
+                                        >
+                                          <div className="schedule-board-event-top">
+                                            <span
+                                              className={`schedule-board-event-type schedule-card-type schedule-card-type-${event.type}`}
+                                            >
+                                              {getEventTypeLabel(event.type)}
+                                            </span>
+                                            <button
+                                              type="button"
+                                              className={`schedule-board-event-favorite${
+                                                isFavorite ? ' is-active' : ''
+                                              }`}
+                                              aria-label={
+                                                isFavorite
+                                                  ? 'Remove from favorites'
+                                                  : 'Add to favorites'
+                                              }
+                                              onClick={(e) => {
+                                                e.stopPropagation();
+                                                toggleFavorite(event.id);
+                                              }}
+                                            >
+                                              <svg
+                                                className="schedule-card-favorite-icon"
+                                                viewBox="0 0 24 24"
+                                                fill={isFavorite ? 'currentColor' : 'none'}
+                                                stroke="currentColor"
+                                                strokeWidth="2"
+                                              >
+                                                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+                                              </svg>
+                                            </button>
+                                          </div>
+                                          <h3 className="schedule-board-event-title">{event.title}</h3>
+                                          {speakerNames && (
+                                            <p className="schedule-board-event-speakers">{speakerNames}</p>
+                                          )}
+                                          {event.originalRoom !== event.room && (
+                                            <p className="schedule-board-event-origin">
+                                              Hosted in {roomHeaderLabels[event.originalRoom] || event.originalRoom}
+                                            </p>
+                                          )}
+                                          <div className="schedule-board-event-bottom">
+                                            <span>
+                                              {event.time} - {event.endTime}
+                                            </span>
+                                            {isLiveEvent && (
+                                              <span className="schedule-board-event-live">Live</span>
+                                            )}
+                                            {event.recordingUrl && (
+                                              <a
+                                                href={event.recordingUrl}
+                                                className="schedule-board-event-recording"
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                onClick={(e) => e.stopPropagation()}
+                                              >
+                                                Recording
+                                              </a>
+                                            )}
+                                          </div>
+                                        </div>
+                                      );
+                                    })
+                                  ) : (
+                                    <div className="schedule-board-slot-empty" aria-hidden="true"></div>
+                                  )}
+                                </div>
+                              );
+                            })}
+                          </React.Fragment>
+                        );
+                      })}
+                    </div>
+                  ) : (
+                    <div className="schedule-board-empty">No sessions available for this day.</div>
+                  )}
+                </div>
+          }
         </div>
       </div>
 

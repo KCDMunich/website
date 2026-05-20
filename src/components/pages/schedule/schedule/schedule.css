@@ -293,6 +293,214 @@
   color: var(--schedule-accent);
 }
 
+.schedule-board-shell {
+  grid-column: 1 / -1;
+  overflow-x: auto;
+  border-radius: 22px;
+  border: 1px solid rgba(0, 66, 88, 0.14);
+  background: linear-gradient(180deg, #f7fafb, #ffffff 18%);
+}
+
+.schedule-board {
+  display: grid;
+  width: max-content;
+  min-width: 100%;
+}
+
+.schedule-board-corner,
+.schedule-board-room {
+  position: sticky;
+  top: 0;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  min-height: 78px;
+  padding: 1rem 1.1rem;
+  background: rgba(247, 250, 251, 0.96);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(0, 66, 88, 0.12);
+}
+
+.schedule-board-corner {
+  left: 0;
+  z-index: 5;
+  justify-content: flex-end;
+  color: var(--schedule-muted);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border-right: 1px solid rgba(0, 66, 88, 0.12);
+}
+
+.schedule-board-room {
+  min-width: 240px;
+  border-left: 1px solid rgba(0, 66, 88, 0.08);
+}
+
+.schedule-board-room span {
+  font-size: 0.96rem;
+  font-weight: 700;
+  color: var(--schedule-accent);
+}
+
+.schedule-board-time,
+.schedule-board-slot {
+  border-top: 1px solid rgba(0, 66, 88, 0.08);
+}
+
+.schedule-board-time {
+  position: sticky;
+  left: 0;
+  z-index: 2;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+  padding: 1rem 1rem 1rem 0.75rem;
+  background: #f7fafb;
+  color: var(--schedule-accent);
+  font-size: 0.9rem;
+  font-weight: 800;
+  border-right: 1px solid rgba(0, 66, 88, 0.12);
+}
+
+.schedule-board-time.is-current,
+.schedule-board-slot.is-current {
+  background: rgba(0, 98, 127, 0.04);
+}
+
+.schedule-board-slot {
+  min-height: 10rem;
+  padding: 0.9rem;
+  background: rgba(255, 255, 255, 0.94);
+  border-left: 1px solid rgba(0, 66, 88, 0.08);
+}
+
+.schedule-board-slot-empty {
+  min-height: 100%;
+  border: 1px dashed rgba(0, 66, 88, 0.1);
+  border-radius: 18px;
+  background: rgba(244, 247, 248, 0.7);
+}
+
+.schedule-board-event + .schedule-board-event {
+  margin-top: 0.75rem;
+}
+
+.schedule-board-event {
+  display: grid;
+  gap: 0.7rem;
+  padding: 0.95rem;
+  border-radius: 18px;
+  border: 1px solid rgba(0, 66, 88, 0.12);
+  background: #ffffff;
+  cursor: pointer;
+  transition:
+    transform 0.18s ease,
+    border-color 0.18s ease,
+    box-shadow 0.18s ease;
+}
+
+.schedule-board-event:hover {
+  transform: translateY(-2px);
+  border-color: rgba(0, 66, 88, 0.24);
+  box-shadow: none;
+}
+
+.schedule-board-event--live {
+  border-color: rgba(239, 68, 68, 0.24);
+  background: linear-gradient(180deg, rgba(255, 245, 245, 0.95), #ffffff 45%);
+}
+
+.schedule-board-event--past {
+  opacity: 0.76;
+}
+
+.schedule-board-event-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.schedule-board-event-type {
+  max-width: calc(100% - 2.5rem);
+}
+
+.schedule-board-event-favorite {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  padding: 0;
+  border: 0;
+  border-radius: 999px;
+  background: rgba(0, 66, 88, 0.08);
+  color: var(--schedule-accent);
+  cursor: pointer;
+}
+
+.schedule-board-event-favorite.is-active {
+  background: rgba(11, 47, 63, 0.12);
+  color: #0b2f3f;
+}
+
+.schedule-board-event-title {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.35;
+  color: var(--schedule-ink);
+}
+
+.schedule-board-event-speakers,
+.schedule-board-event-origin {
+  margin: 0;
+  color: var(--schedule-muted);
+}
+
+.schedule-board-event-speakers {
+  font-size: 0.9rem;
+  line-height: 1.45;
+}
+
+.schedule-board-event-origin {
+  font-size: 0.78rem;
+}
+
+.schedule-board-event-bottom {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 0.65rem;
+  font-size: 0.76rem;
+  font-weight: 600;
+  color: var(--schedule-muted);
+}
+
+.schedule-board-event-live {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.2rem 0.5rem;
+  border-radius: 999px;
+  background: rgba(239, 68, 68, 0.12);
+  color: #b91c1c;
+}
+
+.schedule-board-event-recording {
+  color: var(--schedule-accent);
+  text-decoration: none;
+}
+
+.schedule-board-event-recording:hover {
+  text-decoration: underline;
+}
+
+.schedule-board-empty {
+  padding: 1.5rem;
+  color: var(--schedule-muted);
+}
+
 /* Event Cards */
 .event-card {
   background-color: white;
