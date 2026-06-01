@@ -2,6 +2,7 @@ import clsx from 'clsx';
 import React from 'react';
 
 import ApeFactory from 'icons/apefactory.svg';
+import Chainguard from 'icons/chainguard.svg';
 import Dash0Logo from 'icons/dash0.png';
 import Broadcom from 'icons/broadcom.png';
 import NutanixLogo from 'icons/NutanixLogo.svg';
@@ -85,6 +86,13 @@ const sponsorsList = [
     logoRatio: 2,
     logoHeight: 95,
     logoMaxWidth: 160,
+  },
+  {
+    name: 'chainguard',
+    icon: Chainguard,
+    url: 'https://www.chainguard.dev/',
+    tier: 'silver',
+    logoRatio: 3.5,
   },
   {
     name: 'Dash0',
