@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 import './schedule.css';
 import './schedule-app.css';
@@ -7,6 +7,7 @@ import ScheduleCard from './ScheduleCard';
 
 const scriptUrl = 'https://sessionize.com/api/v2/1yvxke5i/view/GridSmart';
 const speakerURL = 'https://sessionize.com/api/v2/1yvxke5i/view/Speakers';
+const scheduleStatsEndpoint = process.env.GATSBY_SCHEDULE_STATS_ENDPOINT || '';
 
 const sponsorSessionIds = [
   '954600',
@@ -106,6 +107,38 @@ const getRecordingMeta = (url) => {
   }
 };
 
+const sendScheduleFavoriteStat = (eventId, action) => {
+  if (!scheduleStatsEndpoint || typeof fetch !== 'function') {
+    return;
+  }
+
+  fetch(scheduleStatsEndpoint, {
+    method: 'POST',
+    mode: 'cors',
+    credentials: 'omit',
+    keepalive: true,
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      eventId: String(eventId),
+      action,
+    }),
+  })
+    .then((response) => {
+      if (!response.ok && process.env.NODE_ENV === 'development') {
+        console.warn(
+          `Could not update anonymous schedule favorite statistics. Status: ${response.status}`
+        );
+      }
+    })
+    .catch((error) => {
+      if (process.env.NODE_ENV === 'development') {
+        console.warn('Could not update anonymous schedule favorite statistics.', error);
+      }
+    });
+};
+
 const Schedule = ({ variant = 'default' }) => {
   const [speakerData, setSpeakerData] = useState([]);
   const [gridData, setGridData] = useState([]); // Raw grid data
@@ -126,6 +159,7 @@ const Schedule = ({ variant = 'default' }) => {
       return [];
     }
   });
+  const favoritesRef = useRef(favorites);
 
   const [sessionFilters] = useState({
     showServiceSessions: true,
@@ -262,13 +296,15 @@ const Schedule = ({ variant = 'default' }) => {
 
   const toggleFavorite = (eventId) => {
     const idStr = String(eventId);
-    setFavorites((prev) => {
-      if (prev.includes(idStr)) {
-        return prev.filter((id) => id !== idStr);
-      } else {
-        return [...prev, idStr];
-      }
-    });
+    const currentFavorites = favoritesRef.current;
+    const isFavorite = currentFavorites.includes(idStr);
+    const nextFavorites = isFavorite
+      ? currentFavorites.filter((id) => id !== idStr)
+      : [...currentFavorites, idStr];
+
+    favoritesRef.current = nextFavorites;
+    setFavorites(nextFavorites);
+    sendScheduleFavoriteStat(idStr, isFavorite ? 'remove' : 'add');
   };
 
   const Modal = ({
@@ -582,6 +618,10 @@ const Schedule = ({ variant = 'default' }) => {
     try {
       localStorage.setItem('favorites', JSON.stringify(favorites.map(String)));
     } catch {}
+  }, [favorites]);
+
+  useEffect(() => {
+    favoritesRef.current = favorites;
   }, [favorites]);
 
   // Removed: type-specific useEffect no longer needed
