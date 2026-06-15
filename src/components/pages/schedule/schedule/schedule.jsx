@@ -196,8 +196,11 @@ const getRoomLocationLabel = (room) => {
   return roomDisplay.room || roomDisplay.title;
 };
 
-const getEventLocationLabel = (event) =>
-  sessionLocationOverrides[String(event?.id)] || getRoomLocationLabel(event?.room);
+const getEventLocationLabel = (event) => {
+  const roomLocation =
+    sessionLocationOverrides[String(event?.id)] || getRoomLocationLabel(event?.room);
+  return `Room: ${roomLocation}`;
+};
 
 const Schedule = ({ variant = 'default' }) => {
   const [speakerData, setSpeakerData] = useState([]);
