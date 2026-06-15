@@ -27,6 +27,10 @@ const sponsorSessionIds = [
 
 const workshopSessionIds = ['835091', '857417', '858404', '862527', '881898', '898401'];
 
+const sessionLocationOverrides = {
+  1233717: 'Santorini',
+};
+
 const sessionFormatCategoryNames = ['session format', 'session type'];
 
 const hasSessionFormat = (session, formatName) => {
@@ -66,7 +70,9 @@ const isWorkshopSession = (room, session) => {
   );
 };
 
-const getEventRoom = (room, session) => (isWorkshopSession(room, session) ? 'Workshops' : room);
+const getEventRoom = (room, session) => {
+  return isWorkshopSession(room, session) ? 'Workshops' : room;
+};
 
 const getEventTypeLabel = (type) => {
   if (type === 'sponsor') return 'Sponsored';
@@ -138,6 +144,60 @@ const sendScheduleFavoriteStat = (eventId, action) => {
       }
     });
 };
+
+const roomDisplayDetails = {
+  'Platform Engineering & Practices': {
+    title: 'Platform Engineering & Practices',
+    room: 'Wien/Versailles',
+  },
+  'Cloud Native & Open Source': {
+    title: 'Cloud Native & Open Source',
+    room: 'Italien',
+  },
+  'AI Engineering': {
+    title: 'AI Engineering',
+    room: 'Side Stage - Barcelona',
+  },
+  'Sponsor Workshops': {
+    title: 'Sponsor Workshops',
+    room: 'Santorini',
+  },
+  Workshops: {
+    title: 'Workshops',
+    room: 'Danzig',
+  },
+  Main: {
+    title: 'Main Stage',
+    room: 'Wien/Versailles',
+  },
+  Side: {
+    title: 'Side Stage',
+    room: 'Barcelona',
+  },
+  'Main Stage': {
+    title: 'Main Stage',
+    room: 'Wien/Versailles',
+  },
+  'Side Stage': {
+    title: 'Side Stage',
+    room: 'Barcelona',
+  },
+};
+
+const getRoomDisplayDetails = (room) => roomDisplayDetails[room] || { title: room, room: '' };
+
+const getRoomDisplayLabel = (room) => {
+  const roomDisplay = getRoomDisplayDetails(room);
+  return roomDisplay.room ? `${roomDisplay.title} - ${roomDisplay.room}` : roomDisplay.title;
+};
+
+const getRoomLocationLabel = (room) => {
+  const roomDisplay = getRoomDisplayDetails(room);
+  return roomDisplay.room || roomDisplay.title;
+};
+
+const getEventLocationLabel = (event) =>
+  sessionLocationOverrides[String(event?.id)] || getRoomLocationLabel(event?.room);
 
 const Schedule = ({ variant = 'default' }) => {
   const [speakerData, setSpeakerData] = useState([]);
@@ -639,15 +699,6 @@ const Schedule = ({ variant = 'default' }) => {
     // eslint-disable-next-line
   }, [events]);
 
-  // Mapping used to display room headers
-  const roomHeaderLabels = {
-    Main: 'Main Stage - Wien/Versailles',
-    Side: 'Side Stage - Italien',
-    Workshops: 'Workshop',
-    'Main Stage': 'Main Stage - Wien/Versailles',
-    'Side Stage': 'Side Stage - Italien',
-  };
-
   useEffect(() => {
     const checkMobile = () => {
       setIsMobile(window.matchMedia('(max-width: 768px)').matches);
@@ -694,7 +745,7 @@ const Schedule = ({ variant = 'default' }) => {
     if (showLiveOnly) return 'Live Now';
     if (activeSelectedType === 'favorites') return 'Favorites';
     if (activeSelectedType === 'all') return 'All Sessions';
-    return roomHeaderLabels[activeSelectedType] || activeSelectedType;
+    return getRoomDisplayLabel(activeSelectedType);
   };
 
   return (
@@ -808,7 +859,7 @@ const Schedule = ({ variant = 'default' }) => {
                     className={`schedule-filter-pill ${selectedType === room ? 'active' : ''}`}
                     onClick={() => setSelectedType(room)}
                   >
-                    {roomHeaderLabels[room] || room}
+                    {getRoomDisplayLabel(room)}
                   </button>
                 ))}
                 <div className="filter-divider"></div>
@@ -871,7 +922,7 @@ const Schedule = ({ variant = 'default' }) => {
                         </div>
                         <h3 className="schedule-app-title">{event.title}</h3>
                         <div className="schedule-app-meta">
-                          <span>{roomHeaderLabels[event.room] || event.room}</span>
+                          <span>{getEventLocationLabel(event)}</span>
                           <span>
                             {event.time} – {event.endTime}
                           </span>
@@ -932,7 +983,7 @@ const Schedule = ({ variant = 'default' }) => {
                           name: speaker.name,
                           avatar: findSpeakerProfile(speaker.id),
                         }))}
-                        location={roomHeaderLabels[event.room] || event.room}
+                        location={getEventLocationLabel(event)}
                         originalRoom={event.originalRoom}
                         type={event.type}
                         isFavorite={isFavorite}
@@ -945,40 +996,44 @@ const Schedule = ({ variant = 'default' }) => {
                     );
                   })
               : // Desktop: Grouped by room
-                rooms.map((room) => (
-                  <div key={room} className="room-section">
-                    <div className="room-header">
-                      <h2>{roomHeaderLabels[room] || room}</h2>
-                    </div>
-                    {(eventsByRoom[room] || []).map((event) => {
-                      const isFavorite = favorites.includes(String(event.id));
-                      const isLiveEvent = isLive(event.start, event.end);
+                rooms.map((room) => {
+                  const roomDisplay = getRoomDisplayDetails(room);
 
-                      return (
-                        <ScheduleCard
-                          key={event.id}
-                          startTime={event.time}
-                          endTime={event.endTime}
-                          duration={`${event.duration} min`}
-                          title={event.title}
-                          speakers={event.speakers?.map((speaker) => ({
-                            name: speaker.name,
-                            avatar: findSpeakerProfile(speaker.id),
-                          }))}
-                          location={roomHeaderLabels[event.room] || event.room}
-                          originalRoom={event.originalRoom}
-                          type={event.type}
-                          isFavorite={isFavorite}
-                          isLive={isLiveEvent}
-                          isPast={new Date(event.end) < new Date()}
-                          recordingUrl={event.recordingUrl}
-                          onFavoriteClick={() => toggleFavorite(event.id)}
-                          onClick={() => setSelectedEvent(event)}
-                        />
-                      );
-                    })}
-                  </div>
-                ))}
+                  return (
+                    <div key={room} className="room-section">
+                      <div className="room-header">
+                        <h2>{roomDisplay.title}</h2>
+                      </div>
+                      {(eventsByRoom[room] || []).map((event) => {
+                        const isFavorite = favorites.includes(String(event.id));
+                        const isLiveEvent = isLive(event.start, event.end);
+
+                        return (
+                          <ScheduleCard
+                            key={event.id}
+                            startTime={event.time}
+                            endTime={event.endTime}
+                            duration={`${event.duration} min`}
+                            title={event.title}
+                            speakers={event.speakers?.map((speaker) => ({
+                              name: speaker.name,
+                              avatar: findSpeakerProfile(speaker.id),
+                            }))}
+                            location={getEventLocationLabel(event)}
+                            originalRoom={event.originalRoom}
+                            type={event.type}
+                            isFavorite={isFavorite}
+                            isLive={isLiveEvent}
+                            isPast={new Date(event.end) < new Date()}
+                            recordingUrl={event.recordingUrl}
+                            onFavoriteClick={() => toggleFavorite(event.id)}
+                            onClick={() => setSelectedEvent(event)}
+                          />
+                        );
+                      })}
+                    </div>
+                  );
+                })}
         </div>
       </div>
 
@@ -1030,7 +1085,7 @@ const Schedule = ({ variant = 'default' }) => {
                       setIsRoomSheetOpen(false);
                     }}
                   >
-                    {roomHeaderLabels[room] || room}
+                    {getRoomDisplayLabel(room)}
                   </button>
                 ))}
               </div>
@@ -1083,9 +1138,7 @@ const Schedule = ({ variant = 'default' }) => {
         toggleFavorite={toggleFavorite}
         findSpeakerProfile={findSpeakerProfile}
         findSpeakerCompany={findSpeakerCompany}
-        displayRoom={
-          selectedEvent ? roomHeaderLabels[selectedEvent.room] || selectedEvent.room : ''
-        }
+        displayRoom={selectedEvent ? getEventLocationLabel(selectedEvent) : ''}
         onClose={() => setSelectedEvent(null)}
       />
     </div>

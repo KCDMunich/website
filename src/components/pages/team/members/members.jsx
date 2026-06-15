@@ -46,7 +46,7 @@ const ITEMS = [
     url: 'https://www.linkedin.com/in/maxkoerbaecher/',
   },
   {
-    name: 'Nico Meisenzal',
+    name: 'Nico Meisenzahl',
     position: 'COO - white duck',
     photo: NicoPhoto,
     url: 'https://www.linkedin.com/in/nicomeisenzahl/',

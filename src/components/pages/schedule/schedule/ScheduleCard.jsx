@@ -5,7 +5,6 @@ import './schedule.css';
 const ScheduleCard = ({
   startTime = '10:25 AM',
   endTime = '10:55 AM',
-  duration = '30 min',
   title = 'Oh No Our Kubernetes Cluster Has Been Compromised! Will YOU Save the Day?',
   speakers = [
     { name: 'Benoit Entzmann', avatar: '/placeholder.svg?height=40&width=40' },
@@ -43,15 +42,13 @@ const ScheduleCard = ({
           <span className="schedule-card-time-text">
             {startTime} - {endTime}
           </span>
-          {isLive ? (
+          {isLive && (
             <div className="schedule-card-live-indicator">
               <div className="schedule-card-live-dot">
                 <div className="schedule-card-live-pulse"></div>
               </div>
               <span className="schedule-card-live-text">LIVE</span>
             </div>
-          ) : (
-            <span className="schedule-card-duration">{duration}</span>
           )}
         </div>
         <span className={`schedule-card-type schedule-card-type-${type}`}>
@@ -154,7 +151,6 @@ const ScheduleCard = ({
 ScheduleCard.propTypes = {
   startTime: PropTypes.string,
   endTime: PropTypes.string,
-  duration: PropTypes.string,
   title: PropTypes.string,
   speakers: PropTypes.arrayOf(
     PropTypes.shape({
