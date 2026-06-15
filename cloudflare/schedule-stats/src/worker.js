@@ -108,18 +108,19 @@ const isAllowedBrowserOrigin = (request, env) => {
 
 const parseRequestBody = async (request) => {
   const contentType = request.headers.get('Content-Type') || '';
-  const contentLength = Number(request.headers.get('Content-Length') || 0);
 
   if (!contentType.toLowerCase().includes('application/json')) {
     return null;
   }
 
-  if (contentLength > maxRequestBodyBytes) {
+  const requestBody = await request.text();
+
+  if (new TextEncoder().encode(requestBody).length > maxRequestBodyBytes) {
     return null;
   }
 
   try {
-    return await request.json();
+    return JSON.parse(requestBody);
   } catch {
     return null;
   }
@@ -208,23 +209,27 @@ const handleFavoriteWrite = async (request, env) => {
     return createJsonResponse(request, env, { error: 'origin_not_allowed' }, 403);
   }
 
-  const body = await parseRequestBody(request);
-  const favoriteEvent = normalizeFavoriteEvent(body, env);
+  try {
+    const body = await parseRequestBody(request);
+    const favoriteEvent = normalizeFavoriteEvent(body, env);
 
-  if (!favoriteEvent) {
-    return createJsonResponse(request, env, { error: 'invalid_request' }, 400);
+    if (!favoriteEvent) {
+      return createJsonResponse(request, env, { error: 'invalid_request' }, 400);
+    }
+
+    const sessionTitles = await getSessionTitles(env);
+    const eventTitle = sessionTitles.get(favoriteEvent.eventId);
+
+    if (!eventTitle) {
+      return createJsonResponse(request, env, { error: 'unknown_event' }, 400);
+    }
+
+    await updateFavoriteCount(env, favoriteEvent.eventId, eventTitle, favoriteEvent.action);
+
+    return createJsonResponse(request, env, { ok: true }, 202);
+  } catch {
+    return createJsonResponse(request, env, { error: 'favorite_write_failed' }, 500);
   }
-
-  const sessionTitles = await getSessionTitles(env);
-  const eventTitle = sessionTitles.get(favoriteEvent.eventId);
-
-  if (!eventTitle) {
-    return createJsonResponse(request, env, { error: 'unknown_event' }, 400);
-  }
-
-  await updateFavoriteCount(env, favoriteEvent.eventId, eventTitle, favoriteEvent.action);
-
-  return createJsonResponse(request, env, { ok: true }, 202);
 };
 
 const handleStatsRead = async (request, env) => {

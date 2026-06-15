@@ -15,7 +15,7 @@
     "serve": "gatsby serve",
     "clean": "gatsby clean",
     "schedule-stats:deploy": "npx wrangler deploy --config cloudflare/schedule-stats/wrangler.toml",
-    "schedule-stats:migrate": "npx wrangler d1 migrations apply kcd-schedule-stats --config cloudflare/schedule-stats/wrangler.toml --remote",
+    "schedule-stats:migrate": "npx wrangler d1 migrations apply cns-fav --config cloudflare/schedule-stats/wrangler.toml --remote",
     "format": "prettier --write --ignore-path .gitignore .",
     "lint": "npm run lint:js & npm run lint:md",
     "lint:fix": "npm run lint:js:fix & npm run lint:md:fix",

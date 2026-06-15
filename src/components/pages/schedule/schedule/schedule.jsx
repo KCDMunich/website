@@ -990,7 +990,6 @@ const Schedule = ({ variant = 'default' }) => {
                         key={event.id}
                         startTime={event.time}
                         endTime={event.endTime}
-                        duration={`${event.duration} min`}
                         title={event.title}
                         speakers={event.speakers?.map((speaker) => ({
                           name: speaker.name,
@@ -1039,7 +1038,6 @@ const Schedule = ({ variant = 'default' }) => {
                                 key={event.id}
                                 startTime={event.time}
                                 endTime={event.endTime}
-                                duration={`${event.duration} min`}
                                 title={event.title}
                                 speakers={event.speakers?.map((speaker) => ({
                                   name: speaker.name,

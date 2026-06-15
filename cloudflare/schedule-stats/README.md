@@ -27,7 +27,9 @@ The Worker resolves the session title server-side from Sessionize before writing
 
 ## Existing database upgrade
 
-If the D1 table already exists without titles, run this once in the Cloudflare D1 Console:
+Migration `0002_add_event_title.sql` adds session titles. If you manage the table manually
+outside Wrangler migrations and it already exists without titles, run this once in the
+Cloudflare D1 Console:
 
 ```sql
 ALTER TABLE schedule_favorite_counts
@@ -39,7 +41,7 @@ ALTER TABLE schedule_favorite_counts
 1. Create the D1 database:
 
    ```bash
-   npx wrangler d1 create kcd-schedule-stats
+   npx wrangler d1 create cns-fav
    ```
 
 2. Copy the generated `database_id` into `cloudflare/schedule-stats/wrangler.toml`.
@@ -49,7 +51,7 @@ ALTER TABLE schedule_favorite_counts
 4. Apply the D1 migration:
 
    ```bash
-   npx wrangler d1 migrations apply kcd-schedule-stats \
+   npx wrangler d1 migrations apply cns-fav \
      --config cloudflare/schedule-stats/wrangler.toml \
      --remote
    ```
@@ -70,7 +72,7 @@ ALTER TABLE schedule_favorite_counts
 7. Set the Vercel environment variable `GATSBY_SCHEDULE_STATS_ENDPOINT` to the full Worker endpoint, for example:
 
    ```text
-   https://kcd-schedule-stats.<account>.workers.dev/favorite
+   https://cns-fav.<account>.workers.dev/favorite
    ```
 
 ## Cloudflare protection
