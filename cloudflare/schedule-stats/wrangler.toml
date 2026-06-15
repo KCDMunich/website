@@ -1,0 +1,15 @@
+name = "cns-fav"
+main = "src/worker.js"
+compatibility_date = "2026-06-08"
+workers_dev = true
+
+[vars]
+ALLOWED_ORIGINS = "http://localhost:8000,https://cloudnativesummit.de,https://www.cloudnativesummit.de"
+ALLOWED_EVENT_IDS = ""
+SESSIONIZE_GRID_URL = "https://sessionize.com/api/v2/1yvxke5i/view/GridSmart"
+
+[[d1_databases]]
+binding = "cns-fav"
+database_name = "cns-fav"
+database_id = "REPLACE_WITH_CLOUDFLARE_D1_DATABASE_ID"
+migrations_dir = "migrations"

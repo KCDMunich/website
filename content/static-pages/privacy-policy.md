@@ -1,8 +1,9 @@
 ---
+
 title: Privacy Policy
 slug: privacy-policy
----
 
+---
 
 # Privacy Policy
 
@@ -16,10 +17,10 @@ In the following, we inform you about the nature, scope, and purpose of the proc
 
 ## 2. Controller
 
-**Förderverein Open Source, Cloud Native und Künstliche Intelligenz Bayern e.V.**  
-Adlzreiterstr. 8  
-83022 Rosenheim  
-Germany  
+**Förderverein Open Source, Cloud Native und Künstliche Intelligenz Bayern e.V.**
+Adlzreiterstr. 8
+83022 Rosenheim
+Germany
 
 Represented by the Board in accordance with § 26 German Civil Code (BGB):
 
@@ -27,7 +28,7 @@ Represented by the Board in accordance with § 26 German Civil Code (BGB):
 - **Vice Chairman:** Nico Meisenzahl
 - **Treasurer:** Markus Sümmchen
 
-**Contact:** team@cloudnativesummit.de
+**Contact:** [team@cloudnativesummit.de](mailto:team@cloudnativesummit.de)
 
 ---
 
@@ -35,7 +36,7 @@ Represented by the Board in accordance with § 26 German Civil Code (BGB):
 
 We have appointed a Data Protection Officer.
 
-**Contact:** team@cloudnativesummit.de
+**Contact:** [team@cloudnativesummit.de](mailto:team@cloudnativesummit.de)
 
 ---
 
@@ -58,10 +59,10 @@ For special categories of personal data, **Art. 9 GDPR** applies.
 
 Our website is hosted by:
 
-**Vercel Inc.**  
-440 N Barranca Ave #4133  
-Covina, CA 91723  
-USA  
+**Vercel Inc.**
+440 N Barranca Ave #4133
+Covina, CA 91723
+USA
 
 When you access our website, technically necessary data is automatically processed by Vercel’s servers, including:
 
@@ -102,6 +103,33 @@ Access by US authorities cannot be completely excluded.
 ### Data Retention
 
 Server log data is stored only as long as necessary for secure operation and is then automatically deleted.
+
+### Anonymous Schedule Favorite Statistics via Cloudflare
+
+For the conference schedule, visitors can mark individual sessions as favorites locally in their browser. In order to understand general interest in individual sessions and improve future program planning, we store anonymous aggregate favorite statistics via Cloudflare:
+
+**Cloudflare, Inc.**
+101 Townsend St.
+San Francisco, CA 94107
+USA
+
+When a visitor adds or removes a schedule favorite, only the session identifier and action type are transmitted to Cloudflare. Cloudflare resolves the public session title from the conference schedule and stores only the following aggregate data:
+
+- Session identifier
+- Session title
+- Action type, limited to adding or removing a favorite
+- Aggregated counters per session
+- Last update timestamp of the aggregate counter
+
+We do not store user accounts, session IDs, cookies, IP hashes, user agents, device fingerprints, or individual click logs for this purpose. The favorite selection remains stored locally in the visitor's browser and is not used by us to identify or recognise individual visitors.
+
+The purpose of this processing is to obtain anonymous, aggregated information about interest in individual sessions and to protect the integrity of the schedule statistics.
+
+Processing is based on our legitimate interest pursuant to **Art. 6(1)(f) GDPR** in evaluating anonymous aggregate interest in our event program and protecting the service against misuse.
+
+Cloudflare may process technically necessary connection data when the statistics endpoint is accessed. Cloudflare may act as a processor within the meaning of **Art. 28 GDPR**. Where required, appropriate contractual agreements have been concluded.
+
+As Cloudflare is a US-based provider, data processing may take place outside the EU, particularly in the United States. Data transfers are carried out on the basis of appropriate safeguards, including EU Standard Contractual Clauses and other legally permitted transfer mechanisms.
 
 ### Cookies
 
@@ -406,13 +434,13 @@ You have the right to:
 
 ## 9. Right to Lodge a Complaint
 
-**Bavarian Data Protection Authority (BayLDA)**  
-Promenade 18  
-91522 Ansbach  
-Germany  
+**Bavarian Data Protection Authority (BayLDA)**
+Promenade 18
+91522 Ansbach
+Germany
 
-**Email:** poststelle@lda.bayern.de  
-**Website:** www.lda.bayern.de
+**Email:** [poststelle@lda.bayern.de](mailto:poststelle@lda.bayern.de)
+**Website:** [www.lda.bayern.de](https://www.lda.bayern.de)
 
 ---
 

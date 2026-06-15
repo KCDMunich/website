@@ -271,6 +271,15 @@
   width: 100%;
 }
 
+.schedule-timetable {
+  display: grid;
+  grid-template-columns: repeat(var(--schedule-room-count), minmax(295px, 1fr));
+  gap: 1rem 1.25rem;
+  margin-top: 1.5rem;
+  width: 100%;
+  align-items: stretch;
+}
+
 .room-section {
   background: rgba(255, 255, 255, 0.9);
   border-radius: 16px;
@@ -281,6 +290,8 @@
 }
 
 .room-header {
+  display: grid;
+  gap: 0.35rem;
   padding: 1.1rem 1.2rem 0.9rem;
   background: linear-gradient(120deg, rgba(0, 66, 88, 0.14), rgba(0, 66, 88, 0.02));
   border-bottom: 1px solid rgba(0, 66, 88, 0.12);
@@ -291,6 +302,41 @@
   font-size: 1.05rem;
   font-weight: 700;
   color: var(--schedule-accent);
+}
+
+.schedule-timetable-header {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  border: 1px solid rgba(0, 66, 88, 0.12);
+  border-radius: 16px;
+}
+
+.schedule-timetable-cell {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  min-width: 0;
+}
+
+.schedule-timetable-cell--empty {
+  min-height: 1px;
+}
+
+.schedule-timetable .schedule-card {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  width: 100%;
+  margin: 0;
+}
+
+.schedule-timetable .schedule-card-content {
+  flex: 1 1 auto;
+}
+
+.schedule-timetable .schedule-card-footer {
+  margin-top: auto;
 }
 
 /* Event Cards */
@@ -503,22 +549,15 @@
   color: #1f2937;
 }
 
-.schedule-card-duration {
-  font-size: 0.7rem;
-  padding: 0.2rem 0.6rem;
-  border-radius: 999px;
-  background-color: rgba(0, 66, 88, 0.12);
-  color: var(--schedule-accent);
-  font-weight: 600;
-}
-
 .schedule-card-type {
   font-size: 0.7rem;
   padding: 0.25rem 0.6rem;
   border-radius: 999px;
+  flex: 0 0 auto;
   font-weight: 700;
   letter-spacing: 0.04em;
   text-transform: uppercase;
+  white-space: nowrap;
 }
 
 .schedule-card-type-talk {
@@ -691,8 +730,20 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  font-size: 0.85rem;
-  color: #42565f;
+  flex: 1 1 auto;
+  min-width: 0;
+  font-size: 0.92rem;
+  font-weight: 700;
+  line-height: 1.35;
+  color: #263f4a;
+}
+
+.schedule-card-location .schedule-card-icon {
+  flex: 0 0 auto;
+}
+
+.schedule-card-location span {
+  overflow-wrap: anywhere;
 }
 
 .schedule-card-recording {
