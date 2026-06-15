@@ -271,6 +271,15 @@
   width: 100%;
 }
 
+.schedule-timetable {
+  display: grid;
+  grid-template-columns: repeat(var(--schedule-room-count), minmax(295px, 1fr));
+  gap: 1rem 1.25rem;
+  margin-top: 1.5rem;
+  width: 100%;
+  align-items: stretch;
+}
+
 .room-section {
   background: rgba(255, 255, 255, 0.9);
   border-radius: 16px;
@@ -293,6 +302,41 @@
   font-size: 1.05rem;
   font-weight: 700;
   color: var(--schedule-accent);
+}
+
+.schedule-timetable-header {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  border: 1px solid rgba(0, 66, 88, 0.12);
+  border-radius: 16px;
+}
+
+.schedule-timetable-cell {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  min-width: 0;
+}
+
+.schedule-timetable-cell--empty {
+  min-height: 1px;
+}
+
+.schedule-timetable .schedule-card {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  width: 100%;
+  margin: 0;
+}
+
+.schedule-timetable .schedule-card-content {
+  flex: 1 1 auto;
+}
+
+.schedule-timetable .schedule-card-footer {
+  margin-top: auto;
 }
 
 /* Event Cards */

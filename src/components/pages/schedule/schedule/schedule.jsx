@@ -156,7 +156,7 @@ const roomDisplayDetails = {
   },
   'AI Engineering': {
     title: 'AI Engineering',
-    room: 'Side Stage - Barcelona',
+    room: 'Barcelona',
   },
   'Sponsor Workshops': {
     title: 'Sponsor Workshops',
@@ -309,14 +309,23 @@ const Schedule = ({ variant = 'default' }) => {
     return 'talk';
   };
 
-  const groupEventsByRoom = (events) => {
+  const groupEventsByRoomAndStart = (events) => {
     return events.reduce((acc, event) => {
       if (!acc[event.room]) {
-        acc[event.room] = [];
+        acc[event.room] = {};
       }
-      acc[event.room].push(event);
+      if (!acc[event.room][event.start]) {
+        acc[event.room][event.start] = [];
+      }
+      acc[event.room][event.start].push(event);
       return acc;
     }, {});
+  };
+
+  const getTimeSlots = (events) => {
+    return [...new Set(events.map((event) => event.start))].sort(
+      (a, b) => new Date(a) - new Date(b)
+    );
   };
 
   const findSpeakerProfile = (speakerId) => {
@@ -737,7 +746,8 @@ const Schedule = ({ variant = 'default' }) => {
   // Show all sessions of the day, including past ones
   const upcomingEvents = filteredEvents;
 
-  const eventsByRoom = groupEventsByRoom(upcomingEvents);
+  const eventsByRoomAndStart = groupEventsByRoomAndStart(upcomingEvents);
+  const timeSlots = getTimeSlots(upcomingEvents);
   const selectedGridDay = getDateForSelectedDay();
   const displayDate = getReadableDate(selectedGridDay?.date);
 
@@ -794,9 +804,6 @@ const Schedule = ({ variant = 'default' }) => {
                 <h1>{getHeaderLabel()}</h1>
                 <p>{displayDate}</p>
               </div>
-            </div>
-            <div className="schedule-app-desktop-hint">
-              Best on mobile. Resize to under 900px for the full app view.
             </div>
           </div>
         </section>
@@ -868,7 +875,10 @@ const Schedule = ({ variant = 'default' }) => {
           </div>
         )}
 
-        <div className="schedule-grid">
+        <div
+          className={isApp || isMobile ? 'schedule-grid' : 'schedule-timetable'}
+          style={!isApp && !isMobile ? { '--schedule-room-count': rooms.length } : undefined}
+        >
           {isApp
             ? upcomingEvents
                 .sort((a, b) => new Date(a.start) - new Date(b.start))
@@ -996,44 +1006,59 @@ const Schedule = ({ variant = 'default' }) => {
                     );
                   })
               : // Desktop: Grouped by room
-                rooms.map((room) => {
-                  const roomDisplay = getRoomDisplayDetails(room);
+                [
+                  rooms.map((room) => {
+                    const roomDisplay = getRoomDisplayDetails(room);
 
-                  return (
-                    <div key={room} className="room-section">
-                      <div className="room-header">
+                    return (
+                      <div key={`header-${room}`} className="room-header schedule-timetable-header">
                         <h2>{roomDisplay.title}</h2>
                       </div>
-                      {(eventsByRoom[room] || []).map((event) => {
-                        const isFavorite = favorites.includes(String(event.id));
-                        const isLiveEvent = isLive(event.start, event.end);
+                    );
+                  }),
+                  timeSlots.map((timeSlot) =>
+                    rooms.map((room) => {
+                      const slotEvents = eventsByRoomAndStart[room]?.[timeSlot] || [];
 
-                        return (
-                          <ScheduleCard
-                            key={event.id}
-                            startTime={event.time}
-                            endTime={event.endTime}
-                            duration={`${event.duration} min`}
-                            title={event.title}
-                            speakers={event.speakers?.map((speaker) => ({
-                              name: speaker.name,
-                              avatar: findSpeakerProfile(speaker.id),
-                            }))}
-                            location={getEventLocationLabel(event)}
-                            originalRoom={event.originalRoom}
-                            type={event.type}
-                            isFavorite={isFavorite}
-                            isLive={isLiveEvent}
-                            isPast={new Date(event.end) < new Date()}
-                            recordingUrl={event.recordingUrl}
-                            onFavoriteClick={() => toggleFavorite(event.id)}
-                            onClick={() => setSelectedEvent(event)}
-                          />
-                        );
-                      })}
-                    </div>
-                  );
-                })}
+                      return (
+                        <div
+                          key={`${room}-${timeSlot}`}
+                          className={`schedule-timetable-cell ${
+                            slotEvents.length ? '' : 'schedule-timetable-cell--empty'
+                          }`}
+                        >
+                          {slotEvents.map((event) => {
+                            const isFavorite = favorites.includes(String(event.id));
+                            const isLiveEvent = isLive(event.start, event.end);
+
+                            return (
+                              <ScheduleCard
+                                key={event.id}
+                                startTime={event.time}
+                                endTime={event.endTime}
+                                duration={`${event.duration} min`}
+                                title={event.title}
+                                speakers={event.speakers?.map((speaker) => ({
+                                  name: speaker.name,
+                                  avatar: findSpeakerProfile(speaker.id),
+                                }))}
+                                location={getEventLocationLabel(event)}
+                                originalRoom={event.originalRoom}
+                                type={event.type}
+                                isFavorite={isFavorite}
+                                isLive={isLiveEvent}
+                                isPast={new Date(event.end) < new Date()}
+                                recordingUrl={event.recordingUrl}
+                                onFavoriteClick={() => toggleFavorite(event.id)}
+                                onClick={() => setSelectedEvent(event)}
+                              />
+                            );
+                          })}
+                        </div>
+                      );
+                    })
+                  ),
+                ]}
         </div>
       </div>
 
