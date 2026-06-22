@@ -8,7 +8,7 @@ import Broadcom from 'icons/broadcom.png';
 import NutanixLogo from 'icons/NutanixLogo.svg';
 import ESolutionsLogo from 'icons/e-solutions.png';
 import GermanTechJobs from 'icons/germantech.svg';
-import GrafanaLabs from 'icons/grafanalabs.webp';
+import GrafanaLabs from 'icons/grafana-header-logo.svg';
 import KubeEventsLogo from 'icons/kubeevents_logo.svg';
 import LearnCubeLogo from 'icons/learncube.webp';
 import itSchulungen from 'icons/it_Schulungen.png';
