@@ -29,6 +29,6 @@ We would like to use this change to put ourselves on a solid base for the future
 
 Follow us on [LinkedIn](https://linkedin.com/company/cns-munich), [X/Twitter](https://x.com/cnsmunich), or Instagram to stay up to date.
 
-If you are interested in sponsoring you will find all the details [here](https://cloudnativesummit.de/#sponsors).
+If you are interested in sponsoring you will find all the [sponsorship details](https://cloudnativesummit.de/#sponsors).
 
 Feel free to contact us for any questions! We can't wait to welcome you again in 2025!
