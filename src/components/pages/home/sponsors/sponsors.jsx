@@ -8,6 +8,7 @@ import Broadcom from 'icons/broadcom.png';
 import NutanixLogo from 'icons/NutanixLogo.svg';
 import ESolutionsLogo from 'icons/e-solutions.png';
 import GermanTechJobs from 'icons/germantech.svg';
+import GrafanaLabs from 'icons/grafanalabs.webp';
 import KubeEventsLogo from 'icons/kubeevents_logo.svg';
 import LearnCubeLogo from 'icons/learncube.webp';
 import itSchulungen from 'icons/it_Schulungen.png';
@@ -139,6 +140,15 @@ const sponsorsList = [
     url: 'https://germantechjobs.de/',
     tier: 'partner',
     logoRatio: 1.6,
+  },
+  {
+    name: 'Grafana Labs',
+    icon: GrafanaLabs,
+    url: 'https://grafana.com/',
+    tier: 'silver',
+    logoRatio: 6.13,
+    logoHeight: 95,
+    logoMaxWidth: 260,
   },
   {
     name: 'IT-Schulungen',
