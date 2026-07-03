@@ -14,6 +14,7 @@ import {
   tierConfig,
   TIER_ORDER,
   type Sponsor,
+  type SponsorTier,
 } from "@/lib/sponsors-data";
 import {
   SECTION_TONE_CLASS,
@@ -21,8 +22,16 @@ import {
 } from "@/lib/section-backgrounds";
 import { cn } from "@/lib/utils";
 
-const FEATURED_TIERS = new Set(["platinum", "gold"]);
-const SPONSOR_CARD_SIZE = "h-[100px] w-[200px] sm:w-[220px]";
+const SPONSOR_CELL_SIZE = "h-[100px] w-[200px] sm:w-[220px]";
+
+const TIER_LOGO_CLASS: Partial<Record<SponsorTier, string>> = {
+  platinum:
+    "max-h-[72px] max-w-[210px] sm:max-h-[78px] sm:max-w-[228px]",
+  gold: "max-h-[64px] max-w-[190px] sm:max-h-[68px] sm:max-w-[200px]",
+};
+
+const DEFAULT_LOGO_CLASS =
+  "max-h-[56px] max-w-[168px] sm:max-h-[60px] sm:max-w-[180px]";
 
 type SponsorsProps = {
   tone?: SectionTone;
@@ -30,6 +39,7 @@ type SponsorsProps = {
 
 function SponsorLogoCard({ sponsor }: { sponsor: Sponsor }) {
   const logoSize = getLogoSize(sponsor);
+  const logoClass = TIER_LOGO_CLASS[sponsor.tier] ?? DEFAULT_LOGO_CLASS;
 
   return (
     <Link
@@ -38,7 +48,7 @@ function SponsorLogoCard({ sponsor }: { sponsor: Sponsor }) {
       rel="noopener noreferrer"
       className={cn(
         "group flex items-center justify-center rounded-2xl p-4 transition-all duration-300 hover:-translate-y-1",
-        SPONSOR_CARD_SIZE
+        SPONSOR_CELL_SIZE
       )}
       aria-label={sponsor.name}
     >
@@ -47,17 +57,55 @@ function SponsorLogoCard({ sponsor }: { sponsor: Sponsor }) {
         alt={sponsor.name}
         width={logoSize.width}
         height={logoSize.height}
-        className="max-h-[56px] w-auto max-w-[168px] object-contain opacity-85 transition-all duration-300 group-hover:scale-105 group-hover:opacity-100 sm:max-h-[60px] sm:max-w-[180px]"
+        className={cn(
+          "w-auto object-contain opacity-85 transition-all duration-300 group-hover:scale-105 group-hover:opacity-100",
+          logoClass
+        )}
       />
     </Link>
   );
 }
 
-export function Sponsors({ tone = "default" }: SponsorsProps) {
-  const platinumSponsors = sponsorsList.filter((s) => s.tier === "platinum");
-  const goldSponsors = sponsorsList.filter((s) => s.tier === "gold");
+function SponsorTierBand({
+  tier,
+  sponsors,
+  showDivider,
+  delay,
+}: {
+  tier: SponsorTier;
+  sponsors: Sponsor[];
+  showDivider: boolean;
+  delay: number;
+}) {
+  if (sponsors.length === 0) return null;
 
-  const gridTiers = TIER_ORDER.filter((t) => !FEATURED_TIERS.has(t));
+  return (
+    <MotionReveal delay={delay}>
+      <div
+        className={cn(
+          showDivider && "border-t border-dashed border-primary/10 pt-12"
+        )}
+      >
+        <p className="mb-5 text-center text-xs font-semibold uppercase tracking-[0.14em] text-primary/70">
+          {tierConfig[tier].title}
+        </p>
+        <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4">
+          {sponsors.map((sponsor, index) => (
+            <SponsorLogoCard
+              key={`${sponsor.name}-${index}`}
+              sponsor={sponsor}
+            />
+          ))}
+        </div>
+      </div>
+    </MotionReveal>
+  );
+}
+
+export function Sponsors({ tone = "default" }: SponsorsProps) {
+  const visibleTiers = TIER_ORDER.filter((tier) =>
+    sponsorsList.some((sponsor) => sponsor.tier === tier)
+  );
 
   return (
     <Section
@@ -81,64 +129,16 @@ export function Sponsors({ tone = "default" }: SponsorsProps) {
         </MotionReveal>
       </div>
 
-      {platinumSponsors.length > 0 ? (
-        <MotionReveal delay={0.08}>
-          <div className="mt-12">
-            <p className="mb-5 text-center text-xs font-semibold uppercase tracking-[0.14em] text-primary/70">
-              {tierConfig.platinum.title}
-            </p>
-            <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4">
-              {platinumSponsors.map((sponsor, index) => (
-                <SponsorLogoCard
-                  key={`${sponsor.name}-${index}`}
-                  sponsor={sponsor}
-                />
-              ))}
-            </div>
-          </div>
-        </MotionReveal>
-      ) : null}
-
-      {goldSponsors.length > 0 ? (
-        <MotionReveal delay={0.1}>
-          <div className="mt-12">
-            <p className="mb-5 text-center text-xs font-semibold uppercase tracking-[0.14em] text-primary/70">
-              {tierConfig.gold.title}
-            </p>
-            <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4">
-              {goldSponsors.map((sponsor, index) => (
-                <SponsorLogoCard
-                  key={`${sponsor.name}-${index}`}
-                  sponsor={sponsor}
-                />
-              ))}
-            </div>
-          </div>
-        </MotionReveal>
-      ) : null}
-
-      <div className="mt-12 space-y-12">
-        {gridTiers.map((tier, tierIndex) => {
-          const config = tierConfig[tier];
-          const tierSponsors = sponsorsList.filter((s) => s.tier === tier);
-          if (tierSponsors.length === 0) return null;
-
-          return (
-            <MotionReveal key={tier} delay={0.1 + tierIndex * 0.04}>
-              <p className="mb-5 text-center text-xs font-semibold uppercase tracking-[0.14em] text-primary/70">
-                {config.title}
-              </p>
-              <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4">
-                {tierSponsors.map((sponsor, index) => (
-                  <SponsorLogoCard
-                    key={`${sponsor.name}-${index}`}
-                    sponsor={sponsor}
-                  />
-                ))}
-              </div>
-            </MotionReveal>
-          );
-        })}
+      <div className="mt-12">
+        {visibleTiers.map((tier, index) => (
+          <SponsorTierBand
+            key={tier}
+            tier={tier}
+            sponsors={sponsorsList.filter((sponsor) => sponsor.tier === tier)}
+            showDivider={index > 0}
+            delay={0.08 + index * 0.04}
+          />
+        ))}
       </div>
 
       <MotionReveal delay={0.2}>
