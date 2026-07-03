@@ -33,12 +33,12 @@ const hotels: Hotel[] = [
     name: "Four Points by Sheraton Munich Arabellapark",
     amenities: ["Fitnessraum", "WLAN", "Frühstück"],
     websiteUrl:
-      "https://www.marriott.com/en-us/hotels/mucwi-the-westin-grand-munich/overview/",
+      "https://www.marriott.com/en-us/hotels/mucap-four-points-munich-arabellapark/overview/",
   },
   {
     name: "The Westin Grand Munich",
     websiteUrl:
-      "https://www.marriott.com/en-us/hotels/mucap-four-points-munich-arabellapark/overview/",
+      "https://www.marriott.com/en-us/hotels/mucwi-the-westin-grand-munich/overview/",
   },
 ];
 
