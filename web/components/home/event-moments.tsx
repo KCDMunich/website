@@ -64,7 +64,7 @@ export async function EventMoments({ tone = "default" }: EventMomentsProps) {
             target="_blank"
             rel="noopener noreferrer"
             className={cn(
-              "relative shrink-0 snap-center overflow-hidden rounded-2xl bg-white shadow-lg ring-4 ring-white",
+              "relative shrink-0 cursor-pointer snap-center overflow-hidden rounded-2xl bg-white shadow-lg ring-4 ring-white",
               "h-52 w-40 sm:h-60 sm:w-48",
               index % 2 === 0 ? "-rotate-2" : "rotate-2"
             )}
@@ -92,7 +92,7 @@ export async function EventMoments({ tone = "default" }: EventMomentsProps) {
               href={GALLERY_2026_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="absolute transition-[z-index] duration-300 hover:z-20"
+              className="absolute cursor-pointer transition-[z-index] duration-300 hover:z-20"
               style={{
                 top: placement.top,
                 left: placement.left,

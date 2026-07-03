@@ -122,7 +122,7 @@ export function Ticketing({ tone = "default" }: TicketingProps) {
           <p className="mt-8 text-sm text-muted-foreground">
             Need a diversity ticket? Contact{" "}
             <a
-              className="font-semibold text-primary hover:text-primary/80"
+              className="cursor-pointer font-semibold text-primary hover:text-primary/80"
               href="mailto:team@cloudnativesummit.de"
             >
               team@cloudnativesummit.de

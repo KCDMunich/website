@@ -1,21 +1,23 @@
-import Image from "next/image"
-import { MapPin } from "lucide-react"
+import Image from "next/image";
+import Link from "next/link";
+import { ArrowRight, MapPin } from "lucide-react";
 
-import { Section, SectionTitle } from "@/components/layout/section"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
+import { Eyebrow } from "@/components/layout/eyebrow";
+import { MotionReveal } from "@/components/layout/motion-reveal";
+import { Section } from "@/components/layout/section";
+import { Button } from "@/components/ui/button";
 import {
   SECTION_TONE_CLASS,
   type SectionTone,
-} from "@/lib/section-backgrounds"
-import { cn } from "@/lib/utils"
+} from "@/lib/section-backgrounds";
+import { cn } from "@/lib/utils";
 
 interface Hotel {
-  name: string
-  distance?: string
-  amenities?: string[]
-  imageUrl?: string
-  websiteUrl: string
+  name: string;
+  distance?: string;
+  amenities?: string[];
+  imageUrl?: string;
+  websiteUrl: string;
 }
 
 const hotels: Hotel[] = [
@@ -38,89 +40,137 @@ const hotels: Hotel[] = [
     websiteUrl:
       "https://www.marriott.com/en-us/hotels/mucap-four-points-munich-arabellapark/overview/",
   },
-]
+];
 
 type HotelsProps = {
-  tone?: SectionTone
-}
+  tone?: SectionTone;
+};
 
 export function Hotels({ tone = "default" }: HotelsProps) {
-  const [highlightedHotel, ...otherHotels] = hotels
+  const [highlightedHotel, ...otherHotels] = hotels;
 
   return (
-    <Section className={cn(SECTION_TONE_CLASS[tone])}>
-      <SectionTitle>Nearby hotels</SectionTitle>
-
-      <Card className="mb-8 overflow-hidden border-border/60">
-        {highlightedHotel.imageUrl && (
-          <div className="relative h-64 w-full md:h-72">
-            <Image
-              src={highlightedHotel.imageUrl}
-              alt={highlightedHotel.name}
-              fill
-              className="object-cover"
-              sizes="(max-width: 768px) 100vw, 1280px"
-            />
+    <Section id="hotels" className={cn(SECTION_TONE_CLASS[tone])}>
+      <div className="mx-auto max-w-3xl text-center">
+        <MotionReveal>
+          <div className="mb-4 flex justify-center">
+            <Eyebrow>Stay nearby</Eyebrow>
           </div>
-        )}
-        <CardContent className="space-y-4 pt-6">
-          <div>
-            <h3 className="text-xl font-bold text-foreground">
-              {highlightedHotel.name}
-            </h3>
-            {highlightedHotel.distance && (
-              <p className="mt-1 flex items-center gap-1.5 text-sm text-muted-foreground">
-                <MapPin className="size-4 text-primary" />
-                {highlightedHotel.distance}
-              </p>
-            )}
-          </div>
-          <Button
-            nativeButton={false}
-            render={<a href="mailto:info@hotel-arabellapark.de" />}
-          >
-            Book now
-          </Button>
-        </CardContent>
-      </Card>
-
-      <div>
-        <h3 className="mb-4 text-lg font-semibold text-foreground">
-          More hotels nearby
-        </h3>
-        <ul className="space-y-3">
-          {otherHotels.map((hotel) => (
-            <li key={hotel.name}>
-              <Card className="border-border/60 bg-muted/20">
-                <CardContent className="flex flex-col gap-2 pt-4 sm:flex-row sm:items-center sm:justify-between">
-                  <div>
-                    <h4 className="font-semibold text-foreground">{hotel.name}</h4>
-                    {hotel.amenities && hotel.amenities.length > 0 && (
-                      <p className="text-sm text-muted-foreground">
-                        {hotel.amenities.join(" · ")}
-                      </p>
-                    )}
-                  </div>
-                  <Button
-                    nativeButton={false}
-                    render={
-                      <a
-                        href={hotel.websiteUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      />
-                    }
-                    variant="outline"
-                    size="sm"
-                  >
-                    Visit website
-                  </Button>
-                </CardContent>
-              </Card>
-            </li>
-          ))}
-        </ul>
+          <h2 className="font-heading text-3xl font-bold leading-[1.08] tracking-tight text-primary sm:text-4xl lg:text-5xl">
+            Hotels close to,
+            <br />
+            <span className="text-[#0bbbef]">the venue</span>
+          </h2>
+          <p className="mt-5 text-lg leading-relaxed text-muted-foreground">
+            Walking distance from smartvillage Bogenhausen — practical options
+            around Munich Arabellapark.
+          </p>
+        </MotionReveal>
       </div>
+
+      <MotionReveal delay={0.08}>
+        <div className="mt-12 overflow-hidden rounded-2xl ring-1 ring-primary/10 shadow-md">
+          {highlightedHotel.imageUrl ? (
+            <div className="relative aspect-[21/9] w-full sm:aspect-[2.4/1]">
+              <Image
+                src={highlightedHotel.imageUrl}
+                alt={highlightedHotel.name}
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 1280px"
+              />
+            </div>
+          ) : null}
+          <div className="bg-gradient-to-br from-primary/8 to-primary/[0.03] p-6 sm:p-8">
+            <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
+              <div>
+                <h3 className="font-heading text-xl font-bold text-primary sm:text-2xl">
+                  {highlightedHotel.name}
+                </h3>
+                {highlightedHotel.distance ? (
+                  <p className="mt-2 flex items-center gap-1.5 text-sm text-muted-foreground sm:text-base">
+                    <MapPin className="size-4 text-[#0bbbef]" />
+                    {highlightedHotel.distance}
+                  </p>
+                ) : null}
+                {highlightedHotel.amenities &&
+                highlightedHotel.amenities.length > 0 ? (
+                  <p className="mt-2 text-sm text-muted-foreground">
+                    {highlightedHotel.amenities.join(" · ")}
+                  </p>
+                ) : null}
+              </div>
+              <Button
+                nativeButton={false}
+                render={
+                  <a
+                    href={highlightedHotel.websiteUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  />
+                }
+                size="lg"
+                className="shrink-0 bg-primary text-primary-foreground hover:bg-primary/90"
+              >
+                Visit website
+                <ArrowRight className="size-4" />
+              </Button>
+            </div>
+          </div>
+        </div>
+      </MotionReveal>
+
+      {otherHotels.length > 0 ? (
+        <div className="mt-8 space-y-4">
+          <p className="text-center text-xs font-semibold uppercase tracking-[0.14em] text-primary/70 sm:text-left">
+            More hotels nearby
+          </p>
+          {otherHotels.map((hotel, index) => (
+            <MotionReveal key={hotel.name} delay={0.12 + index * 0.04}>
+              <div className="flex flex-col gap-4 rounded-2xl bg-gradient-to-br from-primary/8 to-primary/[0.03] p-5 ring-1 ring-primary/10 transition-all hover:-translate-y-0.5 hover:shadow-md sm:flex-row sm:items-center sm:justify-between sm:p-6">
+                <div>
+                  <h4 className="font-heading text-lg font-bold text-primary">
+                    {hotel.name}
+                  </h4>
+                  {hotel.amenities && hotel.amenities.length > 0 ? (
+                    <p className="mt-1 text-sm text-muted-foreground">
+                      {hotel.amenities.join(" · ")}
+                    </p>
+                  ) : null}
+                </div>
+                <Button
+                  nativeButton={false}
+                  render={
+                    <a
+                      href={hotel.websiteUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    />
+                  }
+                  variant="outline"
+                  size="sm"
+                  className="shrink-0 border-primary/20 text-primary hover:bg-primary/5"
+                >
+                  Visit website
+                  <ArrowRight className="size-4" />
+                </Button>
+              </div>
+            </MotionReveal>
+          ))}
+        </div>
+      ) : null}
+
+      <MotionReveal delay={0.2}>
+        <p className="mt-8 text-center text-sm text-muted-foreground">
+          Back to{" "}
+          <Link
+            href="#venue"
+            className="cursor-pointer font-semibold text-primary transition-colors hover:text-primary/80"
+          >
+            venue information
+          </Link>
+        </p>
+      </MotionReveal>
     </Section>
-  )
+  );
 }

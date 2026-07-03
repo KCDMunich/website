@@ -92,6 +92,19 @@
   html {
     @apply font-sans scroll-smooth;
   }
+  a[href],
+  button:not(:disabled),
+  summary,
+  label[for],
+  [role="button"]:not([aria-disabled="true"]),
+  [data-slot="navigation-menu-trigger"],
+  [data-slot="navigation-menu-link"],
+  [data-slot="dialog-trigger"],
+  [data-slot="dialog-close"],
+  [data-slot="sheet-trigger"],
+  [data-slot="sheet-close"] {
+    cursor: pointer;
+  }
 }
 
 @layer utilities {

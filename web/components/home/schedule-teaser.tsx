@@ -209,7 +209,7 @@ export function ScheduleTeaser({ tone = "default" }: ScheduleTeaserProps) {
                 aria-label={`Play ${video.title}`}
                 aria-pressed={isActive}
                 className={cn(
-                  "group relative aspect-video w-full overflow-hidden rounded-2xl text-left shadow-md ring-1 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40",
+                  "group relative aspect-video w-full cursor-pointer overflow-hidden rounded-2xl text-left shadow-md ring-1 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40",
                   isActive
                     ? "ring-primary"
                     : "ring-primary/10"

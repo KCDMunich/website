@@ -82,7 +82,7 @@ const navLinkShellClass = (lightText: boolean) =>
 
 function DesktopNav({ lightText }: { lightText: boolean }) {
   const linkClass = cn(
-    "text-[15px] font-semibold transition-colors",
+    "cursor-pointer text-[15px] font-semibold transition-colors",
     lightText
       ? "text-white/90 hover:text-[#0bbbef]"
       : "text-primary hover:text-primary/70"
@@ -114,7 +114,7 @@ function DesktopNav({ lightText }: { lightText: boolean }) {
                           href={child.to}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="font-semibold text-primary hover:bg-primary/5 hover:text-primary/80"
+                          className="cursor-pointer font-semibold text-primary hover:bg-primary/5 hover:text-primary/80"
                         >
                           {child.text}
                         </NavigationMenuLink>
@@ -181,7 +181,7 @@ function MobileNav({
                 <div key={item.text} className="border-b border-border pb-2">
                   <button
                     type="button"
-                    className="flex w-full items-center justify-between py-3 text-left text-base font-semibold text-primary"
+                    className="flex w-full cursor-pointer items-center justify-between py-3 text-left text-base font-semibold text-primary"
                     aria-expanded={isExpanded}
                     onClick={() =>
                       setExpandedItem(isExpanded ? null : item.text)
@@ -205,7 +205,7 @@ function MobileNav({
                             href={child.to}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="block py-1 text-sm font-medium text-primary/80 hover:text-primary"
+                            className="block cursor-pointer py-1 text-sm font-medium text-primary/80 hover:text-primary"
                             onClick={() => onOpenChange(false)}
                           >
                             {child.text}
@@ -222,7 +222,7 @@ function MobileNav({
               <NavItemLink
                 key={item.text}
                 item={item}
-                className="border-b border-border py-3 text-base font-semibold text-primary hover:text-primary/80"
+                className="cursor-pointer border-b border-border py-3 text-base font-semibold text-primary hover:text-primary/80"
                 onNavigate={() => onOpenChange(false)}
               />
             );
@@ -288,7 +288,7 @@ export function SiteHeader({ homepage = false }: SiteHeaderProps) {
       )}
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3.5 sm:px-6 lg:px-8">
-        <Link href="/" className="relative z-50 shrink-0">
+        <Link href="/" className="relative z-50 shrink-0 cursor-pointer">
           <SiteLogo variant={onHero ? "hero" : "default"} />
         </Link>
 

@@ -47,7 +47,7 @@ function SponsorLogoCard({ sponsor }: { sponsor: Sponsor }) {
       target="_blank"
       rel="noopener noreferrer"
       className={cn(
-        "group flex items-center justify-center rounded-2xl p-4 transition-all duration-300 hover:-translate-y-1",
+        "group flex cursor-pointer items-center justify-center rounded-2xl p-4 transition-all duration-300 hover:-translate-y-1",
         SPONSOR_CELL_SIZE
       )}
       aria-label={sponsor.name}
@@ -162,7 +162,7 @@ export function Sponsors({ tone = "default" }: SponsorsProps) {
             Or email{" "}
             <a
               href={`mailto:${SPONSOR_CONTACT_EMAIL}`}
-              className="font-semibold text-primary transition-colors hover:text-primary/80"
+              className="cursor-pointer font-semibold text-primary transition-colors hover:text-primary/80"
             >
               {SPONSOR_CONTACT_EMAIL}
             </a>

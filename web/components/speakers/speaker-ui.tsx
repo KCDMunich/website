@@ -113,7 +113,7 @@ export function AnnouncedSpeakerCard({
     <button
       type="button"
       onClick={onClick}
-      className="group flex h-full w-full flex-col overflow-hidden rounded-2xl bg-gradient-to-br from-primary/8 to-primary/[0.03] text-left ring-1 ring-primary/10 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
+      className="group flex h-full w-full cursor-pointer flex-col overflow-hidden rounded-2xl bg-gradient-to-br from-primary/8 to-primary/[0.03] text-left ring-1 ring-primary/10 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
     >
       <div className="relative aspect-[4/5] overflow-hidden">
         <Image
@@ -141,7 +141,7 @@ export function AnnouncedSpeakerCard({
                   href={link.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="rounded-full bg-white/20 p-2 backdrop-blur-sm transition-colors hover:bg-white/35"
+                  className="cursor-pointer rounded-full bg-white/20 p-2 backdrop-blur-sm transition-colors hover:bg-white/35"
                   onClick={(event) => event.stopPropagation()}
                 >
                   <SocialIcon url={link.url} isWhite />
@@ -216,7 +216,7 @@ export function LineupSpeakerCard({
                     href={link.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="rounded-full bg-white/20 p-1.5 backdrop-blur-sm transition-colors hover:bg-white/35"
+                    className="cursor-pointer rounded-full bg-white/20 p-1.5 backdrop-blur-sm transition-colors hover:bg-white/35"
                     onClick={(event) => event.stopPropagation()}
                   >
                     <SocialIcon url={link.url} isWhite />
@@ -253,7 +253,7 @@ export function LineupSpeakerCard({
                   href={link.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="rounded-full bg-white/20 p-2 transition-colors hover:bg-white/40"
+                  className="cursor-pointer rounded-full bg-white/20 p-2 transition-colors hover:bg-white/40"
                   onClick={(event) => event.stopPropagation()}
                 >
                   <SocialIcon url={link.url} isWhite />
@@ -324,7 +324,7 @@ export function SpeakerDialogContent({ speaker }: { speaker: Speaker }) {
               href={link.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 rounded-full bg-background px-3 py-2 text-sm transition-colors hover:bg-muted"
+              className="flex cursor-pointer items-center gap-2 rounded-full bg-background px-3 py-2 text-sm transition-colors hover:bg-muted"
             >
               <SocialIcon url={link.url} />
               <span className="text-xs">{link.title}</span>

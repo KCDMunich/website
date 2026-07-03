@@ -7,7 +7,8 @@ import { createMetadata } from "@/lib/metadata";
 
 export const metadata: Metadata = createMetadata({
   title: "Team",
-  description: "Experience the power of community at the CNS Munich!",
+  description:
+    "Meet the volunteer committee behind Cloud Native Summit Munich — practitioners who organize the community conference in Munich.",
   pathname: "/team",
 });
 
@@ -16,8 +17,14 @@ export default function TeamPage() {
     <SiteLayout>
       <PageHero
         eyebrow="Team"
-        title="Team"
-        description="The Cloud Native Summit Munich is organized by a dedicated committee who are passionate about bringing people together and fostering a sense of community. Our goal is to provide a platform for like-minded individuals from all levels and backgrounds that is dedicated to learning, growth, and diversity."
+        title={
+          <>
+            Meet the people
+            <br />
+            <span className="text-[#0bbbef]">behind the summit</span>
+          </>
+        }
+        description="A dedicated committee of cloud native practitioners who bring the Munich community together — for learning, growth, and diversity."
       />
       <TeamMembers />
     </SiteLayout>
