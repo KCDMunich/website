@@ -2,12 +2,15 @@ import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { FaDiscord } from 'react-icons/fa';
+import { HiChevronDown } from 'react-icons/hi2';
 import slugify from 'slugify';
 
 import MENUS from 'constants/menus';
-import logo from './images/CNS_logo.png';
+
 import Burger from '../burger';
 import Link from '../link';
+
+import logo from './images/CNS_logo.png';
 
 import './header.css';
 
@@ -60,26 +63,30 @@ const Header = ({ isMobileMenuOpen = false, onBurgerClick, additionalClassName =
                 style={{ color: '#004258', cursor: 'pointer' }}
               >
                 {item.children ? (
-                  <span className="text-primary cursor-default select-none">
-                    {item.text}
-                    <a
-                      href={item.children[1].to}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-primary ml-2 transition-colors duration-200 hover:text-primary-1"
+                  <>
+                    <button
+                      type="button"
+                      className="text-primary inline-flex items-center gap-1 transition-colors duration-200 hover:text-primary-1"
+                      aria-haspopup="true"
                     >
-                      2024
-                    </a>
-                    <span className="mx-1 text-gray-400">|</span>
-                    <a
-                      href={item.children[0].to}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-primary transition-colors duration-200 hover:text-primary-1"
-                    >
-                      2025
-                    </a>
-                  </span>
+                      {item.text}
+                      <HiChevronDown className="h-4 w-4 transition-transform duration-200 group-hover:rotate-180" />
+                    </button>
+                    <ul className="invisible absolute left-1/2 top-full z-50 mt-2 min-w-[7rem] -translate-x-1/2 rounded-md border border-gray-100 bg-white py-1 opacity-0 shadow-lg transition-all duration-200 group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
+                      {item.children.map((child, childIndex) => (
+                        <li key={childIndex}>
+                          <a
+                            href={child.to}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="block px-4 py-2 text-[15px] font-semibold text-primary-1 transition-colors duration-200 hover:bg-primary-1/10"
+                          >
+                            {child.text}
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </>
                 ) : (
                   <Link
                     to={item.to || `/#${item.homeTo}`}

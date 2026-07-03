@@ -4,6 +4,11 @@ const getAnchor = (str) => slugify(str).toLocaleLowerCase();
 
 const links = {
   // Pages and sections
+  gallery2026: {
+    to: 'https://adobe.ly/4eUYyKR',
+    target: '_blank',
+    external: true,
+  },
   gallery2025: {
     to: 'https://lightroom.adobe.com/shares/7bb86e822460423fbd84753f93862cd2',
     target: '_blank',
