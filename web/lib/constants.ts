@@ -19,9 +19,16 @@ export const DISCORD_URL = "https://discord.com/invite/Ht3upbGey9";
 export const FIENTA_TICKET_URL =
   "https://fienta.com/de/cloud-native-summit-2026";
 
+/**
+ * Homepage ticketing section (`Tickets / Secure your spot`).
+ * Controlled via `SHOW_TICKETING_SECTION` env var — see `web/.env.example` and `web/README.md`.
+ */
+export const SHOW_TICKETING_SECTION =
+  process.env.SHOW_TICKETING_SECTION === "true";
+
 export const LINKS = {
   gallery2026: {
-    to: "https://adobe.ly/4eUYyKR",
+    to: "https://lightroom.adobe.com/shares/7314e896be5b4c22b8365cfa07e42487",
     target: "_blank",
     external: true,
   },

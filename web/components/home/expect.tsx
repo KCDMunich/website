@@ -1,11 +1,4 @@
-import {
-  Calendar,
-  Handshake,
-  Mic2,
-  Sparkles,
-  Users,
-  Wrench,
-} from "lucide-react";
+import { Mic2, Sparkles, Users, Wrench } from "lucide-react";
 
 import { MotionReveal } from "@/components/layout/motion-reveal";
 import { Section } from "@/components/layout/section";
@@ -76,19 +69,6 @@ export function Expect() {
           </MotionReveal>
         ))}
       </div>
-
-      <MotionReveal delay={0.3}>
-        <div className="mt-10 flex flex-wrap items-center justify-center gap-6 text-sm font-medium text-muted-foreground">
-          <span className="inline-flex items-center gap-2">
-            <Calendar className="size-4 text-primary" />
-            June 29 – 30, 2026
-          </span>
-          <span className="inline-flex items-center gap-2">
-            <Handshake className="size-4 text-primary" />
-            Community-organized
-          </span>
-        </div>
-      </MotionReveal>
     </Section>
   );
 }

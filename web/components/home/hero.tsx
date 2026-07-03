@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { ArrowRight, Calendar, MapPin, Users } from "lucide-react";
 
-import { Countdown } from "@/components/layout/countdown";
 import { Eyebrow } from "@/components/layout/eyebrow";
 import { MotionReveal } from "@/components/layout/motion-reveal";
 import { Button } from "@/components/ui/button";
@@ -97,15 +96,6 @@ export function Hero() {
               >
                 View schedule
               </Button>
-            </div>
-          </MotionReveal>
-
-          <MotionReveal delay={0.34}>
-            <div className="mt-14 border-t border-white/15 pt-10">
-              <p className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-white/60">
-                Event starts in
-              </p>
-              <Countdown variant="light" />
             </div>
           </MotionReveal>
         </div>

@@ -30,8 +30,22 @@ cp .env.example .env.local
 | Variable | Description |
 |----------|-------------|
 | `NEXT_PUBLIC_SITE_URL` | Canonical site URL (e.g. `https://cloudnativesummit.de`) |
+| `SHOW_TICKETING_SECTION` | Feature flag: set to `true` to show the homepage ticketing section (`Tickets / Secure your spot`). Default: hidden. |
 | `SESSIONIZE_EVENT_ID` | Sessionize event ID for schedule & speakers |
 | `NEXT_PUBLIC_SCHEDULE_STATS_ENDPOINT` | Optional endpoint for anonymous schedule favorite stats |
+| `FIENTA_*` | Fienta API config for live ticket data (see `.env.example`) |
+
+### Feature flags
+
+Some homepage sections can be toggled without code changes:
+
+| Flag | Values | Effect |
+|------|--------|--------|
+| `SHOW_TICKETING_SECTION` | `true` / `false` (or unset) | Shows or hides the ticketing block on `/`. The `Ticketing` component stays in the codebase; only rendering is gated in `app/page.tsx`. |
+
+**Local:** set in `.env.local` (copy from `.env.example`).
+
+**Vercel:** Project → **Settings** → **Environment Variables** → add `SHOW_TICKETING_SECTION` → **Redeploy** (env vars are read at build time).
 
 ## Build
 

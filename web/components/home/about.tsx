@@ -1,64 +1,95 @@
 import Link from "next/link";
+import { ArrowRight, Calendar, Heart, Users } from "lucide-react";
 
+import { Eyebrow } from "@/components/layout/eyebrow";
 import { MotionReveal } from "@/components/layout/motion-reveal";
 import { Section } from "@/components/layout/section";
-import { SectionHeader } from "@/components/layout/section-header";
 import { Button } from "@/components/ui/button";
 
 const highlights = [
-  { value: "5th", label: "Edition in Munich" },
-  { value: "2", label: "Conference days" },
-  { value: "100%", label: "Community-driven" },
+  {
+    value: "5th",
+    label: "Edition in Munich",
+    icon: Calendar,
+  },
+  {
+    value: "2",
+    label: "Conference days",
+    icon: Users,
+  },
+  {
+    value: "100%",
+    label: "Community-driven",
+    icon: Heart,
+  },
 ];
 
 export function About() {
   return (
-    <Section className="bg-background">
-      <MotionReveal>
-        <SectionHeader
-          eyebrow="About"
-          title="Built by the community, for the community"
-          description="Cloud Native Summit Munich brings together adopters and technologists from open source and cloud native ecosystems for two focused days in the heart of Bavaria."
-        />
-      </MotionReveal>
+    <Section id="about" className="bg-background">
+      <div className="grid items-center gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:gap-16">
+        <div>
+          <MotionReveal>
+            <Eyebrow className="mb-4">About</Eyebrow>
+            <h2 className="font-heading text-3xl font-bold leading-[1.08] tracking-tight text-primary sm:text-4xl lg:text-5xl">
+              Built by the community,
+              <br />
+              <span className="text-[#0bbbef]">for the community</span>
+            </h2>
+          </MotionReveal>
 
-      <div className="grid gap-10 lg:grid-cols-[1.2fr_1fr] lg:gap-16">
-        <MotionReveal delay={0.1}>
-          <div className="space-y-6 text-lg leading-relaxed text-muted-foreground">
-            <p>
-              CNS Munich is a local, community-organized event — the fifth
-              edition gathering practitioners, platform engineers, and cloud
-              native enthusiasts to learn, share, and connect.
-            </p>
-            <p>
-              This event provides a platform for professionals and experts from
-              all levels and backgrounds to share knowledge about cloud-native
-              technologies, platform engineering, and open source.
-            </p>
+          <MotionReveal delay={0.08}>
+            <div className="mt-6 space-y-5 text-lg leading-relaxed text-muted-foreground">
+              <p>
+                Cloud Native Summit Munich brings together adopters and
+                technologists from open source and cloud native ecosystems for
+                two focused days in the heart of Bavaria.
+              </p>
+              <p>
+                CNS Munich is a local, community-organized event — the fifth
+                edition gathering practitioners, platform engineers, and cloud
+                native enthusiasts to learn, share, and connect.
+              </p>
+              <p>
+                This event provides a platform for professionals and experts
+                from all levels and backgrounds to share knowledge about
+                cloud-native technologies, platform engineering, and open
+                source.
+              </p>
+            </div>
+          </MotionReveal>
+
+          <MotionReveal delay={0.14}>
             <Button
               nativeButton={false}
               render={<Link href="/vision" />}
               size="lg"
-              className="bg-primary text-primary-foreground"
+              className="mt-8 bg-primary text-primary-foreground hover:bg-primary/90"
             >
               Our vision
+              <ArrowRight className="size-4" />
             </Button>
-          </div>
-        </MotionReveal>
+          </MotionReveal>
+        </div>
 
-        <MotionReveal delay={0.15}>
-          <div className="grid gap-4 sm:grid-cols-3 lg:grid-cols-1">
-            {highlights.map(({ value, label }) => (
+        <MotionReveal delay={0.1} className="w-full">
+          <div className="mx-auto flex w-full max-w-sm flex-col gap-3 lg:max-w-none">
+            {highlights.map(({ value, label, icon: Icon }) => (
               <div
                 key={label}
-                className="rounded-2xl bg-primary/5 px-6 py-8 text-center ring-1 ring-primary/10 lg:text-left"
+                className="grid grid-cols-[3rem_1fr] items-center gap-4 rounded-2xl bg-gradient-to-br from-primary/8 to-primary/[0.03] px-5 py-5 ring-1 ring-primary/10 transition-shadow hover:shadow-md sm:px-6"
               >
-                <p className="font-heading text-4xl font-bold text-primary">
-                  {value}
-                </p>
-                <p className="mt-1 text-sm font-medium text-muted-foreground">
-                  {label}
-                </p>
+                <div className="flex size-12 items-center justify-center justify-self-center rounded-xl bg-background/80 ring-1 ring-primary/10">
+                  <Icon className="size-5 text-primary" />
+                </div>
+                <div className="flex flex-col justify-center">
+                  <p className="font-heading text-3xl font-bold leading-none text-primary">
+                    {value}
+                  </p>
+                  <p className="mt-1 text-sm font-medium text-muted-foreground">
+                    {label}
+                  </p>
+                </div>
               </div>
             ))}
           </div>
