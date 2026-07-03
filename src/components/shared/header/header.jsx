@@ -66,7 +66,7 @@ const Header = ({ isMobileMenuOpen = false, onBurgerClick, additionalClassName =
                   <>
                     <button
                       type="button"
-                      className="text-primary inline-flex items-center gap-1 transition-colors duration-200 hover:text-primary-1"
+                      className="text-primary inline-flex items-center gap-1 whitespace-nowrap transition-colors duration-200 hover:text-primary-1"
                       aria-haspopup="true"
                     >
                       {item.text}

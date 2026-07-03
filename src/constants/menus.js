@@ -1,18 +1,20 @@
 import LINKS from 'constants/links.js';
 
+const PHOTO_GALLERY = {
+  text: 'Photo Gallery',
+  children: [
+    { text: '2026', ...LINKS.gallery2026 },
+    { text: '2025', ...LINKS.gallery2025 },
+    { text: '2024', ...LINKS.gallery2024 },
+  ],
+};
+
 const MENUS = {
   header: [
     { text: 'Schedule', ...LINKS.schedule },
     { text: 'Speakers', ...LINKS.speakers },
     { text: 'Sponsors', ...LINKS.sponsors },
-    {
-      text: 'Gallery',
-      children: [
-        { text: '2026', ...LINKS.gallery2026 },
-        { text: '2025', ...LINKS.gallery2025 },
-        { text: '2024', ...LINKS.gallery2024 },
-      ],
-    },
+    PHOTO_GALLERY,
   ],
   footer: [
     { text: 'Code of Conduct', ...LINKS.conduct },
@@ -26,14 +28,7 @@ const MENUS = {
     // { text: 'Workshops', ...LINKS.workshops },
     { text: 'Speakers', ...LINKS.speakers },
     { text: 'Sponsors', ...LINKS.sponsors },
-    {
-      text: 'Gallery',
-      children: [
-        { text: '2026', ...LINKS.gallery2026 },
-        { text: '2025', ...LINKS.gallery2025 },
-        { text: '2024', ...LINKS.gallery2024 },
-      ],
-    },
+    PHOTO_GALLERY,
   ],
 };
 

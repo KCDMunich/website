@@ -64,17 +64,19 @@ const MobileMenu = ({ isOpen, onButtonClick }) => {
                   <li key={index}>
                     <button
                       type="button"
-                      className="flex w-full items-center justify-center gap-2 py-4 text-xl font-semibold text-primary-1"
+                      className="flex w-full items-center justify-center py-4"
                       aria-expanded={isExpanded}
                       onClick={() => setExpandedItem(isExpanded ? null : index)}
                     >
-                      {text}
-                      <HiChevronDown
-                        className={clsx(
-                          'h-5 w-5 transition-transform duration-200',
-                          isExpanded && 'rotate-180'
-                        )}
-                      />
+                      <span className="inline-flex items-center gap-1.5 text-xl font-semibold text-primary-1">
+                        {text}
+                        <HiChevronDown
+                          className={clsx(
+                            'h-4 w-4 shrink-0 transition-transform duration-200',
+                            isExpanded && 'rotate-180'
+                          )}
+                        />
+                      </span>
                     </button>
                     <AnimatePresence initial={false}>
                       {isExpanded && (
