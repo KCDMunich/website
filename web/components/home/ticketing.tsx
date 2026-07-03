@@ -8,6 +8,11 @@ import { SectionHeader } from "@/components/layout/section-header"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import type { FientaEventSnapshot, FientaTicket } from "@/lib/fienta"
+import {
+  SECTION_TONE_CLASS,
+  type SectionTone,
+} from "@/lib/section-backgrounds"
+import { cn } from "@/lib/utils"
 
 const DEFAULT_EVENT = {
   title: "Cloud Native Summit Munich 2026",
@@ -48,7 +53,11 @@ function formatDate(value: string | null) {
   }).format(parsed)
 }
 
-export function Ticketing() {
+type TicketingProps = {
+  tone?: SectionTone
+}
+
+export function Ticketing({ tone = "default" }: TicketingProps) {
   const [status, setStatus] = useState<"loading" | "ready" | "error">("loading")
   const [eventData, setEventData] = useState(DEFAULT_EVENT)
   const [tickets, setTickets] = useState<FientaTicket[]>([])
@@ -101,7 +110,7 @@ export function Ticketing() {
   )
 
   return (
-    <Section id="tickets" className="bg-primary/[0.03]">
+    <Section id="tickets" className={cn(SECTION_TONE_CLASS[tone])}>
       <div className="grid items-stretch gap-12 lg:grid-cols-2 lg:gap-16">
         <MotionReveal className="flex h-full flex-col">
           <SectionHeader

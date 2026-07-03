@@ -7,6 +7,11 @@ import { ChevronRight } from "lucide-react"
 import { Section } from "@/components/layout/section"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
+import {
+  SECTION_TONE_CLASS,
+  type SectionTone,
+} from "@/lib/section-backgrounds"
+import { cn } from "@/lib/utils"
 
 const PLAYLIST_ID = "PL54A_DPe8WtDLSA_EA7ETfprpRWzd2yqV"
 const PLAYLIST_URL = `https://www.youtube.com/playlist?list=${PLAYLIST_ID}`
@@ -71,7 +76,11 @@ const FALLBACK_VIDEOS: PlaylistVideo[] = FALLBACK_VIDEO_IDS.map((id, index) => (
   thumbnail: `https://img.youtube.com/vi/${id}/hqdefault.jpg`,
 }))
 
-export function ScheduleTeaser() {
+type ScheduleTeaserProps = {
+  tone?: SectionTone
+}
+
+export function ScheduleTeaser({ tone = "default" }: ScheduleTeaserProps) {
   const [activeVideo, setActiveVideo] = useState<PlaylistVideo>(
     FALLBACK_VIDEOS[0]
   )
@@ -129,7 +138,7 @@ export function ScheduleTeaser() {
   }, [])
 
   return (
-    <Section id="schedule-teaser" className="bg-muted/20">
+    <Section id="schedule-teaser" className={cn(SECTION_TONE_CLASS[tone])}>
       <div className="grid items-stretch gap-12 lg:grid-cols-2 lg:gap-16">
         <div className="flex flex-col justify-center">
           <h2 className="text-3xl font-bold leading-tight text-primary sm:text-4xl lg:text-5xl">

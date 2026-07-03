@@ -26,6 +26,22 @@ export const FIENTA_TICKET_URL =
 export const SHOW_TICKETING_SECTION =
   process.env.SHOW_TICKETING_SECTION === "true";
 
+/**
+ * Homepage speakers section phase:
+ * - `off`        — hidden (no active event)
+ * - `announced`  — curated pre-announced speakers only
+ * - `lineup`     — speaker wall (10 speakers, 5×2) + link to /speakers
+ *
+ * Set `SPEAKERS_SECTION_MODE` in `.env.local` or Vercel — see `web/.env.example`.
+ */
+export type SpeakersSectionMode = "off" | "announced" | "lineup";
+
+export const SPEAKERS_SECTION_MODE: SpeakersSectionMode = (() => {
+  const value = process.env.SPEAKERS_SECTION_MODE ?? "off";
+  if (value === "announced" || value === "lineup") return value;
+  return "off";
+})();
+
 export const LINKS = {
   gallery2026: {
     to: "https://lightroom.adobe.com/shares/7314e896be5b4c22b8365cfa07e42487",

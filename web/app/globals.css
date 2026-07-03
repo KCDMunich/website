@@ -48,7 +48,7 @@
 
 :root {
   /* CNS brand — primary #004258, accent #0BBBEF (logo cyan) */
-  --background: oklch(1 0 0);
+  --background: #ffffff;
   --foreground: oklch(0.34 0.048 220.5);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.34 0.048 220.5);

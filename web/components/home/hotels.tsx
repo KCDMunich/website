@@ -4,6 +4,11 @@ import { MapPin } from "lucide-react"
 import { Section, SectionTitle } from "@/components/layout/section"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
+import {
+  SECTION_TONE_CLASS,
+  type SectionTone,
+} from "@/lib/section-backgrounds"
+import { cn } from "@/lib/utils"
 
 interface Hotel {
   name: string
@@ -35,11 +40,15 @@ const hotels: Hotel[] = [
   },
 ]
 
-export function Hotels() {
+type HotelsProps = {
+  tone?: SectionTone
+}
+
+export function Hotels({ tone = "default" }: HotelsProps) {
   const [highlightedHotel, ...otherHotels] = hotels
 
   return (
-    <Section className="bg-background">
+    <Section className={cn(SECTION_TONE_CLASS[tone])}>
       <SectionTitle>Nearby hotels</SectionTitle>
 
       <Card className="mb-8 overflow-hidden border-border/60">

@@ -1,7 +1,7 @@
 import { cn } from "@/lib/utils";
 
 type PageHeroProps = {
-  title: string;
+  title: React.ReactNode;
   description?: string;
   eyebrow?: string;
   children?: React.ReactNode;

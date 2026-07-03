@@ -1,17 +1,17 @@
 export const SESSIONIZE_SPEAKERS_URL =
   "https://sessionize.com/api/v2/1yvxke5i/view/Speakers"
 
-/** Homepage teaser: how many speaker cards to show. */
-export const FEATURED_SPEAKER_COUNT = 6;
+/** Speaker wall on homepage (`lineup` mode): 5 columns × 2 rows. */
+export const LINEUP_SPEAKER_COUNT = 10;
 
 /**
- * Optional priority list — shown first when IDs exist in Sessionize.
- * Stale IDs are skipped; remaining slots are filled from the full lineup.
+ * Curated pre-announcement list (`announced` mode).
+ * Add Sessionize speaker IDs as they are announced.
  */
 export const PRE_ANNOUNCED_SPEAKER_IDS = [
   "a2665c2b-13c9-4337-9c78-db85bca70e60",
   "647c84a5-1a13-4641-8d8f-49109cadf78b",
-]
+];
 
 export const SPEAKER_SESSION_MAP: Record<string, number[]> = {
   "a2665c2b-13c9-4337-9c78-db85bca70e60": [882116],
@@ -64,30 +64,30 @@ function applySessionFilter(speaker: Speaker): Speaker {
   };
 }
 
-export function getFeaturedSpeakers(
-  speakers: Speaker[],
-  count = FEATURED_SPEAKER_COUNT
-): Speaker[] {
+function shuffleSpeakers(speakers: Speaker[]): Speaker[] {
+  const shuffled = [...speakers];
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+  }
+  return shuffled;
+}
+
+/** `announced` mode — only manually curated speakers that exist in Sessionize. */
+export function getAnnouncedSpeakers(speakers: Speaker[]): Speaker[] {
   const byId = new Map(speakers.map((speaker) => [speaker.id, speaker]));
-  const featured: Speaker[] = [];
-  const seen = new Set<string>();
 
-  for (const id of PRE_ANNOUNCED_SPEAKER_IDS) {
-    const speaker = byId.get(id);
-    if (!speaker || seen.has(id)) continue;
-    featured.push(applySessionFilter(speaker));
-    seen.add(id);
-    if (featured.length >= count) return featured;
-  }
+  return PRE_ANNOUNCED_SPEAKER_IDS.map((id) => byId.get(id))
+    .filter((speaker): speaker is Speaker => Boolean(speaker))
+    .map(applySessionFilter);
+}
 
-  const remaining = speakers
-    .filter((speaker) => !seen.has(speaker.id))
-    .sort((a, b) => a.fullName.localeCompare(b.fullName));
-
-  for (const speaker of remaining) {
-    featured.push(applySessionFilter(speaker));
-    if (featured.length >= count) break;
-  }
-
-  return featured;
+/** `lineup` mode — shuffled speaker wall preview (default 10). */
+export function getLineupSpeakers(
+  speakers: Speaker[],
+  count = LINEUP_SPEAKER_COUNT
+): Speaker[] {
+  return shuffleSpeakers(speakers)
+    .slice(0, Math.min(count, speakers.length))
+    .map(applySessionFilter);
 }

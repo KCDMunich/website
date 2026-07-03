@@ -6,9 +6,9 @@ import { SpeakersGrid } from "@/components/speakers/speakers-grid";
 import { createMetadata } from "@/lib/metadata";
 
 export const metadata: Metadata = createMetadata({
-  title: "Speaker Lineup",
+  title: "Speakers",
   description:
-    "Meet our fantastic speakers and learn from their experience at Cloud Native Summit Munich.",
+    "Meet our speakers and learn from practitioners across cloud native, platform engineering, and open source at Cloud Native Summit Munich.",
   pathname: "/speakers",
 });
 
@@ -17,8 +17,14 @@ export default function SpeakersPage() {
     <SiteLayout>
       <PageHero
         eyebrow="Speakers"
-        title="Speaker Lineup"
-        description="Meet our fantastic speakers and learn from their experience."
+        title={
+          <>
+            Meet our
+            <br />
+            <span className="text-[#0bbbef]">speakers</span>
+          </>
+        }
+        description="Practitioners and experts from the cloud native community — browse the full lineup and session topics."
       />
       <SpeakersGrid />
     </SiteLayout>

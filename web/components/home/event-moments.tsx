@@ -11,15 +11,23 @@ import {
   GALLERY_2026_URL,
   pickRandomGalleryImages,
 } from "@/lib/event-gallery";
+import {
+  SECTION_TONE_CLASS,
+  type SectionTone,
+} from "@/lib/section-backgrounds";
 import { cn } from "@/lib/utils";
 
-export async function EventMoments() {
+type EventMomentsProps = {
+  tone?: SectionTone;
+};
+
+export async function EventMoments({ tone = "default" }: EventMomentsProps) {
   noStore();
   const pool = await fetchGallery2026Pool();
   const images = pickRandomGalleryImages(pool, COLLAGE_PLACEMENTS.length);
 
   return (
-    <Section className="overflow-x-hidden bg-[#f4f7f9]">
+    <Section className={cn("overflow-x-hidden", SECTION_TONE_CLASS[tone])}>
       <div className="mx-auto max-w-3xl text-center">
         <div className="mb-4 flex justify-center">
           <Eyebrow>Photo gallery</Eyebrow>

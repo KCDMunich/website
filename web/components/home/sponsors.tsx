@@ -15,11 +15,19 @@ import {
   tierConfig,
   TIER_ORDER,
 } from "@/lib/sponsors-data";
+import {
+  SECTION_TONE_CLASS,
+  type SectionTone,
+} from "@/lib/section-backgrounds";
 import { cn } from "@/lib/utils";
 
 const MARQUEE_TIERS = new Set(["platinum", "gold"]);
 
-export function Sponsors() {
+type SponsorsProps = {
+  tone?: SectionTone;
+};
+
+export function Sponsors({ tone = "default" }: SponsorsProps) {
   const marqueeLogos = sponsorsList
     .filter((s) => MARQUEE_TIERS.has(s.tier))
     .map((s) => {
@@ -36,7 +44,10 @@ export function Sponsors() {
   const gridTiers = TIER_ORDER.filter((t) => !MARQUEE_TIERS.has(t));
 
   return (
-    <Section id="sponsors" className="overflow-hidden bg-background">
+    <Section
+      id="sponsors"
+      className={cn("overflow-hidden", SECTION_TONE_CLASS[tone])}
+    >
       <MotionReveal>
         <SectionHeader
           eyebrow="Partners"

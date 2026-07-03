@@ -7,6 +7,11 @@ import { Calendar, ChevronLeft, ChevronRight, MapPin, Users } from "lucide-react
 import { Section, SectionTitle } from "@/components/layout/section"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
+import {
+  SECTION_TONE_CLASS,
+  type SectionTone,
+} from "@/lib/section-backgrounds"
+import { cn } from "@/lib/utils"
 
 const VENUE_IMAGES = [
   "/images/venue/venue-1.jpg",
@@ -126,9 +131,13 @@ function ImageSlider({ images }: { images: string[] }) {
   )
 }
 
-export function Venue() {
+type VenueProps = {
+  tone?: SectionTone
+}
+
+export function Venue({ tone = "default" }: VenueProps) {
   return (
-    <Section className="bg-background">
+    <Section className={cn(SECTION_TONE_CLASS[tone])}>
       <SectionTitle>Venue Information</SectionTitle>
 
       <div className="flex flex-col gap-8">
