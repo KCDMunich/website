@@ -1,6 +1,8 @@
-import { m, LazyMotion, domAnimation, useAnimation } from 'framer-motion';
+import clsx from 'clsx';
+import { AnimatePresence, m, LazyMotion, domAnimation, useAnimation } from 'framer-motion';
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { HiChevronDown } from 'react-icons/hi2';
 
 import MENUS from 'constants/menus';
 import useScrollOverflow from 'hooks/use-scroll-overflow';
@@ -32,8 +34,15 @@ const variants = {
 
 const MobileMenu = ({ isOpen, onButtonClick }) => {
   const controls = useAnimation();
+  const [expandedItem, setExpandedItem] = useState(null);
 
   useScrollOverflow(controls, isOpen);
+
+  useEffect(() => {
+    if (!isOpen) {
+      setExpandedItem(null);
+    }
+  }, [isOpen]);
 
   return (
     <LazyMotion features={domAnimation}>
@@ -45,18 +54,70 @@ const MobileMenu = ({ isOpen, onButtonClick }) => {
       >
         <div className="scrollbar-hidden my-auto flex h-full w-full overflow-x-hidden overflow-y-scroll">
           <ul className="mx-auto flex flex-col justify-center space-y-3 text-center text-xl font-semibold text-primary-1">
-            {MENUS.mobile.map(({ text, to, id }, index) => (
-              <li key={index}>
-                <Button
-                  className="block py-4"
-                  theme="link-primary"
-                  to={to || `/#${id}`}
-                  onClick={onButtonClick}
-                >
-                  {text}
-                </Button>
-              </li>
-            ))}
+            {MENUS.mobile.map((item, index) => {
+              const { text, to, id, children } = item;
+
+              if (children) {
+                const isExpanded = expandedItem === index;
+
+                return (
+                  <li key={index}>
+                    <button
+                      type="button"
+                      className="flex w-full items-center justify-center gap-2 py-4 text-xl font-semibold text-primary-1"
+                      aria-expanded={isExpanded}
+                      onClick={() => setExpandedItem(isExpanded ? null : index)}
+                    >
+                      {text}
+                      <HiChevronDown
+                        className={clsx(
+                          'h-5 w-5 transition-transform duration-200',
+                          isExpanded && 'rotate-180'
+                        )}
+                      />
+                    </button>
+                    <AnimatePresence initial={false}>
+                      {isExpanded && (
+                        <m.ul
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ height: 'auto', opacity: 1 }}
+                          exit={{ height: 0, opacity: 0 }}
+                          transition={{ duration: 0.2 }}
+                          className="overflow-hidden"
+                        >
+                          {children.map((child, childIndex) => (
+                            <li key={childIndex}>
+                              <Button
+                                className="block py-2 text-lg opacity-80"
+                                theme="link-primary"
+                                to={child.to}
+                                target={child.target}
+                                onClick={onButtonClick}
+                              >
+                                {child.text}
+                              </Button>
+                            </li>
+                          ))}
+                        </m.ul>
+                      )}
+                    </AnimatePresence>
+                  </li>
+                );
+              }
+
+              return (
+                <li key={index}>
+                  <Button
+                    className="block py-4"
+                    theme="link-primary"
+                    to={to || `/#${id}`}
+                    onClick={onButtonClick}
+                  >
+                    {text}
+                  </Button>
+                </li>
+              );
+            })}
           </ul>
         </div>
         <div className="flex items-center justify-center">
