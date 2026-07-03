@@ -166,93 +166,104 @@ function MobileNav({
       >
         <MenuIcon />
       </SheetTrigger>
-      <SheetContent side="right" className="w-full max-w-sm">
-        <SheetHeader>
-          <SheetTitle className="text-left font-heading text-primary">
-            Menu
-          </SheetTitle>
-        </SheetHeader>
-        <nav className="flex flex-col gap-1 px-4">
-          {MENUS.mobile.map((item) => {
-            if (item.children) {
-              const isExpanded = expandedItem === item.text;
-
-              return (
-                <div key={item.text} className="border-b border-border pb-2">
-                  <button
-                    type="button"
-                    className="flex w-full cursor-pointer items-center justify-between py-3 text-left text-base font-semibold text-primary"
-                    aria-expanded={isExpanded}
-                    onClick={() =>
-                      setExpandedItem(isExpanded ? null : item.text)
-                    }
-                  >
-                    {item.text}
-                    <span
-                      className={cn(
-                        "text-sm transition-transform",
-                        isExpanded && "rotate-180"
-                      )}
-                    >
-                      ▾
-                    </span>
-                  </button>
-                  {isExpanded ? (
-                    <ul className="mb-2 space-y-2 pl-3">
-                      {item.children.map((child) => (
-                        <li key={child.text}>
-                          <a
-                            href={child.to}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="block cursor-pointer py-1 text-sm font-medium text-primary/80 hover:text-primary"
-                            onClick={() => onOpenChange(false)}
-                          >
-                            {child.text}
-                          </a>
-                        </li>
-                      ))}
-                    </ul>
-                  ) : null}
-                </div>
-              );
-            }
-
-            return (
-              <NavItemLink
-                key={item.text}
-                item={item}
-                className="cursor-pointer border-b border-border py-3 text-base font-semibold text-primary hover:text-primary/80"
-                onNavigate={() => onOpenChange(false)}
-              />
-            );
-          })}
-          <Button
-            className="mt-4 w-full bg-primary text-primary-foreground hover:bg-primary/90"
-            nativeButton={false}
-            render={
-              <a
-                href={FIENTA_TICKET_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-              />
-            }
+      <SheetContent fullScreen className="bg-background">
+        <SheetHeader className="flex-row items-center justify-between border-b border-border/60 px-5 py-4">
+          <Link
+            href="/"
+            className="cursor-pointer"
             onClick={() => onOpenChange(false)}
           >
-            <Ticket className="size-4" />
-            Get tickets
-          </Button>
-          <Button
-            variant="outline"
-            className="mt-2 w-full"
-            onClick={() => {
-              window.open(DISCORD_URL, "_blank", "noopener,noreferrer");
-              onOpenChange(false);
-            }}
-          >
-            Join Discord
-            <DiscordIcon className="size-4" />
-          </Button>
+            <SiteLogo variant="default" />
+          </Link>
+          <SheetTitle className="sr-only">Menu</SheetTitle>
+        </SheetHeader>
+        <nav className="flex flex-1 flex-col px-5 py-6">
+          <div className="flex flex-1 flex-col gap-1">
+            {MENUS.mobile.map((item) => {
+              if (item.children) {
+                const isExpanded = expandedItem === item.text;
+
+                return (
+                  <div key={item.text} className="border-b border-border/60">
+                    <button
+                      type="button"
+                      className="flex w-full cursor-pointer items-center justify-between py-4 text-left text-2xl font-semibold text-primary"
+                      aria-expanded={isExpanded}
+                      onClick={() =>
+                        setExpandedItem(isExpanded ? null : item.text)
+                      }
+                    >
+                      {item.text}
+                      <span
+                        className={cn(
+                          "text-base transition-transform",
+                          isExpanded && "rotate-180"
+                        )}
+                      >
+                        ▾
+                      </span>
+                    </button>
+                    {isExpanded ? (
+                      <ul className="mb-3 space-y-2 pl-1">
+                        {item.children.map((child) => (
+                          <li key={child.text}>
+                            <a
+                              href={child.to}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="block cursor-pointer py-2 text-lg font-medium text-primary/80 hover:text-primary"
+                              onClick={() => onOpenChange(false)}
+                            >
+                              {child.text}
+                            </a>
+                          </li>
+                        ))}
+                      </ul>
+                    ) : null}
+                  </div>
+                );
+              }
+
+              return (
+                <NavItemLink
+                  key={item.text}
+                  item={item}
+                  className="cursor-pointer border-b border-border/60 py-4 text-2xl font-semibold text-primary hover:text-primary/80"
+                  onNavigate={() => onOpenChange(false)}
+                />
+              );
+            })}
+          </div>
+          <div className="mt-auto space-y-3 pt-8">
+            <Button
+              size="lg"
+              className="h-12 w-full bg-primary text-base font-semibold text-primary-foreground hover:bg-primary/90"
+              nativeButton={false}
+              render={
+                <a
+                  href={FIENTA_TICKET_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                />
+              }
+              onClick={() => onOpenChange(false)}
+            >
+              <Ticket className="size-4" />
+              Get tickets
+            </Button>
+            <Button
+              variant="outline"
+              size="lg"
+              className="h-12 w-full text-base font-semibold"
+              onClick={() => {
+                window.open(DISCORD_URL, "_blank", "noopener,noreferrer");
+                onOpenChange(false);
+              }}
+            >
+              Join Discord
+              <DiscordIcon className="size-4" />
+            </Button>
+          </div>
         </nav>
       </SheetContent>
     </Sheet>
