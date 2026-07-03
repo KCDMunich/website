@@ -1,0 +1,49 @@
+---
+title: Imprint
+slug: imprint-data-privacy
+---
+
+## Information according to § 5 TMG
+
+_Förderverein Open Source, Cloud Native und Künstliche Intelligenz Bayern e.V._  
+Adlzreiterstraße 8  
+83022 Rosenheim
+
+Registered in the Vereinsregister (Register of Associations)
+
+Register Court: Amtsgericht Traunstein
+
+Registration Number: VR 202755, VAT-ID: DE459826064
+
+## Authorized Board Members
+
+**Chairman**  
+Max Körbächer
+
+**Deputy Chairman**  
+Nico Meisenzahl
+
+**Treasurer**  
+Markus Sümmchen
+
+## Contact
+
+Email: [team@cloudnativesummit.de](mailto:team@cloudnativesummit.de)
+
+## Responsible for content according to § 55 para. 2 RStV
+
+Max Körbächer
+
+Nico Meisenzahl
+
+Markus Sümmchen
+
+Suad Wolgram
+
+## Disclaimer
+
+The contents of our pages have been created with the utmost care. However, we cannot guarantee the accuracy, completeness, or timeliness of the contents. As a service provider, we are responsible for our own content on these pages according to general laws pursuant to § 7 para.1 TMG. According to §§ 8 to 10 TMG, however, we are not obligated to monitor transmitted or stored external information or to investigate circumstances that indicate illegal activity.
+
+## Data Privacy
+
+[Read our Privacy Policy](/privacy-policy/)
