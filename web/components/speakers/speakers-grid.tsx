@@ -62,7 +62,7 @@ export function SpeakersGrid() {
       {isLoading ? (
         <div className="mt-12 grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 md:grid-cols-4 lg:grid-cols-5">
           {Array.from({ length: 15 }).map((_, index) => (
-            <SpeakerCardSkeleton key={index} compact />
+            <SpeakerCardSkeleton key={index} variant="wall" />
           ))}
         </div>
       ) : (
@@ -72,6 +72,7 @@ export function SpeakersGrid() {
               <MotionReveal key={speaker.id} delay={index * 0.02}>
                 <LineupSpeakerCard
                   speaker={speaker}
+                  variant="wall"
                   onClick={() => setSelectedSpeaker(speaker)}
                 />
               </MotionReveal>

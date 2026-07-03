@@ -149,7 +149,7 @@ export function SpeakersTeaser({ mode, tone = "default" }: SpeakersTeaserProps) 
 
       {isLineup ? (
         <MotionReveal delay={0.2}>
-          <div className="mt-10 flex flex-col items-center gap-3">
+          <div className="mt-10 flex justify-center">
             <Button
               nativeButton={false}
               render={<Link href="/speakers" />}
@@ -159,11 +159,6 @@ export function SpeakersTeaser({ mode, tone = "default" }: SpeakersTeaserProps) 
               View all speakers
               <ArrowRight className="size-4" />
             </Button>
-            {!isLoading && speakerData.length > LINEUP_SPEAKER_COUNT ? (
-              <p className="text-sm text-muted-foreground">
-                Showing {LINEUP_SPEAKER_COUNT} of {speakerData.length} speakers
-              </p>
-            ) : null}
           </div>
         </MotionReveal>
       ) : null}

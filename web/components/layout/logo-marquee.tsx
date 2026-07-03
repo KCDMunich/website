@@ -43,7 +43,7 @@ export function LogoMarquee({
             href={logo.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="group flex h-16 w-40 shrink-0 items-center justify-center rounded-xl bg-card px-4 ring-1 ring-border/60 transition-all hover:-translate-y-0.5 hover:shadow-md"
+            className="group flex h-16 w-40 shrink-0 items-center justify-center rounded-2xl px-4 ring-1 ring-primary/10 transition-all duration-300 hover:-translate-y-1 hover:shadow-md"
           >
             <Image
               src={logo.icon}
