@@ -106,15 +106,24 @@ function parseLightroomJson(raw: string): LightroomAssetResponse {
   return JSON.parse(cleaned) as LightroomAssetResponse;
 }
 
+/** Collage tiles are ~160–420px wide — 640px covers 2× retina without over-fetching. */
+const COLLAGE_RENDITION_KEYS = [
+  "/rels/rendition_type/640",
+  "/rels/rendition_type/1280",
+] as const;
+
 function shuffleGalleryImages<T>(items: T[]): T[] {
   const shuffled = [...items];
+
   for (let i = shuffled.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
   }
+
   return shuffled;
 }
 
+/** Random subset for the collage — intended for client-side use after hydration. */
 export function pickRandomGalleryImages(
   images: GalleryImage[],
   count: number
@@ -139,9 +148,9 @@ export async function fetchGallery2026Pool(): Promise<GalleryImage[]> {
 
     for (const resource of data.resources ?? []) {
       const asset = resource.asset;
-      const href =
-        asset?.links?.["/rels/rendition_type/1280"]?.href ??
-        asset?.links?.["/rels/rendition_type/2048"]?.href;
+      const href = COLLAGE_RENDITION_KEYS.map(
+        (key) => asset?.links?.[key]?.href
+      ).find(Boolean);
 
       if (!href) continue;
 
