@@ -16,7 +16,6 @@
   padding-bottom: 4rem;
   color: var(--schedule-ink);
   background: #ffffff;
-  overflow: hidden;
 }
 
 .schedule-container::before {
@@ -273,11 +272,22 @@
 
 .schedule-timetable {
   display: grid;
-  grid-template-columns: repeat(var(--schedule-room-count), minmax(295px, 1fr));
-  gap: 1rem 1.25rem;
+  gap: 0.75rem 1rem;
   margin-top: 1.5rem;
   width: 100%;
   align-items: stretch;
+}
+
+.schedule-timetable-scroll {
+  margin-top: 1.5rem;
+  overflow-x: auto;
+  padding-bottom: 0.5rem;
+  scrollbar-width: thin;
+}
+
+.schedule-timetable-scroll .schedule-timetable {
+  margin-top: 0;
+  min-width: max(100%, calc(5.75rem + var(--schedule-room-count, 4) * 13.75rem));
 }
 
 .room-section {
@@ -304,23 +314,63 @@
   color: var(--schedule-accent);
 }
 
-.schedule-timetable-header {
+.schedule-timetable-corner {
   position: sticky;
-  top: 0;
-  z-index: 5;
-  border: 1px solid rgba(0, 66, 88, 0.12);
-  border-radius: 16px;
+  left: 0;
+  z-index: 6;
+  background: #ffffff;
+}
+
+.schedule-timetable-header {
+  display: grid;
+  gap: 0.2rem;
+  align-content: end;
+  padding: 0 0.75rem 0.85rem;
+  border-bottom: 1px solid rgba(0, 66, 88, 0.1);
+  background: #ffffff;
+}
+
+.schedule-timetable-header h2 {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--schedule-accent);
+}
+
+.schedule-timetable-header p {
+  margin: 0;
+  font-size: 0.78rem;
+  color: var(--schedule-muted);
+}
+
+.schedule-timetable-time {
+  position: sticky;
+  left: 0;
+  z-index: 4;
+  display: grid;
+  gap: 0.15rem;
+  align-content: start;
+  padding: 0.65rem 0.35rem 0.65rem 0;
+  font-size: 0.78rem;
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--schedule-muted);
+  background: #ffffff;
+  border-right: 1px solid rgba(0, 66, 88, 0.08);
 }
 
 .schedule-timetable-cell {
   display: flex;
   flex-direction: column;
-  gap: 0.85rem;
+  gap: 0.5rem;
   min-width: 0;
+  padding-bottom: 0.15rem;
 }
 
 .schedule-timetable-cell--empty {
-  min-height: 1px;
+  min-height: 0;
+  padding: 0;
 }
 
 .schedule-timetable .schedule-card {
@@ -1197,4 +1247,216 @@
     bottom: 0.6rem;
     font-size: 0.85rem;
   }
+}
+
+/* DDD-inspired compact grid cards (desktop timetable) */
+.schedule-grid-card {
+  position: relative;
+  display: grid;
+  gap: 0.35rem;
+  min-height: 100%;
+  padding: 0.8rem 0.85rem;
+  border: 1px solid rgba(0, 66, 88, 0.1);
+  border-radius: 0.75rem;
+  background: #ffffff;
+  cursor: pointer;
+  transition:
+    border-color 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.schedule-grid-card:hover {
+  border-color: rgba(0, 66, 88, 0.22);
+  background: rgba(0, 66, 88, 0.02);
+}
+
+.schedule-grid-card--past {
+  opacity: 0.62;
+}
+
+.schedule-grid-card--live {
+  border-color: rgba(11, 187, 239, 0.45);
+  box-shadow: inset 3px 0 0 #0bbbef;
+}
+
+.schedule-grid-card--favorite {
+  border-color: rgba(0, 66, 88, 0.24);
+  background: rgba(0, 66, 88, 0.03);
+}
+
+.schedule-grid-card--service {
+  cursor: default;
+  background: rgba(0, 66, 88, 0.04);
+  border-style: dashed;
+  border-color: rgba(0, 66, 88, 0.14);
+}
+
+.schedule-grid-card--service:hover {
+  background: rgba(0, 66, 88, 0.04);
+  border-color: rgba(0, 66, 88, 0.14);
+}
+
+.schedule-grid-card__top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.schedule-grid-card__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.schedule-grid-card__type {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #0bbbef;
+}
+
+.schedule-grid-card__duration {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--schedule-muted);
+}
+
+.schedule-grid-card__live {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #d92d20;
+}
+
+.schedule-grid-card__live-dot {
+  width: 0.4rem;
+  height: 0.4rem;
+  border-radius: 999px;
+  background: #d92d20;
+  animation: schedule-live-pulse 1.4s ease-in-out infinite;
+}
+
+@keyframes schedule-live-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.35;
+  }
+}
+
+.schedule-grid-card__favorite {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.65rem;
+  height: 1.65rem;
+  border: none;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--schedule-muted);
+  opacity: 0;
+  cursor: pointer;
+  transition:
+    opacity 0.2s ease,
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.schedule-grid-card:hover .schedule-grid-card__favorite,
+.schedule-grid-card--favorite .schedule-grid-card__favorite,
+.schedule-grid-card__favorite:focus-visible {
+  opacity: 1;
+}
+
+.schedule-grid-card__favorite:hover,
+.schedule-grid-card__favorite--active {
+  background: rgba(0, 66, 88, 0.08);
+  color: #d92d20;
+}
+
+.schedule-grid-card__time {
+  margin: 0;
+  font-size: 0.76rem;
+  font-weight: 600;
+  color: var(--schedule-muted);
+}
+
+.schedule-grid-card__speakers {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.55rem;
+}
+
+.schedule-grid-card__avatars {
+  display: flex;
+  flex-shrink: 0;
+  padding-top: 0.1rem;
+}
+
+.schedule-grid-card__avatar {
+  display: flex;
+  width: 1.65rem;
+  height: 1.65rem;
+  overflow: hidden;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: rgba(0, 66, 88, 0.08);
+  font-size: 0.62rem;
+  font-weight: 700;
+  color: var(--schedule-accent);
+  box-shadow: 0 0 0 2px #ffffff;
+  margin-left: -0.45rem;
+}
+
+.schedule-grid-card__avatar:first-child {
+  margin-left: 0;
+}
+
+.schedule-grid-card__avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.schedule-grid-card__speaker-copy {
+  min-width: 0;
+}
+
+.schedule-grid-card__speaker {
+  margin: 0;
+  font-size: 0.84rem;
+  font-weight: 700;
+  line-height: 1.35;
+  color: var(--schedule-ink);
+}
+
+.schedule-grid-card__company {
+  margin: 0.15rem 0 0;
+  font-size: 0.78rem;
+  line-height: 1.3;
+  color: var(--schedule-muted);
+}
+
+.schedule-grid-card__title {
+  margin: 0;
+  font-size: 0.92rem;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--schedule-accent);
+}
+
+.schedule-grid-card__service-title {
+  margin: 0;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--schedule-accent);
 }
