@@ -12,18 +12,35 @@ const slugifyOptions = {
   trim: true,
 } as const;
 
+const SESSION_ID_SEPARATOR = '--';
+
+const UUID_PATTERN =
+  /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+
 export function getSessionSlug(title: string, id: number | string): string {
   const titleSlug = slugify(title, slugifyOptions) || 'session';
-  return `${titleSlug}-${id}`;
+  return `${titleSlug}${SESSION_ID_SEPARATOR}${id}`;
 }
 
 export function getSessionIdFromSlug(slug: string): string {
-  if (/^\d+$/.test(slug)) {
-    return slug;
+  const normalizedSlug = slug.replace(/\/$/, '');
+
+  if (/^\d+$/.test(normalizedSlug) || UUID_PATTERN.test(normalizedSlug)) {
+    return normalizedSlug;
   }
 
-  const match = slug.match(/-(\d+)$/);
-  return match ? match[1] : slug;
+  const separatorIndex = normalizedSlug.lastIndexOf(SESSION_ID_SEPARATOR);
+  if (separatorIndex !== -1) {
+    return normalizedSlug.slice(separatorIndex + SESSION_ID_SEPARATOR.length);
+  }
+
+  // Backwards compatibility for briefly deployed title-id slugs with numeric ids.
+  const numericMatch = normalizedSlug.match(/-(\d+)$/);
+  if (numericMatch) {
+    return numericMatch[1];
+  }
+
+  return normalizedSlug;
 }
 
 export function isCanonicalSessionSlug(
