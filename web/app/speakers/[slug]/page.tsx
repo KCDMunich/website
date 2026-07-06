@@ -3,7 +3,7 @@ import { redirect } from 'next/navigation';
 
 import { SiteLayout } from '@/components/layout/site-layout';
 import { SpeakerDetailPage } from '@/components/speakers/speaker-detail-page';
-import { findCompanyInfo } from '@/components/speakers/speaker-ui';
+import { findCompanyInfo } from '@/lib/speakers-data';
 import { createMetadata } from '@/lib/metadata';
 import {
   findSpeakerById,

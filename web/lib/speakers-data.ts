@@ -44,6 +44,21 @@ export interface Speaker {
   questionAnswers: SpeakerQuestionAnswer[]
 }
 
+export function findCompanyInfo(speaker: Speaker): string {
+  const company = speaker.questionAnswers?.find(
+    (entry) => entry.question?.toLowerCase() === 'company',
+  );
+  return company?.answer || 'Speaker';
+}
+
+export function findSpeakerTagline(speaker: Speaker): string {
+  const preferred = ['job title', 'title', 'position', 'role'];
+  const match = speaker.questionAnswers?.find((entry) =>
+    preferred.includes(entry.question?.toLowerCase() ?? ''),
+  );
+  return match?.answer || '';
+}
+
 function applySessionFilter(speaker: Speaker): Speaker {
   const sessionIds = SPEAKER_SESSION_MAP[speaker.id];
   if (!sessionIds || !Array.isArray(speaker.sessions)) {

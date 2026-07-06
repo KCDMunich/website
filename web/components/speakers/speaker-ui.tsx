@@ -3,13 +3,9 @@
 import Image from "next/image";
 import { Globe } from "lucide-react";
 
+import { findCompanyInfo } from '@/lib/speakers-data';
 import type { Speaker } from '@/lib/speakers-data';
-import { cn } from "@/lib/utils";
-
-export function findCompanyInfo(speaker: Speaker) {
-  const company = speaker.questionAnswers.find((q) => q.question === "Company");
-  return company?.answer || "Speaker";
-}
+import { cn } from '@/lib/utils';
 
 export function SocialIcon({
   url,

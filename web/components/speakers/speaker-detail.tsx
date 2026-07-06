@@ -5,7 +5,8 @@ import Link from 'next/link';
 import { ArrowLeft, ArrowRight, Calendar, Copy, Share2 } from 'lucide-react';
 import { useState } from 'react';
 
-import { SocialIcon, findCompanyInfo } from '@/components/speakers/speaker-ui';
+import { SocialIcon } from '@/components/speakers/speaker-ui';
+import { findCompanyInfo, findSpeakerTagline } from '@/lib/speakers-data';
 import { Button } from '@/components/ui/button';
 import type { Speaker } from '@/lib/speakers-data';
 import { getSessionPath } from '@/lib/schedule-session';
@@ -15,14 +16,6 @@ import {
 } from '@/lib/speaker-page';
 import { cn } from '@/lib/utils';
 
-function findTagline(speaker: Speaker) {
-  const preferred = ['job title', 'title', 'position', 'role'];
-  const match = speaker.questionAnswers?.find((entry) =>
-    preferred.includes(entry.question?.toLowerCase() ?? ''),
-  );
-  return match?.answer || '';
-}
-
 type SpeakerDetailProps = {
   speaker: Speaker;
   backHref?: string;
@@ -31,7 +24,7 @@ type SpeakerDetailProps = {
 export function SpeakerDetail({ speaker, backHref = '/speakers' }: SpeakerDetailProps) {
   const [copyMessage, setCopyMessage] = useState<string | null>(null);
   const company = findCompanyInfo(speaker);
-  const tagline = findTagline(speaker);
+  const tagline = findSpeakerTagline(speaker);
   const sessions = getValidSpeakerSessions(speaker);
   const sharePath = getPublicSpeakerPath(speaker);
   const shareUrl =
