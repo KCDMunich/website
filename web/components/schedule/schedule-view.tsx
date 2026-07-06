@@ -277,49 +277,54 @@ export const ScheduleView = ({ variant = 'default' }: ScheduleViewProps) => {
         {!isApp && (
           <div className="sticky top-[var(--site-header-height,4.125rem)] z-20 -mx-4 bg-background px-4 pt-3 pb-4 sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
             <div className="mx-auto flex max-w-7xl flex-col gap-3">
-              <div className="flex flex-wrap items-center gap-3">
-                <ScheduleSegmentGroup label="Day">
+              <div className="flex items-center gap-3">
+                <span className="hidden w-14 shrink-0 text-xs font-semibold uppercase tracking-wide text-muted-foreground sm:inline">
+                  Day
+                </span>
+                <div className="flex min-w-0 flex-1 flex-wrap items-center gap-3">
+                  <ScheduleSegmentGroup>
+                    <SchedulePill
+                      variant="segment"
+                      active={selectedDay === 'monday'}
+                      onClick={() => setSelectedDay('monday')}
+                    >
+                      Monday
+                    </SchedulePill>
+                    <SchedulePill
+                      variant="segment"
+                      active={selectedDay === 'tuesday'}
+                      onClick={() => setSelectedDay('tuesday')}
+                    >
+                      Tuesday
+                    </SchedulePill>
+                  </ScheduleSegmentGroup>
                   <SchedulePill
-                    variant="segment"
-                    active={selectedDay === 'monday'}
-                    onClick={() => setSelectedDay('monday')}
+                    variant="favorite"
+                    active={activeSelectedType === 'favorites'}
+                    title="Show favorites only"
+                    aria-label="Show favorites only"
+                    icon={
+                      <ScheduleFavoriteIcon
+                        active={activeSelectedType === 'favorites'}
+                        tone={
+                          activeSelectedType === 'favorites' ? 'inverse' : 'default'
+                        }
+                        className="size-4"
+                      />
+                    }
+                    onClick={() =>
+                      setSelectedType(activeSelectedType === 'favorites' ? 'all' : 'favorites')
+                    }
                   >
-                    Monday
+                    Favorites
                   </SchedulePill>
-                  <SchedulePill
-                    variant="segment"
-                    active={selectedDay === 'tuesday'}
-                    onClick={() => setSelectedDay('tuesday')}
-                  >
-                    Tuesday
-                  </SchedulePill>
-                </ScheduleSegmentGroup>
-                <SchedulePill
-                  variant="favorite"
-                  active={activeSelectedType === 'favorites'}
-                  title="Show favorites only"
-                  aria-label="Show favorites only"
-                  icon={
-                    <ScheduleFavoriteIcon
-                      active={activeSelectedType === 'favorites'}
-                      tone={
-                        activeSelectedType === 'favorites' ? 'inverse' : 'default'
-                      }
-                      className="size-4"
-                    />
-                  }
-                  onClick={() =>
-                    setSelectedType(activeSelectedType === 'favorites' ? 'all' : 'favorites')
-                  }
-                >
-                  Favorites
-                </SchedulePill>
+                </div>
               </div>
-              <div className="flex items-center gap-2">
-                <span className="hidden shrink-0 self-center text-xs font-semibold uppercase tracking-wide text-muted-foreground sm:inline">
+              <div className="flex items-center gap-3">
+                <span className="hidden w-14 shrink-0 text-xs font-semibold uppercase tracking-wide text-muted-foreground sm:inline">
                   Track
                 </span>
-                <div className="flex min-w-0 flex-1 gap-2 overflow-x-auto px-0.5 py-1 scrollbar-hidden">
+                <div className="flex min-w-0 flex-1 gap-2 overflow-x-auto py-1 scrollbar-hidden">
                   <SchedulePill
                     variant="chip"
                     active={selectedType === 'all'}
