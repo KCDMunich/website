@@ -316,10 +316,10 @@ export const ScheduleView = ({ variant = 'default' }: ScheduleViewProps) => {
                 </SchedulePill>
               </div>
               <div className="flex items-center gap-2">
-                <span className="hidden shrink-0 text-xs font-semibold uppercase tracking-wide text-muted-foreground sm:inline">
+                <span className="hidden shrink-0 self-center text-xs font-semibold uppercase tracking-wide text-muted-foreground sm:inline">
                   Track
                 </span>
-                <div className="flex gap-2 overflow-x-auto pb-0.5 scrollbar-hidden">
+                <div className="flex min-w-0 flex-1 gap-2 overflow-x-auto px-0.5 py-1 scrollbar-hidden">
                   <SchedulePill
                     variant="chip"
                     active={selectedType === 'all'}
