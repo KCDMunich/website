@@ -1,18 +1,19 @@
-"use client";
+'use client';
 
-import { useEffect, useState } from "react";
+import { useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
 
-import { MotionReveal } from "@/components/layout/motion-reveal";
-import { Section } from "@/components/layout/section";
+import { MotionReveal } from '@/components/layout/motion-reveal';
+import { Section } from '@/components/layout/section';
 import {
   LineupSpeakerCard,
   SpeakerCardSkeleton,
-  SpeakerDialogContent,
-} from "@/components/speakers/speaker-ui";
-import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent } from "@/components/ui/dialog";
-import { SESSIONIZE_SPEAKERS_URL, type Speaker } from "@/lib/speakers-data";
-import { cn } from "@/lib/utils";
+} from '@/components/speakers/speaker-ui';
+import { Button } from '@/components/ui/button';
+import { primeSpeakersData, loadSpeakersData } from '@/lib/speaker-data-cache';
+import type { Speaker } from '@/lib/speakers-data';
+import { getSpeakerPath } from '@/lib/speaker-page';
+import { cn } from '@/lib/utils';
 
 const SPEAKERS_PER_PAGE = 30;
 
@@ -26,26 +27,37 @@ function shuffleSpeakers(array: Speaker[]) {
 }
 
 export function SpeakersGrid() {
+  const router = useRouter();
   const [speakerData, setSpeakerData] = useState<Speaker[]>([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [selectedSpeaker, setSelectedSpeaker] = useState<Speaker | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
-    fetch(SESSIONIZE_SPEAKERS_URL)
-      .then((response) => response.json())
-      .then((data: Speaker[]) => {
-        setSpeakerData(shuffleSpeakers(data));
+    loadSpeakersData()
+      .then((data) => {
+        const shuffled = shuffleSpeakers(data);
+        setSpeakerData(shuffled);
+        primeSpeakersData(shuffled);
       })
-      .catch((error) => console.error("Error fetching speakers:", error))
+      .catch((error) => console.error('Error fetching speakers:', error))
       .finally(() => setIsLoading(false));
   }, []);
+
+  const openSpeaker = (speaker: Speaker) => {
+    const href = getSpeakerPath(speaker);
+    router.prefetch(href);
+    router.push(href);
+  };
+
+  const prefetchSpeaker = (speaker: Speaker) => {
+    router.prefetch(getSpeakerPath(speaker));
+  };
 
   const indexOfLastSpeaker = currentPage * SPEAKERS_PER_PAGE;
   const indexOfFirstSpeaker = indexOfLastSpeaker - SPEAKERS_PER_PAGE;
   const currentSpeakers = speakerData.slice(
     indexOfFirstSpeaker,
-    indexOfLastSpeaker
+    indexOfLastSpeaker,
   );
   const totalPages = Math.ceil(speakerData.length / SPEAKERS_PER_PAGE);
 
@@ -54,7 +66,7 @@ export function SpeakersGrid() {
       <MotionReveal>
         <p className="mx-auto max-w-2xl text-center text-lg leading-relaxed text-muted-foreground">
           {isLoading
-            ? "Loading speakers from the lineup…"
+            ? 'Loading speakers from the lineup…'
             : `${speakerData.length} practitioners sharing knowledge across cloud native, platform engineering, and open source.`}
         </p>
       </MotionReveal>
@@ -73,7 +85,8 @@ export function SpeakersGrid() {
                 <LineupSpeakerCard
                   speaker={speaker}
                   variant="wall"
-                  onClick={() => setSelectedSpeaker(speaker)}
+                  onClick={() => openSpeaker(speaker)}
+                  onMouseEnter={() => prefetchSpeaker(speaker)}
                 />
               </MotionReveal>
             ))}
@@ -85,13 +98,13 @@ export function SpeakersGrid() {
                 {Array.from({ length: totalPages }, (_, i) => (
                   <Button
                     key={i}
-                    variant={currentPage === i + 1 ? "default" : "outline"}
+                    variant={currentPage === i + 1 ? 'default' : 'outline'}
                     size="sm"
                     onClick={() => setCurrentPage(i + 1)}
                     className={cn(
                       currentPage === i + 1
-                        ? "bg-primary text-primary-foreground hover:bg-primary/90"
-                        : "border-primary/20 text-primary hover:bg-primary/5"
+                        ? 'bg-primary text-primary-foreground hover:bg-primary/90'
+                        : 'border-primary/20 text-primary hover:bg-primary/5',
                     )}
                   >
                     {i + 1}
@@ -102,19 +115,6 @@ export function SpeakersGrid() {
           ) : null}
         </>
       )}
-
-      <Dialog
-        open={selectedSpeaker !== null}
-        onOpenChange={(open) => {
-          if (!open) setSelectedSpeaker(null);
-        }}
-      >
-        <DialogContent className="max-w-2xl sm:max-w-2xl">
-          {selectedSpeaker ? (
-            <SpeakerDialogContent speaker={selectedSpeaker} />
-          ) : null}
-        </DialogContent>
-      </Dialog>
     </Section>
   );
 }

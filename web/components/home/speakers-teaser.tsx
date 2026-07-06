@@ -1,54 +1,54 @@
-"use client";
+'use client';
 
-import Link from "next/link";
-import { useEffect, useMemo, useState } from "react";
-import { ArrowRight } from "lucide-react";
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { useEffect, useMemo, useState } from 'react';
+import { ArrowRight } from 'lucide-react';
 
-import { Eyebrow } from "@/components/layout/eyebrow";
-import { MotionReveal } from "@/components/layout/motion-reveal";
-import { Section } from "@/components/layout/section";
+import { Eyebrow } from '@/components/layout/eyebrow';
+import { MotionReveal } from '@/components/layout/motion-reveal';
+import { Section } from '@/components/layout/section';
 import {
   AnnouncedSpeakerCard,
   LineupSpeakerCard,
   SpeakerCardSkeleton,
-  SpeakerDialogContent,
-} from "@/components/speakers/speaker-ui";
-import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent } from "@/components/ui/dialog";
-import type { SpeakersSectionMode } from "@/lib/constants";
+} from '@/components/speakers/speaker-ui';
+import { Button } from '@/components/ui/button';
+import type { SpeakersSectionMode } from '@/lib/constants';
 import {
   LINEUP_SPEAKER_COUNT,
   PRE_ANNOUNCED_SPEAKER_IDS,
-  SESSIONIZE_SPEAKERS_URL,
   getAnnouncedSpeakers,
   getLineupSpeakers,
   type Speaker,
-} from "@/lib/speakers-data";
+} from '@/lib/speakers-data';
+import { loadSpeakersData, primeSpeakersData } from '@/lib/speaker-data-cache';
+import { getSpeakerPath } from '@/lib/speaker-page';
 import {
   SECTION_TONE_CLASS,
   type SectionTone,
-} from "@/lib/section-backgrounds";
-import { cn } from "@/lib/utils";
+} from '@/lib/section-backgrounds';
+import { cn } from '@/lib/utils';
 
 type SpeakersTeaserProps = {
-  mode: Exclude<SpeakersSectionMode, "off">;
+  mode: Exclude<SpeakersSectionMode, 'off'>;
   tone?: SectionTone;
 };
 
-export function SpeakersTeaser({ mode, tone = "default" }: SpeakersTeaserProps) {
+export function SpeakersTeaser({ mode, tone = 'default' }: SpeakersTeaserProps) {
+  const router = useRouter();
   const [speakerData, setSpeakerData] = useState<Speaker[]>([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [selectedSpeaker, setSelectedSpeaker] = useState<Speaker | null>(null);
 
-  const isLineup = mode === "lineup";
+  const isLineup = mode === 'lineup';
 
   useEffect(() => {
-    fetch(SESSIONIZE_SPEAKERS_URL)
-      .then((response) => response.json())
-      .then((data: Speaker[]) => {
+    loadSpeakersData()
+      .then((data) => {
         setSpeakerData(data);
+        primeSpeakersData(data);
       })
-      .catch((error) => console.error("Error fetching speakers:", error))
+      .catch((error) => console.error('Error fetching speakers:', error))
       .finally(() => setIsLoading(false));
   }, []);
 
@@ -62,6 +62,16 @@ export function SpeakersTeaser({ mode, tone = "default" }: SpeakersTeaserProps) 
   const skeletonCount = isLineup
     ? LINEUP_SPEAKER_COUNT
     : Math.max(PRE_ANNOUNCED_SPEAKER_IDS.length, 2);
+
+  const openSpeaker = (speaker: Speaker) => {
+    const href = getSpeakerPath(speaker);
+    router.prefetch(href);
+    router.push(href);
+  };
+
+  const prefetchSpeaker = (speaker: Speaker) => {
+    router.prefetch(getSpeakerPath(speaker));
+  };
 
   return (
     <Section id="speakers" className={cn(SECTION_TONE_CLASS[tone])}>
@@ -79,7 +89,7 @@ export function SpeakersTeaser({ mode, tone = "default" }: SpeakersTeaserProps) 
               </h2>
               <p className="mt-5 text-lg leading-relaxed text-muted-foreground">
                 {isLoading || speakerData.length === 0
-                  ? "Practitioners and experts from the cloud native community."
+                  ? 'Practitioners and experts from the cloud native community.'
                   : `${speakerData.length} speakers sharing knowledge across cloud native, platform engineering, and open source.`}
               </p>
             </>
@@ -101,17 +111,17 @@ export function SpeakersTeaser({ mode, tone = "default" }: SpeakersTeaserProps) 
       {isLoading ? (
         <div
           className={cn(
-            "mt-12 grid gap-3 sm:gap-4",
+            'mt-12 grid gap-3 sm:gap-4',
             isLineup
-              ? "grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5"
-              : "grid-cols-2 lg:grid-cols-3"
+              ? 'grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5'
+              : 'grid-cols-2 lg:grid-cols-3',
           )}
         >
           {Array.from({ length: skeletonCount }).map((_, index) => (
             <SpeakerCardSkeleton
               key={index}
               compact={isLineup}
-              variant={isLineup ? "wall" : "detailed"}
+              variant={isLineup ? 'wall' : 'detailed'}
             />
           ))}
         </div>
@@ -122,10 +132,10 @@ export function SpeakersTeaser({ mode, tone = "default" }: SpeakersTeaserProps) 
       ) : (
         <div
           className={cn(
-            "mt-12 grid gap-3 sm:gap-4",
+            'mt-12 grid gap-3 sm:gap-4',
             isLineup
-              ? "grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5"
-              : "grid-cols-2 lg:grid-cols-3"
+              ? 'grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5'
+              : 'grid-cols-2 lg:grid-cols-3',
           )}
         >
           {displaySpeakers.map((speaker, index) => (
@@ -134,12 +144,14 @@ export function SpeakersTeaser({ mode, tone = "default" }: SpeakersTeaserProps) 
                 <LineupSpeakerCard
                   speaker={speaker}
                   variant="wall"
-                  onClick={() => setSelectedSpeaker(speaker)}
+                  onClick={() => openSpeaker(speaker)}
+                  onMouseEnter={() => prefetchSpeaker(speaker)}
                 />
               ) : (
                 <AnnouncedSpeakerCard
                   speaker={speaker}
-                  onClick={() => setSelectedSpeaker(speaker)}
+                  onClick={() => openSpeaker(speaker)}
+                  onMouseEnter={() => prefetchSpeaker(speaker)}
                 />
               )}
             </MotionReveal>
@@ -162,19 +174,6 @@ export function SpeakersTeaser({ mode, tone = "default" }: SpeakersTeaserProps) 
           </div>
         </MotionReveal>
       ) : null}
-
-      <Dialog
-        open={selectedSpeaker !== null}
-        onOpenChange={(open) => {
-          if (!open) setSelectedSpeaker(null);
-        }}
-      >
-        <DialogContent className="max-w-2xl sm:max-w-2xl">
-          {selectedSpeaker ? (
-            <SpeakerDialogContent speaker={selectedSpeaker} />
-          ) : null}
-        </DialogContent>
-      </Dialog>
     </Section>
   );
 }

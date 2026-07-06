@@ -3,12 +3,7 @@
 import Image from "next/image";
 import { Globe } from "lucide-react";
 
-import {
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog";
-import type { Speaker } from "@/lib/speakers-data";
+import type { Speaker } from '@/lib/speakers-data';
 import { cn } from "@/lib/utils";
 
 export function findCompanyInfo(speaker: Speaker) {
@@ -100,9 +95,11 @@ export function SpeakerCardSkeleton({
 export function AnnouncedSpeakerCard({
   speaker,
   onClick,
+  onMouseEnter,
 }: {
   speaker: Speaker;
   onClick: () => void;
+  onMouseEnter?: () => void;
 }) {
   const company = findCompanyInfo(speaker);
   const firstTwoLinks = speaker.links?.slice(0, 2) || [];
@@ -113,6 +110,7 @@ export function AnnouncedSpeakerCard({
     <button
       type="button"
       onClick={onClick}
+      onMouseEnter={onMouseEnter}
       className="group flex h-full w-full cursor-pointer flex-col overflow-hidden rounded-2xl bg-gradient-to-br from-primary/8 to-primary/[0.03] text-left ring-1 ring-primary/10 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
     >
       <div className="relative aspect-[4/5] overflow-hidden">
@@ -172,10 +170,12 @@ export function AnnouncedSpeakerCard({
 export function LineupSpeakerCard({
   speaker,
   onClick,
-  variant = "detailed",
+  onMouseEnter,
+  variant = 'detailed',
 }: {
   speaker: Speaker;
   onClick: () => void;
+  onMouseEnter?: () => void;
   variant?: SpeakerCardVariant;
 }) {
   const company = findCompanyInfo(speaker);
@@ -188,6 +188,7 @@ export function LineupSpeakerCard({
       <button
         type="button"
         onClick={onClick}
+        onMouseEnter={onMouseEnter}
         className="group relative aspect-square w-full cursor-pointer overflow-hidden rounded-2xl bg-white text-left shadow-md ring-1 ring-primary/10 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
       >
         <Image
@@ -234,6 +235,7 @@ export function LineupSpeakerCard({
     <button
       type="button"
       onClick={onClick}
+      onMouseEnter={onMouseEnter}
       className="group flex h-full w-full cursor-pointer flex-col overflow-hidden rounded-2xl bg-white text-left shadow-md ring-1 ring-primary/10 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
     >
       <div className="relative aspect-square overflow-hidden">
@@ -289,71 +291,3 @@ export function LineupSpeakerCard({
   );
 }
 
-export function SpeakerDialogContent({ speaker }: { speaker: Speaker }) {
-  const company = findCompanyInfo(speaker);
-  const validSessions = Array.isArray(speaker.sessions)
-    ? speaker.sessions.filter(
-        (session) =>
-          typeof session === "object" &&
-          typeof session.id === "number" &&
-          typeof session.name === "string"
-      )
-    : [];
-
-  return (
-    <div className="max-h-[70vh] space-y-6 overflow-y-auto pr-1">
-      <DialogHeader>
-        <p className="text-sm font-medium text-primary">{company}</p>
-        <DialogTitle className="text-2xl">{speaker.fullName}</DialogTitle>
-      </DialogHeader>
-
-      <div className="space-y-4 rounded-xl bg-muted/30 p-4">
-        <div className="relative mx-auto aspect-square max-w-xs overflow-hidden rounded-lg">
-          <Image
-            src={speaker.profilePicture}
-            alt={speaker.fullName}
-            fill
-            className="object-cover"
-            sizes="320px"
-          />
-        </div>
-        <div className="flex flex-wrap justify-center gap-2">
-          {speaker.links?.map((link) => (
-            <a
-              key={link.url}
-              href={link.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex cursor-pointer items-center gap-2 rounded-full bg-background px-3 py-2 text-sm transition-colors hover:bg-muted"
-            >
-              <SocialIcon url={link.url} />
-              <span className="text-xs">{link.title}</span>
-            </a>
-          ))}
-        </div>
-      </div>
-
-      <div>
-        <h3 className="mb-2 text-lg font-bold">About</h3>
-        <p className="whitespace-pre-line text-sm leading-relaxed text-muted-foreground">
-          {speaker.bio || "No bio available."}
-        </p>
-      </div>
-
-      <div>
-        <h3 className="mb-2 text-lg font-bold">Sessions</h3>
-        <div className="space-y-2">
-          {validSessions.length > 0 ? (
-            validSessions.map((session) => (
-              <div key={session.id} className="rounded-lg bg-muted/30 p-3">
-                <h4 className="font-semibold text-foreground">{session.name}</h4>
-              </div>
-            ))
-          ) : (
-            <p className="text-muted-foreground">No sessions available.</p>
-          )}
-        </div>
-      </div>
-    </div>
-  );
-}

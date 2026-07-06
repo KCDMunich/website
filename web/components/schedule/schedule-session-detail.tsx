@@ -15,6 +15,7 @@ import { useState } from "react";
 
 import { ScheduleFavoriteIcon } from '@/components/schedule/schedule-favorite-icon';
 import { SocialIcon } from '@/components/speakers/speaker-ui';
+import { getSpeakerPath } from '@/lib/speaker-page';
 import { Button } from "@/components/ui/button";
 import type { Speaker } from "@/lib/speakers-data";
 import {
@@ -56,12 +57,16 @@ function findTagline(speaker: Speaker) {
 function SessionSpeakerProfile({ speaker }: { speaker: Speaker }) {
   const company = findCompany(speaker);
   const tagline = findTagline(speaker);
+  const speakerHref = getSpeakerPath(speaker);
 
   return (
     <section className="overflow-hidden rounded-3xl border border-border/70 bg-card">
       <div className="border-b border-border/60 bg-muted/25 px-6 py-8 sm:px-8 sm:py-10">
         <div className="flex flex-col items-center gap-8 sm:flex-row sm:items-center">
-          <div className="relative size-36 shrink-0 overflow-hidden rounded-2xl bg-muted shadow-sm ring-1 ring-border/60 sm:size-40">
+          <Link
+            href={speakerHref}
+            className="relative size-36 shrink-0 overflow-hidden rounded-2xl bg-muted shadow-sm ring-1 ring-border/60 transition-transform hover:scale-[1.02] sm:size-40"
+          >
             {speaker.profilePicture ? (
               <Image
                 src={speaker.profilePicture}
@@ -76,11 +81,16 @@ function SessionSpeakerProfile({ speaker }: { speaker: Speaker }) {
                 {speaker.fullName.charAt(0)}
               </div>
             )}
-          </div>
+          </Link>
 
           <div className="min-w-0 text-center sm:text-left">
             <h2 className="font-heading text-3xl font-bold leading-tight text-primary sm:text-4xl">
-              {speaker.fullName}
+              <Link
+                href={speakerHref}
+                className="transition-colors hover:text-[#0bbbef]"
+              >
+                {speaker.fullName}
+              </Link>
             </h2>
             {tagline ? (
               <p className="mt-3 text-lg leading-snug text-foreground">{tagline}</p>
