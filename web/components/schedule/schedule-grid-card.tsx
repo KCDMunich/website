@@ -15,6 +15,7 @@ export type ScheduleGridCardProps = {
   isFavorite?: boolean;
   onFavoriteClick?: () => void;
   onClick?: () => void;
+  onMouseEnter?: () => void;
   isLive?: boolean;
   isPast?: boolean;
   isService?: boolean;
@@ -39,6 +40,7 @@ export function ScheduleGridCard({
   isFavorite = false,
   onFavoriteClick,
   onClick,
+  onMouseEnter,
   isLive = false,
   isPast = false,
   isService = false,
@@ -75,6 +77,7 @@ export function ScheduleGridCard({
       role="button"
       tabIndex={0}
       onClick={onClick}
+      onMouseEnter={onMouseEnter}
       onKeyDown={(e) => {
         if (e.key === "Enter" || e.key === " ") {
           e.preventDefault();

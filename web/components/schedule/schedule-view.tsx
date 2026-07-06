@@ -8,10 +8,9 @@ import { ScheduleCard } from '@/components/schedule/schedule-card';
 import { ScheduleGridCard } from '@/components/schedule/schedule-grid-card';
 import { SchedulePill } from '@/components/schedule/schedule-pill';
 import { Eyebrow } from '@/components/layout/eyebrow';
+import { loadScheduleData, primeScheduleData } from '@/lib/schedule-data-cache';
+import { getSessionPath } from '@/lib/schedule-session';
 import {
-  convertSessionsToEvents,
-  fetchGridData,
-  fetchSpeakers,
   findSpeakerCompany,
   findSpeakerProfile,
   getEventLocationLabel,
@@ -25,7 +24,6 @@ import {
   type SessionizeGridDay,
   type SessionizeSpeaker,
 } from '@/lib/sessionize';
-import { getSessionPath } from '@/lib/schedule-session';
 
 import './schedule.css';
 import './schedule-app.css';
@@ -93,8 +91,13 @@ export const ScheduleView = ({ variant = 'default' }: ScheduleViewProps) => {
     return [...new Set(dayEvents.map((event) => event.room))];
   }, [events, selectedGridDay]);
 
+  const prefetchSession = (event: ScheduleEvent) => {
+    router.prefetch(getSessionPath(event, { app: isApp }));
+  };
+
   const openSession = (event: ScheduleEvent) => {
     const href = getSessionPath(event, { app: isApp });
+    router.prefetch(href);
     router.push(href, { scroll: false });
   };
 
@@ -119,11 +122,21 @@ export const ScheduleView = ({ variant = 'default' }: ScheduleViewProps) => {
   useEffect(() => {
     const loadData = async () => {
       try {
-        const [speakers, grid] = await Promise.all([fetchSpeakers(), fetchGridData()]);
-        setSpeakerData(speakers);
-        setGridData(grid);
-        setEvents(convertSessionsToEvents(grid, { showServiceSessions: true }));
+        const data = await loadScheduleData();
+        setSpeakerData(data.sessionizeSpeakers);
+        setEvents(data.events);
+        setGridData(data.grid);
+        primeScheduleData(
+          data.grid,
+          data.events,
+          data.sessionizeSpeakers,
+          data.fullSpeakers,
+        );
         setIsLoading(false);
+
+        if (!data.fullSpeakers?.length) {
+          void loadScheduleData({ includeFullSpeakers: true });
+        }
       } catch (error) {
         console.error('Error fetching data:', error);
         setIsLoading(false);
@@ -330,6 +343,7 @@ export const ScheduleView = ({ variant = 'default' }: ScheduleViewProps) => {
                           isLiveEvent ? 'schedule-app-card--live' : ''
                         }`}
                         onClick={() => openSession(event)}
+                        onMouseEnter={() => prefetchSession(event)}
                         role="button"
                         tabIndex={0}
                         onKeyDown={(e) => {
@@ -434,6 +448,7 @@ export const ScheduleView = ({ variant = 'default' }: ScheduleViewProps) => {
                         recordingUrl={event.recordingUrl}
                         onFavoriteClick={() => toggleFavorite(event.id)}
                         onClick={() => openSession(event)}
+                        onMouseEnter={() => prefetchSession(event)}
                       />
                     );
                   })
@@ -504,6 +519,7 @@ export const ScheduleView = ({ variant = 'default' }: ScheduleViewProps) => {
                               isService={event.isServiceSession}
                               onFavoriteClick={() => toggleFavorite(event.id)}
                               onClick={() => openSession(event)}
+                              onMouseEnter={() => prefetchSession(event)}
                             />
                           );
                         })}

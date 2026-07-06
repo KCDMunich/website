@@ -1,68 +1,105 @@
-"use client";
+'use client';
 
-import { useEffect, useMemo, useState } from "react";
-import { useRouter } from "next/navigation";
+import { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
 
-import { ScheduleSessionDetail } from "@/components/schedule/schedule-session-detail";
-import { SESSIONIZE_SPEAKERS_URL, type Speaker } from "@/lib/speakers-data";
+import { ScheduleSessionDetail } from '@/components/schedule/schedule-session-detail';
+import { ScheduleSessionSkeleton } from '@/components/schedule/schedule-session-skeleton';
+import type { Speaker } from '@/lib/speakers-data';
 import {
-  convertSessionsToEvents,
-  fetchGridData,
-  sendScheduleFavoriteStat,
-  type ScheduleEvent,
-} from '@/lib/sessionize';
+  getCachedScheduleEvent,
+  getCachedSpeakersForEvent,
+  loadScheduleData,
+} from '@/lib/schedule-data-cache';
 import { getPublicSessionPath } from '@/lib/schedule-session';
+import { sendScheduleFavoriteStat, type ScheduleEvent } from '@/lib/sessionize';
 
 type ScheduleSessionPageProps = {
   sessionId: string;
   backHref: string;
+  initialEvent?: ScheduleEvent | null;
+  initialSpeakers?: Speaker[];
 };
 
 export function ScheduleSessionPage({
   sessionId,
   backHref,
+  initialEvent = null,
+  initialSpeakers = [],
 }: ScheduleSessionPageProps) {
   const router = useRouter();
-  const [events, setEvents] = useState<ScheduleEvent[]>([]);
-  const [speakers, setSpeakers] = useState<Speaker[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const [event, setEvent] = useState<ScheduleEvent | null>(
+    initialEvent ?? getCachedScheduleEvent(sessionId),
+  );
+  const [speakers, setSpeakers] = useState<Speaker[]>(() => {
+    if (initialSpeakers.length) return initialSpeakers;
+    const cachedEvent = initialEvent ?? getCachedScheduleEvent(sessionId);
+    return cachedEvent ? getCachedSpeakersForEvent(cachedEvent) : [];
+  });
+  const [isLoading, setIsLoading] = useState(!event);
   const [favorites, setFavorites] = useState<string[]>(() => {
-    if (typeof window === "undefined") return [];
+    if (typeof window === 'undefined') return [];
     try {
-      const stored = localStorage.getItem("favorites");
+      const stored = localStorage.getItem('favorites');
       return stored ? JSON.parse(stored).map(String) : [];
     } catch {
       return [];
     }
   });
 
-  const event = useMemo(
-    () => events.find((entry) => String(entry.id) === String(sessionId)) ?? null,
-    [events, sessionId]
-  );
-
   useEffect(() => {
-    const load = async () => {
-      try {
-        const [grid, speakerList] = await Promise.all([
-          fetchGridData(),
-          fetch(SESSIONIZE_SPEAKERS_URL).then((response) => response.json()),
-        ]);
-        setEvents(convertSessionsToEvents(grid, { showServiceSessions: true }));
-        setSpeakers(speakerList);
-      } catch (error) {
-        console.error("Error loading session:", error);
-      } finally {
+    let cancelled = false;
+
+    const resolveSession = async () => {
+      const cachedEvent = getCachedScheduleEvent(sessionId);
+      if (cachedEvent && !cancelled) {
+        setEvent(cachedEvent);
+        const cachedSpeakers = getCachedSpeakersForEvent(cachedEvent);
+        if (cachedSpeakers.length) {
+          setSpeakers(cachedSpeakers);
+        }
         setIsLoading(false);
+      } else if (initialEvent && !cancelled) {
+        setIsLoading(false);
+      }
+
+      try {
+        const data = await loadScheduleData({ includeFullSpeakers: true });
+        if (cancelled) return;
+
+        const resolvedEvent =
+          data.events.find((entry) => String(entry.id) === String(sessionId)) ?? null;
+        setEvent(resolvedEvent);
+
+        if (resolvedEvent) {
+          const speakerIds = new Set(
+            resolvedEvent.speakers?.map((speaker) => String(speaker.id)) ?? [],
+          );
+          setSpeakers(
+            (data.fullSpeakers ?? []).filter((speaker) =>
+              speakerIds.has(String(speaker.id)),
+            ),
+          );
+        }
+      } catch (error) {
+        console.error('Error loading session:', error);
+      } finally {
+        if (!cancelled) {
+          setIsLoading(false);
+        }
       }
     };
 
-    load();
-  }, []);
+    resolveSession();
+
+    return () => {
+      cancelled = true;
+    };
+  }, [initialEvent, sessionId]);
 
   useEffect(() => {
     try {
-      localStorage.setItem("favorites", JSON.stringify(favorites.map(String)));
+      localStorage.setItem('favorites', JSON.stringify(favorites.map(String)));
     } catch {
       // Ignore localStorage errors
     }
@@ -83,17 +120,13 @@ export function ScheduleSessionPage({
       const next = isFavorite
         ? current.filter((id) => id !== idStr)
         : [...current, idStr];
-      sendScheduleFavoriteStat(idStr, isFavorite ? "remove" : "add");
+      sendScheduleFavoriteStat(idStr, isFavorite ? 'remove' : 'add');
       return next;
     });
   };
 
-  if (isLoading) {
-    return (
-      <div className="flex min-h-[50vh] items-center justify-center">
-        <div className="size-10 animate-spin rounded-full border-4 border-primary/20 border-t-primary" />
-      </div>
-    );
+  if (isLoading && !event) {
+    return <ScheduleSessionSkeleton />;
   }
 
   if (!event) {

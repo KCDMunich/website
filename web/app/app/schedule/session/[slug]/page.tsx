@@ -3,10 +3,10 @@ import { redirect } from 'next/navigation';
 import { ScheduleSessionPage } from '@/components/schedule/schedule-session-page';
 import {
   findScheduleEventById,
-  getPublicSessionPath,
   getSessionIdFromSlug,
   getSessionPath,
   getSessionSlug,
+  getSpeakersForSessionId,
 } from '@/lib/schedule-session';
 
 type PageProps = {
@@ -25,7 +25,14 @@ export default async function ScheduleAppSessionRoute({ params }: PageProps) {
     }
   }
 
+  const speakers = event ? await getSpeakersForSessionId(sessionId) : [];
+
   return (
-    <ScheduleSessionPage sessionId={sessionId} backHref="/app/schedule" />
+    <ScheduleSessionPage
+      sessionId={sessionId}
+      backHref="/app/schedule"
+      initialEvent={event}
+      initialSpeakers={speakers}
+    />
   );
 }

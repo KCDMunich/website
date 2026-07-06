@@ -20,6 +20,7 @@ export type ScheduleCardProps = {
   isFavorite?: boolean;
   onFavoriteClick?: () => void;
   onClick?: () => void;
+  onMouseEnter?: () => void;
   isLive?: boolean;
   isPast?: boolean;
   recordingUrl?: string | null;
@@ -43,6 +44,7 @@ export const ScheduleCard = ({
   isFavorite = false,
   onFavoriteClick,
   onClick,
+  onMouseEnter,
   isLive = false,
   isPast = false,
   recordingUrl,
@@ -60,6 +62,7 @@ export const ScheduleCard = ({
       role="button"
       tabIndex={0}
       onClick={onClick}
+      onMouseEnter={onMouseEnter}
       onKeyDown={(e) => {
         if (e.key === "Enter" || e.key === " ") {
           e.preventDefault();

@@ -1,8 +1,11 @@
+import { cache } from 'react';
 import slugify from 'slugify';
 
+import type { Speaker } from '@/lib/speakers-data';
 import {
   convertSessionsToEvents,
   fetchGridData,
+  getSpeakersUrl,
   type ScheduleEvent,
 } from '@/lib/sessionize';
 
@@ -66,10 +69,38 @@ export function getPublicSessionPath(
   return getSessionPath(event);
 }
 
-export async function findScheduleEventById(
-  sessionId: string,
-): Promise<ScheduleEvent | null> {
+export const getScheduleEvents = cache(async (): Promise<ScheduleEvent[]> => {
   const grid = await fetchGridData();
-  const events = convertSessionsToEvents(grid, { showServiceSessions: true });
-  return events.find((entry) => String(entry.id) === sessionId) ?? null;
-}
+  return convertSessionsToEvents(grid, { showServiceSessions: true });
+});
+
+export const getFullSpeakers = cache(async (): Promise<Speaker[]> => {
+  const response = await fetch(getSpeakersUrl(), {
+    next: { revalidate: 300 },
+  });
+
+  if (!response.ok) {
+    throw new Error(`Failed to fetch speakers (${response.status})`);
+  }
+
+  return response.json();
+});
+
+export const findScheduleEventById = cache(
+  async (sessionId: string): Promise<ScheduleEvent | null> => {
+    const events = await getScheduleEvents();
+    return events.find((entry) => String(entry.id) === sessionId) ?? null;
+  },
+);
+
+export const getSpeakersForSessionId = cache(
+  async (sessionId: string): Promise<Speaker[]> => {
+    const event = await findScheduleEventById(sessionId);
+    if (!event?.speakers?.length) return [];
+
+    const speakers = await getFullSpeakers();
+    const speakerIds = new Set(event.speakers.map((speaker) => String(speaker.id)));
+
+    return speakers.filter((speaker) => speakerIds.has(String(speaker.id)));
+  },
+);

@@ -99,13 +99,29 @@ export const getGridSmartUrl = () => `${getSessionizeBaseUrl()}/GridSmart`;
 
 export const getSpeakersUrl = () => `${getSessionizeBaseUrl()}/Speakers`;
 
+const SESSIONIZE_REVALIDATE_SECONDS = 300;
+
 export const fetchGridData = async (): Promise<SessionizeGridDay[]> => {
-  const response = await fetch(getGridSmartUrl());
+  const response = await fetch(getGridSmartUrl(), {
+    next: { revalidate: SESSIONIZE_REVALIDATE_SECONDS },
+  });
+
+  if (!response.ok) {
+    throw new Error(`Failed to fetch schedule grid (${response.status})`);
+  }
+
   return response.json();
 };
 
 export const fetchSpeakers = async (): Promise<SessionizeSpeaker[]> => {
-  const response = await fetch(getSpeakersUrl());
+  const response = await fetch(getSpeakersUrl(), {
+    next: { revalidate: SESSIONIZE_REVALIDATE_SECONDS },
+  });
+
+  if (!response.ok) {
+    throw new Error(`Failed to fetch schedule speakers (${response.status})`);
+  }
+
   return response.json();
 };
 

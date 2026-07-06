@@ -9,6 +9,7 @@ import {
   getPublicSessionPath,
   getSessionIdFromSlug,
   getSessionSlug,
+  getSpeakersForSessionId,
 } from '@/lib/schedule-session';
 
 type PageProps = {
@@ -52,9 +53,16 @@ export default async function ScheduleSessionRoute({ params }: PageProps) {
     }
   }
 
+  const speakers = event ? await getSpeakersForSessionId(sessionId) : [];
+
   return (
     <SiteLayout>
-      <ScheduleSessionPage sessionId={sessionId} backHref="/schedule" />
+      <ScheduleSessionPage
+        sessionId={sessionId}
+        backHref="/schedule"
+        initialEvent={event}
+        initialSpeakers={speakers}
+      />
     </SiteLayout>
   );
 }
