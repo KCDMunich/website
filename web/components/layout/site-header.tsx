@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { MenuIcon, Ticket } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
@@ -271,6 +271,7 @@ function MobileNav({
 }
 
 export function SiteHeader({ homepage = false }: SiteHeaderProps) {
+  const headerRef = useRef<HTMLElement>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -281,11 +282,36 @@ export function SiteHeader({ homepage = false }: SiteHeaderProps) {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  useEffect(() => {
+    const header = headerRef.current;
+    if (!header) return;
+
+    const updateHeaderHeight = () => {
+      document.documentElement.style.setProperty(
+        "--site-header-height",
+        `${header.getBoundingClientRect().height}px`,
+      );
+    };
+
+    updateHeaderHeight();
+
+    const observer = new ResizeObserver(updateHeaderHeight);
+    observer.observe(header);
+    window.addEventListener("resize", updateHeaderHeight);
+
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("resize", updateHeaderHeight);
+    };
+  }, [homepage, scrolled, mobileOpen]);
+
   const onHero = homepage && !scrolled;
   const lightText = onHero;
 
   return (
     <header
+      ref={headerRef}
+      data-site-header=""
       className={cn(
         "z-50 w-full transition-all duration-300",
         homepage

@@ -275,8 +275,8 @@ export const ScheduleView = ({ variant = 'default' }: ScheduleViewProps) => {
         }`}
       >
         {!isApp && (
-          <div className="sticky top-[4.25rem] z-20 -mx-4 border-b border-border/60 bg-background/95 px-4 py-4 backdrop-blur-xl sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
-            <div className="mx-auto flex max-w-7xl flex-col gap-3">
+          <div className="sticky top-[var(--site-header-height,4.125rem)] z-20 -mx-4 border-b border-border/40 bg-background px-4 pt-3 pb-3 sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
+            <div className="mx-auto flex max-w-7xl flex-col gap-3 rounded-2xl border border-border/60 bg-background/95 p-3 shadow-sm backdrop-blur-xl sm:p-4">
               <div className="flex flex-wrap items-center gap-3">
                 <ScheduleSegmentGroup label="Day">
                   <SchedulePill
