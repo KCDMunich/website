@@ -1,6 +1,5 @@
 import { Mic2, Sparkles, Users, Wrench } from "lucide-react";
 
-import { Eyebrow } from "@/components/layout/eyebrow";
 import { MotionReveal } from "@/components/layout/motion-reveal";
 import { Section } from "@/components/layout/section";
 import {
@@ -53,9 +52,6 @@ export function Expect({ tone = "default" }: ExpectProps) {
     <Section id="expect" className={cn(SECTION_TONE_CLASS[tone])}>
       <div className="mx-auto max-w-3xl text-center">
         <MotionReveal>
-          <div className="mb-4 flex justify-center">
-            <Eyebrow>Experience</Eyebrow>
-          </div>
           <h2 className="font-heading text-3xl font-bold leading-[1.08] tracking-tight text-primary sm:text-4xl lg:text-5xl">
             What to expect,
             <br />

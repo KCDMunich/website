@@ -2,7 +2,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, MapPin } from "lucide-react";
 
-import { Eyebrow } from "@/components/layout/eyebrow";
 import { MotionReveal } from "@/components/layout/motion-reveal";
 import { Section } from "@/components/layout/section";
 import { Button } from "@/components/ui/button";
@@ -53,9 +52,6 @@ export function Hotels({ tone = "default" }: HotelsProps) {
     <Section id="hotels" className={cn(SECTION_TONE_CLASS[tone])}>
       <div className="mx-auto max-w-3xl text-center">
         <MotionReveal>
-          <div className="mb-4 flex justify-center">
-            <Eyebrow>Stay nearby</Eyebrow>
-          </div>
           <h2 className="font-heading text-3xl font-bold leading-[1.08] tracking-tight text-primary sm:text-4xl lg:text-5xl">
             Hotels close to,
             <br />

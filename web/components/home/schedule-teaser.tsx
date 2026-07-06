@@ -4,7 +4,6 @@ import Image from "next/image";
 import { useEffect, useMemo, useState } from "react";
 import { ArrowRight, Play } from "lucide-react";
 
-import { Eyebrow } from "@/components/layout/eyebrow";
 import { MotionReveal } from "@/components/layout/motion-reveal";
 import { Section } from "@/components/layout/section";
 import { Button } from "@/components/ui/button";
@@ -154,9 +153,6 @@ export function ScheduleTeaser({ tone = "default" }: ScheduleTeaserProps) {
     <Section id="schedule-teaser" className={cn(SECTION_TONE_CLASS[tone])}>
       <div className="mx-auto max-w-3xl text-center">
         <MotionReveal>
-          <div className="mb-4 flex justify-center">
-            <Eyebrow>On demand</Eyebrow>
-          </div>
           <h2 className="font-heading text-3xl font-bold leading-[1.08] tracking-tight text-primary sm:text-4xl lg:text-5xl">
             Replay past sessions,
             <br />

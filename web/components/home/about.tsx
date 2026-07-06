@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { ArrowRight, Calendar, Heart, Users } from "lucide-react";
 
-import { Eyebrow } from "@/components/layout/eyebrow";
 import { MotionReveal } from "@/components/layout/motion-reveal";
 import { Section } from "@/components/layout/section";
 import { Button } from "@/components/ui/button";
@@ -42,7 +41,6 @@ export function About({ tone = "default" }: AboutProps) {
       <div className="grid items-center gap-12 lg:grid-cols-[1.15fr_0.85fr] lg:items-stretch lg:gap-20">
         <div>
           <MotionReveal>
-            <Eyebrow className="mb-4">About</Eyebrow>
             <h2 className="font-heading text-3xl font-bold leading-[1.08] tracking-tight text-primary sm:text-4xl lg:text-5xl">
               Built by the community,
               <br />

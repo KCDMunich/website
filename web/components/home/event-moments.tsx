@@ -1,7 +1,6 @@
 import { ArrowRight } from "lucide-react";
 
 import { EventMomentsCollage } from "@/components/home/event-moments-collage";
-import { Eyebrow } from "@/components/layout/eyebrow";
 import { Section } from "@/components/layout/section";
 import { Button } from "@/components/ui/button";
 import { fetchGallery2026Pool, GALLERY_2026_URL } from "@/lib/event-gallery";
@@ -21,9 +20,6 @@ export async function EventMoments({ tone = "default" }: EventMomentsProps) {
   return (
     <Section className={cn("overflow-hidden", SECTION_TONE_CLASS[tone])}>
       <div className="mx-auto max-w-3xl text-center">
-        <div className="mb-4 flex justify-center">
-          <Eyebrow>Photo gallery</Eyebrow>
-        </div>
         <h2 className="font-heading text-3xl font-bold leading-[1.08] tracking-tight text-primary sm:text-4xl lg:text-5xl">
           More than just talks,
           <br />

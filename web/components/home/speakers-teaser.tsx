@@ -5,7 +5,6 @@ import { useRouter } from 'next/navigation';
 import { useEffect, useMemo, useState } from 'react';
 import { ArrowRight } from 'lucide-react';
 
-import { Eyebrow } from '@/components/layout/eyebrow';
 import { MotionReveal } from '@/components/layout/motion-reveal';
 import { Section } from '@/components/layout/section';
 import {
@@ -77,9 +76,6 @@ export function SpeakersTeaser({ mode, tone = 'default' }: SpeakersTeaserProps) 
     <Section id="speakers" className={cn(SECTION_TONE_CLASS[tone])}>
       <div className="mx-auto max-w-3xl text-center">
         <MotionReveal>
-          <div className="mb-4 flex justify-center">
-            <Eyebrow>Speakers</Eyebrow>
-          </div>
           {isLineup ? (
             <>
               <h2 className="font-heading text-3xl font-bold leading-[1.08] tracking-tight text-primary sm:text-4xl lg:text-5xl">

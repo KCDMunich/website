@@ -114,7 +114,6 @@ export function Ticketing({ tone = "default" }: TicketingProps) {
       <div className="grid items-stretch gap-12 lg:grid-cols-2 lg:gap-16">
         <MotionReveal className="flex h-full flex-col">
           <SectionHeader
-            eyebrow="Tickets"
             title="Secure your spot"
             description="Two full days in Munich — talks, workshops, and the people building cloud native in Europe."
             className="mb-0"
