@@ -5,8 +5,9 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { useEffect, useMemo, useState, type CSSProperties } from 'react';
 
 import { ScheduleCard } from '@/components/schedule/schedule-card';
+import { ScheduleFavoriteIcon } from '@/components/schedule/schedule-favorite-icon';
 import { ScheduleGridCard } from '@/components/schedule/schedule-grid-card';
-import { SchedulePill } from '@/components/schedule/schedule-pill';
+import { SchedulePill, ScheduleSegmentGroup } from '@/components/schedule/schedule-pill';
 import { Eyebrow } from '@/components/layout/eyebrow';
 import { loadScheduleData, primeScheduleData } from '@/lib/schedule-data-cache';
 import { getSessionPath } from '@/lib/schedule-session';
@@ -276,46 +277,67 @@ export const ScheduleView = ({ variant = 'default' }: ScheduleViewProps) => {
         {!isApp && (
           <div className="sticky top-[4.25rem] z-20 -mx-4 border-b border-border/60 bg-background/95 px-4 py-4 backdrop-blur-xl sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
             <div className="mx-auto flex max-w-7xl flex-col gap-3">
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-wrap items-center gap-3">
+                <ScheduleSegmentGroup label="Day">
+                  <SchedulePill
+                    variant="segment"
+                    active={selectedDay === 'monday'}
+                    onClick={() => setSelectedDay('monday')}
+                  >
+                    Monday
+                  </SchedulePill>
+                  <SchedulePill
+                    variant="segment"
+                    active={selectedDay === 'tuesday'}
+                    onClick={() => setSelectedDay('tuesday')}
+                  >
+                    Tuesday
+                  </SchedulePill>
+                </ScheduleSegmentGroup>
                 <SchedulePill
-                  active={selectedDay === 'monday'}
-                  onClick={() => setSelectedDay('monday')}
-                >
-                  Monday
-                </SchedulePill>
-                <SchedulePill
-                  active={selectedDay === 'tuesday'}
-                  onClick={() => setSelectedDay('tuesday')}
-                >
-                  Tuesday
-                </SchedulePill>
-                <SchedulePill
+                  variant="favorite"
                   active={activeSelectedType === 'favorites'}
                   title="Show favorites only"
                   aria-label="Show favorites only"
+                  icon={
+                    <ScheduleFavoriteIcon
+                      active={activeSelectedType === 'favorites'}
+                      tone={
+                        activeSelectedType === 'favorites' ? 'inverse' : 'default'
+                      }
+                      className="size-4"
+                    />
+                  }
                   onClick={() =>
                     setSelectedType(activeSelectedType === 'favorites' ? 'all' : 'favorites')
                   }
                 >
-                  ♥ Favorites
+                  Favorites
                 </SchedulePill>
               </div>
-              <div className="flex gap-2 overflow-x-auto pb-1 scrollbar-hidden">
-                <SchedulePill
-                  active={selectedType === 'all'}
-                  onClick={() => setSelectedType('all')}
-                >
-                  All tracks
-                </SchedulePill>
-                {rooms.map((room) => (
+              <div className="flex items-center gap-2">
+                <span className="hidden shrink-0 text-xs font-semibold uppercase tracking-wide text-muted-foreground sm:inline">
+                  Track
+                </span>
+                <div className="flex gap-2 overflow-x-auto pb-0.5 scrollbar-hidden">
                   <SchedulePill
-                    key={room}
-                    active={selectedType === room}
-                    onClick={() => setSelectedType(room)}
+                    variant="chip"
+                    active={selectedType === 'all'}
+                    onClick={() => setSelectedType('all')}
                   >
-                    {getRoomDisplayDetails(room).title}
+                    All tracks
                   </SchedulePill>
-                ))}
+                  {rooms.map((room) => (
+                    <SchedulePill
+                      key={room}
+                      variant="chip"
+                      active={selectedType === room}
+                      onClick={() => setSelectedType(room)}
+                    >
+                      {getRoomDisplayDetails(room).title}
+                    </SchedulePill>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
@@ -373,9 +395,7 @@ export const ScheduleView = ({ variant = 'default' }: ScheduleViewProps) => {
                               toggleFavorite(event.id);
                             }}
                           >
-                            <svg viewBox="0 0 24 24" fill="currentColor">
-                              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
-                            </svg>
+                            <ScheduleFavoriteIcon active={isFavorite} className="size-4" />
                           </button>
                         </div>
                         <h3 className="schedule-app-title">{event.title}</h3>
@@ -615,6 +635,11 @@ export const ScheduleView = ({ variant = 'default' }: ScheduleViewProps) => {
                   setSelectedType(selectedType === 'favorites' ? 'all' : 'favorites')
                 }
               >
+                <ScheduleFavoriteIcon
+                  active={selectedType === 'favorites'}
+                  tone={selectedType === 'favorites' ? 'inverse' : 'default'}
+                  className="size-4"
+                />
                 Favorites
               </button>
               <button

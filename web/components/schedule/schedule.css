@@ -1376,10 +1376,15 @@
   opacity: 1;
 }
 
-.schedule-grid-card__favorite:hover,
-.schedule-grid-card__favorite--active {
+.schedule-grid-card__favorite:hover {
   background: rgba(0, 66, 88, 0.08);
   color: #d92d20;
+}
+
+.schedule-grid-card__favorite--active {
+  opacity: 1;
+  background: rgba(239, 68, 68, 0.1);
+  color: #ef4444;
 }
 
 .schedule-grid-card__time {

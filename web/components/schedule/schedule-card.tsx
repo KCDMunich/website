@@ -1,6 +1,8 @@
 "use client";
 
-import { Clock, Heart, MapPin, Play, Users } from "lucide-react";
+import { Clock, MapPin, Play, Users } from 'lucide-react';
+
+import { ScheduleFavoriteIcon } from '@/components/schedule/schedule-favorite-icon';
 
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
@@ -144,10 +146,7 @@ export const ScheduleCard = ({
           ) : null}
           <button
             type="button"
-            className={cn(
-              "rounded-lg p-2 transition-colors hover:bg-primary/10",
-              isFavorite ? "text-red-500" : "text-muted-foreground"
-            )}
+            className="rounded-lg p-2 text-muted-foreground transition-colors hover:bg-primary/10"
             aria-label={
               isFavorite ? "Remove from favorites" : "Add to favorites"
             }
@@ -156,7 +155,7 @@ export const ScheduleCard = ({
               onFavoriteClick?.();
             }}
           >
-            <Heart className={cn("size-4", isFavorite && "fill-current")} />
+            <ScheduleFavoriteIcon active={isFavorite} className="size-4" />
           </button>
         </div>
       </div>

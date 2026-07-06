@@ -7,14 +7,14 @@ import {
   Calendar,
   Clock,
   Copy,
-  Heart,
   MapPin,
   Play,
   Share2,
 } from "lucide-react";
 import { useState } from "react";
 
-import { SocialIcon } from "@/components/speakers/speaker-ui";
+import { ScheduleFavoriteIcon } from '@/components/schedule/schedule-favorite-icon';
+import { SocialIcon } from '@/components/speakers/speaker-ui';
 import { Button } from "@/components/ui/button";
 import type { Speaker } from "@/lib/speakers-data";
 import {
@@ -219,8 +219,9 @@ export function ScheduleSessionDetail({
                   )}
                   onClick={onToggleFavorite}
                 >
-                  <Heart
-                    className={cn("size-4", isFavorite && "fill-current text-[#0bbbef]")}
+                  <ScheduleFavoriteIcon
+                    active={isFavorite}
+                    className="size-4"
                   />
                   {isFavorite ? "Saved" : "Save session"}
                 </Button>

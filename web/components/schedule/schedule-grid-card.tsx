@@ -1,8 +1,7 @@
 "use client";
 
-import { Heart } from "lucide-react";
-
-import type { ScheduleCardSpeaker } from "@/components/schedule/schedule-card";
+import { ScheduleFavoriteIcon } from '@/components/schedule/schedule-favorite-icon';
+import type { ScheduleCardSpeaker } from '@/components/schedule/schedule-card';
 import { cn } from "@/lib/utils";
 
 export type ScheduleGridCardProps = {
@@ -110,7 +109,7 @@ export function ScheduleGridCard({
             onFavoriteClick?.();
           }}
         >
-          <Heart className={cn("size-3.5", isFavorite && "fill-current")} />
+          <ScheduleFavoriteIcon active={isFavorite} className="size-3.5" />
         </button>
       </div>
 

@@ -113,6 +113,10 @@
   font-size: 0.78rem;
   cursor: pointer;
   text-align: center;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
 }
 
 .schedule-app-bottom-btn.is-active {
