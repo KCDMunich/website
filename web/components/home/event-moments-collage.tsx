@@ -64,8 +64,8 @@ export function EventMomentsCollage({ pool }: EventMomentsCollageProps) {
         ))}
       </div>
 
-      {/* Desktop: full-width organic collage */}
-      <div className="relative left-1/2 mt-14 hidden min-h-[620px] w-screen max-w-[100vw] -translate-x-1/2 lg:block xl:min-h-[680px]">
+      {/* Desktop: mood-board scaled to layout width (no full-bleed overflow) */}
+      <div className="relative mx-auto mt-14 hidden aspect-[1200/540] w-full max-w-5xl lg:block xl:max-w-6xl 2xl:max-w-7xl">
         {slots.map(({ key, image }, index) => {
           const placement = COLLAGE_PLACEMENTS[index];
           if (!placement) return null;

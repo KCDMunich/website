@@ -19,7 +19,7 @@ export async function EventMoments({ tone = "default" }: EventMomentsProps) {
   const pool = await fetchGallery2026Pool();
 
   return (
-    <Section className={cn("overflow-x-hidden", SECTION_TONE_CLASS[tone])}>
+    <Section className={cn("overflow-hidden", SECTION_TONE_CLASS[tone])}>
       <div className="mx-auto max-w-3xl text-center">
         <div className="mb-4 flex justify-center">
           <Eyebrow>Photo gallery</Eyebrow>

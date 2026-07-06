@@ -176,18 +176,18 @@ export type CollagePlacement = {
   zIndex: number;
 };
 
-/** Organic mood-board layout — each item mirrored: left = 100 − other.left − other.width */
+/** Organic mood-board layout — percentages relative to the aspect-ratio collage box */
 export const COLLAGE_PLACEMENTS: CollagePlacement[] = [
   // Top row
-  { top: "5%", left: "5%", width: "16%", aspect: "4/5", rotate: -7, zIndex: 2 },
-  { top: "0%", left: "19%", width: "17%", aspect: "3/4", rotate: 5, zIndex: 4 },
-  { top: "0%", left: "39%", width: "22%", aspect: "3/4", rotate: 2, zIndex: 6 },
-  { top: "8%", left: "64%", width: "17%", aspect: "4/5", rotate: -5, zIndex: 3 },
-  { top: "4%", left: "79%", width: "16%", aspect: "3/4", rotate: 6, zIndex: 3 },
-  // Bottom row (mirrored)
-  { top: "48%", left: "5%", width: "17%", aspect: "3/4", rotate: 4, zIndex: 5 },
-  { top: "52%", left: "20%", width: "16%", aspect: "5/4", rotate: -6, zIndex: 4 },
-  { top: "46%", left: "39%", width: "17%", aspect: "3/4", rotate: 3, zIndex: 4 },
-  { top: "52%", left: "64%", width: "16%", aspect: "5/4", rotate: 6, zIndex: 4 },
-  { top: "48%", left: "78%", width: "17%", aspect: "3/4", rotate: -4, zIndex: 5 },
+  { top: "4%", left: "4%", width: "15%", aspect: "4/5", rotate: -7, zIndex: 2 },
+  { top: "0%", left: "18%", width: "16%", aspect: "3/4", rotate: 5, zIndex: 4 },
+  { top: "0%", left: "38%", width: "20%", aspect: "3/4", rotate: 2, zIndex: 6 },
+  { top: "6%", left: "63%", width: "16%", aspect: "4/5", rotate: -5, zIndex: 3 },
+  { top: "2%", left: "78%", width: "15%", aspect: "3/4", rotate: 6, zIndex: 3 },
+  // Bottom row
+  { top: "44%", left: "4%", width: "16%", aspect: "3/4", rotate: 4, zIndex: 5 },
+  { top: "48%", left: "19%", width: "15%", aspect: "5/4", rotate: -6, zIndex: 4 },
+  { top: "42%", left: "38%", width: "16%", aspect: "3/4", rotate: 3, zIndex: 4 },
+  { top: "48%", left: "63%", width: "15%", aspect: "5/4", rotate: 6, zIndex: 4 },
+  { top: "44%", left: "77%", width: "16%", aspect: "3/4", rotate: -4, zIndex: 5 },
 ];
