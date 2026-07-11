@@ -5,6 +5,7 @@ import { SiteLayout } from '@/components/layout/site-layout';
 import { SpeakerDetailPage } from '@/components/speakers/speaker-detail-page';
 import { findCompanyInfo } from '@/lib/speakers-data';
 import { createMetadata } from '@/lib/metadata';
+import { siteState } from '@/lib/site-state';
 import {
   findSpeakerById,
   getPublicSpeakerPath,
@@ -23,9 +24,10 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
   if (!speaker) {
     return createMetadata({
-      title: 'Speaker | CNS Munich',
-      description: 'Speaker profile for Cloud Native Summit Munich.',
+      title: `Speaker | ${siteState.navigation.speakersLabel}`,
+      description: siteState.program.speakerDescription,
       pathname: `/speakers/${slug}`,
+      noIndex: siteState.program.noIndex,
     });
   }
 
@@ -36,9 +38,10 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     `${speaker.fullName}${company ? ` from ${company}` : ''} — speaker at Cloud Native Summit Munich.`;
 
   return createMetadata({
-    title: `${speaker.fullName} | CNS Munich Speakers`,
+    title: `${speaker.fullName} | ${siteState.navigation.speakersLabel}`,
     description,
     pathname: canonicalPath,
+    noIndex: siteState.program.noIndex,
   });
 }
 

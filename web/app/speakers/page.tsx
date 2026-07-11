@@ -1,32 +1,33 @@
-import type { Metadata } from "next";
+import type { Metadata } from 'next';
 
-import { PageHero } from "@/components/layout/page-hero";
-import { SiteLayout } from "@/components/layout/site-layout";
-import { SpeakersGrid } from "@/components/speakers/speakers-grid";
-import { createMetadata } from "@/lib/metadata";
+import { PageHero } from '@/components/layout/page-hero';
+import { SiteLayout } from '@/components/layout/site-layout';
+import { SpeakersGrid } from '@/components/speakers/speakers-grid';
+import { createMetadata } from '@/lib/metadata';
+import { siteState } from '@/lib/site-state';
 
 export const metadata: Metadata = createMetadata({
-  title: "Speakers",
-  description:
-    "Meet our speakers and learn from practitioners across cloud native, platform engineering, and open source at Cloud Native Summit Munich.",
-  pathname: "/speakers",
+  title: siteState.program.speakerEyebrow,
+  description: siteState.program.speakerDescription,
+  pathname: '/speakers',
+  noIndex: siteState.program.noIndex,
 });
 
 export default function SpeakersPage() {
   return (
     <SiteLayout>
       <PageHero
-        eyebrow="Speakers"
+        eyebrow={siteState.program.speakerEyebrow}
         title={
           <>
-            Meet our
+            {siteState.program.speakerTitleLead}
             <br />
-            <span className="text-[#0bbbef]">speakers</span>
+            <span className="text-[#0bbbef]">{siteState.program.speakerTitleAccent}</span>
           </>
         }
-        description="Practitioners and experts from the cloud native community — browse the full lineup and session topics."
+        description={siteState.program.speakerDescription}
       />
-      <SpeakersGrid />
+      <SpeakersGrid presentation={siteState.program} />
     </SiteLayout>
   );
 }

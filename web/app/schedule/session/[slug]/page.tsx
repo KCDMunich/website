@@ -4,6 +4,7 @@ import { redirect } from 'next/navigation';
 import { SiteLayout } from '@/components/layout/site-layout';
 import { ScheduleSessionPage } from '@/components/schedule/schedule-session-page';
 import { createMetadata } from '@/lib/metadata';
+import { siteState } from '@/lib/site-state';
 import {
   findScheduleEventById,
   getPublicSessionPath,
@@ -23,9 +24,10 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
   if (!event) {
     return createMetadata({
-      title: 'Session | CNS Munich Schedule',
-      description: 'Session details for Cloud Native Summit Munich.',
+      title: `Session | ${siteState.navigation.scheduleLabel}`,
+      description: siteState.program.scheduleDescription,
       pathname: `/schedule/session/${slug}`,
+      noIndex: siteState.program.noIndex,
     });
   }
 
@@ -35,9 +37,10 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     'Session details for Cloud Native Summit Munich.';
 
   return createMetadata({
-    title: `${event.title} | CNS Munich Schedule`,
+    title: `${event.title} | ${siteState.navigation.scheduleLabel}`,
     description,
     pathname: canonicalPath,
+    noIndex: siteState.program.noIndex,
   });
 }
 

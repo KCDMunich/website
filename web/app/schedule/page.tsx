@@ -1,23 +1,24 @@
-import type { Metadata } from "next";
-import { Suspense } from "react";
+import type { Metadata } from 'next';
+import { Suspense } from 'react';
 
-import { ScheduleLoading } from "@/components/schedule/schedule-loading";
-import { ScheduleView } from "@/components/schedule/schedule-view";
-import { SiteLayout } from "@/components/layout/site-layout";
-import { createMetadata } from "@/lib/metadata";
+import { ScheduleLoading } from '@/components/schedule/schedule-loading';
+import { ScheduleView } from '@/components/schedule/schedule-view';
+import { SiteLayout } from '@/components/layout/site-layout';
+import { createMetadata } from '@/lib/metadata';
+import { siteState } from '@/lib/site-state';
 
 export const metadata: Metadata = createMetadata({
-  title: "CNS Munich - Event Schedule for June 29th and 30th, 2026",
-  description:
-    "Explore the detailed agenda for CNS Munich in Munich on June 29th and 30th, 2026. Listen to expert talks, and connect with Kubernetes and Cloud Native professionals. Plan your day now!",
-  pathname: "/schedule",
+  title: siteState.program.scheduleTitle,
+  description: siteState.program.scheduleDescription,
+  pathname: '/schedule',
+  noIndex: siteState.program.noIndex,
 });
 
 export default function SchedulePage() {
   return (
     <SiteLayout>
       <Suspense fallback={<ScheduleLoading />}>
-        <ScheduleView variant="default" />
+        <ScheduleView presentation={siteState.program} variant="default" />
       </Suspense>
     </SiteLayout>
   );

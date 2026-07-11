@@ -13,33 +13,31 @@ import {
   SpeakerCardSkeleton,
 } from '@/components/speakers/speaker-ui';
 import { Button } from '@/components/ui/button';
-import type { SpeakersSectionMode } from '@/lib/constants';
+import { EVENT_CONFIG } from '@/lib/event-config';
+import type { SitePresentation } from '@/lib/site-presentation';
 import {
   LINEUP_SPEAKER_COUNT,
-  PRE_ANNOUNCED_SPEAKER_IDS,
   getAnnouncedSpeakers,
   getLineupSpeakers,
   type Speaker,
 } from '@/lib/speakers-data';
 import { loadSpeakersData, primeSpeakersData } from '@/lib/speaker-data-cache';
 import { getSpeakerPath } from '@/lib/speaker-page';
-import {
-  SECTION_TONE_CLASS,
-  type SectionTone,
-} from '@/lib/section-backgrounds';
+import { SECTION_TONE_CLASS, type SectionTone } from '@/lib/section-backgrounds';
 import { cn } from '@/lib/utils';
 
 type SpeakersTeaserProps = {
-  mode: Exclude<SpeakersSectionMode, 'off'>;
+  presentation: SitePresentation['program'];
   tone?: SectionTone;
 };
 
-export function SpeakersTeaser({ mode, tone = 'default' }: SpeakersTeaserProps) {
+export function SpeakersTeaser({ presentation, tone = 'default' }: SpeakersTeaserProps) {
   const router = useRouter();
   const [speakerData, setSpeakerData] = useState<Speaker[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  const isLineup = mode === 'lineup';
+  const isLineup = presentation.mode !== 'preview';
+  const archived = presentation.isArchive;
 
   useEffect(() => {
     loadSpeakersData()
@@ -55,12 +53,12 @@ export function SpeakersTeaser({ mode, tone = 'default' }: SpeakersTeaserProps) 
     if (!speakerData.length) return [];
     return isLineup
       ? getLineupSpeakers(speakerData)
-      : getAnnouncedSpeakers(speakerData);
-  }, [speakerData, isLineup]);
+      : getAnnouncedSpeakers(speakerData, presentation.announcedSpeakerIds);
+  }, [speakerData, isLineup, presentation.announcedSpeakerIds]);
 
   const skeletonCount = isLineup
     ? LINEUP_SPEAKER_COUNT
-    : Math.max(PRE_ANNOUNCED_SPEAKER_IDS.length, 2);
+    : Math.max(presentation.announcedSpeakerIds.length, 2);
 
   const openSpeaker = (speaker: Speaker) => {
     const href = getSpeakerPath(speaker);
@@ -79,25 +77,29 @@ export function SpeakersTeaser({ mode, tone = 'default' }: SpeakersTeaserProps) 
           {isLineup ? (
             <>
               <h2 className="font-heading text-3xl font-bold leading-[1.08] tracking-tight text-primary sm:text-4xl lg:text-5xl">
-                Meet our
+                {presentation.speakerTitleLead}
                 <br />
-                <span className="text-[#0bbbef]">speakers</span>
+                <span className="text-[#0bbbef]">
+                  {archived ? 'shared openly' : presentation.speakerTitleAccent}
+                </span>
               </h2>
               <p className="mt-5 text-lg leading-relaxed text-muted-foreground">
                 {isLoading || speakerData.length === 0
-                  ? 'Practitioners and experts from the cloud native community.'
-                  : `${speakerData.length} speakers sharing knowledge across cloud native, platform engineering, and open source.`}
+                  ? presentation.speakerDescription
+                  : archived
+                    ? `${speakerData.length} speakers made CNS Munich ${EVENT_CONFIG.archive.edition} a place for practical knowledge and honest exchange.`
+                    : `${speakerData.length} speakers sharing knowledge across cloud native, platform engineering, and open source.`}
               </p>
             </>
           ) : (
             <>
               <h2 className="font-heading text-3xl font-bold leading-[1.08] tracking-tight text-primary sm:text-4xl lg:text-5xl">
-                Meet the lineup,
+                {presentation.speakerTitleLead},
                 <br />
-                <span className="text-[#0bbbef]">shaping cloud native</span>
+                <span className="text-[#0bbbef]">{presentation.speakerTitleAccent}</span>
               </h2>
               <p className="mt-5 text-lg leading-relaxed text-muted-foreground">
-                Early speaker announcements — more names coming soon.
+                {presentation.speakerDescription}
               </p>
             </>
           )}
@@ -110,7 +112,7 @@ export function SpeakersTeaser({ mode, tone = 'default' }: SpeakersTeaserProps) 
             'mt-12 grid gap-3 sm:gap-4',
             isLineup
               ? 'grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5'
-              : 'grid-cols-2 lg:grid-cols-3',
+              : 'grid-cols-2 lg:grid-cols-3'
           )}
         >
           {Array.from({ length: skeletonCount }).map((_, index) => (
@@ -131,7 +133,7 @@ export function SpeakersTeaser({ mode, tone = 'default' }: SpeakersTeaserProps) 
             'mt-12 grid gap-3 sm:gap-4',
             isLineup
               ? 'grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5'
-              : 'grid-cols-2 lg:grid-cols-3',
+              : 'grid-cols-2 lg:grid-cols-3'
           )}
         >
           {displaySpeakers.map((speaker, index) => (
@@ -164,7 +166,9 @@ export function SpeakersTeaser({ mode, tone = 'default' }: SpeakersTeaserProps) 
               size="lg"
               className="bg-primary text-primary-foreground hover:bg-primary/90"
             >
-              View all speakers
+              {archived
+                ? `Explore the ${EVENT_CONFIG.archive.edition} speaker archive`
+                : 'View all speakers'}
               <ArrowRight className="size-4" />
             </Button>
           </div>

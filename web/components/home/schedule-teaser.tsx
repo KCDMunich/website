@@ -1,68 +1,68 @@
-"use client";
+'use client';
 
-import Image from "next/image";
-import { useEffect, useMemo, useState } from "react";
-import { ArrowRight, Play } from "lucide-react";
+import Image from 'next/image';
+import Link from 'next/link';
+import { useEffect, useMemo, useState } from 'react';
+import { ArrowRight, Play } from 'lucide-react';
 
-import { MotionReveal } from "@/components/layout/motion-reveal";
-import { Section } from "@/components/layout/section";
-import { Button } from "@/components/ui/button";
-import {
-  SECTION_TONE_CLASS,
-  type SectionTone,
-} from "@/lib/section-backgrounds";
-import { cn } from "@/lib/utils";
+import { MotionReveal } from '@/components/layout/motion-reveal';
+import { Section } from '@/components/layout/section';
+import { Button } from '@/components/ui/button';
+import { EVENT_CONFIG } from '@/lib/event-config';
+import type { SitePresentation } from '@/lib/site-presentation';
+import { SECTION_TONE_CLASS, type SectionTone } from '@/lib/section-backgrounds';
+import { cn } from '@/lib/utils';
 
-const PLAYLIST_ID = "PL54A_DPe8WtDLSA_EA7ETfprpRWzd2yqV";
-const PLAYLIST_URL = `https://www.youtube.com/playlist?list=${PLAYLIST_ID}`;
+const PLAYLIST_ID = EVENT_CONFIG.archive.playlistId;
+const PLAYLIST_URL = EVENT_CONFIG.archive.playlistUrl;
 const PREVIEW_COUNT = 5;
 
 const FALLBACK_VIDEO_IDS = [
-  "g-sZwa52DNE",
-  "CHb3TLEV8ZU",
-  "vmKlVABhdwc",
-  "mHDBsS9c9MM",
-  "n5LsBJwARbU",
-  "WJzMyA47lfo",
-  "SDelo4VdPUk",
-  "SPPJHwavM0c",
-  "lkK4ACNg22g",
-  "aLdgVrnMxcs",
-  "XETuwndd_mw",
-  "cIZ90x7aNJE",
-  "L2d_busMOJA",
-  "PwqyYbGXYG8",
-  "xWSEGsB7uFI",
-  "0inKO9yA950",
-  "PF2diWKfjWo",
-  "GiZzkSnDc-E",
-  "LwYqFrLnBeM",
-  "n_o4dxHrNDM",
-  "NfqV0Lb00Zc",
-  "E_r56x92KZw",
-  "HV9KsLz-odw",
-  "pg2DKYc9n_o",
-  "iiGRMPMBKVQ",
-  "Rh6cjzEB1-4",
-  "EztpUoi0hgU",
-  "X9U0b7RVafM",
-  "QMhkueuHnpE",
-  "3N_XBNAycqw",
-  "mr83OyjqaCQ",
-  "KkjQI20IFtE",
-  "kFyRUae2hV4",
-  "46-cPZz8VH0",
-  "tWHHmb-v6Y0",
-  "RLyO18tG8GI",
-  "RYdsuTD8Wjs",
-  "eLGBAd7fHdM",
-  "iSMk7a62wUc",
-  "aEqj_Ok5B58",
-  "fDBNJ2N9fqw",
-  "4CcNPHT_-nA",
-  "nMlmUFKN7Bo",
-  "MpU-vo4K7BQ",
-  "sgYc8Vt6eaU",
+  'g-sZwa52DNE',
+  'CHb3TLEV8ZU',
+  'vmKlVABhdwc',
+  'mHDBsS9c9MM',
+  'n5LsBJwARbU',
+  'WJzMyA47lfo',
+  'SDelo4VdPUk',
+  'SPPJHwavM0c',
+  'lkK4ACNg22g',
+  'aLdgVrnMxcs',
+  'XETuwndd_mw',
+  'cIZ90x7aNJE',
+  'L2d_busMOJA',
+  'PwqyYbGXYG8',
+  'xWSEGsB7uFI',
+  '0inKO9yA950',
+  'PF2diWKfjWo',
+  'GiZzkSnDc-E',
+  'LwYqFrLnBeM',
+  'n_o4dxHrNDM',
+  'NfqV0Lb00Zc',
+  'E_r56x92KZw',
+  'HV9KsLz-odw',
+  'pg2DKYc9n_o',
+  'iiGRMPMBKVQ',
+  'Rh6cjzEB1-4',
+  'EztpUoi0hgU',
+  'X9U0b7RVafM',
+  'QMhkueuHnpE',
+  '3N_XBNAycqw',
+  'mr83OyjqaCQ',
+  'KkjQI20IFtE',
+  'kFyRUae2hV4',
+  '46-cPZz8VH0',
+  'tWHHmb-v6Y0',
+  'RLyO18tG8GI',
+  'RYdsuTD8Wjs',
+  'eLGBAd7fHdM',
+  'iSMk7a62wUc',
+  'aEqj_Ok5B58',
+  'fDBNJ2N9fqw',
+  '4CcNPHT_-nA',
+  'nMlmUFKN7Bo',
+  'MpU-vo4K7BQ',
+  'sgYc8Vt6eaU',
 ];
 
 interface PlaylistVideo {
@@ -82,10 +82,11 @@ function getThumbnailUrl(videoId: string, thumbnail?: string) {
 }
 
 type ScheduleTeaserProps = {
+  presentation: SitePresentation['program'];
   tone?: SectionTone;
 };
 
-export function ScheduleTeaser({ tone = "default" }: ScheduleTeaserProps) {
+export function ScheduleTeaser({ presentation, tone = 'default' }: ScheduleTeaserProps) {
   const [videos, setVideos] = useState<PlaylistVideo[]>(FALLBACK_VIDEOS);
   const [activeVideoId, setActiveVideoId] = useState(FALLBACK_VIDEOS[0].id);
 
@@ -108,33 +109,28 @@ export function ScheduleTeaser({ tone = "default" }: ScheduleTeaserProps) {
 
         const xml = await response.text();
         const parser = new DOMParser();
-        const doc = parser.parseFromString(xml, "text/xml");
-        const entries = Array.from(doc.getElementsByTagName("entry"));
+        const doc = parser.parseFromString(xml, 'text/xml');
+        const entries = Array.from(doc.getElementsByTagName('entry'));
 
         const extractedVideos: PlaylistVideo[] = [];
 
         for (const entry of entries) {
-          const id = entry.getElementsByTagName("yt:videoId")[0]?.textContent;
-          const title = entry.getElementsByTagName("title")[0]?.textContent;
-          const thumbnail = entry
-            .getElementsByTagName("media:thumbnail")[0]
-            ?.getAttribute("url");
+          const id = entry.getElementsByTagName('yt:videoId')[0]?.textContent;
+          const title = entry.getElementsByTagName('title')[0]?.textContent;
+          const thumbnail = entry.getElementsByTagName('media:thumbnail')[0]?.getAttribute('url');
 
           if (!id) continue;
 
           extractedVideos.push({
             id,
-            title: title || "CNS Munich Session",
+            title: title || 'CNS Munich Session',
             thumbnail: getThumbnailUrl(id, thumbnail ?? undefined),
           });
         }
 
         if (!cancelled && extractedVideos.length > 0) {
           setVideos(extractedVideos);
-          const randomVideo =
-            extractedVideos[
-              Math.floor(Math.random() * extractedVideos.length)
-            ];
+          const randomVideo = extractedVideos[Math.floor(Math.random() * extractedVideos.length)];
           setActiveVideoId(randomVideo.id);
         }
       } catch {
@@ -149,18 +145,50 @@ export function ScheduleTeaser({ tone = "default" }: ScheduleTeaserProps) {
     };
   }, []);
 
+  if (presentation.mode === 'published') {
+    return (
+      <Section id="schedule-teaser" className={cn(SECTION_TONE_CLASS[tone])}>
+        <div className="mx-auto max-w-3xl text-center">
+          <MotionReveal>
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#0bbbef]">
+              {presentation.scheduleEyebrow}
+            </p>
+            <h2 className="mt-4 font-heading text-3xl font-bold leading-[1.08] tracking-tight text-primary sm:text-4xl lg:text-5xl">
+              {presentation.scheduleTitle}
+            </h2>
+            <p className="mt-5 text-lg leading-relaxed text-muted-foreground">
+              {presentation.scheduleDescription}
+            </p>
+            <Button
+              nativeButton={false}
+              render={<Link href="/schedule" />}
+              size="lg"
+              className="mt-8 bg-primary text-primary-foreground hover:bg-primary/90"
+            >
+              Explore the schedule
+              <ArrowRight className="size-4" />
+            </Button>
+          </MotionReveal>
+        </div>
+      </Section>
+    );
+  }
+
   return (
     <Section id="schedule-teaser" className={cn(SECTION_TONE_CLASS[tone])}>
       <div className="mx-auto max-w-3xl text-center">
         <MotionReveal>
           <h2 className="font-heading text-3xl font-bold leading-[1.08] tracking-tight text-primary sm:text-4xl lg:text-5xl">
-            Replay past sessions,
+            {presentation.isArchive ? 'The sessions live on,' : 'Replay past sessions,'}
             <br />
-            <span className="text-[#0bbbef]">on your schedule</span>
+            <span className="text-[#0bbbef]">
+              {presentation.isArchive ? 'wherever you are' : 'on your schedule'}
+            </span>
           </h2>
           <p className="mt-5 text-lg leading-relaxed text-muted-foreground">
-            Talks, workshops, and community spotlights from previous CNS Munich
-            editions — free to watch while we shape the 2026 program.
+            {presentation.isArchive
+              ? `Revisit the talks, workshops, and community stories from CNS Munich ${EVENT_CONFIG.archive.edition} — free to watch and share.`
+              : `Talks and community spotlights from CNS Munich ${EVENT_CONFIG.archive.edition} — free to watch while we shape the next edition.`}
           </p>
         </MotionReveal>
       </div>
@@ -205,10 +233,8 @@ export function ScheduleTeaser({ tone = "default" }: ScheduleTeaserProps) {
                 aria-label={`Play ${video.title}`}
                 aria-pressed={isActive}
                 className={cn(
-                  "group relative aspect-video w-full cursor-pointer overflow-hidden rounded-2xl text-left shadow-md ring-1 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40",
-                  isActive
-                    ? "ring-primary"
-                    : "ring-primary/10"
+                  'group relative aspect-video w-full cursor-pointer overflow-hidden rounded-2xl text-left shadow-md ring-1 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40',
+                  isActive ? 'ring-primary' : 'ring-primary/10'
                 )}
               >
                 <Image
@@ -242,13 +268,7 @@ export function ScheduleTeaser({ tone = "default" }: ScheduleTeaserProps) {
         <div className="mt-10 flex justify-center">
           <Button
             nativeButton={false}
-            render={
-              <a
-                href={PLAYLIST_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-              />
-            }
+            render={<a href={PLAYLIST_URL} target="_blank" rel="noopener noreferrer" />}
             size="lg"
             className="bg-primary text-primary-foreground hover:bg-primary/90"
           >

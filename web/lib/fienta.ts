@@ -1,8 +1,10 @@
+import { EVENT_CONFIG } from '@/lib/event-config';
+
 export const DEFAULT_EVENT = {
-  title: "Cloud Native Summit Munich 2026",
-  dateRange: "29-30 June 2026",
-  location: "Munich",
-  currency: "EUR",
+  title: `${EVENT_CONFIG.featured.name} ${EVENT_CONFIG.featured.edition}`,
+  dateRange: EVENT_CONFIG.featured.dateLabel,
+  location: EVENT_CONFIG.featured.location,
+  currency: 'EUR',
 } as const;
 
 export interface FientaTicket {
@@ -103,51 +105,36 @@ export type FientaConfig = {
   fallbackCheckoutUrl: string;
 };
 
-type AuthMode = "bearer" | "token" | "x-api-key";
+type AuthMode = 'bearer' | 'token' | 'x-api-key';
 
 export function getFientaConfig(): FientaConfig {
   return {
     baseUrl:
       process.env.FIENTA_BASE_URL ||
       process.env.GATSBY_FIENTA_BASE_URL ||
-      "https://fienta.com/api/v1",
-    eventId:
-      process.env.FIENTA_EVENT_ID ||
-      process.env.GATSBY_FIENTA_EVENT_ID ||
-      "",
-    organizerId:
-      process.env.FIENTA_ORGANIZER_ID ||
-      process.env.GATSBY_FIENTA_ORGANIZER_ID,
-    seriesId:
-      process.env.FIENTA_SERIES_ID || process.env.GATSBY_FIENTA_SERIES_ID,
-    locale:
-      process.env.FIENTA_LOCALE ||
-      process.env.GATSBY_FIENTA_LOCALE ||
-      "de",
+      'https://fienta.com/api/v1',
+    eventId: process.env.FIENTA_EVENT_ID || process.env.GATSBY_FIENTA_EVENT_ID || '',
+    organizerId: process.env.FIENTA_ORGANIZER_ID || process.env.GATSBY_FIENTA_ORGANIZER_ID,
+    seriesId: process.env.FIENTA_SERIES_ID || process.env.GATSBY_FIENTA_SERIES_ID,
+    locale: process.env.FIENTA_LOCALE || process.env.GATSBY_FIENTA_LOCALE || 'de',
     apiKey: process.env.FIENTA_API_KEY,
     fallbackCheckoutUrl:
       process.env.FIENTA_EVENT_URL ||
       process.env.GATSBY_FIENTA_EVENT_URL ||
-      "https://fienta.com/de/cloud-native-summit-2026",
+      EVENT_CONFIG.featured.ticketUrl,
   };
 }
 
-export function buildAuthHeaders(
-  apiKey: string,
-  mode: AuthMode
-): Record<string, string> {
+export function buildAuthHeaders(apiKey: string, mode: AuthMode): Record<string, string> {
   if (!apiKey) return {};
 
-  if (mode === "token") return { Authorization: `Token ${apiKey}` };
-  if (mode === "x-api-key") return { "X-API-KEY": apiKey };
+  if (mode === 'token') return { Authorization: `Token ${apiKey}` };
+  if (mode === 'x-api-key') return { 'X-API-KEY': apiKey };
 
   return { Authorization: `Bearer ${apiKey}` };
 }
 
-export async function fetchJson(
-  url: string,
-  headersList: Array<Record<string, string>>
-) {
+export async function fetchJson(url: string, headersList: Array<Record<string, string>>) {
   let lastStatus: number | null = null;
 
   for (const headers of headersList) {
@@ -186,8 +173,7 @@ export function getEventFromPayload(payload: any, eventId: string) {
   return (
     events.find(
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      (event: any) =>
-        String(event?.id || event?.event_id || event?.pk) === String(eventId)
+      (event: any) => String(event?.id || event?.event_id || event?.pk) === String(eventId)
     ) || null
   );
 }
@@ -195,18 +181,13 @@ export function getEventFromPayload(payload: any, eventId: string) {
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function getTicketsFromEvent(event: any) {
   return (
-    event?.ticket_types ||
-    event?.ticketTypes ||
-    event?.tickets ||
-    event?.ticket_types_summary ||
-    []
+    event?.ticket_types || event?.ticketTypes || event?.tickets || event?.ticket_types_summary || []
   );
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function getLocalizedValue(translations: any, locale: string, key: string) {
-  const localizedData =
-    translations?.[locale] || translations?.en || translations?.de || {};
+  const localizedData = translations?.[locale] || translations?.en || translations?.de || {};
 
   return localizedData?.[key];
 }
@@ -217,9 +198,8 @@ function resolvePrice(ticket: any) {
     return (ticket.price_cents || ticket.price_in_cents) / 100;
   }
 
-  const priceValue =
-    ticket?.price ?? ticket?.amount ?? ticket?.unit_price ?? null;
-  if (typeof priceValue === "string") {
+  const priceValue = ticket?.price ?? ticket?.amount ?? ticket?.unit_price ?? null;
+  if (typeof priceValue === 'string') {
     const parsed = parseFloat(priceValue);
     return Number.isNaN(parsed) ? null : parsed;
   }
@@ -227,22 +207,21 @@ function resolvePrice(ticket: any) {
   return priceValue;
 }
 
-function formatDate(value: string | null | undefined, locale = "de") {
+function formatDate(value: string | null | undefined, locale = 'de') {
   if (!value) return null;
   const parsed = new Date(value);
   if (Number.isNaN(parsed.getTime())) return null;
 
-  return new Intl.DateTimeFormat(locale || "de", {
-    day: "numeric",
-    month: "short",
-    year: "numeric",
+  return new Intl.DateTimeFormat(locale || 'de', {
+    day: 'numeric',
+    month: 'short',
+    year: 'numeric',
   }).format(parsed);
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-function resolveEventDateRange(event: any, locale = "de") {
-  const start =
-    event?.starts_at || event?.start_time || event?.start_date || event?.start;
+function resolveEventDateRange(event: any, locale = 'de') {
+  const start = event?.starts_at || event?.start_time || event?.start_date || event?.start;
   const end = event?.ends_at || event?.end_time || event?.end_date || event?.end;
   const startLabel = formatDate(start, locale);
   const endLabel = formatDate(end, locale);
@@ -257,7 +236,7 @@ function resolveEventDateRange(event: any, locale = "de") {
 export function normalizeTickets(
   rawTickets: FientaRawTicket[],
   currency: string,
-  locale = "de"
+  locale = 'de'
 ): FientaTicket[] {
   return rawTickets
     .map((ticket, index) => {
@@ -267,15 +246,11 @@ export function normalizeTickets(
         ticket?.salesStart ||
         ticket?.start_date;
       const salesEnd =
-        ticket?.visible_end ||
-        ticket?.sales_end_date ||
-        ticket?.salesEnd ||
-        ticket?.end_date;
+        ticket?.visible_end || ticket?.sales_end_date || ticket?.salesEnd || ticket?.end_date;
       const startDate = salesStart ? new Date(salesStart) : null;
       const endDate = salesEnd ? new Date(salesEnd) : null;
       const now = new Date();
-      const withinSalesWindow =
-        (!startDate || startDate <= now) && (!endDate || endDate >= now);
+      const withinSalesWindow = (!startDate || startDate <= now) && (!endDate || endDate >= now);
       const ticketLimit = ticket?.ticket_limit;
       const ticketsSold = ticket?.tickets_sold ?? 0;
       const isSoldOut =
@@ -289,33 +264,26 @@ export function normalizeTickets(
           ticket?.tickets_sold !== undefined &&
           ticketsSold >= ticketLimit);
       const isOnSale =
-        ticket?.is_on_sale ??
-        ticket?.on_sale ??
-        ticket?.available ??
-        withinSalesWindow;
+        ticket?.is_on_sale ?? ticket?.on_sale ?? ticket?.available ?? withinSalesWindow;
       const title =
-        getLocalizedValue(ticket?.translations, locale, "title") ||
+        getLocalizedValue(ticket?.translations, locale, 'title') ||
         ticket?.title ||
         ticket?.name ||
         ticket?.label;
       const description =
-        getLocalizedValue(ticket?.translations, locale, "body") ||
+        getLocalizedValue(ticket?.translations, locale, 'body') ||
         ticket?.description ||
         ticket?.details ||
-        "";
+        '';
       const remainingCount =
         ticket?.amount_left ??
         ticket?.remaining ??
-        (ticketLimit !== null && ticketLimit !== undefined
-          ? ticketLimit - ticketsSold
-          : null);
+        (ticketLimit !== null && ticketLimit !== undefined ? ticketLimit - ticketsSold : null);
 
       return {
-        id: String(
-          ticket?.uuid || ticket?.id || ticket?.pk || `ticket-${index}`
-        ),
-        title: String(title ?? ""),
-        description: String(description ?? ""),
+        id: String(ticket?.uuid || ticket?.id || ticket?.pk || `ticket-${index}`),
+        title: String(title ?? ''),
+        description: String(description ?? ''),
         price: resolvePrice(ticket),
         currency: String(ticket?.currency || currency || DEFAULT_EVENT.currency),
         isSoldOut: Boolean(isSoldOut),
@@ -336,19 +304,18 @@ export function buildSnapshot(
   fallbackCheckoutUrl: string
 ): FientaEventSnapshot {
   const eventTitle =
-    getLocalizedValue(event?.translations, locale, "title") ||
+    getLocalizedValue(event?.translations, locale, 'title') ||
     event?.title ||
     event?.name ||
     DEFAULT_EVENT.title;
   const eventLocation =
-    getLocalizedValue(event?.translations, locale, "venue") ||
+    getLocalizedValue(event?.translations, locale, 'venue') ||
     event?.venue ||
     event?.location ||
     event?.city ||
     event?.address?.city ||
     DEFAULT_EVENT.location;
-  const eventCurrency =
-    event?.currency || event?.ticket_currency || DEFAULT_EVENT.currency;
+  const eventCurrency = event?.currency || event?.ticket_currency || DEFAULT_EVENT.currency;
   const checkoutUrl =
     event?.buy_tickets_url ||
     event?.url ||
@@ -357,7 +324,7 @@ export function buildSnapshot(
     event?.checkout_url ||
     event?.checkoutUrl ||
     fallbackCheckoutUrl ||
-    "";
+    '';
 
   return {
     event: {
@@ -395,40 +362,32 @@ export function buildFallbackSnapshot(
 export async function fetchFientaEventSnapshot(
   config: FientaConfig = getFientaConfig()
 ): Promise<FientaEventSnapshot> {
-  const {
-    baseUrl,
-    eventId,
-    organizerId,
-    seriesId,
-    locale,
-    apiKey,
-    fallbackCheckoutUrl,
-  } = config;
+  const { baseUrl, eventId, organizerId, seriesId, locale, apiKey, fallbackCheckoutUrl } = config;
 
   if (!eventId) {
     return buildFallbackSnapshot(fallbackCheckoutUrl);
   }
 
   const searchParams = new URLSearchParams();
-  if (locale) searchParams.set("locale", locale);
-  if (organizerId) searchParams.set("organizer", organizerId);
-  if (seriesId) searchParams.set("series_id", seriesId);
+  if (locale) searchParams.set('locale', locale);
+  if (organizerId) searchParams.set('organizer', organizerId);
+  if (seriesId) searchParams.set('series_id', seriesId);
 
   const queryString = searchParams.toString();
   const publicEventsUrl = `${baseUrl}/public/events`;
-  const publicListUrl = `${publicEventsUrl}${queryString ? `?${queryString}` : ""}`;
-  const publicDetailUrl = `${publicEventsUrl}/${eventId}${queryString ? `?${queryString}` : ""}`;
+  const publicListUrl = `${publicEventsUrl}${queryString ? `?${queryString}` : ''}`;
+  const publicDetailUrl = `${publicEventsUrl}/${eventId}${queryString ? `?${queryString}` : ''}`;
 
   const privateEventsUrl = `${baseUrl}/events`;
-  const privateListUrl = `${privateEventsUrl}${queryString ? `?${queryString}` : ""}`;
-  const privateDetailUrl = `${privateEventsUrl}/${eventId}${queryString ? `?${queryString}` : ""}`;
+  const privateListUrl = `${privateEventsUrl}${queryString ? `?${queryString}` : ''}`;
+  const privateDetailUrl = `${privateEventsUrl}/${eventId}${queryString ? `?${queryString}` : ''}`;
   const ticketTypesUrl = `${baseUrl}/events/${eventId}/ticket-types`;
 
   const headersList: Array<Record<string, string>> = apiKey
     ? [
-        buildAuthHeaders(apiKey, "bearer"),
-        buildAuthHeaders(apiKey, "token"),
-        buildAuthHeaders(apiKey, "x-api-key"),
+        buildAuthHeaders(apiKey, 'bearer'),
+        buildAuthHeaders(apiKey, 'token'),
+        buildAuthHeaders(apiKey, 'x-api-key'),
       ]
     : [{}];
 
@@ -455,21 +414,17 @@ export async function fetchFientaEventSnapshot(
   }
 
   if (!eventPayload) {
-    throw new Error("Fienta request failed");
+    throw new Error('Fienta request failed');
   }
 
   const event = getEventFromPayload(eventPayload, eventId);
   if (!event) {
-    throw new Error("Fienta event not found");
+    throw new Error('Fienta event not found');
   }
 
   if (apiKey) {
     const ticketTypesPayload = await fetchJson(ticketTypesUrl, headersList);
-    if (
-      ticketTypesPayload &&
-      !ticketTypesPayload.error &&
-      Array.isArray(ticketTypesPayload.data)
-    ) {
+    if (ticketTypesPayload && !ticketTypesPayload.error && Array.isArray(ticketTypesPayload.data)) {
       event.ticket_types = ticketTypesPayload.data;
     }
   }

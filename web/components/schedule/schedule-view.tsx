@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useEffect, useMemo, useState, type CSSProperties } from 'react';
@@ -9,6 +10,7 @@ import { ScheduleFavoriteIcon } from '@/components/schedule/schedule-favorite-ic
 import { ScheduleGridCard } from '@/components/schedule/schedule-grid-card';
 import { SchedulePill, ScheduleSegmentGroup } from '@/components/schedule/schedule-pill';
 import { Eyebrow } from '@/components/layout/eyebrow';
+import type { SitePresentation } from '@/lib/site-presentation';
 import { loadScheduleData, primeScheduleData } from '@/lib/schedule-data-cache';
 import { getSessionPath } from '@/lib/schedule-session';
 import {
@@ -30,13 +32,15 @@ import './schedule.css';
 import './schedule-app.css';
 
 type ScheduleViewProps = {
+  presentation: SitePresentation['program'];
   variant?: 'default' | 'app';
 };
 
-export const ScheduleView = ({ variant = 'default' }: ScheduleViewProps) => {
+export const ScheduleView = ({ presentation, variant = 'default' }: ScheduleViewProps) => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const isApp = variant === 'app';
+  const archive = presentation.isArchive;
   const [speakerData, setSpeakerData] = useState<SessionizeSpeaker[]>([]);
   const [gridData, setGridData] = useState<SessionizeGridDay[]>([]);
   const [events, setEvents] = useState<ScheduleEvent[]>([]);
@@ -127,12 +131,7 @@ export const ScheduleView = ({ variant = 'default' }: ScheduleViewProps) => {
         setSpeakerData(data.sessionizeSpeakers);
         setEvents(data.events);
         setGridData(data.grid);
-        primeScheduleData(
-          data.grid,
-          data.events,
-          data.sessionizeSpeakers,
-          data.fullSpeakers,
-        );
+        primeScheduleData(data.grid, data.events, data.sessionizeSpeakers, data.fullSpeakers);
         setIsLoading(false);
 
         if (!data.fullSpeakers?.length) {
@@ -232,24 +231,25 @@ export const ScheduleView = ({ variant = 'default' }: ScheduleViewProps) => {
         <section className="hero-mesh px-4 py-12 text-white sm:px-6 sm:py-14 lg:px-8">
           <div className="mx-auto max-w-7xl">
             <Eyebrow variant="light" className="mb-4">
-              Schedule
+              {presentation.scheduleEyebrow}
             </Eyebrow>
             <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
               <div className="max-w-2xl">
                 <h1 className="font-heading text-4xl font-bold tracking-tight sm:text-5xl">
-                  Explore the program
+                  {presentation.scheduleTitle}
                 </h1>
                 <p className="mt-3 text-base text-white/75 sm:text-lg">
-                  Browse talks and workshops, save favorites, and open the mobile
-                  app for live sessions on the go.
+                  {presentation.scheduleDescription}
                 </p>
               </div>
-              <Link
-                href="/app/schedule"
-                className="inline-flex w-fit items-center rounded-full bg-white/10 px-5 py-2.5 text-sm font-semibold text-white ring-1 ring-white/20 transition-colors hover:bg-white/15"
-              >
-                Open mobile schedule
-              </Link>
+              {!archive ? (
+                <Link
+                  href="/app/schedule"
+                  className="inline-flex w-fit items-center rounded-full bg-white/10 px-5 py-2.5 text-sm font-semibold text-white ring-1 ring-white/20 transition-colors hover:bg-white/15"
+                >
+                  Open mobile schedule
+                </Link>
+              ) : null}
             </div>
           </div>
         </section>
@@ -260,7 +260,7 @@ export const ScheduleView = ({ variant = 'default' }: ScheduleViewProps) => {
           <div className="schedule-app-header-inner">
             <div className="schedule-app-header-top">
               <div>
-                <span className="schedule-app-pill">Schedule</span>
+                <span className="schedule-app-pill">{presentation.scheduleEyebrow}</span>
                 <h1>{getHeaderLabel()}</h1>
                 <p>{displayDate}</p>
               </div>
@@ -306,9 +306,7 @@ export const ScheduleView = ({ variant = 'default' }: ScheduleViewProps) => {
                     icon={
                       <ScheduleFavoriteIcon
                         active={activeSelectedType === 'favorites'}
-                        tone={
-                          activeSelectedType === 'favorites' ? 'inverse' : 'default'
-                        }
+                        tone={activeSelectedType === 'favorites' ? 'inverse' : 'default'}
                         className="size-4"
                       />
                     }
@@ -352,132 +350,142 @@ export const ScheduleView = ({ variant = 'default' }: ScheduleViewProps) => {
           <div className="schedule-grid">
             {isApp
               ? upcomingEvents
-                .sort((a, b) => new Date(a.start).getTime() - new Date(b.start).getTime())
-                .map((event) => {
-                  const isFavorite = favorites.includes(String(event.id));
-                  const isLiveEvent = isLive(event.start, event.end);
-                  const speakerProfile = (speakerId: number | string) =>
-                    findSpeakerProfile(speakerData, speakerId);
-
-                  return (
-                    <div key={event.id} className="schedule-app-event">
-                      <div className="schedule-app-time">
-                        <span>{event.time}</span>
-                        <small>{event.duration}m</small>
-                      </div>
-                      <div
-                        className={`schedule-app-card ${
-                          isLiveEvent ? 'schedule-app-card--live' : ''
-                        }`}
-                        onClick={() => openSession(event)}
-                        onMouseEnter={() => prefetchSession(event)}
-                        role="button"
-                        tabIndex={0}
-                        onKeyDown={(e) => {
-                          if (e.key === 'Enter' || e.key === ' ') {
-                            openSession(event);
-                          }
-                        }}
-                      >
-                        <div className="schedule-app-card-header">
-                          <span className={`schedule-app-type schedule-app-type-${event.type}`}>
-                            {getEventTypeLabel(event.type)}
-                          </span>
-                          {isLiveEvent && (
-                            <span className="schedule-app-live">
-                              <span className="schedule-app-live-dot" aria-hidden="true"></span>
-                              Live
-                            </span>
-                          )}
-                          <button
-                            type="button"
-                            className={`schedule-app-favorite ${
-                              isFavorite ? 'schedule-app-favorite--active' : ''
-                            }`}
-                            aria-label={isFavorite ? 'Remove from favorites' : 'Add to favorites'}
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              toggleFavorite(event.id);
-                            }}
-                          >
-                            <ScheduleFavoriteIcon active={isFavorite} className="size-4" />
-                          </button>
-                        </div>
-                        <h3 className="schedule-app-title">{event.title}</h3>
-                        <div className="schedule-app-meta">
-                          <span>{getEventLocationLabel(event)}</span>
-                          <span>
-                            {event.time} – {event.endTime}
-                          </span>
-                        </div>
-                        <div className="schedule-app-speakers">
-                          {event.speakers?.slice(0, 3).map((speaker) => (
-                            <div key={speaker.id} className="schedule-app-speaker">
-                              {speakerProfile(speaker.id) && (
-                                <img src={speakerProfile(speaker.id)!} alt={speaker.name} />
-                              )}
-                              <span>{speaker.name}</span>
-                            </div>
-                          ))}
-                        </div>
-                        <div className="schedule-app-actions">
-                          {event.recordingUrl && (
-                            <button
-                              type="button"
-                              className="schedule-app-action"
-                              onClick={(e) => {
-                                e.stopPropagation();
-                                window.open(event.recordingUrl!, '_blank', 'noopener,noreferrer');
-                              }}
-                            >
-                              Watch recording
-                            </button>
-                          )}
-                          <button
-                            type="button"
-                            className="schedule-app-action schedule-app-action--ghost"
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              openSession(event);
-                            }}
-                          >
-                            Details
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  );
-                })
-            : isMobile
-              ? upcomingEvents
                   .sort((a, b) => new Date(a.start).getTime() - new Date(b.start).getTime())
                   .map((event) => {
                     const isFavorite = favorites.includes(String(event.id));
                     const isLiveEvent = isLive(event.start, event.end);
+                    const speakerProfile = (speakerId: number | string) =>
+                      findSpeakerProfile(speakerData, speakerId);
 
                     return (
-                      <ScheduleCard
-                        key={event.id}
-                        startTime={event.time}
-                        endTime={event.endTime}
-                        title={event.title}
-                        speakers={event.speakers?.map((speaker) => ({
-                          name: speaker.name,
-                          avatar: findSpeakerProfile(speakerData, speaker.id),
-                        }))}
-                        location={getEventLocationLabel(event)}
-                        type={event.type}
-                        isFavorite={isFavorite}
-                        isLive={isLiveEvent}
-                        isPast={new Date(event.end) < new Date()}
-                        recordingUrl={event.recordingUrl}
-                        onFavoriteClick={() => toggleFavorite(event.id)}
-                        onClick={() => openSession(event)}
-                        onMouseEnter={() => prefetchSession(event)}
-                      />
+                      <div key={event.id} className="schedule-app-event">
+                        <div className="schedule-app-time">
+                          <span>{event.time}</span>
+                          <small>{event.duration}m</small>
+                        </div>
+                        <div
+                          className={`schedule-app-card ${
+                            isLiveEvent ? 'schedule-app-card--live' : ''
+                          }`}
+                          onClick={() => openSession(event)}
+                          onMouseEnter={() => prefetchSession(event)}
+                          role="button"
+                          tabIndex={0}
+                          onKeyDown={(e) => {
+                            if (e.key === 'Enter' || e.key === ' ') {
+                              openSession(event);
+                            }
+                          }}
+                        >
+                          <div className="schedule-app-card-header">
+                            <span className={`schedule-app-type schedule-app-type-${event.type}`}>
+                              {getEventTypeLabel(event.type)}
+                            </span>
+                            {isLiveEvent && (
+                              <span className="schedule-app-live">
+                                <span className="schedule-app-live-dot" aria-hidden="true"></span>
+                                Live
+                              </span>
+                            )}
+                            <button
+                              type="button"
+                              className={`schedule-app-favorite ${
+                                isFavorite ? 'schedule-app-favorite--active' : ''
+                              }`}
+                              aria-label={isFavorite ? 'Remove from favorites' : 'Add to favorites'}
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                toggleFavorite(event.id);
+                              }}
+                            >
+                              <ScheduleFavoriteIcon active={isFavorite} className="size-4" />
+                            </button>
+                          </div>
+                          <h3 className="schedule-app-title">{event.title}</h3>
+                          <div className="schedule-app-meta">
+                            <span>{getEventLocationLabel(event)}</span>
+                            <span>
+                              {event.time} – {event.endTime}
+                            </span>
+                          </div>
+                          <div className="schedule-app-speakers">
+                            {event.speakers?.slice(0, 3).map((speaker) => {
+                              const profileImage = speakerProfile(speaker.id);
+
+                              return (
+                                <div key={speaker.id} className="schedule-app-speaker">
+                                  {profileImage ? (
+                                    <Image
+                                      src={profileImage}
+                                      alt={speaker.name}
+                                      width={32}
+                                      height={32}
+                                      unoptimized
+                                    />
+                                  ) : null}
+                                  <span>{speaker.name}</span>
+                                </div>
+                              );
+                            })}
+                          </div>
+                          <div className="schedule-app-actions">
+                            {event.recordingUrl && (
+                              <button
+                                type="button"
+                                className="schedule-app-action"
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  window.open(event.recordingUrl!, '_blank', 'noopener,noreferrer');
+                                }}
+                              >
+                                Watch recording
+                              </button>
+                            )}
+                            <button
+                              type="button"
+                              className="schedule-app-action schedule-app-action--ghost"
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                openSession(event);
+                              }}
+                            >
+                              Details
+                            </button>
+                          </div>
+                        </div>
+                      </div>
                     );
                   })
-              : null}
+              : isMobile
+                ? upcomingEvents
+                    .sort((a, b) => new Date(a.start).getTime() - new Date(b.start).getTime())
+                    .map((event) => {
+                      const isFavorite = favorites.includes(String(event.id));
+                      const isLiveEvent = isLive(event.start, event.end);
+
+                      return (
+                        <ScheduleCard
+                          key={event.id}
+                          startTime={event.time}
+                          endTime={event.endTime}
+                          title={event.title}
+                          speakers={event.speakers?.map((speaker) => ({
+                            name: speaker.name,
+                            avatar: findSpeakerProfile(speakerData, speaker.id),
+                          }))}
+                          location={getEventLocationLabel(event)}
+                          type={event.type}
+                          isFavorite={isFavorite}
+                          isLive={isLiveEvent}
+                          isPast={new Date(event.end) < new Date()}
+                          recordingUrl={event.recordingUrl}
+                          onFavoriteClick={() => toggleFavorite(event.id)}
+                          onClick={() => openSession(event)}
+                          onMouseEnter={() => prefetchSession(event)}
+                        />
+                      );
+                    })
+                : null}
           </div>
         ) : (
           <div
@@ -498,7 +506,7 @@ export const ScheduleView = ({ variant = 'default' }: ScheduleViewProps) => {
               })}
               {timeSlots.flatMap((timeSlot) => {
                 const rowEvents = rooms.flatMap(
-                  (room) => eventsByRoomAndStart[room]?.[timeSlot] || [],
+                  (room) => eventsByRoomAndStart[room]?.[timeSlot] || []
                 );
                 const rowEndTime = rowEvents[0]?.endTime;
 
@@ -636,9 +644,7 @@ export const ScheduleView = ({ variant = 'default' }: ScheduleViewProps) => {
                 className={`schedule-app-bottom-btn ${
                   selectedType === 'favorites' ? 'is-active' : ''
                 }`}
-                onClick={() =>
-                  setSelectedType(selectedType === 'favorites' ? 'all' : 'favorites')
-                }
+                onClick={() => setSelectedType(selectedType === 'favorites' ? 'all' : 'favorites')}
               >
                 <ScheduleFavoriteIcon
                   active={selectedType === 'favorites'}
@@ -658,7 +664,6 @@ export const ScheduleView = ({ variant = 'default' }: ScheduleViewProps) => {
           </div>
         </>
       )}
-
     </div>
   );
 };

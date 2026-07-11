@@ -1,71 +1,79 @@
-import Link from "next/link";
-import { ArrowRight, Calendar, Heart, Users } from "lucide-react";
+import Link from 'next/link';
+import { ArrowRight, Calendar, Heart, Users } from 'lucide-react';
 
-import { MotionReveal } from "@/components/layout/motion-reveal";
-import { Section } from "@/components/layout/section";
-import { Button } from "@/components/ui/button";
-import {
-  SECTION_TONE_CLASS,
-  type SectionTone,
-} from "@/lib/section-backgrounds";
-import { cn } from "@/lib/utils";
-
-const highlights = [
-  {
-    value: "5th",
-    label: "Edition in Munich",
-    icon: Calendar,
-  },
-  {
-    value: "2",
-    label: "Conference days",
-    icon: Users,
-  },
-  {
-    value: "100%",
-    label: "Community-driven",
-    icon: Heart,
-  },
-];
+import { MotionReveal } from '@/components/layout/motion-reveal';
+import { Section } from '@/components/layout/section';
+import { Button } from '@/components/ui/button';
+import { EVENT_CONFIG } from '@/lib/event-config';
+import { SECTION_TONE_CLASS, type SectionTone } from '@/lib/section-backgrounds';
+import type { EventStage } from '@/lib/site-state-types';
+import { cn } from '@/lib/utils';
 
 type AboutProps = {
+  recap?: boolean;
+  stage: EventStage;
   tone?: SectionTone;
 };
 
-export function About({ tone = "default" }: AboutProps) {
+export function About({ recap = false, stage, tone = 'default' }: AboutProps) {
+  const edition = stage === 'teaser' || stage === 'cfp' ? EVENT_CONFIG.next : EVENT_CONFIG.featured;
+  const highlights = [
+    { value: edition.ordinalLabel, label: 'Edition in Munich', icon: Calendar },
+    { value: '2', label: 'Conference days', icon: Users },
+    { value: '100%', label: 'Community-driven', icon: Heart },
+  ];
+
   return (
-    <Section
-      id="about"
-      className={cn(SECTION_TONE_CLASS[tone], "py-20 md:py-28 lg:py-32")}
-    >
+    <Section id="about" className={cn(SECTION_TONE_CLASS[tone], 'py-20 md:py-28 lg:py-32')}>
       <div className="grid items-center gap-12 lg:grid-cols-[1.15fr_0.85fr] lg:items-stretch lg:gap-20">
         <div>
           <MotionReveal>
             <h2 className="font-heading text-3xl font-bold leading-[1.08] tracking-tight text-primary sm:text-4xl lg:text-5xl">
-              Built by the community,
+              {recap ? 'Two days shaped' : 'Built by the community,'}
               <br />
-              <span className="text-[#0bbbef]">for the community</span>
+              <span className="text-[#0bbbef]">
+                {recap ? 'by the community' : 'for the community'}
+              </span>
             </h2>
           </MotionReveal>
 
           <MotionReveal delay={0.08}>
             <div className="mt-8 space-y-6 text-lg leading-relaxed text-muted-foreground">
-              <p>
-                Cloud Native Summit Munich brings together adopters and
-                technologists from open source and cloud native ecosystems for
-                two focused days in the heart of Bavaria.
-              </p>
-              <p>
-                CNS Munich is a local, community-organized event — the fifth
-                edition gathering practitioners, platform engineers, and cloud
-                native enthusiasts to learn, share, and connect.
-              </p>
-              <p>
-                This event provides a platform for professionals and experts
-                from all levels and backgrounds to share knowledge about
-                cloud-native technologies, platform engineering, and open
-                source.
-              </p>
+              {recap ? (
+                <>
+                  <p>
+                    CNS Munich {EVENT_CONFIG.featured.edition} brought adopters and technologists
+                    from open source and cloud native ecosystems together for two focused days in
+                    the heart of Bavaria.
+                  </p>
+                  <p>
+                    Our {EVENT_CONFIG.featured.ordinalLabel} edition was filled with practical
+                    sessions, hands-on workshops, and the honest hallway conversations that turn an
+                    event into a community.
+                  </p>
+                  <p>
+                    Thank you to every attendee, speaker, volunteer, and partner who shared their
+                    time, experience, and curiosity with us.
+                  </p>
+                </>
+              ) : (
+                <>
+                  <p>
+                    Cloud Native Summit Munich brings together adopters and technologists from open
+                    source and cloud native ecosystems for two focused days in the heart of Bavaria.
+                  </p>
+                  <p>
+                    CNS Munich is a local, community-organized event — the {edition.ordinalLabel}{' '}
+                    edition gathering practitioners, platform engineers, and cloud native
+                    enthusiasts to learn, share, and connect.
+                  </p>
+                  <p>
+                    This event provides a platform for professionals and experts from all levels and
+                    backgrounds to share knowledge about cloud-native technologies, platform
+                    engineering, and open source.
+                  </p>
+                </>
+              )}
             </div>
           </MotionReveal>
 
@@ -96,9 +104,7 @@ export function About({ tone = "default" }: AboutProps) {
                   <p className="font-heading text-3xl font-bold leading-none text-primary">
                     {value}
                   </p>
-                  <p className="mt-1 text-sm font-medium text-muted-foreground">
-                    {label}
-                  </p>
+                  <p className="mt-1 text-sm font-medium text-muted-foreground">{label}</p>
                 </div>
               </div>
             ))}

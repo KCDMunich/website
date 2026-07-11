@@ -1,34 +1,18 @@
-"use client";
+'use client';
 
-import Image from "next/image";
-import { useEffect, useState } from "react";
+import Image from 'next/image';
 
-import {
-  COLLAGE_PLACEMENTS,
-  GALLERY_2026_URL,
-  pickRandomGalleryImages,
-  type GalleryImage,
-} from "@/lib/event-gallery";
-import { cn } from "@/lib/utils";
+import { COLLAGE_PLACEMENTS, GALLERY_2026_URL, type GalleryImage } from '@/lib/event-gallery';
+import { cn } from '@/lib/utils';
 
 type EventMomentsCollageProps = {
   pool: GalleryImage[];
 };
 
 export function EventMomentsCollage({ pool }: EventMomentsCollageProps) {
-  const [images, setImages] = useState<GalleryImage[] | null>(null);
-
-  useEffect(() => {
-    setImages(pickRandomGalleryImages(pool, COLLAGE_PLACEMENTS.length));
-  }, [pool]);
-
-  const isLoading = images === null;
-  const slots = isLoading
-    ? Array.from({ length: COLLAGE_PLACEMENTS.length }, (_, index) => ({
-        key: `placeholder-${index}`,
-        image: null,
-      }))
-    : images.map((image) => ({ key: image.src, image }));
+  const slots = pool
+    .slice(0, COLLAGE_PLACEMENTS.length)
+    .map((image) => ({ key: image.src, image }));
 
   return (
     <>
@@ -40,26 +24,21 @@ export function EventMomentsCollage({ pool }: EventMomentsCollageProps) {
             href={GALLERY_2026_URL}
             target="_blank"
             rel="noopener noreferrer"
-            aria-hidden={isLoading || undefined}
-            tabIndex={isLoading ? -1 : undefined}
             className={cn(
-              "relative shrink-0 cursor-pointer snap-center overflow-hidden rounded-2xl bg-muted shadow-lg ring-4 ring-white",
-              "h-52 w-40 sm:h-60 sm:w-48",
-              index % 2 === 0 ? "-rotate-2" : "rotate-2",
-              isLoading && "pointer-events-none animate-pulse"
+              'relative shrink-0 cursor-pointer snap-center overflow-hidden rounded-2xl bg-muted shadow-lg ring-4 ring-white',
+              'h-52 w-40 sm:h-60 sm:w-48',
+              index % 2 === 0 ? '-rotate-2' : 'rotate-2'
             )}
           >
-            {image ? (
-              <Image
-                src={image.src}
-                alt={image.alt}
-                fill
-                loading="lazy"
-                quality={75}
-                className="object-cover"
-                sizes="(max-width: 640px) 160px, 192px"
-              />
-            ) : null}
+            <Image
+              src={image.src}
+              alt={image.alt}
+              fill
+              loading="lazy"
+              quality={75}
+              className="object-cover"
+              sizes="(max-width: 640px) 160px, 192px"
+            />
           </a>
         ))}
       </div>
@@ -76,12 +55,7 @@ export function EventMomentsCollage({ pool }: EventMomentsCollageProps) {
               href={GALLERY_2026_URL}
               target="_blank"
               rel="noopener noreferrer"
-              aria-hidden={isLoading || undefined}
-              tabIndex={isLoading ? -1 : undefined}
-              className={cn(
-                "absolute cursor-pointer transition-[z-index] duration-300 hover:z-20",
-                isLoading && "pointer-events-none"
-              )}
+              className="absolute cursor-pointer transition-[z-index] duration-300 hover:z-20"
               style={{
                 top: placement.top,
                 left: placement.left,
@@ -90,27 +64,19 @@ export function EventMomentsCollage({ pool }: EventMomentsCollageProps) {
               }}
             >
               <div
-                className={cn(
-                  "overflow-hidden rounded-2xl bg-white shadow-[0_20px_50px_-12px_rgba(0,66,88,0.25)] ring-4 ring-white transition-transform duration-300 hover:scale-[1.03]",
-                  isLoading && "animate-pulse"
-                )}
+                className="overflow-hidden rounded-2xl bg-white shadow-[0_20px_50px_-12px_rgba(0,66,88,0.25)] ring-4 ring-white transition-transform duration-300 hover:scale-[1.03]"
                 style={{ transform: `rotate(${placement.rotate}deg)` }}
               >
-                <div
-                  className="relative w-full bg-muted"
-                  style={{ aspectRatio: placement.aspect }}
-                >
-                  {image ? (
-                    <Image
-                      src={image.src}
-                      alt={image.alt}
-                      fill
-                      loading="lazy"
-                      quality={75}
-                      className="object-cover"
-                      sizes="(min-width: 1280px) 20vw, 16vw"
-                    />
-                  ) : null}
+                <div className="relative w-full bg-muted" style={{ aspectRatio: placement.aspect }}>
+                  <Image
+                    src={image.src}
+                    alt={image.alt}
+                    fill
+                    loading="lazy"
+                    quality={75}
+                    className="object-cover"
+                    sizes="(min-width: 1280px) 20vw, 16vw"
+                  />
                 </div>
               </div>
             </a>

@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import Image from "next/image";
-import { useEffect, useState } from "react";
+import Image from 'next/image';
+import { useEffect, useState } from 'react';
 import {
   ArrowRight,
   Calendar,
@@ -10,45 +10,43 @@ import {
   MapPin,
   Utensils,
   Users,
-} from "lucide-react";
+} from 'lucide-react';
 
-import { MotionReveal } from "@/components/layout/motion-reveal";
-import { Section } from "@/components/layout/section";
-import { Button } from "@/components/ui/button";
-import {
-  SECTION_TONE_CLASS,
-  type SectionTone,
-} from "@/lib/section-backgrounds";
-import { cn } from "@/lib/utils";
+import { MotionReveal } from '@/components/layout/motion-reveal';
+import { Section } from '@/components/layout/section';
+import { Button } from '@/components/ui/button';
+import { EVENT_CONFIG } from '@/lib/event-config';
+import { SECTION_TONE_CLASS, type SectionTone } from '@/lib/section-backgrounds';
+import { cn } from '@/lib/utils';
 
 const VENUE_IMAGES = [
-  "/images/venue/venue-1.jpg",
-  "/images/venue/venue-2.jpg",
-  "/images/venue/venue-3.jpg",
-  "/images/venue/venue-4.jpg",
+  '/images/venue/venue-1.jpg',
+  '/images/venue/venue-2.jpg',
+  '/images/venue/venue-3.jpg',
+  '/images/venue/venue-4.jpg',
 ];
 
 const MAPS_URL =
-  "https://maps.google.com/?q=smartvillage+Bogenhausen+Rosenkavalierpl.+13+81925+Munich";
+  'https://maps.google.com/?q=smartvillage+Bogenhausen+Rosenkavalierpl.+13+81925+Munich';
 
 const venueFeatures = [
   {
     icon: Utensils,
-    title: "Catering",
-    description: "Vegetarian & vegan options throughout the event.",
-    accent: "from-primary/10 to-primary/5",
+    title: 'Catering',
+    description: 'Vegetarian & vegan options throughout the event.',
+    accent: 'from-primary/10 to-primary/5',
   },
   {
     icon: Calendar,
-    title: "2-day event",
-    description: "Two full days of talks, workshops, and activities.",
-    accent: "from-[#0bbbef]/15 to-primary/5",
+    title: '2-day event',
+    description: 'Two full days of talks, workshops, and activities.',
+    accent: 'from-[#0bbbef]/15 to-primary/5',
   },
   {
     icon: Users,
-    title: "Networking",
-    description: "Connect with peers in an open, welcoming atmosphere.",
-    accent: "from-primary/8 to-transparent",
+    title: 'Networking',
+    description: 'Connect with peers in an open, welcoming atmosphere.',
+    accent: 'from-primary/8 to-transparent',
   },
 ];
 
@@ -76,9 +74,7 @@ function ImageSlider({ images }: { images: string[] }) {
   const goToPrevious = () => {
     setFade(true);
     setTimeout(() => {
-      setCurrentImageIndex((prevIndex) =>
-        prevIndex === 0 ? images.length - 1 : prevIndex - 1
-      );
+      setCurrentImageIndex((prevIndex) => (prevIndex === 0 ? images.length - 1 : prevIndex - 1));
       setFade(false);
     }, 500);
   };
@@ -86,9 +82,7 @@ function ImageSlider({ images }: { images: string[] }) {
   const goToNext = () => {
     setFade(true);
     setTimeout(() => {
-      setCurrentImageIndex((prevIndex) =>
-        prevIndex === images.length - 1 ? 0 : prevIndex + 1
-      );
+      setCurrentImageIndex((prevIndex) => (prevIndex === images.length - 1 ? 0 : prevIndex + 1));
       setFade(false);
     }, 500);
   };
@@ -105,8 +99,8 @@ function ImageSlider({ images }: { images: string[] }) {
           alt={`smartvillage Bogenhausen — photo ${currentImageIndex + 1}`}
           fill
           className={cn(
-            "object-cover transition-opacity duration-500",
-            fade ? "opacity-0" : "opacity-100"
+            'object-cover transition-opacity duration-500',
+            fade ? 'opacity-0' : 'opacity-100'
           )}
           sizes="(max-width: 1024px) 100vw, 60vw"
           priority={currentImageIndex === 0}
@@ -118,8 +112,8 @@ function ImageSlider({ images }: { images: string[] }) {
               type="button"
               key={index}
               className={cn(
-                "size-2 cursor-pointer rounded-full transition-colors",
-                index === currentImageIndex ? "bg-white" : "bg-white/50"
+                'size-2 cursor-pointer rounded-full transition-colors',
+                index === currentImageIndex ? 'bg-white' : 'bg-white/50'
               )}
               onClick={() => setCurrentImageIndex(index)}
               aria-label={`Go to slide ${index + 1}`}
@@ -149,22 +143,26 @@ function ImageSlider({ images }: { images: string[] }) {
 }
 
 type VenueProps = {
+  archive?: boolean;
   tone?: SectionTone;
 };
 
-export function Venue({ tone = "default" }: VenueProps) {
+export function Venue({ archive = false, tone = 'default' }: VenueProps) {
   return (
     <Section id="venue" className={cn(SECTION_TONE_CLASS[tone])}>
       <div className="mx-auto max-w-3xl text-center">
         <MotionReveal>
           <h2 className="font-heading text-3xl font-bold leading-[1.08] tracking-tight text-primary sm:text-4xl lg:text-5xl">
-            Meet us at,
+            {archive ? 'Where it all' : 'Meet us at,'}
             <br />
-            <span className="text-[#0bbbef]">smartvillage Bogenhausen</span>
+            <span className="text-[#0bbbef]">
+              {archive ? 'came together' : 'smartvillage Bogenhausen'}
+            </span>
           </h2>
           <p className="mt-5 text-lg leading-relaxed text-muted-foreground">
-            Two focused conference days at Munich Arabellapark — easy to reach
-            and built for community, talks, and hallway conversations.
+            {archive
+              ? `smartvillage Bogenhausen gave CNS Munich ${EVENT_CONFIG.featured.edition} room for talks, workshops, and the conversations in between.`
+              : 'Two focused conference days at Munich Arabellapark — easy to reach and built for community, talks, and hallway conversations.'}
           </p>
         </MotionReveal>
       </div>
@@ -181,9 +179,7 @@ export function Venue({ tone = "default" }: VenueProps) {
             <h3 className="font-heading text-2xl font-bold text-primary sm:text-3xl">
               smartvillage Bogenhausen
             </h3>
-            <p className="mt-2 text-lg text-muted-foreground">
-              at Munich Arabellapark
-            </p>
+            <p className="mt-2 text-lg text-muted-foreground">at Munich Arabellapark</p>
 
             <div className="mt-6 flex items-start gap-3 text-muted-foreground">
               <MapPin className="mt-0.5 size-5 shrink-0 text-[#0bbbef]" />
@@ -196,51 +192,49 @@ export function Venue({ tone = "default" }: VenueProps) {
             <div className="mt-8 flex flex-wrap justify-center gap-3 lg:justify-start">
               <Button
                 nativeButton={false}
-                render={
-                  <a href={MAPS_URL} target="_blank" rel="noopener noreferrer" />
-                }
+                render={<a href={MAPS_URL} target="_blank" rel="noopener noreferrer" />}
                 size="lg"
                 className="bg-primary text-primary-foreground hover:bg-primary/90"
               >
                 Open in Google Maps
                 <ArrowRight className="size-4" />
               </Button>
-              <Button
-                nativeButton={false}
-                render={<a href="#hotels" />}
-                variant="outline"
-                size="lg"
-                className="border-primary/20 text-primary hover:bg-primary/5"
-              >
-                Nearby hotels
-              </Button>
+              {!archive ? (
+                <Button
+                  nativeButton={false}
+                  render={<a href="#hotels" />}
+                  variant="outline"
+                  size="lg"
+                  className="border-primary/20 text-primary hover:bg-primary/5"
+                >
+                  Nearby hotels
+                </Button>
+              ) : null}
             </div>
           </div>
         </MotionReveal>
       </div>
 
-      <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 lg:gap-5">
-        {venueFeatures.map(({ icon: Icon, title, description, accent }, i) => (
-          <MotionReveal key={title} delay={0.14 + i * 0.06}>
-            <div
-              className={cn(
-                "group flex h-full flex-col rounded-2xl bg-gradient-to-br p-6 ring-1 ring-primary/10 transition-all hover:-translate-y-1 hover:shadow-md sm:p-8",
-                accent
-              )}
-            >
-              <div className="mb-5 flex size-12 items-center justify-center rounded-xl bg-[#ffffff]/80 ring-1 ring-primary/10">
-                <Icon className="size-6 text-primary" />
+      {!archive ? (
+        <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 lg:gap-5">
+          {venueFeatures.map(({ icon: Icon, title, description, accent }, i) => (
+            <MotionReveal key={title} delay={0.14 + i * 0.06}>
+              <div
+                className={cn(
+                  'group flex h-full flex-col rounded-2xl bg-gradient-to-br p-6 ring-1 ring-primary/10 transition-all hover:-translate-y-1 hover:shadow-md sm:p-8',
+                  accent
+                )}
+              >
+                <div className="mb-5 flex size-12 items-center justify-center rounded-xl bg-[#ffffff]/80 ring-1 ring-primary/10">
+                  <Icon className="size-6 text-primary" />
+                </div>
+                <h3 className="font-heading text-xl font-bold text-primary">{title}</h3>
+                <p className="mt-2 flex-1 leading-relaxed text-muted-foreground">{description}</p>
               </div>
-              <h3 className="font-heading text-xl font-bold text-primary">
-                {title}
-              </h3>
-              <p className="mt-2 flex-1 leading-relaxed text-muted-foreground">
-                {description}
-              </p>
-            </div>
-          </MotionReveal>
-        ))}
-      </div>
+            </MotionReveal>
+          ))}
+        </div>
+      ) : null}
     </Section>
   );
 }
