@@ -20,7 +20,6 @@ function renderHomepageSection(section: HomepageSectionId, tone: SectionTone) {
         <About
           key={section}
           recap={siteState.event.isRecap}
-          stage={siteState.event.stage}
           tone={tone}
         />
       );

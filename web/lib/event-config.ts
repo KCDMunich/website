@@ -1,10 +1,26 @@
+export type EventEdition = {
+  dateLabel: string;
+  edition: number;
+  location: string;
+  name: string;
+  ordinalLabel: string;
+  shortName: string;
+  venue: string;
+};
+
 export type EventConfig = {
   archive: {
+    dateLabel: string;
     edition: number;
     galleryUrl: string;
     heroVideoId: string;
+    location: string;
+    name: string;
+    ordinalLabel: string;
     playlistId: string;
     playlistUrl: string;
+    shortName: string;
+    venue: string;
   };
   campaigns: {
     announcedSpeakerIds: readonly string[];
@@ -15,20 +31,11 @@ export type EventConfig = {
     sponsorEmail: string;
     sponsorProspectusUrl: string | null;
   };
-  featured: {
-    dateLabel: string;
+  sponsorship: {
     edition: number;
-    location: string;
-    name: string;
-    ordinalLabel: string;
-    shortName: string;
-    ticketUrl: string;
-    venue: string;
   };
-  next: {
-    dateLabel: string | null;
-    edition: number;
-    ordinalLabel: string;
+  upcoming: EventEdition & {
+    ticketUrl: string;
   };
 };
 
@@ -39,7 +46,7 @@ const parseCommaSeparatedIds = (value: string | undefined): readonly string[] =>
     .filter(Boolean) ?? [];
 
 export const EVENT_CONFIG: EventConfig = {
-  featured: {
+  archive: {
     edition: 2026,
     name: 'Cloud Native Summit Munich',
     ordinalLabel: '5th',
@@ -47,19 +54,23 @@ export const EVENT_CONFIG: EventConfig = {
     dateLabel: 'June 29–30, 2026',
     location: 'Munich',
     venue: 'smartvillage Bogenhausen',
-    ticketUrl: 'https://fienta.com/de/cloud-native-summit-2026',
-  },
-  next: {
-    edition: 2027,
-    dateLabel: null,
-    ordinalLabel: '6th',
-  },
-  archive: {
-    edition: 2026,
     galleryUrl: 'https://lightroom.adobe.com/shares/7314e896be5b4c22b8365cfa07e42487',
     playlistId: 'PL54A_DPe8WtDLSA_EA7ETfprpRWzd2yqV',
     playlistUrl: 'https://www.youtube.com/playlist?list=PL54A_DPe8WtDLSA_EA7ETfprpRWzd2yqV',
     heroVideoId: 'R1dcUSnTmn8',
+  },
+  upcoming: {
+    edition: 2027,
+    name: 'Cloud Native Summit Munich',
+    ordinalLabel: '6th',
+    shortName: 'CNS Munich',
+    dateLabel: 'June 28–29, 2027',
+    location: 'Munich',
+    venue: 'smartvillage Bogenhausen',
+    ticketUrl: 'https://fienta.com/o/36183',
+  },
+  sponsorship: {
+    edition: 2027,
   },
   campaigns: {
     // Sessionize speaker IDs are supplied as ANNOUNCED_SPEAKER_IDS in the environment.

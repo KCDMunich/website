@@ -77,6 +77,20 @@ authorization.
 Public event content such as editions, dates, gallery, video, CFP, and sponsorship links lives in
 `lib/event-config.ts`; UI components do not read environment variables directly.
 
+### Annual edition rotation
+
+`lib/event-config.ts` keeps the completed edition, the upcoming edition, and the sponsorship
+campaign separate so copy cannot accidentally sell or recap the wrong year:
+
+- `archive`: the completed edition, including its gallery, recordings, speakers, and schedule.
+- `upcoming`: the edition currently being announced, accepting proposals, selling tickets, or live.
+- `sponsorship`: the edition for which partner recruitment is currently open.
+
+For the 2026 recap, `archive` is 2026 while `upcoming` and `sponsorship` are 2027. Before changing
+to `EVENT_STAGE=tickets` or `live`, fill `upcoming.dateLabel`, `upcoming.venue`, and
+`upcoming.ticketUrl`; the build fails with an actionable error if required ticketing or live-event
+content is missing.
+
 **Local:** set in `.env.local` (copy from `.env.example`).
 
 **Vercel:** Project → **Settings** → **Environment Variables** → update the lifecycle states → **Redeploy** (these values are read at build time).

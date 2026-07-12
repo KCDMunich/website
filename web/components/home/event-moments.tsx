@@ -4,7 +4,7 @@ import { EventMomentsCollage } from '@/components/home/event-moments-collage';
 import { Section } from '@/components/layout/section';
 import { Button } from '@/components/ui/button';
 import { EVENT_CONFIG } from '@/lib/event-config';
-import { fetchGallery2026Pool, GALLERY_2026_URL } from '@/lib/event-gallery';
+import { ARCHIVE_GALLERY_URL, fetchArchiveGalleryPool } from '@/lib/event-gallery';
 import { SECTION_TONE_CLASS, type SectionTone } from '@/lib/section-backgrounds';
 import { cn } from '@/lib/utils';
 
@@ -13,7 +13,7 @@ type EventMomentsProps = {
 };
 
 export async function EventMoments({ tone = 'default' }: EventMomentsProps) {
-  const pool = await fetchGallery2026Pool();
+  const pool = await fetchArchiveGalleryPool();
 
   return (
     <Section className={cn('overflow-hidden', SECTION_TONE_CLASS[tone])}>
@@ -29,7 +29,7 @@ export async function EventMoments({ tone = 'default' }: EventMomentsProps) {
         </p>
         <Button
           nativeButton={false}
-          render={<a href={GALLERY_2026_URL} target="_blank" rel="noopener noreferrer" />}
+          render={<a href={ARCHIVE_GALLERY_URL} target="_blank" rel="noopener noreferrer" />}
           variant="outline"
           size="lg"
           className="mt-6 border-primary/20 text-primary hover:bg-primary/5"

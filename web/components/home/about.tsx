@@ -6,17 +6,15 @@ import { Section } from '@/components/layout/section';
 import { Button } from '@/components/ui/button';
 import { EVENT_CONFIG } from '@/lib/event-config';
 import { SECTION_TONE_CLASS, type SectionTone } from '@/lib/section-backgrounds';
-import type { EventStage } from '@/lib/site-state-types';
 import { cn } from '@/lib/utils';
 
 type AboutProps = {
   recap?: boolean;
-  stage: EventStage;
   tone?: SectionTone;
 };
 
-export function About({ recap = false, stage, tone = 'default' }: AboutProps) {
-  const edition = stage === 'teaser' || stage === 'cfp' ? EVENT_CONFIG.next : EVENT_CONFIG.featured;
+export function About({ recap = false, tone = 'default' }: AboutProps) {
+  const edition = recap ? EVENT_CONFIG.archive : EVENT_CONFIG.upcoming;
   const highlights = [
     { value: edition.ordinalLabel, label: 'Edition in Munich', icon: Calendar },
     { value: '2', label: 'Conference days', icon: Users },
@@ -42,12 +40,12 @@ export function About({ recap = false, stage, tone = 'default' }: AboutProps) {
               {recap ? (
                 <>
                   <p>
-                    CNS Munich {EVENT_CONFIG.featured.edition} brought adopters and technologists
+                    CNS Munich {EVENT_CONFIG.archive.edition} brought adopters and technologists
                     from open source and cloud native ecosystems together for two focused days in
                     the heart of Bavaria.
                   </p>
                   <p>
-                    Our {EVENT_CONFIG.featured.ordinalLabel} edition was filled with practical
+                    Our {EVENT_CONFIG.archive.ordinalLabel} edition was filled with practical
                     sessions, hands-on workshops, and the honest hallway conversations that turn an
                     event into a community.
                   </p>

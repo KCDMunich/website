@@ -31,6 +31,7 @@ const nextConfig: NextConfig = {
       {
         protocol: "https",
         hostname: "photos.adobe.io",
+        pathname: "/v2/spaces/**",
       },
     ],
   },

@@ -1,9 +1,9 @@
 import { EVENT_CONFIG } from '@/lib/event-config';
 
 export const DEFAULT_EVENT = {
-  title: `${EVENT_CONFIG.featured.name} ${EVENT_CONFIG.featured.edition}`,
-  dateRange: EVENT_CONFIG.featured.dateLabel,
-  location: EVENT_CONFIG.featured.location,
+  title: `${EVENT_CONFIG.upcoming.name} ${EVENT_CONFIG.upcoming.edition}`,
+  dateRange: EVENT_CONFIG.upcoming.dateLabel,
+  location: EVENT_CONFIG.upcoming.location,
   currency: 'EUR',
 } as const;
 
@@ -121,7 +121,7 @@ export function getFientaConfig(): FientaConfig {
     fallbackCheckoutUrl:
       process.env.FIENTA_EVENT_URL ||
       process.env.GATSBY_FIENTA_EVENT_URL ||
-      EVENT_CONFIG.featured.ticketUrl,
+      EVENT_CONFIG.upcoming.ticketUrl,
   };
 }
 

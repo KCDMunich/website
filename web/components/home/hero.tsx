@@ -31,7 +31,7 @@ const ACTION_ICONS: Record<ActionIcon, LucideIcon> = {
 
 const stats = [
   { icon: Calendar, label: '2 days' },
-  { icon: MapPin, label: EVENT_CONFIG.featured.location },
+  { icon: MapPin, label: EVENT_CONFIG.upcoming.location },
   { icon: Users, label: 'Community-driven' },
 ];
 

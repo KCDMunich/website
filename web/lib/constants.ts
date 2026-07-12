@@ -18,10 +18,10 @@ export type MenuItem = LinkItem & {
 };
 
 export const DISCORD_URL = EVENT_CONFIG.community.discordUrl;
-export const FIENTA_TICKET_URL = EVENT_CONFIG.featured.ticketUrl;
+export const FIENTA_TICKET_URL = EVENT_CONFIG.upcoming.ticketUrl;
 
 export const LINKS = {
-  gallery2026: {
+  galleryArchive: {
     to: EVENT_CONFIG.archive.galleryUrl,
     target: '_blank',
     external: true,
@@ -127,7 +127,7 @@ const PHOTO_GALLERY: MenuItem = {
   text: 'Photo Gallery',
   to: '',
   children: [
-    { text: String(EVENT_CONFIG.archive.edition), ...LINKS.gallery2026 },
+    { text: String(EVENT_CONFIG.archive.edition), ...LINKS.galleryArchive },
     { text: '2025', ...LINKS.gallery2025 },
     { text: '2024', ...LINKS.gallery2024 },
   ],

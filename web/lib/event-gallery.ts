@@ -4,7 +4,7 @@ const GALLERY_SHARE_ID = '7314e896be5b4c22b8365cfa07e42487';
 const GALLERY_ALBUM_ID = 'a8cfb749ffbe4f1690defdf63dae0a32';
 const API_KEY = 'LightroomMobileWeb1';
 
-export const GALLERY_2026_URL = EVENT_CONFIG.archive.galleryUrl;
+export const ARCHIVE_GALLERY_URL = EVENT_CONFIG.archive.galleryUrl;
 
 const GALLERY_API = `https://lightroom.adobe.com/v2/spaces/${GALLERY_SHARE_ID}/albums/${GALLERY_ALBUM_ID}/assets?embed=asset&subtype=image&limit=100`;
 
@@ -127,7 +127,7 @@ export function pickRandomGalleryImages(images: GalleryImage[], count: number): 
   return shuffleGalleryImages(images).slice(0, Math.min(count, images.length));
 }
 
-export async function fetchGallery2026Pool(): Promise<GalleryImage[]> {
+export async function fetchArchiveGalleryPool(): Promise<GalleryImage[]> {
   try {
     const response = await fetch(GALLERY_API, {
       headers: { Accept: 'application/json' },

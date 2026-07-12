@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 
-import { COLLAGE_PLACEMENTS, GALLERY_2026_URL, type GalleryImage } from '@/lib/event-gallery';
+import { ARCHIVE_GALLERY_URL, COLLAGE_PLACEMENTS, type GalleryImage } from '@/lib/event-gallery';
 import { cn } from '@/lib/utils';
 
 type EventMomentsCollageProps = {
@@ -21,7 +21,7 @@ export function EventMomentsCollage({ pool }: EventMomentsCollageProps) {
         {slots.map(({ key, image }, index) => (
           <a
             key={key}
-            href={GALLERY_2026_URL}
+            href={ARCHIVE_GALLERY_URL}
             target="_blank"
             rel="noopener noreferrer"
             className={cn(
@@ -35,6 +35,7 @@ export function EventMomentsCollage({ pool }: EventMomentsCollageProps) {
               alt={image.alt}
               fill
               loading="lazy"
+              unoptimized
               quality={75}
               className="object-cover"
               sizes="(max-width: 640px) 160px, 192px"
@@ -52,7 +53,7 @@ export function EventMomentsCollage({ pool }: EventMomentsCollageProps) {
           return (
             <a
               key={key}
-              href={GALLERY_2026_URL}
+              href={ARCHIVE_GALLERY_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="absolute cursor-pointer transition-[z-index] duration-300 hover:z-20"
@@ -73,6 +74,7 @@ export function EventMomentsCollage({ pool }: EventMomentsCollageProps) {
                     alt={image.alt}
                     fill
                     loading="lazy"
+                    unoptimized
                     quality={75}
                     className="object-cover"
                     sizes="(min-width: 1280px) 20vw, 16vw"

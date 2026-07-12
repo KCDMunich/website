@@ -138,7 +138,7 @@ export function Sponsors({ phase, tone = 'default' }: SponsorsProps) {
                   <Handshake className="size-6 text-[#0bbbef]" />
                 </div>
                 <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#0bbbef]">
-                  Partnerships for {EVENT_CONFIG.next.edition}
+                  Partnerships for {EVENT_CONFIG.sponsorship.edition}
                 </p>
                 <h3 className="mt-3 font-heading text-3xl font-bold tracking-tight sm:text-4xl">
                   Help shape the next CNS Munich
@@ -155,7 +155,7 @@ export function Sponsors({ phase, tone = 'default' }: SponsorsProps) {
                   nativeButton={false}
                   render={
                     <a
-                      href={`mailto:${SPONSOR_CONTACT_EMAIL}?subject=CNS%20Munich%20${EVENT_CONFIG.next.edition}%20sponsorship%20interest`}
+                      href={`mailto:${SPONSOR_CONTACT_EMAIL}?subject=CNS%20Munich%20${EVENT_CONFIG.sponsorship.edition}%20sponsorship%20interest`}
                     />
                   }
                   size="lg"

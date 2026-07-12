@@ -14,13 +14,13 @@ import { SECTION_TONE_CLASS, type SectionTone } from '@/lib/section-backgrounds'
 import { cn } from '@/lib/utils';
 
 const DEFAULT_EVENT: Omit<FientaEventSnapshot['event'], 'checkoutUrl'> = {
-  title: `${EVENT_CONFIG.featured.name} ${EVENT_CONFIG.featured.edition}`,
-  dateRange: EVENT_CONFIG.featured.dateLabel,
-  location: EVENT_CONFIG.featured.location,
+  title: `${EVENT_CONFIG.upcoming.name} ${EVENT_CONFIG.upcoming.edition}`,
+  dateRange: EVENT_CONFIG.upcoming.dateLabel,
+  location: EVENT_CONFIG.upcoming.location,
   currency: 'EUR',
 };
 
-const FALLBACK_CHECKOUT_URL = EVENT_CONFIG.featured.ticketUrl;
+const FALLBACK_CHECKOUT_URL = EVENT_CONFIG.upcoming.ticketUrl;
 
 function formatCurrency(value: number | null, currency: string) {
   if (value === null || value === undefined) return 'On request';

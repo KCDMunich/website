@@ -13,6 +13,12 @@ import {
 const testConfig: EventConfig = {
   ...EVENT_CONFIG,
   campaigns: { ...EVENT_CONFIG.campaigns, cfpUrl: 'https://example.com/cfp' },
+  upcoming: {
+    ...EVENT_CONFIG.upcoming,
+    dateLabel: 'June 28–29, 2027',
+    ticketUrl: 'https://example.com/tickets',
+    venue: 'Example venue',
+  },
 };
 
 const expected = {
@@ -120,9 +126,36 @@ describe('event stage matrix', () => {
     expect(() =>
       createSitePresentation('tickets', 'closed', {
         ...testConfig,
-        featured: { ...testConfig.featured, ticketUrl: '' },
+        upcoming: { ...testConfig.upcoming, ticketUrl: '' },
       })
-    ).toThrow('EVENT_STAGE=tickets requires EVENT_CONFIG.featured.ticketUrl');
+    ).toThrow('EVENT_STAGE=tickets requires EVENT_CONFIG.upcoming.ticketUrl');
+  });
+
+  it('requires upcoming event details before ticketing or live stages', () => {
+    expect(() =>
+      createSitePresentation('tickets', 'closed', {
+        ...testConfig,
+        upcoming: { ...testConfig.upcoming, dateLabel: '' },
+      })
+    ).toThrow('EVENT_STAGE=tickets requires EVENT_CONFIG.upcoming.dateLabel');
+
+    expect(() =>
+      createSitePresentation('live', 'closed', {
+        ...testConfig,
+        upcoming: { ...testConfig.upcoming, venue: '' },
+      })
+    ).toThrow('EVENT_STAGE=live requires EVENT_CONFIG.upcoming.venue');
+  });
+
+  it('keeps archive and upcoming edition copy separate', () => {
+    const teaser = createSitePresentation('teaser', 'recruiting', testConfig);
+    const tickets = createSitePresentation('tickets', 'recruiting', testConfig);
+    const recap = createSitePresentation('recap', 'recruiting', testConfig);
+
+    expect(teaser.hero.eyebrow).toContain(String(testConfig.upcoming.edition));
+    expect(tickets.hero.eyebrow).toContain(testConfig.upcoming.dateLabel);
+    expect(recap.hero.eyebrow).toContain(testConfig.archive.dateLabel);
+    expect(recap.hero.secondaryAction?.label).toContain(String(testConfig.upcoming.edition));
   });
 
   it('uses ticket options for published programs and sold-out messaging', () => {

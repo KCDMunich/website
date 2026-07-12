@@ -217,7 +217,7 @@ function MobileNav({
                 nativeButton={false}
                 render={
                   <a
-                    href={EVENT_CONFIG.featured.ticketUrl}
+                    href={EVENT_CONFIG.upcoming.ticketUrl}
                     target="_blank"
                     rel="noopener noreferrer"
                   />
@@ -241,7 +241,7 @@ function MobileNav({
                 render={<Link href="/#sponsors" />}
                 onClick={() => onOpenChange(false)}
               >
-                Become a {EVENT_CONFIG.next.edition} sponsor
+                Become a {EVENT_CONFIG.sponsorship.edition} sponsor
               </Button>
             ) : null}
             <Button
@@ -342,7 +342,7 @@ export function SiteHeader({
               nativeButton={false}
               render={
                 <a
-                  href={EVENT_CONFIG.featured.ticketUrl}
+                  href={EVENT_CONFIG.upcoming.ticketUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                 />
@@ -379,7 +379,7 @@ export function SiteHeader({
               nativeButton={false}
               render={<Link href="/#sponsors" />}
             >
-              Sponsor {EVENT_CONFIG.next.edition}
+              Sponsor {EVENT_CONFIG.sponsorship.edition}
             </Button>
           ) : null}
           <Button

@@ -148,6 +148,8 @@ type VenueProps = {
 };
 
 export function Venue({ archive = false, tone = 'default' }: VenueProps) {
+  const venue = archive ? EVENT_CONFIG.archive : EVENT_CONFIG.upcoming;
+
   return (
     <Section id="venue" className={cn(SECTION_TONE_CLASS[tone])}>
       <div className="mx-auto max-w-3xl text-center">
@@ -156,12 +158,12 @@ export function Venue({ archive = false, tone = 'default' }: VenueProps) {
             {archive ? 'Where it all' : 'Meet us at,'}
             <br />
             <span className="text-[#0bbbef]">
-              {archive ? 'came together' : 'smartvillage Bogenhausen'}
+              {archive ? 'came together' : venue.venue}
             </span>
           </h2>
           <p className="mt-5 text-lg leading-relaxed text-muted-foreground">
             {archive
-              ? `smartvillage Bogenhausen gave CNS Munich ${EVENT_CONFIG.featured.edition} room for talks, workshops, and the conversations in between.`
+              ? `${EVENT_CONFIG.archive.venue} gave CNS Munich ${EVENT_CONFIG.archive.edition} room for talks, workshops, and the conversations in between.`
               : 'Two focused conference days at Munich Arabellapark — easy to reach and built for community, talks, and hallway conversations.'}
           </p>
         </MotionReveal>
@@ -176,9 +178,7 @@ export function Venue({ archive = false, tone = 'default' }: VenueProps) {
 
         <MotionReveal delay={0.12} className="lg:col-span-5">
           <div className="flex flex-col items-center text-center lg:items-start lg:text-left">
-            <h3 className="font-heading text-2xl font-bold text-primary sm:text-3xl">
-              smartvillage Bogenhausen
-            </h3>
+            <h3 className="font-heading text-2xl font-bold text-primary sm:text-3xl">{venue.venue}</h3>
             <p className="mt-2 text-lg text-muted-foreground">at Munich Arabellapark</p>
 
             <div className="mt-6 flex items-start gap-3 text-muted-foreground">

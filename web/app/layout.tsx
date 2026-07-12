@@ -9,27 +9,27 @@ import "./globals.css";
 const plusJakartaSans = localFont({
   src: [
     {
-      path: "../public/fonts/plus-jakarta-sans/plus-jakarta-sans-400.woff2",
+      path: "./fonts/plus-jakarta-sans/plus-jakarta-sans-400.woff2",
       weight: "400",
       style: "normal",
     },
     {
-      path: "../public/fonts/plus-jakarta-sans/plus-jakarta-sans-500.woff2",
+      path: "./fonts/plus-jakarta-sans/plus-jakarta-sans-500.woff2",
       weight: "500",
       style: "normal",
     },
     {
-      path: "../public/fonts/plus-jakarta-sans/plus-jakarta-sans-600.woff2",
+      path: "./fonts/plus-jakarta-sans/plus-jakarta-sans-600.woff2",
       weight: "600",
       style: "normal",
     },
     {
-      path: "../public/fonts/plus-jakarta-sans/plus-jakarta-sans-700.woff2",
+      path: "./fonts/plus-jakarta-sans/plus-jakarta-sans-700.woff2",
       weight: "700",
       style: "normal",
     },
     {
-      path: "../public/fonts/plus-jakarta-sans/plus-jakarta-sans-italic-600.woff2",
+      path: "./fonts/plus-jakarta-sans/plus-jakarta-sans-italic-600.woff2",
       weight: "600",
       style: "italic",
     },
