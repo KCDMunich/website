@@ -141,7 +141,7 @@ export function SiteFooter({ navigation }: { navigation: SitePresentation['navig
         <div className="flex flex-col gap-8 md:flex-row md:items-start md:justify-between md:gap-10">
           <div className="flex shrink-0 flex-col items-start gap-3">
             <Link href="/" className="cursor-pointer">
-              <SiteLogo size="sm" />
+              <SiteLogo variant="legacy" size="sm" />
             </Link>
             <a
               href={`mailto:${SPONSOR_CONTACT_EMAIL}`}

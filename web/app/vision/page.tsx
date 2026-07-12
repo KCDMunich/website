@@ -15,5 +15,5 @@ export function generateMetadata(): Metadata {
 }
 
 export default function VisionPage() {
-  return <StaticMarkdownPage slug={SLUG} />;
+  return <StaticMarkdownPage slug={SLUG} showLegacyLogo />;
 }

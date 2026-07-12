@@ -1,7 +1,9 @@
+import Image from 'next/image';
+
 import { cn } from "@/lib/utils";
 
 type SiteLogoProps = {
-  variant?: "default" | "hero";
+  variant?: "default" | "hero" | "legacy";
   className?: string;
   size?: "sm" | "md";
   layout?: "stacked" | "inline";
@@ -14,8 +16,23 @@ export function SiteLogo({
   layout = "stacked",
 }: SiteLogoProps) {
   const isHero = variant === "hero";
+  const isLegacy = variant === 'legacy';
   const isSm = size === "sm";
   const isInline = layout === "inline";
+
+  if (isLegacy) {
+    return (
+      <span className={cn('block', className)}>
+        <Image
+          src="/icons-src/navLogo-timeless.svg"
+          alt="Cloud Native Summit Munich"
+          width={3240}
+          height={700}
+          className="h-auto w-44 sm:w-48"
+        />
+      </span>
+    );
+  }
 
   return (
     <span

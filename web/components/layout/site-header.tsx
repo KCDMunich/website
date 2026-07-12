@@ -323,7 +323,7 @@ export function SiteHeader({
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3.5 sm:px-6 lg:px-8">
         <Link href="/" className="relative z-50 shrink-0 cursor-pointer">
-          <SiteLogo variant={onHero ? 'hero' : 'default'} />
+          <SiteLogo variant={onHero ? 'hero' : 'legacy'} />
         </Link>
 
         <DesktopNav lightText={lightText} navigation={navigation} />

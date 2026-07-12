@@ -54,11 +54,6 @@ export const LINKS = {
     id: getAnchor('Call for Speakers'),
     homeTo: null,
   },
-  workshops: {
-    to: '/workshops',
-    id: getAnchor('Workshops'),
-    homeTo: '/workshops',
-  },
   team: {
     to: '/team',
   },
@@ -67,11 +62,6 @@ export const LINKS = {
   },
   tickets: {
     to: FIENTA_TICKET_URL,
-    target: '_blank',
-    external: true,
-  },
-  mission: {
-    to: '/mission-statement',
     target: '_blank',
     external: true,
   },

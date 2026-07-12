@@ -3,6 +3,15 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   // Match Vercel project setting — without this, dynamic routes 404 after slash redirect.
   trailingSlash: true,
+  async redirects() {
+    return [
+      {
+        source: "/mission-statement",
+        destination: "/vision",
+        permanent: true,
+      },
+    ];
+  },
   turbopack: {
     root: __dirname,
   },
