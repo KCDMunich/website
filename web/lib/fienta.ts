@@ -109,19 +109,13 @@ type AuthMode = 'bearer' | 'token' | 'x-api-key';
 
 export function getFientaConfig(): FientaConfig {
   return {
-    baseUrl:
-      process.env.FIENTA_BASE_URL ||
-      process.env.GATSBY_FIENTA_BASE_URL ||
-      'https://fienta.com/api/v1',
-    eventId: process.env.FIENTA_EVENT_ID || process.env.GATSBY_FIENTA_EVENT_ID || '',
-    organizerId: process.env.FIENTA_ORGANIZER_ID || process.env.GATSBY_FIENTA_ORGANIZER_ID,
-    seriesId: process.env.FIENTA_SERIES_ID || process.env.GATSBY_FIENTA_SERIES_ID,
-    locale: process.env.FIENTA_LOCALE || process.env.GATSBY_FIENTA_LOCALE || 'de',
+    baseUrl: process.env.FIENTA_BASE_URL || 'https://fienta.com/api/v1',
+    eventId: process.env.FIENTA_EVENT_ID || '',
+    organizerId: process.env.FIENTA_ORGANIZER_ID,
+    seriesId: process.env.FIENTA_SERIES_ID,
+    locale: process.env.FIENTA_LOCALE || 'de',
     apiKey: process.env.FIENTA_API_KEY,
-    fallbackCheckoutUrl:
-      process.env.FIENTA_EVENT_URL ||
-      process.env.GATSBY_FIENTA_EVENT_URL ||
-      EVENT_CONFIG.upcoming.ticketUrl,
+    fallbackCheckoutUrl: process.env.FIENTA_EVENT_URL || EVENT_CONFIG.upcoming.ticketUrl,
   };
 }
 

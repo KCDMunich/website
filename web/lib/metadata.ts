@@ -7,10 +7,7 @@ export const SITE_CONFIG = {
   title: siteState.metadata.title,
   shortTitle: 'CNS Munich',
   description: siteState.metadata.description,
-  url:
-    process.env.NEXT_PUBLIC_SITE_URL ||
-    process.env.GATSBY_DEFAULT_SITE_URL ||
-    'https://cloudnativesummit.de',
+  url: process.env.NEXT_PUBLIC_SITE_URL || 'https://cloudnativesummit.de',
   image: '/images/social-preview.jpg',
   locale: 'en',
   twitterHandle: '@cnsmunich',
