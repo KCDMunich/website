@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useState, useSyncExternalStore } from 'react';
 import { ArrowRight, Play } from 'lucide-react';
 
 import { MotionReveal } from '@/components/layout/motion-reveal';
@@ -13,56 +13,16 @@ import type { SitePresentation } from '@/lib/site-presentation';
 import { SECTION_TONE_CLASS, type SectionTone } from '@/lib/section-backgrounds';
 import { cn } from '@/lib/utils';
 
-const PLAYLIST_ID = EVENT_CONFIG.archive.playlistId;
 const PLAYLIST_URL = EVENT_CONFIG.archive.playlistUrl;
 const PREVIEW_COUNT = 5;
+const subscribeToOrigin = () => () => {};
 
 const FALLBACK_VIDEO_IDS = [
-  'g-sZwa52DNE',
-  'CHb3TLEV8ZU',
-  'vmKlVABhdwc',
-  'mHDBsS9c9MM',
-  'n5LsBJwARbU',
-  'WJzMyA47lfo',
-  'SDelo4VdPUk',
-  'SPPJHwavM0c',
-  'lkK4ACNg22g',
-  'aLdgVrnMxcs',
-  'XETuwndd_mw',
-  'cIZ90x7aNJE',
-  'L2d_busMOJA',
-  'PwqyYbGXYG8',
-  'xWSEGsB7uFI',
-  '0inKO9yA950',
-  'PF2diWKfjWo',
-  'GiZzkSnDc-E',
-  'LwYqFrLnBeM',
-  'n_o4dxHrNDM',
-  'NfqV0Lb00Zc',
-  'E_r56x92KZw',
-  'HV9KsLz-odw',
-  'pg2DKYc9n_o',
-  'iiGRMPMBKVQ',
-  'Rh6cjzEB1-4',
-  'EztpUoi0hgU',
-  'X9U0b7RVafM',
-  'QMhkueuHnpE',
-  '3N_XBNAycqw',
-  'mr83OyjqaCQ',
-  'KkjQI20IFtE',
-  'kFyRUae2hV4',
-  '46-cPZz8VH0',
-  'tWHHmb-v6Y0',
-  'RLyO18tG8GI',
-  'RYdsuTD8Wjs',
-  'eLGBAd7fHdM',
-  'iSMk7a62wUc',
-  'aEqj_Ok5B58',
-  'fDBNJ2N9fqw',
-  '4CcNPHT_-nA',
-  'nMlmUFKN7Bo',
-  'MpU-vo4K7BQ',
-  'sgYc8Vt6eaU',
+  'X9OH76DK6H8',
+  'VcY_0b0lchk',
+  'byehnUkET6I',
+  'j1kyiO27r0s',
+  'I3XqMW0jOB0',
 ];
 
 interface PlaylistVideo {
@@ -89,6 +49,11 @@ type ScheduleTeaserProps = {
 export function ScheduleTeaser({ presentation, tone = 'default' }: ScheduleTeaserProps) {
   const [videos, setVideos] = useState<PlaylistVideo[]>(FALLBACK_VIDEOS);
   const [activeVideoId, setActiveVideoId] = useState(FALLBACK_VIDEOS[0].id);
+  const embedOrigin = useSyncExternalStore(
+    subscribeToOrigin,
+    () => window.location.origin,
+    () => null
+  );
 
   const activeVideo = useMemo(
     () => videos.find((video) => video.id === activeVideoId) ?? videos[0],
@@ -96,15 +61,12 @@ export function ScheduleTeaser({ presentation, tone = 'default' }: ScheduleTease
   );
 
   const previewVideos = useMemo(() => videos.slice(0, PREVIEW_COUNT), [videos]);
-
   useEffect(() => {
     let cancelled = false;
 
     const fetchPlaylist = async () => {
       try {
-        const response = await fetch(
-          `https://www.youtube.com/feeds/videos.xml?playlist_id=${PLAYLIST_ID}`
-        );
+        const response = await fetch('/api/youtube-playlist/');
         if (!response.ok) return;
 
         const xml = await response.text();
@@ -130,7 +92,8 @@ export function ScheduleTeaser({ presentation, tone = 'default' }: ScheduleTease
 
         if (!cancelled && extractedVideos.length > 0) {
           setVideos(extractedVideos);
-          const randomVideo = extractedVideos[Math.floor(Math.random() * extractedVideos.length)];
+          const visibleVideos = extractedVideos.slice(0, PREVIEW_COUNT);
+          const randomVideo = visibleVideos[Math.floor(Math.random() * visibleVideos.length)];
           setActiveVideoId(randomVideo.id);
         }
       } catch {
@@ -196,19 +159,20 @@ export function ScheduleTeaser({ presentation, tone = 'default' }: ScheduleTease
       <MotionReveal delay={0.08}>
         <div className="mx-auto mt-12 max-w-4xl">
           <div className="overflow-hidden rounded-2xl ring-1 ring-primary/10 shadow-md">
-            {activeVideo ? (
+            {activeVideo && embedOrigin ? (
               <iframe
                 key={activeVideo.id}
                 title={activeVideo.title}
-                src={`https://www.youtube.com/embed/${activeVideo.id}?rel=0&modestbranding=1&color=white&list=${PLAYLIST_ID}`}
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                src={`https://www.youtube.com/embed/${activeVideo.id}?feature=oembed&rel=0&enablejsapi=1&origin=${encodeURIComponent(embedOrigin)}`}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 allowFullScreen
                 loading="lazy"
+                referrerPolicy="strict-origin-when-cross-origin"
                 className="aspect-video w-full"
               />
             ) : (
               <div className="flex aspect-video w-full items-center justify-center bg-primary/5 text-sm text-muted-foreground">
-                No video available
+                Loading video...
               </div>
             )}
           </div>

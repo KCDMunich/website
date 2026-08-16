@@ -55,8 +55,8 @@ export const EVENT_CONFIG: EventConfig = {
     location: 'Munich',
     venue: 'smartvillage Bogenhausen',
     galleryUrl: 'https://lightroom.adobe.com/shares/7314e896be5b4c22b8365cfa07e42487',
-    playlistId: 'PL54A_DPe8WtDLSA_EA7ETfprpRWzd2yqV',
-    playlistUrl: 'https://www.youtube.com/playlist?list=PL54A_DPe8WtDLSA_EA7ETfprpRWzd2yqV',
+    playlistId: 'PLAA2DJBnZEc8',
+    playlistUrl: 'https://www.youtube.com/playlist?list=PLAA2DJBnZEc8',
     heroVideoId: 'R1dcUSnTmn8',
   },
   upcoming: {
