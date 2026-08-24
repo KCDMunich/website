@@ -1,18 +1,35 @@
 'use client';
 
 import Image from 'next/image';
+import { useEffect, useState } from 'react';
 
-import { ARCHIVE_GALLERY_URL, COLLAGE_PLACEMENTS, type GalleryImage } from '@/lib/event-gallery';
+import {
+  ARCHIVE_GALLERY_URL,
+  COLLAGE_PLACEMENTS,
+  pickRandomGalleryImages,
+  type GalleryImage,
+} from '@/lib/event-gallery';
 import { cn } from '@/lib/utils';
 
 type EventMomentsCollageProps = {
   pool: GalleryImage[];
 };
 
+const createSlots = (images: GalleryImage[]) =>
+  images.map((image) => ({ key: image.src, image }));
+
 export function EventMomentsCollage({ pool }: EventMomentsCollageProps) {
-  const slots = pool
-    .slice(0, COLLAGE_PLACEMENTS.length)
-    .map((image) => ({ key: image.src, image }));
+  const [slots, setSlots] = useState(() =>
+    createSlots(pool.slice(0, COLLAGE_PLACEMENTS.length))
+  );
+
+  useEffect(() => {
+    const shuffleTimeout = window.setTimeout(() => {
+      setSlots(createSlots(pickRandomGalleryImages(pool, COLLAGE_PLACEMENTS.length)));
+    }, 0);
+
+    return () => window.clearTimeout(shuffleTimeout);
+  }, [pool]);
 
   return (
     <>

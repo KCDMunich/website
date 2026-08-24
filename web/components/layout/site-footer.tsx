@@ -188,7 +188,7 @@ export function SiteFooter({ navigation }: { navigation: SitePresentation['navig
                   <Image
                     src={item.iconSrc}
                     alt=""
-                    width={16}
+                    width={item.label === 'YouTube' ? 20 : 16}
                     height={16}
                     className={item.className}
                   />

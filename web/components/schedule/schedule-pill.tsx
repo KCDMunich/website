@@ -30,6 +30,7 @@ export function SchedulePill({
       type="button"
       title={title}
       aria-label={ariaLabel}
+      aria-pressed={active}
       onClick={onClick}
       className={cn(
         'inline-flex shrink-0 items-center justify-center gap-1.5 font-semibold transition-all',
@@ -74,12 +75,11 @@ export function ScheduleSegmentGroup({
 }: ScheduleSegmentGroupProps) {
   return (
     <div className={cn('flex items-center gap-2', className)}>
-      {label ? (
-        <span className="hidden text-xs font-semibold uppercase tracking-wide text-muted-foreground sm:inline">
-          {label}
-        </span>
-      ) : null}
-      <div className="inline-flex rounded-full bg-muted/50 p-1 ring-1 ring-border/60">
+      <div
+        className="inline-flex rounded-full bg-muted/50 p-1 ring-1 ring-border/60"
+        role="group"
+        aria-label={label ?? 'Schedule options'}
+      >
         {children}
       </div>
     </div>

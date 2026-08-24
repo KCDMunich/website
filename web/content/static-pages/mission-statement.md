@@ -31,4 +31,4 @@ Follow us on [LinkedIn](https://linkedin.com/company/cns-munich), [X/Twitter](ht
 
 If you are interested in sponsoring you will find all the [sponsorship details](https://cloudnativesummit.de/#sponsors).
 
-Feel free to contact us for any questions! We can't wait to welcome you again in 2025!
+Feel free to contact us with any questions. We look forward to welcoming the community back to Munich on June 14–15, 2027!

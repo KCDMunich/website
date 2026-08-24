@@ -36,7 +36,14 @@ function renderHomepageSection(section: HomepageSectionId, tone: SectionTone) {
     case 'sponsors':
       return <Sponsors key={section} phase={siteState.sponsorship.phase} tone={tone} />;
     case 'venue':
-      return <Venue key={section} archive={siteState.event.isRecap} tone={tone} />;
+      return (
+        <Venue
+          key={section}
+          archive={siteState.event.isRecap}
+          showHotels={siteState.homepage.sections.includes('hotels')}
+          tone={tone}
+        />
+      );
     case 'hotels':
       return <Hotels key={section} tone={tone} />;
     default: {

@@ -1270,6 +1270,19 @@
   background: rgba(0, 66, 88, 0.02);
 }
 
+.schedule-grid-card:focus-within {
+  border-color: rgba(0, 66, 88, 0.35);
+  box-shadow: 0 0 0 2px rgba(11, 187, 239, 0.28);
+}
+
+.schedule-grid-card__link {
+  display: grid;
+  gap: 0.35rem;
+  color: inherit;
+  text-decoration: none;
+  outline: none;
+}
+
 .schedule-grid-card--past {
   opacity: 0.62;
 }

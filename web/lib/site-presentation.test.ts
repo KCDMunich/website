@@ -15,7 +15,7 @@ const testConfig: EventConfig = {
   campaigns: { ...EVENT_CONFIG.campaigns, cfpUrl: 'https://example.com/cfp' },
   upcoming: {
     ...EVENT_CONFIG.upcoming,
-    dateLabel: 'June 28–29, 2027',
+    dateLabel: 'June 14–15, 2027',
     ticketUrl: 'https://example.com/tickets',
     venue: 'Example venue',
   },
@@ -24,13 +24,13 @@ const testConfig: EventConfig = {
 const expected = {
   teaser: {
     primary: 'Join the community',
-    program: 'hidden',
-    speakers: false,
+    program: 'archive',
+    speakers: true,
     tickets: 'closed',
     purchase: false,
-    noIndex: true,
+    noIndex: false,
     firstSection: 'about',
-    schedule: false,
+    schedule: true,
   },
   cfp: {
     primary: 'Submit a proposal',
@@ -158,6 +158,27 @@ describe('event stage matrix', () => {
     expect(recap.hero.secondaryAction?.label).toContain(String(testConfig.upcoming.edition));
   });
 
+  it('shows the previous edition archive in teaser mode and switches to upcoming content later', () => {
+    const teaser = createSitePresentation('teaser', 'recruiting', testConfig);
+    const cfp = createSitePresentation('cfp', 'recruiting', testConfig);
+    const live = createSitePresentation('live', 'recruiting', testConfig);
+
+    expect(teaser.program.mode).toBe('archive');
+    expect(teaser.program.isArchive).toBe(true);
+    expect(teaser.program.scheduleEyebrow).toContain(String(testConfig.archive.edition));
+    expect(teaser.program.speakerEyebrow).toContain(String(testConfig.archive.edition));
+    expect(teaser.navigation.scheduleLabel).toBe(`${testConfig.archive.edition} Schedule`);
+    expect(teaser.navigation.speakersLabel).toBe(`${testConfig.archive.edition} Speakers`);
+    expect(teaser.homepage.sections).toContain('schedule');
+    expect(teaser.homepage.sections).toContain('speakers');
+    expect(teaser.homepage.sections).toContain('venue');
+
+    expect(cfp.program.mode).toBe('preview');
+    expect(cfp.program.isArchive).toBe(false);
+    expect(live.program.mode).toBe('published');
+    expect(live.program.isArchive).toBe(false);
+  });
+
   it('uses ticket options for published programs and sold-out messaging', () => {
     const published = createSitePresentation('tickets', 'closed', testConfig, {
       programPublished: true,
@@ -211,7 +232,7 @@ describe('event stage matrix', () => {
 
   it('parses every allowed stage and rejects unknown values', () => {
     for (const stage of EVENT_STAGES) expect(parseEventStage(stage)).toBe(stage);
-    expect(parseEventStage(undefined)).toBe('recap');
+    expect(parseEventStage(undefined)).toBe('teaser');
     expect(() => parseEventStage('finished')).toThrow('Invalid EVENT_STAGE');
   });
 

@@ -10,6 +10,8 @@ export function generateMetadata(): Metadata {
   const page = getStaticPageBySlug(SLUG);
   return createMetadata({
     title: page?.title ?? "Imprint",
+    description:
+      "Legal notice and contact details for Cloud Native Summit Munich and its organizing association.",
     pathname: `/${SLUG}`,
   });
 }

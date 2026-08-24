@@ -7,6 +7,7 @@ type SiteLogoProps = {
   className?: string;
   size?: "sm" | "md";
   layout?: "stacked" | "inline";
+  priority?: boolean;
 };
 
 export function SiteLogo({
@@ -14,6 +15,7 @@ export function SiteLogo({
   className,
   size = "md",
   layout = "stacked",
+  priority = false,
 }: SiteLogoProps) {
   const isHero = variant === "hero";
   const isLegacy = variant === 'legacy';
@@ -28,6 +30,7 @@ export function SiteLogo({
           alt="Cloud Native Summit Munich"
           width={3240}
           height={700}
+          priority={priority}
           className="h-auto w-44 sm:w-48"
         />
       </span>

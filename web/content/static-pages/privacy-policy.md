@@ -131,6 +131,15 @@ As Cloudflare is a US-based provider, data processing may take place outside the
 
 We do not use cookies.
 
+### Local Browser Storage
+
+The website uses browser storage only for functions chosen by the visitor:
+
+- Schedule favorites are stored locally so the selected sessions remain available in the same browser.
+- A YouTube consent preference is stored for the duration of the current browser tab after the visitor actively enables YouTube videos.
+
+These values are not used for tracking, advertising, profiling, or cross-site recognition.
+
 ### No Tracking or Analytics Tools
 
 We do not use any tracking or analytics tools, including:
@@ -379,7 +388,11 @@ Transfers to third countries may occur.
 
 #### YouTube
 
-Data such as IP address and device information may be transferred to YouTube/Google.
+<a id="youtube"></a>
+
+YouTube videos are blocked by default. A connection to YouTube is established only after a visitor actively selects “Load video from YouTube” or “Load background video”. Videos are then loaded using YouTube’s privacy-enhanced domain (`youtube-nocookie.com`).
+
+After activation, YouTube/Google may process connection data such as the IP address, browser and device information, referrer information, and interactions with the video. Data may be transferred to the United States or other third countries. The visitor’s choice applies only to the current browser tab and can be withdrawn by closing the tab.
 
 #### Google Maps
 
