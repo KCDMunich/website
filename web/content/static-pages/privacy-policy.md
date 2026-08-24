@@ -390,7 +390,7 @@ Transfers to third countries may occur.
 
 <a id="youtube"></a>
 
-YouTube videos are blocked by default. A connection to YouTube is established only after a visitor actively selects “Load video from YouTube” or “Load background video”. Videos are then loaded using YouTube’s privacy-enhanced domain (`youtube-nocookie.com`).
+YouTube videos are blocked by default. A connection to YouTube is established only after a visitor actively selects “Load video from YouTube”. Videos are then loaded using YouTube’s privacy-enhanced domain (`youtube-nocookie.com`).
 
 After activation, YouTube/Google may process connection data such as the IP address, browser and device information, referrer information, and interactions with the video. Data may be transferred to the United States or other third countries. The visitor’s choice applies only to the current browser tab and can be withdrawn by closing the tab.
 

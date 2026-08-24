@@ -17,8 +17,6 @@ import { EVENT_CONFIG } from '@/lib/event-config';
 import type { SitePresentation } from '@/lib/site-presentation';
 import type { ActionIcon, SiteAction } from '@/lib/site-state-types';
 
-const HERO_VIDEO_SRC = `https://www.youtube.com/embed/${EVENT_CONFIG.archive.heroVideoId}?autoplay=1&mute=1&loop=1&playlist=${EVENT_CONFIG.archive.heroVideoId}&start=5&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&iv_load_policy=3&cc_load_policy=0`;
-
 const ACTION_ICONS: Record<ActionIcon, LucideIcon> = {
   arrow: ArrowRight,
   calendar: Calendar,
@@ -56,14 +54,20 @@ export function Hero({ presentation }: HeroProps) {
   return (
     <section className="relative min-h-screen overflow-hidden text-white">
       <div className="absolute inset-0 overflow-hidden" aria-hidden="true">
-        <iframe
-          className="pointer-events-none absolute left-1/2 top-1/2 h-[56.25vw] min-h-full w-[177.78vh] min-w-full -translate-x-1/2 -translate-y-1/2 border-0"
-          src={HERO_VIDEO_SRC}
-          title="Cloud Native Summit Munich highlight reel"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          referrerPolicy="strict-origin-when-cross-origin"
-          tabIndex={-1}
-        />
+        <video
+          className="pointer-events-none absolute inset-0 h-full w-full object-cover"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
+          poster="/videos/hero-poster.jpg"
+          controls={false}
+          disablePictureInPicture
+        >
+          <source src="/videos/hero-video.webm" type="video/webm" />
+          <source src="/videos/hero-video.mp4" type="video/mp4" />
+        </video>
         <div className="absolute inset-0 bg-linear-to-b from-primary/88 via-primary/72 to-primary/94" />
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_70%_35%,transparent_0%,oklch(0.18_0.045_220/0.52)_100%)]" />
         <div className="absolute inset-x-0 bottom-0 h-40 bg-linear-to-t from-primary/35 to-transparent" />
