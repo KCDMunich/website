@@ -57,7 +57,7 @@ export const EVENT_CONFIG: EventConfig = {
     galleryUrl: 'https://lightroom.adobe.com/shares/7314e896be5b4c22b8365cfa07e42487',
     playlistId: 'PLAA2DJBnZEc8',
     playlistUrl: 'https://www.youtube.com/watch?v=X9OH76DK6H8&list=PLAA2DJBnZEc8',
-    heroVideoId: 'X9OH76DK6H8',
+    heroVideoId: 'R1dcUSnTmn8',
   },
   upcoming: {
     edition: 2027,
