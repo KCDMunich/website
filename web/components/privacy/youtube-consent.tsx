@@ -12,8 +12,8 @@ import {
   type ReactNode,
 } from 'react';
 import { Play, ShieldCheck } from 'lucide-react';
-import { useReducedMotion } from 'framer-motion';
 
+import { buildYouTubeEmbedUrl } from '@/lib/youtube';
 import { cn } from '@/lib/utils';
 
 const YOUTUBE_SESSION_KEY = 'cns-youtube-consent';
@@ -68,65 +68,6 @@ function useYouTubeConsent() {
   return context;
 }
 
-type YouTubeHeroMediaProps = {
-  title: string;
-  videoId: string;
-};
-
-export function YouTubeHeroMedia({ title, videoId }: YouTubeHeroMediaProps) {
-  const { allowed } = useYouTubeConsent();
-  const reduceMotion = useReducedMotion();
-
-  return (
-    <>
-      <Image
-        src="/images/venue/venue-1.jpg"
-        alt=""
-        fill
-        priority
-        sizes="100vw"
-        className="object-cover"
-      />
-      {allowed && !reduceMotion ? (
-        <iframe
-          className="pointer-events-none absolute left-1/2 top-1/2 h-[56.25vw] min-h-full w-[177.78vh] min-w-full -translate-x-1/2 -translate-y-1/2 border-0"
-          src={`https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&mute=1&loop=1&playlist=${videoId}&start=5&controls=0&rel=0&playsinline=1&iv_load_policy=3&cc_load_policy=0`}
-          title={title}
-          allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-          referrerPolicy="strict-origin-when-cross-origin"
-          tabIndex={-1}
-        />
-      ) : null}
-    </>
-  );
-}
-
-export function YouTubeHeroConsentControl() {
-  const { allowed, allow } = useYouTubeConsent();
-  const reduceMotion = useReducedMotion();
-
-  if (allowed) return null;
-
-  return (
-    <div className="absolute bottom-5 right-4 z-10 flex max-w-[calc(100%-2rem)] flex-col items-end gap-1.5 sm:bottom-7 sm:right-6">
-      <button
-        type="button"
-        onClick={allow}
-        className="inline-flex items-center gap-2 rounded-full bg-black/45 px-4 py-2.5 text-xs font-semibold text-white shadow-lg ring-1 ring-white/25 backdrop-blur-md transition-colors hover:bg-black/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0bbbef] sm:text-sm"
-      >
-        <Play className="size-3.5 fill-current" aria-hidden="true" />
-        {reduceMotion ? 'Enable YouTube videos' : 'Load background video'}
-      </button>
-      <Link
-        href="/privacy-policy/#youtube"
-        className="rounded bg-black/35 px-2 py-1 text-[10px] text-white/80 backdrop-blur-sm hover:text-white"
-      >
-        YouTube privacy information
-      </Link>
-    </div>
-  );
-}
-
 type YouTubeEmbedProps = {
   className?: string;
   thumbnail: string;
@@ -142,7 +83,7 @@ export function YouTubeEmbed({ className, thumbnail, title, videoId }: YouTubeEm
       <iframe
         key={videoId}
         title={title}
-        src={`https://www.youtube-nocookie.com/embed/${videoId}?rel=0&color=white`}
+        src={buildYouTubeEmbedUrl(videoId)}
         allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
         allowFullScreen
         loading="lazy"
