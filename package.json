@@ -22,7 +22,9 @@
     "lint:js": "eslint .",
     "lint:js:fix": "eslint --fix .",
     "lint:md": "markdownlint --ignore-path .gitignore .",
-    "lint:md:fix": "markdownlint --fix --ignore-path .gitignore ."
+    "lint:md:fix": "markdownlint --fix --ignore-path .gitignore .",
+    "dev:web": "npm run dev --prefix web",
+    "build:web": "npm run build --prefix web"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",

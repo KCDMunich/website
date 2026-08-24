@@ -60,7 +60,7 @@ typings/
 
 # gatsby files
 .cache/
-public
+/public/
 
 # Mac files
 .DS_Store
@@ -76,6 +76,9 @@ yarn-error.log
 
 .vscode/snipsnap.code-snippets
 .codex/
+
+# Playwright MCP debug output
+.playwright-mcp/
 
 # Old ESLint config backup
 .eslintrc.js.bak
