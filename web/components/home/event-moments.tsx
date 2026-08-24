@@ -20,6 +20,7 @@ export async function EventMoments({ tone = 'default' }: EventMomentsProps) {
       <div className="mx-auto max-w-3xl text-center">
         <h2 className="font-heading text-3xl font-bold leading-[1.08] tracking-tight text-primary sm:text-4xl lg:text-5xl">
           More than just talks,
+          {' '}
           <br />
           <span className="text-[#0bbbef]">it&apos;s the community</span>
         </h2>

@@ -144,10 +144,11 @@ function ImageSlider({ images }: { images: string[] }) {
 
 type VenueProps = {
   archive?: boolean;
+  showHotels?: boolean;
   tone?: SectionTone;
 };
 
-export function Venue({ archive = false, tone = 'default' }: VenueProps) {
+export function Venue({ archive = false, showHotels = false, tone = 'default' }: VenueProps) {
   const venue = archive ? EVENT_CONFIG.archive : EVENT_CONFIG.upcoming;
 
   return (
@@ -155,7 +156,8 @@ export function Venue({ archive = false, tone = 'default' }: VenueProps) {
       <div className="mx-auto max-w-3xl text-center">
         <MotionReveal>
           <h2 className="font-heading text-3xl font-bold leading-[1.08] tracking-tight text-primary sm:text-4xl lg:text-5xl">
-            {archive ? 'Where it all' : 'Meet us at,'}
+            {archive ? 'Where it all' : 'Meet us at'}
+            {' '}
             <br />
             <span className="text-[#0bbbef]">
               {archive ? 'came together' : venue.venue}
@@ -164,7 +166,7 @@ export function Venue({ archive = false, tone = 'default' }: VenueProps) {
           <p className="mt-5 text-lg leading-relaxed text-muted-foreground">
             {archive
               ? `${EVENT_CONFIG.archive.venue} gave CNS Munich ${EVENT_CONFIG.archive.edition} room for talks, workshops, and the conversations in between.`
-              : 'Two focused conference days at Munich Arabellapark — easy to reach and built for community, talks, and hallway conversations.'}
+              : `${EVENT_CONFIG.upcoming.dateLabel} at Munich Arabellapark — easy to reach and built for community, talks, and hallway conversations.`}
           </p>
         </MotionReveal>
       </div>
@@ -199,7 +201,7 @@ export function Venue({ archive = false, tone = 'default' }: VenueProps) {
                 Open in Google Maps
                 <ArrowRight className="size-4" />
               </Button>
-              {!archive ? (
+              {!archive && showHotels ? (
                 <Button
                   nativeButton={false}
                   render={<a href="#hotels" />}

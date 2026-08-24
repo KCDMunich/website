@@ -44,8 +44,9 @@ Quick overview:
 | `FIENTA_*` | Server-side ticket API (see `.env.example`) |
 
 Edition dates, venues, ticket URLs, and gallery links live in `lib/event-config.ts` — not in env vars.
-Schedule and speaker routes may stay reachable before publication, but are hidden from navigation and
-the sitemap and receive `noIndex` metadata until the program is published.
+In the teaser stage, schedule and speaker routes present the completed edition as a clearly labeled,
+indexable archive. CFP and early ticket stages switch speakers to the upcoming preview while keeping
+the upcoming schedule hidden and `noIndex` until the new program is published.
 
 ### Annual edition rotation
 

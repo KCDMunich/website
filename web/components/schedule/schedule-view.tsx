@@ -100,12 +100,6 @@ export const ScheduleView = ({ presentation, variant = 'default' }: ScheduleView
     router.prefetch(getSessionPath(event, { app: isApp }));
   };
 
-  const openSession = (event: ScheduleEvent) => {
-    const href = getSessionPath(event, { app: isApp });
-    router.prefetch(href);
-    router.push(href, { scroll: false });
-  };
-
   const isLive = (start: string, end: string) => {
     const startTime = new Date(start);
     const endTime = new Date(end);
@@ -282,7 +276,7 @@ export const ScheduleView = ({ presentation, variant = 'default' }: ScheduleView
                   Day
                 </span>
                 <div className="flex min-w-0 flex-1 flex-wrap items-center gap-3">
-                  <ScheduleSegmentGroup>
+                  <ScheduleSegmentGroup label="Day">
                     <SchedulePill
                       variant="segment"
                       active={selectedDay === 'monday'}
@@ -322,7 +316,11 @@ export const ScheduleView = ({ presentation, variant = 'default' }: ScheduleView
                 <span className="hidden w-14 shrink-0 text-xs font-semibold uppercase tracking-wide text-muted-foreground sm:inline">
                   Track
                 </span>
-                <div className="flex min-w-0 flex-1 gap-2 overflow-x-auto py-1 scrollbar-hidden">
+                <div
+                  className="flex min-w-0 flex-1 gap-2 overflow-x-auto py-1 scrollbar-hidden"
+                  role="group"
+                  aria-label="Track"
+                >
                   <SchedulePill
                     variant="chip"
                     active={selectedType === 'all'}
@@ -367,15 +365,7 @@ export const ScheduleView = ({ presentation, variant = 'default' }: ScheduleView
                           className={`schedule-app-card ${
                             isLiveEvent ? 'schedule-app-card--live' : ''
                           }`}
-                          onClick={() => openSession(event)}
                           onMouseEnter={() => prefetchSession(event)}
-                          role="button"
-                          tabIndex={0}
-                          onKeyDown={(e) => {
-                            if (e.key === 'Enter' || e.key === ' ') {
-                              openSession(event);
-                            }
-                          }}
                         >
                           <div className="schedule-app-card-header">
                             <span className={`schedule-app-type schedule-app-type-${event.type}`}>
@@ -393,64 +383,61 @@ export const ScheduleView = ({ presentation, variant = 'default' }: ScheduleView
                                 isFavorite ? 'schedule-app-favorite--active' : ''
                               }`}
                               aria-label={isFavorite ? 'Remove from favorites' : 'Add to favorites'}
-                              onClick={(e) => {
-                                e.stopPropagation();
-                                toggleFavorite(event.id);
-                              }}
+                              aria-pressed={isFavorite}
+                              onClick={() => toggleFavorite(event.id)}
                             >
                               <ScheduleFavoriteIcon active={isFavorite} className="size-4" />
                             </button>
                           </div>
-                          <h3 className="schedule-app-title">{event.title}</h3>
-                          <div className="schedule-app-meta">
-                            <span>{getEventLocationLabel(event)}</span>
-                            <span>
-                              {event.time} – {event.endTime}
-                            </span>
-                          </div>
-                          <div className="schedule-app-speakers">
-                            {event.speakers?.slice(0, 3).map((speaker) => {
-                              const profileImage = speakerProfile(speaker.id);
+                          <Link
+                            href={getSessionPath(event, { app: true })}
+                            className="schedule-app-card-link"
+                          >
+                            <h3 className="schedule-app-title">{event.title}</h3>
+                            <div className="schedule-app-meta">
+                              <span>{getEventLocationLabel(event)}</span>
+                              <span>
+                                {event.time} – {event.endTime}
+                              </span>
+                            </div>
+                            <div className="schedule-app-speakers">
+                              {event.speakers?.slice(0, 3).map((speaker) => {
+                                const profileImage = speakerProfile(speaker.id);
 
-                              return (
-                                <div key={speaker.id} className="schedule-app-speaker">
-                                  {profileImage ? (
-                                    <Image
-                                      src={profileImage}
-                                      alt={speaker.name}
-                                      width={32}
-                                      height={32}
-                                      unoptimized
-                                    />
-                                  ) : null}
-                                  <span>{speaker.name}</span>
-                                </div>
-                              );
-                            })}
-                          </div>
+                                return (
+                                  <div key={speaker.id} className="schedule-app-speaker">
+                                    {profileImage ? (
+                                      <Image
+                                        src={profileImage}
+                                        alt=""
+                                        width={32}
+                                        height={32}
+                                        unoptimized
+                                      />
+                                    ) : null}
+                                    <span>{speaker.name}</span>
+                                  </div>
+                                );
+                              })}
+                            </div>
+                          </Link>
                           <div className="schedule-app-actions">
                             {event.recordingUrl && (
-                              <button
-                                type="button"
+                              <a
+                                href={event.recordingUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
                                 className="schedule-app-action"
-                                onClick={(e) => {
-                                  e.stopPropagation();
-                                  window.open(event.recordingUrl!, '_blank', 'noopener,noreferrer');
-                                }}
                               >
                                 Watch recording
-                              </button>
+                              </a>
                             )}
-                            <button
-                              type="button"
+                            <Link
+                              href={getSessionPath(event, { app: true })}
                               className="schedule-app-action schedule-app-action--ghost"
-                              onClick={(e) => {
-                                e.stopPropagation();
-                                openSession(event);
-                              }}
                             >
                               Details
-                            </button>
+                            </Link>
                           </div>
                         </div>
                       </div>
@@ -479,8 +466,8 @@ export const ScheduleView = ({ presentation, variant = 'default' }: ScheduleView
                           isLive={isLiveEvent}
                           isPast={new Date(event.end) < new Date()}
                           recordingUrl={event.recordingUrl}
+                          href={getSessionPath(event)}
                           onFavoriteClick={() => toggleFavorite(event.id)}
-                          onClick={() => openSession(event)}
                           onMouseEnter={() => prefetchSession(event)}
                         />
                       );
@@ -550,8 +537,8 @@ export const ScheduleView = ({ presentation, variant = 'default' }: ScheduleView
                               isLive={isLiveEvent}
                               isPast={new Date(event.end) < new Date()}
                               isService={event.isServiceSession}
+                              href={getSessionPath(event)}
                               onFavoriteClick={() => toggleFavorite(event.id)}
-                              onClick={() => openSession(event)}
                               onMouseEnter={() => prefetchSession(event)}
                             />
                           );
@@ -626,6 +613,7 @@ export const ScheduleView = ({ presentation, variant = 'default' }: ScheduleView
               <button
                 type="button"
                 className={`schedule-app-bottom-btn ${selectedDay === 'monday' ? 'is-active' : ''}`}
+                aria-pressed={selectedDay === 'monday'}
                 onClick={() => setSelectedDay('monday')}
               >
                 Mon
@@ -635,6 +623,7 @@ export const ScheduleView = ({ presentation, variant = 'default' }: ScheduleView
                 className={`schedule-app-bottom-btn ${
                   selectedDay === 'tuesday' ? 'is-active' : ''
                 }`}
+                aria-pressed={selectedDay === 'tuesday'}
                 onClick={() => setSelectedDay('tuesday')}
               >
                 Tue
@@ -644,6 +633,7 @@ export const ScheduleView = ({ presentation, variant = 'default' }: ScheduleView
                 className={`schedule-app-bottom-btn ${
                   selectedType === 'favorites' ? 'is-active' : ''
                 }`}
+                aria-pressed={selectedType === 'favorites'}
                 onClick={() => setSelectedType(selectedType === 'favorites' ? 'all' : 'favorites')}
               >
                 <ScheduleFavoriteIcon

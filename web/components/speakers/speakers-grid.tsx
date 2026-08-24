@@ -1,7 +1,6 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import { MotionReveal } from '@/components/layout/motion-reveal';
 import { Section } from '@/components/layout/section';
@@ -15,31 +14,20 @@ import { cn } from '@/lib/utils';
 
 const SPEAKERS_PER_PAGE = 30;
 
-function shuffleSpeakers(array: Speaker[]) {
-  const shuffled = [...array];
-  for (let i = shuffled.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
-  }
-  return shuffled;
-}
-
 export function SpeakersGrid({ presentation }: { presentation: SitePresentation['program'] }) {
   const { announcedSpeakerIds, mode } = presentation;
-  const router = useRouter();
+  const gridStartRef = useRef<HTMLDivElement>(null);
   const [speakerData, setSpeakerData] = useState<Speaker[]>([]);
-  const [isLoading, setIsLoading] = useState(mode !== 'hidden');
+  const [isLoading, setIsLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
-    if (mode === 'hidden') return;
-
     loadSpeakersData()
       .then((data) => {
         const visibleSpeakers =
           mode === 'preview'
             ? getAnnouncedSpeakers(data, announcedSpeakerIds)
-            : shuffleSpeakers(data);
+            : [...data].sort((a, b) => a.fullName.localeCompare(b.fullName));
         setSpeakerData(visibleSpeakers);
         primeSpeakersData(visibleSpeakers);
       })
@@ -47,30 +35,20 @@ export function SpeakersGrid({ presentation }: { presentation: SitePresentation[
       .finally(() => setIsLoading(false));
   }, [announcedSpeakerIds, mode]);
 
-  if (mode === 'hidden') {
-    return (
-      <Section className="bg-background">
-        <p className="mx-auto max-w-2xl text-center text-lg text-muted-foreground">
-          Speaker announcements are not public yet. Please check back soon.
-        </p>
-      </Section>
-    );
-  }
-
-  const openSpeaker = (speaker: Speaker) => {
-    const href = getSpeakerPath(speaker);
-    router.prefetch(href);
-    router.push(href);
-  };
-
-  const prefetchSpeaker = (speaker: Speaker) => {
-    router.prefetch(getSpeakerPath(speaker));
-  };
-
   const indexOfLastSpeaker = currentPage * SPEAKERS_PER_PAGE;
   const indexOfFirstSpeaker = indexOfLastSpeaker - SPEAKERS_PER_PAGE;
   const currentSpeakers = speakerData.slice(indexOfFirstSpeaker, indexOfLastSpeaker);
   const totalPages = Math.ceil(speakerData.length / SPEAKERS_PER_PAGE);
+
+  const selectPage = (page: number) => {
+    setCurrentPage(page);
+    window.requestAnimationFrame(() => {
+      gridStartRef.current?.scrollIntoView({
+        behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth',
+        block: 'start',
+      });
+    });
+  };
 
   return (
     <Section className="bg-background">
@@ -92,18 +70,24 @@ export function SpeakersGrid({ presentation }: { presentation: SitePresentation[
         </div>
       ) : (
         <>
-          <div className="mt-12 grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 md:grid-cols-4 lg:grid-cols-5">
+          <div
+            ref={gridStartRef}
+            className="mt-10 scroll-mt-28 grid grid-cols-2 gap-3 sm:mt-12 sm:grid-cols-3 sm:gap-4 md:grid-cols-4 lg:grid-cols-5"
+          >
             {currentSpeakers.map((speaker, index) => (
               <MotionReveal key={speaker.id} delay={index * 0.02}>
                 <LineupSpeakerCard
                   speaker={speaker}
                   variant="wall"
-                  onClick={() => openSpeaker(speaker)}
-                  onMouseEnter={() => prefetchSpeaker(speaker)}
+                  href={getSpeakerPath(speaker)}
                 />
               </MotionReveal>
             ))}
           </div>
+
+          <p className="sr-only" aria-live="polite">
+            Speaker page {currentPage} of {totalPages}
+          </p>
 
           {speakerData.length > SPEAKERS_PER_PAGE ? (
             <MotionReveal delay={0.1}>
@@ -113,7 +97,9 @@ export function SpeakersGrid({ presentation }: { presentation: SitePresentation[
                     key={i}
                     variant={currentPage === i + 1 ? 'default' : 'outline'}
                     size="sm"
-                    onClick={() => setCurrentPage(i + 1)}
+                    onClick={() => selectPage(i + 1)}
+                    aria-label={`Show speaker page ${i + 1}`}
+                    aria-current={currentPage === i + 1 ? 'page' : undefined}
                     className={cn(
                       currentPage === i + 1
                         ? 'bg-primary text-primary-foreground hover:bg-primary/90'

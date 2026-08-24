@@ -285,6 +285,19 @@
   cursor: pointer;
 }
 
+.schedule-app-card:focus-within {
+  border-color: rgba(11, 187, 239, 0.55);
+  box-shadow: 0 0 0 2px rgba(11, 187, 239, 0.2);
+}
+
+.schedule-app-card-link {
+  display: grid;
+  gap: 0.6rem;
+  color: inherit;
+  text-decoration: none;
+  outline: none;
+}
+
 .schedule-app-card--live {
   border-color: rgba(22, 163, 74, 0.35);
   box-shadow: none;

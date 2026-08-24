@@ -2,10 +2,11 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { useEffect, useMemo, useState, useSyncExternalStore } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { ArrowRight, Play } from 'lucide-react';
 
 import { MotionReveal } from '@/components/layout/motion-reveal';
+import { YouTubeEmbed } from '@/components/privacy/youtube-consent';
 import { Section } from '@/components/layout/section';
 import { Button } from '@/components/ui/button';
 import { EVENT_CONFIG } from '@/lib/event-config';
@@ -15,30 +16,71 @@ import { cn } from '@/lib/utils';
 
 const PLAYLIST_URL = EVENT_CONFIG.archive.playlistUrl;
 const PREVIEW_COUNT = 5;
-const subscribeToOrigin = () => () => {};
-
-const FALLBACK_VIDEO_IDS = [
-  'X9OH76DK6H8',
-  'VcY_0b0lchk',
-  'byehnUkET6I',
-  'j1kyiO27r0s',
-  'I3XqMW0jOB0',
-];
-
 interface PlaylistVideo {
   id: string;
   title: string;
   thumbnail: string;
 }
 
-const FALLBACK_VIDEOS: PlaylistVideo[] = FALLBACK_VIDEO_IDS.map((id, index) => ({
+const FALLBACK_VIDEOS: PlaylistVideo[] = [
+  ['X9OH76DK6H8', '3+1 ways to do MlOps with Kubernetes - Kateryna Hrytsaienko'],
+  [
+    'VcY_0b0lchk',
+    "In Short: Distributed by DNA: Why Europe's Cloud Market Will and Probably Should Be Decentralized",
+  ],
+  ['byehnUkET6I', 'Designing Organizations to Prevent Incidents - Adelina Stanciu'],
+  [
+    'j1kyiO27r0s',
+    'Don’t Debug, Reset: Managing Kubernetes the Declarative Way with Talos Linux - Daniel Bodky',
+  ],
+  [
+    'I3XqMW0jOB0',
+    'How We Run 8,000+ GPUs on Kubernetes with Slurm - Fagani Hajizada & Giulio Calzolari',
+  ],
+  [
+    'eWBGPnGhKLY',
+    'The Limits of Vibe Coding: AI, Hype, and the Future of Real Software Engineering - Christian Gläser',
+  ],
+  [
+    'JrAOHnJ6fn0',
+    'Build Your Own Cloud Native DBaaS: Leveraging GitOps and CNPG - Shiva Deep Gundoju',
+  ],
+  [
+    'fNMNj96JItQ',
+    'Your Backstage, Your Problems, Your Metrics - Thomas Schuetz & Katharina Sick',
+  ],
+  ['sRbaMwAb3ps', "The AI-Empowered Team: A PM's Guide to What Actually Works - Dominik Schmidle"],
+  ['Ko2IIWk5RPE', 'The Evolution of GitOps in Platform Engineering - Koray Oksay & Artem Lajko'],
+  ['T5gfXqeZufA', 'Keynote: The Evolution to Platform Engineering 2.0 - Bjoern Brundert'],
+  ['Zqrc1zrg9uQ', 'eBPF on Wheels - Container Security for Automotive Use Cases - Reinhard Kugler'],
+  [
+    'r4tro8X_wy0',
+    'Sovereignty through Mastery: Building a Multi-Cloud IDP for Digital Autonomy - Andreas Grub',
+  ],
+  ['0RmPD7stN4M', "Don't Just Flip the Switch: Measure What Happens Next - Lukas Reining & André Silva"],
+  [
+    'Ns4KF88U-sM',
+    'Inside Neoclouds & AI Factories: Architecting Kubernetes for GPUs & Extreme Scale - Lukas Gentele',
+  ],
+].map(([id, title]) => ({
   id,
-  title: `Cloud Native Summit Munich – Session ${index + 1}`,
-  thumbnail: `https://img.youtube.com/vi/${id}/hqdefault.jpg`,
+  title,
+  thumbnail: `https://i.ytimg.com/vi/${id}/hqdefault.jpg`,
 }));
 
-function getThumbnailUrl(videoId: string, thumbnail?: string) {
-  return thumbnail || `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
+function getThumbnailUrl(videoId: string) {
+  return `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`;
+}
+
+function shuffleVideos(videos: PlaylistVideo[]) {
+  const shuffled = [...videos];
+
+  for (let index = shuffled.length - 1; index > 0; index -= 1) {
+    const randomIndex = Math.floor(Math.random() * (index + 1));
+    [shuffled[index], shuffled[randomIndex]] = [shuffled[randomIndex], shuffled[index]];
+  }
+
+  return shuffled;
 }
 
 type ScheduleTeaserProps = {
@@ -49,11 +91,6 @@ type ScheduleTeaserProps = {
 export function ScheduleTeaser({ presentation, tone = 'default' }: ScheduleTeaserProps) {
   const [videos, setVideos] = useState<PlaylistVideo[]>(FALLBACK_VIDEOS);
   const [activeVideoId, setActiveVideoId] = useState(FALLBACK_VIDEOS[0].id);
-  const embedOrigin = useSyncExternalStore(
-    subscribeToOrigin,
-    () => window.location.origin,
-    () => null
-  );
 
   const activeVideo = useMemo(
     () => videos.find((video) => video.id === activeVideoId) ?? videos[0],
@@ -64,10 +101,21 @@ export function ScheduleTeaser({ presentation, tone = 'default' }: ScheduleTease
   useEffect(() => {
     let cancelled = false;
 
+    const showRandomizedVideos = (nextVideos: PlaylistVideo[]) => {
+      if (cancelled || nextVideos.length === 0) return;
+
+      const randomizedVideos = shuffleVideos(nextVideos);
+      setVideos(randomizedVideos);
+      setActiveVideoId(randomizedVideos[0].id);
+    };
+
     const fetchPlaylist = async () => {
       try {
-        const response = await fetch('/api/youtube-playlist/');
-        if (!response.ok) return;
+        const response = await fetch('/api/youtube-playlist');
+        if (!response.ok) {
+          showRandomizedVideos(FALLBACK_VIDEOS);
+          return;
+        }
 
         const xml = await response.text();
         const parser = new DOMParser();
@@ -79,25 +127,19 @@ export function ScheduleTeaser({ presentation, tone = 'default' }: ScheduleTease
         for (const entry of entries) {
           const id = entry.getElementsByTagName('yt:videoId')[0]?.textContent;
           const title = entry.getElementsByTagName('title')[0]?.textContent;
-          const thumbnail = entry.getElementsByTagName('media:thumbnail')[0]?.getAttribute('url');
 
           if (!id) continue;
 
           extractedVideos.push({
             id,
             title: title || 'CNS Munich Session',
-            thumbnail: getThumbnailUrl(id, thumbnail ?? undefined),
+            thumbnail: getThumbnailUrl(id),
           });
         }
 
-        if (!cancelled && extractedVideos.length > 0) {
-          setVideos(extractedVideos);
-          const visibleVideos = extractedVideos.slice(0, PREVIEW_COUNT);
-          const randomVideo = visibleVideos[Math.floor(Math.random() * visibleVideos.length)];
-          setActiveVideoId(randomVideo.id);
-        }
+        showRandomizedVideos(extractedVideos.length > 0 ? extractedVideos : FALLBACK_VIDEOS);
       } catch {
-        // Silent fallback to predefined videos
+        showRandomizedVideos(FALLBACK_VIDEOS);
       }
     };
 
@@ -143,6 +185,7 @@ export function ScheduleTeaser({ presentation, tone = 'default' }: ScheduleTease
         <MotionReveal>
           <h2 className="font-heading text-3xl font-bold leading-[1.08] tracking-tight text-primary sm:text-4xl lg:text-5xl">
             {presentation.isArchive ? 'The sessions live on,' : 'Replay past sessions,'}
+            {' '}
             <br />
             <span className="text-[#0bbbef]">
               {presentation.isArchive ? 'wherever you are' : 'on your schedule'}
@@ -159,20 +202,15 @@ export function ScheduleTeaser({ presentation, tone = 'default' }: ScheduleTease
       <MotionReveal delay={0.08}>
         <div className="mx-auto mt-12 max-w-4xl">
           <div className="overflow-hidden rounded-2xl ring-1 ring-primary/10 shadow-md">
-            {activeVideo && embedOrigin ? (
-              <iframe
-                key={activeVideo.id}
+            {activeVideo ? (
+              <YouTubeEmbed
+                videoId={activeVideo.id}
                 title={activeVideo.title}
-                src={`https://www.youtube.com/embed/${activeVideo.id}?feature=oembed&rel=0&enablejsapi=1&origin=${encodeURIComponent(embedOrigin)}`}
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowFullScreen
-                loading="lazy"
-                referrerPolicy="strict-origin-when-cross-origin"
-                className="aspect-video w-full"
+                thumbnail={activeVideo.thumbnail}
               />
             ) : (
               <div className="flex aspect-video w-full items-center justify-center bg-primary/5 text-sm text-muted-foreground">
-                Loading video...
+                No video available
               </div>
             )}
           </div>
