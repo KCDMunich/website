@@ -246,7 +246,7 @@ export function ScheduleSessionDetail({
               </Button>
               <Button
                 variant="outline"
-                className="border-white/20 bg-white/10 text-white hover:bg-white/15"
+                className="hidden border-white/20 bg-white/10 text-white hover:bg-white/15 sm:inline-flex"
                 onClick={handleCopy}
               >
                 <Copy className="size-4" />
@@ -261,58 +261,75 @@ export function ScheduleSessionDetail({
       </section>
 
       <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
-        <div className="grid gap-10 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] lg:items-start lg:gap-14">
-          <div className="space-y-8">
-            {sessionSpeakers.length > 0 ? (
-              sessionSpeakers.map((speaker) => (
-                <SessionSpeakerProfile key={speaker.id} speaker={speaker} />
-              ))
-            ) : (
-              <section className="rounded-3xl border border-border/70 bg-card p-8 text-sm text-muted-foreground">
-                Speaker profiles will appear here once available.
-              </section>
-            )}
-          </div>
-
-          <section className="overflow-hidden rounded-3xl border border-border/70 bg-card px-6 py-8 sm:px-8 lg:sticky lg:top-24">
+        {event.isServiceSession ? (
+          <section className="mx-auto max-w-2xl overflow-hidden rounded-3xl border border-border/70 bg-card px-6 py-8 sm:px-8">
             <p className="mb-5 text-xs font-bold uppercase tracking-[0.18em] text-[#0bbbef]">
-              The talk
+              Schedule information
             </p>
             {event.description ? (
               <div className="whitespace-pre-line text-base leading-7 text-foreground">
                 {event.description}
               </div>
             ) : (
-              <p className="text-muted-foreground">
-                Session details will be published soon.
+              <p className="text-base leading-7 text-muted-foreground">
+                This program item does not require any additional session details.
               </p>
             )}
-
-            {event.recordingUrl && event.recordingThumbnail ? (
-              <a
-                href={event.recordingUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group relative mt-8 block overflow-hidden rounded-2xl ring-1 ring-border/70"
-              >
-                <div className="relative aspect-video w-full bg-muted">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={event.recordingThumbnail}
-                    alt={`Watch recording of ${event.title}`}
-                    className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"
-                  />
-                  <div className="absolute inset-0 flex items-center justify-center bg-primary/35 transition-colors group-hover:bg-primary/45">
-                    <span className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-semibold text-primary">
-                      <Play className="size-4 fill-current" />
-                      Watch recording
-                    </span>
-                  </div>
-                </div>
-              </a>
-            ) : null}
           </section>
-        </div>
+        ) : (
+          <div className="grid gap-10 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] lg:items-start lg:gap-14">
+            <div className="space-y-8">
+              {sessionSpeakers.length > 0 ? (
+                sessionSpeakers.map((speaker) => (
+                  <SessionSpeakerProfile key={speaker.id} speaker={speaker} />
+                ))
+              ) : (
+                <section className="rounded-3xl border border-border/70 bg-card p-8 text-sm text-muted-foreground">
+                  Speaker profiles will appear here once available.
+                </section>
+              )}
+            </div>
+
+            <section className="overflow-hidden rounded-3xl border border-border/70 bg-card px-6 py-8 sm:px-8 lg:sticky lg:top-24">
+              <p className="mb-5 text-xs font-bold uppercase tracking-[0.18em] text-[#0bbbef]">
+                The talk
+              </p>
+              {event.description ? (
+                <div className="whitespace-pre-line text-base leading-7 text-foreground">
+                  {event.description}
+                </div>
+              ) : (
+                <p className="text-muted-foreground">
+                  Session details will be published soon.
+                </p>
+              )}
+
+              {event.recordingUrl && event.recordingThumbnail ? (
+                <a
+                  href={event.recordingUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group relative mt-8 block overflow-hidden rounded-2xl ring-1 ring-border/70"
+                >
+                  <div className="relative aspect-video w-full bg-muted">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={event.recordingThumbnail}
+                      alt={`Watch recording of ${event.title}`}
+                      className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"
+                    />
+                    <div className="absolute inset-0 flex items-center justify-center bg-primary/35 transition-colors group-hover:bg-primary/45">
+                      <span className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-semibold text-primary">
+                        <Play className="size-4 fill-current" />
+                        Watch recording
+                      </span>
+                    </div>
+                  </div>
+                </a>
+              ) : null}
+            </section>
+          </div>
+        )}
       </div>
     </div>
   );

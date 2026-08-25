@@ -3,7 +3,8 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { useEffect, useMemo, useState, type CSSProperties } from 'react';
+import { CalendarDays, ChevronRight, MapPin } from 'lucide-react';
+import { useEffect, useMemo, useRef, useState, type CSSProperties } from 'react';
 
 import { ScheduleCard } from '@/components/schedule/schedule-card';
 import { ScheduleFavoriteIcon } from '@/components/schedule/schedule-favorite-icon';
@@ -32,15 +33,19 @@ import './schedule.css';
 import './schedule-app.css';
 
 type ScheduleViewProps = {
+  isEventLive?: boolean;
   presentation: SitePresentation['program'];
   variant?: 'default' | 'app';
 };
 
-export const ScheduleView = ({ presentation, variant = 'default' }: ScheduleViewProps) => {
+export const ScheduleView = ({
+  isEventLive = false,
+  presentation,
+  variant = 'default',
+}: ScheduleViewProps) => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const isApp = variant === 'app';
-  const archive = presentation.isArchive;
   const [speakerData, setSpeakerData] = useState<SessionizeSpeaker[]>([]);
   const [gridData, setGridData] = useState<SessionizeGridDay[]>([]);
   const [events, setEvents] = useState<ScheduleEvent[]>([]);
@@ -50,6 +55,9 @@ export const ScheduleView = ({ presentation, variant = 'default' }: ScheduleView
   const [currentTime, setCurrentTime] = useState(() => new Date());
   const [isRoomSheetOpen, setIsRoomSheetOpen] = useState(false);
   const [showLiveOnly, setShowLiveOnly] = useState(false);
+  const roomSheetCloseRef = useRef<HTMLButtonElement>(null);
+  const roomSheetPanelRef = useRef<HTMLDivElement>(null);
+  const roomSheetTriggerRef = useRef<HTMLButtonElement>(null);
   const [favorites, setFavorites] = useState<string[]>(() => {
     if (typeof window === 'undefined') return [];
     try {
@@ -176,6 +184,48 @@ export const ScheduleView = ({ presentation, variant = 'default' }: ScheduleView
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
+  useEffect(() => {
+    if (!isRoomSheetOpen) return undefined;
+
+    const previousOverflow = document.body.style.overflow;
+    const roomSheetPanel = roomSheetPanelRef.current;
+    const roomSheetTrigger = roomSheetTriggerRef.current;
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setIsRoomSheetOpen(false);
+        return;
+      }
+
+      if (event.key !== 'Tab' || !roomSheetPanel) return;
+
+      const focusableElements = Array.from(
+        roomSheetPanel.querySelectorAll<HTMLElement>('button:not([disabled]), [href]'),
+      );
+      const firstFocusable = focusableElements[0];
+      const lastFocusable = focusableElements.at(-1);
+
+      if (!firstFocusable || !lastFocusable) return;
+
+      if (event.shiftKey && document.activeElement === firstFocusable) {
+        event.preventDefault();
+        lastFocusable.focus();
+      } else if (!event.shiftKey && document.activeElement === lastFocusable) {
+        event.preventDefault();
+        firstFocusable.focus();
+      }
+    };
+
+    document.body.style.overflow = 'hidden';
+    document.addEventListener('keydown', handleKeyDown);
+    roomSheetCloseRef.current?.focus();
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      document.removeEventListener('keydown', handleKeyDown);
+      roomSheetTrigger?.focus();
+    };
+  }, [isRoomSheetOpen]);
+
   if (isLoading) {
     return (
       <div className="flex min-h-[50vh] items-center justify-center">
@@ -197,6 +247,9 @@ export const ScheduleView = ({ presentation, variant = 'default' }: ScheduleView
   }
 
   const upcomingEvents = filteredEvents;
+  const sortedUpcomingEvents = [...upcomingEvents].sort(
+    (a, b) => new Date(a.start).getTime() - new Date(b.start).getTime(),
+  );
   const eventsByRoomAndStart = groupEventsByRoomAndStart(upcomingEvents);
   const timeSlots = getTimeSlots(upcomingEvents);
   const displayDate = getReadableDate(selectedGridDay?.date);
@@ -207,6 +260,38 @@ export const ScheduleView = ({ presentation, variant = 'default' }: ScheduleView
     if (activeSelectedType === 'all') return 'All Sessions';
     return getRoomDisplayLabel(activeSelectedType);
   };
+
+  const emptyState = (() => {
+    if (activeSelectedType === 'favorites') {
+      return {
+        title: 'No favorites yet',
+        description: 'Tap the heart on a session to build your personal schedule.',
+        action: 'Browse all sessions',
+      };
+    }
+
+    if (showLiveOnly) {
+      return {
+        title: 'Nothing live right now',
+        description: 'Check the full schedule to see what starts next.',
+        action: 'View full schedule',
+      };
+    }
+
+    if (activeSelectedType !== 'all') {
+      return {
+        title: 'No sessions in this room',
+        description: 'Try another room or return to the complete schedule.',
+        action: 'View all rooms',
+      };
+    }
+
+    return {
+      title: 'No sessions scheduled',
+      description: 'The program for this day will appear here.',
+      action: null,
+    };
+  })();
 
   const formatTimeSlot = (iso: string) =>
     new Date(iso).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
@@ -236,31 +321,67 @@ export const ScheduleView = ({ presentation, variant = 'default' }: ScheduleView
                   {presentation.scheduleDescription}
                 </p>
               </div>
-              {!archive ? (
-                <Link
-                  href="/app/schedule"
-                  className="inline-flex w-fit items-center rounded-full bg-white/10 px-5 py-2.5 text-sm font-semibold text-white ring-1 ring-white/20 transition-colors hover:bg-white/15"
-                >
-                  Open mobile schedule
-                </Link>
-              ) : null}
+              <Link
+                href="/app/schedule"
+                className="inline-flex w-fit items-center rounded-full bg-white/10 px-5 py-2.5 text-sm font-semibold text-white ring-1 ring-white/20 transition-colors hover:bg-white/15"
+              >
+                Open mobile schedule
+              </Link>
             </div>
           </div>
         </section>
       )}
 
       {isApp && (
-        <section className="schedule-app-header">
-          <div className="schedule-app-header-inner">
-            <div className="schedule-app-header-top">
-              <div>
-                <span className="schedule-app-pill">{presentation.scheduleEyebrow}</span>
-                <h1>{getHeaderLabel()}</h1>
-                <p>{displayDate}</p>
+        <>
+          <section className="schedule-app-header">
+            <div className="schedule-app-header-inner">
+              <div className="schedule-app-heading">
+                <div className="schedule-app-title-row">
+                  <h1>{getHeaderLabel()}</h1>
+                  {isEventLive ? (
+                    <button
+                      type="button"
+                      className={`schedule-app-now ${showLiveOnly ? 'is-active' : ''}`}
+                      aria-pressed={showLiveOnly}
+                      onClick={() => {
+                        setSelectedType('all');
+                        setShowLiveOnly((current) => !current);
+                      }}
+                    >
+                      <span className="schedule-app-live-dot" aria-hidden="true"></span>
+                      Now
+                    </button>
+                  ) : null}
+                </div>
+                <div className="schedule-app-meta-row">
+                  <span className="schedule-app-pill">{presentation.scheduleEyebrow}</span>
+                  <p>{displayDate}</p>
+                </div>
               </div>
             </div>
+          </section>
+          <div className="schedule-app-day-nav">
+            <div className="schedule-app-day-nav__inner">
+              <ScheduleSegmentGroup label="Day">
+                <SchedulePill
+                  variant="segment"
+                  active={selectedDay === 'monday'}
+                  onClick={() => setSelectedDay('monday')}
+                >
+                  Monday
+                </SchedulePill>
+                <SchedulePill
+                  variant="segment"
+                  active={selectedDay === 'tuesday'}
+                  onClick={() => setSelectedDay('tuesday')}
+                >
+                  Tuesday
+                </SchedulePill>
+              </ScheduleSegmentGroup>
+            </div>
           </div>
-        </section>
+        </>
       )}
 
       <div
@@ -345,11 +466,9 @@ export const ScheduleView = ({ presentation, variant = 'default' }: ScheduleView
         )}
 
         {isApp || isMobile ? (
-          <div className="schedule-grid">
+          <div className="schedule-grid" aria-live={isApp ? 'polite' : undefined}>
             {isApp
-              ? upcomingEvents
-                  .sort((a, b) => new Date(a.start).getTime() - new Date(b.start).getTime())
-                  .map((event) => {
+              ? sortedUpcomingEvents.map((event) => {
                     const isFavorite = favorites.includes(String(event.id));
                     const isLiveEvent = isLive(event.start, event.end);
                     const speakerProfile = (speakerId: number | string) =>
@@ -392,37 +511,43 @@ export const ScheduleView = ({ presentation, variant = 'default' }: ScheduleView
                           <Link
                             href={getSessionPath(event, { app: true })}
                             className="schedule-app-card-link"
+                            aria-label={`${event.title}, ${event.time}, ${getEventLocationLabel(event)}`}
                           >
                             <h3 className="schedule-app-title">{event.title}</h3>
                             <div className="schedule-app-meta">
                               <span>{getEventLocationLabel(event)}</span>
-                              <span>
-                                {event.time} – {event.endTime}
-                              </span>
+                              <ChevronRight aria-hidden="true" />
                             </div>
-                            <div className="schedule-app-speakers">
-                              {event.speakers?.slice(0, 3).map((speaker) => {
-                                const profileImage = speakerProfile(speaker.id);
+                            {event.speakers?.length ? (
+                              <div className="schedule-app-speakers">
+                                {event.speakers.slice(0, 2).map((speaker) => {
+                                  const profileImage = speakerProfile(speaker.id);
 
-                                return (
-                                  <div key={speaker.id} className="schedule-app-speaker">
-                                    {profileImage ? (
-                                      <Image
-                                        src={profileImage}
-                                        alt=""
-                                        width={32}
-                                        height={32}
-                                        unoptimized
-                                      />
-                                    ) : null}
-                                    <span>{speaker.name}</span>
-                                  </div>
-                                );
-                              })}
-                            </div>
+                                  return (
+                                    <div key={speaker.id} className="schedule-app-speaker">
+                                      {profileImage ? (
+                                        <Image
+                                          src={profileImage}
+                                          alt=""
+                                          width={32}
+                                          height={32}
+                                          unoptimized
+                                        />
+                                      ) : null}
+                                      <span>{speaker.name}</span>
+                                    </div>
+                                  );
+                                })}
+                                {event.speakers.length > 2 ? (
+                                  <span className="schedule-app-speaker-more">
+                                    +{event.speakers.length - 2}
+                                  </span>
+                                ) : null}
+                              </div>
+                            ) : null}
                           </Link>
-                          <div className="schedule-app-actions">
-                            {event.recordingUrl && (
+                          {event.recordingUrl ? (
+                            <div className="schedule-app-actions">
                               <a
                                 href={event.recordingUrl}
                                 target="_blank"
@@ -431,22 +556,14 @@ export const ScheduleView = ({ presentation, variant = 'default' }: ScheduleView
                               >
                                 Watch recording
                               </a>
-                            )}
-                            <Link
-                              href={getSessionPath(event, { app: true })}
-                              className="schedule-app-action schedule-app-action--ghost"
-                            >
-                              Details
-                            </Link>
-                          </div>
+                            </div>
+                          ) : null}
                         </div>
                       </div>
                     );
                   })
               : isMobile
-                ? upcomingEvents
-                    .sort((a, b) => new Date(a.start).getTime() - new Date(b.start).getTime())
-                    .map((event) => {
+                ? sortedUpcomingEvents.map((event) => {
                       const isFavorite = favorites.includes(String(event.id));
                       const isLiveEvent = isLive(event.start, event.end);
 
@@ -471,8 +588,32 @@ export const ScheduleView = ({ presentation, variant = 'default' }: ScheduleView
                           onMouseEnter={() => prefetchSession(event)}
                         />
                       );
-                    })
+                  })
                 : null}
+            {isApp && sortedUpcomingEvents.length === 0 ? (
+              <section className="schedule-app-empty" role="status">
+                <div className="schedule-app-empty__icon" aria-hidden="true">
+                  {activeSelectedType === 'favorites' ? (
+                    <ScheduleFavoriteIcon className="size-6" />
+                  ) : (
+                    <CalendarDays className="size-6" />
+                  )}
+                </div>
+                <h2>{emptyState.title}</h2>
+                <p>{emptyState.description}</p>
+                {emptyState.action ? (
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setSelectedType('all');
+                      setShowLiveOnly(false);
+                    }}
+                  >
+                    {emptyState.action}
+                  </button>
+                ) : null}
+              </section>
+            ) : null}
           </div>
         ) : (
           <div
@@ -567,10 +708,16 @@ export const ScheduleView = ({ presentation, variant = 'default' }: ScheduleView
               onClick={() => setIsRoomSheetOpen(false)}
               aria-label="Close room filter"
             ></button>
-            <div className="schedule-app-room-sheet__panel">
+            <div
+              id="schedule-room-filter"
+              ref={roomSheetPanelRef}
+              className="schedule-app-room-sheet__panel"
+              aria-labelledby="schedule-room-filter-title"
+            >
               <div className="schedule-app-room-sheet__header">
-                <p>Filter</p>
+                <p id="schedule-room-filter-title">Rooms</p>
                 <button
+                  ref={roomSheetCloseRef}
                   type="button"
                   onClick={() => setIsRoomSheetOpen(false)}
                   aria-label="Close room filter"
@@ -578,23 +725,25 @@ export const ScheduleView = ({ presentation, variant = 'default' }: ScheduleView
                   Close
                 </button>
               </div>
-              <div className="schedule-app-room-sheet__list">
+              <div className="schedule-app-room-sheet__list" role="group" aria-label="Room">
                 <button
                   type="button"
-                  className={`schedule-app-room-sheet__live ${showLiveOnly ? 'is-active' : ''}`}
+                  className={selectedType === 'all' && !showLiveOnly ? 'is-active' : ''}
+                  aria-pressed={selectedType === 'all' && !showLiveOnly}
                   onClick={() => {
-                    setShowLiveOnly((prev) => !prev);
+                    setSelectedType('all');
+                    setShowLiveOnly(false);
                     setIsRoomSheetOpen(false);
                   }}
                 >
-                  <span className="schedule-app-live-dot" aria-hidden="true"></span>
-                  Live now
+                  All rooms
                 </button>
                 {rooms.map((room) => (
                   <button
                     key={room}
                     type="button"
                     className={selectedType === room ? 'is-active' : ''}
+                    aria-pressed={selectedType === room}
                     onClick={() => {
                       setSelectedType(room);
                       setShowLiveOnly(false);
@@ -612,21 +761,17 @@ export const ScheduleView = ({ presentation, variant = 'default' }: ScheduleView
             <div className="schedule-app-bottom-bar__inner">
               <button
                 type="button"
-                className={`schedule-app-bottom-btn ${selectedDay === 'monday' ? 'is-active' : ''}`}
-                aria-pressed={selectedDay === 'monday'}
-                onClick={() => setSelectedDay('monday')}
-              >
-                Mon
-              </button>
-              <button
-                type="button"
                 className={`schedule-app-bottom-btn ${
-                  selectedDay === 'tuesday' ? 'is-active' : ''
+                  selectedType === 'all' ? 'is-active' : ''
                 }`}
-                aria-pressed={selectedDay === 'tuesday'}
-                onClick={() => setSelectedDay('tuesday')}
+                aria-pressed={selectedType === 'all'}
+                onClick={() => {
+                  setSelectedType('all');
+                  setShowLiveOnly(false);
+                }}
               >
-                Tue
+                <CalendarDays aria-hidden="true" />
+                Schedule
               </button>
               <button
                 type="button"
@@ -639,16 +784,22 @@ export const ScheduleView = ({ presentation, variant = 'default' }: ScheduleView
                 <ScheduleFavoriteIcon
                   active={selectedType === 'favorites'}
                   tone={selectedType === 'favorites' ? 'inverse' : 'default'}
-                  className="size-4"
+                  className="size-5"
                 />
-                Favorites
+                My plan
               </button>
               <button
+                ref={roomSheetTriggerRef}
                 type="button"
-                className="schedule-app-bottom-btn schedule-app-bottom-btn--room"
+                className={`schedule-app-bottom-btn ${
+                  selectedType !== 'all' && selectedType !== 'favorites' ? 'is-active' : ''
+                }`}
+                aria-expanded={isRoomSheetOpen}
+                aria-controls="schedule-room-filter"
                 onClick={() => setIsRoomSheetOpen(true)}
               >
-                Change room
+                <MapPin aria-hidden="true" />
+                Rooms
               </button>
             </div>
           </div>
