@@ -20,6 +20,7 @@ export default function TeamPage() {
         title={
           <>
             Meet the people
+            {' '}
             <br />
             <span className="text-[#0bbbef]">behind the summit</span>
           </>

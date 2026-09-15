@@ -28,6 +28,7 @@ export function About({ recap = false, tone = 'default' }: AboutProps) {
           <MotionReveal>
             <h2 className="font-heading text-3xl font-bold leading-[1.08] tracking-tight text-primary sm:text-4xl lg:text-5xl">
               {recap ? 'Two days shaped' : 'Built by the community,'}
+              {' '}
               <br />
               <span className="text-[#0bbbef]">
                 {recap ? 'by the community' : 'for the community'}

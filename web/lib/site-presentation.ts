@@ -99,6 +99,22 @@ const earlyAnnouncementProgramCopy = (
   speakerDescription: 'Early speaker announcements — more names coming soon.',
 });
 
+const archiveProgramCopy = (
+  archive: EventConfig['archive'],
+  announcedSpeakerIds: readonly string[]
+) => ({
+  announcedSpeakerIds,
+  isArchive: true,
+  scheduleDescription: `Browse every talk and workshop from two community-driven days in ${archive.location}.`,
+  scheduleEyebrow: `${archive.edition} Archive`,
+  scheduleTitle: `Revisit the ${archive.edition} program`,
+  speakerDescription:
+    'Revisit the practitioners and experts who made two days of community learning possible.',
+  speakerEyebrow: `${archive.edition} Speaker Archive`,
+  speakerTitleAccent: `${archive.shortName} ${archive.edition}`,
+  speakerTitleLead: 'The voices of',
+});
+
 export function createSitePresentation(
   stage: EventStage,
   sponsorshipPhase: SponsorshipPhase,
@@ -112,6 +128,7 @@ export function createSitePresentation(
   const { archive, upcoming } = config;
   const programCopy = commonProgramCopy(upcoming, config.campaigns.announcedSpeakerIds);
   const archiveEdition = config.archive.edition;
+  const archiveProgram = archiveProgramCopy(archive, config.campaigns.announcedSpeakerIds);
 
   switch (stage) {
     case 'teaser':
@@ -124,7 +141,7 @@ export function createSitePresentation(
           titleLead: 'Cloud Native',
           titleAccent: 'returns to Munich',
           description:
-            'A community-built gathering for the people shaping cloud native. Dates and details are coming soon.',
+            'A community-built gathering for the people shaping cloud native. Program and ticket details are coming soon.',
           primaryAction: action('Join the community', config.community.discordUrl, 'users', true),
           secondaryAction: action(
             `Explore ${archiveEdition} highlights`,
@@ -135,7 +152,7 @@ export function createSitePresentation(
           showStats: false,
         },
         homepage: {
-          sections: ['about', 'moments', 'schedule', 'sponsors'],
+          sections: ['about', 'moments', 'schedule', 'speakers', 'sponsors', 'venue'],
         },
         metadata: {
           title: `${upcoming.name} ${upcoming.edition}`,
@@ -143,15 +160,15 @@ export function createSitePresentation(
             'Cloud Native Summit Munich is returning. Join the community and explore highlights from the latest edition.',
         },
         navigation: {
-          showSchedule: false,
-          showSpeakers: false,
-          scheduleLabel: 'Schedule',
-          speakersLabel: 'Speakers',
+          showSchedule: true,
+          showSpeakers: true,
+          scheduleLabel: `${archiveEdition} Schedule`,
+          speakersLabel: `${archiveEdition} Speakers`,
         },
         program: {
-          mode: 'hidden',
-          noIndex: true,
-          ...programCopy,
+          mode: 'archive',
+          noIndex: false,
+          ...archiveProgram,
         },
         sponsorship,
         ticketing: { mode: 'closed', showPurchaseActions: false },
@@ -421,18 +438,9 @@ export function createSitePresentation(
           speakersLabel: `${archiveEdition} Speakers`,
         },
         program: {
-          announcedSpeakerIds: config.campaigns.announcedSpeakerIds,
           mode: 'archive',
           noIndex: false,
-          scheduleEyebrow: `${archiveEdition} Archive`,
-          scheduleTitle: `Revisit the ${archiveEdition} program`,
-          scheduleDescription: `Browse every talk and workshop from two community-driven days in ${archive.location}.`,
-          speakerEyebrow: `${archiveEdition} Speaker Archive`,
-          speakerTitleLead: 'The voices of',
-          speakerTitleAccent: `${archive.shortName} ${archiveEdition}`,
-          speakerDescription:
-            'Revisit the practitioners and experts who made two days of community learning possible.',
-          isArchive: true,
+          ...archiveProgram,
         },
         sponsorship,
         ticketing: { mode: 'closed', showPurchaseActions: false },

@@ -21,6 +21,7 @@ export default function SpeakersPage() {
         title={
           <>
             {siteState.program.speakerTitleLead}
+            {' '}
             <br />
             <span className="text-[#0bbbef]">{siteState.program.speakerTitleAccent}</span>
           </>

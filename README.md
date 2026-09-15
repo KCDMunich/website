@@ -6,7 +6,10 @@ The production website lives in [`web/`](web/) and is built with Next.js App Rou
 
 ```bash
 cd web
+nvm install
+nvm use
 npm install
+cp .env.example .env.local
 npm run dev
 ```
 
@@ -24,19 +27,21 @@ npm run build --prefix web
 
 ## Vercel deployment
 
-The existing Vercel project and its domains should be retained. In that project, set:
+Keep the existing Vercel project that owns the production domains; do not import a replacement
+project or move DNS. Follow the [deployment and rollback checklist](web/README.md#deploy-on-vercel)
+before merging the migration. It covers `web` as Root Directory, Next.js build settings,
+environment variables, and a Preview deployment in that same project.
 
-- **Root Directory:** `web`
-- **Framework Preset:** Next.js
-- **Install Command:** `npm install` (or leave the Vercel default)
-- **Build Command:** `npm run build` (or leave the Vercel default)
+Project settings affect subsequent deployments, not just this PR. A successful preview in another
+Vercel project does not validate the production project's configuration.
 
-Apply the Root Directory change to a Preview deployment first. Domains, DNS, and the Vercel
-project itself are not changed by this repository cleanup. Configure the variables documented in
-[`web/.env.example`](web/.env.example) in Vercel and redeploy after changing build-time values.
+See [`web/README.md`](web/README.md) for application and environment details. Local development
+requires Node.js 24.19.0 or newer within major 24; `web/.nvmrc` selects the local version.
 
-See [`web/README.md`](web/README.md) for the application structure, lifecycle configuration, and
-environment variable details.
+## Editor tooling
+
+VS Code runs ESLint from `web/`. The root Prettier and Markdownlint settings are retained for the
+recommended editor extensions; there is no npm formatting script or lint-staged/Commitlint hook.
 
 ## Repository structure
 

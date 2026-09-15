@@ -9,7 +9,7 @@ export type EventControls = {
   ticketsSoldOut: boolean;
 };
 
-export type ProgramMode = 'hidden' | 'preview' | 'published' | 'archive';
+export type ProgramMode = 'preview' | 'published' | 'archive';
 export type TicketingMode = 'closed' | 'open' | 'sold-out';
 
 export type HomepageSectionId =
@@ -32,7 +32,7 @@ export type SiteAction = {
   label: string;
 };
 
-export function parseEventStage(value: string | undefined, fallback: EventStage = 'recap') {
+export function parseEventStage(value: string | undefined, fallback: EventStage = 'teaser') {
   if (!value) return fallback;
   if (EVENT_STAGES.includes(value as EventStage)) return value as EventStage;
   throw new Error(`Invalid EVENT_STAGE="${value}". Expected one of: ${EVENT_STAGES.join(', ')}.`);

@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from 'next/link';
 import { Globe } from "lucide-react";
 
 import { findCompanyInfo } from '@/lib/speakers-data';
@@ -47,6 +48,14 @@ export function SocialIcon({
   return <Globe className={className} />;
 }
 
+function getSocialLinkLabel(url: string, speakerName: string) {
+  if (url.includes('github.com')) return `${speakerName} on GitHub`;
+  if (url.includes('twitter.com') || url.includes('x.com')) return `${speakerName} on X`;
+  if (url.includes('linkedin.com')) return `${speakerName} on LinkedIn`;
+  if (url.includes('youtube.com')) return `${speakerName} on YouTube`;
+  return `${speakerName} website`;
+}
+
 type SpeakerCardVariant = "wall" | "detailed";
 
 export function SpeakerCardSkeleton({
@@ -90,11 +99,11 @@ export function SpeakerCardSkeleton({
 
 export function AnnouncedSpeakerCard({
   speaker,
-  onClick,
+  href,
   onMouseEnter,
 }: {
   speaker: Speaker;
-  onClick: () => void;
+  href: string;
   onMouseEnter?: () => void;
 }) {
   const company = findCompanyInfo(speaker);
@@ -103,12 +112,12 @@ export function AnnouncedSpeakerCard({
     Array.isArray(speaker.sessions) && speaker.sessions.length > 0;
 
   return (
-    <button
-      type="button"
-      onClick={onClick}
-      onMouseEnter={onMouseEnter}
-      className="group flex h-full w-full cursor-pointer flex-col overflow-hidden rounded-2xl bg-gradient-to-br from-primary/8 to-primary/[0.03] text-left ring-1 ring-primary/10 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
-    >
+    <div className="group relative h-full">
+      <Link
+        href={href}
+        onMouseEnter={onMouseEnter}
+        className="flex h-full w-full flex-col overflow-hidden rounded-2xl bg-gradient-to-br from-primary/8 to-primary/[0.03] text-left ring-1 ring-primary/10 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
+      >
       <div className="relative aspect-[4/5] overflow-hidden">
         <Image
           src={speaker.profilePicture}
@@ -128,20 +137,6 @@ export function AnnouncedSpeakerCard({
                 {company}
               </p>
             </div>
-            <div className="flex shrink-0 gap-1.5 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-              {firstTwoLinks.map((link) => (
-                <a
-                  key={link.url}
-                  href={link.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="cursor-pointer rounded-full bg-white/20 p-2 backdrop-blur-sm transition-colors hover:bg-white/35"
-                  onClick={(event) => event.stopPropagation()}
-                >
-                  <SocialIcon url={link.url} isWhite />
-                </a>
-              ))}
-            </div>
           </div>
         </div>
       </div>
@@ -159,18 +154,35 @@ export function AnnouncedSpeakerCard({
           <p className="text-sm text-muted-foreground">Sessions coming soon</p>
         )}
       </div>
-    </button>
+      </Link>
+      {firstTwoLinks.length > 0 ? (
+        <div className="absolute right-3 top-3 z-10 flex gap-1.5 opacity-100 transition-opacity duration-300 sm:opacity-0 sm:group-hover:opacity-100 sm:group-focus-within:opacity-100">
+          {firstTwoLinks.map((link) => (
+            <a
+              key={link.url}
+              href={link.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={getSocialLinkLabel(link.url, speaker.fullName)}
+              className="rounded-full bg-primary/70 p-2 text-white backdrop-blur-sm transition-colors hover:bg-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0bbbef]"
+            >
+              <SocialIcon url={link.url} isWhite />
+            </a>
+          ))}
+        </div>
+      ) : null}
+    </div>
   );
 }
 
 export function LineupSpeakerCard({
   speaker,
-  onClick,
+  href,
   onMouseEnter,
   variant = 'detailed',
 }: {
   speaker: Speaker;
-  onClick: () => void;
+  href: string;
   onMouseEnter?: () => void;
   variant?: SpeakerCardVariant;
 }) {
@@ -181,23 +193,22 @@ export function LineupSpeakerCard({
 
   if (variant === "wall") {
     return (
-      <button
-        type="button"
-        onClick={onClick}
-        onMouseEnter={onMouseEnter}
-        className="group relative aspect-square w-full cursor-pointer overflow-hidden rounded-2xl bg-white text-left shadow-md ring-1 ring-primary/10 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
-      >
-        <Image
-          src={speaker.profilePicture}
-          alt={speaker.fullName}
-          fill
-          className="object-cover transition-transform duration-500 group-hover:scale-105"
-          sizes="(max-width: 640px) 50vw, (max-width: 1024px) 20vw, 15vw"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/20 to-transparent opacity-90 transition-opacity duration-300 group-hover:opacity-100" />
-        <div className="absolute inset-x-0 bottom-0 p-3 sm:p-4">
-          <div className="flex items-end justify-between gap-2">
-            <div className="min-w-0">
+      <div className="group relative aspect-square w-full">
+        <Link
+          href={href}
+          onMouseEnter={onMouseEnter}
+          className="relative block size-full overflow-hidden rounded-2xl bg-white text-left shadow-md ring-1 ring-primary/10 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
+        >
+          <Image
+            src={speaker.profilePicture}
+            alt={speaker.fullName}
+            fill
+            className="object-cover transition-transform duration-500 group-hover:scale-105"
+            sizes="(max-width: 640px) 50vw, (max-width: 1024px) 20vw, 15vw"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/20 to-transparent opacity-90 transition-opacity duration-300 group-hover:opacity-100" />
+          <div className="absolute inset-x-0 bottom-0 p-3 sm:p-4">
+            <div className="min-w-0 pr-14">
               <h3 className="truncate font-heading text-sm font-bold leading-tight text-white sm:text-base">
                 {speaker.fullName}
               </h3>
@@ -205,35 +216,35 @@ export function LineupSpeakerCard({
                 {company}
               </p>
             </div>
-            {firstTwoLinks.length > 0 ? (
-              <div className="flex shrink-0 gap-1 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                {firstTwoLinks.map((link) => (
-                  <a
-                    key={link.url}
-                    href={link.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="cursor-pointer rounded-full bg-white/20 p-1.5 backdrop-blur-sm transition-colors hover:bg-white/35"
-                    onClick={(event) => event.stopPropagation()}
-                  >
-                    <SocialIcon url={link.url} isWhite />
-                  </a>
-                ))}
-              </div>
-            ) : null}
           </div>
-        </div>
-      </button>
+        </Link>
+        {firstTwoLinks.length > 0 ? (
+          <div className="absolute bottom-3 right-3 z-10 flex gap-1 opacity-100 transition-opacity duration-300 sm:opacity-0 sm:group-hover:opacity-100 sm:group-focus-within:opacity-100">
+            {firstTwoLinks.map((link) => (
+              <a
+                key={link.url}
+                href={link.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={getSocialLinkLabel(link.url, speaker.fullName)}
+                className="rounded-full bg-white/20 p-1.5 text-white backdrop-blur-sm transition-colors hover:bg-white/35 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0bbbef]"
+              >
+                <SocialIcon url={link.url} isWhite />
+              </a>
+            ))}
+          </div>
+        ) : null}
+      </div>
     );
   }
 
   return (
-    <button
-      type="button"
-      onClick={onClick}
-      onMouseEnter={onMouseEnter}
-      className="group flex h-full w-full cursor-pointer flex-col overflow-hidden rounded-2xl bg-white text-left shadow-md ring-1 ring-primary/10 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
-    >
+    <div className="group relative h-full">
+      <Link
+        href={href}
+        onMouseEnter={onMouseEnter}
+        className="flex h-full w-full flex-col overflow-hidden rounded-2xl bg-white text-left shadow-md ring-1 ring-primary/10 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
+      >
       <div className="relative aspect-square overflow-hidden">
         <Image
           src={speaker.profilePicture}
@@ -242,24 +253,7 @@ export function LineupSpeakerCard({
           className="object-cover transition-transform duration-300 group-hover:scale-105"
           sizes="(max-width: 640px) 50vw, (max-width: 1024px) 20vw, 15vw"
         />
-        <div className="absolute inset-0 flex items-end bg-gradient-to-t from-black/70 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-          <div className="p-3">
-            <div className="flex gap-2">
-              {firstTwoLinks.map((link) => (
-                <a
-                  key={link.url}
-                  href={link.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="cursor-pointer rounded-full bg-white/20 p-2 transition-colors hover:bg-white/40"
-                  onClick={(event) => event.stopPropagation()}
-                >
-                  <SocialIcon url={link.url} isWhite />
-                </a>
-              ))}
-            </div>
-          </div>
-        </div>
+        <div className="absolute inset-0 bg-gradient-to-t from-black/55 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
       </div>
       <div className="flex flex-1 flex-col p-3 text-center sm:p-4">
         <h3 className="text-sm font-bold text-foreground sm:text-base">
@@ -283,7 +277,23 @@ export function LineupSpeakerCard({
           )}
         </div>
       </div>
-    </button>
+      </Link>
+      {firstTwoLinks.length > 0 ? (
+        <div className="absolute right-3 top-3 z-10 flex gap-1.5 opacity-100 transition-opacity duration-300 sm:opacity-0 sm:group-hover:opacity-100 sm:group-focus-within:opacity-100">
+          {firstTwoLinks.map((link) => (
+            <a
+              key={link.url}
+              href={link.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={getSocialLinkLabel(link.url, speaker.fullName)}
+              className="rounded-full bg-primary/70 p-2 text-white backdrop-blur-sm transition-colors hover:bg-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0bbbef]"
+            >
+              <SocialIcon url={link.url} isWhite />
+            </a>
+          ))}
+        </div>
+      ) : null}
+    </div>
   );
 }
-

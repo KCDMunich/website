@@ -54,6 +54,7 @@ export function Expect({ tone = "default" }: ExpectProps) {
         <MotionReveal>
           <h2 className="font-heading text-3xl font-bold leading-[1.08] tracking-tight text-primary sm:text-4xl lg:text-5xl">
             What to expect,
+            {' '}
             <br />
             <span className="text-[#0bbbef]">from two focused days</span>
           </h2>

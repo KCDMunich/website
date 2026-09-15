@@ -1,4 +1,5 @@
-.cache
-package.json
-package-lock.json
-public
+web/node_modules/
+web/.next/
+web/out/
+web/build/
+web/package-lock.json

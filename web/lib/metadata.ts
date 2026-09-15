@@ -8,7 +8,7 @@ export const SITE_CONFIG = {
   shortTitle: 'CNS Munich',
   description: siteState.metadata.description,
   url: process.env.NEXT_PUBLIC_SITE_URL || 'https://cloudnativesummit.de',
-  image: '/images/social-preview.jpg',
+  image: '/opengraph-image',
   locale: 'en',
   twitterHandle: '@cnsmunich',
   keywords: ['Cloud Native', 'Kubernetes', 'Munich', 'Conference', 'DevOps', 'CNCF', 'Summit'],
@@ -24,8 +24,11 @@ type CreateMetadataOptions = {
 
 export function absoluteUrl(path = ''): string {
   const base = SITE_CONFIG.url.replace(/\/$/, '');
-  if (!path || path === '/') return base;
-  return `${base}${path.startsWith('/') ? path : `/${path}`}`;
+  if (!path || path === '/') return `${base}/`;
+
+  const normalizedPath = path.startsWith('/') ? path : `/${path}`;
+  const isFileLike = /\/[^/]+\.[a-z0-9]+$/i.test(normalizedPath);
+  return `${base}${normalizedPath}${normalizedPath.endsWith('/') || isFileLike ? '' : '/'}`;
 }
 
 export function createMetadata({

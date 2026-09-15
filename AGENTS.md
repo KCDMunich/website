@@ -24,7 +24,7 @@
 
 ## Commit & Pull Request Guidelines
 
-- Commits must follow Conventional Commit syntax (e.g., `feat: add hero carousel`); hook consistency is enforced by Commitlint.
+- Commits must follow Conventional Commit syntax (e.g., `feat: add hero carousel`).
 - Open PRs with a concise summary, linked issue, and before/after screenshots for visible UI changes; document any feature flags or env toggles.
 - Confirm that `web/package-lock.json` remains in sync and note follow-up tasks or TODOs directly in the PR description.
 

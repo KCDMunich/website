@@ -1,7 +1,6 @@
 'use client';
 
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
 import { useEffect, useMemo, useState } from 'react';
 import { ArrowRight } from 'lucide-react';
 
@@ -32,7 +31,6 @@ type SpeakersTeaserProps = {
 };
 
 export function SpeakersTeaser({ presentation, tone = 'default' }: SpeakersTeaserProps) {
-  const router = useRouter();
   const [speakerData, setSpeakerData] = useState<Speaker[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -60,16 +58,6 @@ export function SpeakersTeaser({ presentation, tone = 'default' }: SpeakersTease
     ? LINEUP_SPEAKER_COUNT
     : Math.max(presentation.announcedSpeakerIds.length, 2);
 
-  const openSpeaker = (speaker: Speaker) => {
-    const href = getSpeakerPath(speaker);
-    router.prefetch(href);
-    router.push(href);
-  };
-
-  const prefetchSpeaker = (speaker: Speaker) => {
-    router.prefetch(getSpeakerPath(speaker));
-  };
-
   return (
     <Section id="speakers" className={cn(SECTION_TONE_CLASS[tone])}>
       <div className="mx-auto max-w-3xl text-center">
@@ -77,10 +65,11 @@ export function SpeakersTeaser({ presentation, tone = 'default' }: SpeakersTease
           {isLineup ? (
             <>
               <h2 className="font-heading text-3xl font-bold leading-[1.08] tracking-tight text-primary sm:text-4xl lg:text-5xl">
-                {presentation.speakerTitleLead}
+                {archived ? 'Meet the people' : presentation.speakerTitleLead}
+                {' '}
                 <br />
                 <span className="text-[#0bbbef]">
-                  {archived ? 'shared openly' : presentation.speakerTitleAccent}
+                  {archived ? 'who shared openly' : presentation.speakerTitleAccent}
                 </span>
               </h2>
               <p className="mt-5 text-lg leading-relaxed text-muted-foreground">
@@ -95,6 +84,7 @@ export function SpeakersTeaser({ presentation, tone = 'default' }: SpeakersTease
             <>
               <h2 className="font-heading text-3xl font-bold leading-[1.08] tracking-tight text-primary sm:text-4xl lg:text-5xl">
                 {presentation.speakerTitleLead},
+                {' '}
                 <br />
                 <span className="text-[#0bbbef]">{presentation.speakerTitleAccent}</span>
               </h2>
@@ -139,18 +129,16 @@ export function SpeakersTeaser({ presentation, tone = 'default' }: SpeakersTease
           {displaySpeakers.map((speaker, index) => (
             <MotionReveal key={speaker.id} delay={index * 0.04}>
               {isLineup ? (
-                <LineupSpeakerCard
-                  speaker={speaker}
-                  variant="wall"
-                  onClick={() => openSpeaker(speaker)}
-                  onMouseEnter={() => prefetchSpeaker(speaker)}
-                />
+              <LineupSpeakerCard
+                speaker={speaker}
+                variant="wall"
+                href={getSpeakerPath(speaker)}
+              />
               ) : (
-                <AnnouncedSpeakerCard
-                  speaker={speaker}
-                  onClick={() => openSpeaker(speaker)}
-                  onMouseEnter={() => prefetchSpeaker(speaker)}
-                />
+              <AnnouncedSpeakerCard
+                speaker={speaker}
+                href={getSpeakerPath(speaker)}
+              />
               )}
             </MotionReveal>
           ))}

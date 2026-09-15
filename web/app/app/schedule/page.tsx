@@ -7,7 +7,11 @@ import { siteState } from '@/lib/site-state';
 export default function ScheduleAppPage() {
   return (
     <Suspense fallback={<ScheduleLoading />}>
-      <ScheduleView presentation={siteState.program} variant="app" />
+      <ScheduleView
+        isEventLive={siteState.event.isLive}
+        presentation={siteState.program}
+        variant="app"
+      />
     </Suspense>
   );
 }

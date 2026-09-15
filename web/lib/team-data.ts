@@ -75,7 +75,7 @@ export const TEAM_MEMBERS: TeamMember[] = [
 export const TEAM_ORGANIZERS: TeamOrganizer[] = [
   {
     name: "Liquid Reply",
-    url: "http://liquidreply.com/",
+    url: "https://liquidreply.com/",
     logo: "/icons-src/liquid.png",
   },
   {

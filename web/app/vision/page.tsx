@@ -10,6 +10,8 @@ export function generateMetadata(): Metadata {
   const page = getStaticPageBySlug(SLUG);
   return createMetadata({
     title: page?.title ?? "Our Vision",
+    description:
+      "Why Cloud Native Summit Munich is an independent, community-led event for open source, cloud native, and AI practitioners.",
     pathname: `/${SLUG}`,
   });
 }

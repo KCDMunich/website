@@ -38,7 +38,26 @@ export function findCompanyInfo(speaker: Speaker): string {
   const company = speaker.questionAnswers?.find(
     (entry) => entry.question?.toLowerCase() === 'company'
   );
-  return company?.answer || 'Speaker';
+  const answer = company?.answer?.trim();
+  if (!answer) return 'Speaker';
+
+  try {
+    const url = new URL(answer);
+    const pathLabel = url.pathname
+      .split('/')
+      .filter(Boolean)
+      .at(-1)
+      ?.replace(/[-_]+/g, ' ')
+      .trim();
+    const fallbackLabel = url.hostname.replace(/^www\./, '').split('.')[0];
+    const label = pathLabel || fallbackLabel;
+
+    if (!label) return 'Speaker';
+    if (label.length <= 4) return label.toUpperCase();
+    return label.replace(/\b\w/g, (letter) => letter.toUpperCase());
+  } catch {
+    return answer;
+  }
 }
 
 export function findSpeakerTagline(speaker: Speaker): string {

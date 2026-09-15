@@ -1,10 +1,11 @@
 # Cloud Native Summit Munich — Next.js Website
 
-This directory contains the Next.js (App Router) version of the [cloudnativesummit.de](https://cloudnativesummit.de) website, migrated from Gatsby.
+This directory contains the sole implementation of the
+[cloudnativesummit.de](https://cloudnativesummit.de) website, built with Next.js App Router.
 
 ## Prerequisites
 
-- Node.js 20+
+- Node.js >=24.19.0 and <25 (see `package.json`; `.nvmrc` pins the local version)
 - npm
 
 ## Local development
@@ -13,6 +14,8 @@ From the repository root:
 
 ```bash
 cd web
+nvm install
+nvm use
 npm install
 npm run dev
 ```
@@ -44,8 +47,9 @@ Quick overview:
 | `FIENTA_*` | Server-side ticket API (see `.env.example`) |
 
 Edition dates, venues, ticket URLs, and gallery links live in `lib/event-config.ts` — not in env vars.
-Schedule and speaker routes may stay reachable before publication, but are hidden from navigation and
-the sitemap and receive `noIndex` metadata until the program is published.
+In the teaser stage, schedule and speaker routes present the completed edition as a clearly labeled,
+indexable archive. CFP and early ticket stages switch speakers to the upcoming preview while keeping
+the upcoming schedule hidden and `noIndex` until the new program is published.
 
 ### Annual edition rotation
 
@@ -86,13 +90,61 @@ web/
 
 ## Deploy on Vercel
 
-1. Import the GitHub repository in [Vercel](https://vercel.com/new).
-2. Set **Root Directory** to `web`.
-3. Framework Preset: **Next.js** (auto-detected).
-4. Add environment variables from `.env.example` in the Vercel project settings.
-5. Deploy.
+Use the **existing project that owns the production domains**. Do not create a replacement project
+or change domain/DNS assignments for this migration.
 
-Vercel will run `npm run build` inside `web/` and serve the production app.
+### Before changing settings
+
+Record the project's current build settings, production branch, and last known-good Production
+deployment URL/ID. Confirm that deployment is available for rollback. Coordinate changes with
+other contributors: project build settings apply to subsequent deployments, not only this PR.
+Saving settings does not replace the currently serving deployment.
+
+### Build and environment settings
+
+In the existing project's **Settings > Build and Deployment**, configure:
+
+| Setting | Value |
+| ------- | ----- |
+| Root Directory | `web` (no leading slash) |
+| Framework Preset | Next.js |
+| Build Command override | Off; use the `build` script in `web/package.json` |
+| Output Directory override | Off; use Next.js default, not Gatsby's `public` |
+| Install Command override | Off; use npm detected from `web/package-lock.json` |
+| Development Command override | Off |
+| Node.js Version | 24.x; `package.json` also declares the supported Node range |
+
+The `.nvmrc` file is for local tooling; do not rely on it alone to configure Vercel's runtime.
+Save both the framework and Root Directory sections when changed.
+
+Configure variables from [`.env.example`](.env.example) for **Preview and Production** separately.
+Keep secrets server-side; do not copy private values into documentation or the PR.
+Keep `NEXT_PUBLIC_SITE_URL` set to the canonical production URL. Replace legacy `GATSBY_*`
+configuration with the documented Next.js equivalents where applicable. Build-time changes
+require a new deployment.
+
+### Preview and production cutover
+
+Create a new **Preview** deployment of the updated PR branch in that same project. Verify its
+commit SHA and build settings; a green check from a separate Vercel project is not sufficient.
+Do not promote the preview to Production during validation.
+
+Check `/`, `/schedule/`, `/app/schedule/`, a session detail route, `/speakers/`, a speaker detail
+route, `/team/`, `/vision/`, and both legal pages. Also check the `/mission-statement/` redirect,
+images/fonts/video, mobile navigation, schedule favorites, video consent, `/robots.txt`,
+`/sitemap.xml`, and the API integrations enabled for the selected event stage.
+
+Only merge after the updated PR is conflict-free and the preview is verified. A merge into the
+configured production branch normally triggers a Production deployment automatically; avoid an
+additional manual deploy unless needed. Verify the resulting deployment on the existing domains.
+
+### Rollback
+
+If production regresses, use Vercel's rollback controls to restore the recorded known-good
+deployment without moving domains. Restore the recorded project settings before rebuilding an
+older Gatsby revision; the old source cannot be rebuilt with the new `web`/Next.js settings.
+Revert the migration in Git separately if needed. Keep the old deployment available until the
+cutover has been verified.
 
 ## Content
 

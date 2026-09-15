@@ -1,8 +1,6 @@
 import fs from "fs";
 import path from "path";
 
-import matter from "gray-matter";
-
 const STATIC_PAGES_DIR = path.join(process.cwd(), "content/static-pages");
 
 export type StaticPageFrontmatter = {
@@ -14,6 +12,40 @@ export type StaticPage = StaticPageFrontmatter & {
   content: string;
 };
 
+function parseStaticPage(raw: string): StaticPage {
+  const match = raw.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n?/);
+  if (!match) {
+    throw new Error('Static page is missing a frontmatter block.');
+  }
+
+  const frontmatter = Object.fromEntries(
+    match[1]
+      .split(/\r?\n/)
+      .map((line) => {
+        const separatorIndex = line.indexOf(':');
+        if (separatorIndex === -1) return null;
+
+        const key = line.slice(0, separatorIndex).trim();
+        const value = line
+          .slice(separatorIndex + 1)
+          .trim()
+          .replace(/^(?:"([\s\S]*)"|'([\s\S]*)')$/, '$1$2');
+        return key ? [key, value] : null;
+      })
+      .filter((entry): entry is [string, string] => entry !== null)
+  );
+
+  if (!frontmatter.title || !frontmatter.slug) {
+    throw new Error('Static page frontmatter requires title and slug.');
+  }
+
+  return {
+    title: frontmatter.title,
+    slug: frontmatter.slug,
+    content: raw.slice(match[0].length),
+  };
+}
+
 export function getStaticPageSlugs(): string[] {
   if (!fs.existsSync(STATIC_PAGES_DIR)) {
     return [];
@@ -24,8 +56,7 @@ export function getStaticPageSlugs(): string[] {
     .filter((file) => file.endsWith(".md"))
     .map((file) => {
       const raw = fs.readFileSync(path.join(STATIC_PAGES_DIR, file), "utf8");
-      const { data } = matter(raw);
-      return data.slug as string;
+      return parseStaticPage(raw).slug;
     });
 }
 
@@ -41,14 +72,10 @@ export function getStaticPageBySlug(slug: string): StaticPage | null {
   for (const file of files) {
     const filePath = path.join(STATIC_PAGES_DIR, file);
     const raw = fs.readFileSync(filePath, "utf8");
-    const { data, content } = matter(raw);
+    const page = parseStaticPage(raw);
 
-    if (data.slug === slug) {
-      return {
-        title: data.title as string,
-        slug: data.slug as string,
-        content,
-      };
+    if (page.slug === slug) {
+      return page;
     }
   }
 

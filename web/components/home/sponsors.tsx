@@ -102,7 +102,8 @@ export function Sponsors({ phase, tone = 'default' }: SponsorsProps) {
       <div className="mx-auto max-w-3xl text-center">
         <MotionReveal>
           <h2 className="font-heading text-3xl font-bold leading-[1.08] tracking-tight text-primary sm:text-4xl lg:text-5xl">
-            Thank you to our,
+            Thank you to our
+            {' '}
             <br />
             <span className="text-[#0bbbef]">{EVENT_CONFIG.archive.edition} partners</span>
           </h2>

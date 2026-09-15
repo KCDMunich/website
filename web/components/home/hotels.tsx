@@ -54,6 +54,7 @@ export function Hotels({ tone = "default" }: HotelsProps) {
         <MotionReveal>
           <h2 className="font-heading text-3xl font-bold leading-[1.08] tracking-tight text-primary sm:text-4xl lg:text-5xl">
             Hotels close to,
+            {' '}
             <br />
             <span className="text-[#0bbbef]">the venue</span>
           </h2>

@@ -3,5 +3,6 @@
   "todohighlight.isCaseSensitive": true,
   "todohighlight.keywords": ["DEBUG:", "REVIEW:", "NOTE:", "HACK:"],
   "editor.formatOnSave": true,
+  "eslint.workingDirectories": ["./web"],
   "oxc.enable": false
 }

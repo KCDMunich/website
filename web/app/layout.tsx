@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { YouTubeConsentProvider } from "@/components/privacy/youtube-consent";
 import { rootMetadata } from "@/lib/metadata";
 
 import "./globals.css";
@@ -48,7 +49,9 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${plusJakartaSans.variable} h-full antialiased`}>
       <body className="flex min-h-full flex-col font-sans">
-        <TooltipProvider>{children}</TooltipProvider>
+        <YouTubeConsentProvider>
+          <TooltipProvider>{children}</TooltipProvider>
+        </YouTubeConsentProvider>
       </body>
     </html>
   );

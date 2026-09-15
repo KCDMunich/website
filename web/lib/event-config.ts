@@ -56,7 +56,7 @@ export const EVENT_CONFIG: EventConfig = {
     venue: 'smartvillage Bogenhausen',
     galleryUrl: 'https://lightroom.adobe.com/shares/7314e896be5b4c22b8365cfa07e42487',
     playlistId: 'PLAA2DJBnZEc8',
-    playlistUrl: 'https://www.youtube.com/playlist?list=PLAA2DJBnZEc8',
+    playlistUrl: 'https://www.youtube.com/watch?v=X9OH76DK6H8&list=PLAA2DJBnZEc8',
     heroVideoId: 'R1dcUSnTmn8',
   },
   upcoming: {
@@ -64,7 +64,7 @@ export const EVENT_CONFIG: EventConfig = {
     name: 'Cloud Native Summit Munich',
     ordinalLabel: '6th',
     shortName: 'CNS Munich',
-    dateLabel: 'June 28–29, 2027',
+    dateLabel: 'June 14–15, 2027',
     location: 'Munich',
     venue: 'smartvillage Bogenhausen',
     ticketUrl: 'https://fienta.com/o/36183',
