@@ -1,10 +1,10 @@
 'use client';
 
 import { useEffect, useMemo, useState } from 'react';
+import { ArrowUpRight, Calendar, MapPin } from 'lucide-react';
 
 import { MotionReveal } from '@/components/layout/motion-reveal';
 import { Section } from '@/components/layout/section';
-import { SectionHeader } from '@/components/layout/section-header';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { EVENT_CONFIG } from '@/lib/event-config';
@@ -114,18 +114,22 @@ export function Ticketing({ phase, tone = 'default' }: TicketingProps) {
   );
 
   return (
-    <Section id="tickets" className={cn(SECTION_TONE_CLASS[tone])}>
-      <div className="grid items-stretch gap-12 lg:grid-cols-2 lg:gap-16">
-        <MotionReveal className="flex h-full flex-col">
-          <SectionHeader
-            title={phase === 'sold-out' ? 'CNS Munich is sold out' : 'Secure your spot'}
-            description={
-              phase === 'sold-out'
-                ? 'All available tickets have found a home. Thank you for the incredible response from the community.'
-                : 'Two full days in Munich — talks, workshops, and the people building cloud native in Europe.'
-            }
-            className="mb-0"
-          />
+    <Section id="tickets" className={cn('scroll-mt-24', SECTION_TONE_CLASS[tone])}>
+      <div className="grid items-start gap-12 lg:grid-cols-2 lg:gap-16">
+        <MotionReveal>
+          <h2 className="font-heading text-3xl font-bold leading-[1.08] tracking-tight text-primary sm:text-4xl lg:text-5xl">
+            {phase === 'sold-out' ? 'CNS Munich is' : 'Secure'}
+            {' '}
+            <br />
+            <span className="text-[#0bbbef]">
+              {phase === 'sold-out' ? 'sold out' : 'your spot'}
+            </span>
+          </h2>
+          <p className="mt-5 max-w-lg text-lg leading-relaxed text-muted-foreground">
+            {phase === 'sold-out'
+              ? 'All available tickets have found a home. Thank you for the incredible response from the community.'
+              : 'Two full days in Munich — talks, workshops, and the people building cloud native in Europe.'}
+          </p>
           {phase === 'open' ? (
             <p className="mt-8 text-sm text-muted-foreground">
               Need a diversity ticket? Contact{' '}
@@ -140,81 +144,129 @@ export function Ticketing({ phase, tone = 'default' }: TicketingProps) {
           ) : null}
         </MotionReveal>
 
-        <MotionReveal delay={0.1}>
-          <Card className="border-border/60 bg-card shadow-xl ring-1 ring-primary/10">
-            <CardContent className="space-y-6 pt-6">
-              <h3 className="text-2xl font-semibold text-foreground">{eventData.title}</h3>
+        <MotionReveal delay={0.1} className="min-w-0">
+          <Card className="gap-0 rounded-2xl bg-gradient-to-br from-primary/8 to-primary/[0.03] p-6 shadow-none ring-1 ring-primary/10 sm:p-8">
+            <CardContent className="space-y-6 px-0">
+              <div>
+                <h3 className="font-heading text-xl font-bold tracking-tight text-primary sm:text-2xl">
+                  {eventData.title}
+                </h3>
+                <div className="mt-4 flex flex-col gap-2 text-sm text-muted-foreground">
+                  {eventData.dateRange && (
+                    <p className="flex items-start gap-2">
+                      <Calendar className="mt-0.5 size-4 shrink-0 text-primary" aria-hidden />
+                      <span>{eventData.dateRange}</span>
+                    </p>
+                  )}
+                  {eventData.location && (
+                    <p className="flex items-start gap-2">
+                      <MapPin className="mt-0.5 size-4 shrink-0 text-primary" aria-hidden />
+                      <span>{eventData.location}</span>
+                    </p>
+                  )}
+                </div>
+              </div>
 
               {status === 'loading' && (
-                <div className="rounded-xl border border-dashed border-border bg-muted/30 px-4 py-6 text-center text-sm text-muted-foreground">
+                <div
+                  role="status"
+                  className="border-t border-primary/10 pt-6 text-sm leading-relaxed text-muted-foreground"
+                >
                   Syncing ticket data from Fienta...
                 </div>
               )}
 
               {status === 'error' && (
-                <div className="rounded-xl border border-dashed border-destructive/30 bg-destructive/5 px-4 py-6 text-center text-sm text-destructive">
-                  Ticket details could not be loaded. Please visit Fienta for current tickets and availability.
+                <div
+                  role="alert"
+                  className="rounded-xl bg-destructive/5 p-4 text-sm leading-relaxed text-destructive"
+                >
+                  Ticket details could not be loaded. Please visit Fienta for current tickets and
+                  availability.
                 </div>
               )}
 
               {phase === 'sold-out' ? (
-                <div className="rounded-xl border border-dashed border-primary/20 bg-primary/5 px-4 py-8 text-center text-sm font-medium text-primary">
+                <div
+                  role="status"
+                  className="border-t border-primary/10 pt-6 text-sm font-medium leading-relaxed text-primary"
+                >
                   Tickets sold out — follow our community channels for event updates.
                 </div>
               ) : null}
 
               {phase === 'open' && status === 'ready' && visibleTickets.length === 0 && (
-                <div className="rounded-xl border border-dashed border-border bg-muted/30 px-4 py-6 text-center text-sm text-muted-foreground">
+                <div
+                  role="status"
+                  className="border-t border-primary/10 pt-6 text-sm leading-relaxed text-muted-foreground"
+                >
                   Please visit Fienta for current tickets, prices, and availability.
                 </div>
               )}
 
-              <div className="space-y-4">
-                {visibleTickets.map((ticket) => (
-                  <Card key={ticket.id} className="border-border/60 bg-background">
-                    <CardContent className="flex flex-col gap-4 pt-4 sm:flex-row sm:items-start sm:justify-between">
-                      <div className="flex-1">
-                        <p className="font-semibold text-foreground">{ticket.title}</p>
+              {visibleTickets.length > 0 && (
+                <ul
+                  aria-label="Available tickets"
+                  className="divide-y divide-primary/10 border-t border-primary/10"
+                >
+                  {visibleTickets.map((ticket) => (
+                    <li
+                      key={ticket.id}
+                      className="grid gap-4 py-6 last:pb-0 sm:grid-cols-[minmax(0,1fr)_auto] sm:gap-6"
+                    >
+                      <div className="min-w-0 break-words">
+                        <h4 className="font-heading text-lg font-bold text-primary">
+                          {ticket.title}
+                        </h4>
                         {ticket.description && (
-                          <p className="mt-1 text-sm text-muted-foreground">{ticket.description}</p>
+                          <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                            {ticket.description}
+                          </p>
                         )}
                         {ticket.salesEnd && (
-                          <p className="mt-2 text-xs font-medium uppercase tracking-wide text-muted-foreground">
+                          <p className="mt-3 text-xs leading-relaxed text-muted-foreground">
                             Sales end {formatDate(ticket.salesEnd)}
                           </p>
                         )}
                       </div>
-                      <div className="text-right">
-                        <p className="text-lg font-semibold text-primary">
+                      <div className="sm:text-right">
+                        <p className="whitespace-nowrap font-heading text-2xl font-bold tracking-tight text-primary tabular-nums">
                           {formatCurrency(toNetPrice(ticket.price), ticket.currency)}
                         </p>
                         <p className="mt-1 text-xs text-muted-foreground">Net + 19% VAT</p>
                         {ticket.amountLeft !== null && (
-                          <p className="mt-1 text-xs text-muted-foreground">
+                          <p className="mt-2 text-xs font-medium text-primary/70">
                             {ticket.amountLeft} left
                           </p>
                         )}
                       </div>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
+                    </li>
+                  ))}
+                </ul>
+              )}
 
-              <div className="flex flex-col items-center gap-3 text-center">
-                {phase === 'open' && checkoutUrl ? (
-                  <Button
-                    nativeButton={false}
-                    render={<a href={checkoutUrl} target="_blank" rel="noreferrer" />}
-                    size="lg"
-                  >
-                    Buy tickets
-                  </Button>
-                ) : phase === 'open' ? (
-                  <span className="text-xs text-muted-foreground">
-                    Ticket sales open soon. Please check back later.
-                  </span>
-                ) : null}
-              </div>
+              {phase === 'open' && (
+                <div className="border-t border-primary/10 pt-6 text-center">
+                  {checkoutUrl ? (
+                    <>
+                      <Button
+                        nativeButton={false}
+                        render={<a href={checkoutUrl} target="_blank" rel="noopener noreferrer" />}
+                        size="lg"
+                        className="min-h-11 w-full bg-primary font-semibold text-primary-foreground hover:bg-primary/90"
+                      >
+                        Buy tickets
+                        <ArrowUpRight className="size-4" aria-hidden />
+                      </Button>
+                      <p className="mt-3 text-xs text-muted-foreground">Checkout on Fienta</p>
+                    </>
+                  ) : (
+                    <span className="text-xs text-muted-foreground">
+                      Ticket sales open soon. Please check back later.
+                    </span>
+                  )}
+                </div>
+              )}
             </CardContent>
           </Card>
         </MotionReveal>

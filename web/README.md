@@ -53,7 +53,11 @@ npm run start
 
 During `tickets`, `PROGRAM_PUBLISHED` controls program publication and `TICKETS_SOLD_OUT`
 replaces purchase actions with the sold-out presentation. Both default to `false`.
-`ANNOUNCED_SPEAKER_IDS` enables early speaker previews.
+`ANNOUNCED_SPEAKER_IDS` enables early speaker previews. Leave it empty to hide the speaker section,
+header/mobile/footer links, and speaker hero CTA during CFP and unpublished ticket stages.
+Add Sessionize IDs and redeploy to show announcements, or set `PROGRAM_PUBLISHED=true` in the
+ticket stage for the full lineup. Archive and live lineups are unaffected. Direct preview routes
+remain reachable with `noIndex`; no extra visibility switch is needed.
 `SPONSORSHIP_PHASE=closed|recruiting` controls sponsor recruitment independently.
 
 Edition content lives in [`lib/event-config.ts`](lib/event-config.ts):
@@ -66,6 +70,23 @@ Edition content lives in [`lib/event-config.ts`](lib/event-config.ts):
 
 Keep these aligned when rotating editions. `SESSIONIZE_EVENT_ID` selects schedule and speaker
 data. Do not publish the upcoming program until that source is ready.
+
+### Sponsors by edition
+
+[`lib/sponsors-data.ts`](lib/sponsors-data.ts) keeps separate `sponsorsByEdition` lists:
+
+- `2026`: the existing partner archive; these logos are not treated as 2027 confirmations.
+- `2027`: initially empty; add only confirmed partners with their `name`, `icon`, `url`, and `tier`.
+
+The homepage shows the recruiting card first (when `SPONSORSHIP_PHASE=recruiting`), followed by
+the upcoming edition's partners and then the explicitly year-labelled archive. An empty edition
+has no heading, placeholder, or logo grid. Empty tiers are also hidden.
+`SPONSORSHIP_PHASE=closed` hides only the recruiting card, not either partner list.
+
+Adding the first confirmed 2027 partner and deploying makes that edition's group visible
+automatically. Assets live in `public/icons-src/`. When rotating `EVENT_CONFIG` editions, also
+add the corresponding year in `sponsorsByEdition` (an empty list is valid); a missing year is a
+configuration error rather than a fallback to old sponsors.
 
 ## Fienta tickets
 
@@ -87,7 +108,8 @@ can be reused if it has access and is assigned to the same project and environme
 Do not prefix it with `NEXT_PUBLIC_` or paste it into documentation, issues, or PRs.
 
 `FIENTA_BASE_URL` defaults to `https://fienta.com/api/v1`; `FIENTA_SERIES_ID` is optional.
-Keep `upcoming.ticketUrl` aligned with `FIENTA_EVENT_URL`: hero and header links use the former.
+Keep `upcoming.ticketUrl` aligned with `FIENTA_EVENT_URL`: the hero link uses the former.
+Header ticket links jump to the homepage ticket section; its purchase button opens Fienta.
 
 The browser calls `/api/fienta-event`. The server loads ticket types using the
 [authenticated Fienta API](https://fienta.com/help/api); the public event listing alone does
@@ -165,3 +187,8 @@ web/
 
 Static pages use Markdown with `title` and `slug` frontmatter. Their routed entries live in
 `app/`. `public/` contains source assets; `.next/` is generated output.
+
+Favicons use a square crop of the navbar artwork in `public/icons-src/navLogo-timeless.svg`
+(`viewBox="272 0 700 700"`), without the wordmark. Keep `app/favicon.ico` and the SVG/PNG
+icons in `public/` aligned when changing the branding. `lib/metadata.ts` registers the SVG,
+32px PNG, and Apple touch icon; Next.js registers the ICO automatically.

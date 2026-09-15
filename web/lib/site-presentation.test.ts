@@ -12,7 +12,11 @@ import {
 
 const testConfig: EventConfig = {
   ...EVENT_CONFIG,
-  campaigns: { ...EVENT_CONFIG.campaigns, cfpUrl: 'https://example.com/cfp' },
+  campaigns: {
+    ...EVENT_CONFIG.campaigns,
+    cfpUrl: 'https://example.com/cfp',
+    announcedSpeakerIds: [],
+  },
   upcoming: {
     ...EVENT_CONFIG.upcoming,
     dateLabel: 'June 14–15, 2027',
@@ -35,7 +39,7 @@ const expected = {
   cfp: {
     primary: 'Submit a proposal',
     program: 'preview',
-    speakers: true,
+    speakers: false,
     tickets: 'closed',
     purchase: false,
     noIndex: true,
@@ -45,7 +49,7 @@ const expected = {
   tickets: {
     primary: 'Get your ticket',
     program: 'preview',
-    speakers: true,
+    speakers: false,
     tickets: 'open',
     purchase: true,
     noIndex: true,
@@ -112,6 +116,61 @@ describe('event stage matrix', () => {
     expect(recap.ticketing.showPurchaseActions).toBe(false);
     expect(recap.homepage.sections).not.toContain('ticketing');
   });
+
+  it.each([
+    { stage: 'cfp', ticketsSoldOut: false },
+    { stage: 'tickets', ticketsSoldOut: false },
+    { stage: 'tickets', ticketsSoldOut: true },
+  ] as const)(
+    'keeps $stage preview visibility consistent when sold out is $ticketsSoldOut',
+    ({ stage, ticketsSoldOut }) => {
+      for (const announcedSpeakerIds of [[], ['speaker-1']]) {
+        const showSpeakers = announcedSpeakerIds.length > 0;
+        const presentation = createSitePresentation(stage, 'recruiting', {
+          ...testConfig,
+          campaigns: { ...testConfig.campaigns, announcedSpeakerIds },
+        }, { programPublished: false, ticketsSoldOut });
+
+        expect(presentation.homepage.sections.includes('speakers')).toBe(showSpeakers);
+        expect(presentation.navigation.showSpeakers).toBe(showSpeakers);
+        expect(presentation.program.noIndex).toBe(true);
+        if (stage === 'tickets') {
+          expect(presentation.hero.secondaryAction).toEqual(showSpeakers
+            ? { label: 'Meet the speakers', href: '/speakers', icon: 'users', external: false }
+            : null);
+        } else {
+          expect(presentation.hero.primaryAction.label).toBe('Submit a proposal');
+          expect(presentation.hero.secondaryAction?.label).toBe('Meet the community');
+        }
+        expect(presentation.homepage.sections).toContain('sponsors');
+        expect(presentation.homepage.sections).toContain('expect');
+      }
+    }
+  );
+
+  it.each(['teaser', 'live', 'recap'] as const)(
+    'keeps the %s lineup visible without early-speaker IDs',
+    (stage) => {
+      const presentation = createSitePresentation(stage, 'closed', testConfig);
+      expect(presentation.homepage.sections).toContain('speakers');
+      expect(presentation.navigation.showSpeakers).toBe(true);
+      expect(presentation.program.noIndex).toBe(false);
+    }
+  );
+
+  it.each([false, true])(
+    'keeps published speakers visible without announcement IDs when sold out is %s',
+    (ticketsSoldOut) => {
+      const presentation = createSitePresentation('tickets', 'closed', testConfig, {
+        programPublished: true,
+        ticketsSoldOut,
+      });
+      expect(presentation.homepage.sections).toContain('speakers');
+      expect(presentation.navigation.showSpeakers).toBe(true);
+      expect(presentation.program.mode).toBe('published');
+      expect(presentation.program.noIndex).toBe(false);
+    }
+  );
 
   it('requires a CFP URL for the CFP stage', () => {
     expect(() =>

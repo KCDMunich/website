@@ -78,4 +78,13 @@ export function createMetadata({
   };
 }
 
-export const rootMetadata = createMetadata();
+export const rootMetadata: Metadata = {
+  ...createMetadata(),
+  icons: {
+    icon: [
+      { url: '/favicon.svg', type: 'image/svg+xml', sizes: 'any' },
+      { url: '/favicon-32x32.png', type: 'image/png', sizes: '32x32' },
+    ],
+    apple: [{ url: '/apple-touch-icon.png', type: 'image/png', sizes: '180x180' }],
+  },
+};
