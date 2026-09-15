@@ -8,9 +8,9 @@ import { Button } from '@/components/ui/button';
 import { EVENT_CONFIG } from '@/lib/event-config';
 import {
   getLogoSize,
+  getSponsorsForEdition,
   SPONSOR_CONTACT_EMAIL,
   SPONSOR_PROSPECTUS_URL,
-  sponsorsList,
   tierConfig,
   TIER_ORDER,
   type Sponsor,
@@ -70,7 +70,7 @@ function SponsorTierBand({
   delay,
 }: {
   tier: SponsorTier;
-  sponsors: Sponsor[];
+  sponsors: readonly Sponsor[];
   showDivider: boolean;
   delay: number;
 }) {
@@ -92,24 +92,38 @@ function SponsorTierBand({
   );
 }
 
-export function Sponsors({ phase, tone = 'default' }: SponsorsProps) {
+function SponsorEditionGroup({
+  edition,
+  sponsors,
+  archive = false,
+}: {
+  edition: number;
+  sponsors: readonly Sponsor[];
+  archive?: boolean;
+}) {
+  if (sponsors.length === 0) return null;
+
   const visibleTiers = TIER_ORDER.filter((tier) =>
-    sponsorsList.some((sponsor) => sponsor.tier === tier)
+    sponsors.some((sponsor) => sponsor.tier === tier)
   );
 
   return (
-    <Section id="sponsors" className={cn('overflow-hidden', SECTION_TONE_CLASS[tone])}>
+    <div role="group" aria-labelledby={`sponsors-${edition}-title`}>
       <div className="mx-auto max-w-3xl text-center">
         <MotionReveal>
-          <h2 className="font-heading text-3xl font-bold leading-[1.08] tracking-tight text-primary sm:text-4xl lg:text-5xl">
-            Thank you to our
+          <h2
+            id={`sponsors-${edition}-title`}
+            className="font-heading text-3xl font-bold leading-[1.08] tracking-tight text-primary sm:text-4xl lg:text-5xl"
+          >
+            {archive ? 'Thank you to our' : 'Meet our'}
             {' '}
             <br />
-            <span className="text-[#0bbbef]">{EVENT_CONFIG.archive.edition} partners</span>
+            <span className="text-[#0bbbef]">{edition} partners</span>
           </h2>
           <p className="mt-5 text-lg leading-relaxed text-muted-foreground">
-            These organizations helped make two days of learning, connection, and community in
-            Munich possible.
+            {archive
+              ? 'These organizations helped make two days of learning, connection, and community in Munich possible.'
+              : `These organizations support Cloud Native Summit Munich ${edition}.`}
           </p>
         </MotionReveal>
       </div>
@@ -119,71 +133,92 @@ export function Sponsors({ phase, tone = 'default' }: SponsorsProps) {
           <SponsorTierBand
             key={tier}
             tier={tier}
-            sponsors={sponsorsList.filter((sponsor) => sponsor.tier === tier)}
+            sponsors={sponsors.filter((sponsor) => sponsor.tier === tier)}
             showDivider={index > 0}
             delay={0.08 + index * 0.04}
           />
         ))}
       </div>
+    </div>
+  );
+}
 
-      {phase === 'recruiting' ? (
-        <MotionReveal delay={0.2}>
-          <div className="relative mt-16 overflow-hidden rounded-3xl bg-primary px-6 py-10 text-white shadow-xl sm:px-10 sm:py-12 lg:px-14">
-            <div
-              className="absolute -right-24 -top-24 size-72 rounded-full bg-[#0bbbef]/20 blur-3xl"
-              aria-hidden
-            />
-            <div className="relative grid items-center gap-8 lg:grid-cols-[1fr_auto] lg:gap-12">
-              <div className="max-w-2xl">
-                <div className="mb-5 flex size-12 items-center justify-center rounded-2xl bg-white/10 ring-1 ring-white/15">
-                  <Handshake className="size-6 text-[#0bbbef]" />
+export function Sponsors({ phase, tone = 'default' }: SponsorsProps) {
+  const upcomingSponsors = getSponsorsForEdition(EVENT_CONFIG.upcoming.edition);
+  const archiveSponsors = getSponsorsForEdition(EVENT_CONFIG.archive.edition);
+
+  return (
+    <Section id="sponsors" className={cn('overflow-hidden', SECTION_TONE_CLASS[tone])}>
+      <div className="space-y-16">
+        {phase === 'recruiting' ? (
+          <MotionReveal delay={0.2}>
+            <div className="relative overflow-hidden rounded-3xl bg-primary px-6 py-10 text-white shadow-xl sm:px-10 sm:py-12 lg:px-14">
+              <div
+                className="absolute -right-24 -top-24 size-72 rounded-full bg-[#0bbbef]/20 blur-3xl"
+                aria-hidden
+              />
+              <div className="relative grid items-center gap-8 lg:grid-cols-[1fr_auto] lg:gap-12">
+                <div className="max-w-2xl">
+                  <div className="mb-5 flex size-12 items-center justify-center rounded-2xl bg-white/10 ring-1 ring-white/15">
+                    <Handshake className="size-6 text-[#0bbbef]" />
+                  </div>
+                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#0bbbef]">
+                    Partnerships for {EVENT_CONFIG.sponsorship.edition}
+                  </p>
+                  <h2 className="mt-3 font-heading text-3xl font-bold tracking-tight sm:text-4xl">
+                    Help shape the next CNS Munich
+                  </h2>
+                  <p className="mt-4 text-lg leading-relaxed text-white/75">
+                    Meet a focused cloud native community, support accessible knowledge sharing, and
+                    create meaningful conversations with practitioners. We are now speaking with
+                    partners for our next edition.
+                  </p>
                 </div>
-                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#0bbbef]">
-                  Partnerships for {EVENT_CONFIG.sponsorship.edition}
-                </p>
-                <h3 className="mt-3 font-heading text-3xl font-bold tracking-tight sm:text-4xl">
-                  Help shape the next CNS Munich
-                </h3>
-                <p className="mt-4 text-lg leading-relaxed text-white/75">
-                  Meet a focused cloud native community, support accessible knowledge sharing, and
-                  create meaningful conversations with practitioners. We are now speaking with
-                  partners for our next edition.
-                </p>
-              </div>
 
-              <div className="flex flex-col gap-3 sm:flex-row lg:flex-col">
-                <Button
-                  nativeButton={false}
-                  render={
-                    <a
-                      href={`mailto:${SPONSOR_CONTACT_EMAIL}?subject=CNS%20Munich%20${EVENT_CONFIG.sponsorship.edition}%20sponsorship%20interest`}
-                    />
-                  }
-                  size="lg"
-                  className="bg-[#0bbbef] text-primary hover:bg-[#35c8f2]"
-                >
-                  <Mail className="size-4" />
-                  Register your interest
-                </Button>
-                {SPONSOR_PROSPECTUS_URL ? (
+                <div className="flex flex-col gap-3 sm:flex-row lg:flex-col">
                   <Button
                     nativeButton={false}
                     render={
-                      <a href={SPONSOR_PROSPECTUS_URL} target="_blank" rel="noopener noreferrer" />
+                      <a
+                        href={`mailto:${SPONSOR_CONTACT_EMAIL}?subject=CNS%20Munich%20${EVENT_CONFIG.sponsorship.edition}%20sponsorship%20interest`}
+                      />
                     }
-                    variant="outline"
                     size="lg"
-                    className="border-white/25 bg-white/5 text-white hover:bg-white/10 hover:text-white"
+                    className="bg-[#0bbbef] text-primary hover:bg-[#35c8f2]"
                   >
-                    Sponsor prospectus
-                    <ArrowRight className="size-4" />
+                    <Mail className="size-4" />
+                    Register your interest
                   </Button>
-                ) : null}
+                  {SPONSOR_PROSPECTUS_URL ? (
+                    <Button
+                      nativeButton={false}
+                      render={
+                        <a href={SPONSOR_PROSPECTUS_URL} target="_blank" rel="noopener noreferrer" />
+                      }
+                      variant="outline"
+                      size="lg"
+                      className="border-white/25 bg-white/5 text-white hover:bg-white/10 hover:text-white"
+                    >
+                      Sponsor prospectus
+                      <ArrowRight className="size-4" />
+                    </Button>
+                  ) : null}
+                </div>
               </div>
             </div>
-          </div>
-        </MotionReveal>
-      ) : null}
+          </MotionReveal>
+        ) : null}
+
+        <SponsorEditionGroup
+          edition={EVENT_CONFIG.upcoming.edition}
+          sponsors={upcomingSponsors}
+        />
+        <SponsorEditionGroup
+          edition={EVENT_CONFIG.archive.edition}
+          sponsors={archiveSponsors}
+          archive
+        />
+      </div>
     </Section>
   );
 }

@@ -215,13 +215,7 @@ function MobileNav({
                 size="lg"
                 className="h-12 w-full bg-primary text-base font-semibold text-primary-foreground hover:bg-primary/90"
                 nativeButton={false}
-                render={
-                  <a
-                    href={EVENT_CONFIG.upcoming.ticketUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  />
-                }
+                render={<Link href="/#tickets" />}
                 onClick={() => onOpenChange(false)}
               >
                 <Ticket className="size-4" />
@@ -340,13 +334,7 @@ export function SiteHeader({
                   : 'bg-primary text-primary-foreground hover:bg-primary/90'
               )}
               nativeButton={false}
-              render={
-                <a
-                  href={EVENT_CONFIG.upcoming.ticketUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                />
-              }
+              render={<Link href="/#tickets" />}
             >
               <Ticket className="size-4" />
               Tickets

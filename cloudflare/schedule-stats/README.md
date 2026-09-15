@@ -69,7 +69,7 @@ ALTER TABLE schedule_favorite_counts
    npx wrangler deploy --config cloudflare/schedule-stats/wrangler.toml
    ```
 
-7. Set the Vercel environment variable `GATSBY_SCHEDULE_STATS_ENDPOINT` to the full Worker endpoint, for example:
+7. Set the Vercel environment variable `NEXT_PUBLIC_SCHEDULE_STATS_ENDPOINT` to the full Worker endpoint, for example:
 
    ```text
    https://cns-fav.<account>.workers.dev/favorite

@@ -129,6 +129,11 @@ export function createSitePresentation(
   const programCopy = commonProgramCopy(upcoming, config.campaigns.announcedSpeakerIds);
   const archiveEdition = config.archive.edition;
   const archiveProgram = archiveProgramCopy(archive, config.campaigns.announcedSpeakerIds);
+  const hasAnnouncedSpeakers = config.campaigns.announcedSpeakerIds.length > 0;
+  const previewSpeakerSections: HomepageSectionId[] = hasAnnouncedSpeakers ? ['speakers'] : [];
+  const previewSpeakerAction = hasAnnouncedSpeakers
+    ? action('Meet the speakers', '/speakers', 'users')
+    : null;
 
   switch (stage) {
     case 'teaser':
@@ -190,7 +195,7 @@ export function createSitePresentation(
           showStats: false,
         },
         homepage: {
-          sections: ['about', 'expect', 'speakers', 'moments', 'schedule', 'sponsors'],
+          sections: ['about', 'expect', ...previewSpeakerSections, 'moments', 'schedule', 'sponsors'],
         },
         metadata: {
           title: `Call for Proposals ${upcoming.edition} | ${upcoming.shortName}`,
@@ -199,7 +204,7 @@ export function createSitePresentation(
         },
         navigation: {
           showSchedule: false,
-          showSpeakers: true,
+          showSpeakers: hasAnnouncedSpeakers,
           scheduleLabel: 'Schedule',
           speakersLabel: 'Speaker Preview',
         },
@@ -215,6 +220,7 @@ export function createSitePresentation(
 
     case 'tickets': {
       const { programPublished, ticketsSoldOut } = controls;
+      const showSpeakers = programPublished || hasAnnouncedSpeakers;
       const ticketDate = requireUrl(
         upcoming.dateLabel,
         'EVENT_STAGE=tickets requires EVENT_CONFIG.upcoming.dateLabel.'
@@ -244,7 +250,7 @@ export function createSitePresentation(
               : action('Join event updates', config.community.discordUrl, 'users', true),
             secondaryAction: hasPublishedProgram
               ? action('Join event updates', config.community.discordUrl, 'users', true)
-              : action('Meet the speakers', '/speakers', 'users'),
+              : previewSpeakerAction,
             showStats: true,
           },
           homepage: {
@@ -263,7 +269,7 @@ export function createSitePresentation(
                   'about',
                   'ticketing',
                   'expect',
-                  'speakers',
+                  ...previewSpeakerSections,
                   'moments',
                   'sponsors',
                   'venue',
@@ -278,7 +284,7 @@ export function createSitePresentation(
           },
           navigation: {
             showSchedule: hasPublishedProgram,
-            showSpeakers: true,
+            showSpeakers,
             scheduleLabel: 'Schedule',
             speakersLabel: hasPublishedProgram ? 'Speakers' : 'Speaker Preview',
           },
@@ -309,7 +315,7 @@ export function createSitePresentation(
             : action('Get your ticket', ticketUrl, 'ticket', true),
           secondaryAction: programPublished
             ? action('Get your ticket', ticketUrl, 'ticket', true)
-            : action('Meet the speakers', '/speakers', 'users'),
+            : previewSpeakerAction,
           showStats: true,
         },
         homepage: {
@@ -329,7 +335,7 @@ export function createSitePresentation(
                 'about',
                 'ticketing',
                 'expect',
-                'speakers',
+                ...previewSpeakerSections,
                 'moments',
                 'sponsors',
                 'venue',
@@ -347,7 +353,7 @@ export function createSitePresentation(
         },
         navigation: {
           showSchedule: programPublished,
-          showSpeakers: true,
+          showSpeakers,
           scheduleLabel: 'Schedule',
           speakersLabel: programPublished ? 'Speakers' : 'Speaker Preview',
         },

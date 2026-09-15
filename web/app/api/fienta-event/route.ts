@@ -14,9 +14,7 @@ export async function GET() {
 
     return NextResponse.json(snapshot, {
       headers: {
-        "Cache-Control": config.eventId
-          ? "s-maxage=300, stale-while-revalidate=3600"
-          : "no-store",
+        "Cache-Control": "no-store",
         "X-Content-Type-Options": "nosniff",
         "X-Frame-Options": "DENY",
         ...(config.eventId ? {} : { "X-Fienta-Configured": "false" }),
