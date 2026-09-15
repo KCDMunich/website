@@ -1,196 +1,167 @@
-# Cloud Native Summit Munich — Next.js Website
+# Cloud Native Summit Munich Website
 
-This directory contains the sole implementation of the
-[cloudnativesummit.de](https://cloudnativesummit.de) website, built with Next.js App Router.
-
-## Prerequisites
-
-- Node.js >=24.19.0 and <25 (see `package.json`; `.nvmrc` pins the local version)
-- npm
+Next.js App Router application for [cloudnativesummit.de](https://cloudnativesummit.de).
 
 ## Local development
 
-From the repository root:
+Requires Node.js >=24.19.0 and <25, plus npm. From the repository root:
 
 ```bash
 cd web
 nvm install
 nvm use
 npm install
+cp .env.example .env.local
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000).
+Open <http://localhost:3000>. Copy the env example only on first setup; do not overwrite an
+existing `.env.local`. The file is ignored by Git. Never commit API keys.
 
-### Environment variables
-
-Copy `.env.example` to `.env.local` and adjust as needed:
-
-```bash
-cp .env.example .env.local
-```
-
-**`.env.example` is the canonical reference** for site phases, presets, and the variable matrix.
-It documents the full lifecycle (`teaser → cfp → tickets → live → recap`), copy-paste presets for
-common situations, and which variables apply in which stage.
-
-Quick overview:
-
-| Variable | Role |
-| -------- | ---- |
-| `EVENT_STAGE` | Main presentation phase (build-time; redeploy on Vercel after changes) |
-| `PROGRAM_PUBLISHED` / `TICKETS_SOLD_OUT` | Only while `EVENT_STAGE=tickets` |
-| `CFP_URL` | Required only while `EVENT_STAGE=cfp` |
-| `ANNOUNCED_SPEAKER_IDS` | Early speaker preview before full program publication |
-| `SPONSORSHIP_PHASE` | Independent sponsor campaign (`closed` or `recruiting`) |
-| `SESSIONIZE_EVENT_ID` | Schedule and speaker data |
-| `FIENTA_*` | Server-side ticket API (see `.env.example`) |
-
-Edition dates, venues, ticket URLs, and gallery links live in `lib/event-config.ts` — not in env vars.
-In the teaser stage, schedule and speaker routes present the completed edition as a clearly labeled,
-indexable archive. CFP and early ticket stages switch speakers to the upcoming preview while keeping
-the upcoming schedule hidden and `noIndex` until the new program is published.
-
-### Annual edition rotation
-
-`lib/event-config.ts` keeps the completed edition, the upcoming edition, and the sponsorship
-campaign separate so copy cannot accidentally sell or recap the wrong year:
-
-- `archive`: the completed edition, including its gallery, recordings, speakers, and schedule.
-- `upcoming`: the edition currently being announced, accepting proposals, selling tickets, or live.
-- `sponsorship`: the edition for which partner recruitment is currently open.
-
-For the 2026 recap, `archive` is 2026 while `upcoming` and `sponsorship` are 2027. Before changing
-to `EVENT_STAGE=tickets` or `live`, fill `upcoming.dateLabel`, `upcoming.venue`, and
-`upcoming.ticketUrl`; the build fails with an actionable error if required ticketing or live-event
-content is missing.
-
-**Local:** set in `.env.local` (copy from `.env.example`).
-
-**Vercel:** Project → **Settings** → **Environment Variables** → update the lifecycle states → **Redeploy** (these values are read at build time).
-
-### Fienta ticket display
-
-Ticket purchases take place on Fienta, not in an embedded store. To enable the ticket section,
-set `EVENT_STAGE=tickets`, `PROGRAM_PUBLISHED=false` until the new program is ready, and
-`TICKETS_SOLD_OUT=false`. This also changes hero copy and navigation to the ticket-sales phase.
-
-For the 2027 event, configure the following in Vercel Preview first:
-
-| Variable | Value |
-| -------- | ----- |
-| `FIENTA_EVENT_ID` | `201687` |
-| `FIENTA_ORGANIZER_ID` | `36183` |
-| `FIENTA_LOCALE` | `en` |
-| `FIENTA_EVENT_URL` | `https://fienta.com/cloud-native-summit-201687` |
-| `FIENTA_API_KEY` | Private API token with access to this event |
-
-`FIENTA_BASE_URL` defaults to `https://fienta.com/api/v1`; `FIENTA_SERIES_ID` is optional.
-The browser calls our own `/api/fienta-event` route; no public proxy URL variable is needed.
-The [Fienta API](https://fienta.com/help/api) requires bearer authentication for individual
-ticket types. The public event listing confirms the event but does not supply the ticket cards.
-Without those details, the section links to the Fienta store rather than announcing future sales.
-
-The server excludes code-protected tickets and tickets outside their visibility window before
-returning any ticket details. Invalid visibility dates are excluded and logged without ticket
-data. The response exposes only the normalized display fields, including remaining quantities
-for public tickets; it never returns access codes or API tokens.
-Fienta requests and public API responses are not cached, so visibility changes are checked on
-each request. When deploying this protection over an older version, invalidate any previously
-cached `/api/fienta-event` responses in Vercel; the new headers do not retroactively remove them.
-
-Keep the API token only in Vercel's server-side environment or ignored `.env.local`.
-Do not share or commit it. Before production, verify returned ticket types, price/VAT semantics,
-and availability against the live store. Apply the same variables to Production only after preview
-verification and redeploy. Keep `upcoming.ticketUrl` in `lib/event-config.ts` aligned with
-`FIENTA_EVENT_URL`, since hero and header links use that configuration directly.
-
-## Build
+Run inside `web/`:
 
 ```bash
-cd web
+npm run lint
+npm test
 npm run build
 npm run start
 ```
 
-## Project structure
+`start` serves the production build; use `dev` for development.
 
-```text
-web/
-├── app/                    # Next.js App Router pages
-├── components/             # React components (layout, home, schedule, speakers, …)
-├── content/static-pages/   # Markdown content (vision, imprint, privacy policy)
-├── lib/                    # Utilities (metadata, sessionize, markdown, …)
-└── public/                 # Static assets (images, fonts, icons)
+## Configuration
+
+[`.env.example`](.env.example) lists all supported variables and phase presets.
+
+- **Local:** set values in `web/.env.local` and restart the development server.
+- **Vercel:** set values in the correct project's **Settings > Environment Variables**,
+  selecting **Preview** or **Production**, then create a new deployment.
+- Neither `.env.local` nor `.env.example` automatically configures Vercel.
+- Only public values may use `NEXT_PUBLIC_`; API keys must remain server-side.
+
+### Event lifecycle
+
+`EVENT_STAGE` controls homepage sections, hero copy, navigation, and metadata:
+
+| Stage | Visitor experience |
+| ----- | ------------------ |
+| `teaser` | Save the date and previous-edition archive; no ticket section |
+| `cfp` | Call for proposals; requires `CFP_URL` |
+| `tickets` | Ticket section and purchase links |
+| `live` | On-site information and schedule |
+| `recap` | Photos, recordings, and partner thanks |
+
+During `tickets`, `PROGRAM_PUBLISHED` controls program publication and `TICKETS_SOLD_OUT`
+replaces purchase actions with the sold-out presentation. Both default to `false`.
+`ANNOUNCED_SPEAKER_IDS` enables early speaker previews.
+`SPONSORSHIP_PHASE=closed|recruiting` controls sponsor recruitment independently.
+
+Edition content lives in [`lib/event-config.ts`](lib/event-config.ts):
+
+| Configuration | Purpose |
+| ------------- | ------- |
+| `archive` | Completed edition: recordings, gallery, and archive labels |
+| `upcoming` | Next edition: date, venue, and ticket link |
+| `sponsorship` | Edition accepting partner enquiries |
+
+Keep these aligned when rotating editions. `SESSIONIZE_EVENT_ID` selects schedule and speaker
+data. Do not publish the upcoming program until that source is ready.
+
+## Fienta tickets
+
+We display current ticket types and link to Fienta for checkout. There is no embedded store.
+For the 2027 event, set the following in Vercel **Preview** first:
+
+```dotenv
+EVENT_STAGE=tickets
+PROGRAM_PUBLISHED=false
+TICKETS_SOLD_OUT=false
+FIENTA_EVENT_ID=201687
+FIENTA_ORGANIZER_ID=36183
+FIENTA_LOCALE=en
+FIENTA_EVENT_URL=https://fienta.com/cloud-native-summit-201687
 ```
+
+Also set **`FIENTA_API_KEY`** to the private token with access to this event. An existing key
+can be reused if it has access and is assigned to the same project and environment.
+Do not prefix it with `NEXT_PUBLIC_` or paste it into documentation, issues, or PRs.
+
+`FIENTA_BASE_URL` defaults to `https://fienta.com/api/v1`; `FIENTA_SERIES_ID` is optional.
+Keep `upcoming.ticketUrl` aligned with `FIENTA_EVENT_URL`: hero and header links use the former.
+
+The browser calls `/api/fienta-event`. The server loads ticket types using the
+[authenticated Fienta API](https://fienta.com/help/api); the public event listing alone does
+not provide ticket cards. No public proxy URL variable is needed.
+
+### Visibility and troubleshooting
+
+Code-protected tickets and tickets outside a valid visibility window are excluded server-side.
+Only normalized display fields, including remaining quantities for public tickets, are returned.
+API keys and access codes are never included. Requests and responses are not cached.
+
+| Symptom | What to check |
+| ------- | ------------- |
+| Entire ticket section missing | Build used `EVENT_STAGE=tickets`; redeploy after changing it |
+| Section shows sold out | `TICKETS_SOLD_OUT` is not `true` unintentionally |
+| Section visible but no cards | Event ID, API-key access, and public ticket visibility/sale dates |
+| API returns `X-Fienta-Configured: false` | Missing event ID or failed event lookup; the header does not distinguish these causes |
+| Local works but Preview does not | Variables belong to that Vercel project and Preview scope, including any branch restrictions |
+
+Without ticket details, the shop link remains available. Before Production, compare prices,
+VAT, and availability with the live store. When replacing an older cached API implementation,
+invalidate existing `/api/fienta-event` cache entries in Vercel.
 
 ## Deploy on Vercel
 
-Use the **existing project that owns the production domains**. Do not create a replacement project
-or change domain/DNS assignments for this migration.
+Keep the existing project with the production domains. Do not create a replacement project
+or move DNS. Record current settings and the last known-good Production deployment for rollback.
 
-### Before changing settings
-
-Record the project's current build settings, production branch, and last known-good Production
-deployment URL/ID. Confirm that deployment is available for rollback. Coordinate changes with
-other contributors: project build settings apply to subsequent deployments, not only this PR.
-Saving settings does not replace the currently serving deployment.
-
-### Build and environment settings
-
-In the existing project's **Settings > Build and Deployment**, configure:
+Under **Settings > Build and Deployment**:
 
 | Setting | Value |
 | ------- | ----- |
 | Root Directory | `web` (no leading slash) |
 | Framework Preset | Next.js |
-| Build Command override | Off; use the `build` script in `web/package.json` |
-| Output Directory override | Off; use Next.js default, not Gatsby's `public` |
-| Install Command override | Off; use npm detected from `web/package-lock.json` |
-| Development Command override | Off |
-| Node.js Version | 24.x; `package.json` also declares the supported Node range |
+| Build / Install / Development overrides | Off; use framework defaults and package scripts |
+| Output Directory override | Off; Next.js default, not Gatsby's `public` |
+| Node.js Version | 24.x; supported range is declared in `package.json` |
 
-The `.nvmrc` file is for local tooling; do not rely on it alone to configure Vercel's runtime.
-Save both the framework and Root Directory sections when changed.
+`.nvmrc` configures local tooling, not Vercel's runtime. Save each changed settings section.
+Project settings affect subsequent deployments, not just this PR, but saving them does not
+replace the currently serving deployment.
 
-Configure variables from [`.env.example`](.env.example) for **Preview and Production** separately.
-Keep secrets server-side; do not copy private values into documentation or the PR.
-Keep `NEXT_PUBLIC_SITE_URL` set to the canonical production URL. Replace legacy `GATSBY_*`
-configuration with the documented Next.js equivalents where applicable. Build-time changes
-require a new deployment.
+### Preview and production
 
-### Preview and production cutover
-
-Create a new **Preview** deployment of the updated PR branch in that same project. Verify its
-commit SHA and build settings; a green check from a separate Vercel project is not sufficient.
-Do not promote the preview to Production during validation.
-
-Check `/`, `/schedule/`, `/app/schedule/`, a session detail route, `/speakers/`, a speaker detail
-route, `/team/`, `/vision/`, and both legal pages. Also check the `/mission-statement/` redirect,
-images/fonts/video, mobile navigation, schedule favorites, video consent, `/robots.txt`,
-`/sitemap.xml`, and the API integrations enabled for the selected event stage.
-
-Only merge after the updated PR is conflict-free and the preview is verified. A merge into the
-configured production branch normally triggers a Production deployment automatically; avoid an
-additional manual deploy unless needed. Verify the resulting deployment on the existing domains.
+1. Configure **Preview** variables, including `NEXT_PUBLIC_SITE_URL=https://cloudnativesummit.de`.
+   Push the PR branch to trigger a preview through the Git integration, or redeploy it after
+   env-only changes. A local commit alone does not trigger Vercel.
+2. Verify the deployed commit and project in the PR checks. A green deployment from a separate
+   Vercel project does not validate the project that owns the production domains.
+3. Check the homepage, desktop/mobile navigation, schedule and speaker detail routes, legal
+   pages, media, video consent, enabled APIs, `/robots.txt`, `/sitemap.xml`, and the
+   `/mission-statement/` redirect.
+4. Configure **Production** variables separately. Merge only after preview verification;
+   a merge into the configured production branch normally deploys automatically.
+   Confirm the result on the existing domains.
 
 ### Rollback
 
-If production regresses, use Vercel's rollback controls to restore the recorded known-good
-deployment without moving domains. Restore the recorded project settings before rebuilding an
-older Gatsby revision; the old source cannot be rebuilt with the new `web`/Next.js settings.
-Revert the migration in Git separately if needed. Keep the old deployment available until the
-cutover has been verified.
+Restore the recorded known-good deployment using Vercel's rollback controls without moving
+domains. Keep that deployment available until cutover is verified.
+Before rebuilding an old Gatsby revision, restore its recorded project settings; the old source
+cannot be rebuilt with the new `web`/Next.js settings. Revert the migration in Git separately
+if needed.
 
-## Content
+## Project structure
 
-Static legal and informational pages live in `content/static-pages/` as Markdown files with frontmatter:
-
-```yaml
----
-title: Page Title
-slug: url-slug
----
+```text
+web/
+├── app/                    # Routes and API handlers
+├── components/             # Layout, homepage, schedule, speakers, UI
+├── content/static-pages/   # Vision, imprint, privacy policy
+├── lib/                    # Event configuration and data integrations
+└── public/                 # Source assets: images, fonts, videos, icons
 ```
 
-Pages are rendered at `/{slug}` (e.g. `/vision`, `/imprint-data-privacy`, `/privacy-policy`).
+Static pages use Markdown with `title` and `slug` frontmatter. Their routed entries live in
+`app/`. `public/` contains source assets; `.next/` is generated output.
