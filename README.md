@@ -6,8 +6,6 @@ The website lives in [`web/`](web/) and is built with Next.js App Router.
 
 ```bash
 cd web
-nvm install
-nvm use
 npm install
 cp .env.example .env.local
 npm run dev
