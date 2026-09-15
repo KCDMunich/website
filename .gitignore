@@ -58,7 +58,7 @@ typings/
 .env*
 !.env.example
 
-# gatsby files
+# Generated output
 .cache/
 /public/
 
