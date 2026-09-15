@@ -96,7 +96,7 @@ export function Ticketing({ phase, tone = 'default' }: TicketingProps) {
         if (isMounted) {
           setTickets([]);
           setCheckoutUrl(FALLBACK_CHECKOUT_URL);
-          setStatus('ready');
+          setStatus('error');
         }
       }
     };
@@ -153,7 +153,7 @@ export function Ticketing({ phase, tone = 'default' }: TicketingProps) {
 
               {status === 'error' && (
                 <div className="rounded-xl border border-dashed border-destructive/30 bg-destructive/5 px-4 py-6 text-center text-sm text-destructive">
-                  Tickets are temporarily unavailable. Please check back soon.
+                  Ticket details could not be loaded. Please visit Fienta for current tickets and availability.
                 </div>
               )}
 
@@ -165,7 +165,7 @@ export function Ticketing({ phase, tone = 'default' }: TicketingProps) {
 
               {phase === 'open' && status === 'ready' && visibleTickets.length === 0 && (
                 <div className="rounded-xl border border-dashed border-border bg-muted/30 px-4 py-6 text-center text-sm text-muted-foreground">
-                  Ticket sales will open soon. Stay tuned!
+                  Please visit Fienta for current tickets, prices, and availability.
                 </div>
               )}
 

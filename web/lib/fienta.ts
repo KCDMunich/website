@@ -43,6 +43,7 @@ type FientaRawTicket = {
   description?: string;
   details?: string;
   currency?: string;
+  visible_code?: string | null;
   visible_start?: string;
   sales_start_date?: string;
   salesStart?: string;
@@ -132,7 +133,7 @@ export async function fetchJson(url: string, headersList: Array<Record<string, s
   let lastStatus: number | null = null;
 
   for (const headers of headersList) {
-    const response = await fetch(url, { headers, next: { revalidate: 300 } });
+    const response = await fetch(url, { headers, cache: 'no-store' });
     lastStatus = response.status;
     if (response.ok) {
       return response.json();
@@ -232,8 +233,15 @@ export function normalizeTickets(
   currency: string,
   locale = 'de'
 ): FientaTicket[] {
+  const now = new Date();
+
   return rawTickets
-    .map((ticket, index) => {
+    .flatMap((ticket, index) => {
+      // Authenticated ticket lists also contain offers that must never reach the public API.
+      if (ticket.visible_code != null && ticket.visible_code !== '') {
+        return [];
+      }
+
       const salesStart =
         ticket?.visible_start ||
         ticket?.sales_start_date ||
@@ -243,8 +251,17 @@ export function normalizeTickets(
         ticket?.visible_end || ticket?.sales_end_date || ticket?.salesEnd || ticket?.end_date;
       const startDate = salesStart ? new Date(salesStart) : null;
       const endDate = salesEnd ? new Date(salesEnd) : null;
-      const now = new Date();
+      if (
+        (startDate && Number.isNaN(startDate.getTime())) ||
+        (endDate && Number.isNaN(endDate.getTime()))
+      ) {
+        console.warn('Fienta ticket omitted because its visibility date is invalid.');
+        return [];
+      }
       const withinSalesWindow = (!startDate || startDate <= now) && (!endDate || endDate >= now);
+      if (!withinSalesWindow) {
+        return [];
+      }
       const ticketLimit = ticket?.ticket_limit;
       const ticketsSold = ticket?.tickets_sold ?? 0;
       const isSoldOut =

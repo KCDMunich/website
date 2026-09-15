@@ -67,7 +67,7 @@ export const EVENT_CONFIG: EventConfig = {
     dateLabel: 'June 14–15, 2027',
     location: 'Munich',
     venue: 'smartvillage Bogenhausen',
-    ticketUrl: 'https://fienta.com/o/36183',
+    ticketUrl: 'https://fienta.com/cloud-native-summit-201687',
   },
   sponsorship: {
     edition: 2027,

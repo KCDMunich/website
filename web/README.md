@@ -69,6 +69,42 @@ content is missing.
 
 **Vercel:** Project → **Settings** → **Environment Variables** → update the lifecycle states → **Redeploy** (these values are read at build time).
 
+### Fienta ticket display
+
+Ticket purchases take place on Fienta, not in an embedded store. To enable the ticket section,
+set `EVENT_STAGE=tickets`, `PROGRAM_PUBLISHED=false` until the new program is ready, and
+`TICKETS_SOLD_OUT=false`. This also changes hero copy and navigation to the ticket-sales phase.
+
+For the 2027 event, configure the following in Vercel Preview first:
+
+| Variable | Value |
+| -------- | ----- |
+| `FIENTA_EVENT_ID` | `201687` |
+| `FIENTA_ORGANIZER_ID` | `36183` |
+| `FIENTA_LOCALE` | `en` |
+| `FIENTA_EVENT_URL` | `https://fienta.com/cloud-native-summit-201687` |
+| `FIENTA_API_KEY` | Private API token with access to this event |
+
+`FIENTA_BASE_URL` defaults to `https://fienta.com/api/v1`; `FIENTA_SERIES_ID` is optional.
+The browser calls our own `/api/fienta-event` route; no public proxy URL variable is needed.
+The [Fienta API](https://fienta.com/help/api) requires bearer authentication for individual
+ticket types. The public event listing confirms the event but does not supply the ticket cards.
+Without those details, the section links to the Fienta store rather than announcing future sales.
+
+The server excludes code-protected tickets and tickets outside their visibility window before
+returning any ticket details. Invalid visibility dates are excluded and logged without ticket
+data. The response exposes only the normalized display fields, including remaining quantities
+for public tickets; it never returns access codes or API tokens.
+Fienta requests and public API responses are not cached, so visibility changes are checked on
+each request. When deploying this protection over an older version, invalidate any previously
+cached `/api/fienta-event` responses in Vercel; the new headers do not retroactively remove them.
+
+Keep the API token only in Vercel's server-side environment or ignored `.env.local`.
+Do not share or commit it. Before production, verify returned ticket types, price/VAT semantics,
+and availability against the live store. Apply the same variables to Production only after preview
+verification and redeploy. Keep `upcoming.ticketUrl` in `lib/event-config.ts` aligned with
+`FIENTA_EVENT_URL`, since hero and header links use that configuration directly.
+
 ## Build
 
 ```bash
