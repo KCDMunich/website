@@ -14,7 +14,6 @@ const testConfig: EventConfig = {
   ...EVENT_CONFIG,
   campaigns: {
     ...EVENT_CONFIG.campaigns,
-    cfpUrl: 'https://example.com/cfp',
     announcedSpeakerIds: [],
   },
   upcoming: {
@@ -35,16 +34,6 @@ const expected = {
     noIndex: false,
     firstSection: 'about',
     schedule: true,
-  },
-  cfp: {
-    primary: 'Submit a proposal',
-    program: 'preview',
-    speakers: false,
-    tickets: 'closed',
-    purchase: false,
-    noIndex: true,
-    firstSection: 'about',
-    schedule: false,
   },
   tickets: {
     primary: 'Get your ticket',
@@ -117,8 +106,24 @@ describe('event stage matrix', () => {
     expect(recap.homepage.sections).not.toContain('ticketing');
   });
 
+  it('shows the CFP section only during the tickets stage', () => {
+    for (const stage of EVENT_STAGES) {
+      const presentation = createSitePresentation(stage, 'recruiting', testConfig);
+      expect(presentation.homepage.sections.includes('cfp')).toBe(stage === 'tickets');
+    }
+
+    for (const programPublished of [false, true]) {
+      for (const ticketsSoldOut of [false, true]) {
+        const presentation = createSitePresentation('tickets', 'recruiting', testConfig, {
+          programPublished,
+          ticketsSoldOut,
+        });
+        expect(presentation.homepage.sections).toContain('cfp');
+      }
+    }
+  });
+
   it.each([
-    { stage: 'cfp', ticketsSoldOut: false },
     { stage: 'tickets', ticketsSoldOut: false },
     { stage: 'tickets', ticketsSoldOut: true },
   ] as const)(
@@ -134,14 +139,19 @@ describe('event stage matrix', () => {
         expect(presentation.homepage.sections.includes('speakers')).toBe(showSpeakers);
         expect(presentation.navigation.showSpeakers).toBe(showSpeakers);
         expect(presentation.program.noIndex).toBe(true);
-        if (stage === 'tickets') {
-          expect(presentation.hero.secondaryAction).toEqual(showSpeakers
-            ? { label: 'Meet the speakers', href: '/speakers', icon: 'users', external: false }
-            : null);
-        } else {
-          expect(presentation.hero.primaryAction.label).toBe('Submit a proposal');
-          expect(presentation.hero.secondaryAction?.label).toBe('Meet the community');
-        }
+        expect(presentation.hero.secondaryAction).toEqual(
+          ticketsSoldOut
+            ? showSpeakers
+              ? { label: 'Meet the speakers', href: '/speakers', icon: 'users', external: false }
+              : null
+            : {
+                label: 'Become a sponsor',
+                href: '/#sponsors',
+                icon: 'users',
+                external: false,
+                prominent: true,
+              }
+        );
         expect(presentation.homepage.sections).toContain('sponsors');
         expect(presentation.homepage.sections).toContain('expect');
       }
@@ -171,15 +181,6 @@ describe('event stage matrix', () => {
       expect(presentation.program.noIndex).toBe(false);
     }
   );
-
-  it('requires a CFP URL for the CFP stage', () => {
-    expect(() =>
-      createSitePresentation('cfp', 'closed', {
-        ...testConfig,
-        campaigns: { ...testConfig.campaigns, cfpUrl: null },
-      })
-    ).toThrow('requires CFP_URL');
-  });
 
   it('requires a ticket URL while tickets are on sale', () => {
     expect(() =>
@@ -219,7 +220,6 @@ describe('event stage matrix', () => {
 
   it('shows the previous edition archive in teaser mode and switches to upcoming content later', () => {
     const teaser = createSitePresentation('teaser', 'recruiting', testConfig);
-    const cfp = createSitePresentation('cfp', 'recruiting', testConfig);
     const live = createSitePresentation('live', 'recruiting', testConfig);
 
     expect(teaser.program.mode).toBe('archive');
@@ -232,8 +232,6 @@ describe('event stage matrix', () => {
     expect(teaser.homepage.sections).toContain('speakers');
     expect(teaser.homepage.sections).toContain('venue');
 
-    expect(cfp.program.mode).toBe('preview');
-    expect(cfp.program.isArchive).toBe(false);
     expect(live.program.mode).toBe('published');
     expect(live.program.isArchive).toBe(false);
   });
@@ -264,18 +262,15 @@ describe('event stage matrix', () => {
     expect(soldOutBeforeProgram.hero.primaryAction.label).toBe('Join event updates');
   });
 
-  it('carries the configured early-speaker IDs and preview copy into the CFP and ticket previews', () => {
-    const cfp = createSitePresentation('cfp', 'closed', testConfig);
+  it('carries configured early-speaker IDs and preview copy into ticket previews', () => {
     const tickets = createSitePresentation('tickets', 'closed', testConfig);
 
-    for (const presentation of [cfp, tickets]) {
-      expect(presentation.program.announcedSpeakerIds).toEqual(
-        testConfig.campaigns.announcedSpeakerIds
-      );
-      expect(presentation.program.speakerEyebrow).toBe('Early announcements');
-      expect(presentation.program.speakerTitleLead).toBe('Meet the voices');
-      expect(presentation.program.speakerTitleAccent).toBe('shaping the next edition');
-    }
+    expect(tickets.program.announcedSpeakerIds).toEqual(
+      testConfig.campaigns.announcedSpeakerIds
+    );
+    expect(tickets.program.speakerEyebrow).toBe('Early announcements');
+    expect(tickets.program.speakerTitleLead).toBe('Meet the voices');
+    expect(tickets.program.speakerTitleAccent).toBe('shaping the next edition');
   });
 
   it('keeps sponsorship independent from the event stage', () => {
@@ -292,6 +287,7 @@ describe('event stage matrix', () => {
   it('parses every allowed stage and rejects unknown values', () => {
     for (const stage of EVENT_STAGES) expect(parseEventStage(stage)).toBe(stage);
     expect(parseEventStage(undefined)).toBe('teaser');
+    expect(() => parseEventStage('cfp')).toThrow('Invalid EVENT_STAGE');
     expect(() => parseEventStage('finished')).toThrow('Invalid EVENT_STAGE');
   });
 

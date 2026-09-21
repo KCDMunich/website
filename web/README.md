@@ -46,15 +46,14 @@ npm run start
 | Stage | Visitor experience |
 | ----- | ------------------ |
 | `teaser` | Save the date and previous-edition archive; no ticket section |
-| `cfp` | Call for proposals; requires `CFP_URL` |
-| `tickets` | Ticket section and purchase links |
+| `tickets` | Ticket sales, CFP section, and program previews or publication |
 | `live` | On-site information and schedule |
 | `recap` | Photos, recordings, and partner thanks |
 
 During `tickets`, `PROGRAM_PUBLISHED` controls program publication and `TICKETS_SOLD_OUT`
 replaces purchase actions with the sold-out presentation. Both default to `false`.
 `ANNOUNCED_SPEAKER_IDS` enables early speaker previews. Leave it empty to hide the speaker section,
-header/mobile/footer links, and speaker hero CTA during CFP and unpublished ticket stages.
+header/mobile/footer links, and speaker hero CTA during unpublished ticket stages.
 Add Sessionize IDs and redeploy to show announcements, or set `PROGRAM_PUBLISHED=true` in the
 ticket stage for the full lineup. Archive and live lineups are unaffected. Direct preview routes
 remain reachable with `noIndex`; no extra visibility switch is needed.
@@ -66,6 +65,7 @@ Edition content lives in [`lib/event-config.ts`](lib/event-config.ts):
 | ------------- | ------- |
 | `archive` | Completed edition: recordings, gallery, and archive labels |
 | `upcoming` | Next edition: date, venue, and ticket link |
+| `campaigns` | Active campaign links, including the CFP form |
 | `sponsorship` | Edition accepting partner enquiries |
 
 Keep these aligned when rotating editions. `SESSIONIZE_EVENT_ID` selects schedule and speaker

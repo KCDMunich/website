@@ -1,4 +1,4 @@
-export const EVENT_STAGES = ['teaser', 'cfp', 'tickets', 'live', 'recap'] as const;
+export const EVENT_STAGES = ['teaser', 'tickets', 'live', 'recap'] as const;
 
 export const SPONSORSHIP_PHASES = ['closed', 'recruiting'] as const;
 
@@ -14,6 +14,7 @@ export type TicketingMode = 'closed' | 'open' | 'sold-out';
 
 export type HomepageSectionId =
   | 'about'
+  | 'cfp'
   | 'moments'
   | 'expect'
   | 'ticketing'
@@ -30,6 +31,7 @@ export type SiteAction = {
   href: string;
   icon: ActionIcon;
   label: string;
+  prominent?: boolean;
 };
 
 export function parseEventStage(value: string | undefined, fallback: EventStage = 'teaser') {

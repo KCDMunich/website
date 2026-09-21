@@ -127,8 +127,12 @@ export function Hero({ presentation }: HeroProps) {
               {presentation.secondaryAction && SecondaryIcon ? (
                 <Button
                   size="lg"
-                  variant="outline"
-                  className="h-12 border-white/30 bg-black/20 px-8 text-base text-white backdrop-blur-sm hover:bg-black/30 hover:text-white"
+                  variant={presentation.secondaryAction.prominent ? 'default' : 'outline'}
+                  className={
+                    presentation.secondaryAction.prominent
+                      ? 'h-12 bg-[#0bbbef] px-8 text-base font-semibold text-primary hover:bg-[#35c8f2]'
+                      : 'h-12 border-white/30 bg-black/20 px-8 text-base text-white backdrop-blur-sm hover:bg-black/30 hover:text-white'
+                  }
                   nativeButton={false}
                   render={<ActionLink action={presentation.secondaryAction} />}
                 >
