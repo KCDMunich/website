@@ -15,7 +15,7 @@ TICKETS_SOLD_OUT=false
 SPONSORSHIP_PHASE=recruiting
 ```
 
-The implementation includes the pure `site-presentation` contract, exhaustive five-stage mapping,
+The implementation includes the pure `site-presentation` contract, exhaustive four-stage mapping,
 stage-aware homepage composition, navigation, ticketing, program routes, indexing, metadata,
 sponsorship, and Vitest matrix coverage. The historical work packages remain in this document as an
 audit trail and maintenance checklist.
@@ -38,8 +38,7 @@ must update all visitor-facing surfaces consistently.
 
 ### Confirmed gaps in the current implementation
 
-- `teaser`, `cfp`, `upcoming`, and `live` mostly change hero copy only.
-- `cfp` has no CFP action and still links to the schedule.
+- `teaser`, `upcoming`, and `live` mostly change hero copy only.
 - `PROGRAM_PHASE=hidden` hides only the homepage speaker teaser.
 - Program links remain in navigation regardless of program readiness.
 - Root metadata always uses recap copy.
@@ -60,7 +59,7 @@ SPONSORSHIP_PHASE=recruiting
 Allowed event stages:
 
 ```text
-teaser | cfp | tickets | live | recap
+teaser | tickets | live | recap
 ```
 
 Allowed sponsorship phases:
@@ -82,8 +81,7 @@ with the current four-variable model.
 | Stage     | Hero purpose                       | Primary action                  | Program              | Tickets          | Homepage emphasis                              |
 | --------- | ---------------------------------- | ------------------------------- | -------------------- | ---------------- | ---------------------------------------------- |
 | `teaser`  | Announce the next edition          | Save the date or join community | Hidden               | Closed           | Date, vision, previous highlights, sponsors    |
-| `cfp`     | Recruit speakers                   | Submit a proposal               | Preview              | Closed           | CFP, topic guidance, early speakers, community |
-| `tickets` | Convert visitors to attendees      | Buy tickets / explore schedule  | Preview or published | Open or sold out | Tickets, value proposition, speakers, venue    |
+| `tickets` | Convert visitors and recruit speakers | Buy tickets / explore schedule | Preview or published | Open or sold out | Tickets, CFP, value proposition, speakers, venue |
 | `live`    | Support visitors during event days | Open live schedule              | Published            | Closed           | Live schedule, venue, attendee information     |
 | `recap`   | Preserve and share event value     | View photos / watch sessions    | Archive              | Closed           | Photos, recordings, archive, partner thanks    |
 
@@ -92,7 +90,6 @@ with the current four-variable model.
 | Stage     | Schedule                                  | Speakers               | Tickets                                    | Photos           | Sponsors |
 | --------- | ----------------------------------------- | ---------------------- | ------------------------------------------ | ---------------- | -------- |
 | `teaser`  | Hidden                                    | Hidden                 | Hidden                                     | Previous edition | Visible  |
-| `cfp`     | Hidden                                    | Preview if available   | Hidden                                     | Previous edition | Visible  |
 | `tickets` | Hidden or visible via `PROGRAM_PUBLISHED` | Preview or full lineup | Visible or sold-out via `TICKETS_SOLD_OUT` | Previous edition | Visible  |
 | `live`    | Live schedule                             | Visible                | Hidden                                     | Previous edition | Visible  |
 | `recap`   | Edition archive                           | Edition archive        | Hidden                                     | Current edition  | Visible  |
@@ -210,10 +207,9 @@ Every stage must define all of the following in one place:
 ### Required CTA behavior
 
 - `teaser`: no schedule or ticket CTA before those resources are public.
-- `cfp`: primary CTA must be the CFP URL. If no CFP URL is configured, fail the build rather than
-  silently replacing it with an unrelated action.
 - `tickets`: ticket actions must appear consistently in hero, desktop header, mobile menu, and
   ticket section.
+- `tickets`: the CFP remains a dedicated homepage section and links to the configured Sessionize form.
 - `tickets` with `PROGRAM_PUBLISHED=true`: schedule becomes the primary planning action; tickets
   remain available.
 - `tickets` with `TICKETS_SOLD_OUT=true`: remove all purchase actions and show consistent sold-out
@@ -255,9 +251,9 @@ Files:
 Tasks:
 
 - Replace the four-axis event model with `EventStage` plus `SponsorshipPhase`.
-- Implement a pure exhaustive switch for all five stages, plus the two ticket options.
+- Implement a pure exhaustive switch for all four stages, plus the two ticket options.
 - Make TypeScript fail compilation when a new stage is added without a presentation mapping.
-- Validate required stage-specific content such as CFP and ticket URLs.
+- Validate required stage-specific content such as ticket URLs.
 - Remove compatibility fallbacks for the old variables.
 
 Exit criteria:
@@ -307,7 +303,7 @@ Tasks:
 Exit criteria:
 
 - Desktop and mobile expose the same capabilities for every stage.
-- No stage shows a schedule, ticket, or CFP action when its resource is unavailable.
+- No stage shows a schedule or ticket action when its resource is unavailable.
 
 ### WP5: Make homepage composition stage-complete
 
@@ -399,24 +395,23 @@ Exit criteria:
 
 ## 7. Required automated test matrix
 
-Create table-driven tests for all five stages and each ticket option. Each row must assert at least:
+Create table-driven tests for all four stages and each ticket option. Each row must assert at least:
 
-| Assertion                   | Teaser    | CFP       | Tickets   | Program   | Sold out  | Live      | Recap   |
-| --------------------------- | --------- | --------- | --------- | --------- | --------- | --------- | ------- |
-| Correct hero copy key       | Yes       | Yes       | Yes       | Yes       | Yes       | Yes       | Yes     |
-| Correct primary CTA         | Yes       | Yes       | Yes       | Yes       | Yes       | Yes       | Yes     |
-| Ticket purchase visible     | No        | No        | Yes       | Yes       | No        | No        | No      |
-| Schedule navigation visible | No        | No        | No        | Yes       | Yes       | Yes       | Archive |
-| Speaker mode                | Hidden    | Preview   | Preview   | Published | Published | Published | Archive |
-| Correct homepage order      | Yes       | Yes       | Yes       | Yes       | Yes       | Yes       | Yes     |
-| Correct root metadata       | Yes       | Yes       | Yes       | Yes       | Yes       | Yes       | Yes     |
-| Correct schedule metadata   | `noIndex` | `noIndex` | `noIndex` | Current   | Current   | Live      | Archive |
+| Assertion                   | Teaser    | Tickets   | Program   | Sold out  | Live      | Recap   |
+| --------------------------- | --------- | --------- | --------- | --------- | --------- | ------- |
+| Correct hero copy key       | Yes       | Yes       | Yes       | Yes       | Yes       | Yes     |
+| Correct primary CTA         | Yes       | Yes       | Yes       | Yes       | Yes       | Yes     |
+| Ticket purchase visible     | No        | Yes       | Yes       | No        | No        | No      |
+| Schedule navigation visible | No        | No        | Yes       | Yes       | Yes       | Archive |
+| Speaker mode                | Hidden    | Preview   | Published | Published | Published | Archive |
+| Correct homepage order      | Yes       | Yes       | Yes       | Yes       | Yes       | Yes     |
+| Correct root metadata       | Yes       | Yes       | Yes       | Yes       | Yes       | Yes     |
+| Correct schedule metadata   | `noIndex` | `noIndex` | Current   | Current   | Live      | Archive |
 
 Additional tests:
 
 - Every allowed stage parses successfully.
 - Every unknown stage throws an actionable error.
-- CFP without a CFP URL fails validation.
 - Ticket stages without a ticket URL fail validation.
 - Sponsorship `closed` removes all recruiting actions.
 - Sponsorship `recruiting` adds the same action to desktop, mobile, and sponsor section.
@@ -464,7 +459,7 @@ The migration is complete only when:
   the `tickets` stage.
 - `SPONSORSHIP_PHASE` is the only independent campaign state.
 - The old event, program, and ticketing variables no longer exist.
-- All five stages and both ticket options have distinct, appropriate copy and CTAs.
+- All four stages and both ticket options have distinct, appropriate copy and CTAs.
 - Header, mobile menu, homepage, routes, and metadata agree for every stage.
 - No visitor-facing edition year is unintentionally hardcoded.
 - Stage and sponsorship matrices are covered by automated tests.
@@ -480,9 +475,9 @@ These do not block implementing the architecture, but the corresponding stage mu
 or use an explicitly approved fallback until the content exists:
 
 - Confirmed next-event date and venue for `teaser`
-- CFP URL, deadline, and topic guidance for `cfp`
-- Comma-separated Sessionize speaker IDs in `ANNOUNCED_SPEAKER_IDS` for the CFP and ticket-preview states
+- Comma-separated Sessionize speaker IDs in `ANNOUNCED_SPEAKER_IDS` for ticket-preview states
 - Current Fienta event and checkout URLs for `tickets`
+- Current Sessionize CFP URL for the CFP section in `tickets`
 - Current Sessionize event ID for the published `tickets` option and `live`
 - Confirmed next-edition sponsor prospectus URL, or approval to use email interest only
 - Updated social-preview image and stage-appropriate Open Graph copy

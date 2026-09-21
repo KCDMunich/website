@@ -367,7 +367,7 @@ export function SiteHeader({
               nativeButton={false}
               render={<Link href="/#sponsors" />}
             >
-              Sponsor {EVENT_CONFIG.sponsorship.edition}
+              Sponsor
             </Button>
           ) : null}
           <Button
