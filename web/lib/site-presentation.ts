@@ -64,8 +64,9 @@ const action = (
   label: string,
   href: string,
   icon: SiteAction['icon'],
-  external = false
-): SiteAction => ({ external, href, icon, label });
+  external = false,
+  prominent = false
+): SiteAction => ({ external, href, icon, label, ...(prominent ? { prominent } : {}) });
 
 const requireUrl = (value: string | null, message: string): string => {
   if (!value) throw new Error(message);
@@ -179,45 +180,6 @@ export function createSitePresentation(
         ticketing: { mode: 'closed', showPurchaseActions: false },
       };
 
-    case 'cfp': {
-      const cfpUrl = requireUrl(config.campaigns.cfpUrl, 'EVENT_STAGE=cfp requires CFP_URL.');
-
-      return {
-        event: { stage, isLive: false, isRecap: false },
-        hero: {
-          eyebrow: `Call for proposals · CNS Munich ${upcoming.edition}`,
-          titleLead: 'Bring your',
-          titleAccent: 'story to Munich',
-          description:
-            'Share practical lessons, hard-won experience, and bold ideas with an open cloud native community.',
-          primaryAction: action('Submit a proposal', cfpUrl, 'arrow', true),
-          secondaryAction: action('Meet the community', config.community.discordUrl, 'users', true),
-          showStats: false,
-        },
-        homepage: {
-          sections: ['about', 'expect', ...previewSpeakerSections, 'moments', 'schedule', 'sponsors'],
-        },
-        metadata: {
-          title: `Call for Proposals ${upcoming.edition} | ${upcoming.shortName}`,
-          description:
-            'Submit a talk or workshop proposal for the next Cloud Native Summit Munich.',
-        },
-        navigation: {
-          showSchedule: false,
-          showSpeakers: hasAnnouncedSpeakers,
-          scheduleLabel: 'Schedule',
-          speakersLabel: 'Speaker Preview',
-        },
-        program: {
-          mode: 'preview',
-          noIndex: true,
-          ...earlyAnnouncementProgramCopy(upcoming, config.campaigns.announcedSpeakerIds),
-        },
-        sponsorship,
-        ticketing: { mode: 'closed', showPurchaseActions: false },
-      };
-    }
-
     case 'tickets': {
       const { programPublished, ticketsSoldOut } = controls;
       const showSpeakers = programPublished || hasAnnouncedSpeakers;
@@ -259,6 +221,7 @@ export function createSitePresentation(
                   'schedule',
                   'speakers',
                   'ticketing',
+                  'cfp',
                   'expect',
                   'sponsors',
                   'venue',
@@ -268,6 +231,7 @@ export function createSitePresentation(
               : [
                   'about',
                   'ticketing',
+                  'cfp',
                   'expect',
                   ...previewSpeakerSections,
                   'moments',
@@ -315,7 +279,7 @@ export function createSitePresentation(
             : action('Get your ticket', ticketUrl, 'ticket', true),
           secondaryAction: programPublished
             ? action('Get your ticket', ticketUrl, 'ticket', true)
-            : previewSpeakerAction,
+            : action('Become a sponsor', '/#sponsors', 'users', false, true),
           showStats: true,
         },
         homepage: {
@@ -324,6 +288,7 @@ export function createSitePresentation(
                 'schedule',
                 'speakers',
                 'ticketing',
+                'cfp',
                 'about',
                 'expect',
                 'sponsors',
@@ -334,6 +299,7 @@ export function createSitePresentation(
             : [
                 'about',
                 'ticketing',
+                'cfp',
                 'expect',
                 ...previewSpeakerSections,
                 'moments',

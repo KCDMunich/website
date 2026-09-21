@@ -1,4 +1,5 @@
 import { About } from '@/components/home/about';
+import { Cfp } from '@/components/home/cfp';
 import { EventMoments } from '@/components/home/event-moments';
 import { Expect } from '@/components/home/expect';
 import { Hero } from '@/components/home/hero';
@@ -9,6 +10,7 @@ import { Sponsors } from '@/components/home/sponsors';
 import { Ticketing } from '@/components/home/ticketing';
 import { Venue } from '@/components/home/venue';
 import { SiteLayout } from '@/components/layout/site-layout';
+import { EVENT_CONFIG } from '@/lib/event-config';
 import { alternatingSectionTone, type SectionTone } from '@/lib/section-backgrounds';
 import { siteState } from '@/lib/site-state';
 import type { HomepageSectionId } from '@/lib/site-state-types';
@@ -23,6 +25,8 @@ function renderHomepageSection(section: HomepageSectionId, tone: SectionTone) {
           tone={tone}
         />
       );
+    case 'cfp':
+      return <Cfp key={section} href={EVENT_CONFIG.campaigns.cfpUrl} tone={tone} />;
     case 'moments':
       return <EventMoments key={section} tone={tone} />;
     case 'expect':

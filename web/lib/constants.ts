@@ -36,6 +36,21 @@ export const LINKS = {
     target: '_blank',
     external: true,
   },
+  playlist2026: {
+    to: 'https://www.youtube.com/playlist?list=PLAA2DJBnZEc8',
+    target: '_blank',
+    external: true,
+  },
+  playlist2025: {
+    to: 'https://www.youtube.com/playlist?list=PL54A_DPe8WtDLSA_EA7ETfprpRWzd2yqV',
+    target: '_blank',
+    external: true,
+  },
+  playlist2024: {
+    to: 'https://www.youtube.com/playlist?list=PL54A_DPe8WtBuSp7sqpxeuy_UoTTlKB1O',
+    target: '_blank',
+    external: true,
+  },
   home: {
     to: '/',
   },
@@ -123,12 +138,23 @@ const PHOTO_GALLERY: MenuItem = {
   ],
 };
 
+const VIDEO_PLAYLISTS: MenuItem = {
+  text: 'Video Playlists',
+  to: '',
+  children: [
+    { text: '2026', ...LINKS.playlist2026 },
+    { text: '2025', ...LINKS.playlist2025 },
+    { text: '2024', ...LINKS.playlist2024 },
+  ],
+};
+
 export const MENUS: Record<'header' | 'footer' | 'mobile', MenuItem[]> = {
   header: [
     { text: 'Schedule', ...LINKS.schedule },
     { text: 'Speakers', ...LINKS.speakers },
     { text: 'Sponsors', ...LINKS.sponsors },
     PHOTO_GALLERY,
+    VIDEO_PLAYLISTS,
   ],
   footer: [
     { text: 'Code of Conduct', ...LINKS.conduct },
@@ -142,5 +168,6 @@ export const MENUS: Record<'header' | 'footer' | 'mobile', MenuItem[]> = {
     { text: 'Speakers', ...LINKS.speakers },
     { text: 'Sponsors', ...LINKS.sponsors },
     PHOTO_GALLERY,
+    VIDEO_PLAYLISTS,
   ],
 };

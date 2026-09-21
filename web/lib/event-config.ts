@@ -24,7 +24,7 @@ export type EventConfig = {
   };
   campaigns: {
     announcedSpeakerIds: readonly string[];
-    cfpUrl: string | null;
+    cfpUrl: string;
   };
   community: {
     discordUrl: string;
@@ -75,12 +75,12 @@ export const EVENT_CONFIG: EventConfig = {
   campaigns: {
     // Sessionize speaker IDs are supplied as ANNOUNCED_SPEAKER_IDS in the environment.
     announcedSpeakerIds: parseCommaSeparatedIds(process.env.ANNOUNCED_SPEAKER_IDS),
-    cfpUrl: process.env.CFP_URL ?? null,
+    cfpUrl: 'https://sessionize.com/cloud-native-summit-2027',
   },
   community: {
     discordUrl: 'https://discord.com/invite/Ht3upbGey9',
     sponsorEmail: 'team@cloudnativesummit.de',
     sponsorProspectusUrl:
-      'https://docs.google.com/presentation/d/1QVKEiKgR_Q-grdpZ7QR85-xlvoydq3P6ijvpvKF4KmY/edit?usp=sharing',
+      'https://docs.google.com/presentation/d/1AxvPvYvmkbHV8Ku_SAzl-kE06uQlW45bY8oE9hr2WzQ/edit?usp=sharing',
   },
 };
