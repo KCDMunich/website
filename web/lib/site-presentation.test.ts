@@ -110,6 +110,7 @@ describe('event stage matrix', () => {
     for (const stage of EVENT_STAGES) {
       const presentation = createSitePresentation(stage, 'recruiting', testConfig);
       expect(presentation.homepage.sections.includes('cfp')).toBe(stage === 'tickets');
+      expect(presentation.navigation.showCfp).toBe(stage === 'tickets');
     }
 
     for (const programPublished of [false, true]) {
@@ -145,9 +146,9 @@ describe('event stage matrix', () => {
               ? { label: 'Meet the speakers', href: '/speakers', icon: 'users', external: false }
               : null
             : {
-                label: 'Become a sponsor',
-                href: '/#sponsors',
-                icon: 'users',
+                label: 'Submit a talk',
+                href: '/#call-for-proposals',
+                icon: 'mic',
                 external: false,
                 prominent: true,
               }

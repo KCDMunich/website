@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
-import { MenuIcon, Ticket } from 'lucide-react';
+import { MenuIcon, Mic, Ticket } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
 import {
@@ -227,6 +227,18 @@ function MobileNav({
                 Tickets sold out
               </Button>
             ) : null}
+            {navigation.showCfp ? (
+              <Button
+                size="lg"
+                className="h-12 w-full bg-[#0bbbef] text-base font-semibold text-primary hover:bg-[#35c8f2]"
+                nativeButton={false}
+                render={<Link href="/#call-for-proposals" />}
+                onClick={() => onOpenChange(false)}
+              >
+                <Mic className="size-4" />
+                Submit a talk
+              </Button>
+            ) : null}
             {sponsorship.isRecruiting ? (
               <Button
                 size="lg"
@@ -353,6 +365,17 @@ export function SiteHeader({
               disabled
             >
               Sold out
+            </Button>
+          ) : null}
+          {navigation.showCfp ? (
+            <Button
+              size="sm"
+              className="hidden bg-[#0bbbef] font-semibold text-primary hover:bg-[#35c8f2] sm:inline-flex"
+              nativeButton={false}
+              render={<Link href="/#call-for-proposals" />}
+            >
+              <Mic className="size-4" />
+              CFP
             </Button>
           ) : null}
           {sponsorship.isRecruiting ? (

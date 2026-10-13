@@ -65,8 +65,8 @@ export const LINKS = {
     homeTo: null,
   },
   proposal: {
-    to: `/#${getAnchor('Call for Speakers')}`,
-    id: getAnchor('Call for Speakers'),
+    to: `/#${getAnchor('Call for Proposals')}`,
+    id: getAnchor('Call for Proposals'),
     homeTo: null,
   },
   team: {

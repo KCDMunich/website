@@ -33,6 +33,7 @@ export type SitePresentation = {
   };
   navigation: {
     scheduleLabel: string;
+    showCfp: boolean;
     showSchedule: boolean;
     showSpeakers: boolean;
     speakersLabel: string;
@@ -166,6 +167,7 @@ export function createSitePresentation(
             'Cloud Native Summit Munich is returning. Join the community and explore highlights from the latest edition.',
         },
         navigation: {
+          showCfp: false,
           showSchedule: true,
           showSpeakers: true,
           scheduleLabel: `${archiveEdition} Schedule`,
@@ -247,6 +249,7 @@ export function createSitePresentation(
               : `CNS Munich ${upcoming.edition} is sold out. Join the community for updates.`,
           },
           navigation: {
+            showCfp: true,
             showSchedule: hasPublishedProgram,
             showSpeakers,
             scheduleLabel: 'Schedule',
@@ -279,7 +282,7 @@ export function createSitePresentation(
             : action('Get your ticket', ticketUrl, 'ticket', true),
           secondaryAction: programPublished
             ? action('Get your ticket', ticketUrl, 'ticket', true)
-            : action('Become a sponsor', '/#sponsors', 'users', false, true),
+            : action('Submit a talk', '/#call-for-proposals', 'mic', false, true),
           showStats: true,
         },
         homepage: {
@@ -318,6 +321,7 @@ export function createSitePresentation(
             : `Get tickets for ${upcoming.name} ${upcoming.edition} in ${upcoming.location}.`,
         },
         navigation: {
+          showCfp: true,
           showSchedule: programPublished,
           showSpeakers,
           scheduleLabel: 'Schedule',
@@ -355,6 +359,7 @@ export function createSitePresentation(
           description: `CNS Munich ${upcoming.edition} is live at ${liveVenue}. Open the schedule and event information.`,
         },
         navigation: {
+          showCfp: false,
           showSchedule: true,
           showSpeakers: true,
           scheduleLabel: 'Live Schedule',
@@ -404,6 +409,7 @@ export function createSitePresentation(
           description: `Relive ${archive.name} ${archive.edition} through photos, recordings, speakers, and the complete event archive.`,
         },
         navigation: {
+          showCfp: false,
           showSchedule: true,
           showSpeakers: true,
           scheduleLabel: `${archiveEdition} Schedule`,
