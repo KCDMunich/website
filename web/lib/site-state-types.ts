@@ -24,7 +24,7 @@ export type HomepageSectionId =
   | 'venue'
   | 'hotels';
 
-export type ActionIcon = 'arrow' | 'calendar' | 'camera' | 'map' | 'play' | 'ticket' | 'users';
+export type ActionIcon = 'arrow' | 'calendar' | 'camera' | 'map' | 'mic' | 'play' | 'ticket' | 'users';
 
 export type SiteAction = {
   external?: boolean;
