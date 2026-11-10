@@ -12,7 +12,7 @@ npm run dev
 ```
 
 Open <http://localhost:3000>. Copy the env example only on first setup; keep existing local values.
-Node.js 24.19.0 or newer within major 24 is required.
+Node.js 24.22.2 or newer within major 24 is required.
 
 ## Validation
 

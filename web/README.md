@@ -4,7 +4,7 @@ Next.js App Router application for [cloudnativesummit.de](https://cloudnativesum
 
 ## Local development
 
-Requires Node.js >=24.19.0 and <25, plus npm. From the repository root:
+Requires Node.js >=24.22.2 and <25, plus npm. From the repository root:
 
 ```bash
 cd web
