@@ -21,6 +21,8 @@ export interface Sponsor {
 
 export const SPONSOR_CONTACT_EMAIL = EVENT_CONFIG.community.sponsorEmail;
 
+export const SPONSOR_INTEREST_URL = EVENT_CONFIG.community.sponsorInterestUrl;
+
 export const SPONSOR_PROSPECTUS_URL = EVENT_CONFIG.community.sponsorProspectusUrl;
 
 export const tierConfig: Record<

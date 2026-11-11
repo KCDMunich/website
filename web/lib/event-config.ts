@@ -29,6 +29,7 @@ export type EventConfig = {
   community: {
     discordUrl: string;
     sponsorEmail: string;
+    sponsorInterestUrl: string;
     sponsorProspectusUrl: string | null;
   };
   sponsorship: {
@@ -80,6 +81,8 @@ export const EVENT_CONFIG: EventConfig = {
   community: {
     discordUrl: 'https://discord.com/invite/Ht3upbGey9',
     sponsorEmail: 'team@cloudnativesummit.de',
+    sponsorInterestUrl:
+      'https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=EVFQHa0mRkyin1PO2FIGseXQWc__D_lCoEO4Cu0Nb2NUNUQyT1E2WFFHNTFOUDE1RzFMUU8ySVNUVCQlQCN0PWcu',
     sponsorProspectusUrl:
       'https://docs.google.com/presentation/d/1AxvPvYvmkbHV8Ku_SAzl-kE06uQlW45bY8oE9hr2WzQ/edit?usp=sharing',
   },
