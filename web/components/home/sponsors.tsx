@@ -10,6 +10,7 @@ import {
   getLogoSize,
   getSponsorsForEdition,
   SPONSOR_CONTACT_EMAIL,
+  SPONSOR_INTEREST_URL,
   SPONSOR_PROSPECTUS_URL,
   tierConfig,
   TIER_ORDER,
@@ -173,22 +174,19 @@ export function Sponsors({ phase, tone = 'default' }: SponsorsProps) {
                     create meaningful conversations with practitioners. We are now speaking with
                     partners for our next edition.
                   </p>
+                  <p className="mt-4 text-base leading-relaxed text-white/75">
+                    Have a partnership idea?{' '}
+                    <a
+                      href={`mailto:${SPONSOR_CONTACT_EMAIL}?subject=CNS%20Munich%20${EVENT_CONFIG.sponsorship.edition}%20sponsorship%20interest`}
+                      className="inline-flex items-center gap-1.5 rounded-sm text-white underline underline-offset-4 transition-colors hover:text-[#0bbbef] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#0bbbef]"
+                    >
+                      <Mail className="size-4" aria-hidden="true" />
+                      Share your idea
+                    </a>.
+                  </p>
                 </div>
 
                 <div className="flex flex-col gap-3 sm:flex-row lg:flex-col">
-                  <Button
-                    nativeButton={false}
-                    render={
-                      <a
-                        href={`mailto:${SPONSOR_CONTACT_EMAIL}?subject=CNS%20Munich%20${EVENT_CONFIG.sponsorship.edition}%20sponsorship%20interest`}
-                      />
-                    }
-                    size="lg"
-                    className="bg-[#0bbbef] text-primary hover:bg-[#35c8f2]"
-                  >
-                    <Mail className="size-4" />
-                    Register your interest
-                  </Button>
                   {SPONSOR_PROSPECTUS_URL ? (
                     <Button
                       nativeButton={false}
@@ -203,6 +201,21 @@ export function Sponsors({ phase, tone = 'default' }: SponsorsProps) {
                       <ArrowRight className="size-4" />
                     </Button>
                   ) : null}
+                  <Button
+                    nativeButton={false}
+                    render={
+                      <a
+                        href={SPONSOR_INTEREST_URL}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      />
+                    }
+                    size="lg"
+                    className="bg-[#0bbbef] text-primary hover:bg-[#35c8f2]"
+                  >
+                    Register your interest
+                    <ArrowRight className="size-4" />
+                  </Button>
                 </div>
               </div>
             </div>
