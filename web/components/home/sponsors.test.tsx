@@ -38,7 +38,7 @@ describe('sponsorship recruitment actions', () => {
       html.indexOf('Register your interest')
     );
     expect(prospectus).toContain(
-      'href="https://docs.google.com/presentation/d/1AxvPvYvmkbHV8Ku_SAzl-kE06uQlW45bY8oE9hr2WzQ/edit?usp=sharing"'
+      'href="https://cloudnativebayern.sharepoint.com/:p:/s/CNSMunich/cQryFtiRKWJbTrXPaQ03rPkoEgUBTQSLJTEF72ArtKQEnqB3DA"'
     );
     expect(idea).toContain(
       'href="mailto:team@cloudnativesummit.de?subject=CNS%20Munich%202027%20sponsorship%20interest"'
